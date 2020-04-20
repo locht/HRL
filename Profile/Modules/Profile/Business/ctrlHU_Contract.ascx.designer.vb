@@ -176,6 +176,24 @@ Partial Public Class ctrlHU_Contract
     Protected WithEvents rgContract As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
+    '''ctrlMessageBox1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ctrlMessageBox1 As Global.Common.ctrlMessageBox
+
+    '''<summary>
+    '''ctrlUpload1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ctrlUpload1 As Global.Common.ctrlUpload
+
+    '''<summary>
     '''RadWindowManager1 control.
     '''</summary>
     '''<remarks>

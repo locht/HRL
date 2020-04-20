@@ -2783,6 +2783,9 @@ Namespace ProfileBusiness.ServiceContracts
 
         <OperationContract()>
         Function ApproveListContract(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean
+
+        <OperationContract()>
+        Function GetContractImport() As DataSet
 #End Region
 #Region "Danh mục người ký"
         <OperationContract()>

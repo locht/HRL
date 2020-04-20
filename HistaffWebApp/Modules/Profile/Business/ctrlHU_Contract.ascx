@@ -110,6 +110,8 @@
         </tlk:RadSplitter>
     </tlk:RadPane>
 </tlk:RadSplitter>
+<Common:ctrlMessageBox ID="ctrlMessageBox1" runat="server" />
+<Common:ctrlUpload ID="ctrlUpload1" runat="server" />
 <tlk:RadWindowManager ID="RadWindowManager1" runat="server">
     <Windows>
         <tlk:RadWindow runat="server" ID="rwPopup" VisibleStatusbar="false" Width="950px"
@@ -185,15 +187,18 @@
                 }
                 enableAjax = false;
             }
-            if (args.get_item().get_commandName() == "NEXT") {
-                var bCheck = $find('<%= rgContract.ClientID %>').get_masterTableView().get_selectedItems().length;
-                if (bCheck == 0) {
-                    var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
-                    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                    args.set_cancel(true);
-                    return;
-                }
+            //if (args.get_item().get_commandName() == "NEXT") {
+            //var bCheck = $find('<%= rgContract.ClientID %>').get_masterTableView().get_selectedItems().length;
+            //if (bCheck == 0) {
+            //var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
+            //var n = noty({ text: m, dismissQueue: true, type: 'warning' });
+            //setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+            //args.set_cancel(true);
+            //return;
+            //}
+            //enableAjax = false;
+            //}
+            if (args.get_item().get_commandName() == 'NEXT') {
                 enableAjax = false;
             }
             if (args.get_item().get_commandName() == 'EXPORT') {

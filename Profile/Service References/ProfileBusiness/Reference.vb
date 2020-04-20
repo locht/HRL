@@ -56351,3229 +56351,3236 @@ Namespace ProfileBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="ProfileBusiness.IProfileBusiness")>  _
     Public Interface IProfileBusiness
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_SALARY", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_SALARYResponse")>  _
-        Function CHECK_SALARY(ByVal P_ID As Decimal) As Integer
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_CONTRACT_EXITS", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_CONTRACT_EXITSResponse")>  _
-        Function CHECK_CONTRACT_EXITS(ByVal P_CONTRACT As Decimal, ByVal P_EMP_CODE As String, ByVal P_DATE As Date) As Integer
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_SIGN", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_SIGNResponse")>  _
-        Function CHECK_SIGN(ByVal P_EMP_CODE As String) As Integer
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INPORT_PLHD", ReplyAction:="http://tempuri.org/IProfileBusiness/INPORT_PLHDResponse")>  _
-        Function INPORT_PLHD(ByVal P_DOCXML As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/EXPORT_QLKT", ReplyAction:="http://tempuri.org/IProfileBusiness/EXPORT_QLKTResponse")>  _
-        Function EXPORT_QLKT() As System.Data.DataSet
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_EMPLOYEE", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_EMPLOYEEResponse")>  _
-        Function GET_EMPLOYEE(ByVal P_EMP_CODE As String) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_PROCESS_PLCONTRACT_PORTAL", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_PROCESS_PLCONTRACT_PORTALResponse")>  _
-        Function GET_PROCESS_PLCONTRACT_PORTAL(ByVal P_EMP_ID As Decimal) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_LOCATION_EXITS", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_LOCATION_EXITSResponse")>  _
-        Function CHECK_LOCATION_EXITS(ByVal P_ID As System.Nullable(Of Decimal), ByVal ORG_ID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetJobPosition", ReplyAction:="http://tempuri.org/IProfileBusiness/GetJobPositionResponse")>  _
-        Function GetJobPosition(ByVal _filter As ProfileBusiness.Job_PositionDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JOB_POSITION_LIST", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JOB_POSITION_LISTResponse")>  _
-        Function GET_JOB_POSITION_LIST(ByVal P_ORG_ID As Decimal, ByVal P_ID As Decimal) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JOB_POSITION_DETAIL", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JOB_POSITION_DETAILResponse")>  _
-        Function GET_JOB_POSITION_DETAIL(ByVal P_ID As Decimal) As System.Data.DataSet
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_JOB_POSITION", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_JOB_POSITIONResponse")>  _
-        Function INSERT_JOB_POSITION(ByVal p_CODE As String, ByVal p_JOB_NAME As String, ByVal p_ORG_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_JOB_NOTE As String, ByVal p_COST_CODE As String, ByVal p_IS_LEADER As Decimal, ByVal p_EFFECT_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As Integer
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UPDATE_JOB_POSITION", ReplyAction:="http://tempuri.org/IProfileBusiness/UPDATE_JOB_POSITIONResponse")>  _
-        Function UPDATE_JOB_POSITION(ByVal p_ID As Decimal, ByVal p_CODE As String, ByVal p_JOB_NAME As String, ByVal p_ORG_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_JOB_NOTE As String, ByVal p_COST_CODE As String, ByVal p_IS_LEADER As Decimal, ByVal p_EFFECT_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As Integer
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_DIRECT_MANAGER", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_DIRECT_MANAGERResponse")>  _
-        Function INSERT_DIRECT_MANAGER(ByVal P_JOB_POSITION_ID As Decimal, ByVal P_DIRECT_MANAGER As String) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteJob", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteJobResponse")>  _
-        Function DeleteJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveJob", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveJobResponse")>  _
-        Function ActiveJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JP_TO_TITLE", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JP_TO_TITLEResponse")>  _
-        Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal, ByVal P_JOB As Decimal) As System.Data.DataSet
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UPDATE_END_DATE_QD", ReplyAction:="http://tempuri.org/IProfileBusiness/UPDATE_END_DATE_QDResponse")>  _
-        Function UPDATE_END_DATE_QD(ByVal P_EMP_ID As Decimal, ByVal P_DATE As Date) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateStatusQD", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateStatusQDResponse")>  _
-        Function UpdateStatusQD(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateStatusTer", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateStatusTerResponse")>  _
-        Function UpdateStatusTer(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_HU_ASSET", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_HU_ASSETResponse")>  _
-        Function GET_HU_ASSET(ByVal P_EMP_ID As Decimal) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JOB_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JOB_EMPResponse")>  _
-        Function GET_JOB_EMP(ByVal P_EMP_ID As Decimal) As Integer
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JOB_CODE_AUTO", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JOB_CODE_AUTOResponse")>  _
-        Function GET_JOB_CODE_AUTO(ByVal p_TITLE_ID As Decimal) As String
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_JOB_POSITION_AUTO", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_JOB_POSITION_AUTOResponse")>  _
-        Function INSERT_JOB_POSITION_AUTO(ByVal p_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_NUMBER As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_EXITS_JOB", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_EXITS_JOBResponse")>  _
-        Function CHECK_EXITS_JOB(ByVal P_JOB_ID As Decimal, ByVal P_EMP_ID As Decimal) As Integer
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/EXPORT_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/EXPORT_EMPResponse")>  _
-        Function EXPORT_EMP(ByVal P_USERNAME As String, ByVal P_ORGID As Decimal, ByVal P_ISDISSOLVE As Boolean, ByVal P_STARTDATE As System.Nullable(Of Date), ByVal P_TODATE As System.Nullable(Of Date), ByVal P_IS_ALL As Boolean) As System.Data.DataSet
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INPORT_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/INPORT_EMPResponse")>  _
-        Function INPORT_EMP(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_IS_THHDLD", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_IS_THHDLDResponse")>  _
-        Function CHECK_IS_THHDLD(ByVal P_ID As Decimal, ByVal P_EMP_ID As Decimal, ByVal P_DATE As System.Nullable(Of Date)) As Integer
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeDeduct", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeDeductResponse")>  _
-        Function GetEmployeeDeduct(ByVal _filter As ProfileBusiness.DeductDTO) As System.Collections.Generic.List(Of ProfileBusiness.DeductDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertEmployeeDeduct", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertEmployeeDeductResponse")>  _
-        Function InsertEmployeeDeduct(ByVal objFamily As ProfileBusiness.DeductDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyEmployeeDeduct", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyEmployeeDeductResponse")>  _
-        Function ModifyEmployeeDeduct(ByVal objFamily As ProfileBusiness.DeductDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteEmployeeDeduct", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteEmployeeDeductResponse")>  _
-        Function DeleteEmployeeDeduct(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/EXPORT_DISCIPLINE", ReplyAction:="http://tempuri.org/IProfileBusiness/EXPORT_DISCIPLINEResponse")>  _
-        Function EXPORT_DISCIPLINE() As System.Data.DataSet
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INPORT_DISCIPLINE", ReplyAction:="http://tempuri.org/IProfileBusiness/INPORT_DISCIPLINEResponse")>  _
-        Function INPORT_DISCIPLINE(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListCommendListResponse")>  _
-        Function GetListCommendList(ByVal actflg As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendListDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCommendListResponse")>  _
-        Function InsertCommendList(ByVal objCommendList As ProfileBusiness.CommendListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCommendListResponse")>  _
-        Function ModifyCommendList(ByVal objCommendList As ProfileBusiness.CommendListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveCommendListResponse")>  _
-        Function ActiveCommendList(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCommendListResponse")>  _
-        Function DeleteCommendList(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByRef strError As String) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCommendListResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Job_PositionDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ParamDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DeductDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DeductDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendLevelDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendFormulaDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendFormulaDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StatisticDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.StatisticDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAvgEmplDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAvgEmplDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TotalDayOffDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyCourseDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyCourseDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCriteriaRecordDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeCriteriaRecordDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TalentPoolDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TalentPoolDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FilterParamDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OtherListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FileContractDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingAllowanceDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingAllowanceDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FileContractDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ContractTypeDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ContractTypeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ContractDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ContractDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AttachFilesDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AttachFilesDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SignerDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HealthMngDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Temp_ConcurrentlyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationTreeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingBeforeDTOEdit)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTOEdit))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ComboBoxDataDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AssetDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AssetDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.BankDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.BankDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DistrictDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DistrictDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.IndustryDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.IndustryDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LabourProtectionDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LocationDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LocationDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.NationDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.NationDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ProvinceDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ProvinceDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.RelationshipListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.RelationshipListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrganizationDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TitleDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WelfareListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WelfareListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AllowanceListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AllowanceListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ReminderLogDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ReminderLogDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FamilyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FamilyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingBeforeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WelfareMngDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WelfareMngDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Welfatemng_empDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Welfatemng_empDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendEmpDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendEmpDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendOrgDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendOrgDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TitleConcurrentDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleConcurrentDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineEmpDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineEmpDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeAssessmentDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeAssessmentDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeCompetencyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCompetencyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningManageDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.RptDynamicColumnDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.RptDynamicColumnDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuDynamicConditionDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuDynamicConditionDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuConditionColDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuConditionColDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LabourProtectionMngDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OccupationalSafetyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OccupationalSafetyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ATPeriodDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Se_ReportDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Se_ReportDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HUAllowanceDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommandResult)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineSalaryDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineSalaryDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DebtDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DebtDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AssetMngDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AssetMngDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TerminateDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HandoverContentDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HandoverContentDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TerminateReasonDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TerminateReasonDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TerminateDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Terminate3BDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Terminate3BDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuFileDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuFileDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeFileDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FamilyEditDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FamilyEditDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeTrainDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeTrainDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeTrainForCompanyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeTrainForCompanyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeBackgroundDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeBackgroundDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningEvaluateDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningEvaluateDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningForeignDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningForeignDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HUAllowanceDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.BankBranchDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.StaffRankDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StaffRankDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyGroupDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyGroupDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyBuildDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyBuildDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyStandardDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyStandardDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAppendixDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAppendixDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyEmpDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyEmpDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyPeriodDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyPeriodDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAssDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAssDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAssDtlDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAssDtlDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.JobDescriptionDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.JobDescriptionDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCVDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeEduDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeHealthDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.UniformSizeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgChartDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgChartDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeEditDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeEditDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SAFELABOR_MNGDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.SAFELABOR_MNG_EMPDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SAFELABOR_MNG_EMPDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.SAFELABOR_MNGDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrganizationPathDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationPathDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgTitleDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgTitleDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Ward_DTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Ward_DTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.BankBranchDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CETIFICATEDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CETIFICATEDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ProfileCommonTABLE_NAME)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.MergeFieldDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.MergeFieldDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Decimal, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Exception))>  _
-        Function ValidateCommendList(ByVal _validate As ProfileBusiness.CommendListDTO) As Object
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertImportCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertImportCommendResponse")>  _
-        Function InsertImportCommend(ByVal lstImport As System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetImportCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/GetImportCommendResponse")>  _
-        Function GetImportCommend(ByVal _filter As ProfileBusiness.ImportCommendDTO) As System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendLevelResponse")>  _
-        Function GetCommendLevel(ByVal _filter As ProfileBusiness.CommendLevelDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendLevelID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendLevelIDResponse")>  _
-        Function GetCommendLevelID(ByVal ID As Decimal) As ProfileBusiness.CommendLevelDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCommendLevelResponse")>  _
-        Function InsertCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCommendLevelResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Job_PositionDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ParamDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DeductDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DeductDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendLevelDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendFormulaDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendFormulaDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StatisticDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.StatisticDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAvgEmplDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAvgEmplDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TotalDayOffDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyCourseDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyCourseDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCriteriaRecordDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeCriteriaRecordDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TalentPoolDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TalentPoolDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FilterParamDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OtherListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FileContractDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingAllowanceDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingAllowanceDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FileContractDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ContractTypeDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ContractTypeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ContractDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ContractDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AttachFilesDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AttachFilesDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SignerDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HealthMngDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Temp_ConcurrentlyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationTreeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingBeforeDTOEdit)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTOEdit))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ComboBoxDataDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AssetDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AssetDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.BankDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.BankDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DistrictDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DistrictDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.IndustryDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.IndustryDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LabourProtectionDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LocationDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LocationDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.NationDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.NationDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ProvinceDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ProvinceDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.RelationshipListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.RelationshipListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrganizationDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TitleDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WelfareListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WelfareListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AllowanceListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AllowanceListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ReminderLogDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ReminderLogDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FamilyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FamilyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingBeforeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WelfareMngDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WelfareMngDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Welfatemng_empDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Welfatemng_empDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendEmpDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendEmpDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendOrgDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendOrgDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TitleConcurrentDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleConcurrentDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineEmpDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineEmpDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeAssessmentDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeAssessmentDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeCompetencyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCompetencyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningManageDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.RptDynamicColumnDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.RptDynamicColumnDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuDynamicConditionDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuDynamicConditionDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuConditionColDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuConditionColDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LabourProtectionMngDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OccupationalSafetyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OccupationalSafetyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ATPeriodDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Se_ReportDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Se_ReportDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HUAllowanceDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommandResult)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineSalaryDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineSalaryDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DebtDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DebtDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AssetMngDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AssetMngDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TerminateDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HandoverContentDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HandoverContentDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TerminateReasonDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TerminateReasonDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TerminateDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Terminate3BDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Terminate3BDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuFileDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuFileDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeFileDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FamilyEditDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FamilyEditDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeTrainDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeTrainDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeTrainForCompanyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeTrainForCompanyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeBackgroundDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeBackgroundDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningEvaluateDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningEvaluateDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningForeignDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningForeignDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HUAllowanceDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.BankBranchDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.StaffRankDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StaffRankDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyGroupDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyGroupDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyBuildDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyBuildDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyStandardDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyStandardDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAppendixDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAppendixDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyEmpDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyEmpDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyPeriodDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyPeriodDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAssDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAssDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAssDtlDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAssDtlDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.JobDescriptionDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.JobDescriptionDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCVDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeEduDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeHealthDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.UniformSizeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgChartDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgChartDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeEditDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeEditDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SAFELABOR_MNGDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.SAFELABOR_MNG_EMPDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SAFELABOR_MNG_EMPDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.SAFELABOR_MNGDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrganizationPathDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationPathDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgTitleDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgTitleDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Ward_DTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Ward_DTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.BankBranchDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CETIFICATEDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CETIFICATEDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ProfileCommonTABLE_NAME)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.MergeFieldDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.MergeFieldDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Decimal, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Exception))>  _
-        Function ValidateCommendLevel(ByVal _validate As ProfileBusiness.CommendLevelDTO) As Object
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCommendLevelResponse")>  _
-        Function ModifyCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveCommendLevelResponse")>  _
-        Function ActiveCommendLevel(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCommendLevelResponse")>  _
-        Function DeleteCommendLevel(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendFormula", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendFormulaResponse")>  _
-        Function GetCommendFormula(ByVal _filter As ProfileBusiness.CommendFormulaDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendFormulaDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendFormulaID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendFormulaIDResponse")>  _
-        Function GetCommendFormulaID(ByVal ID As Decimal) As ProfileBusiness.CommendFormulaDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCommendFormula", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCommendFormulaResponse")>  _
-        Function InsertCommendFormula(ByVal objCommendFormula As ProfileBusiness.CommendFormulaDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCommendFormula", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCommendFormulaResponse")>  _
-        Function ModifyCommendFormula(ByVal objCommendFormula As ProfileBusiness.CommendFormulaDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveCommendFormula", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveCommendFormulaResponse")>  _
-        Function ActiveCommendFormula(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCommendFormula", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCommendFormulaResponse")>  _
-        Function DeleteCommendFormula(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByRef strError As String) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetStatisticTop5Competency", ReplyAction:="http://tempuri.org/IProfileBusiness/GetStatisticTop5CompetencyResponse")>  _
-        Function GetStatisticTop5Competency(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.StatisticDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetStatisticTop5CopAvg", ReplyAction:="http://tempuri.org/IProfileBusiness/GetStatisticTop5CopAvgResponse")>  _
-        Function GetStatisticTop5CopAvg(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.CompetencyAvgEmplDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeReg", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeRegResponse")>  _
-        Function GetEmployeeReg(ByVal _employee_id As Integer) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTotalDayOff", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTotalDayOffResponse")>  _
-        Function GetTotalDayOff(ByVal _filter As ProfileBusiness.TotalDayOffDTO, ByVal log As Common.CommonBusiness.UserLog) As ProfileBusiness.TotalDayOffDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCertificateExpires", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCertificateExpiresResponse")>  _
-        Function GetCertificateExpires(ByVal _employee_id As Integer) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetencyCourse", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyCourseResponse")>  _
-        Function GetCompetencyCourse(ByVal _filter As ProfileBusiness.CompetencyCourseDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CompetencyCourseDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCompetencyCourse", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCompetencyCourseResponse")>  _
-        Function InsertCompetencyCourse(ByVal objCompetencyCourse As ProfileBusiness.CompetencyCourseDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCompetencyCourse", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCompetencyCourseResponse")>  _
-        Function ModifyCompetencyCourse(ByVal objCompetencyCourse As ProfileBusiness.CompetencyCourseDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCompetencyCourse", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCompetencyCourseResponse")>  _
-        Function DeleteCompetencyCourse(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCourseByList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCourseByListResponse")>  _
-        Function GetCourseByList(ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/EmployeeCriteriaRecord", ReplyAction:="http://tempuri.org/IProfileBusiness/EmployeeCriteriaRecordResponse")>  _
-        Function EmployeeCriteriaRecord(ByVal _filter As ProfileBusiness.EmployeeCriteriaRecordDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeCriteriaRecordDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetPortalCompetencyCourse", ReplyAction:="http://tempuri.org/IProfileBusiness/GetPortalCompetencyCourseResponse")>  _
-        Function GetPortalCompetencyCourse(ByVal _empId As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeCriteriaRecordDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTalentPool", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTalentPoolResponse")>  _
-        Function GetTalentPool(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.TalentPoolDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertTalentPool", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertTalentPoolResponse")>  _
-        Function InsertTalentPool(ByVal lstTalentPool As System.Collections.Generic.List(Of ProfileBusiness.TalentPoolDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveTalentPool", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveTalentPoolResponse")>  _
-        Function ActiveTalentPool(ByVal objTalentPool As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/FILTER_TALENT_POOL", ReplyAction:="http://tempuri.org/IProfileBusiness/FILTER_TALENT_POOLResponse")>  _
-        Function FILTER_TALENT_POOL(ByVal obj As ProfileBusiness.FilterParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/PrintFileContract", ReplyAction:="http://tempuri.org/IProfileBusiness/PrintFileContractResponse")>  _
-        Function PrintFileContract(ByVal emp_code As String, ByVal fileContract_ID As String) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractForm", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractFormResponse")>  _
-        Function GetContractForm(ByVal formID As Decimal) As ProfileBusiness.OtherListDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetFileConTractID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetFileConTractIDResponse")>  _
-        Function GetFileConTractID(ByVal ID As Decimal) As ProfileBusiness.FileContractDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractAppendixPaging", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractAppendixPagingResponse")>  _
-        Function GetContractAppendixPaging(ByVal _filter As ProfileBusiness.FileContractDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.FileContractDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteFileContract", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteFileContractResponse")>  _
-        Function DeleteFileContract(ByVal objContract As ProfileBusiness.FileContractDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListContractType", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListContractTypeResponse")>  _
-        Function GetListContractType(ByVal type As String) As System.Collections.Generic.List(Of ProfileBusiness.ContractTypeDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckExpireFileContract", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckExpireFileContractResponse")>  _
-        Function CheckExpireFileContract(ByVal StartDate As Date, ByVal EndDate As Date, ByVal ID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckExistFileContract", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckExistFileContractResponse")>  _
-        Function CheckExistFileContract(ByVal empID As Decimal, ByVal StartDate As Date, ByVal type_id As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertFileContract", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertFileContractResponse")>  _
-        Function InsertFileContract(ByVal FileInfo As ProfileBusiness.FileContractDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByRef appenNum As String) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateFileContract", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateFileContractResponse")>  _
-        Function UpdateFileContract(ByVal FileInfo As ProfileBusiness.FileContractDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractListResponse")>  _
-        Function GetContractList(ByVal empID As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ContractDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrgList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrgListResponse")>  _
-        Function GetOrgList(ByVal ID As Decimal) As String
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractTypeCT", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractTypeCTResponse")>  _
-        Function GetContractTypeCT(ByVal ID As Decimal) As String
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTitileBaseOnEmp", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTitileBaseOnEmpResponse")>  _
-        Function GetTitileBaseOnEmp(ByVal ID As Decimal) As ProfileBusiness.TitleDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetFileContract_No", ReplyAction:="http://tempuri.org/IProfileBusiness/GetFileContract_NoResponse")>  _
-        Function GetFileContract_No(ByVal Contract As ProfileBusiness.ContractDTO, ByRef STT As Decimal) As String
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractAppendix", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractAppendixResponse")>  _
-        Function GetContractAppendix(ByVal _filter As ProfileBusiness.FileContractDTO) As System.Collections.Generic.List(Of ProfileBusiness.FileContractDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractTypeID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractTypeIDResponse")>  _
-        Function GetContractTypeID(ByVal ID As Decimal) As ProfileBusiness.ContractTypeDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListContractBaseOnEmp", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListContractBaseOnEmpResponse")>  _
-        Function GetListContractBaseOnEmp(ByVal ID As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ContractDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListContract", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListContractResponse")>  _
-        Function GetListContract(ByVal ID As Decimal) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveListContract", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveListContractResponse")>  _
-        Function ApproveListContract(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_HU_SIGNER", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_HU_SIGNERResponse")>  _
-        Function GET_HU_SIGNER(ByVal _filter As ProfileBusiness.SignerDTO, ByVal _param As ProfileBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_HU_SIGNER", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_HU_SIGNERResponse")>  _
-        Function INSERT_HU_SIGNER(ByVal PA As ProfileBusiness.SignerDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UPDATE_HU_SIGNER", ReplyAction:="http://tempuri.org/IProfileBusiness/UPDATE_HU_SIGNERResponse")>  _
-        Function UPDATE_HU_SIGNER(ByVal PA As ProfileBusiness.SignerDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_EXIT", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_EXITResponse")>  _
-        Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal, ByVal ORG_ID As Decimal, ByVal title_name As String) As Decimal
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeactiveAndActiveSigner", ReplyAction:="http://tempuri.org/IProfileBusiness/DeactiveAndActiveSignerResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Job_PositionDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ParamDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DeductDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DeductDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendLevelDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendFormulaDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendFormulaDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StatisticDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.StatisticDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAvgEmplDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAvgEmplDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TotalDayOffDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyCourseDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyCourseDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCriteriaRecordDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeCriteriaRecordDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TalentPoolDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TalentPoolDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FilterParamDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OtherListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FileContractDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingAllowanceDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingAllowanceDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FileContractDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ContractTypeDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ContractTypeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ContractDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ContractDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AttachFilesDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AttachFilesDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SignerDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HealthMngDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Temp_ConcurrentlyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationTreeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingBeforeDTOEdit)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTOEdit))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ComboBoxDataDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AssetDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AssetDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.BankDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.BankDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DistrictDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DistrictDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.IndustryDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.IndustryDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LabourProtectionDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LocationDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LocationDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.NationDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.NationDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ProvinceDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ProvinceDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.RelationshipListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.RelationshipListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrganizationDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TitleDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WelfareListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WelfareListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AllowanceListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AllowanceListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ReminderLogDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ReminderLogDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FamilyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FamilyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingBeforeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WelfareMngDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WelfareMngDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Welfatemng_empDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Welfatemng_empDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendEmpDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendEmpDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendOrgDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendOrgDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TitleConcurrentDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleConcurrentDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineEmpDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineEmpDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeAssessmentDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeAssessmentDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeCompetencyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCompetencyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningManageDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.RptDynamicColumnDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.RptDynamicColumnDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuDynamicConditionDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuDynamicConditionDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuConditionColDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuConditionColDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LabourProtectionMngDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OccupationalSafetyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OccupationalSafetyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ATPeriodDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Se_ReportDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Se_ReportDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HUAllowanceDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommandResult)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineSalaryDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineSalaryDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DebtDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DebtDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AssetMngDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AssetMngDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TerminateDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HandoverContentDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HandoverContentDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TerminateReasonDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TerminateReasonDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TerminateDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Terminate3BDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Terminate3BDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuFileDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuFileDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeFileDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FamilyEditDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FamilyEditDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeTrainDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeTrainDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeTrainForCompanyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeTrainForCompanyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeBackgroundDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeBackgroundDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningEvaluateDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningEvaluateDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningForeignDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningForeignDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HUAllowanceDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.BankBranchDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.StaffRankDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StaffRankDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyGroupDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyGroupDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyBuildDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyBuildDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyStandardDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyStandardDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAppendixDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAppendixDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyEmpDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyEmpDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyPeriodDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyPeriodDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAssDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAssDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAssDtlDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAssDtlDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.JobDescriptionDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.JobDescriptionDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCVDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeEduDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeHealthDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.UniformSizeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgChartDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgChartDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeEditDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeEditDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SAFELABOR_MNGDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.SAFELABOR_MNG_EMPDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SAFELABOR_MNG_EMPDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.SAFELABOR_MNGDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrganizationPathDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationPathDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgTitleDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgTitleDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Ward_DTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Ward_DTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.BankBranchDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CETIFICATEDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CETIFICATEDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ProfileCommonTABLE_NAME)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.MergeFieldDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.MergeFieldDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Decimal, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Exception))>  _
-        Function DeactiveAndActiveSigner(ByVal lstID As String, ByVal sActive As Decimal) As Object
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteSigner", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteSignerResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Job_PositionDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ParamDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DeductDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DeductDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendLevelDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendFormulaDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendFormulaDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StatisticDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.StatisticDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAvgEmplDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAvgEmplDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TotalDayOffDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyCourseDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyCourseDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCriteriaRecordDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeCriteriaRecordDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TalentPoolDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TalentPoolDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FilterParamDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OtherListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FileContractDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingAllowanceDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingAllowanceDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FileContractDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ContractTypeDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ContractTypeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ContractDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ContractDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AttachFilesDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AttachFilesDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SignerDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HealthMngDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Temp_ConcurrentlyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationTreeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingBeforeDTOEdit)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTOEdit))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ComboBoxDataDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AssetDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AssetDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.BankDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.BankDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DistrictDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DistrictDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.IndustryDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.IndustryDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LabourProtectionDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LocationDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LocationDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.NationDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.NationDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ProvinceDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ProvinceDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.RelationshipListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.RelationshipListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrganizationDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TitleDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WelfareListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WelfareListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AllowanceListDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AllowanceListDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ReminderLogDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ReminderLogDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FamilyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FamilyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingBeforeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WelfareMngDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WelfareMngDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Welfatemng_empDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Welfatemng_empDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendEmpDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendEmpDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendOrgDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendOrgDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TitleConcurrentDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleConcurrentDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineEmpDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineEmpDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeAssessmentDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeAssessmentDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeCompetencyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCompetencyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningManageDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.RptDynamicColumnDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.RptDynamicColumnDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuDynamicConditionDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuDynamicConditionDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuConditionColDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuConditionColDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LabourProtectionMngDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OccupationalSafetyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OccupationalSafetyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ATPeriodDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Se_ReportDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Se_ReportDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HUAllowanceDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommandResult)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineSalaryDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineSalaryDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DebtDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DebtDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AssetMngDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AssetMngDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TerminateDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HandoverContentDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HandoverContentDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TerminateReasonDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TerminateReasonDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TerminateDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Terminate3BDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Terminate3BDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuFileDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuFileDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeFileDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FamilyEditDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FamilyEditDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeTrainDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeTrainDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeTrainForCompanyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeTrainForCompanyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeBackgroundDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeBackgroundDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningEvaluateDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningEvaluateDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningForeignDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningForeignDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HUAllowanceDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.BankBranchDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.StaffRankDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StaffRankDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyGroupDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyGroupDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyBuildDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyBuildDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyStandardDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyStandardDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAppendixDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAppendixDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyEmpDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyEmpDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyPeriodDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyPeriodDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAssDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAssDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAssDtlDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAssDtlDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.JobDescriptionDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.JobDescriptionDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCVDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeEduDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeHealthDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.UniformSizeDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgChartDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgChartDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeEditDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeEditDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SAFELABOR_MNGDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.SAFELABOR_MNG_EMPDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SAFELABOR_MNG_EMPDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.SAFELABOR_MNGDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrganizationPathDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationPathDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgTitleDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgTitleDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Ward_DTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Ward_DTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.BankBranchDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CETIFICATEDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CETIFICATEDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ProfileCommonTABLE_NAME)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.MergeFieldDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.MergeFieldDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Decimal, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Exception))>  _
-        Function DeleteSigner(ByVal lstID As String) As Object
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_HEALTH_MNG_LIST", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_HEALTH_MNG_LISTResponse")>  _
-        Function GET_HEALTH_MNG_LIST(ByVal _filter As ProfileBusiness.HealthMngDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/Import_Health_Mng", ReplyAction:="http://tempuri.org/IProfileBusiness/Import_Health_MngResponse")>  _
-        Function Import_Health_Mng(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/EXPORT_HEALTH_MNG", ReplyAction:="http://tempuri.org/IProfileBusiness/EXPORT_HEALTH_MNGResponse")>  _
-        Function EXPORT_HEALTH_MNG() As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_LIST_CONCURRENTLY", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_LIST_CONCURRENTLYResponse")>  _
-        Function GET_LIST_CONCURRENTLY(ByVal _filter As ProfileBusiness.Temp_ConcurrentlyDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_LIST_CONCURRENTLY_BY_ID", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_LIST_CONCURRENTLY_BY_IDResponse")>  _
-        Function GET_LIST_CONCURRENTLY_BY_ID(ByVal _filter As ProfileBusiness.Temp_ConcurrentlyDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal EMPLOYEE_ID As Decimal, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_CONCURRENTLY_BY_ID", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_CONCURRENTLY_BY_IDResponse")>  _
-        Function GET_CONCURRENTLY_BY_ID(ByVal P_ID As Decimal) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_CONCURRENTLY", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_CONCURRENTLYResponse")>  _
-        Function INSERT_CONCURRENTLY(ByVal concurrently As ProfileBusiness.Temp_ConcurrentlyDTO) As Integer
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UPDATE_CONCURRENTLY", ReplyAction:="http://tempuri.org/IProfileBusiness/UPDATE_CONCURRENTLYResponse")>  _
-        Function UPDATE_CONCURRENTLY(ByVal concurrently As ProfileBusiness.Temp_ConcurrentlyDTO) As Integer
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_CONCURRENTLY_BY_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_CONCURRENTLY_BY_EMPResponse")>  _
-        Function GET_CONCURRENTLY_BY_EMP(ByVal P_ID As Decimal) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_TITLE_ORG", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_TITLE_ORGResponse")>  _
-        Function GET_TITLE_ORG(ByVal P_ID As Decimal) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_EMPLOYEE_KN", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_EMPLOYEE_KNResponse")>  _
-        Function INSERT_EMPLOYEE_KN(ByVal P_EMPLOYEE_CODE As String, ByVal P_ORG_ID As Decimal, ByVal P_TITLE As Decimal, ByVal P_DATE As Date, ByVal P_ID_KN As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UPDATE_EMPLOYEE_KN", ReplyAction:="http://tempuri.org/IProfileBusiness/UPDATE_EMPLOYEE_KNResponse")>  _
-        Function UPDATE_EMPLOYEE_KN(ByVal P_ID_KN As Decimal, ByVal P_DATE As Date) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveListChangeCon", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveListChangeConResponse")>  _
-        Function ApproveListChangeCon(ByVal listID As System.Collections.Generic.List(Of Decimal)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteConcurrentlyByID", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteConcurrentlyByIDResponse")>  _
-        Function DeleteConcurrentlyByID(ByVal listID As System.Collections.Generic.List(Of Decimal)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_WORK_POSITION_LIST", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_WORK_POSITION_LISTResponse")>  _
-        Function GET_WORK_POSITION_LIST() As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_ORG_INFOR_PART", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_ORG_INFOR_PARTResponse")>  _
-        Function GET_ORG_INFOR_PART(ByVal ID As Decimal) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrganizationTreeByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrganizationTreeByIDResponse")>  _
-        Function GetOrganizationTreeByID(ByVal _filter As ProfileBusiness.OrganizationTreeDTO) As ProfileBusiness.OrganizationTreeDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrgtree", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrgtreeResponse")>  _
-        Function GetOrgtree(ByVal _org_id As Decimal) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_PROCESS_PLCONTRACT", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_PROCESS_PLCONTRACTResponse")>  _
-        Function GET_PROCESS_PLCONTRACT(ByVal P_EMP_CODE As String) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/EXPORT_PLHD", ReplyAction:="http://tempuri.org/IProfileBusiness/EXPORT_PLHDResponse")>  _
-        Function EXPORT_PLHD(ByVal _param As ProfileBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_EMPLOYEE", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_EMPLOYEEResponse")>  _
-        Function CHECK_EMPLOYEE(ByVal P_EMP_CODE As String) As Integer
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_CONTRACT", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_CONTRACTResponse")>  _
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_CONTRACT", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_CONTRACTResponse")> _
         Function CHECK_CONTRACT(ByVal P_ID As Decimal) As Integer
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCertificateType", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCertificateTypeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_SALARY", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_SALARYResponse")> _
+        Function CHECK_SALARY(ByVal P_ID As Decimal) As Integer
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_CONTRACT_EXITS", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_CONTRACT_EXITSResponse")> _
+        Function CHECK_CONTRACT_EXITS(ByVal P_CONTRACT As Decimal, ByVal P_EMP_CODE As String, ByVal P_DATE As Date) As Integer
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_SIGN", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_SIGNResponse")> _
+        Function CHECK_SIGN(ByVal P_EMP_CODE As String) As Integer
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INPORT_PLHD", ReplyAction:="http://tempuri.org/IProfileBusiness/INPORT_PLHDResponse")> _
+        Function INPORT_PLHD(ByVal P_DOCXML As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/EXPORT_QLKT", ReplyAction:="http://tempuri.org/IProfileBusiness/EXPORT_QLKTResponse")> _
+        Function EXPORT_QLKT() As System.Data.DataSet
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_EMPLOYEE", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_EMPLOYEEResponse")> _
+        Function GET_EMPLOYEE(ByVal P_EMP_CODE As String) As System.Data.DataTable
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_PROCESS_PLCONTRACT_PORTAL", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_PROCESS_PLCONTRACT_PORTALResponse")> _
+        Function GET_PROCESS_PLCONTRACT_PORTAL(ByVal P_EMP_ID As Decimal) As System.Data.DataTable
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_LOCATION_EXITS", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_LOCATION_EXITSResponse")> _
+        Function CHECK_LOCATION_EXITS(ByVal P_ID As System.Nullable(Of Decimal), ByVal ORG_ID As Decimal) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetJobPosition", ReplyAction:="http://tempuri.org/IProfileBusiness/GetJobPositionResponse")> _
+        Function GetJobPosition(ByVal _filter As ProfileBusiness.Job_PositionDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO)
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JOB_POSITION_LIST", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JOB_POSITION_LISTResponse")> _
+        Function GET_JOB_POSITION_LIST(ByVal P_ORG_ID As Decimal, ByVal P_ID As Decimal) As System.Data.DataTable
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JOB_POSITION_DETAIL", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JOB_POSITION_DETAILResponse")> _
+        Function GET_JOB_POSITION_DETAIL(ByVal P_ID As Decimal) As System.Data.DataSet
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_JOB_POSITION", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_JOB_POSITIONResponse")> _
+        Function INSERT_JOB_POSITION(ByVal p_CODE As String, ByVal p_JOB_NAME As String, ByVal p_ORG_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_JOB_NOTE As String, ByVal p_COST_CODE As String, ByVal p_IS_LEADER As Decimal, ByVal p_EFFECT_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As Integer
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UPDATE_JOB_POSITION", ReplyAction:="http://tempuri.org/IProfileBusiness/UPDATE_JOB_POSITIONResponse")> _
+        Function UPDATE_JOB_POSITION(ByVal p_ID As Decimal, ByVal p_CODE As String, ByVal p_JOB_NAME As String, ByVal p_ORG_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_JOB_NOTE As String, ByVal p_COST_CODE As String, ByVal p_IS_LEADER As Decimal, ByVal p_EFFECT_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As Integer
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_DIRECT_MANAGER", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_DIRECT_MANAGERResponse")> _
+        Function INSERT_DIRECT_MANAGER(ByVal P_JOB_POSITION_ID As Decimal, ByVal P_DIRECT_MANAGER As String) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteJob", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteJobResponse")> _
+        Function DeleteJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveJob", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveJobResponse")> _
+        Function ActiveJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JP_TO_TITLE", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JP_TO_TITLEResponse")> _
+        Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal, ByVal P_JOB As Decimal) As System.Data.DataSet
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UPDATE_END_DATE_QD", ReplyAction:="http://tempuri.org/IProfileBusiness/UPDATE_END_DATE_QDResponse")> _
+        Function UPDATE_END_DATE_QD(ByVal P_EMP_ID As Decimal, ByVal P_DATE As Date) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateStatusQD", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateStatusQDResponse")> _
+        Function UpdateStatusQD(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateStatusTer", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateStatusTerResponse")> _
+        Function UpdateStatusTer(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_HU_ASSET", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_HU_ASSETResponse")> _
+        Function GET_HU_ASSET(ByVal P_EMP_ID As Decimal) As System.Data.DataTable
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JOB_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JOB_EMPResponse")> _
+        Function GET_JOB_EMP(ByVal P_EMP_ID As Decimal) As Integer
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_JOB_CODE_AUTO", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_JOB_CODE_AUTOResponse")> _
+        Function GET_JOB_CODE_AUTO(ByVal p_TITLE_ID As Decimal) As String
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_JOB_POSITION_AUTO", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_JOB_POSITION_AUTOResponse")> _
+        Function INSERT_JOB_POSITION_AUTO(ByVal p_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_NUMBER As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_EXITS_JOB", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_EXITS_JOBResponse")> _
+        Function CHECK_EXITS_JOB(ByVal P_JOB_ID As Decimal, ByVal P_EMP_ID As Decimal) As Integer
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/EXPORT_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/EXPORT_EMPResponse")> _
+        Function EXPORT_EMP(ByVal P_USERNAME As String, ByVal P_ORGID As Decimal, ByVal P_ISDISSOLVE As Boolean, ByVal P_STARTDATE As System.Nullable(Of Date), ByVal P_TODATE As System.Nullable(Of Date), ByVal P_IS_ALL As Boolean) As System.Data.DataSet
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INPORT_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/INPORT_EMPResponse")> _
+        Function INPORT_EMP(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_IS_THHDLD", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_IS_THHDLDResponse")> _
+        Function CHECK_IS_THHDLD(ByVal P_ID As Decimal, ByVal P_EMP_ID As Decimal, ByVal P_DATE As System.Nullable(Of Date)) As Integer
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeDeduct", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeDeductResponse")> _
+        Function GetEmployeeDeduct(ByVal _filter As ProfileBusiness.DeductDTO) As System.Collections.Generic.List(Of ProfileBusiness.DeductDTO)
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertEmployeeDeduct", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertEmployeeDeductResponse")> _
+        Function InsertEmployeeDeduct(ByVal objFamily As ProfileBusiness.DeductDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyEmployeeDeduct", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyEmployeeDeductResponse")> _
+        Function ModifyEmployeeDeduct(ByVal objFamily As ProfileBusiness.DeductDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteEmployeeDeduct", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteEmployeeDeductResponse")> _
+        Function DeleteEmployeeDeduct(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/EXPORT_DISCIPLINE", ReplyAction:="http://tempuri.org/IProfileBusiness/EXPORT_DISCIPLINEResponse")> _
+        Function EXPORT_DISCIPLINE() As System.Data.DataSet
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INPORT_DISCIPLINE", ReplyAction:="http://tempuri.org/IProfileBusiness/INPORT_DISCIPLINEResponse")> _
+        Function INPORT_DISCIPLINE(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListCommendListResponse")> _
+        Function GetListCommendList(ByVal actflg As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendListDTO)
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCommendListResponse")> _
+        Function InsertCommendList(ByVal objCommendList As ProfileBusiness.CommendListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCommendListResponse")> _
+        Function ModifyCommendList(ByVal objCommendList As ProfileBusiness.CommendListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveCommendListResponse")> _
+        Function ActiveCommendList(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCommendListResponse")> _
+        Function DeleteCommendList(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByRef strError As String) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCommendListResponse"), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Job_PositionDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ParamDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DeductDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DeductDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendListDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendListDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendLevelDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendFormulaDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendFormulaDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StatisticDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.StatisticDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAvgEmplDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAvgEmplDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TotalDayOffDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyCourseDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyCourseDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCriteriaRecordDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeCriteriaRecordDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TalentPoolDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TalentPoolDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FilterParamDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OtherListDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FileContractDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingAllowanceDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingAllowanceDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FileContractDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ContractTypeDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ContractTypeDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ContractDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ContractDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AttachFilesDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AttachFilesDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SignerDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HealthMngDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Temp_ConcurrentlyDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationTreeDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingBeforeDTOEdit)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTOEdit))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ComboBoxDataDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AssetDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AssetDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.BankDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.BankDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DistrictDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DistrictDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.IndustryDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.IndustryDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LabourProtectionDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LocationDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LocationDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.NationDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.NationDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ProvinceDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ProvinceDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.RelationshipListDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.RelationshipListDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrganizationDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TitleDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WelfareListDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WelfareListDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AllowanceListDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AllowanceListDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ReminderLogDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ReminderLogDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FamilyDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FamilyDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingBeforeDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WelfareMngDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WelfareMngDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Welfatemng_empDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Welfatemng_empDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendEmpDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendEmpDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendOrgDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendOrgDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TitleConcurrentDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleConcurrentDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineEmpDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineEmpDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeAssessmentDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeAssessmentDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeCompetencyDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCompetencyDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningManageDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.RptDynamicColumnDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.RptDynamicColumnDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuDynamicConditionDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuDynamicConditionDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuConditionColDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuConditionColDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LabourProtectionMngDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OccupationalSafetyDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OccupationalSafetyDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ATPeriodDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Se_ReportDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Se_ReportDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HUAllowanceDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommandResult)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineSalaryDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineSalaryDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DebtDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DebtDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AssetMngDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AssetMngDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TerminateDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HandoverContentDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HandoverContentDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TerminateReasonDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TerminateReasonDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TerminateDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Terminate3BDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Terminate3BDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuFileDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuFileDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeFileDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FamilyEditDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FamilyEditDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeTrainDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeTrainDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeTrainForCompanyDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeTrainForCompanyDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeBackgroundDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeBackgroundDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningEvaluateDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningEvaluateDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningForeignDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningForeignDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HUAllowanceDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.BankBranchDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.StaffRankDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StaffRankDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyGroupDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyGroupDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyBuildDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyBuildDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyStandardDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyStandardDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAppendixDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAppendixDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyEmpDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyEmpDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyPeriodDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyPeriodDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAssDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAssDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAssDtlDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAssDtlDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.JobDescriptionDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.JobDescriptionDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCVDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeEduDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeHealthDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.UniformSizeDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgChartDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgChartDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeEditDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeEditDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SAFELABOR_MNGDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.SAFELABOR_MNG_EMPDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SAFELABOR_MNG_EMPDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.SAFELABOR_MNGDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrganizationPathDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationPathDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgTitleDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgTitleDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Ward_DTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Ward_DTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.BankBranchDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CETIFICATEDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CETIFICATEDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ProfileCommonTABLE_NAME)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.MergeFieldDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.MergeFieldDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Decimal, String))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Exception))> _
+        Function ValidateCommendList(ByVal _validate As ProfileBusiness.CommendListDTO) As Object
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertImportCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertImportCommendResponse")> _
+        Function InsertImportCommend(ByVal lstImport As System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetImportCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/GetImportCommendResponse")> _
+        Function GetImportCommend(ByVal _filter As ProfileBusiness.ImportCommendDTO) As System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO)
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendLevelResponse")> _
+        Function GetCommendLevel(ByVal _filter As ProfileBusiness.CommendLevelDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO)
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendLevelID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendLevelIDResponse")> _
+        Function GetCommendLevelID(ByVal ID As Decimal) As ProfileBusiness.CommendLevelDTO
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCommendLevelResponse")> _
+        Function InsertCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCommendLevelResponse"), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Job_PositionDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ParamDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DeductDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DeductDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendListDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendListDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendLevelDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendFormulaDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendFormulaDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StatisticDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.StatisticDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAvgEmplDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAvgEmplDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TotalDayOffDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyCourseDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyCourseDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCriteriaRecordDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeCriteriaRecordDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TalentPoolDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TalentPoolDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FilterParamDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OtherListDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FileContractDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingAllowanceDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingAllowanceDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FileContractDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ContractTypeDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ContractTypeDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ContractDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ContractDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AttachFilesDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AttachFilesDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SignerDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HealthMngDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Temp_ConcurrentlyDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationTreeDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingBeforeDTOEdit)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTOEdit))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ComboBoxDataDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AssetDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AssetDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.BankDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.BankDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DistrictDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DistrictDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.IndustryDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.IndustryDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LabourProtectionDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LocationDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LocationDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.NationDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.NationDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ProvinceDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ProvinceDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.RelationshipListDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.RelationshipListDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrganizationDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TitleDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WelfareListDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WelfareListDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AllowanceListDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AllowanceListDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ReminderLogDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ReminderLogDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FamilyDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FamilyDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingBeforeDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WelfareMngDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WelfareMngDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Welfatemng_empDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Welfatemng_empDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendEmpDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendEmpDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendOrgDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendOrgDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TitleConcurrentDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleConcurrentDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineEmpDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineEmpDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeAssessmentDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeAssessmentDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeCompetencyDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCompetencyDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningManageDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.RptDynamicColumnDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.RptDynamicColumnDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuDynamicConditionDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuDynamicConditionDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuConditionColDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuConditionColDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LabourProtectionMngDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OccupationalSafetyDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OccupationalSafetyDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ATPeriodDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Se_ReportDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Se_ReportDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HUAllowanceDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommandResult)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineSalaryDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineSalaryDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DebtDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DebtDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AssetMngDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AssetMngDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TerminateDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HandoverContentDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HandoverContentDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TerminateReasonDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TerminateReasonDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TerminateDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Terminate3BDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Terminate3BDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuFileDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuFileDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeFileDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FamilyEditDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FamilyEditDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeTrainDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeTrainDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeTrainForCompanyDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeTrainForCompanyDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeBackgroundDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeBackgroundDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningEvaluateDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningEvaluateDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningForeignDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningForeignDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HUAllowanceDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.BankBranchDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.StaffRankDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StaffRankDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyGroupDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyGroupDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyBuildDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyBuildDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyStandardDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyStandardDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAppendixDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAppendixDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyEmpDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyEmpDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyPeriodDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyPeriodDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAssDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAssDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAssDtlDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAssDtlDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.JobDescriptionDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.JobDescriptionDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCVDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeEduDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeHealthDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.UniformSizeDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgChartDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgChartDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeEditDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeEditDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SAFELABOR_MNGDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.SAFELABOR_MNG_EMPDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SAFELABOR_MNG_EMPDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.SAFELABOR_MNGDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrganizationPathDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationPathDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgTitleDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgTitleDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Ward_DTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Ward_DTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.BankBranchDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CETIFICATEDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CETIFICATEDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ProfileCommonTABLE_NAME)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.MergeFieldDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.MergeFieldDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Decimal, String))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Exception))> _
+        Function ValidateCommendLevel(ByVal _validate As ProfileBusiness.CommendLevelDTO) As Object
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCommendLevelResponse")> _
+        Function ModifyCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveCommendLevelResponse")> _
+        Function ActiveCommendLevel(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCommendLevelResponse")> _
+        Function DeleteCommendLevel(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendFormula", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendFormulaResponse")> _
+        Function GetCommendFormula(ByVal _filter As ProfileBusiness.CommendFormulaDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendFormulaDTO)
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendFormulaID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendFormulaIDResponse")> _
+        Function GetCommendFormulaID(ByVal ID As Decimal) As ProfileBusiness.CommendFormulaDTO
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCommendFormula", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCommendFormulaResponse")> _
+        Function InsertCommendFormula(ByVal objCommendFormula As ProfileBusiness.CommendFormulaDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCommendFormula", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCommendFormulaResponse")> _
+        Function ModifyCommendFormula(ByVal objCommendFormula As ProfileBusiness.CommendFormulaDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveCommendFormula", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveCommendFormulaResponse")> _
+        Function ActiveCommendFormula(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCommendFormula", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCommendFormulaResponse")> _
+        Function DeleteCommendFormula(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByRef strError As String) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetStatisticTop5Competency", ReplyAction:="http://tempuri.org/IProfileBusiness/GetStatisticTop5CompetencyResponse")> _
+        Function GetStatisticTop5Competency(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.StatisticDTO)
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetStatisticTop5CopAvg", ReplyAction:="http://tempuri.org/IProfileBusiness/GetStatisticTop5CopAvgResponse")> _
+        Function GetStatisticTop5CopAvg(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.CompetencyAvgEmplDTO)
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeReg", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeRegResponse")> _
+        Function GetEmployeeReg(ByVal _employee_id As Integer) As System.Data.DataTable
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTotalDayOff", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTotalDayOffResponse")> _
+        Function GetTotalDayOff(ByVal _filter As ProfileBusiness.TotalDayOffDTO, ByVal log As Common.CommonBusiness.UserLog) As ProfileBusiness.TotalDayOffDTO
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCertificateExpires", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCertificateExpiresResponse")> _
+        Function GetCertificateExpires(ByVal _employee_id As Integer) As System.Data.DataTable
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetencyCourse", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyCourseResponse")> _
+        Function GetCompetencyCourse(ByVal _filter As ProfileBusiness.CompetencyCourseDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CompetencyCourseDTO)
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCompetencyCourse", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCompetencyCourseResponse")> _
+        Function InsertCompetencyCourse(ByVal objCompetencyCourse As ProfileBusiness.CompetencyCourseDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCompetencyCourse", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCompetencyCourseResponse")> _
+        Function ModifyCompetencyCourse(ByVal objCompetencyCourse As ProfileBusiness.CompetencyCourseDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCompetencyCourse", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCompetencyCourseResponse")> _
+        Function DeleteCompetencyCourse(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCourseByList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCourseByListResponse")> _
+        Function GetCourseByList(ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/EmployeeCriteriaRecord", ReplyAction:="http://tempuri.org/IProfileBusiness/EmployeeCriteriaRecordResponse")> _
+        Function EmployeeCriteriaRecord(ByVal _filter As ProfileBusiness.EmployeeCriteriaRecordDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeCriteriaRecordDTO)
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetPortalCompetencyCourse", ReplyAction:="http://tempuri.org/IProfileBusiness/GetPortalCompetencyCourseResponse")> _
+        Function GetPortalCompetencyCourse(ByVal _empId As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeCriteriaRecordDTO)
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTalentPool", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTalentPoolResponse")> _
+        Function GetTalentPool(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.TalentPoolDTO)
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertTalentPool", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertTalentPoolResponse")> _
+        Function InsertTalentPool(ByVal lstTalentPool As System.Collections.Generic.List(Of ProfileBusiness.TalentPoolDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveTalentPool", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveTalentPoolResponse")> _
+        Function ActiveTalentPool(ByVal objTalentPool As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/FILTER_TALENT_POOL", ReplyAction:="http://tempuri.org/IProfileBusiness/FILTER_TALENT_POOLResponse")> _
+        Function FILTER_TALENT_POOL(ByVal obj As ProfileBusiness.FilterParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/PrintFileContract", ReplyAction:="http://tempuri.org/IProfileBusiness/PrintFileContractResponse")> _
+        Function PrintFileContract(ByVal emp_code As String, ByVal fileContract_ID As String) As System.Data.DataTable
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractForm", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractFormResponse")> _
+        Function GetContractForm(ByVal formID As Decimal) As ProfileBusiness.OtherListDTO
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetFileConTractID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetFileConTractIDResponse")> _
+        Function GetFileConTractID(ByVal ID As Decimal) As ProfileBusiness.FileContractDTO
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractAppendixPaging", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractAppendixPagingResponse")> _
+        Function GetContractAppendixPaging(ByVal _filter As ProfileBusiness.FileContractDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.FileContractDTO)
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteFileContract", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteFileContractResponse")> _
+        Function DeleteFileContract(ByVal objContract As ProfileBusiness.FileContractDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListContractType", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListContractTypeResponse")> _
+        Function GetListContractType(ByVal type As String) As System.Collections.Generic.List(Of ProfileBusiness.ContractTypeDTO)
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckExpireFileContract", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckExpireFileContractResponse")> _
+        Function CheckExpireFileContract(ByVal StartDate As Date, ByVal EndDate As Date, ByVal ID As Decimal) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckExistFileContract", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckExistFileContractResponse")> _
+        Function CheckExistFileContract(ByVal empID As Decimal, ByVal StartDate As Date, ByVal type_id As Decimal) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertFileContract", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertFileContractResponse")> _
+        Function InsertFileContract(ByVal FileInfo As ProfileBusiness.FileContractDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByRef appenNum As String) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateFileContract", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateFileContractResponse")> _
+        Function UpdateFileContract(ByVal FileInfo As ProfileBusiness.FileContractDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractListResponse")> _
+        Function GetContractList(ByVal empID As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ContractDTO)
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrgList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrgListResponse")> _
+        Function GetOrgList(ByVal ID As Decimal) As String
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractTypeCT", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractTypeCTResponse")> _
+        Function GetContractTypeCT(ByVal ID As Decimal) As String
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTitileBaseOnEmp", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTitileBaseOnEmpResponse")> _
+        Function GetTitileBaseOnEmp(ByVal ID As Decimal) As ProfileBusiness.TitleDTO
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetFileContract_No", ReplyAction:="http://tempuri.org/IProfileBusiness/GetFileContract_NoResponse")> _
+        Function GetFileContract_No(ByVal Contract As ProfileBusiness.ContractDTO, ByRef STT As Decimal) As String
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractAppendix", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractAppendixResponse")> _
+        Function GetContractAppendix(ByVal _filter As ProfileBusiness.FileContractDTO) As System.Collections.Generic.List(Of ProfileBusiness.FileContractDTO)
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractTypeID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractTypeIDResponse")> _
+        Function GetContractTypeID(ByVal ID As Decimal) As ProfileBusiness.ContractTypeDTO
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListContractBaseOnEmp", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListContractBaseOnEmpResponse")> _
+        Function GetListContractBaseOnEmp(ByVal ID As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ContractDTO)
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListContract", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListContractResponse")> _
+        Function GetListContract(ByVal ID As Decimal) As System.Data.DataTable
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveListContract", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveListContractResponse")> _
+        Function ApproveListContract(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractImport", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractImportResponse")> _
+        Function GetContractImport() As System.Data.DataSet
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_HU_SIGNER", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_HU_SIGNERResponse")> _
+        Function GET_HU_SIGNER(ByVal _filter As ProfileBusiness.SignerDTO, ByVal _param As ProfileBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_HU_SIGNER", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_HU_SIGNERResponse")> _
+        Function INSERT_HU_SIGNER(ByVal PA As ProfileBusiness.SignerDTO) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UPDATE_HU_SIGNER", ReplyAction:="http://tempuri.org/IProfileBusiness/UPDATE_HU_SIGNERResponse")> _
+        Function UPDATE_HU_SIGNER(ByVal PA As ProfileBusiness.SignerDTO) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_EXIT", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_EXITResponse")> _
+        Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal, ByVal ORG_ID As Decimal, ByVal title_name As String) As Decimal
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeactiveAndActiveSigner", ReplyAction:="http://tempuri.org/IProfileBusiness/DeactiveAndActiveSignerResponse"), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Job_PositionDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ParamDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DeductDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DeductDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendListDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendListDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendLevelDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendFormulaDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendFormulaDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StatisticDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.StatisticDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAvgEmplDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAvgEmplDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TotalDayOffDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyCourseDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyCourseDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCriteriaRecordDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeCriteriaRecordDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TalentPoolDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TalentPoolDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FilterParamDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OtherListDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FileContractDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingAllowanceDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingAllowanceDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FileContractDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ContractTypeDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ContractTypeDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ContractDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ContractDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AttachFilesDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AttachFilesDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SignerDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HealthMngDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Temp_ConcurrentlyDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationTreeDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingBeforeDTOEdit)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTOEdit))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ComboBoxDataDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AssetDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AssetDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.BankDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.BankDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DistrictDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DistrictDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.IndustryDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.IndustryDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LabourProtectionDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LocationDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LocationDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.NationDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.NationDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ProvinceDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ProvinceDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.RelationshipListDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.RelationshipListDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrganizationDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TitleDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WelfareListDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WelfareListDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AllowanceListDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AllowanceListDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ReminderLogDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ReminderLogDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FamilyDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FamilyDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingBeforeDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WelfareMngDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WelfareMngDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Welfatemng_empDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Welfatemng_empDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendEmpDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendEmpDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendOrgDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendOrgDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TitleConcurrentDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleConcurrentDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineEmpDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineEmpDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeAssessmentDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeAssessmentDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeCompetencyDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCompetencyDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningManageDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.RptDynamicColumnDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.RptDynamicColumnDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuDynamicConditionDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuDynamicConditionDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuConditionColDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuConditionColDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LabourProtectionMngDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OccupationalSafetyDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OccupationalSafetyDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ATPeriodDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Se_ReportDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Se_ReportDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HUAllowanceDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommandResult)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineSalaryDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineSalaryDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DebtDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DebtDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AssetMngDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AssetMngDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TerminateDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HandoverContentDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HandoverContentDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TerminateReasonDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TerminateReasonDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TerminateDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Terminate3BDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Terminate3BDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuFileDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuFileDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeFileDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FamilyEditDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FamilyEditDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeTrainDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeTrainDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeTrainForCompanyDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeTrainForCompanyDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeBackgroundDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeBackgroundDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningEvaluateDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningEvaluateDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningForeignDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningForeignDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HUAllowanceDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.BankBranchDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.StaffRankDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StaffRankDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyGroupDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyGroupDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyBuildDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyBuildDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyStandardDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyStandardDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAppendixDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAppendixDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyEmpDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyEmpDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyPeriodDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyPeriodDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAssDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAssDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAssDtlDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAssDtlDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.JobDescriptionDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.JobDescriptionDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCVDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeEduDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeHealthDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.UniformSizeDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgChartDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgChartDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeEditDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeEditDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SAFELABOR_MNGDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.SAFELABOR_MNG_EMPDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SAFELABOR_MNG_EMPDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.SAFELABOR_MNGDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrganizationPathDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationPathDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgTitleDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgTitleDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Ward_DTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Ward_DTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.BankBranchDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CETIFICATEDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CETIFICATEDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ProfileCommonTABLE_NAME)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.MergeFieldDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.MergeFieldDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Decimal, String))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Exception))> _
+        Function DeactiveAndActiveSigner(ByVal lstID As String, ByVal sActive As Decimal) As Object
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteSigner", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteSignerResponse"), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Job_PositionDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ParamDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DeductDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DeductDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendListDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendListDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendLevelDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendFormulaDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendFormulaDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StatisticDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.StatisticDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAvgEmplDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAvgEmplDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TotalDayOffDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyCourseDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyCourseDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCriteriaRecordDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeCriteriaRecordDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TalentPoolDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TalentPoolDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FilterParamDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OtherListDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FileContractDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingAllowanceDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingAllowanceDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FileContractDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ContractTypeDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ContractTypeDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ContractDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ContractDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AttachFilesDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AttachFilesDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SignerDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HealthMngDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Temp_ConcurrentlyDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationTreeDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingBeforeDTOEdit)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTOEdit))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ComboBoxDataDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AssetDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AssetDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.BankDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.BankDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DistrictDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DistrictDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.IndustryDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.IndustryDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LabourProtectionDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LocationDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LocationDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.NationDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.NationDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ProvinceDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ProvinceDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.RelationshipListDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.RelationshipListDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrganizationDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TitleDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WelfareListDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WelfareListDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AllowanceListDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AllowanceListDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ReminderLogDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ReminderLogDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FamilyDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FamilyDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingBeforeDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.WelfareMngDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WelfareMngDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Welfatemng_empDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Welfatemng_empDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendEmpDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendEmpDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendOrgDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendOrgDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TitleConcurrentDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleConcurrentDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineEmpDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineEmpDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeAssessmentDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeAssessmentDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeCompetencyDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCompetencyDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningManageDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.RptDynamicColumnDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.RptDynamicColumnDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuDynamicConditionDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuDynamicConditionDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuConditionColDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuConditionColDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LabourProtectionMngDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OccupationalSafetyDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OccupationalSafetyDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ATPeriodDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Se_ReportDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Se_ReportDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HUAllowanceDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommandResult)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineSalaryDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineSalaryDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DebtDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DebtDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AssetMngDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AssetMngDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TerminateDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HandoverContentDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HandoverContentDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TerminateReasonDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TerminateReasonDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TerminateDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Terminate3BDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Terminate3BDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuFileDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuFileDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeFileDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FamilyEditDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FamilyEditDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeTrainDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeTrainDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeTrainForCompanyDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeTrainForCompanyDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeBackgroundDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeBackgroundDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningEvaluateDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningEvaluateDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningForeignDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningForeignDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HUAllowanceDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.BankBranchDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.StaffRankDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StaffRankDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyGroupDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyGroupDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyBuildDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyBuildDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyStandardDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyStandardDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAppendixDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAppendixDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyEmpDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyEmpDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyPeriodDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyPeriodDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAssDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAssDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CompetencyAssDtlDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CompetencyAssDtlDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.JobDescriptionDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.JobDescriptionDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeCVDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeEduDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeHealthDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.UniformSizeDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgChartDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgChartDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.EmployeeEditDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeEditDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SAFELABOR_MNGDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.SAFELABOR_MNG_EMPDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SAFELABOR_MNG_EMPDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.SAFELABOR_MNGDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrganizationPathDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationPathDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgTitleDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgTitleDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Ward_DTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Ward_DTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.BankBranchDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CETIFICATEDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CETIFICATEDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ProfileCommonTABLE_NAME)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.MergeFieldDTO))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.MergeFieldDTO)), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Decimal, String))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))), _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Exception))> _
+        Function DeleteSigner(ByVal lstID As String) As Object
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_HEALTH_MNG_LIST", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_HEALTH_MNG_LISTResponse")> _
+        Function GET_HEALTH_MNG_LIST(ByVal _filter As ProfileBusiness.HealthMngDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String) As System.Data.DataTable
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/Import_Health_Mng", ReplyAction:="http://tempuri.org/IProfileBusiness/Import_Health_MngResponse")> _
+        Function Import_Health_Mng(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/EXPORT_HEALTH_MNG", ReplyAction:="http://tempuri.org/IProfileBusiness/EXPORT_HEALTH_MNGResponse")> _
+        Function EXPORT_HEALTH_MNG() As System.Data.DataTable
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_LIST_CONCURRENTLY", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_LIST_CONCURRENTLYResponse")> _
+        Function GET_LIST_CONCURRENTLY(ByVal _filter As ProfileBusiness.Temp_ConcurrentlyDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO)
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_LIST_CONCURRENTLY_BY_ID", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_LIST_CONCURRENTLY_BY_IDResponse")> _
+        Function GET_LIST_CONCURRENTLY_BY_ID(ByVal _filter As ProfileBusiness.Temp_ConcurrentlyDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal EMPLOYEE_ID As Decimal, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO)
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_CONCURRENTLY_BY_ID", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_CONCURRENTLY_BY_IDResponse")> _
+        Function GET_CONCURRENTLY_BY_ID(ByVal P_ID As Decimal) As System.Data.DataTable
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_CONCURRENTLY", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_CONCURRENTLYResponse")> _
+        Function INSERT_CONCURRENTLY(ByVal concurrently As ProfileBusiness.Temp_ConcurrentlyDTO) As Integer
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UPDATE_CONCURRENTLY", ReplyAction:="http://tempuri.org/IProfileBusiness/UPDATE_CONCURRENTLYResponse")> _
+        Function UPDATE_CONCURRENTLY(ByVal concurrently As ProfileBusiness.Temp_ConcurrentlyDTO) As Integer
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_CONCURRENTLY_BY_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_CONCURRENTLY_BY_EMPResponse")> _
+        Function GET_CONCURRENTLY_BY_EMP(ByVal P_ID As Decimal) As System.Data.DataTable
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_TITLE_ORG", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_TITLE_ORGResponse")> _
+        Function GET_TITLE_ORG(ByVal P_ID As Decimal) As System.Data.DataTable
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_EMPLOYEE_KN", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_EMPLOYEE_KNResponse")> _
+        Function INSERT_EMPLOYEE_KN(ByVal P_EMPLOYEE_CODE As String, ByVal P_ORG_ID As Decimal, ByVal P_TITLE As Decimal, ByVal P_DATE As Date, ByVal P_ID_KN As Decimal) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UPDATE_EMPLOYEE_KN", ReplyAction:="http://tempuri.org/IProfileBusiness/UPDATE_EMPLOYEE_KNResponse")> _
+        Function UPDATE_EMPLOYEE_KN(ByVal P_ID_KN As Decimal, ByVal P_DATE As Date) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveListChangeCon", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveListChangeConResponse")> _
+        Function ApproveListChangeCon(ByVal listID As System.Collections.Generic.List(Of Decimal)) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteConcurrentlyByID", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteConcurrentlyByIDResponse")> _
+        Function DeleteConcurrentlyByID(ByVal listID As System.Collections.Generic.List(Of Decimal)) As Boolean
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_WORK_POSITION_LIST", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_WORK_POSITION_LISTResponse")> _
+        Function GET_WORK_POSITION_LIST() As System.Data.DataTable
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_ORG_INFOR_PART", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_ORG_INFOR_PARTResponse")> _
+        Function GET_ORG_INFOR_PART(ByVal ID As Decimal) As System.Data.DataTable
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrganizationTreeByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrganizationTreeByIDResponse")> _
+        Function GetOrganizationTreeByID(ByVal _filter As ProfileBusiness.OrganizationTreeDTO) As ProfileBusiness.OrganizationTreeDTO
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrgtree", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrgtreeResponse")> _
+        Function GetOrgtree(ByVal _org_id As Decimal) As System.Data.DataTable
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_PROCESS_PLCONTRACT", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_PROCESS_PLCONTRACTResponse")> _
+        Function GET_PROCESS_PLCONTRACT(ByVal P_EMP_CODE As String) As System.Data.DataTable
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/EXPORT_PLHD", ReplyAction:="http://tempuri.org/IProfileBusiness/EXPORT_PLHDResponse")> _
+        Function EXPORT_PLHD(ByVal _param As ProfileBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CHECK_EMPLOYEE", ReplyAction:="http://tempuri.org/IProfileBusiness/CHECK_EMPLOYEEResponse")> _
+        Function CHECK_EMPLOYEE(ByVal P_EMP_CODE As String) As Integer
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCertificateType", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCertificateTypeResponse")> _
         Function GetCertificateType() As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetProcessTrainingEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetProcessTrainingEditResponse")> _
         Function GetProcessTrainingEdit(ByVal _filter As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT) As System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertProcessTrainingEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertProcessTrainingEditResponse")> _
         Function InsertProcessTrainingEdit(ByVal objTitle As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyProcessTrainingEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyProcessTrainingEditResponse")> _
         Function ModifyProcessTrainingEdit(ByVal objTitle As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteProcessTrainingEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteProcessTrainingEditResponse")> _
         Function DeleteProcessTrainingEdit(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckExistProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckExistProcessTrainingEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckExistProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckExistProcessTrainingEditResponse")> _
         Function CheckExistProcessTrainingEdit(ByVal pk_key As Decimal) As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/SendProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/SendProcessTrainingEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/SendProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/SendProcessTrainingEditResponse")> _
         Function SendProcessTrainingEdit(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateStatusProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateStatusProcessTrainingEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateStatusProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateStatusProcessTrainingEditResponse")> _
         Function UpdateStatusProcessTrainingEdit(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal status As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetApproveProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetApproveProcessTrainingEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetApproveProcessTrainingEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetApproveProcessTrainingEditResponse")> _
         Function GetApproveProcessTrainingEdit(ByVal _filter As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWorkingBeforeEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWorkingBeforeEditResponse")> _
         Function GetWorkingBeforeEdit(ByVal _filter As ProfileBusiness.WorkingBeforeDTOEdit) As System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTOEdit)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWorkingBeforeEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWorkingBeforeEditResponse")> _
         Function InsertWorkingBeforeEdit(ByVal objWorkingBefore As ProfileBusiness.WorkingBeforeDTOEdit, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWorkingBeforeEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWorkingBeforeEditResponse")> _
         Function ModifyWorkingBeforeEdit(ByVal objWorkingBefore As ProfileBusiness.WorkingBeforeDTOEdit, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteWorkingBeforeEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteWorkingBeforeEditResponse")> _
         Function DeleteWorkingBeforeEdit(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckExistWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckExistWorkingBeforeEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckExistWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckExistWorkingBeforeEditResponse")> _
         Function CheckExistWorkingBeforeEdit(ByVal pk_key As Decimal) As ProfileBusiness.WorkingBeforeDTOEdit
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/SendWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/SendWorkingBeforeEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/SendWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/SendWorkingBeforeEditResponse")> _
         Function SendWorkingBeforeEdit(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateStatusWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateStatusWorkingBeforeEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateStatusWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateStatusWorkingBeforeEditResponse")> _
         Function UpdateStatusWorkingBeforeEdit(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal status As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetApproveWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetApproveWorkingBeforeEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetApproveWorkingBeforeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetApproveWorkingBeforeEditResponse")> _
         Function GetApproveWorkingBeforeEdit(ByVal _filter As ProfileBusiness.WorkingBeforeDTOEdit, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTOEdit)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetComboList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetComboListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetComboList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetComboListResponse")> _
         Function GetComboList(ByRef _combolistDTO As ProfileBusiness.ComboBoxDataDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetRemind", ReplyAction:="http://tempuri.org/IProfileBusiness/GetRemindResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetRemind", ReplyAction:="http://tempuri.org/IProfileBusiness/GetRemindResponse")> _
         Function GetRemind(ByVal _dayRemind As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.ReminderLogDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetFamily", ReplyAction:="http://tempuri.org/IProfileBusiness/GetFamilyResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetFamily", ReplyAction:="http://tempuri.org/IProfileBusiness/GetFamilyResponse")> _
         Function GetFamily(ByVal _empId As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.FamilyDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWorkingBefore", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWorkingBeforeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWorkingBefore", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWorkingBeforeResponse")> _
         Function GetWorkingBefore(ByVal _empId As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWorkingProccess", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWorkingProccessResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWorkingProccess", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWorkingProccessResponse")> _
         Function GetWorkingProccess(ByVal _empId As System.Nullable(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryProccess", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryProccessResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryProccess", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryProccessResponse")> _
         Function GetSalaryProccess(ByVal _empId As Decimal, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWelfareProccess", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWelfareProccessResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWelfareProccess", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWelfareProccessResponse")> _
         Function GetWelfareProccess(ByVal _empId As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.WelfareMngDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractProccess", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractProccessResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractProccess", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractProccessResponse")> _
         Function GetContractProccess(ByVal _empId As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ContractDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendProccess", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendProccessResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendProccess", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendProccessResponse")> _
         Function GetCommendProccess(ByVal _empId As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.CommendDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetConcurrentlyProccess", ReplyAction:="http://tempuri.org/IProfileBusiness/GetConcurrentlyProccessResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetConcurrentlyProccess", ReplyAction:="http://tempuri.org/IProfileBusiness/GetConcurrentlyProccessResponse")> _
         Function GetConcurrentlyProccess(ByVal _empId As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.TitleConcurrentDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDisciplineProccess", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDisciplineProccessResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDisciplineProccess", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDisciplineProccessResponse")> _
         Function GetDisciplineProccess(ByVal _empId As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.DisciplineDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetInsuranceProccess", ReplyAction:="http://tempuri.org/IProfileBusiness/GetInsuranceProccessResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetInsuranceProccess", ReplyAction:="http://tempuri.org/IProfileBusiness/GetInsuranceProccessResponse")> _
         Function GetInsuranceProccess(ByVal _empId As Decimal) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeHistory", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeHistoryResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeHistory", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeHistoryResponse")> _
         Function GetEmployeeHistory(ByVal _empId As Decimal) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAssessKPIEmployee", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAssessKPIEmployeeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAssessKPIEmployee", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAssessKPIEmployeeResponse")> _
         Function GetAssessKPIEmployee(ByVal _empId As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeAssessmentDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetencyEmployee", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyEmployeeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetencyEmployee", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyEmployeeResponse")> _
         Function GetCompetencyEmployee(ByVal _empId As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeCompetencyDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryChanged", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryChangedResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryChanged", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryChangedResponse")> _
         Function GetSalaryChanged(ByVal _empId As Decimal) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetProcessTraining", ReplyAction:="http://tempuri.org/IProfileBusiness/GetProcessTrainingResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetProcessTraining", ReplyAction:="http://tempuri.org/IProfileBusiness/GetProcessTrainingResponse")> _
         Function GetProcessTraining(ByVal _filter As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO, ByRef PageIndex As Integer, ByVal PageSize As Integer, ByVal Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertProcessTraining", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertProcessTrainingResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertProcessTraining", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertProcessTrainingResponse")> _
         Function InsertProcessTraining(ByVal objHuPro As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyProcessTraining", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyProcessTrainingResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyProcessTraining", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyProcessTrainingResponse")> _
         Function ModifyProcessTraining(ByVal objHuPro As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteProcessTraining", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteProcessTrainingResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteProcessTraining", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteProcessTrainingResponse")> _
         Function DeleteProcessTraining(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckAndUpdateEmployeeInformation", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckAndUpdateEmployeeInformationResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckAndUpdateEmployeeInformation", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckAndUpdateEmployeeInformationResponse")> _
         Function CheckAndUpdateEmployeeInformation() As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckAndSendMailReminder", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckAndSendMailReminderResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckAndSendMailReminder", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckAndSendMailReminderResponse")> _
         Function CheckAndSendMailReminder() As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListALPByEmpID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListALPByEmpIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListALPByEmpID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListALPByEmpIDResponse")> _
         Function GetListALPByEmpID(ByVal _filter As ProfileBusiness.TrainningManageDTO, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetALP", ReplyAction:="http://tempuri.org/IProfileBusiness/GetALPResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetALP", ReplyAction:="http://tempuri.org/IProfileBusiness/GetALPResponse")> _
         Function GetALP(ByVal _filter As ProfileBusiness.TrainningManageDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertALP", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertALPResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertALP", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertALPResponse")> _
         Function InsertALP(ByVal objContract As ProfileBusiness.TrainningManageDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteALP", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteALPResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteALP", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteALPResponse")> _
         Function DeleteALP(ByVal objAssetMng As ProfileBusiness.TrainningManageDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckEmployee_Exits", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckEmployee_ExitsResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckEmployee_Exits", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckEmployee_ExitsResponse")> _
         Function CheckEmployee_Exits(ByVal empCode As String) As Integer
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ImportAnnualLeave", ReplyAction:="http://tempuri.org/IProfileBusiness/ImportAnnualLeaveResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ImportAnnualLeave", ReplyAction:="http://tempuri.org/IProfileBusiness/ImportAnnualLeaveResponse")> _
         Function ImportAnnualLeave(ByVal P_DOCXML As String, ByVal P_USER As String, ByVal P_YEAR As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetALPByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetALPByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetALPByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetALPByIDResponse")> _
         Function GetALPByID(ByVal _filter As ProfileBusiness.TrainningManageDTO) As ProfileBusiness.TrainningManageDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyALP", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyALPResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyALP", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyALPResponse")> _
         Function ModifyALP(ByVal objContract As ProfileBusiness.TrainningManageDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetConditionColumn", ReplyAction:="http://tempuri.org/IProfileBusiness/GetConditionColumnResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetConditionColumn", ReplyAction:="http://tempuri.org/IProfileBusiness/GetConditionColumnResponse")> _
         Function GetConditionColumn(ByVal _ConditionID As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.RptDynamicColumnDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListReportName", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListReportNameResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListReportName", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListReportNameResponse")> _
         Function GetListReportName(ByVal _ViewId As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.HuDynamicConditionDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteDynamicReport", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteDynamicReportResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteDynamicReport", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteDynamicReportResponse")> _
         Function DeleteDynamicReport(ByVal ID As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/SaveDynamicReport", ReplyAction:="http://tempuri.org/IProfileBusiness/SaveDynamicReportResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/SaveDynamicReport", ReplyAction:="http://tempuri.org/IProfileBusiness/SaveDynamicReportResponse")> _
         Function SaveDynamicReport(ByVal _report As ProfileBusiness.HuDynamicConditionDTO, ByVal _col As System.Collections.Generic.List(Of ProfileBusiness.HuConditionColDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDynamicReportList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDynamicReportListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDynamicReportList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDynamicReportListResponse")> _
         Function GetDynamicReportList() As System.Collections.Generic.Dictionary(Of Decimal, String)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDynamicReportColumn", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDynamicReportColumnResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDynamicReportColumn", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDynamicReportColumnResponse")> _
         Function GetDynamicReportColumn(ByVal _reportID As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.RptDynamicColumnDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDynamicReport", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDynamicReportResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDynamicReport", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDynamicReportResponse")> _
         Function GetDynamicReport(ByVal _reportID As Decimal, ByVal orgID As Decimal, ByVal isDissolve As Decimal, ByVal chkTerminate As Decimal, ByVal chkHasTerminate As Decimal, ByVal column As System.Collections.Generic.List(Of String), ByVal condition As String, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListEmployeeStatistic", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListEmployeeStatisticResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListEmployeeStatistic", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListEmployeeStatisticResponse")> _
         Function GetListEmployeeStatistic() As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListChangeStatistic", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListChangeStatisticResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListChangeStatistic", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListChangeStatisticResponse")> _
         Function GetListChangeStatistic() As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeStatistic", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeStatisticResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeStatistic", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeStatisticResponse")> _
         Function GetEmployeeStatistic(ByVal _type As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.StatisticDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetChangeStatistic", ReplyAction:="http://tempuri.org/IProfileBusiness/GetChangeStatisticResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetChangeStatistic", ReplyAction:="http://tempuri.org/IProfileBusiness/GetChangeStatisticResponse")> _
         Function GetChangeStatistic(ByVal _type As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.StatisticDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompanyNewInfo", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompanyNewInfoResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompanyNewInfo", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompanyNewInfoResponse")> _
         Function GetCompanyNewInfo(ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.StatisticDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetStatisticSeniority", ReplyAction:="http://tempuri.org/IProfileBusiness/GetStatisticSeniorityResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetStatisticSeniority", ReplyAction:="http://tempuri.org/IProfileBusiness/GetStatisticSeniorityResponse")> _
         Function GetStatisticSeniority(ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.StatisticDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrgFromUsername", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrgFromUsernameResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrgFromUsername", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrgFromUsernameResponse")> _
         Function GetOrgFromUsername(ByVal username As String) As System.Nullable(Of Decimal)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetLineManager", ReplyAction:="http://tempuri.org/IProfileBusiness/GetLineManagerResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetLineManager", ReplyAction:="http://tempuri.org/IProfileBusiness/GetLineManagerResponse")> _
         Function GetLineManager(ByVal username As String) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetLabourProtection", ReplyAction:="http://tempuri.org/IProfileBusiness/GetLabourProtectionResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetLabourProtection", ReplyAction:="http://tempuri.org/IProfileBusiness/GetLabourProtectionResponse")> _
         Function GetLabourProtection(ByVal _filter As ProfileBusiness.LabourProtectionDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertLabourProtection", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertLabourProtectionResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertLabourProtection", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertLabourProtectionResponse")> _
         Function InsertLabourProtection(ByVal objTitle As ProfileBusiness.LabourProtectionDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyLabourProtection", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyLabourProtectionResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyLabourProtection", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyLabourProtectionResponse")> _
         Function ModifyLabourProtection(ByVal objTitle As ProfileBusiness.LabourProtectionDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateLabourProtection", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateLabourProtectionResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateLabourProtection", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateLabourProtectionResponse")> _
         Function ValidateLabourProtection(ByVal _validate As ProfileBusiness.LabourProtectionDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveLabourProtection", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveLabourProtectionResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveLabourProtection", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveLabourProtectionResponse")> _
         Function ActiveLabourProtection(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteLabourProtection", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteLabourProtectionResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteLabourProtection", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteLabourProtectionResponse")> _
         Function DeleteLabourProtection(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetLabourProtectionMng", ReplyAction:="http://tempuri.org/IProfileBusiness/GetLabourProtectionMngResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetLabourProtectionMng", ReplyAction:="http://tempuri.org/IProfileBusiness/GetLabourProtectionMngResponse")> _
         Function GetLabourProtectionMng(ByVal _filter As ProfileBusiness.LabourProtectionMngDTO, ByVal IsDissolve As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal UserLog As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetLabourProtectionMngById", ReplyAction:="http://tempuri.org/IProfileBusiness/GetLabourProtectionMngByIdResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetLabourProtectionMngById", ReplyAction:="http://tempuri.org/IProfileBusiness/GetLabourProtectionMngByIdResponse")> _
         Function GetLabourProtectionMngById(ByVal Id As Integer) As ProfileBusiness.LabourProtectionMngDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertLabourProtectionMng", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertLabourProtectionMngResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertLabourProtectionMng", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertLabourProtectionMngResponse")> _
         Function InsertLabourProtectionMng(ByVal lstLabourProtectionMng As System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyLabourProtectionMng", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyLabourProtectionMngResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyLabourProtectionMng", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyLabourProtectionMngResponse")> _
         Function ModifyLabourProtectionMng(ByVal lstLabourProtectionMng As System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteLabourProtectionMng", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteLabourProtectionMngResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteLabourProtectionMng", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteLabourProtectionMngResponse")> _
         Function DeleteLabourProtectionMng(ByVal objLabourProtectionMng As System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOccupationalSafety", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOccupationalSafetyResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOccupationalSafety", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOccupationalSafetyResponse")> _
         Function GetOccupationalSafety(ByVal _filter As ProfileBusiness.OccupationalSafetyDTO, ByVal IsDissolve As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal UserLog As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.OccupationalSafetyDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOccupationalSafetyById", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOccupationalSafetyByIdResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOccupationalSafetyById", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOccupationalSafetyByIdResponse")> _
         Function GetOccupationalSafetyById(ByVal Id As Integer) As ProfileBusiness.OccupationalSafetyDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertOccupationalSafety", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertOccupationalSafetyResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertOccupationalSafety", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertOccupationalSafetyResponse")> _
         Function InsertOccupationalSafety(ByVal lstOccupationalSafety As ProfileBusiness.OccupationalSafetyDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyOccupationalSafety", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyOccupationalSafetyResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyOccupationalSafety", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyOccupationalSafetyResponse")> _
         Function ModifyOccupationalSafety(ByVal lstOccupationalSafety As ProfileBusiness.OccupationalSafetyDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteOccupationalSafety", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteOccupationalSafetyResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteOccupationalSafety", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteOccupationalSafetyResponse")> _
         Function DeleteOccupationalSafety(ByVal objOccupationalSafety As System.Collections.Generic.List(Of ProfileBusiness.OccupationalSafetyDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetPeriodbyYear", ReplyAction:="http://tempuri.org/IProfileBusiness/GetPeriodbyYearResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetPeriodbyYear", ReplyAction:="http://tempuri.org/IProfileBusiness/GetPeriodbyYearResponse")> _
         Function GetPeriodbyYear(ByVal year As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetReportById", ReplyAction:="http://tempuri.org/IProfileBusiness/GetReportByIdResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetReportById", ReplyAction:="http://tempuri.org/IProfileBusiness/GetReportByIdResponse")> _
         Function GetReportById(ByVal _filter As ProfileBusiness.Se_ReportDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.Se_ReportDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ProfileReport", ReplyAction:="http://tempuri.org/IProfileBusiness/ProfileReportResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ProfileReport", ReplyAction:="http://tempuri.org/IProfileBusiness/ProfileReportResponse")> _
         Function ProfileReport(ByVal sPkgName As String, ByVal sStartDate As System.Nullable(Of Date), ByVal sEndDate As System.Nullable(Of Date), ByVal sOrg As Integer, ByVal sUserName As String, ByVal sLang As String) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ExportReport", ReplyAction:="http://tempuri.org/IProfileBusiness/ExportReportResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ExportReport", ReplyAction:="http://tempuri.org/IProfileBusiness/ExportReportResponse")> _
         Function ExportReport(ByVal sPkgName As String, ByVal sStartDate As System.Nullable(Of Date), ByVal sEndDate As System.Nullable(Of Date), ByVal sOrg As String, ByVal IsDissolve As Integer, ByVal sUserName As String, ByVal sLang As String) As System.Data.DataSet
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeCVByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeCVByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeCVByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeCVByIDResponse")> _
         Function GetEmployeeCVByID(ByVal sPkgName As String, ByVal sEmployee_id As String) As System.Data.DataSet
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendListResponse")> _
         Function GetCommendList(ByVal _filter As ProfileBusiness.CommendListDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendListDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendListID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendListIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendListID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendListIDResponse")> _
         Function GetCommendListID(ByVal ID As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.CommendListDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWorking1", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWorking1Response")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWorking1", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWorking1Response")> _
         Function ModifyWorking1(ByVal objWorking As ProfileBusiness.WorkingDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWorking", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWorkingResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWorking", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWorkingResponse")> _
         Function InsertWorking(ByVal objWorking As ProfileBusiness.WorkingDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWorking", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWorkingResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWorking", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWorkingResponse")> _
         Function ModifyWorking(ByVal objWorking As ProfileBusiness.WorkingDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateNewEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateNewEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateNewEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateNewEditResponse")> _
         Function ValidateNewEdit(ByVal objWorking As ProfileBusiness.HUAllowanceDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteWorking", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteWorkingResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteWorking", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteWorkingResponse")> _
         Function DeleteWorking(ByVal objAssetMng As ProfileBusiness.WorkingDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateWorking", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateWorkingResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateWorking", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateWorkingResponse")> _
         Function ValidateWorking(ByVal sType As String, ByVal obj As ProfileBusiness.WorkingDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValEffectdateByEmpCode", ReplyAction:="http://tempuri.org/IProfileBusiness/ValEffectdateByEmpCodeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValEffectdateByEmpCode", ReplyAction:="http://tempuri.org/IProfileBusiness/ValEffectdateByEmpCodeResponse")> _
         Function ValEffectdateByEmpCode(ByVal emp_code As String, ByVal effect_date As Date) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetLastWorkingSalary", ReplyAction:="http://tempuri.org/IProfileBusiness/GetLastWorkingSalaryResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetLastWorkingSalary", ReplyAction:="http://tempuri.org/IProfileBusiness/GetLastWorkingSalaryResponse")> _
         Function GetLastWorkingSalary(ByVal _filter As ProfileBusiness.WorkingDTO) As ProfileBusiness.WorkingDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAllowanceByDate", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAllowanceByDateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAllowanceByDate", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAllowanceByDateResponse")> _
         Function GetAllowanceByDate(ByVal _filter As ProfileBusiness.WorkingAllowanceDTO) As System.Collections.Generic.List(Of ProfileBusiness.WorkingAllowanceDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAllowanceByWorkingID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAllowanceByWorkingIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAllowanceByWorkingID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAllowanceByWorkingIDResponse")> _
         Function GetAllowanceByWorkingID(ByVal _filter As ProfileBusiness.WorkingAllowanceDTO) As System.Collections.Generic.List(Of ProfileBusiness.WorkingAllowanceDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWorking3B", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWorking3BResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWorking3B", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWorking3BResponse")> _
         Function GetWorking3B(ByVal _filter As ProfileBusiness.WorkingDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWorking3B", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWorking3BResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWorking3B", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWorking3BResponse")> _
         Function InsertWorking3B(ByVal objWorking As ProfileBusiness.WorkingDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWorking3B", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWorking3BResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWorking3B", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWorking3BResponse")> _
         Function ModifyWorking3B(ByVal objWorking As ProfileBusiness.WorkingDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteWorking3B", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteWorking3BResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteWorking3B", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteWorking3BResponse")> _
         Function DeleteWorking3B(ByVal objWorking As ProfileBusiness.WorkingDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetChangeInfoImport", ReplyAction:="http://tempuri.org/IProfileBusiness/GetChangeInfoImportResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetChangeInfoImport", ReplyAction:="http://tempuri.org/IProfileBusiness/GetChangeInfoImportResponse")> _
         Function GetChangeInfoImport(ByVal param As ProfileBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ImportChangeInfo", ReplyAction:="http://tempuri.org/IProfileBusiness/ImportChangeInfoResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ImportChangeInfo", ReplyAction:="http://tempuri.org/IProfileBusiness/ImportChangeInfoResponse")> _
         Function ImportChangeInfo(ByVal lstData As System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO), ByRef dtError As System.Data.DataTable, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UnApproveWorking", ReplyAction:="http://tempuri.org/IProfileBusiness/UnApproveWorkingResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UnApproveWorking", ReplyAction:="http://tempuri.org/IProfileBusiness/UnApproveWorkingResponse")> _
         Function UnApproveWorking(ByVal objWorking As ProfileBusiness.WorkingDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveWorkings", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveWorkingsResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveWorkings", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveWorkingsResponse")> _
         Function ApproveWorkings(ByVal ids As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As ProfileBusiness.CommandResult
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckHasFile", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckHasFileResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckHasFile", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckHasFileResponse")> _
         Function CheckHasFile(ByVal id As System.Collections.Generic.List(Of Decimal)) As Decimal
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckHasFileDiscipline", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckHasFileDisciplineResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckHasFileDiscipline", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckHasFileDisciplineResponse")> _
         Function CheckHasFileDiscipline(ByVal id As System.Collections.Generic.List(Of Decimal)) As Decimal
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveListDiscipline", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveListDisciplineResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveListDiscipline", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveListDisciplineResponse")> _
         Function ApproveListDiscipline(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeDesciplineID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeDesciplineIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeDesciplineID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeDesciplineIDResponse")> _
         Function GetEmployeeDesciplineID(ByVal DesId As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.DisciplineEmpDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDiscipline", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDisciplineResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDiscipline", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDisciplineResponse")> _
         Function GetDiscipline(ByVal _filter As ProfileBusiness.DisciplineDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.DisciplineDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDisciplineByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDisciplineByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDisciplineByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDisciplineByIDResponse")> _
         Function GetDisciplineByID(ByVal _filter As ProfileBusiness.DisciplineDTO) As ProfileBusiness.DisciplineDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertDiscipline", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertDisciplineResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertDiscipline", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertDisciplineResponse")> _
         Function InsertDiscipline(ByVal objDiscipline As ProfileBusiness.DisciplineDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyDiscipline", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyDisciplineResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyDiscipline", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyDisciplineResponse")> _
         Function ModifyDiscipline(ByVal objDiscipline As ProfileBusiness.DisciplineDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateDiscipline", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateDisciplineResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateDiscipline", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateDisciplineResponse")> _
         Function ValidateDiscipline(ByVal sType As String, ByVal obj As ProfileBusiness.DisciplineDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteDiscipline", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteDisciplineResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteDiscipline", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteDisciplineResponse")> _
         Function DeleteDiscipline(ByVal objAssetMng As System.Collections.Generic.List(Of ProfileBusiness.DisciplineDTO)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveDiscipline", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveDisciplineResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveDiscipline", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveDisciplineResponse")> _
         Function ApproveDiscipline(ByVal objDiscipline As ProfileBusiness.DisciplineDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/Open_ApproveDiscipline", ReplyAction:="http://tempuri.org/IProfileBusiness/Open_ApproveDisciplineResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/Open_ApproveDiscipline", ReplyAction:="http://tempuri.org/IProfileBusiness/Open_ApproveDisciplineResponse")> _
         Function Open_ApproveDiscipline(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDisciplineSalary", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDisciplineSalaryResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDisciplineSalary", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDisciplineSalaryResponse")> _
         Function GetDisciplineSalary(ByVal _filter As ProfileBusiness.DisciplineSalaryDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.DisciplineSalaryDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDisciplineSalaryByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDisciplineSalaryByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDisciplineSalaryByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDisciplineSalaryByIDResponse")> _
         Function GetDisciplineSalaryByID(ByVal _filter As ProfileBusiness.DisciplineSalaryDTO) As ProfileBusiness.DisciplineSalaryDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/EditDisciplineSalary", ReplyAction:="http://tempuri.org/IProfileBusiness/EditDisciplineSalaryResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/EditDisciplineSalary", ReplyAction:="http://tempuri.org/IProfileBusiness/EditDisciplineSalaryResponse")> _
         Function EditDisciplineSalary(ByVal obj As ProfileBusiness.DisciplineSalaryDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateDisciplineSalary", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateDisciplineSalaryResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateDisciplineSalary", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateDisciplineSalaryResponse")> _
         Function ValidateDisciplineSalary(ByVal obj As ProfileBusiness.DisciplineSalaryDTO, ByRef sError As String) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveDisciplineSalary", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveDisciplineSalaryResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveDisciplineSalary", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveDisciplineSalaryResponse")> _
         Function ApproveDisciplineSalary(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/StopDisciplineSalary", ReplyAction:="http://tempuri.org/IProfileBusiness/StopDisciplineSalaryResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/StopDisciplineSalary", ReplyAction:="http://tempuri.org/IProfileBusiness/StopDisciplineSalaryResponse")> _
         Function StopDisciplineSalary(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckHasFileComend", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckHasFileComendResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckHasFileComend", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckHasFileComendResponse")> _
         Function CheckHasFileComend(ByVal id As System.Collections.Generic.List(Of Decimal)) As Decimal
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendResponse")> _
         Function GetCommend(ByVal _filter As ProfileBusiness.CommendDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeCommendByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeCommendByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeCommendByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeCommendByIDResponse")> _
         Function GetEmployeeCommendByID(ByVal ComId As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.CommendEmpDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrgCommendByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrgCommendByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrgCommendByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrgCommendByIDResponse")> _
         Function GetOrgCommendByID(ByVal ComId As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.CommendOrgDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendByIDResponse")> _
         Function GetCommendByID(ByVal _filter As ProfileBusiness.CommendDTO) As ProfileBusiness.CommendDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCommendResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCommendResponse")> _
         Function InsertCommend(ByVal objCommend As ProfileBusiness.CommendDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCommendResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCommendResponse")> _
         Function ModifyCommend(ByVal objCommend As ProfileBusiness.CommendDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCommendResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCommendResponse")> _
         Function ValidateCommend(ByVal sType As String, ByVal obj As ProfileBusiness.CommendDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCommendResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCommendResponse")> _
         Function DeleteCommend(ByVal objAssetMng As ProfileBusiness.CommendDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveCommendResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveCommendResponse")> _
         Function ApproveCommend(ByVal objCommend As ProfileBusiness.CommendDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UnApproveCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/UnApproveCommendResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UnApproveCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/UnApproveCommendResponse")> _
         Function UnApproveCommend(ByVal objCommend As ProfileBusiness.CommendDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveListCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveListCommendResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveListCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveListCommendResponse")> _
         Function ApproveListCommend(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendCode", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendCodeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendCode", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendCodeResponse")> _
         Function GetCommendCode(ByVal id As Decimal) As String
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDebt", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDebtResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDebt", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDebtResponse")> _
         Function GetDebt(ByVal empId As Decimal, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Total As Integer) As System.Collections.Generic.List(Of ProfileBusiness.DebtDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertDebt", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertDebtResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertDebt", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertDebtResponse")> _
         Function InsertDebt(ByVal objDebt As ProfileBusiness.DebtDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyDebt", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyDebtResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyDebt", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyDebtResponse")> _
         Function ModifyDebt(ByVal objDebt As ProfileBusiness.DebtDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCurrentPeriod", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCurrentPeriodResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCurrentPeriod", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCurrentPeriodResponse")> _
         Function GetCurrentPeriod(ByVal _year As Decimal) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/Check_has_Ter", ReplyAction:="http://tempuri.org/IProfileBusiness/Check_has_TerResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/Check_has_Ter", ReplyAction:="http://tempuri.org/IProfileBusiness/Check_has_TerResponse")> _
         Function Check_has_Ter(ByVal empid As Decimal) As Decimal
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveListTerminate", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveListTerminateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveListTerminate", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveListTerminateResponse")> _
         Function ApproveListTerminate(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CalculateTerminate", ReplyAction:="http://tempuri.org/IProfileBusiness/CalculateTerminateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CalculateTerminate", ReplyAction:="http://tempuri.org/IProfileBusiness/CalculateTerminateResponse")> _
         Function CalculateTerminate(ByVal EmployeeId As Decimal, ByVal TerLateDate As Date) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetLabourProtectByTerminate", ReplyAction:="http://tempuri.org/IProfileBusiness/GetLabourProtectByTerminateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetLabourProtectByTerminate", ReplyAction:="http://tempuri.org/IProfileBusiness/GetLabourProtectByTerminateResponse")> _
         Function GetLabourProtectByTerminate(ByVal gID As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAssetByTerminate", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAssetByTerminateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAssetByTerminate", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAssetByTerminateResponse")> _
         Function GetAssetByTerminate(ByVal gID As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.AssetMngDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTerminate", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTerminateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTerminate", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTerminateResponse")> _
         Function GetTerminate(ByVal _filter As ProfileBusiness.TerminateDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.TerminateDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTerminateByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTerminateByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTerminateByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTerminateByIDResponse")> _
         Function GetTerminateByID(ByVal _filter As ProfileBusiness.TerminateDTO) As ProfileBusiness.TerminateDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeByIDResponse")> _
         Function GetEmployeeByID(ByVal gEmployeeID As Decimal) As ProfileBusiness.EmployeeDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertTerminate", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertTerminateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertTerminate", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertTerminateResponse")> _
         Function InsertTerminate(ByVal objTerminate As ProfileBusiness.TerminateDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyTerminate", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyTerminateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyTerminate", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyTerminateResponse")> _
         Function ModifyTerminate(ByVal objTerminate As ProfileBusiness.TerminateDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteTerminate", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteTerminateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteTerminate", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteTerminateResponse")> _
         Function DeleteTerminate(ByVal objID As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteBlackList", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteBlackListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteBlackList", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteBlackListResponse")> _
         Function DeleteBlackList(ByVal objID As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveTerminate", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveTerminateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveTerminate", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveTerminateResponse")> _
         Function ApproveTerminate(ByVal objTerminate As ProfileBusiness.TerminateDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckTerminateNo", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckTerminateNoResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckTerminateNo", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckTerminateNoResponse")> _
         Function CheckTerminateNo(ByVal objTerminate As ProfileBusiness.TerminateDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTyleNV", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTyleNVResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTyleNV", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTyleNVResponse")> _
         Function GetTyleNV() As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryNew", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryNewResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryNew", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryNewResponse")> _
         Function GetSalaryNew(ByRef P_EMPLOYEEID As Integer) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTerminate3b", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTerminate3bResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTerminate3b", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTerminate3bResponse")> _
         Function GetTerminate3b(ByVal _filter As ProfileBusiness.Terminate3BDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.Terminate3BDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTerminate3bByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTerminate3bByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTerminate3bByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTerminate3bByIDResponse")> _
         Function GetTerminate3bByID(ByVal _filter As ProfileBusiness.Terminate3BDTO) As ProfileBusiness.Terminate3BDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTerminate3bEmployeeByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTerminate3bEmployeeByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTerminate3bEmployeeByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTerminate3bEmployeeByIDResponse")> _
         Function GetTerminate3bEmployeeByID(ByVal gEmployeeID As Decimal) As ProfileBusiness.EmployeeDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertTerminate3b", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertTerminate3bResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertTerminate3b", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertTerminate3bResponse")> _
         Function InsertTerminate3b(ByVal objTerminate3b As ProfileBusiness.Terminate3BDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyTerminate3b", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyTerminate3bResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyTerminate3b", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyTerminate3bResponse")> _
         Function ModifyTerminate3b(ByVal objTerminate3b As ProfileBusiness.Terminate3BDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteTerminate3b", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteTerminate3bResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteTerminate3b", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteTerminate3bResponse")> _
         Function DeleteTerminate3b(ByVal objID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveTerminate3b", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveTerminate3bResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveTerminate3b", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveTerminate3bResponse")> _
         Function ApproveTerminate3b(ByVal objTerminate3b As ProfileBusiness.Terminate3BDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckExistApproveTerminate3b", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckExistApproveTerminate3bResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckExistApproveTerminate3b", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckExistApproveTerminate3bResponse")> _
         Function CheckExistApproveTerminate3b(ByVal gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertAttatch_Manager", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertAttatch_ManagerResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertAttatch_Manager", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertAttatch_ManagerResponse")> _
         Function InsertAttatch_Manager(ByVal fileInfo As ProfileBusiness.HuFileDTO, ByVal fileBytes() As Byte) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateAttatch_Manager", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateAttatch_ManagerResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateAttatch_Manager", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateAttatch_ManagerResponse")> _
         Function UpdateAttatch_Manager(ByVal fileInfo As ProfileBusiness.HuFileDTO, ByVal fileBytes() As Byte) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteAttatch_Manager", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteAttatch_ManagerResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteAttatch_Manager", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteAttatch_ManagerResponse")> _
         Function DeleteAttatch_Manager(ByVal fileID As System.Collections.Generic.List(Of Decimal)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAttachFile_Manager", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAttachFile_ManagerResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAttachFile_Manager", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAttachFile_ManagerResponse")> _
         Function GetAttachFile_Manager(ByVal fileId As Decimal) As ProfileBusiness.HuFileDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAttachFiles_Manager", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAttachFiles_ManagerResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAttachFiles_Manager", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAttachFiles_ManagerResponse")> _
         Function GetAttachFiles_Manager(ByVal fileType As Decimal, ByVal page As Integer, ByVal pageSize As Integer, ByRef totalPage As Integer, ByVal Employee_id As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.HuFileDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DownloadAttachFile_Manager", ReplyAction:="http://tempuri.org/IProfileBusiness/DownloadAttachFile_ManagerResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DownloadAttachFile_Manager", ReplyAction:="http://tempuri.org/IProfileBusiness/DownloadAttachFile_ManagerResponse")> _
         Function DownloadAttachFile_Manager(ByVal fileID As Decimal, ByVal ext As String, ByRef fileInfo As ProfileBusiness.HuFileDTO) As Byte()
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeHuFile", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeHuFileResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeHuFile", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeHuFileResponse")> _
         Function GetEmployeeHuFile(ByVal _filter As ProfileBusiness.HuFileDTO) As System.Collections.Generic.List(Of ProfileBusiness.HuFileDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/TestEmployeeFileDTO", ReplyAction:="http://tempuri.org/IProfileBusiness/TestEmployeeFileDTOResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/TestEmployeeFileDTO", ReplyAction:="http://tempuri.org/IProfileBusiness/TestEmployeeFileDTOResponse")> _
         Function TestEmployeeFileDTO() As ProfileBusiness.EmployeeFileDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeFamilyEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeFamilyEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeFamilyEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeFamilyEditResponse")> _
         Function GetEmployeeFamilyEdit(ByVal _filter As ProfileBusiness.FamilyEditDTO) As System.Collections.Generic.List(Of ProfileBusiness.FamilyEditDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertEmployeeFamilyEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertEmployeeFamilyEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertEmployeeFamilyEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertEmployeeFamilyEditResponse")> _
         Function InsertEmployeeFamilyEdit(ByVal objFamilyEdit As ProfileBusiness.FamilyEditDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyEmployeeFamilyEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyEmployeeFamilyEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyEmployeeFamilyEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyEmployeeFamilyEditResponse")> _
         Function ModifyEmployeeFamilyEdit(ByVal objFamilyEdit As ProfileBusiness.FamilyEditDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteEmployeeFamilyEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteEmployeeFamilyEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteEmployeeFamilyEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteEmployeeFamilyEditResponse")> _
         Function DeleteEmployeeFamilyEdit(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckExistFamilyEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckExistFamilyEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckExistFamilyEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckExistFamilyEditResponse")> _
         Function CheckExistFamilyEdit(ByVal pk_key As Decimal) As ProfileBusiness.FamilyEditDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/SendEmployeeFamilyEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/SendEmployeeFamilyEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/SendEmployeeFamilyEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/SendEmployeeFamilyEditResponse")> _
         Function SendEmployeeFamilyEdit(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateStatusEmployeeFamilyEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateStatusEmployeeFamilyEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateStatusEmployeeFamilyEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateStatusEmployeeFamilyEditResponse")> _
         Function UpdateStatusEmployeeFamilyEdit(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal status As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateStatusEmployeeCetificateEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateStatusEmployeeCetificateEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateStatusEmployeeCetificateEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateStatusEmployeeCetificateEditResponse")> _
         Function UpdateStatusEmployeeCetificateEdit(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal status As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetApproveFamilyEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetApproveFamilyEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetApproveFamilyEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetApproveFamilyEditResponse")> _
         Function GetApproveFamilyEdit(ByVal _filter As ProfileBusiness.FamilyEditDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.FamilyEditDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetApproveEmployeeCertificateEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetApproveEmployeeCertificateEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetApproveEmployeeCertificateEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetApproveEmployeeCertificateEditResponse")> _
         Function GetApproveEmployeeCertificateEdit(ByVal _filter As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeTrain", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeTrainResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeTrain", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeTrainResponse")> _
         Function GetEmployeeTrain(ByVal _filter As ProfileBusiness.EmployeeTrainDTO) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeTrainDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeTrainForCompany", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeTrainForCompanyResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeTrainForCompany", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeTrainForCompanyResponse")> _
         Function GetEmployeeTrainForCompany(ByVal _filter As ProfileBusiness.EmployeeTrainForCompanyDTO) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeTrainForCompanyDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeTrainByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeTrainByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeTrainByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeTrainByIDResponse")> _
         Function GetEmployeeTrainByID(ByVal EmployeeID As Decimal) As ProfileBusiness.EmployeeTrainDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertEmployeeTrain", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertEmployeeTrainResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertEmployeeTrain", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertEmployeeTrainResponse")> _
         Function InsertEmployeeTrain(ByVal objEmployeeTrain As ProfileBusiness.EmployeeTrainDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyEmployeeTrain", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyEmployeeTrainResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyEmployeeTrain", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyEmployeeTrainResponse")> _
         Function ModifyEmployeeTrain(ByVal objEmployeeTrain As ProfileBusiness.EmployeeTrainDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteEmployeeTrain", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteEmployeeTrainResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteEmployeeTrain", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteEmployeeTrainResponse")> _
         Function DeleteEmployeeTrain(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateEmployeeTrain", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateEmployeeTrainResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateEmployeeTrain", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateEmployeeTrainResponse")> _
         Function ValidateEmployeeTrain(ByVal objValidate As ProfileBusiness.EmployeeTrainDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmpWorkingBefore", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmpWorkingBeforeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmpWorkingBefore", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmpWorkingBeforeResponse")> _
         Function GetEmpWorkingBefore(ByVal _filter As ProfileBusiness.WorkingBeforeDTO) As System.Collections.Generic.List(Of ProfileBusiness.WorkingBeforeDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWorkingBefore", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWorkingBeforeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWorkingBefore", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWorkingBeforeResponse")> _
         Function InsertWorkingBefore(ByVal objWorkingBefore As ProfileBusiness.WorkingBeforeDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWorkingBefore", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWorkingBeforeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWorkingBefore", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWorkingBeforeResponse")> _
         Function ModifyWorkingBefore(ByVal objWorkingBefore As ProfileBusiness.WorkingBeforeDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteWorkingBefore", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteWorkingBeforeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteWorkingBefore", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteWorkingBeforeResponse")> _
         Function DeleteWorkingBefore(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmpBackGround", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmpBackGroundResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmpBackGround", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmpBackGroundResponse")> _
         Function GetEmpBackGround(ByVal _filter As ProfileBusiness.EmployeeBackgroundDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeBackgroundDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertBackGround", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertBackGroundResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertBackGround", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertBackGroundResponse")> _
         Function InsertBackGround(ByVal objBackGround As ProfileBusiness.EmployeeBackgroundDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyBackGround", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyBackGroundResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyBackGround", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyBackGroundResponse")> _
         Function ModifyBackGround(ByVal objBackGround As ProfileBusiness.EmployeeBackgroundDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteBackGround", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteBackGroundResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteBackGround", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteBackGroundResponse")> _
         Function DeleteBackGround(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAssetMng", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAssetMngResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAssetMng", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAssetMngResponse")> _
         Function GetAssetMng(ByVal _filter As ProfileBusiness.AssetMngDTO, ByVal _param As ProfileBusiness.ParamDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.AssetMngDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAssetMngById", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAssetMngByIdResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAssetMngById", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAssetMngByIdResponse")> _
         Function GetAssetMngById(ByVal Id As Integer) As ProfileBusiness.AssetMngDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertAssetMng", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertAssetMngResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertAssetMng", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertAssetMngResponse")> _
         Function InsertAssetMng(ByVal objAssetMng As ProfileBusiness.AssetMngDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyAssetMng", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyAssetMngResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyAssetMng", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyAssetMngResponse")> _
         Function ModifyAssetMng(ByVal objAssetMng As ProfileBusiness.AssetMngDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteAssetMng", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteAssetMngResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteAssetMng", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteAssetMngResponse")> _
         Function DeleteAssetMng(ByVal objAssetMng As System.Collections.Generic.List(Of ProfileBusiness.AssetMngDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTrainingEvaluateEmp", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTrainingEvaluateEmpResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTrainingEvaluateEmp", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTrainingEvaluateEmpResponse")> _
         Function GetTrainingEvaluateEmp(ByVal _empId As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.TrainningEvaluateDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTrainingEvaluate", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTrainingEvaluateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTrainingEvaluate", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTrainingEvaluateResponse")> _
         Function GetTrainingEvaluate(ByVal _filter As ProfileBusiness.TrainningEvaluateDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.TrainningEvaluateDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertTrainingEvaluate", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertTrainingEvaluateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertTrainingEvaluate", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertTrainingEvaluateResponse")> _
         Function InsertTrainingEvaluate(ByVal objContract As ProfileBusiness.TrainningEvaluateDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTrainingEvaluateByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTrainingEvaluateByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTrainingEvaluateByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTrainingEvaluateByIDResponse")> _
         Function GetTrainingEvaluateByID(ByVal _filter As ProfileBusiness.TrainningEvaluateDTO) As ProfileBusiness.TrainningEvaluateDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyTrainingEvaluate", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyTrainingEvaluateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyTrainingEvaluate", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyTrainingEvaluateResponse")> _
         Function ModifyTrainingEvaluate(ByVal objContract As ProfileBusiness.TrainningEvaluateDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteTrainingEvaluate", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteTrainingEvaluateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteTrainingEvaluate", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteTrainingEvaluateResponse")> _
         Function DeleteTrainingEvaluate(ByVal objAssetMng As ProfileBusiness.TrainningEvaluateDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListTrainingManageByEmpID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListTrainingManageByEmpIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListTrainingManageByEmpID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListTrainingManageByEmpIDResponse")> _
         Function GetListTrainingManageByEmpID(ByVal _filter As ProfileBusiness.TrainningManageDTO, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTrainingManage", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTrainingManageResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTrainingManage", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTrainingManageResponse")> _
         Function GetTrainingManage(ByVal _filter As ProfileBusiness.TrainningManageDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertTrainingManage", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertTrainingManageResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertTrainingManage", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertTrainingManageResponse")> _
         Function InsertTrainingManage(ByVal objContract As ProfileBusiness.TrainningManageDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteTrainingManage", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteTrainingManageResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteTrainingManage", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteTrainingManageResponse")> _
         Function DeleteTrainingManage(ByVal objAssetMng As ProfileBusiness.TrainningManageDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTrainingManageByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTrainingManageByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTrainingManageByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTrainingManageByIDResponse")> _
         Function GetTrainingManageByID(ByVal _filter As ProfileBusiness.TrainningManageDTO) As ProfileBusiness.TrainningManageDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyTrainingManage", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyTrainingManageResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyTrainingManage", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyTrainingManageResponse")> _
         Function ModifyTrainingManage(ByVal objContract As ProfileBusiness.TrainningManageDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTrainingForeign", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTrainingForeignResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTrainingForeign", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTrainingForeignResponse")> _
         Function GetTrainingForeign(ByVal _filter As ProfileBusiness.TrainningForeignDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.TrainningForeignDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertTrainingForeign", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertTrainingForeignResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertTrainingForeign", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertTrainingForeignResponse")> _
         Function InsertTrainingForeign(ByVal objContract As ProfileBusiness.TrainningForeignDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTrainingForeignByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTrainingForeignByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTrainingForeignByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTrainingForeignByIDResponse")> _
         Function GetTrainingForeignByID(ByVal _filter As ProfileBusiness.TrainningForeignDTO) As ProfileBusiness.TrainningForeignDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyTrainingForeign", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyTrainingForeignResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyTrainingForeign", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyTrainingForeignResponse")> _
         Function ModifyTrainingForeign(ByVal objContract As ProfileBusiness.TrainningForeignDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteTrainingForeign", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteTrainingForeignResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteTrainingForeign", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteTrainingForeignResponse")> _
         Function DeleteTrainingForeign(ByVal objContract As System.Collections.Generic.List(Of ProfileBusiness.TrainningForeignDTO)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContract", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContract", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractResponse")> _
         Function GetContract(ByVal _filter As ProfileBusiness.ContractDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.ContractDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractByIDResponse")> _
         Function GetContractByID(ByVal _filter As ProfileBusiness.ContractDTO) As ProfileBusiness.ContractDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateContract", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateContractResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateContract", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateContractResponse")> _
         Function ValidateContract(ByVal sType As String, ByVal obj As ProfileBusiness.ContractDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateDateToContract", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateDateToContractResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateDateToContract", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateDateToContractResponse")> _
         Function UpdateDateToContract(ByVal id As Decimal, ByVal day As Date, ByVal remark As String) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertContract", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertContractResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertContract", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertContractResponse")> _
         Function InsertContract(ByVal objContract As ProfileBusiness.ContractDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckNotAllow", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckNotAllowResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckNotAllow", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckNotAllowResponse")> _
         Function CheckNotAllow(ByVal empid As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckHasFileContract", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckHasFileContractResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckHasFileContract", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckHasFileContractResponse")> _
         Function CheckHasFileContract(ByVal id As System.Collections.Generic.List(Of Decimal)) As Decimal
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckHasFileFileContract", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckHasFileFileContractResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckHasFileFileContract", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckHasFileFileContractResponse")> _
         Function CheckHasFileFileContract(ByVal id As System.Collections.Generic.List(Of Decimal)) As Decimal
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyContract", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyContractResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyContract", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyContractResponse")> _
         Function ModifyContract(ByVal objContract As ProfileBusiness.ContractDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteContract", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteContractResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteContract", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteContractResponse")> _
         Function DeleteContract(ByVal objAssetMng As ProfileBusiness.ContractDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CreateContractNo", ReplyAction:="http://tempuri.org/IProfileBusiness/CreateContractNoResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CreateContractNo", ReplyAction:="http://tempuri.org/IProfileBusiness/CreateContractNoResponse")> _
         Function CreateContractNo(ByVal objAssetMng As ProfileBusiness.ContractDTO) As String
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckContractNo", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckContractNoResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckContractNo", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckContractNoResponse")> _
         Function CheckContractNo(ByVal objAssetMng As ProfileBusiness.ContractDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractEmployeeByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractEmployeeByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractEmployeeByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractEmployeeByIDResponse")> _
         Function GetContractEmployeeByID(ByVal gEmployeeID As Decimal) As ProfileBusiness.EmployeeDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UnApproveContract", ReplyAction:="http://tempuri.org/IProfileBusiness/UnApproveContractResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UnApproveContract", ReplyAction:="http://tempuri.org/IProfileBusiness/UnApproveContractResponse")> _
         Function UnApproveContract(ByVal objContract As ProfileBusiness.ContractDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCheckContractTypeID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCheckContractTypeIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCheckContractTypeID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCheckContractTypeIDResponse")> _
         Function GetCheckContractTypeID(ByVal listID As String) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWelfareListAuto", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWelfareListAutoResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWelfareListAuto", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWelfareListAutoResponse")> _
         Function GetWelfareListAuto(ByVal _filter As ProfileBusiness.WelfareMngDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWelfareMng", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWelfareMngResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWelfareMng", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWelfareMngResponse")> _
         Function GetWelfareMng(ByVal _filter As ProfileBusiness.WelfareMngDTO, ByVal IsDissolve As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal UserLog As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.WelfareMngDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWelfareMngById", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWelfareMngByIdResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWelfareMngById", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWelfareMngByIdResponse")> _
         Function GetWelfareMngById(ByVal Id As Integer) As ProfileBusiness.WelfareMngDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetComboboxPeriod", ReplyAction:="http://tempuri.org/IProfileBusiness/GetComboboxPeriodResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetComboboxPeriod", ReplyAction:="http://tempuri.org/IProfileBusiness/GetComboboxPeriodResponse")> _
         Function GetComboboxPeriod(ByVal year As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetYearPeriod", ReplyAction:="http://tempuri.org/IProfileBusiness/GetYearPeriodResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetYearPeriod", ReplyAction:="http://tempuri.org/IProfileBusiness/GetYearPeriodResponse")> _
         Function GetYearPeriod() As System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckWelfareMngEffect", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckWelfareMngEffectResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckWelfareMngEffect", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckWelfareMngEffectResponse")> _
         Function CheckWelfareMngEffect(ByVal _filter As System.Collections.Generic.List(Of ProfileBusiness.WelfareMngDTO)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWelfareMng", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWelfareMngResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWelfareMng", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWelfareMngResponse")> _
         Function InsertWelfareMng(ByVal lstWelfareMng As ProfileBusiness.WelfareMngDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWelfareMng", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWelfareMngResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWelfareMng", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWelfareMngResponse")> _
         Function ModifyWelfareMng(ByVal lstWelfareMng As ProfileBusiness.WelfareMngDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteWelfareMng", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteWelfareMngResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteWelfareMng", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteWelfareMngResponse")> _
         Function DeleteWelfareMng(ByVal lstWelfareMng As System.Collections.Generic.List(Of ProfileBusiness.WelfareMngDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/getDtByEmpIDandEffectdate", ReplyAction:="http://tempuri.org/IProfileBusiness/getDtByEmpIDandEffectdateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/getDtByEmpIDandEffectdate", ReplyAction:="http://tempuri.org/IProfileBusiness/getDtByEmpIDandEffectdateResponse")> _
         Function getDtByEmpIDandEffectdate(ByVal obj As ProfileBusiness.WorkingDTO) As System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/getValue_ExRate_F_T", ReplyAction:="http://tempuri.org/IProfileBusiness/getValue_ExRate_F_TResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/getValue_ExRate_F_T", ReplyAction:="http://tempuri.org/IProfileBusiness/getValue_ExRate_F_TResponse")> _
         Function getValue_ExRate_F_T(ByVal _filter As ProfileBusiness.WorkingDTO) As ProfileBusiness.WorkingDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveListChangeInfoMng", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveListChangeInfoMngResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveListChangeInfoMng", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveListChangeInfoMngResponse")> _
         Function ApproveListChangeInfoMng(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWorking", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWorkingResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWorking", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWorkingResponse")> _
         Function GetWorking(ByVal _filter As ProfileBusiness.WorkingDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWorkingAllowance", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWorkingAllowanceResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWorkingAllowance", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWorkingAllowanceResponse")> _
         Function GetWorkingAllowance(ByVal _filter As ProfileBusiness.WorkingAllowanceDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.WorkingAllowanceDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWorkingAllowance1", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWorkingAllowance1Response")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWorkingAllowance1", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWorkingAllowance1Response")> _
         Function GetWorkingAllowance1(ByVal _filter As ProfileBusiness.HUAllowanceDTO, ByVal _param As ProfileBusiness.ParamDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.HUAllowanceDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWorkingAllowance", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWorkingAllowanceResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWorkingAllowance", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWorkingAllowanceResponse")> _
         Function InsertWorkingAllowance(ByVal objWorking As ProfileBusiness.HUAllowanceDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteWorkingAllowance", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteWorkingAllowanceResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteWorkingAllowance", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteWorkingAllowanceResponse")> _
         Function DeleteWorkingAllowance(ByVal lstWorkingAllowance As System.Collections.Generic.List(Of ProfileBusiness.HUAllowanceDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWorkingAllowanceNew", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWorkingAllowanceNewResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWorkingAllowanceNew", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWorkingAllowanceNewResponse")> _
         Function ModifyWorkingAllowanceNew(ByVal objWorking As ProfileBusiness.HUAllowanceDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWorkingAllowance", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWorkingAllowanceResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWorkingAllowance", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWorkingAllowanceResponse")> _
         Function ModifyWorkingAllowance(ByVal objWorking As ProfileBusiness.WorkingAllowanceDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWorkingByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWorkingByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWorkingByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWorkingByIDResponse")> _
         Function GetWorkingByID(ByVal _filter As ProfileBusiness.WorkingDTO) As ProfileBusiness.WorkingDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeCurrentByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeCurrentByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeCurrentByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeCurrentByIDResponse")> _
         Function GetEmployeCurrentByID(ByVal _filter As ProfileBusiness.WorkingDTO) As ProfileBusiness.WorkingDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertListWorking1", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertListWorking1Response")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertListWorking1", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertListWorking1Response")> _
         Function InsertListWorking1(ByVal objWorking As ProfileBusiness.WorkingDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWorking1", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWorking1Response")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWorking1", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWorking1Response")> _
         Function InsertWorking1(ByVal objWorking As ProfileBusiness.WorkingDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyBankBranch", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyBankBranchResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyBankBranch", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyBankBranchResponse")> _
         Function ModifyBankBranch(ByVal objBankBranch As ProfileBusiness.BankBranchDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateBankBranch", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateBankBranchResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateBankBranch", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateBankBranchResponse")> _
         Function ValidateBankBranch(ByVal objBankBranch As ProfileBusiness.BankBranchDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveBankBranch", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveBankBranchResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveBankBranch", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveBankBranchResponse")> _
         Function ActiveBankBranch(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteBankBranch", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteBankBranchResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteBankBranch", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteBankBranchResponse")> _
         Function DeleteBankBranch(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByRef strError As String) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAsset", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAssetResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAsset", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAssetResponse")> _
         Function GetAsset(ByVal _filter As ProfileBusiness.AssetDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.AssetDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertAsset", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertAssetResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertAsset", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertAssetResponse")> _
         Function InsertAsset(ByVal objAsset As ProfileBusiness.AssetDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyAsset", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyAssetResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyAsset", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyAssetResponse")> _
         Function ModifyAsset(ByVal objAsset As ProfileBusiness.AssetDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateAsset", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateAssetResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateAsset", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateAssetResponse")> _
         Function ValidateAsset(ByVal objAsset As ProfileBusiness.AssetDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveAsset", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveAssetResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveAsset", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveAssetResponse")> _
         Function ActiveAsset(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteAsset", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteAssetResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteAsset", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteAssetResponse")> _
         Function DeleteAsset(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByRef strError As String) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetStaffRank", ReplyAction:="http://tempuri.org/IProfileBusiness/GetStaffRankResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetStaffRank", ReplyAction:="http://tempuri.org/IProfileBusiness/GetStaffRankResponse")> _
         Function GetStaffRank(ByVal _filter As ProfileBusiness.StaffRankDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.StaffRankDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertStaffRank", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertStaffRankResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertStaffRank", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertStaffRankResponse")> _
         Function InsertStaffRank(ByVal objStaffRank As ProfileBusiness.StaffRankDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateStaffRank", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateStaffRankResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateStaffRank", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateStaffRankResponse")> _
         Function ValidateStaffRank(ByVal objStaffRank As ProfileBusiness.StaffRankDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyStaffRank", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyStaffRankResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyStaffRank", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyStaffRankResponse")> _
         Function ModifyStaffRank(ByVal objStaffRank As ProfileBusiness.StaffRankDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveStaffRank", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveStaffRankResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveStaffRank", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveStaffRankResponse")> _
         Function ActiveStaffRank(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal sActive As String) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteStaffRank", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteStaffRankResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteStaffRank", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteStaffRankResponse")> _
         Function DeleteStaffRank(ByVal lstStaffRank As System.Collections.Generic.List(Of ProfileBusiness.StaffRankDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetencyGroup", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyGroupResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetencyGroup", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyGroupResponse")> _
         Function GetCompetencyGroup(ByVal _filter As ProfileBusiness.CompetencyGroupDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CompetencyGroupDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCompetencyGroup", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCompetencyGroupResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCompetencyGroup", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCompetencyGroupResponse")> _
         Function InsertCompetencyGroup(ByVal objCompetencyGroup As ProfileBusiness.CompetencyGroupDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCompetencyGroup", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCompetencyGroupResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCompetencyGroup", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCompetencyGroupResponse")> _
         Function ValidateCompetencyGroup(ByVal objCompetencyGroup As ProfileBusiness.CompetencyGroupDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCompetencyGroup", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCompetencyGroupResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCompetencyGroup", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCompetencyGroupResponse")> _
         Function ModifyCompetencyGroup(ByVal objCompetencyGroup As ProfileBusiness.CompetencyGroupDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveCompetencyGroup", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveCompetencyGroupResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveCompetencyGroup", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveCompetencyGroupResponse")> _
         Function ActiveCompetencyGroup(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCompetencyGroup", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCompetencyGroupResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCompetencyGroup", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCompetencyGroupResponse")> _
         Function DeleteCompetencyGroup(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetency", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetency", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyResponse")> _
         Function GetCompetency(ByVal _filter As ProfileBusiness.CompetencyDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CompetencyDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCompetency", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCompetencyResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCompetency", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCompetencyResponse")> _
         Function InsertCompetency(ByVal objCompetency As ProfileBusiness.CompetencyDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCompetency", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCompetencyResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCompetency", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCompetencyResponse")> _
         Function ValidateCompetency(ByVal objCompetency As ProfileBusiness.CompetencyDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCompetency", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCompetencyResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCompetency", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCompetencyResponse")> _
         Function ModifyCompetency(ByVal objCompetency As ProfileBusiness.CompetencyDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveCompetency", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveCompetencyResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveCompetency", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveCompetencyResponse")> _
         Function ActiveCompetency(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCompetency", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCompetencyResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCompetency", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCompetencyResponse")> _
         Function DeleteCompetency(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetencyBuild", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyBuildResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetencyBuild", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyBuildResponse")> _
         Function GetCompetencyBuild(ByVal _filter As ProfileBusiness.CompetencyBuildDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CompetencyBuildDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCompetencyBuild", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCompetencyBuildResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCompetencyBuild", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCompetencyBuildResponse")> _
         Function InsertCompetencyBuild(ByVal objCompetencyBuild As ProfileBusiness.CompetencyBuildDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCompetencyBuild", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCompetencyBuildResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCompetencyBuild", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCompetencyBuildResponse")> _
         Function ModifyCompetencyBuild(ByVal objCompetencyBuild As ProfileBusiness.CompetencyBuildDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCompetencyBuild", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCompetencyBuildResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCompetencyBuild", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCompetencyBuildResponse")> _
         Function DeleteCompetencyBuild(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetencyStandard", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyStandardResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetencyStandard", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyStandardResponse")> _
         Function GetCompetencyStandard(ByVal _filter As ProfileBusiness.CompetencyStandardDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CompetencyStandardDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCompetencyStandard", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCompetencyStandardResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCompetencyStandard", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCompetencyStandardResponse")> _
         Function InsertCompetencyStandard(ByVal objCompetencyStandard As ProfileBusiness.CompetencyStandardDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCompetencyStandard", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCompetencyStandardResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCompetencyStandard", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCompetencyStandardResponse")> _
         Function ModifyCompetencyStandard(ByVal objCompetencyStandard As ProfileBusiness.CompetencyStandardDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCompetencyStandard", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCompetencyStandardResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCompetencyStandard", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCompetencyStandardResponse")> _
         Function DeleteCompetencyStandard(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetencyAppendix", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyAppendixResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetencyAppendix", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyAppendixResponse")> _
         Function GetCompetencyAppendix(ByVal _filter As ProfileBusiness.CompetencyAppendixDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CompetencyAppendixDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCompetencyAppendix", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCompetencyAppendixResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCompetencyAppendix", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCompetencyAppendixResponse")> _
         Function InsertCompetencyAppendix(ByVal objCompetencyAppendix As ProfileBusiness.CompetencyAppendixDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCompetencyAppendix", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCompetencyAppendixResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCompetencyAppendix", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCompetencyAppendixResponse")> _
         Function ModifyCompetencyAppendix(ByVal objCompetencyAppendix As ProfileBusiness.CompetencyAppendixDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCompetencyAppendix", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCompetencyAppendixResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCompetencyAppendix", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCompetencyAppendixResponse")> _
         Function DeleteCompetencyAppendix(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetencyEmp", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyEmpResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetencyEmp", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyEmpResponse")> _
         Function GetCompetencyEmp(ByVal _filter As ProfileBusiness.CompetencyEmpDTO) As System.Collections.Generic.List(Of ProfileBusiness.CompetencyEmpDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateCompetencyEmp", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateCompetencyEmpResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateCompetencyEmp", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateCompetencyEmpResponse")> _
         Function UpdateCompetencyEmp(ByVal lstCom As System.Collections.Generic.List(Of ProfileBusiness.CompetencyEmpDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetencyPeriod", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyPeriodResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetencyPeriod", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyPeriodResponse")> _
         Function GetCompetencyPeriod(ByVal _filter As ProfileBusiness.CompetencyPeriodDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CompetencyPeriodDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCompetencyPeriod", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCompetencyPeriodResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCompetencyPeriod", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCompetencyPeriodResponse")> _
         Function InsertCompetencyPeriod(ByVal objCompetencyPeriod As ProfileBusiness.CompetencyPeriodDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCompetencyPeriod", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCompetencyPeriodResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCompetencyPeriod", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCompetencyPeriodResponse")> _
         Function ModifyCompetencyPeriod(ByVal objCompetencyPeriod As ProfileBusiness.CompetencyPeriodDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCompetencyPeriod", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCompetencyPeriodResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCompetencyPeriod", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCompetencyPeriodResponse")> _
         Function DeleteCompetencyPeriod(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetencyAss", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyAssResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetencyAss", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyAssResponse")> _
         Function GetCompetencyAss(ByVal _filter As ProfileBusiness.CompetencyAssDTO) As System.Collections.Generic.List(Of ProfileBusiness.CompetencyAssDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetencyAssDtl", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyAssDtlResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetencyAssDtl", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyAssDtlResponse")> _
         Function GetCompetencyAssDtl(ByVal _filter As ProfileBusiness.CompetencyAssDtlDTO) As System.Collections.Generic.List(Of ProfileBusiness.CompetencyAssDtlDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateCompetencyAssDtl", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateCompetencyAssDtlResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateCompetencyAssDtl", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateCompetencyAssDtlResponse")> _
         Function UpdateCompetencyAssDtl(ByVal objAss As ProfileBusiness.CompetencyAssDTO, ByVal lstCom As System.Collections.Generic.List(Of ProfileBusiness.CompetencyAssDtlDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCompetencyAss", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCompetencyAssResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCompetencyAss", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCompetencyAssResponse")> _
         Function DeleteCompetencyAss(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetJobDescription", ReplyAction:="http://tempuri.org/IProfileBusiness/GetJobDescriptionResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetJobDescription", ReplyAction:="http://tempuri.org/IProfileBusiness/GetJobDescriptionResponse")> _
         Function GetJobDescription(ByVal _filter As ProfileBusiness.JobDescriptionDTO, ByVal _param As ProfileBusiness.ParamDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.JobDescriptionDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InserJobDescription", ReplyAction:="http://tempuri.org/IProfileBusiness/InserJobDescriptionResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InserJobDescription", ReplyAction:="http://tempuri.org/IProfileBusiness/InserJobDescriptionResponse")> _
         Function InserJobDescription(ByVal objJobDes As ProfileBusiness.JobDescriptionDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyJobDescription", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyJobDescriptionResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyJobDescription", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyJobDescriptionResponse")> _
         Function ModifyJobDescription(ByVal objJobDes As ProfileBusiness.JobDescriptionDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteJobDescretion", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteJobDescretionResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteJobDescretion", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteJobDescretionResponse")> _
         Function DeleteJobDescretion(ByVal objJobDes As ProfileBusiness.JobDescriptionDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetJobDesByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetJobDesByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetJobDesByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetJobDesByIDResponse")> _
         Function GetJobDesByID(ByVal ID As Decimal) As ProfileBusiness.JobDescriptionDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeByEmployeeID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeByEmployeeIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeByEmployeeID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeByEmployeeIDResponse")> _
         Function GetEmployeeByEmployeeID(ByVal empID As Decimal) As ProfileBusiness.EmployeeDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeImage", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeImageResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeImage", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeImageResponse")> _
         Function GetEmployeeImage(ByVal gEmpID As Decimal, ByRef sError As String) As Byte()
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeImage_PrintCV", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeImage_PrintCVResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeImage_PrintCV", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeImage_PrintCVResponse")> _
         Function GetEmployeeImage_PrintCV(ByVal gEmpID As Decimal) As String
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertEmployee", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertEmployeeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertEmployee", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertEmployeeResponse")> _
         Function InsertEmployee(ByVal objEmp As ProfileBusiness.EmployeeDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByRef _strEmpCode As String, ByVal _imageBinary() As Byte, ByVal objEmpCV As ProfileBusiness.EmployeeCVDTO, ByVal objEmpEdu As ProfileBusiness.EmployeeEduDTO, ByVal objEmpHealth As ProfileBusiness.EmployeeHealthDTO, ByVal objEmpUniform As ProfileBusiness.UniformSizeDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CreateNewEMPLOYEECode", ReplyAction:="http://tempuri.org/IProfileBusiness/CreateNewEMPLOYEECodeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CreateNewEMPLOYEECode", ReplyAction:="http://tempuri.org/IProfileBusiness/CreateNewEMPLOYEECodeResponse")> _
         Function CreateNewEMPLOYEECode() As ProfileBusiness.EmployeeDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyEmployee", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyEmployeeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyEmployee", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyEmployeeResponse")> _
         Function ModifyEmployee(ByVal objEmp As ProfileBusiness.EmployeeDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByVal _imageBinary() As Byte, ByVal objEmpCV As ProfileBusiness.EmployeeCVDTO, ByVal objEmpEdu As ProfileBusiness.EmployeeEduDTO, ByVal objEmpHealth As ProfileBusiness.EmployeeHealthDTO, ByVal objEmpUniform As ProfileBusiness.UniformSizeDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeOrgChart", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeOrgChartResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeOrgChart", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeOrgChartResponse")> _
         Function GetEmployeeOrgChart(ByVal lstOrg As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.OrgChartDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListEmployee", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListEmployeeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListEmployee", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListEmployeeResponse")> _
         Function GetListEmployee(ByVal _orgIds As System.Collections.Generic.List(Of Decimal), ByVal _filter As ProfileBusiness.EmployeeDTO) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListEmployeePaging", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListEmployeePagingResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListEmployeePaging", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListEmployeePagingResponse")> _
         Function GetListEmployeePaging(ByVal _filter As ProfileBusiness.EmployeeDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetChartEmployee", ReplyAction:="http://tempuri.org/IProfileBusiness/GetChartEmployeeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetChartEmployee", ReplyAction:="http://tempuri.org/IProfileBusiness/GetChartEmployeeResponse")> _
         Function GetChartEmployee(ByVal _filter As ProfileBusiness.EmployeeDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListEmployeePortal", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListEmployeePortalResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListEmployeePortal", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListEmployeePortalResponse")> _
         Function GetListEmployeePortal(ByVal _filter As ProfileBusiness.EmployeeDTO) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeAllByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeAllByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeAllByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeAllByIDResponse")> _
         Function GetEmployeeAllByID(ByVal sEmployeeID As Decimal, ByRef empCV As ProfileBusiness.EmployeeCVDTO, ByRef empEdu As ProfileBusiness.EmployeeEduDTO, ByRef empHealth As ProfileBusiness.EmployeeHealthDTO, ByRef empUniform As ProfileBusiness.UniformSizeDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeBG", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeBGResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeBG", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeBGResponse")> _
         Function GetEmployeeBG(ByVal sEmployeeID As Decimal, ByRef empBG As ProfileBusiness.EmployeeBackgroundDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteEmployee", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteEmployeeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteEmployee", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteEmployeeResponse")> _
         Function DeleteEmployee(ByVal lstEmpID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByRef sError As String) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateEmployee", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateEmployeeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateEmployee", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateEmployeeResponse")> _
         Function ValidateEmployee(ByVal sEmpCode As String, ByVal value As String, ByVal sType As String) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckEmpHasContract", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckEmpHasContractResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckEmpHasContract", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckEmpHasContractResponse")> _
         Function CheckEmpHasContract(ByVal strEmpCode As String) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetChangedCVList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetChangedCVListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetChangedCVList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetChangedCVListResponse")> _
         Function GetChangedCVList(ByVal lstEmpEdit As System.Collections.Generic.List(Of ProfileBusiness.EmployeeEditDTO)) As System.Collections.Generic.Dictionary(Of String, String)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertEmployeeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertEmployeeEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertEmployeeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertEmployeeEditResponse")> _
         Function InsertEmployeeEdit(ByVal objEmployeeEdit As ProfileBusiness.EmployeeEditDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyEmployeeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyEmployeeEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyEmployeeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyEmployeeEditResponse")> _
         Function ModifyEmployeeEdit(ByVal objEmployeeEdit As ProfileBusiness.EmployeeEditDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteEmployeeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteEmployeeEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteEmployeeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteEmployeeEditResponse")> _
         Function DeleteEmployeeEdit(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeEditByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeEditByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeEditByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeEditByIDResponse")> _
         Function GetEmployeeEditByID(ByVal _filter As ProfileBusiness.EmployeeEditDTO) As ProfileBusiness.EmployeeEditDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/SendEmployeeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/SendEmployeeEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/SendEmployeeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/SendEmployeeEditResponse")> _
         Function SendEmployeeEdit(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateStatusEmployeeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateStatusEmployeeEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateStatusEmployeeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateStatusEmployeeEditResponse")> _
         Function UpdateStatusEmployeeEdit(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal status As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetApproveEmployeeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetApproveEmployeeEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetApproveEmployeeEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetApproveEmployeeEditResponse")> _
         Function GetApproveEmployeeEdit(ByVal _filter As ProfileBusiness.EmployeeEditDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeEditDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeFamily", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeFamilyResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeFamily", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeFamilyResponse")> _
         Function GetEmployeeFamily(ByVal _filter As ProfileBusiness.FamilyDTO) As System.Collections.Generic.List(Of ProfileBusiness.FamilyDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertEmployeeFamily", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertEmployeeFamilyResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertEmployeeFamily", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertEmployeeFamilyResponse")> _
         Function InsertEmployeeFamily(ByVal objFamily As ProfileBusiness.FamilyDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyEmployeeFamily", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyEmployeeFamilyResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyEmployeeFamily", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyEmployeeFamilyResponse")> _
         Function ModifyEmployeeFamily(ByVal objFamily As ProfileBusiness.FamilyDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteEmployeeFamily", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteEmployeeFamilyResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteEmployeeFamily", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteEmployeeFamilyResponse")> _
         Function DeleteEmployeeFamily(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateFamily", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateFamilyResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateFamily", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateFamilyResponse")> _
         Function ValidateFamily(ByVal _validate As ProfileBusiness.FamilyDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetChangedFamilyList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetChangedFamilyListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetChangedFamilyList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetChangedFamilyListResponse")> _
         Function GetChangedFamilyList(ByVal lstFamilyEdit As System.Collections.Generic.List(Of ProfileBusiness.FamilyEditDTO)) As System.Collections.Generic.Dictionary(Of String, String)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveContractType", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveContractTypeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveContractType", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveContractTypeResponse")> _
         Function ActiveContractType(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteContractType", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteContractTypeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteContractType", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteContractTypeResponse")> _
         Function DeleteContractType(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_INFO_EMPLOYEE", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_INFO_EMPLOYEEResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_INFO_EMPLOYEE", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_INFO_EMPLOYEEResponse")> _
         Function GET_INFO_EMPLOYEE(ByVal P_EMP_CODE As String) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetlistWelfareEMP", ReplyAction:="http://tempuri.org/IProfileBusiness/GetlistWelfareEMPResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetlistWelfareEMP", ReplyAction:="http://tempuri.org/IProfileBusiness/GetlistWelfareEMPResponse")> _
         Function GetlistWelfareEMP(ByVal Id As Integer) As System.Collections.Generic.List(Of ProfileBusiness.Welfatemng_empDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_DETAILS_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_DETAILS_EMPResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_DETAILS_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_DETAILS_EMPResponse")> _
         Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_EXPORT_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_EXPORT_EMPResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_EXPORT_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_EXPORT_EMPResponse")> _
         Function GET_EXPORT_EMP(ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWelfareList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWelfareListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWelfareList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWelfareListResponse")> _
         Function GetWelfareList(ByVal _filter As ProfileBusiness.WelfareListDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.WelfareListDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWelfareList", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWelfareListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWelfareList", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWelfareListResponse")> _
         Function InsertWelfareList(ByVal objWelfareList As ProfileBusiness.WelfareListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateWelfareList", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateWelfareListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateWelfareList", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateWelfareListResponse")> _
         Function ValidateWelfareList(ByVal objWelfareList As ProfileBusiness.WelfareListDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWelfareList", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWelfareListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWelfareList", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWelfareListResponse")> _
         Function ModifyWelfareList(ByVal objWelfareList As ProfileBusiness.WelfareListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveWelfareList", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveWelfareListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveWelfareList", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveWelfareListResponse")> _
         Function ActiveWelfareList(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteWelfareList", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteWelfareListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteWelfareList", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteWelfareListResponse")> _
         Function DeleteWelfareList(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSafeLaborMng", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSafeLaborMngResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSafeLaborMng", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSafeLaborMngResponse")> _
         Function GetSafeLaborMng(ByVal _filter As ProfileBusiness.SAFELABOR_MNGDTO, ByVal IsDissolve As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal UserLog As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.SAFELABOR_MNGDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertSafeLaborMng", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertSafeLaborMngResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertSafeLaborMng", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertSafeLaborMngResponse")> _
         Function InsertSafeLaborMng(ByVal lstSafeLaborMng As ProfileBusiness.SAFELABOR_MNGDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifySafeLaborMng", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifySafeLaborMngResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifySafeLaborMng", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifySafeLaborMngResponse")> _
         Function ModifySafeLaborMng(ByVal lstSafeLaborMng As ProfileBusiness.SAFELABOR_MNGDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSafeLaborMngById", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSafeLaborMngByIdResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSafeLaborMngById", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSafeLaborMngByIdResponse")> _
         Function GetSafeLaborMngById(ByVal Id As Integer) As ProfileBusiness.SAFELABOR_MNGDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckCodeSafe", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckCodeSafeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckCodeSafe", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckCodeSafeResponse")> _
         Function CheckCodeSafe(ByVal code As String, ByVal id As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteSafeLaborMng", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteSafeLaborMngResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteSafeLaborMng", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteSafeLaborMngResponse")> _
         Function DeleteSafeLaborMng(ByVal lstWelfareMng As System.Collections.Generic.List(Of ProfileBusiness.SAFELABOR_MNGDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAllowanceList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAllowanceListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAllowanceList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAllowanceListResponse")> _
         Function GetAllowanceList(ByVal _filter As ProfileBusiness.AllowanceListDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.AllowanceListDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertAllowanceList", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertAllowanceListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertAllowanceList", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertAllowanceListResponse")> _
         Function InsertAllowanceList(ByVal objAllowanceList As ProfileBusiness.AllowanceListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateAllowanceList", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateAllowanceListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateAllowanceList", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateAllowanceListResponse")> _
         Function ValidateAllowanceList(ByVal objAllowanceList As ProfileBusiness.AllowanceListDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyAllowanceList", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyAllowanceListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyAllowanceList", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyAllowanceListResponse")> _
         Function ModifyAllowanceList(ByVal objAllowanceList As ProfileBusiness.AllowanceListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveAllowanceList", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveAllowanceListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveAllowanceList", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveAllowanceListResponse")> _
         Function ActiveAllowanceList(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteAllowanceList", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteAllowanceListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteAllowanceList", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteAllowanceListResponse")> _
         Function DeleteAllowanceList(ByVal lstAllowanceList As System.Collections.Generic.List(Of ProfileBusiness.AllowanceListDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetRelationshipGroupList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetRelationshipGroupListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetRelationshipGroupList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetRelationshipGroupListResponse")> _
         Function GetRelationshipGroupList() As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetRelationshipList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetRelationshipListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetRelationshipList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetRelationshipListResponse")> _
         Function GetRelationshipList(ByVal _filter As ProfileBusiness.RelationshipListDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.RelationshipListDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertRelationshipList", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertRelationshipListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertRelationshipList", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertRelationshipListResponse")> _
         Function InsertRelationshipList(ByVal objRelationshipList As ProfileBusiness.RelationshipListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateRelationshipList", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateRelationshipListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateRelationshipList", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateRelationshipListResponse")> _
         Function ValidateRelationshipList(ByVal objRelationshipList As ProfileBusiness.RelationshipListDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyRelationshipList", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyRelationshipListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyRelationshipList", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyRelationshipListResponse")> _
         Function ModifyRelationshipList(ByVal objRelationshipList As ProfileBusiness.RelationshipListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveRelationshipList", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveRelationshipListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveRelationshipList", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveRelationshipListResponse")> _
         Function ActiveRelationshipList(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteRelationshipList", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteRelationshipListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteRelationshipList", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteRelationshipListResponse")> _
         Function DeleteRelationshipList(ByVal lstRelationshipList As System.Collections.Generic.List(Of ProfileBusiness.RelationshipListDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTreeOrgByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTreeOrgByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTreeOrgByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTreeOrgByIDResponse")> _
         Function GetTreeOrgByID(ByVal ID As Decimal) As ProfileBusiness.OrganizationTreeDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrganization", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrganizationResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrganization", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrganizationResponse")> _
         Function GetOrganization(ByVal sACT As String) As System.Collections.Generic.List(Of ProfileBusiness.OrganizationDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrganizationByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrganizationByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrganizationByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrganizationByIDResponse")> _
         Function GetOrganizationByID(ByVal ID As Decimal) As ProfileBusiness.OrganizationDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertOrganization", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertOrganizationResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertOrganization", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertOrganizationResponse")> _
         Function InsertOrganization(ByVal objOrganization As ProfileBusiness.OrganizationDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateOrganization", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateOrganizationResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateOrganization", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateOrganizationResponse")> _
         Function ValidateOrganization(ByVal objOrganization As ProfileBusiness.OrganizationDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCostCenterCode", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCostCenterCodeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCostCenterCode", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCostCenterCodeResponse")> _
         Function ValidateCostCenterCode(ByVal objOrganization As ProfileBusiness.OrganizationDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckEmployeeInOrganization", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckEmployeeInOrganizationResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckEmployeeInOrganization", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckEmployeeInOrganizationResponse")> _
         Function CheckEmployeeInOrganization(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyOrganization", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyOrganizationResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyOrganization", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyOrganizationResponse")> _
         Function ModifyOrganization(ByVal objOrganization As ProfileBusiness.OrganizationDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyOrganizationPath", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyOrganizationPathResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyOrganizationPath", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyOrganizationPathResponse")> _
         Function ModifyOrganizationPath(ByVal lstPath As System.Collections.Generic.List(Of ProfileBusiness.OrganizationPathDTO)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveOrganization", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveOrganizationResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveOrganization", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveOrganizationResponse")> _
         Function ActiveOrganization(ByVal objOrganization As System.Collections.Generic.List(Of ProfileBusiness.OrganizationDTO), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrgTitle", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrgTitleResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrgTitle", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrgTitleResponse")> _
         Function GetOrgTitle(ByVal filter As ProfileBusiness.OrgTitleDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.OrgTitleDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertOrgTitle", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertOrgTitleResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertOrgTitle", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertOrgTitleResponse")> _
         Function InsertOrgTitle(ByVal objOrgTitle As System.Collections.Generic.List(Of ProfileBusiness.OrgTitleDTO), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckTitleInEmployee", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckTitleInEmployeeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckTitleInEmployee", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckTitleInEmployeeResponse")> _
         Function CheckTitleInEmployee(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal orgID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckHasInWorking", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckHasInWorkingResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckHasInWorking", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckHasInWorkingResponse")> _
         Function CheckHasInWorking(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteOrgTitle", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteOrgTitleResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteOrgTitle", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteOrgTitleResponse")> _
         Function DeleteOrgTitle(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveOrgTitle", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveOrgTitleResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveOrgTitle", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveOrgTitleResponse")> _
         Function ActiveOrgTitle(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateOtherList", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateOtherListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateOtherList", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateOtherListResponse")> _
         Function ValidateOtherList(ByVal objOtherList As ProfileBusiness.OtherListDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetNation", ReplyAction:="http://tempuri.org/IProfileBusiness/GetNationResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetNation", ReplyAction:="http://tempuri.org/IProfileBusiness/GetNationResponse")> _
         Function GetNation(ByVal _filter As ProfileBusiness.NationDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.NationDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertNation", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertNationResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertNation", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertNationResponse")> _
         Function InsertNation(ByVal objNation As ProfileBusiness.NationDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyNation", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyNationResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyNation", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyNationResponse")> _
         Function ModifyNation(ByVal objNation As ProfileBusiness.NationDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateNation", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateNationResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateNation", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateNationResponse")> _
         Function ValidateNation(ByVal objNation As ProfileBusiness.NationDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveNation", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveNationResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveNation", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveNationResponse")> _
         Function ActiveNation(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteNation", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteNationResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteNation", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteNationResponse")> _
         Function DeleteNation(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByRef strError As String) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetProvinceByNationID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetProvinceByNationIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetProvinceByNationID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetProvinceByNationIDResponse")> _
         Function GetProvinceByNationID(ByVal sNationID As Decimal, ByVal sACTFLG As String) As System.Collections.Generic.List(Of ProfileBusiness.ProvinceDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetProvinceByNationCode", ReplyAction:="http://tempuri.org/IProfileBusiness/GetProvinceByNationCodeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetProvinceByNationCode", ReplyAction:="http://tempuri.org/IProfileBusiness/GetProvinceByNationCodeResponse")> _
         Function GetProvinceByNationCode(ByVal sNationCode As String, ByVal sACTFLG As String) As System.Collections.Generic.List(Of ProfileBusiness.ProvinceDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetProvince", ReplyAction:="http://tempuri.org/IProfileBusiness/GetProvinceResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetProvince", ReplyAction:="http://tempuri.org/IProfileBusiness/GetProvinceResponse")> _
         Function GetProvince(ByVal _filter As ProfileBusiness.ProvinceDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.ProvinceDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertProvince", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertProvinceResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertProvince", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertProvinceResponse")> _
         Function InsertProvince(ByVal objProvince As ProfileBusiness.ProvinceDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyProvince", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyProvinceResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyProvince", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyProvinceResponse")> _
         Function ModifyProvince(ByVal objProvince As ProfileBusiness.ProvinceDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateProvince", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateProvinceResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateProvince", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateProvinceResponse")> _
         Function ValidateProvince(ByVal objProvince As ProfileBusiness.ProvinceDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveProvince", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveProvinceResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveProvince", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveProvinceResponse")> _
         Function ActiveProvince(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteProvince", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteProvinceResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteProvince", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteProvinceResponse")> _
         Function DeleteProvince(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByRef strError As String) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDistrict", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDistrictResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDistrict", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDistrictResponse")> _
         Function GetDistrict(ByVal _filter As ProfileBusiness.DistrictDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.DistrictDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDistrictByProvinceID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDistrictByProvinceIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDistrictByProvinceID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDistrictByProvinceIDResponse")> _
         Function GetDistrictByProvinceID(ByVal sProvinceID As Decimal, ByVal sACTFLG As String) As System.Collections.Generic.List(Of ProfileBusiness.DistrictDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertDistrict", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertDistrictResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertDistrict", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertDistrictResponse")> _
         Function InsertDistrict(ByVal objDistrict As ProfileBusiness.DistrictDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyDistrict", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyDistrictResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyDistrict", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyDistrictResponse")> _
         Function ModifyDistrict(ByVal objDistrict As ProfileBusiness.DistrictDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateDistrict", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateDistrictResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateDistrict", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateDistrictResponse")> _
         Function ValidateDistrict(ByVal _validate As ProfileBusiness.DistrictDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveDistrict", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveDistrictResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveDistrict", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveDistrictResponse")> _
         Function ActiveDistrict(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteDistrict", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteDistrictResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteDistrict", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteDistrictResponse")> _
         Function DeleteDistrict(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByRef strError As String) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWard", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWardResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWard", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWardResponse")> _
         Function GetWard(ByVal _filter As ProfileBusiness.Ward_DTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.Ward_DTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWardByDistrictID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWardByDistrictIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWardByDistrictID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWardByDistrictIDResponse")> _
         Function GetWardByDistrictID(ByVal sDistrictID As Decimal, ByVal sACTFLG As String) As System.Collections.Generic.List(Of ProfileBusiness.Ward_DTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWard", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWardResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWard", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWardResponse")> _
         Function InsertWard(ByVal objWard As ProfileBusiness.Ward_DTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWard", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWardResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyWard", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyWardResponse")> _
         Function ModifyWard(ByVal objWard As ProfileBusiness.Ward_DTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateWard", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateWardResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateWard", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateWardResponse")> _
         Function ValidateWard(ByVal _validate As ProfileBusiness.Ward_DTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveWard", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveWardResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveWard", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveWardResponse")> _
         Function ActiveWard(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteWard", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteWardResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteWard", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteWardResponse")> _
         Function DeleteWard(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetBank", ReplyAction:="http://tempuri.org/IProfileBusiness/GetBankResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetBank", ReplyAction:="http://tempuri.org/IProfileBusiness/GetBankResponse")> _
         Function GetBank(ByVal _filter As ProfileBusiness.BankDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.BankDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertBank", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertBankResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertBank", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertBankResponse")> _
         Function InsertBank(ByVal objBank As ProfileBusiness.BankDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyBank", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyBankResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyBank", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyBankResponse")> _
         Function ModifyBank(ByVal objBank As ProfileBusiness.BankDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateBank", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateBankResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateBank", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateBankResponse")> _
         Function ValidateBank(ByVal objBank As ProfileBusiness.BankDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveBank", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveBankResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveBank", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveBankResponse")> _
         Function ActiveBank(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteBank", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteBankResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteBank", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteBankResponse")> _
         Function DeleteBank(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByRef strError As String) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetBankBranch", ReplyAction:="http://tempuri.org/IProfileBusiness/GetBankBranchResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetBankBranch", ReplyAction:="http://tempuri.org/IProfileBusiness/GetBankBranchResponse")> _
         Function GetBankBranch(ByVal _filter As ProfileBusiness.BankBranchDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.BankBranchDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetBankBranchByBankID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetBankBranchByBankIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetBankBranchByBankID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetBankBranchByBankIDResponse")> _
         Function GetBankBranchByBankID(ByVal sBank_Id As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.BankBranchDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertBankBranch", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertBankBranchResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertBankBranch", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertBankBranchResponse")> _
         Function InsertBankBranch(ByVal objBankBranch As ProfileBusiness.BankBranchDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCertificateEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCertificateEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCertificateEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCertificateEditResponse")> _
         Function GetCertificateEdit(ByVal _filter As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT) As System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCertificateEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCertificateEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCertificateEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCertificateEditResponse")> _
         Function InsertCertificateEdit(ByVal objCertificateEdit As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCertificateEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCertificateEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCertificateEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCertificateEditResponse")> _
         Function ModifyCertificateEdit(ByVal objCertificateEdit As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckExistCertificateEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckExistCertificateEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckExistCertificateEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckExistCertificateEditResponse")> _
         Function CheckExistCertificateEdit(ByVal pk_key As Decimal) As ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/SendCertificateEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/SendCertificateEditResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/SendCertificateEdit", ReplyAction:="http://tempuri.org/IProfileBusiness/SendCertificateEditResponse")> _
         Function SendCertificateEdit(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCertificate", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCertificateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCertificate", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCertificateResponse")> _
         Function GetCertificate(ByVal _filter As ProfileBusiness.CETIFICATEDTO) As System.Collections.Generic.List(Of ProfileBusiness.CETIFICATEDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_NEXT_APPENDIX_ORDER", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_NEXT_APPENDIX_ORDERResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_NEXT_APPENDIX_ORDER", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_NEXT_APPENDIX_ORDERResponse")> _
         Function GET_NEXT_APPENDIX_ORDER(ByVal id As Decimal, ByVal contract_id As Decimal, ByVal emp_id As Decimal) As Integer
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetMaxId", ReplyAction:="http://tempuri.org/IProfileBusiness/GetMaxIdResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetMaxId", ReplyAction:="http://tempuri.org/IProfileBusiness/GetMaxIdResponse")> _
         Function GetMaxId() As Decimal
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetNameOrg", ReplyAction:="http://tempuri.org/IProfileBusiness/GetNameOrgResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetNameOrg", ReplyAction:="http://tempuri.org/IProfileBusiness/GetNameOrgResponse")> _
         Function GetNameOrg(ByVal org_id As Decimal) As String
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrgsTree", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrgsTreeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrgsTree", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrgsTreeResponse")> _
         Function GetOrgsTree() As System.Collections.Generic.List(Of ProfileBusiness.OrganizationDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryGroupCombo", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryGroupComboResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryGroupCombo", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryGroupComboResponse")> _
         Function GetSalaryGroupCombo(ByVal dateValue As Date, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryRankCombo", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryRankComboResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryRankCombo", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryRankComboResponse")> _
         Function GetSalaryRankCombo(ByVal SalaryLevel As Decimal, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryLevelCombo", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryLevelComboResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryLevelCombo", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryLevelComboResponse")> _
         Function GetSalaryLevelCombo(ByVal SalaryGroup As Decimal, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryLevelComboNotByGroup", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryLevelComboNotByGroupResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryLevelComboNotByGroup", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryLevelComboNotByGroupResponse")> _
         Function GetSalaryLevelComboNotByGroup(ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/Calculator_Salary", ReplyAction:="http://tempuri.org/IProfileBusiness/Calculator_SalaryResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/Calculator_Salary", ReplyAction:="http://tempuri.org/IProfileBusiness/Calculator_SalaryResponse")> _
         Function Calculator_Salary(ByVal data_in As String) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetHoSoLuongImport", ReplyAction:="http://tempuri.org/IProfileBusiness/GetHoSoLuongImportResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetHoSoLuongImport", ReplyAction:="http://tempuri.org/IProfileBusiness/GetHoSoLuongImportResponse")> _
         Function GetHoSoLuongImport() As System.Data.DataSet
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetLocationID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetLocationIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetLocationID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetLocationIDResponse")> _
         Function GetLocationID(ByVal ID As Decimal) As ProfileBusiness.LocationDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetLocation", ReplyAction:="http://tempuri.org/IProfileBusiness/GetLocationResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetLocation", ReplyAction:="http://tempuri.org/IProfileBusiness/GetLocationResponse")> _
         Function GetLocation(ByVal sACT As String, ByVal lstOrgID As System.Collections.Generic.List(Of Decimal)) As System.Collections.Generic.List(Of ProfileBusiness.LocationDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertLocation", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertLocationResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertLocation", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertLocationResponse")> _
         Function InsertLocation(ByVal objLocation As ProfileBusiness.LocationDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyLocation", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyLocationResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyLocation", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyLocationResponse")> _
         Function ModifyLocation(ByVal objLocation As ProfileBusiness.LocationDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveLocation", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveLocationResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveLocation", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveLocationResponse")> _
         Function ActiveLocation(ByVal lstLocation As System.Collections.Generic.List(Of ProfileBusiness.LocationDTO), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveLocationID", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveLocationIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveLocationID", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveLocationIDResponse")> _
         Function ActiveLocationID(ByVal lstLocation As ProfileBusiness.LocationDTO, ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteLocationID", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteLocationIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteLocationID", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteLocationIDResponse")> _
         Function DeleteLocationID(ByVal lstlocation As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteNVBlackList", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteNVBlackListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteNVBlackList", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteNVBlackListResponse")> _
         Function DeleteNVBlackList(ByVal id_no As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOtherList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOtherListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOtherList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOtherListResponse")> _
         Function GetOtherList(ByVal sType As String, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/HU_PAPER_LIST", ReplyAction:="http://tempuri.org/IProfileBusiness/HU_PAPER_LISTResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/HU_PAPER_LIST", ReplyAction:="http://tempuri.org/IProfileBusiness/HU_PAPER_LISTResponse")> _
         Function HU_PAPER_LIST(ByVal P_EMP_ID As Decimal, ByVal sLang As String) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetBankList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetBankListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetBankList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetBankListResponse")> _
         Function GetBankList(ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetBankBranchList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetBankBranchListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetBankBranchList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetBankBranchListResponse")> _
         Function GetBankBranchList(ByVal bankID As Decimal, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTitleByOrgID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTitleByOrgIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTitleByOrgID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTitleByOrgIDResponse")> _
         Function GetTitleByOrgID(ByVal orgID As Decimal, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetJobDescByTitleID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetJobDescByTitleIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetJobDescByTitleID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetJobDescByTitleIDResponse")> _
         Function GetJobDescByTitleID(ByVal titleID As Decimal, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTitleList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTitleListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTitleList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTitleListResponse")> _
         Function GetTitleList(ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWardList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWardListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWardList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWardListResponse")> _
         Function GetWardList(ByVal districtID As Decimal, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDistrictList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDistrictListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDistrictList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDistrictListResponse")> _
         Function GetDistrictList(ByVal provinceID As Decimal, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetProvinceList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetProvinceListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetProvinceList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetProvinceListResponse")> _
         Function GetProvinceList(ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetProvinceList1", ReplyAction:="http://tempuri.org/IProfileBusiness/GetProvinceList1Response")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetProvinceList1", ReplyAction:="http://tempuri.org/IProfileBusiness/GetProvinceList1Response")> _
         Function GetProvinceList1(ByVal P_NATIVE As Decimal, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetNationList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetNationListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetNationList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetNationListResponse")> _
         Function GetNationList(ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetStaffRankList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetStaffRankListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetStaffRankList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetStaffRankListResponse")> _
         Function GetStaffRankList(ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryGroupList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryGroupListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryGroupList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryGroupListResponse")> _
         Function GetSalaryGroupList(ByVal dateValue As Date, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSaleCommisionList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSaleCommisionListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSaleCommisionList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSaleCommisionListResponse")> _
         Function GetSaleCommisionList(ByVal dateValue As Date, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryTypeList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryTypeListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryTypeList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryTypeListResponse")> _
         Function GetSalaryTypeList(ByVal dateValue As Date, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryLevelList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryLevelListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryLevelList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryLevelListResponse")> _
         Function GetSalaryLevelList(ByVal salGroupID As Decimal, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryRankList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryRankListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryRankList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryRankListResponse")> _
         Function GetSalaryRankList(ByVal salLevelID As Decimal, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetHU_AllowanceList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetHU_AllowanceListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetHU_AllowanceList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetHU_AllowanceListResponse")> _
         Function GetHU_AllowanceList(ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetPA_ObjectSalary", ReplyAction:="http://tempuri.org/IProfileBusiness/GetPA_ObjectSalaryResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetPA_ObjectSalary", ReplyAction:="http://tempuri.org/IProfileBusiness/GetPA_ObjectSalaryResponse")> _
         Function GetPA_ObjectSalary(ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOT_WageTypeList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOT_WageTypeListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOT_WageTypeList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOT_WageTypeListResponse")> _
         Function GetOT_WageTypeList(ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOT_MissionTypeList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOT_MissionTypeListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOT_MissionTypeList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOT_MissionTypeListResponse")> _
         Function GetOT_MissionTypeList(ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOT_TripartiteTypeList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOT_TripartiteTypeListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOT_TripartiteTypeList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOT_TripartiteTypeListResponse")> _
         Function GetOT_TripartiteTypeList(ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetHU_TemplateType", ReplyAction:="http://tempuri.org/IProfileBusiness/GetHU_TemplateTypeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetHU_TemplateType", ReplyAction:="http://tempuri.org/IProfileBusiness/GetHU_TemplateTypeResponse")> _
         Function GetHU_TemplateType(ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetHU_MergeFieldList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetHU_MergeFieldListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetHU_MergeFieldList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetHU_MergeFieldListResponse")> _
         Function GetHU_MergeFieldList(ByVal isBlank As Boolean, ByVal isTemplateType As Decimal) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetHU_TemplateList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetHU_TemplateListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetHU_TemplateList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetHU_TemplateListResponse")> _
         Function GetHU_TemplateList(ByVal isBlank As Boolean, ByVal isTemplateType As Decimal) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetHU_DataDynamic", ReplyAction:="http://tempuri.org/IProfileBusiness/GetHU_DataDynamicResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetHU_DataDynamic", ReplyAction:="http://tempuri.org/IProfileBusiness/GetHU_DataDynamicResponse")> _
         Function GetHU_DataDynamic(ByVal dID As Decimal, ByVal tempID As Decimal, ByRef folderName As String) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetHU_MultyDataDynamic", ReplyAction:="http://tempuri.org/IProfileBusiness/GetHU_MultyDataDynamicResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetHU_MultyDataDynamic", ReplyAction:="http://tempuri.org/IProfileBusiness/GetHU_MultyDataDynamicResponse")> _
         Function GetHU_MultyDataDynamic(ByVal strID As String, ByVal tempID As Decimal, ByRef folderName As String) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetHU_DataDynamicContractAppendix", ReplyAction:="http://tempuri.org/IProfileBusiness/GetHU_DataDynamicContractAppendixResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetHU_DataDynamicContractAppendix", ReplyAction:="http://tempuri.org/IProfileBusiness/GetHU_DataDynamicContractAppendixResponse")> _
         Function GetHU_DataDynamicContractAppendix(ByVal dID As String, ByVal tempID As Decimal, ByRef folderName As String) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetHU_DataDynamicContract", ReplyAction:="http://tempuri.org/IProfileBusiness/GetHU_DataDynamicContractResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetHU_DataDynamicContract", ReplyAction:="http://tempuri.org/IProfileBusiness/GetHU_DataDynamicContractResponse")> _
         Function GetHU_DataDynamicContract(ByVal dID As String, ByVal tempID As Decimal, ByRef folderName As String) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetInsRegionList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetInsRegionListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetInsRegionList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetInsRegionListResponse")> _
         Function GetInsRegionList(ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetHU_CompetencyGroupList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetHU_CompetencyGroupListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetHU_CompetencyGroupList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetHU_CompetencyGroupListResponse")> _
         Function GetHU_CompetencyGroupList(ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetHU_CompetencyList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetHU_CompetencyListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetHU_CompetencyList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetHU_CompetencyListResponse")> _
         Function GetHU_CompetencyList(ByVal groupID As Decimal, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetHU_CompetencyPeriodList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetHU_CompetencyPeriodListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetHU_CompetencyPeriodList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetHU_CompetencyPeriodListResponse")> _
         Function GetHU_CompetencyPeriodList(ByVal year As Decimal, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckExistInDatabase", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckExistInDatabaseResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckExistInDatabase", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckExistInDatabaseResponse")> _
         Function CheckExistInDatabase(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal table As ProfileBusiness.ProfileCommonTABLE_NAME) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/AutoGenCode", ReplyAction:="http://tempuri.org/IProfileBusiness/AutoGenCodeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/AutoGenCode", ReplyAction:="http://tempuri.org/IProfileBusiness/AutoGenCodeResponse")> _
         Function AutoGenCode(ByVal firstChar As String, ByVal tableName As String, ByVal colName As String) As String
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateMergeField", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateMergeFieldResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateMergeField", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateMergeFieldResponse")> _
         Function UpdateMergeField(ByVal lstData As System.Collections.Generic.List(Of ProfileBusiness.MergeFieldDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDataPrintBBBR", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDataPrintBBBRResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDataPrintBBBR", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDataPrintBBBRResponse")> _
         Function GetDataPrintBBBR(ByVal id As Decimal) As System.Data.DataSet
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDataPrintBBBR3B", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDataPrintBBBR3BResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDataPrintBBBR3B", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDataPrintBBBR3BResponse")> _
         Function GetDataPrintBBBR3B(ByVal id As Decimal) As System.Data.DataSet
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateBusiness", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateBusinessResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateBusiness", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateBusinessResponse")> _
         Function ValidateBusiness(ByVal Table_Name As String, ByVal Column_Name As String, ByVal ListID As System.Collections.Generic.List(Of Decimal)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckExistID", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckExistIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckExistID", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckExistIDResponse")> _
         Function CheckExistID(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal table As String, ByVal column As String) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmpInfomations", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmpInfomationsResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmpInfomations", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmpInfomationsResponse")> _
         Function GetEmpInfomations(ByVal orgIDs As System.Collections.Generic.List(Of Decimal), ByVal _filter As ProfileBusiness.EmployeeDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_HU_TITLE_IMPORT", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_HU_TITLE_IMPORTResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_HU_TITLE_IMPORT", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_HU_TITLE_IMPORTResponse")> _
         Function GET_HU_TITLE_IMPORT() As System.Data.DataSet
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTitle", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTitleResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTitle", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTitleResponse")> _
         Function GetTitle(ByVal _filter As ProfileBusiness.TitleDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.TitleDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertTitle", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertTitleResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertTitle", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertTitleResponse")> _
         Function InsertTitle(ByVal objTitle As ProfileBusiness.TitleDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateTitle", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateTitleResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateTitle", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateTitleResponse")> _
         Function ValidateTitle(ByVal objTitle As ProfileBusiness.TitleDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyTitle", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyTitleResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyTitle", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyTitleResponse")> _
         Function ModifyTitle(ByVal objTitle As ProfileBusiness.TitleDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveTitle", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveTitleResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveTitle", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveTitleResponse")> _
         Function ActiveTitle(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteTitle", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteTitleResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteTitle", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteTitleResponse")> _
         Function DeleteTitle(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTitleByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTitleByIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTitleByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTitleByIDResponse")> _
         Function GetTitleByID(ByVal sID As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.TitleDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTitleID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTitleIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTitleID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTitleIDResponse")> _
         Function GetTitleID(ByVal ID As Decimal) As ProfileBusiness.TitleDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTitleConcurrent1", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTitleConcurrent1Response")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTitleConcurrent1", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTitleConcurrent1Response")> _
         Function GetTitleConcurrent1(ByVal _filter As ProfileBusiness.TitleConcurrentDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.TitleConcurrentDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTitleConcurrent", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTitleConcurrentResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTitleConcurrent", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTitleConcurrentResponse")> _
         Function GetTitleConcurrent(ByVal _filter As ProfileBusiness.TitleConcurrentDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.TitleConcurrentDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertTitleConcurrent", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertTitleConcurrentResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertTitleConcurrent", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertTitleConcurrentResponse")> _
         Function InsertTitleConcurrent(ByVal objTitleConcurrent As ProfileBusiness.TitleConcurrentDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyTitleConcurrent", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyTitleConcurrentResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyTitleConcurrent", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyTitleConcurrentResponse")> _
         Function ModifyTitleConcurrent(ByVal objTitleConcurrent As ProfileBusiness.TitleConcurrentDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteTitleConcurrent", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteTitleConcurrentResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteTitleConcurrent", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteTitleConcurrentResponse")> _
         Function DeleteTitleConcurrent(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractType", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractTypeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractType", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractTypeResponse")> _
         Function GetContractType(ByVal _filter As ProfileBusiness.ContractTypeDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.ContractTypeDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidContract", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidContractResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidContract", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidContractResponse")> _
         Function ValidContract(ByVal empid As Decimal, ByVal rd_date As Date) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertContractType", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertContractTypeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertContractType", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertContractTypeResponse")> _
         Function InsertContractType(ByVal objContractType As ProfileBusiness.ContractTypeDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateContractType", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateContractTypeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateContractType", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateContractTypeResponse")> _
         Function ValidateContractType(ByVal objContractType As ProfileBusiness.ContractTypeDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyContractType", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyContractTypeResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyContractType", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyContractTypeResponse")> _
         Function ModifyContractType(ByVal objContractType As ProfileBusiness.ContractTypeDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
     End Interface
-    
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
+
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")> _
     Public Interface IProfileBusinessChannel
         Inherits ProfileBusiness.IProfileBusiness, System.ServiceModel.IClientChannel
     End Interface
-    
-    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
+
+    <System.Diagnostics.DebuggerStepThroughAttribute(), _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")> _
     Partial Public Class ProfileBusinessClient
         Inherits System.ServiceModel.ClientBase(Of ProfileBusiness.IProfileBusiness)
         Implements ProfileBusiness.IProfileBusiness
-        
+
         Public Sub New()
-            MyBase.New
+            MyBase.New()
         End Sub
-        
+
         Public Sub New(ByVal endpointConfigurationName As String)
             MyBase.New(endpointConfigurationName)
         End Sub
-        
+
         Public Sub New(ByVal endpointConfigurationName As String, ByVal remoteAddress As String)
             MyBase.New(endpointConfigurationName, remoteAddress)
         End Sub
-        
+
         Public Sub New(ByVal endpointConfigurationName As String, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(endpointConfigurationName, remoteAddress)
         End Sub
-        
+
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
-        
-        Public Function CHECK_SALARY(ByVal P_ID As Decimal) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_SALARY
-            Return MyBase.Channel.CHECK_SALARY(P_ID)
-        End Function
-        
-        Public Function CHECK_CONTRACT_EXITS(ByVal P_CONTRACT As Decimal, ByVal P_EMP_CODE As String, ByVal P_DATE As Date) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_CONTRACT_EXITS
-            Return MyBase.Channel.CHECK_CONTRACT_EXITS(P_CONTRACT, P_EMP_CODE, P_DATE)
-        End Function
-        
-        Public Function CHECK_SIGN(ByVal P_EMP_CODE As String) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_SIGN
-            Return MyBase.Channel.CHECK_SIGN(P_EMP_CODE)
-        End Function
-        
-        Public Function INPORT_PLHD(ByVal P_DOCXML As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.INPORT_PLHD
-            Return MyBase.Channel.INPORT_PLHD(P_DOCXML, log)
-        End Function
-        
-        Public Function EXPORT_QLKT() As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.EXPORT_QLKT
-            Return MyBase.Channel.EXPORT_QLKT
-        End Function
-        
-        Public Function GET_EMPLOYEE(ByVal P_EMP_CODE As String) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_EMPLOYEE
-            Return MyBase.Channel.GET_EMPLOYEE(P_EMP_CODE)
-        End Function
-        
-        Public Function GET_PROCESS_PLCONTRACT_PORTAL(ByVal P_EMP_ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_PROCESS_PLCONTRACT_PORTAL
-            Return MyBase.Channel.GET_PROCESS_PLCONTRACT_PORTAL(P_EMP_ID)
-        End Function
-        
-        Public Function CHECK_LOCATION_EXITS(ByVal P_ID As System.Nullable(Of Decimal), ByVal ORG_ID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.CHECK_LOCATION_EXITS
-            Return MyBase.Channel.CHECK_LOCATION_EXITS(P_ID, ORG_ID)
-        End Function
-        
-        Public Function GetJobPosition(ByVal _filter As ProfileBusiness.Job_PositionDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO) Implements ProfileBusiness.IProfileBusiness.GetJobPosition
-            Return MyBase.Channel.GetJobPosition(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
-        End Function
-        
-        Public Function GET_JOB_POSITION_LIST(ByVal P_ORG_ID As Decimal, ByVal P_ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_JOB_POSITION_LIST
-            Return MyBase.Channel.GET_JOB_POSITION_LIST(P_ORG_ID, P_ID)
-        End Function
-        
-        Public Function GET_JOB_POSITION_DETAIL(ByVal P_ID As Decimal) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.GET_JOB_POSITION_DETAIL
-            Return MyBase.Channel.GET_JOB_POSITION_DETAIL(P_ID)
-        End Function
-        
-        Public Function INSERT_JOB_POSITION(ByVal p_CODE As String, ByVal p_JOB_NAME As String, ByVal p_ORG_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_JOB_NOTE As String, ByVal p_COST_CODE As String, ByVal p_IS_LEADER As Decimal, ByVal p_EFFECT_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As Integer Implements ProfileBusiness.IProfileBusiness.INSERT_JOB_POSITION
-            Return MyBase.Channel.INSERT_JOB_POSITION(p_CODE, p_JOB_NAME, p_ORG_ID, p_TITLE_ID, p_JOB_NOTE, p_COST_CODE, p_IS_LEADER, p_EFFECT_DATE, log)
-        End Function
-        
-        Public Function UPDATE_JOB_POSITION(ByVal p_ID As Decimal, ByVal p_CODE As String, ByVal p_JOB_NAME As String, ByVal p_ORG_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_JOB_NOTE As String, ByVal p_COST_CODE As String, ByVal p_IS_LEADER As Decimal, ByVal p_EFFECT_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As Integer Implements ProfileBusiness.IProfileBusiness.UPDATE_JOB_POSITION
-            Return MyBase.Channel.UPDATE_JOB_POSITION(p_ID, p_CODE, p_JOB_NAME, p_ORG_ID, p_TITLE_ID, p_JOB_NOTE, p_COST_CODE, p_IS_LEADER, p_EFFECT_DATE, log)
-        End Function
-        
-        Public Function INSERT_DIRECT_MANAGER(ByVal P_JOB_POSITION_ID As Decimal, ByVal P_DIRECT_MANAGER As String) As Boolean Implements ProfileBusiness.IProfileBusiness.INSERT_DIRECT_MANAGER
-            Return MyBase.Channel.INSERT_DIRECT_MANAGER(P_JOB_POSITION_ID, P_DIRECT_MANAGER)
-        End Function
-        
-        Public Function DeleteJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteJob
-            Return MyBase.Channel.DeleteJob(objOrgTitle, log)
-        End Function
-        
-        Public Function ActiveJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ActiveJob
-            Return MyBase.Channel.ActiveJob(objOrgTitle, sActive, log)
-        End Function
-        
-        Public Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal, ByVal P_JOB As Decimal) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.GET_JP_TO_TITLE
-            Return MyBase.Channel.GET_JP_TO_TITLE(P_ORG_ID, P_TITLE_ID, P_IS_THAYTHE, P_JOB)
-        End Function
-        
-        Public Function UPDATE_END_DATE_QD(ByVal P_EMP_ID As Decimal, ByVal P_DATE As Date) As Boolean Implements ProfileBusiness.IProfileBusiness.UPDATE_END_DATE_QD
-            Return MyBase.Channel.UPDATE_END_DATE_QD(P_EMP_ID, P_DATE)
-        End Function
-        
-        Public Function UpdateStatusQD(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.UpdateStatusQD
-            Return MyBase.Channel.UpdateStatusQD(lstID, log)
-        End Function
-        
-        Public Function UpdateStatusTer(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.UpdateStatusTer
-            Return MyBase.Channel.UpdateStatusTer(lstID, log)
-        End Function
-        
-        Public Function GET_HU_ASSET(ByVal P_EMP_ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_HU_ASSET
-            Return MyBase.Channel.GET_HU_ASSET(P_EMP_ID)
-        End Function
-        
-        Public Function GET_JOB_EMP(ByVal P_EMP_ID As Decimal) As Integer Implements ProfileBusiness.IProfileBusiness.GET_JOB_EMP
-            Return MyBase.Channel.GET_JOB_EMP(P_EMP_ID)
-        End Function
-        
-        Public Function GET_JOB_CODE_AUTO(ByVal p_TITLE_ID As Decimal) As String Implements ProfileBusiness.IProfileBusiness.GET_JOB_CODE_AUTO
-            Return MyBase.Channel.GET_JOB_CODE_AUTO(p_TITLE_ID)
-        End Function
-        
-        Public Function INSERT_JOB_POSITION_AUTO(ByVal p_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_NUMBER As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.INSERT_JOB_POSITION_AUTO
-            Return MyBase.Channel.INSERT_JOB_POSITION_AUTO(p_ID, p_TITLE_ID, p_NUMBER, log)
-        End Function
-        
-        Public Function CHECK_EXITS_JOB(ByVal P_JOB_ID As Decimal, ByVal P_EMP_ID As Decimal) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_EXITS_JOB
-            Return MyBase.Channel.CHECK_EXITS_JOB(P_JOB_ID, P_EMP_ID)
-        End Function
-        
-        Public Function EXPORT_EMP(ByVal P_USERNAME As String, ByVal P_ORGID As Decimal, ByVal P_ISDISSOLVE As Boolean, ByVal P_STARTDATE As System.Nullable(Of Date), ByVal P_TODATE As System.Nullable(Of Date), ByVal P_IS_ALL As Boolean) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.EXPORT_EMP
-            Return MyBase.Channel.EXPORT_EMP(P_USERNAME, P_ORGID, P_ISDISSOLVE, P_STARTDATE, P_TODATE, P_IS_ALL)
-        End Function
-        
-        Public Function INPORT_EMP(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean Implements ProfileBusiness.IProfileBusiness.INPORT_EMP
-            Return MyBase.Channel.INPORT_EMP(P_DOCXML, P_USER)
-        End Function
-        
-        Public Function CHECK_IS_THHDLD(ByVal P_ID As Decimal, ByVal P_EMP_ID As Decimal, ByVal P_DATE As System.Nullable(Of Date)) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_IS_THHDLD
-            Return MyBase.Channel.CHECK_IS_THHDLD(P_ID, P_EMP_ID, P_DATE)
-        End Function
-        
-        Public Function GetEmployeeDeduct(ByVal _filter As ProfileBusiness.DeductDTO) As System.Collections.Generic.List(Of ProfileBusiness.DeductDTO) Implements ProfileBusiness.IProfileBusiness.GetEmployeeDeduct
-            Return MyBase.Channel.GetEmployeeDeduct(_filter)
-        End Function
-        
-        Public Function InsertEmployeeDeduct(ByVal objFamily As ProfileBusiness.DeductDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertEmployeeDeduct
-            Return MyBase.Channel.InsertEmployeeDeduct(objFamily, log, gID)
-        End Function
-        
-        Public Function ModifyEmployeeDeduct(ByVal objFamily As ProfileBusiness.DeductDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyEmployeeDeduct
-            Return MyBase.Channel.ModifyEmployeeDeduct(objFamily, log, gID)
-        End Function
-        
-        Public Function DeleteEmployeeDeduct(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteEmployeeDeduct
-            Return MyBase.Channel.DeleteEmployeeDeduct(lstDecimals, log)
-        End Function
-        
-        Public Function EXPORT_DISCIPLINE() As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.EXPORT_DISCIPLINE
-            Return MyBase.Channel.EXPORT_DISCIPLINE
-        End Function
-        
-        Public Function INPORT_DISCIPLINE(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean Implements ProfileBusiness.IProfileBusiness.INPORT_DISCIPLINE
-            Return MyBase.Channel.INPORT_DISCIPLINE(P_DOCXML, P_USER)
-        End Function
-        
-        Public Function GetListCommendList(ByVal actflg As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendListDTO) Implements ProfileBusiness.IProfileBusiness.GetListCommendList
-            Return MyBase.Channel.GetListCommendList(actflg)
-        End Function
-        
-        Public Function InsertCommendList(ByVal objCommendList As ProfileBusiness.CommendListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertCommendList
-            Return MyBase.Channel.InsertCommendList(objCommendList, log, gID)
-        End Function
-        
-        Public Function ModifyCommendList(ByVal objCommendList As ProfileBusiness.CommendListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyCommendList
-            Return MyBase.Channel.ModifyCommendList(objCommendList, log, gID)
-        End Function
-        
-        Public Function ActiveCommendList(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ActiveCommendList
-            Return MyBase.Channel.ActiveCommendList(lstID, sActive, log)
-        End Function
-        
-        Public Function DeleteCommendList(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByRef strError As String) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteCommendList
-            Return MyBase.Channel.DeleteCommendList(lstDecimals, log, strError)
-        End Function
-        
-        Public Function ValidateCommendList(ByVal _validate As ProfileBusiness.CommendListDTO) As Object Implements ProfileBusiness.IProfileBusiness.ValidateCommendList
-            Return MyBase.Channel.ValidateCommendList(_validate)
-        End Function
-        
-        Public Function InsertImportCommend(ByVal lstImport As System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertImportCommend
-            Return MyBase.Channel.InsertImportCommend(lstImport, log)
-        End Function
-        
-        Public Function GetImportCommend(ByVal _filter As ProfileBusiness.ImportCommendDTO) As System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO) Implements ProfileBusiness.IProfileBusiness.GetImportCommend
-            Return MyBase.Channel.GetImportCommend(_filter)
-        End Function
-        
-        Public Function GetCommendLevel(ByVal _filter As ProfileBusiness.CommendLevelDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO) Implements ProfileBusiness.IProfileBusiness.GetCommendLevel
-            Return MyBase.Channel.GetCommendLevel(_filter, PageIndex, PageSize, Total, Sorts)
-        End Function
-        
-        Public Function GetCommendLevelID(ByVal ID As Decimal) As ProfileBusiness.CommendLevelDTO Implements ProfileBusiness.IProfileBusiness.GetCommendLevelID
-            Return MyBase.Channel.GetCommendLevelID(ID)
-        End Function
-        
-        Public Function InsertCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertCommendLevel
-            Return MyBase.Channel.InsertCommendLevel(objCommendLevel, log, gID)
-        End Function
-        
-        Public Function ValidateCommendLevel(ByVal _validate As ProfileBusiness.CommendLevelDTO) As Object Implements ProfileBusiness.IProfileBusiness.ValidateCommendLevel
-            Return MyBase.Channel.ValidateCommendLevel(_validate)
-        End Function
-        
-        Public Function ModifyCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyCommendLevel
-            Return MyBase.Channel.ModifyCommendLevel(objCommendLevel, log, gID)
-        End Function
-        
-        Public Function ActiveCommendLevel(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ActiveCommendLevel
-            Return MyBase.Channel.ActiveCommendLevel(lstID, sActive, log)
-        End Function
-        
-        Public Function DeleteCommendLevel(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteCommendLevel
-            Return MyBase.Channel.DeleteCommendLevel(lstID)
-        End Function
-        
-        Public Function GetCommendFormula(ByVal _filter As ProfileBusiness.CommendFormulaDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendFormulaDTO) Implements ProfileBusiness.IProfileBusiness.GetCommendFormula
-            Return MyBase.Channel.GetCommendFormula(_filter, PageIndex, PageSize, Total, Sorts)
-        End Function
-        
-        Public Function GetCommendFormulaID(ByVal ID As Decimal) As ProfileBusiness.CommendFormulaDTO Implements ProfileBusiness.IProfileBusiness.GetCommendFormulaID
-            Return MyBase.Channel.GetCommendFormulaID(ID)
-        End Function
-        
-        Public Function InsertCommendFormula(ByVal objCommendFormula As ProfileBusiness.CommendFormulaDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertCommendFormula
-            Return MyBase.Channel.InsertCommendFormula(objCommendFormula, log, gID)
-        End Function
-        
-        Public Function ModifyCommendFormula(ByVal objCommendFormula As ProfileBusiness.CommendFormulaDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyCommendFormula
-            Return MyBase.Channel.ModifyCommendFormula(objCommendFormula, log, gID)
-        End Function
-        
-        Public Function ActiveCommendFormula(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ActiveCommendFormula
-            Return MyBase.Channel.ActiveCommendFormula(lstID, sActive, log)
-        End Function
-        
-        Public Function DeleteCommendFormula(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByRef strError As String) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteCommendFormula
-            Return MyBase.Channel.DeleteCommendFormula(lstDecimals, log, strError)
-        End Function
-        
-        Public Function GetStatisticTop5Competency(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.StatisticDTO) Implements ProfileBusiness.IProfileBusiness.GetStatisticTop5Competency
-            Return MyBase.Channel.GetStatisticTop5Competency(_year, log)
-        End Function
-        
-        Public Function GetStatisticTop5CopAvg(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.CompetencyAvgEmplDTO) Implements ProfileBusiness.IProfileBusiness.GetStatisticTop5CopAvg
-            Return MyBase.Channel.GetStatisticTop5CopAvg(_year, log)
-        End Function
-        
-        Public Function GetEmployeeReg(ByVal _employee_id As Integer) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetEmployeeReg
-            Return MyBase.Channel.GetEmployeeReg(_employee_id)
-        End Function
-        
-        Public Function GetTotalDayOff(ByVal _filter As ProfileBusiness.TotalDayOffDTO, ByVal log As Common.CommonBusiness.UserLog) As ProfileBusiness.TotalDayOffDTO Implements ProfileBusiness.IProfileBusiness.GetTotalDayOff
-            Return MyBase.Channel.GetTotalDayOff(_filter, log)
-        End Function
-        
-        Public Function GetCertificateExpires(ByVal _employee_id As Integer) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetCertificateExpires
-            Return MyBase.Channel.GetCertificateExpires(_employee_id)
-        End Function
-        
-        Public Function GetCompetencyCourse(ByVal _filter As ProfileBusiness.CompetencyCourseDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CompetencyCourseDTO) Implements ProfileBusiness.IProfileBusiness.GetCompetencyCourse
-            Return MyBase.Channel.GetCompetencyCourse(_filter, PageIndex, PageSize, Total, Sorts)
-        End Function
-        
-        Public Function InsertCompetencyCourse(ByVal objCompetencyCourse As ProfileBusiness.CompetencyCourseDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertCompetencyCourse
-            Return MyBase.Channel.InsertCompetencyCourse(objCompetencyCourse, log, gID)
-        End Function
-        
-        Public Function ModifyCompetencyCourse(ByVal objCompetencyCourse As ProfileBusiness.CompetencyCourseDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyCompetencyCourse
-            Return MyBase.Channel.ModifyCompetencyCourse(objCompetencyCourse, log, gID)
-        End Function
-        
-        Public Function DeleteCompetencyCourse(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteCompetencyCourse
-            Return MyBase.Channel.DeleteCompetencyCourse(lstID, log)
-        End Function
-        
-        Public Function GetCourseByList(ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetCourseByList
-            Return MyBase.Channel.GetCourseByList(sLang, isBlank)
-        End Function
-        
-        Public Function EmployeeCriteriaRecord(ByVal _filter As ProfileBusiness.EmployeeCriteriaRecordDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeCriteriaRecordDTO) Implements ProfileBusiness.IProfileBusiness.EmployeeCriteriaRecord
-            Return MyBase.Channel.EmployeeCriteriaRecord(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
-        End Function
-        
-        Public Function GetPortalCompetencyCourse(ByVal _empId As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeCriteriaRecordDTO) Implements ProfileBusiness.IProfileBusiness.GetPortalCompetencyCourse
-            Return MyBase.Channel.GetPortalCompetencyCourse(_empId)
-        End Function
-        
-        Public Function GetTalentPool(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.TalentPoolDTO) Implements ProfileBusiness.IProfileBusiness.GetTalentPool
-            Return MyBase.Channel.GetTalentPool(PageIndex, PageSize, Total, _param, Sorts, log)
-        End Function
-        
-        Public Function InsertTalentPool(ByVal lstTalentPool As System.Collections.Generic.List(Of ProfileBusiness.TalentPoolDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertTalentPool
-            Return MyBase.Channel.InsertTalentPool(lstTalentPool, log)
-        End Function
-        
-        Public Function ActiveTalentPool(ByVal objTalentPool As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ActiveTalentPool
-            Return MyBase.Channel.ActiveTalentPool(objTalentPool, sActive, log)
-        End Function
-        
-        Public Function FILTER_TALENT_POOL(ByVal obj As ProfileBusiness.FilterParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.FILTER_TALENT_POOL
-            Return MyBase.Channel.FILTER_TALENT_POOL(obj, log)
-        End Function
-        
-        Public Function PrintFileContract(ByVal emp_code As String, ByVal fileContract_ID As String) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.PrintFileContract
-            Return MyBase.Channel.PrintFileContract(emp_code, fileContract_ID)
-        End Function
-        
-        Public Function GetContractForm(ByVal formID As Decimal) As ProfileBusiness.OtherListDTO Implements ProfileBusiness.IProfileBusiness.GetContractForm
-            Return MyBase.Channel.GetContractForm(formID)
-        End Function
-        
-        Public Function GetFileConTractID(ByVal ID As Decimal) As ProfileBusiness.FileContractDTO Implements ProfileBusiness.IProfileBusiness.GetFileConTractID
-            Return MyBase.Channel.GetFileConTractID(ID)
-        End Function
-        
-        Public Function GetContractAppendixPaging(ByVal _filter As ProfileBusiness.FileContractDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.FileContractDTO) Implements ProfileBusiness.IProfileBusiness.GetContractAppendixPaging
-            Return MyBase.Channel.GetContractAppendixPaging(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
-        End Function
-        
-        Public Function DeleteFileContract(ByVal objContract As ProfileBusiness.FileContractDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteFileContract
-            Return MyBase.Channel.DeleteFileContract(objContract, log)
-        End Function
-        
-        Public Function GetListContractType(ByVal type As String) As System.Collections.Generic.List(Of ProfileBusiness.ContractTypeDTO) Implements ProfileBusiness.IProfileBusiness.GetListContractType
-            Return MyBase.Channel.GetListContractType(type)
-        End Function
-        
-        Public Function CheckExpireFileContract(ByVal StartDate As Date, ByVal EndDate As Date, ByVal ID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.CheckExpireFileContract
-            Return MyBase.Channel.CheckExpireFileContract(StartDate, EndDate, ID)
-        End Function
-        
-        Public Function CheckExistFileContract(ByVal empID As Decimal, ByVal StartDate As Date, ByVal type_id As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.CheckExistFileContract
-            Return MyBase.Channel.CheckExistFileContract(empID, StartDate, type_id)
-        End Function
-        
-        Public Function InsertFileContract(ByVal FileInfo As ProfileBusiness.FileContractDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByRef appenNum As String) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertFileContract
-            Return MyBase.Channel.InsertFileContract(FileInfo, log, gID, appenNum)
-        End Function
-        
-        Public Function UpdateFileContract(ByVal FileInfo As ProfileBusiness.FileContractDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.UpdateFileContract
-            Return MyBase.Channel.UpdateFileContract(FileInfo, log, gID)
-        End Function
-        
-        Public Function GetContractList(ByVal empID As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ContractDTO) Implements ProfileBusiness.IProfileBusiness.GetContractList
-            Return MyBase.Channel.GetContractList(empID)
-        End Function
-        
-        Public Function GetOrgList(ByVal ID As Decimal) As String Implements ProfileBusiness.IProfileBusiness.GetOrgList
-            Return MyBase.Channel.GetOrgList(ID)
-        End Function
-        
-        Public Function GetContractTypeCT(ByVal ID As Decimal) As String Implements ProfileBusiness.IProfileBusiness.GetContractTypeCT
-            Return MyBase.Channel.GetContractTypeCT(ID)
-        End Function
-        
-        Public Function GetTitileBaseOnEmp(ByVal ID As Decimal) As ProfileBusiness.TitleDTO Implements ProfileBusiness.IProfileBusiness.GetTitileBaseOnEmp
-            Return MyBase.Channel.GetTitileBaseOnEmp(ID)
-        End Function
-        
-        Public Function GetFileContract_No(ByVal Contract As ProfileBusiness.ContractDTO, ByRef STT As Decimal) As String Implements ProfileBusiness.IProfileBusiness.GetFileContract_No
-            Return MyBase.Channel.GetFileContract_No(Contract, STT)
-        End Function
-        
-        Public Function GetContractAppendix(ByVal _filter As ProfileBusiness.FileContractDTO) As System.Collections.Generic.List(Of ProfileBusiness.FileContractDTO) Implements ProfileBusiness.IProfileBusiness.GetContractAppendix
-            Return MyBase.Channel.GetContractAppendix(_filter)
-        End Function
-        
-        Public Function GetContractTypeID(ByVal ID As Decimal) As ProfileBusiness.ContractTypeDTO Implements ProfileBusiness.IProfileBusiness.GetContractTypeID
-            Return MyBase.Channel.GetContractTypeID(ID)
-        End Function
-        
-        Public Function GetListContractBaseOnEmp(ByVal ID As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ContractDTO) Implements ProfileBusiness.IProfileBusiness.GetListContractBaseOnEmp
-            Return MyBase.Channel.GetListContractBaseOnEmp(ID)
-        End Function
-        
-        Public Function GetListContract(ByVal ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetListContract
-            Return MyBase.Channel.GetListContract(ID)
-        End Function
-        
-        Public Function ApproveListContract(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ApproveListContract
-            Return MyBase.Channel.ApproveListContract(listID, log)
-        End Function
-        
-        Public Function GET_HU_SIGNER(ByVal _filter As ProfileBusiness.SignerDTO, ByVal _param As ProfileBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_HU_SIGNER
-            Return MyBase.Channel.GET_HU_SIGNER(_filter, _param, log)
-        End Function
-        
-        Public Function INSERT_HU_SIGNER(ByVal PA As ProfileBusiness.SignerDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.INSERT_HU_SIGNER
-            Return MyBase.Channel.INSERT_HU_SIGNER(PA)
-        End Function
-        
-        Public Function UPDATE_HU_SIGNER(ByVal PA As ProfileBusiness.SignerDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.UPDATE_HU_SIGNER
-            Return MyBase.Channel.UPDATE_HU_SIGNER(PA)
-        End Function
-        
-        Public Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal, ByVal ORG_ID As Decimal, ByVal title_name As String) As Decimal Implements ProfileBusiness.IProfileBusiness.CHECK_EXIT
-            Return MyBase.Channel.CHECK_EXIT(P_ID, idemp, ORG_ID, title_name)
-        End Function
-        
-        Public Function DeactiveAndActiveSigner(ByVal lstID As String, ByVal sActive As Decimal) As Object Implements ProfileBusiness.IProfileBusiness.DeactiveAndActiveSigner
-            Return MyBase.Channel.DeactiveAndActiveSigner(lstID, sActive)
-        End Function
-        
-        Public Function DeleteSigner(ByVal lstID As String) As Object Implements ProfileBusiness.IProfileBusiness.DeleteSigner
-            Return MyBase.Channel.DeleteSigner(lstID)
-        End Function
-        
-        Public Function GET_HEALTH_MNG_LIST(ByVal _filter As ProfileBusiness.HealthMngDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_HEALTH_MNG_LIST
-            Return MyBase.Channel.GET_HEALTH_MNG_LIST(_filter, PageIndex, PageSize, Total, log, _param, Sorts)
-        End Function
-        
-        Public Function Import_Health_Mng(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean Implements ProfileBusiness.IProfileBusiness.Import_Health_Mng
-            Return MyBase.Channel.Import_Health_Mng(P_DOCXML, P_USER)
-        End Function
-        
-        Public Function EXPORT_HEALTH_MNG() As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.EXPORT_HEALTH_MNG
-            Return MyBase.Channel.EXPORT_HEALTH_MNG
-        End Function
-        
-        Public Function GET_LIST_CONCURRENTLY(ByVal _filter As ProfileBusiness.Temp_ConcurrentlyDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO) Implements ProfileBusiness.IProfileBusiness.GET_LIST_CONCURRENTLY
-            Return MyBase.Channel.GET_LIST_CONCURRENTLY(_filter, PageIndex, PageSize, Total, log, Sorts)
-        End Function
-        
-        Public Function GET_LIST_CONCURRENTLY_BY_ID(ByVal _filter As ProfileBusiness.Temp_ConcurrentlyDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal EMPLOYEE_ID As Decimal, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO) Implements ProfileBusiness.IProfileBusiness.GET_LIST_CONCURRENTLY_BY_ID
-            Return MyBase.Channel.GET_LIST_CONCURRENTLY_BY_ID(_filter, PageIndex, PageSize, Total, log, EMPLOYEE_ID, Sorts)
-        End Function
-        
-        Public Function GET_CONCURRENTLY_BY_ID(ByVal P_ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_CONCURRENTLY_BY_ID
-            Return MyBase.Channel.GET_CONCURRENTLY_BY_ID(P_ID)
-        End Function
-        
-        Public Function INSERT_CONCURRENTLY(ByVal concurrently As ProfileBusiness.Temp_ConcurrentlyDTO) As Integer Implements ProfileBusiness.IProfileBusiness.INSERT_CONCURRENTLY
-            Return MyBase.Channel.INSERT_CONCURRENTLY(concurrently)
-        End Function
-        
-        Public Function UPDATE_CONCURRENTLY(ByVal concurrently As ProfileBusiness.Temp_ConcurrentlyDTO) As Integer Implements ProfileBusiness.IProfileBusiness.UPDATE_CONCURRENTLY
-            Return MyBase.Channel.UPDATE_CONCURRENTLY(concurrently)
-        End Function
-        
-        Public Function GET_CONCURRENTLY_BY_EMP(ByVal P_ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_CONCURRENTLY_BY_EMP
-            Return MyBase.Channel.GET_CONCURRENTLY_BY_EMP(P_ID)
-        End Function
-        
-        Public Function GET_TITLE_ORG(ByVal P_ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_TITLE_ORG
-            Return MyBase.Channel.GET_TITLE_ORG(P_ID)
-        End Function
-        
-        Public Function INSERT_EMPLOYEE_KN(ByVal P_EMPLOYEE_CODE As String, ByVal P_ORG_ID As Decimal, ByVal P_TITLE As Decimal, ByVal P_DATE As Date, ByVal P_ID_KN As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.INSERT_EMPLOYEE_KN
-            Return MyBase.Channel.INSERT_EMPLOYEE_KN(P_EMPLOYEE_CODE, P_ORG_ID, P_TITLE, P_DATE, P_ID_KN)
-        End Function
-        
-        Public Function UPDATE_EMPLOYEE_KN(ByVal P_ID_KN As Decimal, ByVal P_DATE As Date) As Boolean Implements ProfileBusiness.IProfileBusiness.UPDATE_EMPLOYEE_KN
-            Return MyBase.Channel.UPDATE_EMPLOYEE_KN(P_ID_KN, P_DATE)
-        End Function
-        
-        Public Function ApproveListChangeCon(ByVal listID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements ProfileBusiness.IProfileBusiness.ApproveListChangeCon
-            Return MyBase.Channel.ApproveListChangeCon(listID)
-        End Function
-        
-        Public Function DeleteConcurrentlyByID(ByVal listID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteConcurrentlyByID
-            Return MyBase.Channel.DeleteConcurrentlyByID(listID)
-        End Function
-        
-        Public Function GET_WORK_POSITION_LIST() As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_WORK_POSITION_LIST
-            Return MyBase.Channel.GET_WORK_POSITION_LIST
-        End Function
-        
-        Public Function GET_ORG_INFOR_PART(ByVal ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_ORG_INFOR_PART
-            Return MyBase.Channel.GET_ORG_INFOR_PART(ID)
-        End Function
-        
-        Public Function GetOrganizationTreeByID(ByVal _filter As ProfileBusiness.OrganizationTreeDTO) As ProfileBusiness.OrganizationTreeDTO Implements ProfileBusiness.IProfileBusiness.GetOrganizationTreeByID
-            Return MyBase.Channel.GetOrganizationTreeByID(_filter)
-        End Function
-        
-        Public Function GetOrgtree(ByVal _org_id As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetOrgtree
-            Return MyBase.Channel.GetOrgtree(_org_id)
-        End Function
-        
-        Public Function GET_PROCESS_PLCONTRACT(ByVal P_EMP_CODE As String) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_PROCESS_PLCONTRACT
-            Return MyBase.Channel.GET_PROCESS_PLCONTRACT(P_EMP_CODE)
-        End Function
-        
-        Public Function EXPORT_PLHD(ByVal _param As ProfileBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.EXPORT_PLHD
-            Return MyBase.Channel.EXPORT_PLHD(_param, log)
-        End Function
-        
-        Public Function CHECK_EMPLOYEE(ByVal P_EMP_CODE As String) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_EMPLOYEE
-            Return MyBase.Channel.CHECK_EMPLOYEE(P_EMP_CODE)
-        End Function
-        
+
         Public Function CHECK_CONTRACT(ByVal P_ID As Decimal) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_CONTRACT
             Return MyBase.Channel.CHECK_CONTRACT(P_ID)
         End Function
-        
+
+        Public Function CHECK_SALARY(ByVal P_ID As Decimal) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_SALARY
+            Return MyBase.Channel.CHECK_SALARY(P_ID)
+        End Function
+
+        Public Function CHECK_CONTRACT_EXITS(ByVal P_CONTRACT As Decimal, ByVal P_EMP_CODE As String, ByVal P_DATE As Date) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_CONTRACT_EXITS
+            Return MyBase.Channel.CHECK_CONTRACT_EXITS(P_CONTRACT, P_EMP_CODE, P_DATE)
+        End Function
+
+        Public Function CHECK_SIGN(ByVal P_EMP_CODE As String) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_SIGN
+            Return MyBase.Channel.CHECK_SIGN(P_EMP_CODE)
+        End Function
+
+        Public Function INPORT_PLHD(ByVal P_DOCXML As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.INPORT_PLHD
+            Return MyBase.Channel.INPORT_PLHD(P_DOCXML, log)
+        End Function
+
+        Public Function EXPORT_QLKT() As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.EXPORT_QLKT
+            Return MyBase.Channel.EXPORT_QLKT
+        End Function
+
+        Public Function GET_EMPLOYEE(ByVal P_EMP_CODE As String) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_EMPLOYEE
+            Return MyBase.Channel.GET_EMPLOYEE(P_EMP_CODE)
+        End Function
+
+        Public Function GET_PROCESS_PLCONTRACT_PORTAL(ByVal P_EMP_ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_PROCESS_PLCONTRACT_PORTAL
+            Return MyBase.Channel.GET_PROCESS_PLCONTRACT_PORTAL(P_EMP_ID)
+        End Function
+
+        Public Function CHECK_LOCATION_EXITS(ByVal P_ID As System.Nullable(Of Decimal), ByVal ORG_ID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.CHECK_LOCATION_EXITS
+            Return MyBase.Channel.CHECK_LOCATION_EXITS(P_ID, ORG_ID)
+        End Function
+
+        Public Function GetJobPosition(ByVal _filter As ProfileBusiness.Job_PositionDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.Job_PositionDTO) Implements ProfileBusiness.IProfileBusiness.GetJobPosition
+            Return MyBase.Channel.GetJobPosition(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
+        End Function
+
+        Public Function GET_JOB_POSITION_LIST(ByVal P_ORG_ID As Decimal, ByVal P_ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_JOB_POSITION_LIST
+            Return MyBase.Channel.GET_JOB_POSITION_LIST(P_ORG_ID, P_ID)
+        End Function
+
+        Public Function GET_JOB_POSITION_DETAIL(ByVal P_ID As Decimal) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.GET_JOB_POSITION_DETAIL
+            Return MyBase.Channel.GET_JOB_POSITION_DETAIL(P_ID)
+        End Function
+
+        Public Function INSERT_JOB_POSITION(ByVal p_CODE As String, ByVal p_JOB_NAME As String, ByVal p_ORG_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_JOB_NOTE As String, ByVal p_COST_CODE As String, ByVal p_IS_LEADER As Decimal, ByVal p_EFFECT_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As Integer Implements ProfileBusiness.IProfileBusiness.INSERT_JOB_POSITION
+            Return MyBase.Channel.INSERT_JOB_POSITION(p_CODE, p_JOB_NAME, p_ORG_ID, p_TITLE_ID, p_JOB_NOTE, p_COST_CODE, p_IS_LEADER, p_EFFECT_DATE, log)
+        End Function
+
+        Public Function UPDATE_JOB_POSITION(ByVal p_ID As Decimal, ByVal p_CODE As String, ByVal p_JOB_NAME As String, ByVal p_ORG_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_JOB_NOTE As String, ByVal p_COST_CODE As String, ByVal p_IS_LEADER As Decimal, ByVal p_EFFECT_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As Integer Implements ProfileBusiness.IProfileBusiness.UPDATE_JOB_POSITION
+            Return MyBase.Channel.UPDATE_JOB_POSITION(p_ID, p_CODE, p_JOB_NAME, p_ORG_ID, p_TITLE_ID, p_JOB_NOTE, p_COST_CODE, p_IS_LEADER, p_EFFECT_DATE, log)
+        End Function
+
+        Public Function INSERT_DIRECT_MANAGER(ByVal P_JOB_POSITION_ID As Decimal, ByVal P_DIRECT_MANAGER As String) As Boolean Implements ProfileBusiness.IProfileBusiness.INSERT_DIRECT_MANAGER
+            Return MyBase.Channel.INSERT_DIRECT_MANAGER(P_JOB_POSITION_ID, P_DIRECT_MANAGER)
+        End Function
+
+        Public Function DeleteJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteJob
+            Return MyBase.Channel.DeleteJob(objOrgTitle, log)
+        End Function
+
+        Public Function ActiveJob(ByVal objOrgTitle As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ActiveJob
+            Return MyBase.Channel.ActiveJob(objOrgTitle, sActive, log)
+        End Function
+
+        Public Function GET_JP_TO_TITLE(ByVal P_ORG_ID As Decimal, ByVal P_TITLE_ID As Decimal, ByVal P_IS_THAYTHE As Decimal, ByVal P_JOB As Decimal) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.GET_JP_TO_TITLE
+            Return MyBase.Channel.GET_JP_TO_TITLE(P_ORG_ID, P_TITLE_ID, P_IS_THAYTHE, P_JOB)
+        End Function
+
+        Public Function UPDATE_END_DATE_QD(ByVal P_EMP_ID As Decimal, ByVal P_DATE As Date) As Boolean Implements ProfileBusiness.IProfileBusiness.UPDATE_END_DATE_QD
+            Return MyBase.Channel.UPDATE_END_DATE_QD(P_EMP_ID, P_DATE)
+        End Function
+
+        Public Function UpdateStatusQD(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.UpdateStatusQD
+            Return MyBase.Channel.UpdateStatusQD(lstID, log)
+        End Function
+
+        Public Function UpdateStatusTer(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.UpdateStatusTer
+            Return MyBase.Channel.UpdateStatusTer(lstID, log)
+        End Function
+
+        Public Function GET_HU_ASSET(ByVal P_EMP_ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_HU_ASSET
+            Return MyBase.Channel.GET_HU_ASSET(P_EMP_ID)
+        End Function
+
+        Public Function GET_JOB_EMP(ByVal P_EMP_ID As Decimal) As Integer Implements ProfileBusiness.IProfileBusiness.GET_JOB_EMP
+            Return MyBase.Channel.GET_JOB_EMP(P_EMP_ID)
+        End Function
+
+        Public Function GET_JOB_CODE_AUTO(ByVal p_TITLE_ID As Decimal) As String Implements ProfileBusiness.IProfileBusiness.GET_JOB_CODE_AUTO
+            Return MyBase.Channel.GET_JOB_CODE_AUTO(p_TITLE_ID)
+        End Function
+
+        Public Function INSERT_JOB_POSITION_AUTO(ByVal p_ID As Decimal, ByVal p_TITLE_ID As Decimal, ByVal p_NUMBER As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.INSERT_JOB_POSITION_AUTO
+            Return MyBase.Channel.INSERT_JOB_POSITION_AUTO(p_ID, p_TITLE_ID, p_NUMBER, log)
+        End Function
+
+        Public Function CHECK_EXITS_JOB(ByVal P_JOB_ID As Decimal, ByVal P_EMP_ID As Decimal) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_EXITS_JOB
+            Return MyBase.Channel.CHECK_EXITS_JOB(P_JOB_ID, P_EMP_ID)
+        End Function
+
+        Public Function EXPORT_EMP(ByVal P_USERNAME As String, ByVal P_ORGID As Decimal, ByVal P_ISDISSOLVE As Boolean, ByVal P_STARTDATE As System.Nullable(Of Date), ByVal P_TODATE As System.Nullable(Of Date), ByVal P_IS_ALL As Boolean) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.EXPORT_EMP
+            Return MyBase.Channel.EXPORT_EMP(P_USERNAME, P_ORGID, P_ISDISSOLVE, P_STARTDATE, P_TODATE, P_IS_ALL)
+        End Function
+
+        Public Function INPORT_EMP(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean Implements ProfileBusiness.IProfileBusiness.INPORT_EMP
+            Return MyBase.Channel.INPORT_EMP(P_DOCXML, P_USER)
+        End Function
+
+        Public Function CHECK_IS_THHDLD(ByVal P_ID As Decimal, ByVal P_EMP_ID As Decimal, ByVal P_DATE As System.Nullable(Of Date)) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_IS_THHDLD
+            Return MyBase.Channel.CHECK_IS_THHDLD(P_ID, P_EMP_ID, P_DATE)
+        End Function
+
+        Public Function GetEmployeeDeduct(ByVal _filter As ProfileBusiness.DeductDTO) As System.Collections.Generic.List(Of ProfileBusiness.DeductDTO) Implements ProfileBusiness.IProfileBusiness.GetEmployeeDeduct
+            Return MyBase.Channel.GetEmployeeDeduct(_filter)
+        End Function
+
+        Public Function InsertEmployeeDeduct(ByVal objFamily As ProfileBusiness.DeductDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertEmployeeDeduct
+            Return MyBase.Channel.InsertEmployeeDeduct(objFamily, log, gID)
+        End Function
+
+        Public Function ModifyEmployeeDeduct(ByVal objFamily As ProfileBusiness.DeductDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyEmployeeDeduct
+            Return MyBase.Channel.ModifyEmployeeDeduct(objFamily, log, gID)
+        End Function
+
+        Public Function DeleteEmployeeDeduct(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteEmployeeDeduct
+            Return MyBase.Channel.DeleteEmployeeDeduct(lstDecimals, log)
+        End Function
+
+        Public Function EXPORT_DISCIPLINE() As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.EXPORT_DISCIPLINE
+            Return MyBase.Channel.EXPORT_DISCIPLINE
+        End Function
+
+        Public Function INPORT_DISCIPLINE(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean Implements ProfileBusiness.IProfileBusiness.INPORT_DISCIPLINE
+            Return MyBase.Channel.INPORT_DISCIPLINE(P_DOCXML, P_USER)
+        End Function
+
+        Public Function GetListCommendList(ByVal actflg As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendListDTO) Implements ProfileBusiness.IProfileBusiness.GetListCommendList
+            Return MyBase.Channel.GetListCommendList(actflg)
+        End Function
+
+        Public Function InsertCommendList(ByVal objCommendList As ProfileBusiness.CommendListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertCommendList
+            Return MyBase.Channel.InsertCommendList(objCommendList, log, gID)
+        End Function
+
+        Public Function ModifyCommendList(ByVal objCommendList As ProfileBusiness.CommendListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyCommendList
+            Return MyBase.Channel.ModifyCommendList(objCommendList, log, gID)
+        End Function
+
+        Public Function ActiveCommendList(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ActiveCommendList
+            Return MyBase.Channel.ActiveCommendList(lstID, sActive, log)
+        End Function
+
+        Public Function DeleteCommendList(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByRef strError As String) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteCommendList
+            Return MyBase.Channel.DeleteCommendList(lstDecimals, log, strError)
+        End Function
+
+        Public Function ValidateCommendList(ByVal _validate As ProfileBusiness.CommendListDTO) As Object Implements ProfileBusiness.IProfileBusiness.ValidateCommendList
+            Return MyBase.Channel.ValidateCommendList(_validate)
+        End Function
+
+        Public Function InsertImportCommend(ByVal lstImport As System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertImportCommend
+            Return MyBase.Channel.InsertImportCommend(lstImport, log)
+        End Function
+
+        Public Function GetImportCommend(ByVal _filter As ProfileBusiness.ImportCommendDTO) As System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO) Implements ProfileBusiness.IProfileBusiness.GetImportCommend
+            Return MyBase.Channel.GetImportCommend(_filter)
+        End Function
+
+        Public Function GetCommendLevel(ByVal _filter As ProfileBusiness.CommendLevelDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO) Implements ProfileBusiness.IProfileBusiness.GetCommendLevel
+            Return MyBase.Channel.GetCommendLevel(_filter, PageIndex, PageSize, Total, Sorts)
+        End Function
+
+        Public Function GetCommendLevelID(ByVal ID As Decimal) As ProfileBusiness.CommendLevelDTO Implements ProfileBusiness.IProfileBusiness.GetCommendLevelID
+            Return MyBase.Channel.GetCommendLevelID(ID)
+        End Function
+
+        Public Function InsertCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertCommendLevel
+            Return MyBase.Channel.InsertCommendLevel(objCommendLevel, log, gID)
+        End Function
+
+        Public Function ValidateCommendLevel(ByVal _validate As ProfileBusiness.CommendLevelDTO) As Object Implements ProfileBusiness.IProfileBusiness.ValidateCommendLevel
+            Return MyBase.Channel.ValidateCommendLevel(_validate)
+        End Function
+
+        Public Function ModifyCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyCommendLevel
+            Return MyBase.Channel.ModifyCommendLevel(objCommendLevel, log, gID)
+        End Function
+
+        Public Function ActiveCommendLevel(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ActiveCommendLevel
+            Return MyBase.Channel.ActiveCommendLevel(lstID, sActive, log)
+        End Function
+
+        Public Function DeleteCommendLevel(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteCommendLevel
+            Return MyBase.Channel.DeleteCommendLevel(lstID)
+        End Function
+
+        Public Function GetCommendFormula(ByVal _filter As ProfileBusiness.CommendFormulaDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendFormulaDTO) Implements ProfileBusiness.IProfileBusiness.GetCommendFormula
+            Return MyBase.Channel.GetCommendFormula(_filter, PageIndex, PageSize, Total, Sorts)
+        End Function
+
+        Public Function GetCommendFormulaID(ByVal ID As Decimal) As ProfileBusiness.CommendFormulaDTO Implements ProfileBusiness.IProfileBusiness.GetCommendFormulaID
+            Return MyBase.Channel.GetCommendFormulaID(ID)
+        End Function
+
+        Public Function InsertCommendFormula(ByVal objCommendFormula As ProfileBusiness.CommendFormulaDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertCommendFormula
+            Return MyBase.Channel.InsertCommendFormula(objCommendFormula, log, gID)
+        End Function
+
+        Public Function ModifyCommendFormula(ByVal objCommendFormula As ProfileBusiness.CommendFormulaDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyCommendFormula
+            Return MyBase.Channel.ModifyCommendFormula(objCommendFormula, log, gID)
+        End Function
+
+        Public Function ActiveCommendFormula(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ActiveCommendFormula
+            Return MyBase.Channel.ActiveCommendFormula(lstID, sActive, log)
+        End Function
+
+        Public Function DeleteCommendFormula(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByRef strError As String) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteCommendFormula
+            Return MyBase.Channel.DeleteCommendFormula(lstDecimals, log, strError)
+        End Function
+
+        Public Function GetStatisticTop5Competency(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.StatisticDTO) Implements ProfileBusiness.IProfileBusiness.GetStatisticTop5Competency
+            Return MyBase.Channel.GetStatisticTop5Competency(_year, log)
+        End Function
+
+        Public Function GetStatisticTop5CopAvg(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.CompetencyAvgEmplDTO) Implements ProfileBusiness.IProfileBusiness.GetStatisticTop5CopAvg
+            Return MyBase.Channel.GetStatisticTop5CopAvg(_year, log)
+        End Function
+
+        Public Function GetEmployeeReg(ByVal _employee_id As Integer) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetEmployeeReg
+            Return MyBase.Channel.GetEmployeeReg(_employee_id)
+        End Function
+
+        Public Function GetTotalDayOff(ByVal _filter As ProfileBusiness.TotalDayOffDTO, ByVal log As Common.CommonBusiness.UserLog) As ProfileBusiness.TotalDayOffDTO Implements ProfileBusiness.IProfileBusiness.GetTotalDayOff
+            Return MyBase.Channel.GetTotalDayOff(_filter, log)
+        End Function
+
+        Public Function GetCertificateExpires(ByVal _employee_id As Integer) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetCertificateExpires
+            Return MyBase.Channel.GetCertificateExpires(_employee_id)
+        End Function
+
+        Public Function GetCompetencyCourse(ByVal _filter As ProfileBusiness.CompetencyCourseDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CompetencyCourseDTO) Implements ProfileBusiness.IProfileBusiness.GetCompetencyCourse
+            Return MyBase.Channel.GetCompetencyCourse(_filter, PageIndex, PageSize, Total, Sorts)
+        End Function
+
+        Public Function InsertCompetencyCourse(ByVal objCompetencyCourse As ProfileBusiness.CompetencyCourseDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertCompetencyCourse
+            Return MyBase.Channel.InsertCompetencyCourse(objCompetencyCourse, log, gID)
+        End Function
+
+        Public Function ModifyCompetencyCourse(ByVal objCompetencyCourse As ProfileBusiness.CompetencyCourseDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyCompetencyCourse
+            Return MyBase.Channel.ModifyCompetencyCourse(objCompetencyCourse, log, gID)
+        End Function
+
+        Public Function DeleteCompetencyCourse(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteCompetencyCourse
+            Return MyBase.Channel.DeleteCompetencyCourse(lstID, log)
+        End Function
+
+        Public Function GetCourseByList(ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetCourseByList
+            Return MyBase.Channel.GetCourseByList(sLang, isBlank)
+        End Function
+
+        Public Function EmployeeCriteriaRecord(ByVal _filter As ProfileBusiness.EmployeeCriteriaRecordDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeCriteriaRecordDTO) Implements ProfileBusiness.IProfileBusiness.EmployeeCriteriaRecord
+            Return MyBase.Channel.EmployeeCriteriaRecord(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
+        End Function
+
+        Public Function GetPortalCompetencyCourse(ByVal _empId As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.EmployeeCriteriaRecordDTO) Implements ProfileBusiness.IProfileBusiness.GetPortalCompetencyCourse
+            Return MyBase.Channel.GetPortalCompetencyCourse(_empId)
+        End Function
+
+        Public Function GetTalentPool(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.TalentPoolDTO) Implements ProfileBusiness.IProfileBusiness.GetTalentPool
+            Return MyBase.Channel.GetTalentPool(PageIndex, PageSize, Total, _param, Sorts, log)
+        End Function
+
+        Public Function InsertTalentPool(ByVal lstTalentPool As System.Collections.Generic.List(Of ProfileBusiness.TalentPoolDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertTalentPool
+            Return MyBase.Channel.InsertTalentPool(lstTalentPool, log)
+        End Function
+
+        Public Function ActiveTalentPool(ByVal objTalentPool As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ActiveTalentPool
+            Return MyBase.Channel.ActiveTalentPool(objTalentPool, sActive, log)
+        End Function
+
+        Public Function FILTER_TALENT_POOL(ByVal obj As ProfileBusiness.FilterParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.FILTER_TALENT_POOL
+            Return MyBase.Channel.FILTER_TALENT_POOL(obj, log)
+        End Function
+
+        Public Function PrintFileContract(ByVal emp_code As String, ByVal fileContract_ID As String) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.PrintFileContract
+            Return MyBase.Channel.PrintFileContract(emp_code, fileContract_ID)
+        End Function
+
+        Public Function GetContractForm(ByVal formID As Decimal) As ProfileBusiness.OtherListDTO Implements ProfileBusiness.IProfileBusiness.GetContractForm
+            Return MyBase.Channel.GetContractForm(formID)
+        End Function
+
+        Public Function GetFileConTractID(ByVal ID As Decimal) As ProfileBusiness.FileContractDTO Implements ProfileBusiness.IProfileBusiness.GetFileConTractID
+            Return MyBase.Channel.GetFileConTractID(ID)
+        End Function
+
+        Public Function GetContractAppendixPaging(ByVal _filter As ProfileBusiness.FileContractDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.FileContractDTO) Implements ProfileBusiness.IProfileBusiness.GetContractAppendixPaging
+            Return MyBase.Channel.GetContractAppendixPaging(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
+        End Function
+
+        Public Function DeleteFileContract(ByVal objContract As ProfileBusiness.FileContractDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteFileContract
+            Return MyBase.Channel.DeleteFileContract(objContract, log)
+        End Function
+
+        Public Function GetListContractType(ByVal type As String) As System.Collections.Generic.List(Of ProfileBusiness.ContractTypeDTO) Implements ProfileBusiness.IProfileBusiness.GetListContractType
+            Return MyBase.Channel.GetListContractType(type)
+        End Function
+
+        Public Function CheckExpireFileContract(ByVal StartDate As Date, ByVal EndDate As Date, ByVal ID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.CheckExpireFileContract
+            Return MyBase.Channel.CheckExpireFileContract(StartDate, EndDate, ID)
+        End Function
+
+        Public Function CheckExistFileContract(ByVal empID As Decimal, ByVal StartDate As Date, ByVal type_id As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.CheckExistFileContract
+            Return MyBase.Channel.CheckExistFileContract(empID, StartDate, type_id)
+        End Function
+
+        Public Function InsertFileContract(ByVal FileInfo As ProfileBusiness.FileContractDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByRef appenNum As String) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertFileContract
+            Return MyBase.Channel.InsertFileContract(FileInfo, log, gID, appenNum)
+        End Function
+
+        Public Function UpdateFileContract(ByVal FileInfo As ProfileBusiness.FileContractDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.UpdateFileContract
+            Return MyBase.Channel.UpdateFileContract(FileInfo, log, gID)
+        End Function
+
+        Public Function GetContractList(ByVal empID As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ContractDTO) Implements ProfileBusiness.IProfileBusiness.GetContractList
+            Return MyBase.Channel.GetContractList(empID)
+        End Function
+
+        Public Function GetOrgList(ByVal ID As Decimal) As String Implements ProfileBusiness.IProfileBusiness.GetOrgList
+            Return MyBase.Channel.GetOrgList(ID)
+        End Function
+
+        Public Function GetContractTypeCT(ByVal ID As Decimal) As String Implements ProfileBusiness.IProfileBusiness.GetContractTypeCT
+            Return MyBase.Channel.GetContractTypeCT(ID)
+        End Function
+
+        Public Function GetTitileBaseOnEmp(ByVal ID As Decimal) As ProfileBusiness.TitleDTO Implements ProfileBusiness.IProfileBusiness.GetTitileBaseOnEmp
+            Return MyBase.Channel.GetTitileBaseOnEmp(ID)
+        End Function
+
+        Public Function GetFileContract_No(ByVal Contract As ProfileBusiness.ContractDTO, ByRef STT As Decimal) As String Implements ProfileBusiness.IProfileBusiness.GetFileContract_No
+            Return MyBase.Channel.GetFileContract_No(Contract, STT)
+        End Function
+
+        Public Function GetContractAppendix(ByVal _filter As ProfileBusiness.FileContractDTO) As System.Collections.Generic.List(Of ProfileBusiness.FileContractDTO) Implements ProfileBusiness.IProfileBusiness.GetContractAppendix
+            Return MyBase.Channel.GetContractAppendix(_filter)
+        End Function
+
+        Public Function GetContractTypeID(ByVal ID As Decimal) As ProfileBusiness.ContractTypeDTO Implements ProfileBusiness.IProfileBusiness.GetContractTypeID
+            Return MyBase.Channel.GetContractTypeID(ID)
+        End Function
+
+        Public Function GetListContractBaseOnEmp(ByVal ID As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ContractDTO) Implements ProfileBusiness.IProfileBusiness.GetListContractBaseOnEmp
+            Return MyBase.Channel.GetListContractBaseOnEmp(ID)
+        End Function
+
+        Public Function GetListContract(ByVal ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetListContract
+            Return MyBase.Channel.GetListContract(ID)
+        End Function
+
+        Public Function ApproveListContract(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ApproveListContract
+            Return MyBase.Channel.ApproveListContract(listID, log)
+        End Function
+
+        Public Function GetContractImport() As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.GetContractImport
+            Return MyBase.Channel.GetContractImport
+        End Function
+
+        Public Function GET_HU_SIGNER(ByVal _filter As ProfileBusiness.SignerDTO, ByVal _param As ProfileBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_HU_SIGNER
+            Return MyBase.Channel.GET_HU_SIGNER(_filter, _param, log)
+        End Function
+
+        Public Function INSERT_HU_SIGNER(ByVal PA As ProfileBusiness.SignerDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.INSERT_HU_SIGNER
+            Return MyBase.Channel.INSERT_HU_SIGNER(PA)
+        End Function
+
+        Public Function UPDATE_HU_SIGNER(ByVal PA As ProfileBusiness.SignerDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.UPDATE_HU_SIGNER
+            Return MyBase.Channel.UPDATE_HU_SIGNER(PA)
+        End Function
+
+        Public Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal, ByVal ORG_ID As Decimal, ByVal title_name As String) As Decimal Implements ProfileBusiness.IProfileBusiness.CHECK_EXIT
+            Return MyBase.Channel.CHECK_EXIT(P_ID, idemp, ORG_ID, title_name)
+        End Function
+
+        Public Function DeactiveAndActiveSigner(ByVal lstID As String, ByVal sActive As Decimal) As Object Implements ProfileBusiness.IProfileBusiness.DeactiveAndActiveSigner
+            Return MyBase.Channel.DeactiveAndActiveSigner(lstID, sActive)
+        End Function
+
+        Public Function DeleteSigner(ByVal lstID As String) As Object Implements ProfileBusiness.IProfileBusiness.DeleteSigner
+            Return MyBase.Channel.DeleteSigner(lstID)
+        End Function
+
+        Public Function GET_HEALTH_MNG_LIST(ByVal _filter As ProfileBusiness.HealthMngDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_HEALTH_MNG_LIST
+            Return MyBase.Channel.GET_HEALTH_MNG_LIST(_filter, PageIndex, PageSize, Total, log, _param, Sorts)
+        End Function
+
+        Public Function Import_Health_Mng(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean Implements ProfileBusiness.IProfileBusiness.Import_Health_Mng
+            Return MyBase.Channel.Import_Health_Mng(P_DOCXML, P_USER)
+        End Function
+
+        Public Function EXPORT_HEALTH_MNG() As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.EXPORT_HEALTH_MNG
+            Return MyBase.Channel.EXPORT_HEALTH_MNG
+        End Function
+
+        Public Function GET_LIST_CONCURRENTLY(ByVal _filter As ProfileBusiness.Temp_ConcurrentlyDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO) Implements ProfileBusiness.IProfileBusiness.GET_LIST_CONCURRENTLY
+            Return MyBase.Channel.GET_LIST_CONCURRENTLY(_filter, PageIndex, PageSize, Total, log, Sorts)
+        End Function
+
+        Public Function GET_LIST_CONCURRENTLY_BY_ID(ByVal _filter As ProfileBusiness.Temp_ConcurrentlyDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal EMPLOYEE_ID As Decimal, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO) Implements ProfileBusiness.IProfileBusiness.GET_LIST_CONCURRENTLY_BY_ID
+            Return MyBase.Channel.GET_LIST_CONCURRENTLY_BY_ID(_filter, PageIndex, PageSize, Total, log, EMPLOYEE_ID, Sorts)
+        End Function
+
+        Public Function GET_CONCURRENTLY_BY_ID(ByVal P_ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_CONCURRENTLY_BY_ID
+            Return MyBase.Channel.GET_CONCURRENTLY_BY_ID(P_ID)
+        End Function
+
+        Public Function INSERT_CONCURRENTLY(ByVal concurrently As ProfileBusiness.Temp_ConcurrentlyDTO) As Integer Implements ProfileBusiness.IProfileBusiness.INSERT_CONCURRENTLY
+            Return MyBase.Channel.INSERT_CONCURRENTLY(concurrently)
+        End Function
+
+        Public Function UPDATE_CONCURRENTLY(ByVal concurrently As ProfileBusiness.Temp_ConcurrentlyDTO) As Integer Implements ProfileBusiness.IProfileBusiness.UPDATE_CONCURRENTLY
+            Return MyBase.Channel.UPDATE_CONCURRENTLY(concurrently)
+        End Function
+
+        Public Function GET_CONCURRENTLY_BY_EMP(ByVal P_ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_CONCURRENTLY_BY_EMP
+            Return MyBase.Channel.GET_CONCURRENTLY_BY_EMP(P_ID)
+        End Function
+
+        Public Function GET_TITLE_ORG(ByVal P_ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_TITLE_ORG
+            Return MyBase.Channel.GET_TITLE_ORG(P_ID)
+        End Function
+
+        Public Function INSERT_EMPLOYEE_KN(ByVal P_EMPLOYEE_CODE As String, ByVal P_ORG_ID As Decimal, ByVal P_TITLE As Decimal, ByVal P_DATE As Date, ByVal P_ID_KN As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.INSERT_EMPLOYEE_KN
+            Return MyBase.Channel.INSERT_EMPLOYEE_KN(P_EMPLOYEE_CODE, P_ORG_ID, P_TITLE, P_DATE, P_ID_KN)
+        End Function
+
+        Public Function UPDATE_EMPLOYEE_KN(ByVal P_ID_KN As Decimal, ByVal P_DATE As Date) As Boolean Implements ProfileBusiness.IProfileBusiness.UPDATE_EMPLOYEE_KN
+            Return MyBase.Channel.UPDATE_EMPLOYEE_KN(P_ID_KN, P_DATE)
+        End Function
+
+        Public Function ApproveListChangeCon(ByVal listID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements ProfileBusiness.IProfileBusiness.ApproveListChangeCon
+            Return MyBase.Channel.ApproveListChangeCon(listID)
+        End Function
+
+        Public Function DeleteConcurrentlyByID(ByVal listID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteConcurrentlyByID
+            Return MyBase.Channel.DeleteConcurrentlyByID(listID)
+        End Function
+
+        Public Function GET_WORK_POSITION_LIST() As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_WORK_POSITION_LIST
+            Return MyBase.Channel.GET_WORK_POSITION_LIST
+        End Function
+
+        Public Function GET_ORG_INFOR_PART(ByVal ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_ORG_INFOR_PART
+            Return MyBase.Channel.GET_ORG_INFOR_PART(ID)
+        End Function
+
+        Public Function GetOrganizationTreeByID(ByVal _filter As ProfileBusiness.OrganizationTreeDTO) As ProfileBusiness.OrganizationTreeDTO Implements ProfileBusiness.IProfileBusiness.GetOrganizationTreeByID
+            Return MyBase.Channel.GetOrganizationTreeByID(_filter)
+        End Function
+
+        Public Function GetOrgtree(ByVal _org_id As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetOrgtree
+            Return MyBase.Channel.GetOrgtree(_org_id)
+        End Function
+
+        Public Function GET_PROCESS_PLCONTRACT(ByVal P_EMP_CODE As String) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_PROCESS_PLCONTRACT
+            Return MyBase.Channel.GET_PROCESS_PLCONTRACT(P_EMP_CODE)
+        End Function
+
+        Public Function EXPORT_PLHD(ByVal _param As ProfileBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.EXPORT_PLHD
+            Return MyBase.Channel.EXPORT_PLHD(_param, log)
+        End Function
+
+        Public Function CHECK_EMPLOYEE(ByVal P_EMP_CODE As String) As Integer Implements ProfileBusiness.IProfileBusiness.CHECK_EMPLOYEE
+            Return MyBase.Channel.CHECK_EMPLOYEE(P_EMP_CODE)
+        End Function
+
         Public Function GetCertificateType() As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO) Implements ProfileBusiness.IProfileBusiness.GetCertificateType
             Return MyBase.Channel.GetCertificateType
         End Function

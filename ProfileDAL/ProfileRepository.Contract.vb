@@ -2269,4 +2269,22 @@ Partial Class ProfileRepository
 
     End Function
 
+
+    Public Function GetContractImport() As DataSet
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dsdata As DataSet = cls.ExecuteStore("PKG_PROFILE_INTEGRATED.GET_CONTRACT_IMPORT",
+                                                         New With {.P_CUR = cls.OUT_CURSOR,
+                                                                   .P_CUR1 = cls.OUT_CURSOR,
+                                                                   .P_CUR2 = cls.OUT_CURSOR,
+                                                                   .P_CUR3 = cls.OUT_CURSOR,
+                                                                   .P_CUR4 = cls.OUT_CURSOR,
+                                                                   .P_CUR5 = cls.OUT_CURSOR}, False)
+                Return dsdata
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
 End Class

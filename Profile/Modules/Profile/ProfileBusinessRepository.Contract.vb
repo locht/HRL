@@ -573,6 +573,22 @@ Partial Public Class ProfileBusinessRepository
         End Using
     End Function
 
+    Public Function GetContractImport() As DataSet
+        Dim dsdata As DataSet
+
+        Using rep As New ProfileBusinessClient
+            Try
+                dsdata = rep.GetContractImport()
+                Return dsdata
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
     Public Function INPORT_EMP(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
         Using rep As New ProfileBusinessClient
             Try

@@ -498,6 +498,16 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
+        Public Function GetContractImport() As DataSet Implements ServiceContracts.IProfileBusiness.GetContractImport
+            Try
+                Using rep As New ProfileRepository
+                    Return rep.GetContractImport()
+                End Using
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+
         Public Function GET_PROCESS_PLCONTRACT(ByVal P_EMP_CODE As String) As DataTable _
           Implements ServiceContracts.IProfileBusiness.GET_PROCESS_PLCONTRACT
             Using rep As New ProfileRepository
