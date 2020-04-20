@@ -74,7 +74,23 @@ Partial Public Class AttendanceRepository
                     If Not String.IsNullOrEmpty(_filter.EMPLOYEE_CODE_NAME) Then
                         lst = lst.Where(Function(f) f.EMPLOYEE_CODE.ToLower().Contains(_filter.EMPLOYEE_CODE_NAME.ToLower()) Or f.FULLNAME_VN.ToLower().Contains(_filter.EMPLOYEE_CODE_NAME.ToLower())).ToList
                     End If
-                    If _filter.OBJ_EMP_ID Or _filter.OBJ_CSL_ID Then
+
+                    If _filter.OBJ_EMP_ID Is Nothing Then
+                        If _filter.OBJ_CSL_ID Then
+                            lst = lst.Where(Function(f) f.OBJ_EMP_ID = 0 Or f.OBJ_CSL_ID = _filter.OBJ_CSL_ID).ToList
+                        Else
+                            lst = lst.Where(Function(f) f.OBJ_EMP_ID = 0).ToList
+                        End If
+                    End If
+                    If _filter.OBJ_CSL_ID Is Nothing Then
+                        If _filter.OBJ_EMP_ID Then
+                            lst = lst.Where(Function(f) f.OBJ_CSL_ID = 0 Or f.OBJ_EMP_ID = _filter.OBJ_EMP_ID).ToList
+                        Else
+                            lst = lst.Where(Function(f) f.OBJ_CSL_ID = 0).ToList
+                        End If
+                    End If
+
+                    If _filter.OBJ_EMP_ID Or _filter.OBJ_CSL_ID Then                        
                         lst = lst.Where(Function(f) f.OBJ_EMP_ID = _filter.OBJ_EMP_ID Or f.OBJ_CSL_ID = _filter.OBJ_CSL_ID).ToList
                     End If
 

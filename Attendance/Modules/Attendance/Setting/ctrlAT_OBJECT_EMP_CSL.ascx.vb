@@ -147,19 +147,22 @@ Public Class ctrlAT_OBJECT_EMP_CSL
         Try
             Using rep As New ProfileRepository
                 Dim dtData As New DataTable
+
                 dtData = rep.GetOtherList("EMPLOYEE_OBJECT", True)
                 FillRadCombobox(cbo_OBJ_EMP_Search, dtData, "NAME", "ID", False)
-                dtData = rep.GetOtherList("EMPLOYEE_OBJECT", True)
-                FillRadCombobox(cbo_OBJ_EMP_updateAll, dtData, "NAME", "ID", False)
                 dtData = rep.GetOtherList("COMPENSATORY_OBJECT", True)
                 FillRadCombobox(cbo_OBJ_CSL_Search, dtData, "NAME", "ID", False)
+
                 dtData = rep.GetOtherList("COMPENSATORY_OBJECT", True)
                 FillRadCombobox(cbo_OBJ_CSL_updateAll, dtData, "NAME", "ID", False)
+                dtData = rep.GetOtherList("EMPLOYEE_OBJECT", True)
+                FillRadCombobox(cbo_OBJ_EMP_updateAll, dtData, "NAME", "ID", False)
+
                 dtData = rep.GetOtherList("WORK_STATUS", True)
-                Dim dr As DataRow = dtData.NewRow
-                dr("NAME") = "Chưa thiết lập trạng thái"
-                dr("ID") = 9999
-                dtData.Rows.Add(dr)
+                Dim dr2 As DataRow = dtData.NewRow
+                dr2("NAME") = "Chưa thiết lập trạng thái"
+                dr2("ID") = 9999
+                dtData.Rows.Add(dr2)
                 FillRadCombobox(cboStatus, dtData, "NAME", "ID", False)
 
             End Using
@@ -326,12 +329,12 @@ Public Class ctrlAT_OBJECT_EMP_CSL
             If cbo_OBJ_EMP_Search.SelectedValue <> "" Then
                 _filter.OBJ_EMP_ID = cbo_OBJ_EMP_Search.SelectedValue
             Else
-                _filter.OBJ_EMP_ID = 0
+                _filter.OBJ_EMP_ID = Nothing
             End If
             If cbo_OBJ_CSL_Search.SelectedValue <> "" Then
                 _filter.OBJ_CSL_ID = cbo_OBJ_CSL_Search.SelectedValue
             Else
-                _filter.OBJ_CSL_ID = 0
+                _filter.OBJ_CSL_ID = Nothing
             End If
             If cboStatus.SelectedValue <> "" Then
                 _filter.WORK_STATUS = cboStatus.SelectedValue
