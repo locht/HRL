@@ -693,7 +693,7 @@ Public Class ctrlHU_Health_Mng
         Dim rep As New Profile.ProfileBusinessRepository
 
         Try
-            Dim configPath As String = ConfigurationManager.AppSettings("PathImportFolder")
+            Dim configPath As String = ConfigurationManager.AppSettings("ReportTemplatesFolder")
             'Dim configPath As String = "D:\acv_19\HistaffWebApp\ReportTemplates"
             Dim dsData As DataTable = rep.EXPORT_HEALTH_MNG()
 
@@ -715,22 +715,22 @@ Public Class ctrlHU_Health_Mng
                                                     ByVal dtVariable As DataTable,
                                                     ByVal filename As String) As Boolean
 
-        Dim filePath As String
-        Dim templatefolder As String
+        'Dim filePath As String
+        'Dim templatefolder As String
 
         Dim designer As WorkbookDesigner
         Try
 
-            templatefolder = ConfigurationManager.AppSettings("ReportTemplatesFolder")
-            filePath = AppDomain.CurrentDomain.BaseDirectory & templatefolder & "\" & sReportFileName
+            'templatefolder = ConfigurationManager.AppSettings("ReportTemplatesFolder")
+            'filePath = AppDomain.CurrentDomain.BaseDirectory & templatefolder & "\" & sReportFileName
 
-            If Not File.Exists(filePath) Then
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "javascriptfunction", "goBack()", True)
-                Return False
-            End If
+            'If Not File.Exists(filePath) Then
+            '    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "javascriptfunction", "goBack()", True)
+            '    Return False
+            'End If
 
             designer = New WorkbookDesigner
-            designer.Open(filePath)
+            designer.Open(sReportFileName)
 
             'designer.SetDataSource(dsData)
 
