@@ -110,14 +110,16 @@ Public Class ctrlPA_Period
             Common.Common.BuildToolbar(Me.MainToolBar,
                                        ToolbarItem.Create,
                                        ToolbarItem.Edit,
+                                       ToolbarItem.Export,
                                        ToolbarItem.Save,
                                        ToolbarItem.Cancel,
                                        ToolbarItem.Active,
                                        ToolbarItem.Deactive,
                                        ToolbarItem.Delete)
+
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
-            CType(MainToolBar.Items(2), RadToolBarButton).CausesValidation = True
+            CType(MainToolBar.Items(3), RadToolBarButton).CausesValidation = True
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -140,11 +142,11 @@ Public Class ctrlPA_Period
             Dim dic As New Dictionary(Of String, Control)
             dic.Add("YEAR", nmrYear)
             dic.Add("PERIOD_NAME", txtPeriodName)
-            'dic.Add("PERIOD_STANDARD1", txtPeriodStanDard)
+            dic.Add("PERIOD_STANDARD", txtPeriodStanDard)
+            dic.Add("REMARK", txtRemark)
             dic.Add("START_DATE", dpStartDate)
             dic.Add("END_DATE", dpEndDate)
-            'dic.Add("BONUS_DATE", dpBonusDate)
-            dic.Add("REMARK", txtRemark)
+            dic.Add("BONUS_DATE", dpBonusDate)
             Utilities.OnClientRowSelectedChanged(rgData, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                             CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -174,13 +176,13 @@ Public Class ctrlPA_Period
                     CType(Me.MainToolBar.Items(2), RadToolBarButton).Enabled = False
                     CType(Me.MainToolBar.Items(3), RadToolBarButton).Enabled = False
                     UpdateCotrolEnabled(False)
-                    ClearControlValue(nmrYear, dpBonusDate, txtPeriodName, txtRemark, dpStartDate, dpEndDate)
+                    ClearControlValue(nmrYear, dpBonusDate, txtPeriodStanDard, txtPeriodName, txtRemark, dpStartDate, dpEndDate)
                 Case CommonMessage.STATE_NEW
                     CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = False
                     CType(Me.MainToolBar.Items(2), RadToolBarButton).Enabled = True
                     CType(Me.MainToolBar.Items(3), RadToolBarButton).Enabled = True
                     UpdateCotrolEnabled(True)
-                    ClearControlValue(nmrYear, dpBonusDate, txtPeriodName, txtRemark, dpStartDate, dpEndDate)
+                    ClearControlValue(nmrYear, dpBonusDate, txtPeriodStanDard, txtPeriodName, txtRemark, dpStartDate, dpEndDate)
                     'txtPeriodStanDard.Value = 26
                     EnabledGridNotPostback(rgData, False)
                 Case CommonMessage.STATE_EDIT
@@ -253,7 +255,7 @@ Public Class ctrlPA_Period
             EnableRadDatePicker(dpEndDate, bCheck)
             EnableRadDatePicker(dpBonusDate, bCheck)
             txtRemark.Enabled = bCheck
-            'txtPeriodStanDard.Enabled = bCheck
+            txtPeriodStanDard.Enabled = bCheck
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -373,12 +375,24 @@ Public Class ctrlPA_Period
                     ctrlMessageBox.ActionName = CommonMessage.ACTION_DEACTIVE
                     ctrlMessageBox.DataBind()
                     ctrlMessageBox.Show()
+                Case CommonMessage.TOOLBARITEM_EXPORT
+                    Dim dtData As DataTable
+                    Using xls As New ExcelCommon
+                        dtData = Me.vPeriod.ToTable()
+                        If dtData.Rows.Count = 0 Then
+                            ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
+                            Exit Sub
+                        ElseIf dtData.Rows.Count > 0 Then
+                            rgData.ExportExcel(Server, Response, dtData, "SetUpSalary")
+                            Exit Sub
+                        End If
+                    End Using
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
                         objPeriod.YEAR = nmrYear.Value
                         objPeriod.MONTH = dpEndDate.SelectedDate.Value.Month
                         objPeriod.PERIOD_NAME = txtPeriodName.Text
-                        'objPeriod.PERIOD_STANDARD = txtPeriodStanDard.Value
+                        objPeriod.PERIOD_STANDARD = txtPeriodStanDard.Value
                         objPeriod.START_DATE = dpStartDate.SelectedDate
                         objPeriod.END_DATE = dpEndDate.SelectedDate
                         objPeriod.BONUS_DATE = dpBonusDate.SelectedDate
@@ -582,7 +596,7 @@ Public Class ctrlPA_Period
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If (CurrentState <> CommonMessage.STATE_NEW And (rgData.SelectedItems.Count = 0 Or rgData.SelectedItems.Count > 1)) Then
-                ClearControlValue(nmrYear, dpBonusDate, txtPeriodName, txtRemark, dpStartDate, dpEndDate)
+                ClearControlValue(nmrYear, dpBonusDate, txtPeriodStanDard, txtPeriodName, txtRemark, dpStartDate, dpEndDate)
             End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                               CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

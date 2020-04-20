@@ -1,7 +1,6 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlPA_Period.ascx.vb"
     Inherits="Payroll.ctrlPA_Period" %>
 <%@ Import Namespace="Common" %>
-
 <link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
@@ -29,10 +28,8 @@
                             </asp:RequiredFieldValidator>
                         </td>
                         <td class="lb">
-                           
                         </td>
                         <td>
-                           
                         </td>
                     </tr>
                     <tr>
@@ -56,8 +53,6 @@
                         <td>
                             <tlk:RadDatePicker ID="dpStartDate" runat="server">
                             </tlk:RadDatePicker>
-                        </td>
-                        <td>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="dpStartDate"
                                 runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập ngày bắt đầu %>" ToolTip="<%$ Translate: Bạn phải nhập ngày bắt đầu %>">
                             </asp:RequiredFieldValidator>
@@ -74,31 +69,30 @@
                             <asp:CompareValidator ID="CompareValidator1" runat="server" ToolTip="<%$ Translate: Ngày bắt đầu phải nhỏ hơn ngày kết thúc %>"
                                 ErrorMessage="<%$ Translate: Ngày bắt đầu phải nhỏ hơn ngày kết thúc %>" Type="Date"
                                 Operator="GreaterThan" ControlToCompare="dpStartDate" ControlToValidate="dpEndDate"></asp:CompareValidator>
-                            
                             <asp:CustomValidator ID="cvalEffedate" runat="server" ErrorMessage="<%$ Translate: Khoảng thời gian của kỳ lương đã tồn tại. %>"
                                 ToolTip="<%$ Translate: Khoảng thời gian của kỳ lương đã tồn tại. %>">
                             </asp:CustomValidator>
                         </td>
                     </tr>
                     <tr>
-                       <%-- <td class="lb">
+                        <td class="lb">
                             <%# Translate("Ngày công chuẩn")%><span class="lbReq">*</span>
                         </td>
                         <td>
                             <tlk:RadNumericTextBox ID="txtPeriodStanDard" runat="server" MinValue="0" MaxValue="31">
-                                <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1" DecimalSeparator="." />
-                        <ClientEvents OnBlur="displayDecimalFormat" OnLoad="displayDecimalFormat" OnValueChanged="displayDecimalFormat" />
+                                <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1"
+                                    DecimalSeparator="." />
+                                <ClientEvents OnBlur="displayDecimalFormat" OnLoad="displayDecimalFormat" OnValueChanged="displayDecimalFormat" />
                             </tlk:RadNumericTextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtPeriodStanDard"
+                                runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập ngày công chuẩn %>"
+                                ToolTip="<%$ Translate: Bạn phải nhập ngày công chuẩn %>">
+                            </asp:RequiredFieldValidator>
+                        </td>
+                        <td class="lb">
+                            <%# Translate("Ngày chi lương")%>
                         </td>
                         <td>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtPeriodStanDard"
-                                runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập ngày công chuẩn %>" ToolTip="<%$ Translate: Bạn phải nhập ngày công chuẩn %>">
-                            </asp:RequiredFieldValidator>
-                        </td>--%>
-                        <td class="lb" style="display:none">
-                            <%# Translate("Ngày chi thưởng")%><span class="lbReq">*</span>
-                        </td>
-                        <td style="display:none">
                             <tlk:RadDatePicker ID="dpBonusDate" runat="server">
                             </tlk:RadDatePicker>
                             <%--<asp:RequiredFieldValidator ID="cvalBonusDate" ControlToValidate="dpBonusDate"
@@ -125,7 +119,7 @@
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Năm %>" DataField="YEAR" SortExpression="YEAR"
-                                UniqueName="YEAR" HeaderStyle-Width="50px"  />
+                                UniqueName="YEAR" HeaderStyle-Width="50px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên kỳ lương %>" DataField="PERIOD_NAME"
                                 SortExpression="PERIOD_NAME" UniqueName="PERIOD_NAME">
                             </tlk:GridBoundColumn>
@@ -139,18 +133,17 @@
                                 <HeaderStyle Width="120px" />
                                 <ItemStyle Width="120px" />
                             </tlk:GridDateTimeColumn>
-                            
-                            <%--   <tlk:GridBoundColumn HeaderText="<%$ Translate:Ngày công chuẩn %>" 
-                        HeaderStyle-Width="110px" DataField="PERIOD_STANDARD1" UniqueName="PERIOD_STANDARD1" SortExpression="PERIOD_STANDARD1" />--%>
-                            <%--<tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày chi thưởng%>" DataField="BONUS_DATE"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate:Ngày công chuẩn %>" HeaderStyle-Width="110px"
+                                DataField="PERIOD_STANDARD" UniqueName="PERIOD_STANDARD" SortExpression="PERIOD_STANDARD" />
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày chi lương%>" DataField="BONUS_DATE"
                                 SortExpression="BONUS_DATE" UniqueName="BONUS_DATE" DataFormatString="{0:dd/MM/yyyy}">
                                 <HeaderStyle Width="120px" />
                                 <ItemStyle Width="120px" />
-                            </tlk:GridDateTimeColumn>--%>
+                            </tlk:GridDateTimeColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
                                 SortExpression="ACTFLG" UniqueName="ACTFLG" HeaderStyle-Width="130px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK"
-                                SortExpression="REMARK" UniqueName="REMARK" HeaderStyle-Width="100px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" SortExpression="REMARK"
+                                UniqueName="REMARK" HeaderStyle-Width="100px" />
                         </Columns>
                     </MasterTableView>
                     <ClientSettings EnableRowHoverStyle="true">

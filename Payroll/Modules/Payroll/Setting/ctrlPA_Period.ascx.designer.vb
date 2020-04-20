@@ -185,6 +185,24 @@ Partial Public Class ctrlPA_Period
     Protected WithEvents cvalEffedate As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
+    '''txtPeriodStanDard control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPeriodStanDard As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''RequiredFieldValidator2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''dpBonusDate control.
     '''</summary>
     '''<remarks>
