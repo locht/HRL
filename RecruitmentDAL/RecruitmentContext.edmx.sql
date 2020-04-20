@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 04/20/2020 11:15:05 AM
+-- Date Created: 04/20/2020 11:43:58 AM
 -- Generated from EDMX file: F:\WORKING\acv_19\RecruitmentDAL\RecruitmentContext.edmx
 -- --------------------------------------------------
 
@@ -1631,7 +1631,13 @@ CREATE TABLE "dbo"."RC_RECRUITMENT_COST" (
    "PRINT_COST" NUMBER(38,3) NULL,
    "OTHER_COST" NUMBER(38,3) NULL,
    "TOTAL_COST" NUMBER(38,3) NULL,
-   "REMARK" NVARCHAR2(255) NULL
+   "REMARK" NVARCHAR2(255) NULL,
+   "CREATED_DATE" DATE NULL,
+   "CREATED_BY" NVARCHAR2(255) NULL,
+   "CREATED_LOG" NVARCHAR2(255) NULL,
+   "MODIFIED_DATE" DATE NULL,
+   "MODIFIED_BY" NVARCHAR2(255) NULL,
+   "MODIFIED_LOG" NVARCHAR2(255) NULL
 );
 
 

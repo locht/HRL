@@ -1815,6 +1815,12 @@
             <Property Name="OTHER_COST" Type="number" Nullable="true" Precision="38" Scale="3" />
             <Property Name="TOTAL_COST" Type="number" Nullable="true" Precision="38" Scale="3" />
             <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
         </EntityType>
     <Association Name="FK_FE_HEH">
         <End Role="HU_EMPLOYEE" Type="RecruitmentModel.Store.HU_EMPLOYEE" Multiplicity="1">
@@ -3994,6 +4000,12 @@
           <Property Type="Decimal" Name="OTHER_COST" Precision="38" Scale="3" />
           <Property Type="Decimal" Name="TOTAL_COST" Precision="38" Scale="3" />
           <Property Type="String" Name="REMARK" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -5753,6 +5765,12 @@
                     <ScalarProperty Name="OTHER_COST" ColumnName="OTHER_COST" />
                     <ScalarProperty Name="TOTAL_COST" ColumnName="TOTAL_COST" />
                     <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -5943,7 +5961,7 @@
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_TRAINNING" Width="1.5" PointX="10.375" PointY="2.75" Height="6.787822265625" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_PLAN_YEAR" Width="1.5" PointX="20.375" PointY="8.75" Height="5.8263151041666674" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_RECRUITMENT_INSTEAD" Width="3.625" PointX="36.625" PointY="3.375" Height="2.7494921874999996" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_RECRUITMENT_COST" Width="1.5" PointX="10.375" PointY="10.75" Height="3.5186979166666674" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_RECRUITMENT_COST" Width="2.125" PointX="10.375" PointY="10.75" Height="4.6725065104166674" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
