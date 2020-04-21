@@ -1385,6 +1385,7 @@ Partial Class RecruitmentRepository
                         From pic2 In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.FOLLOWERS_EMP_ID).DefaultIfEmpty
                         From rec In Context.RC_REQUEST.Where(Function(f) f.ID = p.RC_REQUEST_ID).DefaultIfEmpty
                         From status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS_ID).DefaultIfEmpty
+                        From reason In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.RECRUIT_REASON_ID).DefaultIfEmpty
                         Where p.ID = _filter.ID
                         Select New ProgramDTO With {
                                        .ID = p.ID,
@@ -1400,7 +1401,7 @@ Partial Class RecruitmentRepository
                                        .SEND_DATE = p.SEND_DATE,
                                        .RECRUIT_TYPE_ID = p.RECRUIT_TYPE_ID,
                                        .RECRUIT_REASON_ID = p.RECRUIT_REASON_ID,
-                                       .RECRUIT_REASON = p.RECRUIT_REASON,
+                                       .RECRUIT_REASON = reason.NAME_VN,
                                        .GROUP_WORK_ID = p.GROUP_WORK_ID,
                                        .REQUEST_SALARY_FROM = p.REQUEST_SALARY_FROM,
                                        .PRIORITY_LEVEL_ID = p.PRIORITY_LEVEL_ID,
