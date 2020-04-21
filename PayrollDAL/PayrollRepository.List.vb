@@ -898,7 +898,15 @@ Partial Public Class PayrollRepository
             Throw ex
         End Try
     End Function
+    Public Function CountHoliday(ByVal date1 As Date, ByVal date2 As Date) As Integer
+        Try
+            Dim count = (From p In Context.AT_HOLIDAY
+                         Where p.WORKINGDAY >= date1 And p.WORKINGDAY <= date2).ToList.Count
+            Return count
+        Catch ex As Exception
 
+        End Try
+    End Function
 #End Region
 
 #Region "WORK STANDARD"

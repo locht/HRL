@@ -69,6 +69,7 @@
             <EntitySet Name="PA_SALARY_LEVEL_TYPE" EntityType="PayrollModel.Store.PA_SALARY_LEVEL_TYPE" store:Type="Tables"  />
             <EntitySet Name="PA_SALARY_LEVEL_GROUP" EntityType="PayrollModel.Store.PA_SALARY_LEVEL_GROUP" store:Type="Tables"  />
             <EntitySet Name="PA_SALARY_EXCHANGE_RATE" EntityType="PayrollModel.Store.PA_SALARY_EXCHANGE_RATE" store:Type="Tables"  />
+            <EntitySet Name="AT_HOLIDAY" EntityType="PayrollModel.Store.AT_HOLIDAY" store:Type="Tables"  />
             <AssociationSet Name="FK_PSG_PSL" Association="PayrollModel.Store.FK_PSG_PSL">
                 <End Role="PA_SALARY_GROUP" EntitySet="PA_SALARY_GROUP" />
                 <End Role="PA_SALARY_LEVEL" EntitySet="PA_SALARY_LEVEL" />
@@ -1487,6 +1488,31 @@
             <Property Name="IS_DELETED" Type="number" Nullable="true" Precision="5" />
             <Property Name="FOR_CUR_TYPE_CODE" Type="number" Nullable="true" Precision="38" />
         </EntityType>
+        <EntityType Name="AT_HOLIDAY">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="CODE" Type="nvarchar2" Nullable="false" MaxLength="50" />
+            <Property Name="NAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="NAME_EN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="WORKINGDAY" Type="date" Nullable="true" />
+            <Property Name="NOTE" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+            <Property Name="YEAR" Type="number" Nullable="true" Precision="38" />
+            <Property Name="STATUS" Type="number" Nullable="true" Precision="38" />
+            <Property Name="VALUE" Type="date" Nullable="true" />
+            <Property Name="IS_SA" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_SU" Type="number" Nullable="true" Precision="38" />
+            <Property Name="OFFDAY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TYPE_NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+        </EntityType>
     <Association Name="FK_PSG_PSL">
         <End Role="PA_SALARY_GROUP" Type="PayrollModel.Store.PA_SALARY_GROUP" Multiplicity="1">
         </End>
@@ -1843,6 +1869,7 @@
           <EntitySet Name="PA_SALARY_LEVEL_TYPE" EntityType="PayrollModel.PA_SALARY_LEVEL_TYPE" />
           <EntitySet Name="PA_SALARY_LEVEL_GROUP" EntityType="PayrollModel.PA_SALARY_LEVEL_GROUP" />
           <EntitySet Name="PA_SALARY_EXCHANGE_RATE" EntityType="PayrollModel.PA_SALARY_EXCHANGE_RATE" />
+          <EntitySet Name="AT_HOLIDAY" EntityType="PayrollModel.AT_HOLIDAY" />
           </EntityContainer>
         <EntityType Name="PA_SALARY_GROUP">
           <Key>
@@ -3421,6 +3448,31 @@
           <Property Type="Int16" Name="IS_DELETED" />
           <Property Type="Decimal" Name="FOR_CUR_TYPE_CODE" Precision="38" />
         </EntityType>
+        <EntityType Name="AT_HOLIDAY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="CODE" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NAME_VN" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NAME_EN" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="WORKINGDAY" />
+          <Property Type="String" Name="NOTE" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="YEAR" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="STATUS" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="VALUE" />
+          <Property Type="Decimal" Name="IS_SA" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="IS_SU" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="OFFDAY" Precision="38" Scale="0" />
+          <Property Type="String" Name="TYPE_NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4841,6 +4893,32 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="AT_HOLIDAY">
+            <EntityTypeMapping TypeName="IsTypeOf(PayrollModel.AT_HOLIDAY)">
+                <MappingFragment StoreEntitySet="AT_HOLIDAY">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="CODE" ColumnName="CODE" />
+                    <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+                    <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+                    <ScalarProperty Name="WORKINGDAY" ColumnName="WORKINGDAY" />
+                    <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+                    <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+                    <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                    <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                    <ScalarProperty Name="IS_SA" ColumnName="IS_SA" />
+                    <ScalarProperty Name="IS_SU" ColumnName="IS_SU" />
+                    <ScalarProperty Name="OFFDAY" ColumnName="OFFDAY" />
+                    <ScalarProperty Name="TYPE_NAME" ColumnName="TYPE_NAME" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
     </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -5014,6 +5092,7 @@
         <EntityTypeShape EntityType="PayrollModel.PA_SALARY_LEVEL_TYPE" Width="2.25" PointX="2.625" PointY="23.75" Height="3.7109993489583353" />
         <EntityTypeShape EntityType="PayrollModel.PA_SALARY_LEVEL_GROUP" Width="2.375" PointX="5.375" PointY="23.75" Height="3.7109993489583246" />
         <EntityTypeShape EntityType="PayrollModel.PA_SALARY_EXCHANGE_RATE" Width="2.375" PointX="23.375" PointY="12.75" Height="4.0956022135416674" />
+        <EntityTypeShape EntityType="PayrollModel.AT_HOLIDAY" Width="1.5" PointX="24.375" PointY="0.75" Height="4.8648079427083246" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

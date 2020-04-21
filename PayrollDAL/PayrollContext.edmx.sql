@@ -1,175 +1,19 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 3/17/2020 5:48:11 PM
--- Generated from EDMX file: D:\HiStaffWebApp\acv_19\PayrollDAL\PayrollContext.edmx
+-- Date Created: 04/21/2020 11:51:06 AM
+-- Generated from EDMX file: D:\MyProject2020\ACV1\acv_19\PayrollDAL\PayrollContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- ALTER TABLE "PayrollModelStoreContainer"."PA_SALARY_LEVEL" DROP CONSTRAINT "FK_PSG_PSL" CASCADE;
-
--- ALTER TABLE "PayrollModelStoreContainer"."PA_SALARY_RANK" DROP CONSTRAINT "FK_PSL_PSR" CASCADE;
-
--- ALTER TABLE "PayrollModelStoreContainer"."HU_EMPLOYEE_HEALTH" DROP CONSTRAINT "FK_FE_HEH" CASCADE;
-
--- ALTER TABLE "PayrollModelStoreContainer"."HU_EMPLOYEE_CV" DROP CONSTRAINT "FK_HE_HEC" CASCADE;
-
--- ALTER TABLE "PayrollModelStoreContainer"."HU_EMPLOYEE_EDUCATION" DROP CONSTRAINT "FK_HE_HEE" CASCADE;
-
--- ALTER TABLE "PayrollModelStoreContainer"."HU_EMPLOYEE_FILES" DROP CONSTRAINT "FK_HE_HEF" CASCADE;
-
--- ALTER TABLE "PayrollModelStoreContainer"."HU_EMPLOYEE_OTHER_INFO" DROP CONSTRAINT "FK_HE_HEO" CASCADE;
-
--- ALTER TABLE "PayrollModelStoreContainer"."HU_EMPLOYEE_SALARY" DROP CONSTRAINT "FK_HE_HES" CASCADE;
-
--- ALTER TABLE "PayrollModelStoreContainer"."HU_WORKING" DROP CONSTRAINT "FK_HE_HW" CASCADE;
-
--- ALTER TABLE "PayrollModelStoreContainer"."HU_WORKING" DROP CONSTRAINT "FK_HUDM_HUWK" CASCADE;
-
--- ALTER TABLE "PayrollModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HUEMD_HUEM" CASCADE;
-
--- ALTER TABLE "PayrollModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HUEMI_HUEM" CASCADE;
-
--- ALTER TABLE "PayrollModelStoreContainer"."HU_WORKING" DROP CONSTRAINT "FK_HUIM_HUWK" CASCADE;
-
--- ALTER TABLE "PayrollModelStoreContainer"."OT_OTHER_LIST_TYPE" DROP CONSTRAINT "FK_OOLG_OOLT" CASCADE;
-
--- ALTER TABLE "PayrollModelStoreContainer"."HU_ORGANIZATION" DROP CONSTRAINT "FK_HU_ORG_HU_ORG" CASCADE;
-
--- ALTER TABLE "PayrollModelStoreContainer"."PA_SALARYTYPE_GROUP" DROP CONSTRAINT "FK_SALARYTYPE_FK" CASCADE;
-
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "PayrollModelStoreContainer"."PA_SALARY_GROUP";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_SALARY_LEVEL";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_SALARY_RANK";
-
--- DROP TABLE "PayrollModelStoreContainer"."HU_EMPLOYEE";
-
--- DROP TABLE "PayrollModelStoreContainer"."HU_EMPLOYEE_CV";
-
--- DROP TABLE "PayrollModelStoreContainer"."HU_EMPLOYEE_EDUCATION";
-
--- DROP TABLE "PayrollModelStoreContainer"."HU_EMPLOYEE_FILES";
-
--- DROP TABLE "PayrollModelStoreContainer"."HU_EMPLOYEE_HEALTH";
-
--- DROP TABLE "PayrollModelStoreContainer"."HU_EMPLOYEE_OTHER_INFO";
-
--- DROP TABLE "PayrollModelStoreContainer"."HU_EMPLOYEE_SALARY";
-
--- DROP TABLE "PayrollModelStoreContainer"."HU_EMPLOYEE_TRAIN";
-
--- DROP TABLE "PayrollModelStoreContainer"."HU_WORKING";
-
--- DROP TABLE "PayrollModelStoreContainer"."OT_OTHER_LIST";
-
--- DROP TABLE "PayrollModelStoreContainer"."OT_OTHER_LIST_GROUP";
-
--- DROP TABLE "PayrollModelStoreContainer"."OT_OTHER_LIST_TYPE";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_HOLD_SALARY";
-
--- DROP TABLE "PayrollModelStoreContainer"."HU_ORGANIZATION";
-
--- DROP TABLE "PayrollModelStoreContainer"."SE_CHOSEN_ORG";
-
--- DROP TABLE "PayrollModelStoreContainer"."AT_ORG_PERIOD";
-
--- DROP TABLE "PayrollModelStoreContainer"."SE_CHOSEN_CALCULATE";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_OBJECT_SALARY";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_FORMULER";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_FORMULER_GROUP";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_ORG_LUNCH";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_PRICE_LUNCH";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_PAYMENT_LIST";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_INCENTIVE_RANK";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_INCENTIVE_RANK_DETAIL";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_SALARY_TYPE";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_SALARYTYPE_GROUP";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_COST_CENTER";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_ORGBONUS";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_PAYMENTSOURCES";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_WORKFACTOR";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_WORK_STANDARD";
-
--- DROP TABLE "PayrollModelStoreContainer"."AT_PERIOD";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_LISTSAL";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_LISTSALARIES";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_TAXATION";
-
--- DROP TABLE "PayrollModelStoreContainer"."HU_ALLOWANCE_LIST";
-
--- DROP TABLE "PayrollModelStoreContainer"."HU_ALLOWANCE";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_SEND_PAYSLIP";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_SEND_PAYSLIP_EMP";
-
--- DROP TABLE "PayrollModelStoreContainer"."SE_MAIL";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_BONUS_IMPORT";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_SALARY_FUND_MAPPING";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_SEND_BONUSSLIP";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_SEND_BONUSSLIP_EMP";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_SALARY_FUND";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_SALARY_PLANNING";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_SENIORITY_DAILY";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_SENIORITY_DAILY_TEMP";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_SENIORITY_DETAILS";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_SENIORITY_DETAILS_TEMP";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_SENIORITY_MONTHLY";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_SENIORITY_PROCESS";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_TITLE_COST";
-
--- DROP TABLE "PayrollModelStoreContainer"."HU_TITLE";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_SALE_COMMISION";
-
--- DROP TABLE "PayrollModelStoreContainer"."HUV_ORGANIZATION";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_SALARY_LEVEL_TYPE";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_SALARY_LEVEL_GROUP";
-
--- DROP TABLE "PayrollModelStoreContainer"."PA_SALARY_EXCHANGE_RATE";
+-- DROP TABLE "ACV_19_DEV"."AT_HOLIDAY";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -1463,6 +1307,30 @@ CREATE TABLE "dbo"."PA_SALARY_EXCHANGE_RATE" (
    "FOR_CUR_TYPE_CODE" NUMBER(38,0) NULL
 );
 
+-- Creating table 'AT_HOLIDAY'
+CREATE TABLE "dbo"."AT_HOLIDAY" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "CODE" NVARCHAR2(50) NOT NULL,
+   "NAME_VN" NVARCHAR2(255) NULL,
+   "NAME_EN" NVARCHAR2(255) NULL,
+   "WORKINGDAY" DATE NULL,
+   "NOTE" NVARCHAR2(1023) NULL,
+   "CREATED_DATE" DATE NULL,
+   "CREATED_BY" NVARCHAR2(255) NULL,
+   "CREATED_LOG" NVARCHAR2(255) NULL,
+   "MODIFIED_DATE" DATE NULL,
+   "MODIFIED_BY" NVARCHAR2(255) NULL,
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "ACTFLG" NVARCHAR2(1) NULL,
+   "YEAR" NUMBER(38,0) NULL,
+   "STATUS" NUMBER(38,0) NULL,
+   "VALUE" DATE NULL,
+   "IS_SA" NUMBER(38,0) NULL,
+   "IS_SU" NUMBER(38,0) NULL,
+   "OFFDAY" NUMBER(38,0) NULL,
+   "TYPE_NAME" NVARCHAR2(255) NULL
+);
+
 
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
@@ -1967,6 +1835,14 @@ ADD CONSTRAINT "PK_PA_SALARY_LEVEL_GROUP"
 -- Creating primary key on "ID"in table 'PA_SALARY_EXCHANGE_RATE'
 ALTER TABLE "dbo"."PA_SALARY_EXCHANGE_RATE"
 ADD CONSTRAINT "PK_PA_SALARY_EXCHANGE_RATE"
+   PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'AT_HOLIDAY'
+ALTER TABLE "dbo"."AT_HOLIDAY"
+ADD CONSTRAINT "PK_AT_HOLIDAY"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;

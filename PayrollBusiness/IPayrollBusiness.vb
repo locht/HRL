@@ -197,6 +197,8 @@ Namespace PayrollBusiness.ServiceContracts
         Function ValidateATPeriodDay(ByVal objPeriod As ATPeriodDTO) As Boolean
         <OperationContract()>
         Function ActivePeriod(ByVal lstID As List(Of Decimal), ByVal log As UserLog, ByVal bActive As String) As Boolean
+        <OperationContract()>
+        Function CountHoliday(ByVal date1 As Date, ByVal date2 As Date) As Integer
 #End Region
 #Region "Work Standard"
         <OperationContract()>

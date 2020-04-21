@@ -641,6 +641,16 @@ Partial Public Class PayrollRepository
                 Throw ex
             End Try
         End Using
+    End Function
+    Public Function CountHoliday(ByVal date1 As Date, ByVal date2 As Date) As Integer
+        Using rep As New PayrollBusinessClient
+            Try
+                Return rep.CountHoliday(date1, date2)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
 
     End Function
 #End Region

@@ -329,7 +329,14 @@ Namespace PayrollBusiness.ServiceImplementations
                 Throw ex
             End Try
         End Function
-
+        Public Function CountHoliday(ByVal date1 As Date, ByVal date2 As Date) As Integer Implements ServiceContracts.IPayrollBusiness.CountHoliday
+            Try
+                Dim rep As New PayrollRepository
+                Return rep.CountHoliday(date1, date2)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
 #End Region
 
 #Region "work standard"

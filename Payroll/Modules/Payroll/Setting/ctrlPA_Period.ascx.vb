@@ -662,7 +662,54 @@ Public Class ctrlPA_Period
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
+    'TỰ TÍNH NGÀY CÔNG CHUẨN
 
 #End Region
+
+    Private Sub dpStartDate_SelectedDateChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles dpStartDate.SelectedDateChanged
+        Try
+            If dpStartDate.SelectedDate IsNot Nothing And dpEndDate.SelectedDate IsNot Nothing Then
+                CalDayStanrd()
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub dpEndDate_SelectedDateChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles dpEndDate.SelectedDateChanged
+        Try
+            If dpStartDate.SelectedDate IsNot Nothing And dpEndDate.SelectedDate IsNot Nothing Then
+                CalDayStanrd()
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub CalDayStanrd()
+        Try
+            Dim countHoliday As Decimal = 0
+            Dim countSunday As Decimal = 0
+            Dim selectedFromDate = dpStartDate.SelectedDate
+            Dim selectedToDate = dpEndDate.SelectedDate
+            Dim rep As New PayrollRepository
+            countHoliday = rep.CountHoliday(selectedFromDate, selectedToDate)
+            While selectedFromDate.Value.Date <= selectedToDate.Value.Date
+                Dim d As Date = selectedFromDate
+                If d.DayOfWeek = DayOfWeek.Sunday Then
+                    countSunday += 1
+                End If
+                selectedFromDate = selectedFromDate.Value.AddDays(1)
+            End While
+
+            Dim TTF As New TimeSpan
+            Dim d1 As DateTime = dpStartDate.SelectedDate
+            Dim d2 As DateTime = dpEndDate.SelectedDate
+            TTF = d2.Subtract(d1)
+            txtPeriodStanDard.Value = TTF.TotalDays - countHoliday - countSunday
+        Catch ex As Exception
+
+        End Try
+    End Sub
 
 End Class

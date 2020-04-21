@@ -51,7 +51,7 @@
                             <%# Translate("Ngày bắt đầu")%><span class="lbReq">*</span>
                         </td>
                         <td>
-                            <tlk:RadDatePicker ID="dpStartDate" runat="server">
+                            <tlk:RadDatePicker ID="dpStartDate" runat="server" AutoPostBack="true">
                             </tlk:RadDatePicker>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="dpStartDate"
                                 runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập ngày bắt đầu %>" ToolTip="<%$ Translate: Bạn phải nhập ngày bắt đầu %>">
@@ -61,7 +61,7 @@
                             <%# Translate("Ngày kết thúc")%><span class="lbReq">*</span>
                         </td>
                         <td>
-                            <tlk:RadDatePicker ID="dpEndDate" runat="server">
+                            <tlk:RadDatePicker ID="dpEndDate" runat="server" AutoPostBack="true">
                             </tlk:RadDatePicker>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ControlToValidate="dpEndDate"
                                 runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập ngày kết thúc %>" ToolTip="<%$ Translate: Bạn phải nhập ngày kết thúc %>">
@@ -79,7 +79,8 @@
                             <%# Translate("Ngày công chuẩn")%><span class="lbReq">*</span>
                         </td>
                         <td>
-                            <tlk:RadNumericTextBox ID="txtPeriodStanDard" runat="server" MinValue="0" MaxValue="31">
+                            <tlk:RadNumericTextBox ID="txtPeriodStanDard" ReadOnly="true" runat="server" MinValue="0"
+                                MaxValue="31">
                                 <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1"
                                     DecimalSeparator="." />
                                 <ClientEvents OnBlur="displayDecimalFormat" OnLoad="displayDecimalFormat" OnValueChanged="displayDecimalFormat" />
