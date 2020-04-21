@@ -268,7 +268,7 @@ Partial Public Class ProfileBusinessRepository
     Public Function INPORT_DISCIPLINE(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
         Using rep As New ProfileBusinessClient
             Try
-                Return rep.INPORT_DISCIPLINE(P_DOCXML, P_USER)
+                Return rep.INPORT_DISCIPLINE(P_DOCXML, Me.Log.Username)
             Catch ex As Exception
                 rep.Abort()
                 Throw ex
