@@ -176,6 +176,15 @@ Partial Public Class ctrlRC_Exams
     Protected WithEvents rntxtExamsOrder As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
+    '''RequiredFieldValidator1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''txtGhichu control.
     '''</summary>
     '''<remarks>

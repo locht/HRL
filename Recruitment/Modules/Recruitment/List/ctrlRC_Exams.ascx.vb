@@ -164,14 +164,14 @@ Public Class ctrlRC_Exams
                     rntxtExamsOrder.Value = Nothing
                     rntxtPointLadder.Value = Nothing
                     rntxtPointPass.Value = Nothing
-                    chkIsPV.Checked = False
+                    chkIsPV.Checked = True
                     hidID.Value = ""
                 Case CommonMessage.TOOLBARITEM_EDIT
                     CurrentState = CommonMessage.STATE_EDIT
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
                         If txtName.Text = "" Then
-                            ShowMessage(Translate("Bạn phải nhập Tên môn thi"), Utilities.NotifyType.Warning)
+                            ShowMessage(Translate("Bạn phải nhập Tên vòng phỏng vấn"), Utilities.NotifyType.Warning)
                             Exit Sub
                         End If
                         'If rntxtPointLadder.Value Is Nothing Then
@@ -239,6 +239,7 @@ Public Class ctrlRC_Exams
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     CurrentState = CommonMessage.STATE_NORMAL
                     txtName.Text = ""
+                    chkIsPV.Checked = False
                     rntxtExamsOrder.Value = Nothing
                     rntxtPointLadder.Value = Nothing
                     rntxtPointPass.Value = Nothing

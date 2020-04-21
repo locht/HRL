@@ -13,7 +13,7 @@
                 <tlk:RadToolBar ID="tbarMain" runat="server" OnClientButtonClicking="clientButtonClicking" />
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane3" runat="server" Height="180px" Scrolling="None">
-                <table  class="table-form">
+                <table class="table-form">
                     <tr>
                         <td class="lb">
                             <%# Translate("Phòng ban")%>
@@ -41,41 +41,42 @@
                     </tr>
                     <tr>
                         <td class="lb">
-                            <%# Translate("Tên môn thi")%><span class="lbReq">*</span>
+                            <%# Translate("Tên vòng phỏng vấn")%><span class="lbReq">*</span>
                         </td>
                         <td>
                             <tlk:RadTextBox ID="txtName" runat="server">
                             </tlk:RadTextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="txtName"  Enabled="false"
-                                runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Tên môn thi %>" ToolTip="<%$ Translate: Bạn phải nhập Tên môn thi %>"> 
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="txtName"
+                                Enabled="false" runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Tên vòng phỏng vấn %>"
+                                ToolTip="<%$ Translate: Bạn phải nhập Tên vòng phỏng vấn %>"> 
                             </asp:RequiredFieldValidator>
                         </td>
-                        <td class="lb">
+                        <td class="lb" style="display: none">
                             <%# Translate("Thang điểm")%><%--<span class="lbReq">*</span>--%>
                         </td>
-                        <td>
+                        <td style="display: none">
                             <tlk:RadNumericTextBox ID="rntxtPointLadder" runat="server" SkinID="number">
                             </tlk:RadNumericTextBox>
                             <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="rntxtPointLadder"  Enabled="false"
                                 runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Thang điểm %>" ToolTip="<%$ Translate: Bạn phải nhập Thang điểm %>"> 
                             </asp:RequiredFieldValidator>--%>
                         </td>
-                        <td class="lb">
+                        <td class="lb" style="display: none">
                             <%# Translate("Hệ số")%><%--<span class="lbReq">*</span>--%>
                         </td>
                         <td>
                             <tlk:RadTextBox ID="txtHeso" runat="server">
                             </tlk:RadTextBox>
-                           <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="txtHeso"  Enabled="false"
+                            <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="txtHeso"  Enabled="false"
                                 runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Hệ số %>" ToolTip="<%$ Translate: Bạn phải nhập Hệ số %>"> 
                             </asp:RequiredFieldValidator>--%>
                         </td>
                     </tr>
                     <tr>
-                        <td class="lb">
+                        <td class="lb" style="display: none">
                             <%# Translate("Điểm đạt")%><%--<span class="lbReq">*</span>--%>
                         </td>
-                        <td>
+                        <td style="display: none">
                             <tlk:RadNumericTextBox ID="rntxtPointPass" runat="server" SkinID="number">
                             </tlk:RadNumericTextBox>
                             <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rntxtPointPass"  Enabled="false"
@@ -83,11 +84,15 @@
                             </asp:RequiredFieldValidator>--%>
                         </td>
                         <td class="lb">
-                            <%# Translate("Thứ tự môn thi/pv")%>
+                            <%# Translate("Thứ tự môn thi/pv")%><span class="lbReq">*</span>
                         </td>
                         <td>
                             <tlk:RadNumericTextBox ID="rntxtExamsOrder" runat="server" SkinID="number">
                             </tlk:RadNumericTextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rntxtExamsOrder"
+                                runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Thứ tự môn thi/pv %>"
+                                ToolTip="<%$ Translate: Bạn phải nhập Thứ tự môn thi/pv %>"> 
+                            </asp:RequiredFieldValidator>
                         </td>
                         <td class="lb">
                             <%# Translate("Ghi chú")%>
@@ -101,8 +106,10 @@
                         <td>
                         </td>
                         <td>
-                            <tlk:RadButton ButtonType="ToggleButton" ToggleType="CheckBox" runat="server" ID="chkIsPV" Text="<%$ Translate: Phỏng vấn? %>" >
-                            </tlk:RadButton> <%--CausesValidation="false" OnClick="chkIsPV_Click"--%>
+                            <tlk:RadButton ButtonType="ToggleButton" ToggleType="CheckBox" runat="server" ID="chkIsPV"
+                                Text="<%$ Translate: Phỏng vấn? %>">
+                            </tlk:RadButton>
+                            <%--CausesValidation="false" OnClick="chkIsPV_Click"--%>
                         </td>
                     </tr>
                 </table>
@@ -115,18 +122,18 @@
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên môn thi %>" DataField="NAME"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên vòng phỏng vấn %>" DataField="NAME"
                                 SortExpression="NAME" UniqueName="NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Hệ số %>" DataField="COEFFICIENT"
+                           <%-- <tlk:GridBoundColumn HeaderText="<%$ Translate: Hệ số %>" DataField="COEFFICIENT"
                                 SortExpression="COEFFICIENT" UniqueName="COEFFICIENT" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Thang điểm %>" DataField="POINT_LADDER"
                                 SortExpression="POINT_LADDER" UniqueName="POINT_LADDER" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Điểm đạt %>" DataField="POINT_PASS"
-                                SortExpression="POINT_PASS" UniqueName="POINT_PASS" />
+                                SortExpression="POINT_PASS" UniqueName="POINT_PASS" />--%>
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Thứ tự môn thi/pv %>" DataField="EXAMS_ORDER"
                                 SortExpression="EXAMS_ORDER" UniqueName="EXAMS_ORDER" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="NOTE"
-                                SortExpression="NOTE" UniqueName="NOTE" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="NOTE" SortExpression="NOTE"
+                                UniqueName="NOTE" />
                             <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Phỏng vấn? %>" DataField="IS_PV"
                                 UniqueName="IS_PV" SortExpression="IS_PV" ShowFilterIcon="true" />
                         </Columns>

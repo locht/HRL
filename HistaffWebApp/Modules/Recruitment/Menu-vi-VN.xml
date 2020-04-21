@@ -15,7 +15,7 @@
 
     <Item Text="Danh mục"  PostBack="False">
       <Group>
-        <Item Value="ctrlRC_Exams" Text="Khai báo môn thi tuyển" PostBack="True" NavigateUrl="Default.aspx?mid=Recruitment&amp;fid=ctrlRC_Exams&amp;group=List" CheckPermission="true"/>
+        <Item Value="ctrlRC_Exams" Text="Khai báo vòng phỏng vấn" PostBack="True" NavigateUrl="Default.aspx?mid=Recruitment&amp;fid=ctrlRC_Exams&amp;group=List" CheckPermission="true"/>
         <Item Value="ctrlOtherList" Text="Tham số hệ thống" PostBack="True" NavigateUrl="Default.aspx?mid=Recruitment&amp;fid=ctrlOtherList&amp;group=List" CheckPermission="true"/>
       </Group>
     </Item>
