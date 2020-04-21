@@ -111,7 +111,14 @@ Public Class ctrlHU_WageMng
             ViewState(Me.ID & "_IsUpdate") = value
         End Set
     End Property
-
+    Property dtDataAll As DataTable
+        Get
+            Return ViewState(Me.ID & "_dtDataAll")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_dtDataAll") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
@@ -509,10 +516,9 @@ Public Class ctrlHU_WageMng
         Dim fileName As String
         Dim dsDataPrepare As New DataSet
         Dim workbook As Aspose.Cells.Workbook
-        Dim worksheet As Aspose.Cells.Worksheet
-        Dim dtDataALL As DataTable
+        Dim worksheet As Aspose.Cells.Worksheet       
         Using rep As New ProfileRepository
-            dtDataALL = rep.GetHU_AllowanceList()          
+            dtDataAll = rep.GetHU_AllowanceList()
         End Using
         Try
             Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
@@ -549,17 +555,31 @@ Public Class ctrlHU_WageMng
                 newRow("EXRATE_NAME") = rows("EXRATE_NAME")
                 newRow("SAL_RATE") = If(rows("SAL_RATE") <> "", Decimal.Parse(rows("SAL_RATE")), rows("SAL_RATE"))
 
-                For Each item As DataRow In dtDataALL.Rows
-                    newRow("AMOUNT") += If(IsNumeric(rows("AMOUNT_" + item("ID").ToString)), Decimal.Parse(rows("AMOUNT_" + item("ID").ToString)), 0).ToString + (",")
-                    
-                    newRow("AMOUNT_EX") += If(IsNumeric(rows("AMOUNT_EX_" + item("ID").ToString)), Decimal.Parse(rows("AMOUNT_EX_" + item("ID").ToString)), 0).ToString + (",")
+                For Each item As DataRow In dtDataAll.Rows
+                    newRow("AMOUNT") += If(IsNumeric(rows("AMOUNT_" + item("ID").ToString)), Decimal.Parse(rows("AMOUNT_" + item("ID").ToString)), "NOTHING").ToString + (",")
+                    newRow("AMOUNT_EX") += If(IsNumeric(rows("AMOUNT_EX_" + item("ID").ToString)), Decimal.Parse(rows("AMOUNT_EX_" + item("ID").ToString)), "NOTHING").ToString + (",")
                     newRow("ALLOWANCE_LIST_ID") += If(IsNumeric(item("ID").ToString), Decimal.Parse(item("ID").ToString), 0).ToString + (",")
                 Next
-                newRow("AMOUNT") = newRow("AMOUNT").ToString.TrimEnd(",")
-                newRow("AMOUNT_EX") = newRow("AMOUNT_EX").ToString.TrimEnd(",")
-                newRow("ALLOWANCE_LIST_ID") = newRow("ALLOWANCE_LIST_ID").ToString.TrimEnd(",")
 
-                newRow("ALLOWANCE_TOTAL") = If(rows("ALLOWANCE_TOTAL") <> "", Decimal.Parse(rows("ALLOWANCE_TOTAL")), rows("ALLOWANCE_TOTAL"))
+                newRow("AMOUNT") = newRow("AMOUNT").ToString.TrimEnd(",")
+                If newRow("AMOUNT").ToString.Trim.ToUpper.Contains("NOTHING") Then
+                    Continue For
+                Else
+                    newRow("AMOUNT") = newRow("AMOUNT")
+                End If
+
+                newRow("AMOUNT_EX") = newRow("AMOUNT_EX").ToString.TrimEnd(",")
+                If newRow("AMOUNT_EX").ToString.Trim.ToUpper.Contains("NOTHING") Then
+                    Continue For
+                Else
+                    newRow("AMOUNT_EX") = newRow("AMOUNT_EX")
+                End If
+
+                newRow("ALLOWANCE_LIST_ID") = newRow("ALLOWANCE_LIST_ID").ToString.TrimEnd(",")
+                newRow("ALLOWANCE_TOTAL") = If(rows("ALLOWANCE_TOTAL") <> "", Decimal.Parse(rows("ALLOWANCE_TOTAL")), "NOTHING")
+                If newRow("ALLOWANCE_TOTAL").ToString.Trim.ToUpper.Contains("NOTHING") Then
+                    Continue For
+                End If
                 newRow("SAL_INS") = If(rows("SAL_INS") <> "", Decimal.Parse(rows("SAL_INS")), rows("SAL_INS"))
                 newRow("REASON_EDIT_EFDATE") = rows("REASON_EDIT_EFDATE")
                 newRow("SIGN_NAME") = rows("SIGN_NAME")
@@ -576,7 +596,7 @@ Public Class ctrlHU_WageMng
                 newRow("SAL_RANK_ID") = rows("SAL_RANK_ID")
                 newRow("EXRATE_ID") = rows("EXRATE_ID")
                 'newRow("STATUS_ID") = If(IsNumeric(rows("STATUS_ID")), rows("STATUS_ID"), 0)
-                newRow("SIGN_ID") = rows("SIGN_ID")
+                newRow("SIGN_ID") = If(rows("SIGN_ID") <> "", Decimal.Parse(rows("SIGN_ID")), 0)
                 dtData.Rows.Add(newRow)
             Next
             dtData.TableName = "DATA"
@@ -702,7 +722,7 @@ Public Class ctrlHU_WageMng
             Dim rep As New ProfileBusinessRepository
             Dim IBusiness As IProfileBusiness = New ProfileBusinessClient()
             Dim empId As Integer
-            For Each row As DataRow In dtData.Rows
+            For Each row As DataRow In dtData.Rows              
                 rowError = dtError.NewRow
                 isError = False
                 'sError = "Chưa nhập mã nhân viên"

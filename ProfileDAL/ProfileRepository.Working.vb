@@ -988,6 +988,8 @@ Partial Class ProfileRepository
             'thêm vào giao chi tiết HSL 
             Dim query = From p In Context.HU_WORKING
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
+                        From e_sign In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.SIGN_ID).DefaultIfEmpty
+                        From sign_t In Context.HU_TITLE.Where(Function(f) f.ID = e_sign.TITLE_ID And f.IS_SIGN = -1).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID).DefaultIfEmpty
                         From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
                         From sale_commision In Context.PA_SALE_COMMISION.Where(Function(f) f.ID = p.SALE_COMMISION_ID).DefaultIfEmpty
@@ -1049,8 +1051,8 @@ Partial Class ProfileRepository
                              .SAL_RANK_NAME = sal_rank.RANK,
                              .SIGN_DATE = p.SIGN_DATE,
                              .SIGN_ID = p.SIGN_ID,
-                             .SIGN_NAME = p.SIGN_NAME,
-                             .SIGN_TITLE = p.SIGN_TITLE,
+                             .SIGN_NAME = e_sign.FULLNAME_VN,
+                             .SIGN_TITLE = sign_t.NAME_VN,
                              .TITLE_ID = If(p.TITLE_ID Is Nothing, 0, p.TITLE_ID),
                              .TITLE_NAME = t.NAME_VN,
                              .TITLE_GROUP_ID = t.TITLE_GROUP_ID,
