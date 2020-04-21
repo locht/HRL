@@ -2066,7 +2066,7 @@ Partial Class ProfileRepository
         Dim objEmp As HU_EMPLOYEE
         Dim result As Integer
         Try
-            objEmp = (From p In Context.HU_EMPLOYEE Where p.EMPLOYEE_CODE = empCode.Replace(" ", "")).SingleOrDefault
+            objEmp = (From p In Context.HU_EMPLOYEE Where p.EMPLOYEE_CODE = empCode.Replace(" ", "") Or p.WORK_STATUS = 257).SingleOrDefault
             If objEmp IsNot Nothing Then
                 result = objEmp.ID
             Else

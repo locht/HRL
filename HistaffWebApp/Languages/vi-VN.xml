@@ -23705,7 +23705,7 @@ Xin cám ơn!
       <string>CTRLPA_LISTSALARIES</string>
     </Key>
     <Value>
-      <string>Danh mục khoản lương theo nhóm lương</string>
+      <string>Danh mục cấu phần lương</string>
     </Value>
   </Item>
   <Item>
@@ -45092,6 +45092,30 @@ Xin cám ơn!
     </Key>
     <Value>
       <string>Tên vòng phỏng vấn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NHÓM KÝ HIỆU LƯƠNG KHÔNG TỒN TẠI HOẶC ĐÃ NGỪNG ÁP DỤNG.</string>
+    </Key>
+    <Value>
+      <string>Nhóm ký hiệu lương không tồn tại hoặc đã ngừng áp dụng.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MÃ CẤU PHẦN LƯƠNG</string>
+    </Key>
+    <Value>
+      <string>Mã cấu phần lương</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>DANH MỤC KHOẢN LƯƠNG THEO NHÓM LƯƠNG</string>
+    </Key>
+    <Value>
+      <string>Danh mục khoản lương theo nhóm lương</string>
     </Value>
   </Item>
 </SerializableDictionaryOfStringString>
