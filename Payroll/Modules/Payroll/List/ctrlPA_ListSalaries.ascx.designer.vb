@@ -158,15 +158,6 @@ Partial Public Class ctrlPA_ListSalaries
     Protected WithEvents txtRemark As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''chkIS_SumDay control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents chkIS_SumDay As Global.Telerik.Web.UI.RadButton
-
-    '''<summary>
     '''chkIS_WorkArising control.
     '''</summary>
     '''<remarks>
@@ -183,15 +174,6 @@ Partial Public Class ctrlPA_ListSalaries
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents chkIS_SumArising As Global.Telerik.Web.UI.RadButton
-
-    '''<summary>
-    '''chkIS_Payback control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents chkIS_Payback As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
     '''chkIS_VISIBLE control.

@@ -35,7 +35,7 @@
         <table class="table-form">
             <tr>
                 <td class="lb">
-                    <%# Translate("Đối tượng lương")%>
+                    <%# Translate("Nhóm lương")%>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboOBJ_SALARY" runat="server" SkinID="dDropdownList" AutoPostBack="false">
@@ -67,7 +67,7 @@
                     </asp:CustomValidator>
                 </td>
                 <td class="lb">
-                    <%# Translate("Mã danh mục lương")%>
+                    <%# Translate("Mã cấu phần lương")%>
                 </td>
                 <td>
                     <%-- <tlk:RadTextBox ID="txtCOL_NAME" runat="server" ReadOnly="true">
@@ -103,7 +103,7 @@
                         <Items>
                             <tlk:RadComboBoxItem Value="1" Text="Kiểu số" />
                             <tlk:RadComboBoxItem Value="0" Text="Kiểu chữ" />
-                            <tlk:RadComboBoxItem Value="2" Text="Kiểu ngày" />
+                            <%--<tlk:RadComboBoxItem Value="2" Text="Kiểu ngày" />--%>
                         </Items>
                     </tlk:RadComboBox>
                 </td>
@@ -152,18 +152,18 @@
                 </td>
                 <td colspan="5">
                     </tlk:RadButton>
-                    <tlk:RadButton ID="chkIS_SumDay" AutoPostBack="false" ToggleType="CheckBox" ButtonType="ToggleButton"
+                    <%--<tlk:RadButton ID="chkIS_SumDay" AutoPostBack="false" ToggleType="CheckBox" ButtonType="ToggleButton"
                         runat="server" Text="Mapping Quỹ lương/Thưởng" CausesValidation="False">
-                    </tlk:RadButton>
+                    </tlk:RadButton>--%>
                     <tlk:RadButton ID="chkIS_WorkArising" AutoPostBack="false" ToggleType="CheckBox"
                         ButtonType="ToggleButton" runat="server" Text="Công thức theo biến động" CausesValidation="False">
                     </tlk:RadButton>
                     <tlk:RadButton ID="chkIS_SumArising" AutoPostBack="false" ToggleType="CheckBox" ButtonType="ToggleButton"
                         runat="server" Text="Tổng theo biến động" CausesValidation="False">
                     </tlk:RadButton>
-                    <tlk:RadButton ID="chkIS_Payback" AutoPostBack="false" ToggleType="CheckBox" ButtonType="ToggleButton"
+                    <%--<tlk:RadButton ID="chkIS_Payback" AutoPostBack="false" ToggleType="CheckBox" ButtonType="ToggleButton"
                         runat="server" Text="Payback" CausesValidation="False">
-                    </tlk:RadButton>
+                    </tlk:RadButton>--%>
                     <tlk:RadButton ID="chkIS_VISIBLE" AutoPostBack="false" ToggleType="CheckBox" ButtonType="ToggleButton"
                         runat="server" Text="Hiển thị trong bảng lương">
                     </tlk:RadButton>
@@ -199,16 +199,16 @@
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã danh mục lương %>" DataField="COL_NAME"
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã cấu phần lương %>" DataField="COL_NAME"
                         SortExpression="COL_NAME" UniqueName="COL_NAME" HeaderStyle-Width="100px"/>
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên tiếng việt %>" DataField="NAME_VN"
                         SortExpression="NAME_VN" UniqueName="NAME_VN" HeaderStyle-Width="180px" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Nhóm công thức %>" DataField="OBJ_SAL_NAME"
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Nhóm lương %>" DataField="OBJ_SAL_NAME"
                         SortExpression="OBJ_SAL_NAME" UniqueName="OBJ_SAL_NAME" HeaderStyle-Width="180px" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Nhóm danh mục lương %>" DataField="GROUP_TYPE_NAME"
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Nhóm ký hiệu lương %>" DataField="GROUP_TYPE_NAME"
                         SortExpression="GROUP_TYPE_NAME" UniqueName="GROUP_TYPE_NAME" HeaderStyle-Width="120px" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Kiểu dữ liệu %>" DataField="DATA_TYPE"
-                        SortExpression="DATA_TYPE" UniqueName="DATA_TYPE" Display="False" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Kiểu dữ liệu %>" DataField="DATA_TYPE_NAME"
+                        SortExpression="DATA_TYPE_NAME" UniqueName="DATA_TYPE_NAME"  HeaderStyle-Width="70px"  />
                     <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECTIVE_DATE"
                         UniqueName="EFFECTIVE_DATE" SortExpression="EFFECTIVE_DATE"
                         HeaderStyle-Width="120px" DataFormatString="{0:dd/MM/yyyy}">

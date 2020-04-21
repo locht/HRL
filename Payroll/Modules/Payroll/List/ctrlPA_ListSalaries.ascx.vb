@@ -138,6 +138,8 @@ Public Class ctrlPA_ListSalaries
 
         Try
             If Not IsPostBack Then
+                ClearControlValue(cboDATA_TYPE, txtNAME_VN, nmCOL_INDEX, chkIS_VISIBLE, chkIS_IMPORT, txtRemark, chkIS_WorkArising, chkIS_SumArising, dtpEffect, cboGROUP_TYPE, cboFIELD)
+
                 CurrentState = CommonMessage.STATE_NORMAL
                 Refresh()
             End If
@@ -200,8 +202,8 @@ Public Class ctrlPA_ListSalaries
             dic.Add("IS_IMPORT", chkIS_IMPORT)
             dic.Add("IS_WORKARISING", chkIS_WorkArising)
             dic.Add("IS_SUMARISING", chkIS_SumArising)
-            dic.Add("IS_PAYBACK", chkIS_Payback)
-            dic.Add("IS_SUMDAY", chkIS_SumDay)
+            'dic.Add("IS_PAYBACK", chkIS_Payback)
+            'dic.Add("IS_SUMDAY", chkIS_SumDay)
             dic.Add("REMARK", txtRemark)
             dic.Add("EFFECTIVE_DATE", dtpEffect)
 
@@ -290,13 +292,13 @@ Public Class ctrlPA_ListSalaries
                     EnabledGridNotPostback(rgData, True)
                     cboFIELD.AutoPostBack = False
                     cboFIELD.Text = ""
-                    EnableControlAll(False, cboDATA_TYPE, txtNAME_VN, nmCOL_INDEX, chkIS_VISIBLE, chkIS_IMPORT, txtRemark, chkIS_Payback, chkIS_SumDay, chkIS_WorkArising, chkIS_SumArising, dtpEffect, cboGROUP_TYPE, cboFIELD)
+                    EnableControlAll(False, cboDATA_TYPE, txtNAME_VN, nmCOL_INDEX, chkIS_VISIBLE, chkIS_IMPORT, txtRemark, chkIS_WorkArising, chkIS_SumArising, dtpEffect, cboGROUP_TYPE, cboFIELD)
                     rgData.Rebind()
 
                     chkIS_IMPORT.Checked = False
-                    chkIS_Payback.Checked = False
+                    'chkIS_Payback.Checked = False
                     chkIS_SumArising.Checked = False
-                    chkIS_SumDay.Checked = False
+                    'chkIS_SumDay.Checked = False
                     chkIS_VISIBLE.Checked = False
                     chkIS_WorkArising.Checked = False
                     cboFIELD.Items.Clear()
@@ -305,19 +307,19 @@ Public Class ctrlPA_ListSalaries
                     rgData.Rebind()
                     EnabledGridNotPostback(rgData, False)
                     cboFIELD.AutoPostBack = True
-                    EnableControlAll(True, cboDATA_TYPE, txtNAME_VN, nmCOL_INDEX, chkIS_VISIBLE, chkIS_IMPORT, txtRemark, chkIS_Payback, chkIS_SumDay, chkIS_WorkArising, chkIS_SumArising, dtpEffect, cboGROUP_TYPE, cboFIELD)
-                    ClearControlValue(cboDATA_TYPE, txtNAME_VN, nmCOL_INDEX, chkIS_VISIBLE, chkIS_IMPORT, txtRemark, chkIS_Payback, chkIS_SumDay, chkIS_WorkArising, chkIS_SumArising, chkIS_Payback, dtpEffect, cboGROUP_TYPE, cboFIELD)
+                    EnableControlAll(True, cboDATA_TYPE, txtNAME_VN, nmCOL_INDEX, chkIS_VISIBLE, chkIS_IMPORT, txtRemark, chkIS_WorkArising, chkIS_SumArising, dtpEffect, cboGROUP_TYPE, cboFIELD)
+                    ClearControlValue(cboDATA_TYPE, txtNAME_VN, nmCOL_INDEX, chkIS_VISIBLE, chkIS_IMPORT, txtRemark, chkIS_WorkArising, chkIS_SumArising, dtpEffect, cboGROUP_TYPE, cboFIELD)
                     ExcuteScript("Clear", "clRadDatePicker()")
 
                 Case CommonMessage.STATE_EDIT
                     EnabledGridNotPostback(rgData, False)                    
-                    EnableControlAll(True, cboDATA_TYPE, txtNAME_VN, nmCOL_INDEX, chkIS_VISIBLE, chkIS_IMPORT, txtRemark, chkIS_Payback, chkIS_SumDay, chkIS_WorkArising, chkIS_SumArising, dtpEffect, cboGROUP_TYPE, cboFIELD)
+                    EnableControlAll(True, cboDATA_TYPE, txtNAME_VN, nmCOL_INDEX, chkIS_VISIBLE, chkIS_IMPORT, txtRemark, chkIS_WorkArising, chkIS_SumArising, dtpEffect, cboGROUP_TYPE, cboFIELD)
                     GetField()
 
                 Case CommonMessage.STATE_DEACTIVE, CommonMessage.STATE_ACTIVE, CommonMessage.STATE_DELETE
                     EnabledGridNotPostback(rgData, True)
-                    EnableControlAll(False, cboDATA_TYPE, txtNAME_VN, nmCOL_INDEX, chkIS_VISIBLE, chkIS_IMPORT, txtRemark, chkIS_Payback, chkIS_SumDay, chkIS_WorkArising, chkIS_SumArising, dtpEffect, cboGROUP_TYPE, cboFIELD)
-                    ClearControlValue(cboDATA_TYPE, txtNAME_VN, nmCOL_INDEX, chkIS_VISIBLE, chkIS_IMPORT, txtRemark, chkIS_Payback, chkIS_SumDay, chkIS_WorkArising, chkIS_SumArising, dtpEffect, cboGROUP_TYPE, cboFIELD)
+                    EnableControlAll(False, cboDATA_TYPE, txtNAME_VN, nmCOL_INDEX, chkIS_VISIBLE, chkIS_IMPORT, txtRemark, chkIS_WorkArising, chkIS_SumArising, dtpEffect, cboGROUP_TYPE, cboFIELD)
+                    ClearControlValue(cboDATA_TYPE, txtNAME_VN, nmCOL_INDEX, chkIS_VISIBLE, chkIS_IMPORT, txtRemark, chkIS_WorkArising, chkIS_SumArising, dtpEffect, cboGROUP_TYPE, cboFIELD)
             End Select
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -424,10 +426,10 @@ Public Class ctrlPA_ListSalaries
                             objdata.IS_IMPORT = chkIS_IMPORT.Checked
                             objdata.IS_CALCULATE = Nothing
                             objdata.IS_WORKDAY = Nothing
-                            objdata.IS_SUMDAY = chkIS_SumDay.Checked
+                            'objdata.IS_SUMDAY = chkIS_SumDay.Checked
                             objdata.IS_WORKARISING = chkIS_WorkArising.Checked
                             objdata.IS_SUMARISING = chkIS_SumArising.Checked
-                            objdata.IS_PAYBACK = chkIS_Payback.Checked
+                            'objdata.IS_PAYBACK = chkIS_Payback.Checked
 
                             objdata.GROUP_TYPE_ID = If(String.IsNullOrEmpty(cboGROUP_TYPE.SelectedValue), Nothing, ValueGroupType)
                             objdata.OBJ_SAL_ID = If(String.IsNullOrEmpty(cboOBJ_SALARY.SelectedValue), Nothing, ValueObjSalary)
@@ -451,6 +453,8 @@ Public Class ctrlPA_ListSalaries
 
                                 If rep.InsertListSalaries(objdata, gID) Then
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                                    ClearControlValue(cboDATA_TYPE, txtNAME_VN, nmCOL_INDEX, chkIS_VISIBLE, chkIS_IMPORT, txtRemark, chkIS_WorkArising, chkIS_SumArising, dtpEffect, cboGROUP_TYPE, cboFIELD)
+
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
                                 End If
@@ -470,7 +474,9 @@ Public Class ctrlPA_ListSalaries
 
                                 objdata.ID = hidID.Value
                                 If rep.ModifyListSalaries(objdata, gID) Then
-                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)                                    
+                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                                    ClearControlValue(cboDATA_TYPE, txtNAME_VN, nmCOL_INDEX, chkIS_VISIBLE, chkIS_IMPORT, txtRemark, chkIS_WorkArising, chkIS_SumArising, dtpEffect, cboGROUP_TYPE, cboFIELD)
+
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
                                 End If
@@ -484,7 +490,7 @@ Public Class ctrlPA_ListSalaries
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     CurrentState = CommonMessage.STATE_NORMAL
                     ExcuteScript("Clear", "clRadDatePicker()")
-                    ClearControlValue(cboDATA_TYPE, txtNAME_VN, nmCOL_INDEX, chkIS_VISIBLE, chkIS_IMPORT, txtRemark, chkIS_Payback, chkIS_SumDay, chkIS_WorkArising, chkIS_SumArising, chkIS_Payback, dtpEffect, cboGROUP_TYPE, cboFIELD)
+                    ClearControlValue(cboDATA_TYPE, txtNAME_VN, nmCOL_INDEX, chkIS_VISIBLE, chkIS_IMPORT, txtRemark, chkIS_WorkArising, chkIS_SumArising, dtpEffect, cboGROUP_TYPE, cboFIELD)
                     cboFIELD.ClearSelection()
                     cboFIELD.Items.Clear()
             End Select

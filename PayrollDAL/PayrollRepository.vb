@@ -114,14 +114,23 @@ Public Class PayrollRepository
                          }).ToList
             End If
             'Danh sách các đối tượng lương(bảng lương)
+            'If cbxData.GET_OBJECT_PAYMENT Then
+            '    cbxData.LIST_OBJECT_PAYMENT = (From p In Context.PA_OBJECT_SALARY
+            '                                 Where p.ACTFLG = "A" Order By p.CREATED_DATE Descending
+            '             Select New PAObjectSalaryDTO With {
+            '                 .ID = p.ID,
+            '                 .CODE = p.CODE,
+            '                 .NAME_VN = p.NAME_VN,
+            '                 .NAME_EN = p.NAME_EN
+            '             }).ToList
+            'End If
             If cbxData.GET_OBJECT_PAYMENT Then
-                cbxData.LIST_OBJECT_PAYMENT = (From p In Context.PA_OBJECT_SALARY
+                cbxData.LIST_OBJECT_PAYMENT = (From p In Context.PA_SALARY_TYPE
                                              Where p.ACTFLG = "A" Order By p.CREATED_DATE Descending
                          Select New PAObjectSalaryDTO With {
                              .ID = p.ID,
                              .CODE = p.CODE,
-                             .NAME_VN = p.NAME_VN,
-                             .NAME_EN = p.NAME_EN
+                             .NAME_VN = p.NAME
                          }).ToList
             End If
             ''''''''''''''''''''''

@@ -1379,13 +1379,14 @@ Partial Public Class PayrollRepository
                                         ByRef Total As Integer,
                                         Optional ByVal Sorts As String = "COL_INDEX ASC") As List(Of PAListSalariesDTO)
         Try
+            'From sal_obj In Context.PA_OBJECT_SALARY.Where(Function(sal) sal.ID = p.OBJ_SAL_ID).DefaultIfEmpty()
             Dim lst = (From p In Context.PA_LISTSALARIES
                         From o In Context.OT_OTHER_LIST.Where(Function(o) o.ID = p.TYPE_PAYMENT).DefaultIfEmpty()
                         From ot In Context.OT_OTHER_LIST_TYPE.Where(Function(ot) ot.ID = o.TYPE_ID).DefaultIfEmpty()
                         From import In Context.OT_OTHER_LIST.Where(Function(e) e.ID = p.IMPORT_TYPE_ID).DefaultIfEmpty()
                         From ot_import In Context.OT_OTHER_LIST_TYPE.Where(Function(e) e.ID = import.TYPE_ID).DefaultIfEmpty()
                         From sal_type In Context.OT_OTHER_LIST.Where(Function(sty) sty.ID = p.GROUP_TYPE).DefaultIfEmpty()
-                        From sal_obj In Context.PA_OBJECT_SALARY.Where(Function(sal) sal.ID = p.OBJ_SAL_ID).DefaultIfEmpty()
+                        From sal_obj In Context.PA_SALARY_TYPE.Where(Function(sal) sal.ID = p.OBJ_SAL_ID).DefaultIfEmpty()
                         Where p.IS_DELETED = _filter.IS_DELETED
            Select New PAListSalariesDTO With {
                                         .ID = p.ID,
@@ -1394,6 +1395,7 @@ Partial Public Class PayrollRepository
                                         .NAME_VN = p.NAME_VN,
                                         .NAME_EN = p.NAME_EN,
                                         .DATA_TYPE = p.DATA_TYPE,
+                                        .DATA_TYPE_NAME = If(p.DATA_TYPE = 0, "Kiểu chữ", "Kiểu số"),
                                         .COL_INDEX = p.COL_INDEX,
                                         .STATUS = If(p.STATUS = "A", "Áp dụng", "Ngừng áp dụng"),
                                         .IS_VISIBLE = p.IS_VISIBLE,
@@ -1414,9 +1416,9 @@ Partial Public Class PayrollRepository
                                         .REMARK = p.REMARK,
                                         .IMPORT_TYPE_NAME = import.NAME_VN,
                                         .OBJ_SAL_ID = p.OBJ_SAL_ID,
-                                        .OBJ_SAL_NAME = sal_obj.NAME_VN,
+                                        .OBJ_SAL_NAME = sal_obj.NAME,
                                         .GROUP_TYPE_ID = p.GROUP_TYPE,
-                                        .GROUP_TYPE_NAME = sal_type.NAME_VN
+            .GROUP_TYPE_NAME = sal_type.NAME_VN
                                     })
 
             If _filter.COL_NAME <> "" Then

@@ -6,6 +6,7 @@
     Public Property NAME_VN As String
     Public Property NAME_EN As String
     Public Property DATA_TYPE As Decimal?
+    Public Property DATA_TYPE_NAME As String
     Public Property COL_INDEX As Decimal?
     Public Property INPUT_FORMULER As String
     Public Property STATUS As String

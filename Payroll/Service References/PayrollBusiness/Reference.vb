@@ -1749,6 +1749,9 @@ Namespace PayrollBusiness
         Private DATA_TYPEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DATA_TYPE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EFFECTIVE_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -1932,6 +1935,19 @@ Namespace PayrollBusiness
                 If (Me.DATA_TYPEField.Equals(value) <> true) Then
                     Me.DATA_TYPEField = value
                     Me.RaisePropertyChanged("DATA_TYPE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DATA_TYPE_NAME() As String
+            Get
+                Return Me.DATA_TYPE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.DATA_TYPE_NAMEField, value) <> true) Then
+                    Me.DATA_TYPE_NAMEField = value
+                    Me.RaisePropertyChanged("DATA_TYPE_NAME")
                 End If
             End Set
         End Property
