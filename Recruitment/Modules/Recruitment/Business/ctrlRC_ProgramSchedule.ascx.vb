@@ -57,20 +57,18 @@ Public Class ctrlRC_ProgramSchedule
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Try
-            If Not IsPostBack Then
-                Dim rep As New RecruitmentRepository
-                Dim objPro = rep.GetProgramByID(New ProgramDTO With {.ID = Decimal.Parse(hidProgramID.Value)})
-                lblOrgName.Text = objPro.ORG_NAME
-                hidOrg.Value = objPro.ORG_ID
-                lblTitle.Text = objPro.TITLE_NAME
-                hidTitle.Value = objPro.TITLE_ID
-                lblSendDate.Text = objPro.SEND_DATE
-                lblRequestNo.Text = objPro.REQUEST_NUMBER
-                lblCode.Text = objPro.CODE
-                lblJobName.Text = objPro.JOB_NAME
-                lblCandidate.Text = objPro.CANDIDATE_COUNT
-                lblCanReceivedCount.Text = objPro.CANDIDATE_RECEIVED
-            End If
+            Dim rep As New RecruitmentRepository
+            Dim objPro = rep.GetProgramByID(New ProgramDTO With {.ID = Decimal.Parse(hidProgramID.Value)})
+            lblOrgName.Text = objPro.ORG_NAME
+            hidOrg.Value = objPro.ORG_ID
+            lblTitle.Text = objPro.TITLE_NAME
+            hidTitle.Value = objPro.TITLE_ID
+            lblSendDate.Text = objPro.SEND_DATE
+            lblRequestNo.Text = objPro.REQUEST_NUMBER
+            lblCode.Text = objPro.CODE
+            lblJobName.Text = objPro.JOB_NAME
+            lblCandidate.Text = objPro.CANDIDATE_COUNT
+            lblCanReceivedCount.Text = objPro.CANDIDATE_RECEIVED
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try

@@ -24,7 +24,7 @@
                         <tr>
                             <td colspan="6">
                                 <b>
-                                    <%# Translate("Thông tin lịch phỏng vấn/thi tuyển ")%>
+                                    <%# Translate("Thông tin chương trình tuyển dụng ")%>
                                 </b>
                                 <hr />
                             </td>

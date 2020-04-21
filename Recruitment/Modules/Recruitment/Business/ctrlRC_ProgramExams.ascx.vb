@@ -134,11 +134,11 @@ Public Class ctrlRC_ProgramExams
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Dim rep As New RecruitmentRepository
         Try
+            hidProgramID.Value = Request.Params("PROGRAM_ID")
+            Dim obj = rep.GetProgramByID(New ProgramDTO With {.ID = Decimal.Parse(hidProgramID.Value)})
+            lblOrgName.Text = obj.ORG_NAME
+            lblTitleName.Text = obj.TITLE_NAME
             If Not IsPostBack Then
-                hidProgramID.Value = Request.Params("PROGRAM_ID")
-                Dim obj = rep.GetProgramByID(New ProgramDTO With {.ID = Decimal.Parse(hidProgramID.Value)})
-                lblOrgName.Text = obj.ORG_NAME
-                lblTitleName.Text = obj.TITLE_NAME
                 CurrentState = CommonMessage.STATE_NORMAL
             Else
                 Select Case Message
