@@ -690,23 +690,20 @@ Public Class ctrlPA_Period
         Try
             Dim countHoliday As Decimal = 0
             Dim countSunday As Decimal = 0
+            Dim sumDay As Decimal = 0
             Dim selectedFromDate = dpStartDate.SelectedDate
             Dim selectedToDate = dpEndDate.SelectedDate
             Dim rep As New PayrollRepository
-            countHoliday = rep.CountHoliday(selectedFromDate, selectedToDate)
+            countHoliday = rep.CountHoliday(dpStartDate.SelectedDate, dpEndDate.SelectedDate)
             While selectedFromDate.Value.Date <= selectedToDate.Value.Date
                 Dim d As Date = selectedFromDate
                 If d.DayOfWeek = DayOfWeek.Sunday Then
                     countSunday += 1
                 End If
+                sumDay += 1
                 selectedFromDate = selectedFromDate.Value.AddDays(1)
             End While
-
-            Dim TTF As New TimeSpan
-            Dim d1 As DateTime = dpStartDate.SelectedDate
-            Dim d2 As DateTime = dpEndDate.SelectedDate
-            TTF = d2.Subtract(d1)
-            txtPeriodStanDard.Value = TTF.TotalDays - countHoliday - countSunday
+            txtPeriodStanDard.Value = sumDay - countHoliday - countSunday
         Catch ex As Exception
 
         End Try
