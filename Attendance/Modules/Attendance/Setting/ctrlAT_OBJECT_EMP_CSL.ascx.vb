@@ -219,8 +219,8 @@ Public Class ctrlAT_OBJECT_EMP_CSL
                             Dim obj As New AT_ObjectEmpployeeCompensatoryDTO
                             With obj
                                 .ID = item.GetDataKeyValue("ID")
-                                .OBJ_EMP_ID = cbo_OBJ_EMP_ID.SelectedValue
-                                .OBJ_CSL_ID = cbo_OBJ_CSL_ID.SelectedValue
+                                .OBJ_EMP_ID = If(cbo_OBJ_EMP_ID.SelectedValue <> "", Decimal.Parse(cbo_OBJ_EMP_ID.SelectedValue), Nothing)
+                                .OBJ_CSL_ID = If(cbo_OBJ_CSL_ID.SelectedValue <> "", Decimal.Parse(cbo_OBJ_CSL_ID.SelectedValue), Nothing)
                             End With
                             lst.Add(obj)
                         End If
@@ -243,13 +243,19 @@ Public Class ctrlAT_OBJECT_EMP_CSL
                     End If
                     Dim lst As New List(Of AT_ObjectEmpployeeCompensatoryDTO)
                     Dim objEdit As New AT_ObjectEmpployeeCompensatoryDTO
-                    objEdit.OBJ_EMP_ID = cbo_OBJ_EMP_updateAll.SelectedValue
-                    objEdit.OBJ_CSL_ID = cbo_OBJ_CSL_updateAll.SelectedValue
-                    For Each item As GridDataItem In rgData.SelectedItems
-                        objEdit.LIST_ID &= "|" & item.GetDataKeyValue("ID").ToString() & "|"
+                    objEdit.OBJ_EMP_ID = If(cbo_OBJ_EMP_updateAll.SelectedValue <> "", Decimal.Parse(cbo_OBJ_EMP_updateAll.SelectedValue), Nothing)
+                    objEdit.OBJ_CSL_ID = If(cbo_OBJ_CSL_updateAll.SelectedValue <> "", Decimal.Parse(cbo_OBJ_CSL_updateAll.SelectedValue), Nothing)
+                    For Each item As GridDataItem In rgData.SelectedItems()
+                        Dim obj As New AT_ObjectEmpployeeCompensatoryDTO
+                        With obj
+                            .ID = item.GetDataKeyValue("ID")
+                            .OBJ_EMP_ID = If(objEdit.OBJ_EMP_ID <> 0, objEdit.OBJ_EMP_ID, If(item.GetDataKeyValue("OBJ_EMP_ID") <> 0, item.GetDataKeyValue("OBJ_EMP_ID"), 0))
+                            .OBJ_CSL_ID = If(objEdit.OBJ_CSL_ID <> 0, objEdit.OBJ_CSL_ID, If(item.GetDataKeyValue("OBJ_CSL_ID") <> 0, item.GetDataKeyValue("OBJ_CSL_ID"), 0))
+                        End With
+                        lst.Add(obj)
                     Next
                     Using repUpdate As New AttendanceRepository
-                        If repUpdate.Update_ObjectEandC(lst, objEdit, "Update_ObjectEandC_All") Then
+                        If repUpdate.Update_ObjectEandC(lst, objEdit, "Update_ObjectEandC_EachOne") Then
                             CurrentState = CommonMessage.STATE_NORMAL
                             For Each item As GridDataItem In rgData.MasterTableView.Items
                                 item.Edit = False
@@ -287,8 +293,8 @@ Public Class ctrlAT_OBJECT_EMP_CSL
                     Dim dtData As DataTable
                     dtData = rep.GetOtherList("EMPLOYEE_OBJECT")
                     FillRadCombobox(cbo_OBJ_EMP_NAME, dtData, "NAME", "ID", False)
-                    If edit.GetDataKeyValue("OBJ_EMP_NAME") IsNot Nothing Then
-                        cbo_OBJ_EMP_NAME.SelectedValue = edit.GetDataKeyValue("OBJ_EMP_NAME")
+                    If edit.GetDataKeyValue("OBJ_EMP_ID") IsNot Nothing Then
+                        cbo_OBJ_EMP_NAME.SelectedValue = edit.GetDataKeyValue("OBJ_EMP_ID")
                     End If
                 End Using
             End If
@@ -298,8 +304,8 @@ Public Class ctrlAT_OBJECT_EMP_CSL
                 Using rep As New ProfileRepository
                     dtData = rep.GetOtherList("COMPENSATORY_OBJECT", False)
                     FillRadCombobox(cbo_OBJ_CSL_NAME, dtData, "NAME", "ID", False)
-                    If edit.GetDataKeyValue("OBJ_CSL_NAME") IsNot Nothing Then
-                        cbo_OBJ_CSL_NAME.SelectedValue = edit.GetDataKeyValue("OBJ_CSL_NAME")
+                    If edit.GetDataKeyValue("OBJ_CSL_ID") IsNot Nothing Then
+                        cbo_OBJ_CSL_NAME.SelectedValue = edit.GetDataKeyValue("OBJ_CSL_ID")
                     End If
                 End Using
             End If

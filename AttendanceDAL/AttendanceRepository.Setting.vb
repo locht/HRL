@@ -164,13 +164,15 @@ Partial Public Class AttendanceRepository
                 Next
             End If
             If code_func = "Update_ObjectEandC_All" Then
-                Using cls As New DataAccess.QueryData
-                    obj = New With {.P_EMP_ID = objEdit.LIST_ID,
-                                    .P_OBJ_EMP_ID = objEdit.OBJ_EMP_ID,
-                                    .P_OBJ_COM_ID = objEdit.OBJ_CSL_ID,
-                                    .P_OUT = cls.OUT_NUMBER}
-                    cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.UPDATE_OBJECT_EMPLOYEE_COMPENSATORY", obj)
-                End Using
+                For Each item In list
+                    Using cls As New DataAccess.QueryData
+                        obj = New With {.P_EMP_ID = "|" + item.ID.ToString + "|",
+                                        .P_OBJ_EMP_ID = item.OBJ_EMP_ID,
+                                        .P_OBJ_COM_ID = item.OBJ_CSL_ID,
+                                        .P_OUT = cls.OUT_NUMBER}
+                        cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.UPDATE_OBJECT_EMPLOYEE_COMPENSATORY", obj)
+                    End Using
+                Next
             End If
             Return True
         Catch ex As Exception
