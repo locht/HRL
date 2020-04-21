@@ -44774,4 +44774,300 @@ Xin cám ơn!
       <string>Thông tin chi phí tuyển dụng</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLHU_SAFELABORMNG</string>
+    </Key>
+    <Value>
+      <string>Quản lý tai nạn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MÃ VỤ TAI NẠN</string>
+    </Key>
+    <Value>
+      <string>Mã vụ tai nạn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TÊN VỤ TAI BẠN</string>
+    </Key>
+    <Value>
+      <string>Tên vụ tai bạn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY XẢY RA TẠI NẠN</string>
+    </Key>
+    <Value>
+      <string>Ngày xảy ra tại nạn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THỜI GIAN XẢY RA</string>
+    </Key>
+    <Value>
+      <string>Thời gian xảy ra</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LOẠI TAI NẠN</string>
+    </Key>
+    <Value>
+      <string>Loại tai nạn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NƠI XẢY RA TAI NẠN</string>
+    </Key>
+    <Value>
+      <string>Nơi xảy ra tai nạn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUẢN LÝ TAI NẠN LAO ĐỘNG</string>
+    </Key>
+    <Value>
+      <string>Quản lý tai nạn lao động</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLHU_TRANNINGFOREIGN</string>
+    </Key>
+    <Value>
+      <string>Quản lý công tác</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY ĐI</string>
+    </Key>
+    <Value>
+      <string>Ngày đi</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY VỀ</string>
+    </Key>
+    <Value>
+      <string>Ngày về</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CHI NHÁNH / KHỐI</string>
+    </Key>
+    <Value>
+      <string>Chi nhánh / Khối</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHÒNG</string>
+    </Key>
+    <Value>
+      <string>Phòng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BAN</string>
+    </Key>
+    <Value>
+      <string>Ban</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LOẠI CÔNG TÁC</string>
+    </Key>
+    <Value>
+      <string>Loại công tác</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NƠI ĐI</string>
+    </Key>
+    <Value>
+      <string>Nơi đi</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NƠI ĐẾN</string>
+    </Key>
+    <Value>
+      <string>Nơi đến</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LOẠI VISA</string>
+    </Key>
+    <Value>
+      <string>Loại visa</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ VISA</string>
+    </Key>
+    <Value>
+      <string>Số visa</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CHI PHÍ XIN VISA</string>
+    </Key>
+    <Value>
+      <string>Chi phí xin visa</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ NGÀY Ở LẠI</string>
+    </Key>
+    <Value>
+      <string>Số ngày ở lại</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CHI PHÍ TIẾP KHÁCH</string>
+    </Key>
+    <Value>
+      <string>Chi phí tiếp khách</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CÔNG TÁC PHÍ</string>
+    </Key>
+    <Value>
+      <string>Công tác phí</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUẢN LÝ CÔNG TÁC</string>
+    </Key>
+    <Value>
+      <string>Quản lý công tác</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLHU_TRAININGFOREIGNNEWEDIT</string>
+    </Key>
+    <Value>
+      <string>Quản lý công tác</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY ĐI CÔNG TÁC</string>
+    </Key>
+    <Value>
+      <string>Ngày đi công tác</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUẢN LÝ CÔNG TÁC THÊM MỚI</string>
+    </Key>
+    <Value>
+      <string>Quản lý công tác thêm mới</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN ĐI CÔNG TÁC</string>
+    </Key>
+    <Value>
+      <string>Thông tin đi công tác</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLHU_SAFELABORMNGNEWEDIT</string>
+    </Key>
+    <Value>
+      <string>Quản lý tai nạn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP MÃ VỤ TAI NẠN</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập mã vụ tai nạn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP TÊN VỤ TAI NẠN</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập Tên vụ tai nạn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN PHÒNG BAN</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn Phòng ban</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THỜI GIAN XẢY RA TAI NẠN</string>
+    </Key>
+    <Value>
+      <string>Thời gian xảy ra tai nạn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN LOẠI TAI NẠN</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn Loại tai nạn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN NGUYÊN NHÂN TAI NẠN</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn Nguyên nhân tai nạn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGUYÊN NHÂN CHI TIẾT TAI NẠN</string>
+    </Key>
+    <Value>
+      <string>Nguyên nhân chi tiết tai nạn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN CHI TIẾT TAI NẠN LAO ĐỘNG</string>
+    </Key>
+    <Value>
+      <string>Thông tin chi tiết tai nạn lao động</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
