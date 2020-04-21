@@ -704,6 +704,24 @@ Namespace RecruitmentBusiness.ServiceContracts
         <OperationContract()>
         Function OrgAndTitle(ByVal org_id As Decimal, ByVal title_id As Decimal) As CandidateDTO
 #End Region
+
+#Region "COST"
+        <OperationContract()>
+        Function GetRCCost(ByVal _filter As RecruitmentCostDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer, ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                        Optional ByVal log As UserLog = Nothing) As List(Of RecruitmentCostDTO)
+        <OperationContract()>
+        Function DeleteRecruitCost(ByVal lstID As List(Of Decimal)) As Boolean
+        <OperationContract()>
+        Function ModifyRecruitCost(ByVal objRcCost As RecruitmentCostDTO, Optional ByVal log As UserLog = Nothing) As Boolean
+        <OperationContract()>
+        Function InsertRecruitCost(ByVal objRcCost As RecruitmentCostDTO, Optional ByVal log As UserLog = Nothing) As Boolean
+        <OperationContract()>
+        Function GetRcCostByID(ByVal obj As RecruitmentCostDTO) As RecruitmentCostDTO
+
+#End Region
         <OperationContract()>
         Function ImportCandidateCV(ByVal lst As List(Of CandidateImportDTO)) As Boolean
     End Interface

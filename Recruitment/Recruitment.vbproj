@@ -61,6 +61,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ref\Aspose.Cells.dll</HintPath>
     </Reference>
+    <Reference Include="Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ref\Ionic.Zip.dll</HintPath>
@@ -187,6 +188,9 @@
     <None Include="Service References\RecruitmentBusiness\Recruitment.RecruitmentBusiness.ProgramScheduleDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\RecruitmentBusiness\Recruitment.RecruitmentBusiness.RecruitmentCostDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\RecruitmentBusiness\Recruitment.RecruitmentBusiness.RequestDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -221,6 +225,8 @@
     <Content Include="Modules\Common\ctrlMessageBox.ascx" />
     <Content Include="Modules\Common\ctrlOrganization.ascx" />
     <Content Include="Modules\Common\ctrlUpload.ascx" />
+    <Content Include="Modules\Recruitment\Business\ctrlRC_RecruitmentCostNewEdit.ascx" />
+    <Content Include="Modules\Recruitment\Business\ctrlRC_RecruitmentCost.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_ProgramDeclare.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_ImportCV.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_PlanYear.ascx" />
@@ -295,6 +301,20 @@
     <Compile Include="BusinessObjects\PROGRAM_SCHEDULE_CAN_DTO.vb" />
     <Compile Include="BusinessObjects\RC_CANDIDATE_TRAINNING_DTO.vb" />
     <Compile Include="Modules\Recruitment\ATConstant.vb" />
+    <Compile Include="Modules\Recruitment\Business\ctrlRC_RecruitmentCostNewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlRC_RecruitmentCostNewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Recruitment\Business\ctrlRC_RecruitmentCostNewEdit.ascx.vb">
+      <DependentUpon>ctrlRC_RecruitmentCostNewEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Recruitment\Business\ctrlRC_RecruitmentCost.ascx.designer.vb">
+      <DependentUpon>ctrlRC_RecruitmentCost.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Recruitment\Business\ctrlRC_RecruitmentCost.ascx.vb">
+      <DependentUpon>ctrlRC_RecruitmentCost.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Modules\Recruitment\Business\ctrlRC_ProgramDeclare.ascx.designer.vb">
       <DependentUpon>ctrlRC_ProgramDeclare.ascx</DependentUpon>
     </Compile>

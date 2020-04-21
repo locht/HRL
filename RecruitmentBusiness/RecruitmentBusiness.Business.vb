@@ -952,6 +952,52 @@ Namespace RecruitmentBusiness.ServiceImplementations
             End Try
         End Function
 
+
+        Public Function GetRCCost(ByVal _filter As RecruitmentCostDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer, ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                        Optional ByVal log As UserLog = Nothing) As List(Of RecruitmentCostDTO) Implements ServiceContracts.IRecruitmentBusiness.GetRCCost
+            Try
+                Return RecruitmentRepositoryStatic.Instance.GetRCCost(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+
+        Public Function InsertRecruitCost(ByVal objRcCost As RecruitmentCostDTO, Optional ByVal log As UserLog = Nothing) As Boolean Implements ServiceContracts.IRecruitmentBusiness.InsertRecruitCost
+            Try
+                Return RecruitmentRepositoryStatic.Instance.InsertRecruitCost(objRcCost, log)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+
+        Public Function ModifyRecruitCost(ByVal objRcCost As RecruitmentCostDTO, Optional ByVal log As UserLog = Nothing) As Boolean Implements ServiceContracts.IRecruitmentBusiness.ModifyRecruitCost
+            Try
+                Return RecruitmentRepositoryStatic.Instance.ModifyRecruitCost(objRcCost, log)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+
+        Public Function DeleteRecruitCost(ByVal lstID As List(Of Decimal)) As Boolean Implements ServiceContracts.IRecruitmentBusiness.DeleteRecruitCost
+            Try
+                Return RecruitmentRepositoryStatic.Instance.DeleteRecruitCost(lstID)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+
+        Public Function GetRcCostByID(ByVal obj As RecruitmentCostDTO) As RecruitmentCostDTO Implements ServiceContracts.IRecruitmentBusiness.GetRcCostByID
+            Try
+                Return RecruitmentRepositoryStatic.Instance.GetRcCostByID(obj)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+
+
 #End Region
 
 #Region "CV Pool"

@@ -8257,6 +8257,468 @@ Namespace RecruitmentBusiness
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="RecruitmentCostDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/RecruitmentDAL"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class RecruitmentCostDTO
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_BYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private HEADHUNT_COSTField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private JOIN_COSTField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_BYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MONTHField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OTHER_COSTField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PRINT_COSTField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RC_TOOL_COSTField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RC_TRADEMARKField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RECRUIT_COSTField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private REMARKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TOTAL_COSTField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private YEARField As System.Nullable(Of Decimal)
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_BY() As String
+            Get
+                Return Me.CREATED_BYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CREATED_BYField, value) <> true) Then
+                    Me.CREATED_BYField = value
+                    Me.RaisePropertyChanged("CREATED_BY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.CREATED_DATEField
+            End Get
+            Set
+                If (Me.CREATED_DATEField.Equals(value) <> true) Then
+                    Me.CREATED_DATEField = value
+                    Me.RaisePropertyChanged("CREATED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_LOG() As String
+            Get
+                Return Me.CREATED_LOGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CREATED_LOGField, value) <> true) Then
+                    Me.CREATED_LOGField = value
+                    Me.RaisePropertyChanged("CREATED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property HEADHUNT_COST() As System.Nullable(Of Decimal)
+            Get
+                Return Me.HEADHUNT_COSTField
+            End Get
+            Set
+                If (Me.HEADHUNT_COSTField.Equals(value) <> true) Then
+                    Me.HEADHUNT_COSTField = value
+                    Me.RaisePropertyChanged("HEADHUNT_COST")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID() As Decimal
+            Get
+                Return Me.IDField
+            End Get
+            Set
+                If (Me.IDField.Equals(value) <> true) Then
+                    Me.IDField = value
+                    Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property JOIN_COST() As System.Nullable(Of Decimal)
+            Get
+                Return Me.JOIN_COSTField
+            End Get
+            Set
+                If (Me.JOIN_COSTField.Equals(value) <> true) Then
+                    Me.JOIN_COSTField = value
+                    Me.RaisePropertyChanged("JOIN_COST")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_BY() As String
+            Get
+                Return Me.MODIFIED_BYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MODIFIED_BYField, value) <> true) Then
+                    Me.MODIFIED_BYField = value
+                    Me.RaisePropertyChanged("MODIFIED_BY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.MODIFIED_DATEField
+            End Get
+            Set
+                If (Me.MODIFIED_DATEField.Equals(value) <> true) Then
+                    Me.MODIFIED_DATEField = value
+                    Me.RaisePropertyChanged("MODIFIED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_LOG() As String
+            Get
+                Return Me.MODIFIED_LOGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MODIFIED_LOGField, value) <> true) Then
+                    Me.MODIFIED_LOGField = value
+                    Me.RaisePropertyChanged("MODIFIED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MONTH() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MONTHField
+            End Get
+            Set
+                If (Me.MONTHField.Equals(value) <> true) Then
+                    Me.MONTHField = value
+                    Me.RaisePropertyChanged("MONTH")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ORG_IDField
+            End Get
+            Set
+                If (Me.ORG_IDField.Equals(value) <> true) Then
+                    Me.ORG_IDField = value
+                    Me.RaisePropertyChanged("ORG_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_NAME() As String
+            Get
+                Return Me.ORG_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ORG_NAMEField, value) <> true) Then
+                    Me.ORG_NAMEField = value
+                    Me.RaisePropertyChanged("ORG_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OTHER_COST() As System.Nullable(Of Decimal)
+            Get
+                Return Me.OTHER_COSTField
+            End Get
+            Set
+                If (Me.OTHER_COSTField.Equals(value) <> true) Then
+                    Me.OTHER_COSTField = value
+                    Me.RaisePropertyChanged("OTHER_COST")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PRINT_COST() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PRINT_COSTField
+            End Get
+            Set
+                If (Me.PRINT_COSTField.Equals(value) <> true) Then
+                    Me.PRINT_COSTField = value
+                    Me.RaisePropertyChanged("PRINT_COST")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RC_TOOL_COST() As System.Nullable(Of Decimal)
+            Get
+                Return Me.RC_TOOL_COSTField
+            End Get
+            Set
+                If (Me.RC_TOOL_COSTField.Equals(value) <> true) Then
+                    Me.RC_TOOL_COSTField = value
+                    Me.RaisePropertyChanged("RC_TOOL_COST")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RC_TRADEMARK() As System.Nullable(Of Decimal)
+            Get
+                Return Me.RC_TRADEMARKField
+            End Get
+            Set
+                If (Me.RC_TRADEMARKField.Equals(value) <> true) Then
+                    Me.RC_TRADEMARKField = value
+                    Me.RaisePropertyChanged("RC_TRADEMARK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RECRUIT_COST() As System.Nullable(Of Decimal)
+            Get
+                Return Me.RECRUIT_COSTField
+            End Get
+            Set
+                If (Me.RECRUIT_COSTField.Equals(value) <> true) Then
+                    Me.RECRUIT_COSTField = value
+                    Me.RaisePropertyChanged("RECRUIT_COST")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property REMARK() As String
+            Get
+                Return Me.REMARKField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.REMARKField, value) <> true) Then
+                    Me.REMARKField = value
+                    Me.RaisePropertyChanged("REMARK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TOTAL_COST() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TOTAL_COSTField
+            End Get
+            Set
+                If (Me.TOTAL_COSTField.Equals(value) <> true) Then
+                    Me.TOTAL_COSTField = value
+                    Me.RaisePropertyChanged("TOTAL_COST")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property YEAR() As System.Nullable(Of Decimal)
+            Get
+                Return Me.YEARField
+            End Get
+            Set
+                If (Me.YEARField.Equals(value) <> true) Then
+                    Me.YEARField = value
+                    Me.RaisePropertyChanged("YEAR")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="ParamDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/RecruitmentDAL"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class ParamDTO
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_DISSOLVEField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private STATUSField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TITLE_IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private YEARField As Decimal
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_DISSOLVE() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_DISSOLVEField
+            End Get
+            Set
+                If (Me.IS_DISSOLVEField.Equals(value) <> true) Then
+                    Me.IS_DISSOLVEField = value
+                    Me.RaisePropertyChanged("IS_DISSOLVE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_ID() As Decimal
+            Get
+                Return Me.ORG_IDField
+            End Get
+            Set
+                If (Me.ORG_IDField.Equals(value) <> true) Then
+                    Me.ORG_IDField = value
+                    Me.RaisePropertyChanged("ORG_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property STATUS() As Decimal
+            Get
+                Return Me.STATUSField
+            End Get
+            Set
+                If (Me.STATUSField.Equals(value) <> true) Then
+                    Me.STATUSField = value
+                    Me.RaisePropertyChanged("STATUS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TITLE_ID() As Decimal
+            Get
+                Return Me.TITLE_IDField
+            End Get
+            Set
+                If (Me.TITLE_IDField.Equals(value) <> true) Then
+                    Me.TITLE_IDField = value
+                    Me.RaisePropertyChanged("TITLE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property YEAR() As Decimal
+            Get
+                Return Me.YEARField
+            End Get
+            Set
+                If (Me.YEARField.Equals(value) <> true) Then
+                    Me.YEARField = value
+                    Me.RaisePropertyChanged("YEAR")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
      System.Runtime.Serialization.DataContractAttribute(Name:="CandidateImportDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/RecruitmentDAL"),  _
      System.SerializableAttribute()>  _
     Partial Public Class CandidateImportDTO
@@ -13274,117 +13736,6 @@ Namespace RecruitmentBusiness
                 If (Object.ReferenceEquals(Me.TITLE_NAMEField, value) <> true) Then
                     Me.TITLE_NAMEField = value
                     Me.RaisePropertyChanged("TITLE_NAME")
-                End If
-            End Set
-        End Property
-        
-        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-        
-        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
-            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
-            If (Not (propertyChanged) Is Nothing) Then
-                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
-            End If
-        End Sub
-    End Class
-    
-    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
-     System.Runtime.Serialization.DataContractAttribute(Name:="ParamDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/RecruitmentDAL"),  _
-     System.SerializableAttribute()>  _
-    Partial Public Class ParamDTO
-        Inherits Object
-        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
-        
-        <System.NonSerializedAttribute()>  _
-        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IS_DISSOLVEField As System.Nullable(Of Boolean)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ORG_IDField As Decimal
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private STATUSField As Decimal
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private TITLE_IDField As Decimal
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private YEARField As Decimal
-        
-        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
-        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
-            Get
-                Return Me.extensionDataField
-            End Get
-            Set
-                Me.extensionDataField = value
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IS_DISSOLVE() As System.Nullable(Of Boolean)
-            Get
-                Return Me.IS_DISSOLVEField
-            End Get
-            Set
-                If (Me.IS_DISSOLVEField.Equals(value) <> true) Then
-                    Me.IS_DISSOLVEField = value
-                    Me.RaisePropertyChanged("IS_DISSOLVE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ORG_ID() As Decimal
-            Get
-                Return Me.ORG_IDField
-            End Get
-            Set
-                If (Me.ORG_IDField.Equals(value) <> true) Then
-                    Me.ORG_IDField = value
-                    Me.RaisePropertyChanged("ORG_ID")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property STATUS() As Decimal
-            Get
-                Return Me.STATUSField
-            End Get
-            Set
-                If (Me.STATUSField.Equals(value) <> true) Then
-                    Me.STATUSField = value
-                    Me.RaisePropertyChanged("STATUS")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property TITLE_ID() As Decimal
-            Get
-                Return Me.TITLE_IDField
-            End Get
-            Set
-                If (Me.TITLE_IDField.Equals(value) <> true) Then
-                    Me.TITLE_IDField = value
-                    Me.RaisePropertyChanged("TITLE_ID")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property YEAR() As Decimal
-            Get
-                Return Me.YEARField
-            End Get
-            Set
-                If (Me.YEARField.Equals(value) <> true) Then
-                    Me.YEARField = value
-                    Me.RaisePropertyChanged("YEAR")
                 End If
             End Set
         End Property
@@ -20191,6 +20542,21 @@ Namespace RecruitmentBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/OrgAndTitle", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/OrgAndTitleResponse")>  _
         Function OrgAndTitle(ByVal org_id As Decimal, ByVal title_id As Decimal) As RecruitmentBusiness.CandidateDTO
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetRCCost", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetRCCostResponse")>  _
+        Function GetRCCost(ByVal _filter As RecruitmentBusiness.RecruitmentCostDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As RecruitmentBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.RecruitmentCostDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/DeleteRecruitCost", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/DeleteRecruitCostResponse")>  _
+        Function DeleteRecruitCost(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ModifyRecruitCost", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ModifyRecruitCostResponse")>  _
+        Function ModifyRecruitCost(ByVal objRcCost As RecruitmentBusiness.RecruitmentCostDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/InsertRecruitCost", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/InsertRecruitCostResponse")>  _
+        Function InsertRecruitCost(ByVal objRcCost As RecruitmentBusiness.RecruitmentCostDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetRcCostByID", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetRcCostByIDResponse")>  _
+        Function GetRcCostByID(ByVal obj As RecruitmentBusiness.RecruitmentCostDTO) As RecruitmentBusiness.RecruitmentCostDTO
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/ImportCandidateCV", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/ImportCandidateCVResponse")>  _
         Function ImportCandidateCV(ByVal lst As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateImportDTO)) As Boolean
         
@@ -20572,6 +20938,26 @@ Namespace RecruitmentBusiness
         
         Public Function OrgAndTitle(ByVal org_id As Decimal, ByVal title_id As Decimal) As RecruitmentBusiness.CandidateDTO Implements RecruitmentBusiness.IRecruitmentBusiness.OrgAndTitle
             Return MyBase.Channel.OrgAndTitle(org_id, title_id)
+        End Function
+        
+        Public Function GetRCCost(ByVal _filter As RecruitmentBusiness.RecruitmentCostDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As RecruitmentBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of RecruitmentBusiness.RecruitmentCostDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetRCCost
+            Return MyBase.Channel.GetRCCost(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
+        End Function
+        
+        Public Function DeleteRecruitCost(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.DeleteRecruitCost
+            Return MyBase.Channel.DeleteRecruitCost(lstID)
+        End Function
+        
+        Public Function ModifyRecruitCost(ByVal objRcCost As RecruitmentBusiness.RecruitmentCostDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.ModifyRecruitCost
+            Return MyBase.Channel.ModifyRecruitCost(objRcCost, log)
+        End Function
+        
+        Public Function InsertRecruitCost(ByVal objRcCost As RecruitmentBusiness.RecruitmentCostDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.InsertRecruitCost
+            Return MyBase.Channel.InsertRecruitCost(objRcCost, log)
+        End Function
+        
+        Public Function GetRcCostByID(ByVal obj As RecruitmentBusiness.RecruitmentCostDTO) As RecruitmentBusiness.RecruitmentCostDTO Implements RecruitmentBusiness.IRecruitmentBusiness.GetRcCostByID
+            Return MyBase.Channel.GetRcCostByID(obj)
         End Function
         
         Public Function ImportCandidateCV(ByVal lst As System.Collections.Generic.List(Of RecruitmentBusiness.CandidateImportDTO)) As Boolean Implements RecruitmentBusiness.IRecruitmentBusiness.ImportCandidateCV

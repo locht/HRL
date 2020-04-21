@@ -4814,6 +4814,185 @@ Partial Class RecruitmentRepository
 
     End Function
 
+    Public Function GetRCCost(ByVal _filter As RecruitmentCostDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer, ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                        Optional ByVal log As UserLog = Nothing) As List(Of RecruitmentCostDTO)
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username,
+                                           .P_ORGID = _param.ORG_ID,
+                                           .P_ISDISSOLVE = _param.IS_DISSOLVE})
+            End Using
+
+            Dim query = From p In Context.RC_RECRUITMENT_COST
+                        From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID)
+                        From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
+                        Select New RecruitmentCostDTO With {
+                                                            .ID = p.ID,
+                                                            .ORG_ID = p.ORG_ID,
+                                                            .ORG_NAME = org.NAME_VN,
+                                                            .HEADHUNT_COST = p.HEADHUNT_COST,
+                                                            .JOIN_COST = p.JOIN_COST,
+                                                            .YEAR = p.YEAR,
+                                                            .MONTH = p.MONTH,
+                                                            .OTHER_COST = p.OTHER_COST,
+                                                            .PRINT_COST = p.PRINT_COST,
+                                                            .RC_TOOL_COST = p.RC_TOOL_COST,
+                                                            .RC_TRADEMARK = p.RC_TRADEMARK,
+                                                            .RECRUIT_COST = p.RECRUIT_COST,
+                                                            .REMARK = p.REMARK,
+                                                            .CREATED_DATE = p.CREATED_DATE,
+                                                            .CREATED_BY = p.CREATED_BY,
+                                                            .CREATED_LOG = p.CREATED_LOG,
+                                                            .TOTAL_COST = p.TOTAL_COST}
+
+            Dim lst = query
+            If IsNumeric(_filter.YEAR) Then
+                lst = lst.Where(Function(p) p.YEAR = _filter.YEAR)
+            End If
+            If IsNumeric(_filter.MONTH) Then
+                lst = lst.Where(Function(p) p.MONTH = _filter.MONTH)
+            End If
+            If _filter.ORG_NAME IsNot Nothing Then
+                lst = lst.Where(Function(p) p.ORG_NAME.ToUpper.Contains(_filter.ORG_NAME.ToUpper))
+            End If
+            If IsNumeric(_filter.HEADHUNT_COST) Then
+                lst = lst.Where(Function(p) p.HEADHUNT_COST = _filter.HEADHUNT_COST)
+            End If
+
+            If _filter.REMARK <> "" Then
+                lst = lst.Where(Function(p) p.REMARK.ToUpper.Contains(_filter.REMARK.ToUpper))
+            End If
+            If IsNumeric(_filter.JOIN_COST) Then
+                lst = lst.Where(Function(p) p.JOIN_COST = _filter.JOIN_COST)
+            End If
+            If IsNumeric(_filter.OTHER_COST) Then
+                lst = lst.Where(Function(p) p.OTHER_COST = _filter.OTHER_COST)
+            End If
+            If IsNumeric(_filter.PRINT_COST) Then
+                lst = lst.Where(Function(p) p.PRINT_COST = _filter.PRINT_COST)
+            End If
+            If IsNumeric(_filter.RC_TOOL_COST) Then
+                lst = lst.Where(Function(p) p.RC_TOOL_COST = _filter.RC_TOOL_COST)
+            End If
+            If IsNumeric(_filter.RC_TRADEMARK) Then
+                lst = lst.Where(Function(p) p.RC_TRADEMARK = _filter.RC_TRADEMARK)
+            End If
+            If IsNumeric(_filter.RECRUIT_COST) Then
+                lst = lst.Where(Function(p) p.RECRUIT_COST = _filter.RECRUIT_COST)
+            End If
+            If IsNumeric(_filter.TOTAL_COST) Then
+                lst = lst.Where(Function(p) p.TOTAL_COST = _filter.TOTAL_COST)
+            End If
+            lst = lst.OrderBy(Sorts)
+            Total = lst.Count
+            lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
+
+            Return lst.ToList
+        Catch ex As Exception
+            Utility.WriteExceptionLog(ex, Me.ToString() & ".GetRCCost")
+            Throw ex
+
+        End Try
+    End Function
+
+    Public Function InsertRecruitCost(ByVal objRcCost As RecruitmentCostDTO, Optional ByVal log As UserLog = Nothing) As Boolean
+        Dim objRcCostData As New RC_RECRUITMENT_COST
+        Try
+            objRcCostData.ID = Utilities.GetNextSequence(Context, Context.RC_RECRUITMENT_COST.EntitySet.Name)
+            objRcCostData.ORG_ID = objRcCost.ORG_ID
+            objRcCostData.YEAR = objRcCost.YEAR
+            objRcCostData.MONTH = objRcCost.MONTH
+            objRcCostData.HEADHUNT_COST = objRcCost.HEADHUNT_COST
+            objRcCostData.RECRUIT_COST = objRcCost.RECRUIT_COST
+            objRcCostData.RC_TRADEMARK = objRcCost.RC_TRADEMARK
+            objRcCostData.RC_TOOL_COST = objRcCost.RC_TOOL_COST
+            objRcCostData.OTHER_COST = objRcCost.OTHER_COST
+            objRcCostData.PRINT_COST = objRcCost.PRINT_COST
+            objRcCostData.JOIN_COST = objRcCost.JOIN_COST
+            objRcCostData.TOTAL_COST = objRcCost.TOTAL_COST
+            objRcCostData.RECRUIT_COST = objRcCost.RECRUIT_COST
+            objRcCostData.REMARK = objRcCost.REMARK
+            Context.RC_RECRUITMENT_COST.AddObject(objRcCostData)
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            Utility.WriteExceptionLog(ex, Me.ToString() & ".InsertRecruitCost")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function ModifyRecruitCost(ByVal objRcCost As RecruitmentCostDTO, Optional ByVal log As UserLog = Nothing) As Boolean
+        Dim objRcCostData As New RC_RECRUITMENT_COST With {.ID = objRcCost.ID}
+        Try
+            objRcCostData = (From p In Context.RC_RECRUITMENT_COST Where p.ID = objRcCostData.ID).FirstOrDefault
+            objRcCostData.ORG_ID = objRcCost.ORG_ID
+            objRcCostData.YEAR = objRcCost.YEAR
+            objRcCostData.MONTH = objRcCost.MONTH
+            objRcCostData.HEADHUNT_COST = objRcCost.HEADHUNT_COST
+            objRcCostData.JOIN_COST = objRcCost.JOIN_COST
+            objRcCostData.RECRUIT_COST = objRcCost.RECRUIT_COST
+            objRcCostData.RC_TRADEMARK = objRcCost.RC_TRADEMARK
+            objRcCostData.RC_TOOL_COST = objRcCost.RC_TOOL_COST
+            objRcCostData.OTHER_COST = objRcCost.OTHER_COST
+            objRcCostData.PRINT_COST = objRcCost.PRINT_COST
+            objRcCostData.TOTAL_COST = objRcCost.TOTAL_COST
+            objRcCostData.RECRUIT_COST = objRcCost.RECRUIT_COST
+            objRcCostData.REMARK = objRcCost.REMARK
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            Utility.WriteExceptionLog(ex, Me.ToString() & ".ModifyRecruitCost")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function DeleteRecruitCost(ByVal lstID As List(Of Decimal)) As Boolean
+        Dim lstRecruitData As List(Of RC_RECRUITMENT_COST)
+        Try
+            lstRecruitData = (From p In Context.RC_RECRUITMENT_COST Where lstID.Contains(p.ID)).ToList
+            For index = 0 To lstRecruitData.Count - 1
+                Context.RC_RECRUITMENT_COST.DeleteObject(lstRecruitData(index))
+            Next
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
+            Utility.WriteExceptionLog(ex, Me.ToString() & ".DeleteRecruitCost")
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function GetRcCostByID(ByVal obj As RecruitmentCostDTO) As RecruitmentCostDTO
+        Try
+            Dim query = (From p In Context.RC_RECRUITMENT_COST
+                         From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID)
+                         Where p.ID = obj.ID
+                         Select New RecruitmentCostDTO With {
+                                                            .ID = p.ID,
+                                                            .ORG_ID = p.ORG_ID,
+                                                            .ORG_NAME = org.NAME_VN,
+                                                            .HEADHUNT_COST = p.HEADHUNT_COST,
+                                                            .JOIN_COST = p.JOIN_COST,
+                                                            .YEAR = p.YEAR,
+                                                            .MONTH = p.MONTH,
+                                                            .OTHER_COST = p.OTHER_COST,
+                                                            .PRINT_COST = p.PRINT_COST,
+                                                            .RC_TOOL_COST = p.RC_TOOL_COST,
+                                                            .RC_TRADEMARK = p.RC_TRADEMARK,
+                                                            .RECRUIT_COST = p.RECRUIT_COST,
+                                                            .REMARK = p.REMARK,
+                                                            .TOTAL_COST = p.TOTAL_COST}).FirstOrDefault
+            Return query
+        Catch ex As Exception
+            Utility.WriteExceptionLog(ex, Me.ToString() & ".GetRcCostByID")
+            Throw ex
+        End Try
+    End Function
+
 #End Region
 
 #Region "CV Pool"
@@ -5069,7 +5248,7 @@ Partial Class RecruitmentRepository
             Dim objEmp As New CandidateDTO
             Dim objEmpCV As New CandidateCVDTO
             Dim objEmpEdu As New CandidateEduDTO
-          
+
             'Sinh mã ứng viên động
             Dim checkEMP As Integer = 0
             Dim empCodeDB As Decimal = 0
@@ -5088,7 +5267,7 @@ Partial Class RecruitmentRepository
                 objEmpCV = itemlst.can_cv
                 objEmpEdu = itemlst.can_edu
 
-               
+
                 '---------- 1.0 Thêm vào bảng RC_Candidate ----------
                 Dim objEmpData As New RC_CANDIDATE
                 Dim fileID As Decimal = Utilities.GetNextSequence(Context, Context.RC_CANDIDATE.EntitySet.Name)

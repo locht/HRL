@@ -637,7 +637,7 @@ Partial Class RecruitmentRepository
     End Function
 
 
-    Public Function GetListCandidatePaging( ByVal _filter As CandidateDTO,
+    Public Function GetListCandidatePaging(ByVal _filter As CandidateDTO,
                                      Optional ByVal Sorts As String = "Candidate_CODE desc") As List(Of CandidateDTO)
         Using rep As New RecruitmentBusinessClient
             Try
@@ -1171,6 +1171,65 @@ Partial Class RecruitmentRepository
 
     End Function
 
+
+    Public Function GetRCCost(ByVal _filter As RecruitmentCostDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer, ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of RecruitmentCostDTO)
+        Using rep As New RecruitmentBusinessClient
+            Try
+                Return rep.GetRCCost(_filter, PageIndex, PageSize, Total, _param, Sorts, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function InsertRecruitCost(ByVal objRcCost As RecruitmentCostDTO) As Boolean
+        Using rep As New RecruitmentBusinessClient
+            Try
+                Return rep.InsertRecruitCost(objRcCost, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function ModifyRecruitCost(ByVal objRcCost As RecruitmentCostDTO) As Boolean
+        Using rep As New RecruitmentBusinessClient
+            Try
+                Return rep.ModifyRecruitCost(objRcCost, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function DeleteRecruitCost(ByVal lstID As List(Of Decimal)) As Boolean
+        Using rep As New RecruitmentBusinessClient
+            Try
+                Return rep.DeleteRecruitCost(lstID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function GetRcCostByID(ByVal obj As RecruitmentCostDTO) As RecruitmentCostDTO
+        Using rep As New RecruitmentBusinessClient
+            Try
+                Return rep.GetRcCostByID(obj)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
 #End Region
 
 #Region "Manning"

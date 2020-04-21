@@ -20126,14 +20126,6 @@ Xin cám ơn!
   </Item>
   <Item>
     <Key>
-      <string>CTRLRC_COST</string>
-    </Key>
-    <Value>
-      <string>Quản lý chi phí tuyển dụng</string>
-    </Value>
-  </Item>
-  <Item>
-    <Key>
       <string>CHƯƠNG TRÌNH TUYỂN DỤNG ĐÃ TỒN TẠI</string>
     </Key>
     <Value>
@@ -44764,6 +44756,22 @@ Xin cám ơn!
     </Key>
     <Value>
       <string>liệt kê cả nhân viên đã nghỉ việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLRC_RECRUITMENTCOST</string>
+    </Key>
+    <Value>
+      <string>Quản lý chi phí tuyển dụng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLRC_RECRUITMENTCOSTNEWEDIT</string>
+    </Key>
+    <Value>
+      <string>Thông tin chi phí tuyển dụng</string>
     </Value>
   </Item>
 </SerializableDictionaryOfStringString>

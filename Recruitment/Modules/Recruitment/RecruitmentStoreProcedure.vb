@@ -885,5 +885,6 @@ Public Class RecruitmentStoreProcedure
             Throw ex
         End Try
     End Function
+
 #End Region
 End Class
