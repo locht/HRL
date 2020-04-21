@@ -701,7 +701,7 @@ Public Class ctrlHU_Discipline
                 rows("EMPLOYEE_CODE") = empId
             End If
 
-            If rows("DEDUCT_FROM_SALARY") = "Có" Then
+            If Not IsDBNull(rows("DEDUCT_FROM_SALARY")) AndAlso rows("DEDUCT_FROM_SALARY") = "Có" Then
                 rows("DEDUCT_FROM_SALARY") = -1
             Else
                 rows("DEDUCT_FROM_SALARY") = 0

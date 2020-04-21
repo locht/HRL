@@ -355,8 +355,12 @@ Public Class ctrlHU_DisciplineNewEdit
                     cboStatus.SelectedValue = Discipline.STATUS_ID
                     cboDisciplineLevel.SelectedValue = Discipline.DISCIPLINE_LEVEL
                     cboDisciplineObj.SelectedValue = Discipline.DISCIPLINE_OBJ
-                    cboDisciplineType.SelectedValue = Discipline.DISCIPLINE_TYPE
-                    cboDisciplineReason.SelectedValue = Discipline.DISCIPLINE_REASON
+                    If Discipline.DISCIPLINE_TYPE IsNot Nothing Then
+                        cboDisciplineType.SelectedValue = Discipline.DISCIPLINE_TYPE
+                    End If
+                    If Discipline.DISCIPLINE_REASON IsNot Nothing Then
+                        cboDisciplineReason.SelectedValue = Discipline.DISCIPLINE_REASON
+                    End If
                     rdDateNotice.SelectedDate = Discipline.DATE_ISSUES
                     If IsNumeric(Discipline.MONEY_MATERIAL) Then
                         rnMaterial.Value = Discipline.MONEY_MATERIAL
