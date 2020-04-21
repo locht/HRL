@@ -18129,7 +18129,7 @@ Xin cám ơn!
       <string>CTRLRC_EXAMS</string>
     </Key>
     <Value>
-      <string>Khai báo môn thi tuyển</string>
+      <string>Khai báo vòng phỏng vấn</string>
     </Value>
   </Item>
   <Item>
@@ -45068,6 +45068,30 @@ Xin cám ơn!
     </Key>
     <Value>
       <string>Thông tin chi tiết tai nạn lao động</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP TÊN VÒNG PHỎNG VẤN</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập Tên vòng phỏng vấn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP THỨ TỰ MÔN THI/PV</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập Thứ tự môn thi/pv</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TÊN VÒNG PHỎNG VẤN</string>
+    </Key>
+    <Value>
+      <string>Tên vòng phỏng vấn</string>
     </Value>
   </Item>
 </SerializableDictionaryOfStringString>
