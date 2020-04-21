@@ -5,6 +5,7 @@ Imports Common
 Imports Common.CommonBusiness
 Imports Telerik.Web.UI
 Imports System.IO
+Imports Aspose.Cells
 
 Public Class ctrlRC_ProgramInterviewResult
     Inherits Common.CommonView
@@ -13,7 +14,31 @@ Public Class ctrlRC_ProgramInterviewResult
     Private userlog As UserLog
 
 #Region "Property"
-
+    Property dtData As DataTable
+        Get
+            If ViewState(Me.ID & "_dtData") Is Nothing Then
+                Dim dt As New DataTable("DATA")
+                dt.Columns.Add("STT", GetType(String))
+                dt.Columns.Add("CODE", GetType(String))
+                dt.Columns.Add("ID", GetType(String))
+                dt.Columns.Add("FullName", GetType(String))
+                dt.Columns.Add("NAME", GetType(String))
+                dt.Columns.Add("NAME_ID", GetType(String))
+                dt.Columns.Add("SCHEDULE_DATE", GetType(String))
+                dt.Columns.Add("COMMENT_INFO", GetType(String))
+                dt.Columns.Add("STATUS_NAME", GetType(String))
+                dt.Columns.Add("STATUS_ID", GetType(String))
+                dt.Columns.Add("fullname_vn", GetType(String))
+                dt.Columns.Add("EXAMS_ORDER", GetType(String))
+                dt.Columns.Add("ID_PSC", GetType(String))
+                ViewState(Me.ID & "_dtData") = dt
+            End If
+            Return ViewState(Me.ID & "_dtData")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_dtData") = value
+        End Set
+    End Property
     Property IsLoad As Boolean
         Get
             Return ViewState(Me.ID & "_IsLoad")
@@ -300,7 +325,7 @@ Public Class ctrlRC_ProgramInterviewResult
     End Sub
 
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
-        
+
     End Sub
 
     Protected Sub RadGrid_NeedDataSource(ByVal source As Object, ByVal e As GridNeedDataSourceEventArgs) Handles gridCadidate.NeedDataSource
@@ -354,8 +379,8 @@ Public Class ctrlRC_ProgramInterviewResult
         For index = 0 To gridCadidate.SelectedItems.Count - 1
             Dim item As GridDataItem = gridCadidate.SelectedItems(index)
             Dim ID As Decimal = item.GetDataKeyValue("ID")
-            Mail = store.Get_Email_Candidate(ID)
-            If Mail = "" Then
+            mail = store.Get_Email_Candidate(ID)
+            If mail = "" Then
                 ShowMessage(Translate("Ứng viên được chọn không có email,Xin vui lòng kiểm tra lại"), NotifyType.Warning)
                 Exit Sub
             End If
@@ -363,7 +388,7 @@ Public Class ctrlRC_ProgramInterviewResult
         For index = 0 To gridCadidate.SelectedItems.Count - 1
             Dim item As GridDataItem = gridCadidate.SelectedItems(index)
             Dim ID As Decimal = item.GetDataKeyValue("ID")
-            Mail = store.Get_Email_Candidate(ID)
+            mail = store.Get_Email_Candidate(ID)
             dataMail = store.GET_MAIL_TEMPLATE("TCO", "Recruitment")
             body = dataMail.Rows(0)("CONTENT").ToString
             titleMail = "THƯ CẢM ƠN"
@@ -381,7 +406,7 @@ Public Class ctrlRC_ProgramInterviewResult
                 Exit Sub
             End If
             bodyNew = String.Format(body, values)
-            If Not Common.Common.sendEmailByServerMail(Mail,
+            If Not Common.Common.sendEmailByServerMail(mail,
                                                      If(mailCC <> "", mailCC, dataMail.Rows(0)("MAIL_CC").ToString()),
                                                       titleMail, bodyNew, String.Empty) Then
                 ShowMessage(Translate("Gửi mail thất bại"), NotifyType.Warning)
@@ -484,4 +509,198 @@ Public Class ctrlRC_ProgramInterviewResult
             chkbx.Visible = False
         End If
     End Sub
+
+    Private Sub btnExport_Click(sender As Object, e As System.EventArgs) Handles btnExport.Click
+        Try
+            'Template_ExportProgramDeclare()
+            HttpContext.Current.Session("PROGRAMID") = hdProgramID.Value
+            ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_ExportProgramDeclare');", True)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub Template_ExportProgramDeclare()
+        Dim rep As New RecruitmentStoreProcedure
+        Try
+            Dim configPath As String = Server.MapPath("ReportTemplates\Recruitment\Import\Template_import_kqtuyendung.xls")
+            Dim dsData As DataSet = Nothing
+            If File.Exists(configPath) Then
+                ExportTemplate(configPath,
+                                      dsData, Nothing, "Template_import_kqtuyendung" & Format(Date.Now, "yyyyMMdd"))
+            Else
+                ShowMessage(Translate("Template không tồn tại"), Utilities.NotifyType.Error)
+                Exit Sub
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Public Function ExportTemplate(ByVal sReportFileName As String,
+                                                    ByVal dsData As DataSet,
+                                                    ByVal dtVariable As DataTable,
+                                                    ByVal filename As String) As Boolean
+
+        Dim filePath As String
+        'Dim templatefolder As String
+
+        Dim designer As WorkbookDesigner
+        Try
+
+            'templatefolder = ConfigurationManager.AppSettings("ReportTemplatesFolder")
+            'filePath = AppDomain.CurrentDomain.BaseDirectory & templatefolder & "\" & sReportFileName
+
+            'cau hinh lai duong dan tren server
+            filePath = sReportFileName
+
+            If Not File.Exists(filePath) Then
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "javascriptfunction", "goBack()", True)
+                Return False
+            End If
+
+            designer = New WorkbookDesigner
+            designer.Open(filePath)
+            designer.SetDataSource(dsData)
+
+            If dtVariable IsNot Nothing Then
+                Dim intCols As Integer = dtVariable.Columns.Count
+                For i As Integer = 0 To intCols - 1
+                    designer.SetDataSource(dtVariable.Columns(i).ColumnName.ToString(), dtVariable.Rows(0).ItemArray(i).ToString())
+                Next
+            End If
+            designer.Process()
+            designer.Workbook.CalculateFormula()
+            designer.Workbook.Save(HttpContext.Current.Response, filename & ".xls", ContentDisposition.Attachment, New XlsSaveOptions())
+
+        Catch ex As Exception
+            Return False
+        End Try
+        Return True
+    End Function
+    Private Sub btnImport_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnImport.Click
+        Try
+            ctrlUpload.isMultiple = False
+            ctrlUpload.Show()
+            'CurrentState = CommonMessage.TOOLBARITEM_IMPORT
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub ctrlUpload_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload.OkClicked
+        Import_DeclareProgram()
+    End Sub
+
+    Private Sub Import_DeclareProgram()
+        Try
+            Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+            Dim startTime As DateTime = DateTime.UtcNow
+            Dim fileName As String
+            Dim dsDataPrepare As New DataSet
+            Dim workbook As Aspose.Cells.Workbook
+            Dim worksheet As Aspose.Cells.Worksheet
+
+            Try
+                Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
+                Dim savepath = Context.Server.MapPath(tempPath)
+
+                For Each file As UploadedFile In ctrlUpload.UploadedFiles
+                    fileName = System.IO.Path.Combine(savepath, Guid.NewGuid().ToString() & ".xls")
+                    file.SaveAs(fileName, True)
+                    workbook = New Aspose.Cells.Workbook(fileName)
+                    worksheet = workbook.Worksheets(0)
+                    dsDataPrepare.Tables.Add(worksheet.Cells.ExportDataTableAsString(0, 0, worksheet.Cells.MaxRow + 1, worksheet.Cells.MaxColumn + 1, True))
+                    If System.IO.File.Exists(fileName) Then System.IO.File.Delete(fileName)
+                Next
+                dtData = dtData.Clone()
+                TableMapping(dsDataPrepare.Tables(0))
+                For Each rows As DataRow In dsDataPrepare.Tables(0).Select("CODE<>'""'").CopyToDataTable.Rows
+                    If IsDBNull(rows("CODE")) OrElse rows("CODE") = "" Then Continue For
+                    Dim newRow As DataRow = dtData.NewRow
+                    newRow("STT") = rows("STT")
+                    newRow("CODE") = rows("CODE")
+                    newRow("ID") = If(IsNumeric(rows("ID")), rows("ID"), 0)
+                    newRow("FullName") = rows("FullName")
+                    newRow("NAME") = rows("NAME")
+                    newRow("NAME_ID") = If(IsNumeric(rows("NAME_ID")), rows("NAME_ID"), 0)
+                    newRow("SCHEDULE_DATE") = rows("SCHEDULE_DATE")
+                    newRow("COMMENT_INFO") = rows("COMMENT_INFO")
+                    newRow("STATUS_NAME") = rows("STATUS_NAME")
+                    newRow("STATUS_ID") = If(IsNumeric(rows("STATUS_ID")), rows("STATUS_ID"), 0)
+                    newRow("fullname_vn") = rows("fullname_vn")
+                    newRow("EXAMS_ORDER") = If(IsNumeric(rows("EXAMS_ORDER")), rows("EXAMS_ORDER"), 0)
+                    newRow("ID_PSC") = If(IsNumeric(rows("ID_PSC")), rows("ID_PSC"), 0)
+                    dtData.Rows.Add(newRow)
+                Next
+                dtData.TableName = "DATA"
+                Dim IsSaveCompleted As Boolean
+                For Each rows As DataRow In dtData.Rows
+
+                    IsSaveCompleted = store.UPDATE_CANDIDATE_RESULT(
+                                                          Decimal.Parse(rows("ID_PSC")),
+                                                            0,
+                                                           rows("COMMENT_INFO").ToString,
+                                                            "",
+                                                          Decimal.Parse(rows("STATUS_ID")))
+
+                    Dim giatri As New Decimal
+                    Dim max As Decimal = 0
+                    giatri = Decimal.Parse(rows("EXAMS_ORDER"))
+                    For Each item As DataRow In dtData.Rows
+                        If item("ID") = rows("ID") Then
+                            If giatri >= item("EXAMS_ORDER") Then
+                                max = 1
+                            Else
+                                max = 0
+                                Exit For
+                            End If
+                        End If
+                    Next
+                    If max = 1 Then
+                        If Decimal.Parse(rows("STATUS_ID")) = 0 Then
+                            store.UPDATE_CANDIDATE_STATUS(Int32.Parse(rows("ID")), "KDAT")
+                        ElseIf Decimal.Parse(rows("STATUS_ID")) = 1 Then
+                            store.UPDATE_CANDIDATE_STATUS(Int32.Parse(rows("ID")), "DAT")
+                        ElseIf Decimal.Parse(rows("STATUS_ID")) = -1 Then
+                            store.UPDATE_CANDIDATE_STATUS(Int32.Parse(rows("ID")), "PROCESS")
+                        End If
+                    End If
+                Next
+                'import này k cần kiểm tra dữ liệu trên excel
+                If IsSaveCompleted Then
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                    rgDataInterview.Rebind()
+                    gridCadidate.Rebind()
+                    ResetText()
+                Else
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                End If
+
+
+
+
+            Catch ex As Exception
+                ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
+            End Try
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub TableMapping(ByVal dtdata As DataTable)
+        Dim row As DataRow = dtdata.Rows(2)
+        Dim index As Integer = 0
+        For Each cols As DataColumn In dtdata.Columns
+            Try
+                cols.ColumnName = row(index)
+                index += 1
+                If index > row.ItemArray.Length - 1 Then Exit For
+            Catch ex As Exception
+                Exit For
+            End Try
+        Next
+        dtdata.Rows(0).Delete()
+        dtdata.Rows(0).Delete()
+        dtdata.Rows(0).Delete()
+        dtdata.AcceptChanges()
+    End Sub
+
 End Class

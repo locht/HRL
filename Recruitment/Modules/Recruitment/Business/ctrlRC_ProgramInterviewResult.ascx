@@ -8,6 +8,12 @@
             <legend></legend>
             <tlk:RadButton ID="cmdSendEmail" runat="server" CausesValidation="false" Text="<%$ Translate: Gửi thư cảm ơn %>">
             </tlk:RadButton>
+            <tlk:RadButton ID="RadButton3" runat="server" CausesValidation="false" Text="<%$ Translate: DS đề nghị thử việc %>">
+            </tlk:RadButton>
+            <tlk:RadButton ID="btnExport" runat="server" CausesValidation="false" Text="<%$ Translate: Xuất file mẫu %>">
+            </tlk:RadButton>
+            <tlk:RadButton ID="btnImport" runat="server" CausesValidation="false" Text="<%$ Translate: Nhập file mẫu %>">
+            </tlk:RadButton>
             <br />
             <br />
             <tlk:RadGrid ID="gridCadidate" runat="server" Height="380px" AllowMultiRowEdit="false"
@@ -151,6 +157,7 @@
            width: 95% !important;
     }
 <</style>
+<Common:ctrlUpload ID="ctrlUpload" runat="server" />
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
@@ -159,7 +166,9 @@
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
         }
-
+        function btnExportClicking(sender, args) {
+            enableAjax = false;
+        }
 
     </script>
 </tlk:RadCodeBlock>

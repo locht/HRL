@@ -1490,6 +1490,7 @@
     <None Include="ReportTemplates\Recruitment\Import\Import_Ungvien_Template.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="ReportTemplates\Recruitment\Import\Template_import_kqtuyendung.xls" />
     <None Include="Styles\ImgConfig.jquery.css" />
     <Content Include="Styles\font-awesome.css" />
     <Content Include="Styles\img\icon-tree.png" />

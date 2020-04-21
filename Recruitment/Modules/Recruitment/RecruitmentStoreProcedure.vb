@@ -887,4 +887,15 @@ Public Class RecruitmentStoreProcedure
     End Function
 
 #End Region
+#Region "LAY DS CAP NHAT KÊT QUA"
+    Public Function GET_DECLARE_PROGRAM(ByVal programid As Decimal) As DataSet
+        Try
+            Dim ds As New DataSet
+            ds = rep.ExecuteToDataSet("pkg_recruitment_new.GET_DECLARE_PROGRAM", New List(Of Object)(New Object() {programid}))
+            Return ds
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+#End Region
 End Class

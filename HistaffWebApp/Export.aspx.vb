@@ -12,7 +12,9 @@ Public Class Export
             Try
                 Select Case Request.Params("id")
                     Case "TR_ASSESSMENT_RESULT"
-                       ' TR_ASSESSMENT_RESULT()
+                        ' TR_ASSESSMENT_RESULT()
+                    Case "Template_ExportProgramDeclare"
+                        Template_ExportProgramDeclare()
                     Case "TR_ASSESSMENT_RESULT_ERROR"
                         TR_ASSESSMENT_RESULT_ERROR()
                     Case "TR_REQUEST_EMPLOYEE"
@@ -1846,5 +1848,23 @@ Public Class Export
 
 
 #End Region
+
+    Private Sub Template_ExportProgramDeclare()
+        Try
+            Dim rep As New Recruitment.RecruitmentStoreProcedure
+            Try
+                Dim configPath As String = Server.MapPath("ReportTemplates\Recruitment\Import\Template_import_kqtuyendung.xls")
+                Dim dsData As DataSet = rep.GET_DECLARE_PROGRAM(Session("PROGRAMID"))
+                dsData.Tables(0).TableName = "Table"
+                ExportTemplate("Recruitment\Import\Template_import_kqtuyendung.xls",
+                                      dsData, Nothing, "Template_import_kqtuyendung" & Format(Date.Now, "yyyyMMdd"))
+                Session.Remove("PROGRAMID")
+            Catch ex As Exception
+
+            End Try
+        Catch ex As Exception
+
+        End Try
+    End Sub
 
 End Class
