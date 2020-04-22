@@ -26,16 +26,16 @@
 
     });
 </script>
-<tlk:radsplitter id="RadSplitter2" runat="server" height="100%" width="100%">
-    <tlk:radpane id="RadPaneLeft" runat="server" minwidth="230" maxwidth="230" width="230px">
+<tlk:RadSplitter ID="RadSplitter2" runat="server" Height="100%" Width="100%">
+    <tlk:RadPane ID="RadPaneLeft" runat="server" MinWidth="230" MaxWidth="230" Width="230px">
         <div class="box_img">
             <asp:PlaceHolder ID="ViewPlaceHoderImage" runat="server"></asp:PlaceHolder>
         </div>
         <div class="fullname">
             <asp:Label ID="lblFullName" runat="server"></asp:Label>
         </div>
-        <tlk:radpanelbar id="rpbProfile" runat="server" width="230px" enabled="false">
-            <items>
+        <tlk:RadPanelBar ID="rpbProfile" runat="server" Width="230px" Enabled="false">
+            <Items>
                 <tlk:RadPanelItem Expanded="True">
                     <Items>
                         <tlk:RadPanelItem Value="ctrlHU_EmpDtlProfile" Text="<%$ Translate:Hồ sơ nhân viên%>"
@@ -62,14 +62,14 @@
                             NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlConcurrently&state=Normal", EmployeeID) %>' />
                         <tlk:RadPanelItem Value="ctrlHU_EmpDtlDiscipline" Text="<%$ Translate:Quá trình kỷ luật%>"
                             NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlDiscipline&state=Normal", EmployeeID) %>' />
+                        <tlk:RadPanelItem Value="ctrlHU_EmpDtlDiscipline" Text="<%$ Translate:Quá trình sức khỏe%>"
+                            NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlHealthMng&state=Normal", EmployeeID) %>' />
                         <%-- <tlk:RadPanelItem Value="ctrlHU_EmpDtlInsurance" Text="<%$ Translate:Quá trình tham gia bảo hiểm%>"
                             NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlInsurance&state=Normal", EmployeeID) %>' />--%>
                         <tlk:RadPanelItem Value="ctrlHU_EmpDtlFamily" Text="<%$ Translate:Gia cảnh người thân%>"
                             NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlFamily&state=Normal", EmployeeID) %>' />
-
                         <tlk:RadPanelItem Value="ctrlHU_EmpDtlDeduct" Text="<%$ Translate:Giảm trừ gia cảnh%>"
                             NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlDeduct&state=Normal", EmployeeID)%>' />
-
                         <%--  <tlk:RadPanelItem Value="ctrlHU_EmpDtlHistory" Text="<%$ Translate:Lịch sử chỉnh sửa thông tin %>"
                             NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlHistory&state=Normal", EmployeeID) %>' />
                         <tlk:RadPanelItem Value="ctrlHU_EmpDtlViewKPI" Text="<%$ Translate:Quá trình đánh giá %>"
@@ -78,19 +78,19 @@
                             NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlCompetency&state=Normal", EmployeeID) %>' />
                         <tlk:RadPanelItem Value="ctrlHU_EmpDtlFile" Text="<%$ Translate:Quản lý tập tin văn bản %>"
                             NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlFile&state=Normal", EmployeeID) %>' />--%>
-                  <%--  <tlk:RadPanelItem Value="ctrlHU_EmpDtlFamily" Text="<%$ Translate:Quan hệ nhân thân%>"
+                        <%--  <tlk:RadPanelItem Value="ctrlHU_EmpDtlFamily" Text="<%$ Translate:Quan hệ nhân thân%>"
                             NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlFamily&state=Normal", EmployeeID)%>' />--%>
-                    <tlk:RadPanelItem Value="ctrlHU_EmpDtlQuantumSal" Text="<%$ Translate:Quá trình ngạch bậc%>"
+                        <tlk:RadPanelItem Value="ctrlHU_EmpDtlQuantumSal" Text="<%$ Translate:Quá trình ngạch bậc%>"
                             NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlQuantumSal&state=Normal", EmployeeID) %>' />
                     </Items>
                 </tlk:RadPanelItem>
-            </items>
-        </tlk:radpanelbar>
-    </tlk:radpane>
-    <tlk:radsplitbar id="RadSplitBar1" runat="server" collapsemode="Forward">
-    </tlk:radsplitbar>
-    <tlk:radpane id="RadPane2" runat="server" scrolling="None">
+            </Items>
+        </tlk:RadPanelBar>
+    </tlk:RadPane>
+    <tlk:RadSplitBar ID="RadSplitBar1" runat="server" CollapseMode="Forward">
+    </tlk:RadSplitBar>
+    <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
         <asp:PlaceHolder ID="phProfile" runat="server"></asp:PlaceHolder>
-    </tlk:radpane>
-</tlk:radsplitter>
+    </tlk:RadPane>
+</tlk:RadSplitter>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />

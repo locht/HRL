@@ -466,6 +466,7 @@
     <Content Include="Modules\Planning\Setting\ctrlPA_SalaryFund.ascx" />
     <Content Include="Modules\Planning\Report\ctrlPA_SalaryTracker.ascx" />
     <Content Include="Modules\Planning\Setting\ctrlPA_TitleCost.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_EmpDtlHealthMng.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_EmpDtlBackGround.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_EmpDtlDeduct.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_EmpDtlQuantumSal.ascx" />
