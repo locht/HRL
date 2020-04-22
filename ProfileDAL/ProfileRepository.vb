@@ -2154,16 +2154,13 @@ Public Class ProfileRepository
                                         Optional ByVal Sorts As String = "CREATED_DATE desc") As DataTable
 
         Try
-            Using cls As New DataAccess.QueryData
-                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
-                                 New With {.P_USERNAME = log.Username,
-                                           .P_ORGID = _param.ORG_ID,
-                                           .P_ISDISSOLVE = _param.IS_DISSOLVE})
-            End Using
+
             Using Sql As New DataAccess.NonQueryData
                 Using cls As New DataAccess.QueryData
                     Dim dtData As DataTable = cls.ExecuteStore("PKG_PROFILE_BUSINESS.GET_HEALTH_MNG_LIST",
-                                               New With {.P_ORGID = _filter.ORG_ID,
+                                               New With {.P_USERNAME = log.Username,
+                                                        .P_ORGID = _filter.ORG_ID,
+                                                        .P_ISDISSOLVE = _param.IS_DISSOLVE,
                                                          .P_CUR = cls.OUT_CURSOR})
                     Return dtData
                 End Using
@@ -2174,11 +2171,11 @@ Public Class ProfileRepository
         End Try
     End Function
 
-    Public Function EXPORT_HEALTH_MNG() As DataTable
+    Public Function EXPORT_HEALTH_MNG() As DataSet
         Try
             Using cls As New DataAccess.QueryData
-                Dim dtData As DataTable = cls.ExecuteStore("PKG_PROFILE_BUSINESS.EXPORT_HEALTH_MNG",
-                                          New With {.P_OUT = cls.OUT_CURSOR})
+                Dim dtData As DataSet = cls.ExecuteStore("PKG_PROFILE_BUSINESS.EXPORT_HEALTH_MNG",
+                                          New With {.P_OUT = cls.OUT_CURSOR}, False)
 
                 Return dtData
             End Using

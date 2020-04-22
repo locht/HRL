@@ -1017,7 +1017,16 @@ Partial Class ProfileRepository
         Try
             Using cls As New DataAccess.QueryData
                 Dim dtData As DataSet = cls.ExecuteStore("PKG_HU_IPROFILE_EMPLOYEE.EXPORT_QLKT",
-                                           New With { .P_CUR = cls.OUT_CURSOR}, False) ' FALSE : no datatable
+                                           New With {.P_CUR = cls.OUT_CURSOR,
+                                                       .P_CUR1 = cls.OUT_CURSOR,
+                                                       .P_CUR2 = cls.OUT_CURSOR,
+                                                       .P_CUR3 = cls.OUT_CURSOR,
+                                                       .P_CUR4 = cls.OUT_CURSOR,
+                                                       .P_CUR5 = cls.OUT_CURSOR,
+                                                       .P_CUR6 = cls.OUT_CURSOR,
+                                                       .P_CUR7 = cls.OUT_CURSOR,
+                                                       .P_CUR8 = cls.OUT_CURSOR,
+                                                       .P_CUR9 = cls.OUT_CURSOR}, False) ' FALSE : no datatable
 
                 Return dtData
             End Using

@@ -854,7 +854,7 @@ Partial Public Class ProfileBusinessRepository
         End Using
     End Function
 
-    Public Function EXPORT_HEALTH_MNG() As DataTable
+    Public Function EXPORT_HEALTH_MNG() As DataSet
         Using rep As New ProfileBusinessClient
             Try
                 Dim lst = rep.EXPORT_HEALTH_MNG()

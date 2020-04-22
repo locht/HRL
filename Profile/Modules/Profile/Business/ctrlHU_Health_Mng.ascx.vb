@@ -226,7 +226,7 @@ Public Class ctrlHU_Health_Mng
             MainToolBar.Items(0).Text = Translate("Xuất Excel")
             MainToolBar.Items(1).Text = Translate("Xuất file mẫu")
             CType(Me.MainToolBar.Items(2), RadToolBarButton).ImageUrl = CType(Me.MainToolBar.Items(0), RadToolBarButton).ImageUrl
-
+            MainToolBar.Items(2).Text = Translate("Nhập file mẫu")
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
         Catch ex As Exception
             Throw ex
@@ -398,6 +398,7 @@ Public Class ctrlHU_Health_Mng
                     DocXml = sw.ToString
                     If rep.Import_Health_Mng(DocXml) Then
                         ShowMessage(Translate(Common.CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Framework.UI.Utilities.NotifyType.Success)
+                        rgWelfareMng.Rebind()
                     Else
                         ShowMessage(Translate(Common.CommonMessage.MESSAGE_TRANSACTION_FAIL), Framework.UI.Utilities.NotifyType.Warning)
                     End If
@@ -412,55 +413,57 @@ Public Class ctrlHU_Health_Mng
         ' lấy dữ liệu thô từ excel vào và tinh chỉnh dữ liệu
         dtTemp.Columns(0).ColumnName = "STT"
         dtTemp.Columns(1).ColumnName = "EMPLOYEE_CODE"
-        dtTemp.Columns(2).ColumnName = "YEAR_KHAMBENH"
-        dtTemp.Columns(3).ColumnName = "DATE_KHAMBENH"
-        dtTemp.Columns(4).ColumnName = "CAN_NANG"
-        dtTemp.Columns(5).ColumnName = "HUYET_AP"
-        dtTemp.Columns(6).ColumnName = "NOI_KHOA"
-        dtTemp.Columns(7).ColumnName = "NGOAI_KHOA"
-        dtTemp.Columns(8).ColumnName = "PHU_KHOA"
-        dtTemp.Columns(9).ColumnName = "MAT"
-        dtTemp.Columns(10).ColumnName = "TMH"
-        dtTemp.Columns(11).ColumnName = "RHM"
-        dtTemp.Columns(12).ColumnName = "DA_LIEU"
-        dtTemp.Columns(13).ColumnName = "CONG_THUC_MAU"
-        dtTemp.Columns(14).ColumnName = "DUONG_MAU"
-        dtTemp.Columns(15).ColumnName = "XN_NUOC_TIEU"
-        dtTemp.Columns(16).ColumnName = "X_QUANG"
-        dtTemp.Columns(17).ColumnName = "DIEN_TIM"
-        dtTemp.Columns(18).ColumnName = "SIEU_AM"
-        dtTemp.Columns(19).ColumnName = "SIEU_VI_A"
-        dtTemp.Columns(20).ColumnName = "SIEU_VI_E"
-        dtTemp.Columns(21).ColumnName = "SIEU_VI_B"
-        dtTemp.Columns(22).ColumnName = "KT_VIEN_GAN_B"
-        dtTemp.Columns(23).ColumnName = "CHUC_NANG_GAN"
-        dtTemp.Columns(24).ColumnName = "CHUC_NANG_THAN"
-        dtTemp.Columns(25).ColumnName = "MO_MAU"
-        dtTemp.Columns(26).ColumnName = "KQ1"
-        dtTemp.Columns(27).ColumnName = "KQ2"
-        dtTemp.Columns(28).ColumnName = "KQ3"
-        dtTemp.Columns(29).ColumnName = "KQ4"
-        dtTemp.Columns(30).ColumnName = "KQ5"
-        dtTemp.Columns(31).ColumnName = "KQ6"
-        dtTemp.Columns(32).ColumnName = "KQ7"
-        dtTemp.Columns(33).ColumnName = "KQ8"
-        dtTemp.Columns(34).ColumnName = "KQ9"
-        dtTemp.Columns(35).ColumnName = "KQ10"
-        dtTemp.Columns(36).ColumnName = "HEALTH_TYPE"
-        dtTemp.Columns(37).ColumnName = "NHOM_BENH"
-        dtTemp.Columns(38).ColumnName = "TEN_BENH"
-        dtTemp.Columns(39).ColumnName = "KET_LUAB"
-        dtTemp.Columns(40).ColumnName = "GHI_CHU"
-        dtTemp.Columns(41).ColumnName = "DO_THINH_LUC_SB"
-        dtTemp.Columns(42).ColumnName = "DO_THINH_LUC_HC"
-        dtTemp.Columns(43).ColumnName = "DO_CN_HO_HAP"
-        dtTemp.Columns(44).ColumnName = "XN_HAMLUONG_TOLUEN"
-        dtTemp.Columns(45).ColumnName = "BENH_NN1"
-        dtTemp.Columns(46).ColumnName = "BENH_NN2"
-        dtTemp.Columns(47).ColumnName = "BENH_TN_NN"
-        dtTemp.Columns(48).ColumnName = "NGAY_DIEU_TRI"
-        dtTemp.Columns(49).ColumnName = "PP_DIEU_TRI"
-        dtTemp.Columns(50).ColumnName = "KQ_DIEU_TRI"
+        dtTemp.Columns(2).ColumnName = "EMPLOYEE_NAME"
+        dtTemp.Columns(3).ColumnName = "ORG_NAME"
+        dtTemp.Columns(4).ColumnName = "YEAR_KHAMBENH"
+        dtTemp.Columns(5).ColumnName = "DATE_KHAMBENH"
+        dtTemp.Columns(6).ColumnName = "CAN_NANG"
+        dtTemp.Columns(7).ColumnName = "HUYET_AP"
+        dtTemp.Columns(8).ColumnName = "NOI_KHOA"
+        dtTemp.Columns(9).ColumnName = "NGOAI_KHOA"
+        dtTemp.Columns(10).ColumnName = "PHU_KHOA"
+        dtTemp.Columns(11).ColumnName = "MAT"
+        dtTemp.Columns(12).ColumnName = "TMH"
+        dtTemp.Columns(13).ColumnName = "RHM"
+        dtTemp.Columns(14).ColumnName = "DA_LIEU"
+        dtTemp.Columns(15).ColumnName = "CONG_THUC_MAU"
+        dtTemp.Columns(16).ColumnName = "DUONG_MAU"
+        dtTemp.Columns(17).ColumnName = "XN_NUOC_TIEU"
+        dtTemp.Columns(18).ColumnName = "X_QUANG"
+        dtTemp.Columns(19).ColumnName = "DIEN_TIM"
+        dtTemp.Columns(20).ColumnName = "SIEU_AM"
+        dtTemp.Columns(21).ColumnName = "SIEU_VI_A"
+        dtTemp.Columns(22).ColumnName = "SIEU_VI_E"
+        dtTemp.Columns(23).ColumnName = "SIEU_VI_B"
+        dtTemp.Columns(24).ColumnName = "KT_VIEN_GAN_B"
+        dtTemp.Columns(25).ColumnName = "CHUC_NANG_GAN"
+        dtTemp.Columns(26).ColumnName = "CHUC_NANG_THAN"
+        dtTemp.Columns(27).ColumnName = "MO_MAU"
+        dtTemp.Columns(28).ColumnName = "KQ1"
+        dtTemp.Columns(29).ColumnName = "KQ2"
+        dtTemp.Columns(30).ColumnName = "KQ3"
+        dtTemp.Columns(31).ColumnName = "KQ4"
+        dtTemp.Columns(32).ColumnName = "KQ5"
+        dtTemp.Columns(33).ColumnName = "KQ6"
+        dtTemp.Columns(34).ColumnName = "KQ7"
+        dtTemp.Columns(35).ColumnName = "KQ8"
+        dtTemp.Columns(36).ColumnName = "KQ9"
+        dtTemp.Columns(37).ColumnName = "KQ10"
+        dtTemp.Columns(38).ColumnName = "HEALTH_TYPE"
+        dtTemp.Columns(39).ColumnName = "NHOM_BENH"
+        dtTemp.Columns(40).ColumnName = "TEN_BENH"
+        dtTemp.Columns(41).ColumnName = "KET_LUAB"
+        dtTemp.Columns(42).ColumnName = "GHI_CHU"
+        dtTemp.Columns(43).ColumnName = "DO_THINH_LUC_SB"
+        dtTemp.Columns(44).ColumnName = "DO_THINH_LUC_HC"
+        dtTemp.Columns(45).ColumnName = "DO_CN_HO_HAP"
+        dtTemp.Columns(46).ColumnName = "XN_HAMLUONG_TOLUEN"
+        dtTemp.Columns(47).ColumnName = "BENH_NN1"
+        dtTemp.Columns(48).ColumnName = "BENH_NN2"
+        dtTemp.Columns(49).ColumnName = "BENH_TN_NN"
+        dtTemp.Columns(50).ColumnName = "NGAY_DIEU_TRI"
+        dtTemp.Columns(51).ColumnName = "PP_DIEU_TRI"
+        dtTemp.Columns(52).ColumnName = "KQ_DIEU_TRI"
 
         dtTemp.Rows(0).Delete()
         dtTemp.Rows(1).Delete()
@@ -496,111 +499,6 @@ Public Class ctrlHU_Health_Mng
         dtTemp.AcceptChanges()
     End Sub
 
-
-    'Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-    '    Dim startTime As DateTime = DateTime.UtcNow
-    '    Dim fileName As String
-    '    Dim dsDataPrepare As New DataSet
-    '    Dim workbook As Aspose.Cells.Workbook
-    '    Dim worksheet As Aspose.Cells.Worksheet
-
-    '    Try
-    '        Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
-    '        Dim savepath = Context.Server.MapPath(tempPath)
-
-    '        For Each file As UploadedFile In ctrlUpload1.UploadedFiles
-    '            fileName = System.IO.Path.Combine(savepath, Guid.NewGuid().ToString() & ".xls")
-    '            file.SaveAs(fileName, True)
-    '            workbook = New Aspose.Cells.Workbook(fileName)
-    '            worksheet = workbook.Worksheets(0)
-    '            dsDataPrepare.Tables.Add(worksheet.Cells.ExportDataTableAsString(0, 0, worksheet.Cells.MaxRow + 1, worksheet.Cells.MaxColumn + 1, True))
-    '            If System.IO.File.Exists(fileName) Then System.IO.File.Delete(fileName)
-    '        Next
-    '        dtData = dtData.Clone()
-    '        TableMapping(dsDataPrepare.Tables(0))
-    '        For Each rows As DataRow In dsDataPrepare.Tables(0).Select("Column2<>'""'").CopyToDataTable.Rows
-    '            If IsDBNull(rows("Column2")) OrElse rows("Column2") = "" Then Continue For
-
-    '            Dim newRow As DataRow = dtData.
-    '            NewRow("STT") = rows("Column1")
-    '            newRow("EMPLOYEE_CODE") = rows("Column2")
-    '            newRow("EMPLOYEE_NAME") = rows("Column3")
-    '            newRow("ORG_NAME") = rows("Phòng ban")
-    '            newRow("YEAR_KHAMBENH") = rows("Năm")
-    '            newRow("DATE_KHAMBENH") = rows("Đợt khám")
-    '            newRow("CAN_NANG") = rows("Cân nặng")
-    '            newRow("HUYET_AP") = rows("Huyết áp")
-    '            newRow("NOI_KHOA") = rows("Nội Khoa")
-    '            newRow("NGOAI_KHOA") = rows("Ngoại Khoa")
-    '            newRow("PHU_KHOA") = rows("Phụ Khoa")
-    '            newRow("MAT") = rows("Mắt")
-    '            newRow("TMH") = rows("TMH")
-    '            newRow("RHM") = rows("RHM")
-    '            newRow("DA_LIEU") = rows("Da liễu")
-    '            newRow("CONG_THUC_MAU") = rows("Công thức máu")
-    '            newRow("DUONG_MAU") = rows("Đường máu")
-    '            newRow("XN_NUOC_TIEU") = rows("XN Nước Tiểu")
-    '            newRow("X_QUANG") = rows("X Quang")
-    '            newRow("DIEN_TIM") = rows("ĐiệnTim")
-    '            newRow("SIEU_AM") = rows("Siêu Âm")
-    '            newRow("XN_PHAN") = rows("XN Phân")
-    '            newRow("SIEU_VI_A") = rows("Siêu Vi A")
-    '            newRow("SIEU_VI_E") = rows("Siêu Vi E")
-    '            newRow("SIEU_VI_B") = rows("Siêu Vi B")
-    '            newRow("KT_VIEN_GAN_B") = rows("Kháng thể viêm gan B")
-    '            newRow("CHUC_NANG_GAN") = rows("Chức năng gan")
-    '            newRow("CHUC_NANG_THAN") = rows("Chức năng thận")
-    '            newRow("MO_MAU") = rows("Mỡ máu")
-    '            newRow("KQ1") = rows("KQ1")
-    '            newRow("KQ2") = rows("KQ2")
-    '            newRow("KQ3") = rows("KQ3")
-    '            newRow("KQ4") = rows("KQ4")
-    '            newRow("KQ5") = rows("KQ5")
-    '            newRow("KQ6") = rows("KQ6")
-    '            newRow("KQ7") = rows("KQ7")
-    '            newRow("KQ8") = rows("KQ8")
-    '            newRow("KQ9") = rows("KQ9")
-    '            newRow("KQ10") = rows("KQ10")
-    '            newRow("HEALTH_TYPE") = rows("Loại sức khỏe(Mã)")
-    '            newRow("NHOM_BENH") = rows("Nhóm bệnh(Mã)")
-    '            newRow("TEN_BENH") = rows("Tên bệnh")
-    '            newRow("KET_LUAB") = rows("Kết Luận")
-    '            newRow("GHI_CHU") = rows("Ghi chú")
-    '            newRow("DO_THINH_LUC_SB") = rows("Đo thính lực sơ bộ")
-    '            newRow("DO_THINH_LUC_HC") = rows("Đo thính lục hoàn chỉnh")
-    '            newRow("DO_CN_HO_HAP") = rows("Đo chức năng hô hấp")
-    '            newRow("XN_HAMLUONG_TOLUEN") = rows("XN hàm lượng TOLUEN")
-    '            newRow("BENH_NN1") = rows("NN1")
-    '            newRow("BENH_NN2") = rows("NN2")
-    '            newRow("BENH_TN_NN") = rows("Bệnh TN, NN cần theo dõi")
-    '            newRow("NGAY_DIEU_TRI") = rows("Ngày điều trị")
-    '            newRow("PP_DIEU_TRI") = rows("Phương pháp điều trị")
-    '            newRow("KQ_DIEU_TRI") = rows("Kết quả điều trị")
-    '            dtData.Rows.Add(newRow)
-    '        Next
-    '        dtData.TableName = "DATA"
-    '        If loadToGrid() Then
-    '            Dim sw As New StringWriter()
-    '            Dim DocXml As String = String.Empty
-    '            dtData.WriteXml(sw, False)
-    '            DocXml = sw.ToString
-    '            Dim sp As New ProfileStoreProcedure()
-    '            If sp.Import_HoSoLuong(LogHelper.GetUserLog().Username.ToUpper, DocXml) Then
-    '                ShowMessage(Translate("Import thành công"), NotifyType.Success)
-    '            Else
-    '                ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
-    '            End If
-    '            'End edit;
-    '            rgWelfareMng.Rebind()
-    '        End If
-
-    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
-    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-    '    End Try
-    'End Sub
     Private Sub TableMapping(ByVal dtdata As DataTable)
         Dim row As DataRow = dtdata.Rows(0)
         Dim index As Integer = 0
@@ -693,14 +591,14 @@ Public Class ctrlHU_Health_Mng
         Dim rep As New Profile.ProfileBusinessRepository
 
         Try
-            Dim configPath As String = ConfigurationManager.AppSettings("ReportTemplatesFolder")
-            'Dim configPath As String = "D:\acv_19\HistaffWebApp\ReportTemplates"
-            Dim dsData As DataTable = rep.EXPORT_HEALTH_MNG()
+            Dim configPath As String = "~/ReportTemplates//Profile//RPT_HU_HEALTH_MNG.xls"
+            'Dim configPath As String = "D:\acv_19\HistaffWebApp\ReportTemplates\Profile\RPT_HU_HEALTH_MNG.xls"
+            Dim dsData As DataSet = rep.EXPORT_HEALTH_MNG()
 
             rep.Dispose()
-            If File.Exists(configPath + "\Profile\RPT_HU_HEALTH_MNG.xls") Then
-                ExportTemplate(configPath + "\Profile\RPT_HU_HEALTH_MNG.xls",
-                                    Nothing, dsData, "Template_QUANLYSUCKHOE_" & Format(Date.Now, "yyyyMMdd"))
+            If File.Exists(System.IO.Path.Combine(Server.MapPath(configPath))) Then
+                'If File.Exists(configPath) Then
+                ExportTemplate(configPath, dsData, Nothing, "Template_QUANLYSUCKHOE_" & Format(Date.Now, "yyyyMMdd"))
             Else
                 ShowMessage(Translate("Template không tồn tại"), Utilities.NotifyType.Error)
                 Exit Sub
@@ -711,7 +609,7 @@ Public Class ctrlHU_Health_Mng
     End Sub
 
     Public Function ExportTemplate(ByVal sReportFileName As String,
-                                                    ByVal dsData As DataTable,
+                                                    ByVal dsData As DataSet,
                                                     ByVal dtVariable As DataTable,
                                                     ByVal filename As String) As Boolean
 
@@ -732,7 +630,7 @@ Public Class ctrlHU_Health_Mng
             designer = New WorkbookDesigner
             designer.Open(sReportFileName)
 
-            'designer.SetDataSource(dsData)
+            designer.SetDataSource(dsData)
 
             If dtVariable IsNot Nothing Then
                 Dim intCols As Integer = dtVariable.Columns.Count
