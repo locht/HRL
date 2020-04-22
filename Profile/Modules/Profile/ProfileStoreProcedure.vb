@@ -447,6 +447,14 @@ Public Class ProfileStoreProcedure
         End If
         Return dt
     End Function
+    Public Function GET_HEALTH_BY_ID(ByVal empid As Decimal) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_PROFILE_BUSINESS.GET_HEALTH_BY_ID", New List(Of Object)(New Object() {empid}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
     Public Function Import_HU_TITLE(ByVal P_USER As String, ByVal P_DOCXML As String) As Boolean
         Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_HU_IPROFILE.Import_HU_TITLE", New List(Of Object)(New Object() {P_USER, P_DOCXML}))
         If ds IsNot Nothing AndAlso ds.Tables(0) IsNot Nothing AndAlso ds.Tables(0).Rows.Count > 0 Then

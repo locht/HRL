@@ -9,11 +9,11 @@ Public Class ctrlHU_EmpDtlHealthMng
     ' Public Overrides Property MustAuthorize As Boolean = False
 
 #Region "Property"
-    Public Property GridList As List(Of DisciplineDTO)
+    Public Property GridList As DataTable
         Get
             Return PageViewState(Me.ID & "_GridList")
         End Get
-        Set(ByVal value As List(Of DisciplineDTO))
+        Set(ByVal value As DataTable)
             PageViewState(Me.ID & "_GridList") = value
         End Set
     End Property
@@ -63,11 +63,11 @@ Public Class ctrlHU_EmpDtlHealthMng
     End Sub
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
-        Dim rep As New ProfileBusinessRepository
+        Dim rep As New ProfileStoreProcedure
         Try
             If EmployeeInfo IsNot Nothing Then
                 EmployeeID = EmployeeInfo.ID
-                GridList = rep.GetDisciplineProccess(EmployeeID)
+                GridList = rep.GET_HEALTH_BY_ID(EmployeeID)
             End If
 
             'Đưa dữ liệu vào Grid
@@ -75,10 +75,9 @@ Public Class ctrlHU_EmpDtlHealthMng
                 rgGrid.DataSource = Me.GridList
                 rgGrid.DataBind()
             Else
-                rgGrid.DataSource = New List(Of DisciplineDTO)
+                rgGrid.DataSource = New DataTable
                 rgGrid.DataBind()
             End If
-            rep.Dispose()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -90,11 +89,9 @@ Public Class ctrlHU_EmpDtlHealthMng
     Private Sub rgGrid_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgGrid.NeedDataSource
         Try
             If IsPostBack Then Exit Sub
-
-            Dim rep As New ProfileBusinessRepository
-            GridList = rep.GetDisciplineProccess(EmployeeID)
+            Dim rep As New ProfileStoreProcedure
+            GridList = rep.GET_HEALTH_BY_ID(EmployeeID)
             rgGrid.DataSource = GridList
-            rep.Dispose()
         Catch ex As Exception
             Me.DisplayException(Me.ViewName, Me.ID, ex)
         End Try
