@@ -28,7 +28,7 @@
         <table class="table-form">
             <tr>
                 <td class="item-head" colspan="6">
-                    <%# Translate("Thông tin về yêu cầu tuyển dụng")%>
+                    <%# Translate("Thông tin chương trình tuyển dụng")%>
                     <hr />
                 </td>
             </tr>
@@ -86,7 +86,7 @@
                     <asp:Label ID="lblTypeRecruit" runat="server" Text="" Font-Bold="true"></asp:Label>
                 </td>
                 <td class="lb">
-                    <%# Translate("Trạng thái yêu cầu")%>
+                    <%# Translate("Trạng thái chương trình")%>
                 </td>
                 <td>
                     <asp:Label ID="lblStatus" runat="server" Text="" Font-Bold="true"></asp:Label>
@@ -188,6 +188,8 @@
                                 UniqueName="ASSESSOR" SortExpression="ASSESSOR" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
                                 UniqueName="STATUS_NAME" SortExpression="STATUS_NAME" />
+                               <tlk:GridBoundColumn HeaderText="<%$ Translate: Email %>" DataField="PER_EMAIL"
+                                UniqueName="PER_EMAIL" SortExpression="PER_EMAIL" />
                         </Columns>
                     </MasterTableView>
                 </tlk:RadGrid>
