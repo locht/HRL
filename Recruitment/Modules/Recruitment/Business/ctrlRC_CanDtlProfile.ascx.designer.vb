@@ -1364,13 +1364,13 @@ Partial Public Class ctrlRC_CanDtlProfile
     Protected WithEvents rdNgayVaoDoan As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
-    '''cboChucVuDoan control.
+    '''txtChucVuDoan control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboChucVuDoan As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents txtChucVuDoan As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''rdNgayNhanChucVuDoan control.
@@ -1418,13 +1418,13 @@ Partial Public Class ctrlRC_CanDtlProfile
     Protected WithEvents rdNgayVaoDang As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
-    '''cboChucVuDang control.
+    '''txtChucVuDang control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboChucVuDang As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents txtChucVuDang As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''rdNgayNhanChucVuDang control.

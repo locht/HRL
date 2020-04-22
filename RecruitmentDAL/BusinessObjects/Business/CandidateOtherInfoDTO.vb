@@ -19,16 +19,14 @@
     Public Property IS_DOANVIEN As Boolean?
     Public Property NGAY_VAO_DOAN As Date?
     Public Property NOI_VAO_DOAN As String
-    Public Property CHUC_VU_DOAN As Decimal?
-    Public Property CHUC_VU_DOAN_NAME As String
+    Public Property CHUC_VU_DOAN As String
     Public Property DOAN_PHI As Boolean?
     Public Property NGAY_NHAN_CV_DOAN As Date?
     'Đảng
     Public Property IS_DANGVIEN As Boolean?
     Public Property NGAY_VAO_DANG As Date?
     Public Property NOI_VAO_DANG As String
-    Public Property CHUC_VU_DANG As Decimal?
-    Public Property CHUC_VU_DANG_NAME As String
+    Public Property CHUC_VU_DANG As String
     Public Property DANG_PHI As Boolean?
     Public Property DANG_KIEMNHIEM As Decimal?
     Public Property DANG_KIEMNHIEM_NAME As String

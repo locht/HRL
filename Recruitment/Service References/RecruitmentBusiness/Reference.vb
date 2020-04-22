@@ -11663,16 +11663,10 @@ Namespace RecruitmentBusiness
         Private CDP_NOIVAOField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private CHUC_VU_DANGField As System.Nullable(Of Decimal)
+        Private CHUC_VU_DANGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private CHUC_VU_DANG_NAMEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private CHUC_VU_DOANField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private CHUC_VU_DOAN_NAMEField As String
+        Private CHUC_VU_DOANField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CONGTAC_LAUNHATField As String
@@ -12052,12 +12046,12 @@ Namespace RecruitmentBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property CHUC_VU_DANG() As System.Nullable(Of Decimal)
+        Public Property CHUC_VU_DANG() As String
             Get
                 Return Me.CHUC_VU_DANGField
             End Get
             Set
-                If (Me.CHUC_VU_DANGField.Equals(value) <> true) Then
+                If (Object.ReferenceEquals(Me.CHUC_VU_DANGField, value) <> true) Then
                     Me.CHUC_VU_DANGField = value
                     Me.RaisePropertyChanged("CHUC_VU_DANG")
                 End If
@@ -12065,40 +12059,14 @@ Namespace RecruitmentBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property CHUC_VU_DANG_NAME() As String
-            Get
-                Return Me.CHUC_VU_DANG_NAMEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.CHUC_VU_DANG_NAMEField, value) <> true) Then
-                    Me.CHUC_VU_DANG_NAMEField = value
-                    Me.RaisePropertyChanged("CHUC_VU_DANG_NAME")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property CHUC_VU_DOAN() As System.Nullable(Of Decimal)
+        Public Property CHUC_VU_DOAN() As String
             Get
                 Return Me.CHUC_VU_DOANField
             End Get
             Set
-                If (Me.CHUC_VU_DOANField.Equals(value) <> true) Then
+                If (Object.ReferenceEquals(Me.CHUC_VU_DOANField, value) <> true) Then
                     Me.CHUC_VU_DOANField = value
                     Me.RaisePropertyChanged("CHUC_VU_DOAN")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property CHUC_VU_DOAN_NAME() As String
-            Get
-                Return Me.CHUC_VU_DOAN_NAMEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.CHUC_VU_DOAN_NAMEField, value) <> true) Then
-                    Me.CHUC_VU_DOAN_NAMEField = value
-                    Me.RaisePropertyChanged("CHUC_VU_DOAN_NAME")
                 End If
             End Set
         End Property

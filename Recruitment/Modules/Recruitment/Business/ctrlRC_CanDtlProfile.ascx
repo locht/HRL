@@ -1220,8 +1220,10 @@
                                 <%# Translate("Chức vụ Đoàn")%>
                             </td>
                             <td>
-                                <tlk:RadComboBox runat="server" ID="cboChucVuDoan" SkinID="LoadDemand">
-                                </tlk:RadComboBox>
+                                 <tlk:RadTextBox ID="txtChucVuDoan" runat="server">
+                                </tlk:RadTextBox>
+                               <%-- <tlk:RadComboBox runat="server" ID="cboChucVuDoan" SkinID="LoadDemand">
+                                </tlk:RadComboBox>--%>
                             </td>
                             <td class="lb">
                                 <%# Translate("Ngày nhận chức vụ Đoàn")%>
@@ -1264,8 +1266,10 @@
                                 <%# Translate("Chức vụ Đảng")%>
                             </td>
                             <td>
-                                <tlk:RadComboBox runat="server" ID="cboChucVuDang" SkinID="LoadDemand">
-                                </tlk:RadComboBox>
+                                <tlk:RadTextBox ID="txtChucVuDang" runat="server">
+                                </tlk:RadTextBox>
+                                <%--<tlk:RadComboBox runat="server" ID="cboChucVuDang" SkinID="LoadDemand">
+                                </tlk:RadComboBox>--%>
                             </td>
                             <td class="lb">
                                 <%# Translate("Ngày nhận chức Đảng")%>
