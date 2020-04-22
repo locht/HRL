@@ -547,39 +547,33 @@ Public Class ctrlHU_WageMng
                 newRow("SAL_GROUP_NAME") = rows("SAL_GROUP_NAME")
                 newRow("SAL_LEVEL_NAME") = rows("SAL_LEVEL_NAME")
                 newRow("SAL_RANK_NAME") = rows("SAL_RANK_NAME")
-                newRow("SAL_BASIC_MIN") = If(rows("SAL_BASIC_MIN") <> "", Decimal.Parse(rows("SAL_BASIC_MIN")), rows("SAL_BASIC_MIN"))
-                newRow("SAL_BASIC_MAX") = If(rows("SAL_BASIC_MAX") <> "", Decimal.Parse(rows("SAL_BASIC_MAX")), rows("SAL_BASIC_MAX"))
+                newRow("SAL_BASIC_MIN") = If(IsNumeric(rows("SAL_BASIC_MIN")), Decimal.Parse(rows("SAL_BASIC_MIN")), 0)
+                newRow("SAL_BASIC_MAX") = If(IsNumeric(rows("SAL_BASIC_MAX")), Decimal.Parse(rows("SAL_BASIC_MAX")), 0)
                 'newRow("FACTORSALARY") = If(IsNumeric(rows("FACTORSALARY")), repFactor, 0)
                 newRow("SAL_BASIC") = If(rows("SAL_BASIC"), Decimal.Parse(rows("SAL_BASIC")), rows("SAL_BASIC"))
-                newRow("PERCENTSALARY") = If(rows("PERCENTSALARY") <> "", Decimal.Parse(rows("PERCENTSALARY")), rows("PERCENTSALARY"))
+                newRow("PERCENTSALARY") = If(IsNumeric(rows("PERCENTSALARY")), Decimal.Parse(rows("PERCENTSALARY")), rows("PERCENTSALARY"))
                 newRow("EXRATE_NAME") = rows("EXRATE_NAME")
-                newRow("SAL_RATE") = If(rows("SAL_RATE") <> "", Decimal.Parse(rows("SAL_RATE")), rows("SAL_RATE"))
+                newRow("SAL_RATE") = If(IsNumeric(rows("SAL_RATE")), Decimal.Parse(rows("SAL_RATE")), rows("SAL_RATE"))
 
                 For Each item As DataRow In dtDataAll.Rows
-                    newRow("AMOUNT") += If(IsNumeric(rows("AMOUNT_" + item("ID").ToString)), Decimal.Parse(rows("AMOUNT_" + item("ID").ToString)), "NOTHING").ToString + (",")
-                    newRow("AMOUNT_EX") += If(IsNumeric(rows("AMOUNT_EX_" + item("ID").ToString)), Decimal.Parse(rows("AMOUNT_EX_" + item("ID").ToString)), "NOTHING").ToString + (",")
+                    If If(IsNumeric(rows("AMOUNT_" + item("ID").ToString)), Decimal.Parse(rows("AMOUNT_" + item("ID").ToString)), "NOTHING").ToString = "NOTHING" Then
+                        Exit For
+                    Else
+                        newRow("AMOUNT") += If(IsNumeric(rows("AMOUNT_" + item("ID").ToString)), Decimal.Parse(rows("AMOUNT_" + item("ID").ToString)), "NOTHING").ToString + (",")
+                    End If
+                    If If(IsNumeric(rows("AMOUNT_EX_" + item("ID").ToString)), Decimal.Parse(rows("AMOUNT_EX_" + item("ID").ToString)), "NOTHING").ToString = "NOTHING" Then
+                        Exit For
+                    Else
+                        newRow("AMOUNT_EX") += If(IsNumeric(rows("AMOUNT_EX_" + item("ID").ToString)), Decimal.Parse(rows("AMOUNT_EX_" + item("ID").ToString)), "NOTHING").ToString + (",")
+                    End If
+
                     newRow("ALLOWANCE_LIST_ID") += If(IsNumeric(item("ID").ToString), Decimal.Parse(item("ID").ToString), 0).ToString + (",")
                 Next
 
                 newRow("AMOUNT") = newRow("AMOUNT").ToString.TrimEnd(",")
-                If newRow("AMOUNT").ToString.Trim.ToUpper.Contains("NOTHING") Then
-                    Continue For
-                Else
-                    newRow("AMOUNT") = newRow("AMOUNT")
-                End If
-
                 newRow("AMOUNT_EX") = newRow("AMOUNT_EX").ToString.TrimEnd(",")
-                If newRow("AMOUNT_EX").ToString.Trim.ToUpper.Contains("NOTHING") Then
-                    Continue For
-                Else
-                    newRow("AMOUNT_EX") = newRow("AMOUNT_EX")
-                End If
-
                 newRow("ALLOWANCE_LIST_ID") = newRow("ALLOWANCE_LIST_ID").ToString.TrimEnd(",")
-                newRow("ALLOWANCE_TOTAL") = If(rows("ALLOWANCE_TOTAL") <> "", Decimal.Parse(rows("ALLOWANCE_TOTAL")), "NOTHING")
-                If newRow("ALLOWANCE_TOTAL").ToString.Trim.ToUpper.Contains("NOTHING") Then
-                    Continue For
-                End If
+                newRow("ALLOWANCE_TOTAL") = If(IsNumeric(rows("ALLOWANCE_TOTAL")), Decimal.Parse(rows("ALLOWANCE_TOTAL")), 0)
                 newRow("SAL_INS") = If(rows("SAL_INS") <> "", Decimal.Parse(rows("SAL_INS")), rows("SAL_INS"))
                 newRow("REASON_EDIT_EFDATE") = rows("REASON_EDIT_EFDATE")
                 newRow("SIGN_NAME") = rows("SIGN_NAME")
@@ -596,7 +590,7 @@ Public Class ctrlHU_WageMng
                 newRow("SAL_RANK_ID") = rows("SAL_RANK_ID")
                 newRow("EXRATE_ID") = rows("EXRATE_ID")
                 'newRow("STATUS_ID") = If(IsNumeric(rows("STATUS_ID")), rows("STATUS_ID"), 0)
-                newRow("SIGN_ID") = If(rows("SIGN_ID") <> "", Decimal.Parse(rows("SIGN_ID")), 0)
+                newRow("SIGN_ID") = If(IsNumeric(rows("SIGN_ID")), Decimal.Parse(rows("SIGN_ID")), 0)
                 dtData.Rows.Add(newRow)
             Next
             dtData.TableName = "DATA"
