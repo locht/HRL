@@ -2078,6 +2078,58 @@ Partial Class ProfileRepository
             Throw ex
         End Try
     End Function
+    Public Function CheckEmployee_Terminate(ByVal empCode As String) As Integer
+        Dim objEmp As HU_EMPLOYEE
+        Dim result As Integer
+        Try
+            objEmp = (From p In Context.HU_EMPLOYEE Where p.EMPLOYEE_CODE = empCode.Replace(" ", "") And p.WORK_STATUS = 257).SingleOrDefault
+            If objEmp IsNot Nothing Then
+                result = objEmp.ID
+            Else
+                result = 0
+            End If
+            Return result
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+    Public Function CheckEmployee_EffectDate_exits(ByVal empCode As String, ByVal effect_date As String) As Integer
+        Dim objEmp As HU_EMPLOYEE
+        Dim result As Integer
+        Try
+            objEmp = (From p In Context.HU_EMPLOYEE Where p.EMPLOYEE_CODE = empCode.Replace(" ", "") And p.WORK_STATUS = 257).SingleOrDefault
+            If objEmp IsNot Nothing Then
+                result = objEmp.ID
+            Else
+                result = 0
+            End If
+            Return result
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+    Public Function CheckEmployee_Contract_Count(ByVal empCode As String) As Integer
+        Dim count As Decimal
+        Dim result As Integer
+        Try
+            count = (From p In Context.HU_EMPLOYEE Where p.EMPLOYEE_CODE = empCode.Replace(" ", "")
+                      From c In Context.HU_CONTRACT Where p.ID = c.EMPLOYEE_ID
+                      Where c.CONTRACT_TYPE_ID <> 5 Or c.CONTRACT_TYPE_ID <> 6
+                      Select New ContractDTO With {
+                          .EMPLOYEE_ID = p.ID}).Count
+            If count >= 2 Then
+                result = 0 'k cho add
+            Else
+                result = 1
+            End If
+            Return result
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
 
     Public Function ImportAnnualLeave(ByVal P_DOCXML As String, ByVal P_USER As String, ByVal P_YEAR As Decimal) As Boolean
         Try

@@ -280,6 +280,29 @@ Partial Public Class ProfileBusinessRepository
 
     End Function
 
+    Public Function CheckEmployee_Terminate(ByVal empCode As String) As Integer
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CheckEmployee_Terminate(empCode)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    Public Function CheckEmployee_Contract_Count(ByVal empCode As String) As Integer
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CheckEmployee_Contract_Count(empCode)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
     Public Function ImportAnnualLeave(ByVal P_DOCXML As String, ByVal P_USER As String, ByVal P_YEAR As Decimal) As Boolean
         Using rep As New ProfileBusinessClient
             Try

@@ -151,6 +151,26 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function CheckEmployee_Contract_Count(ByVal empCode As String) As Integer _
+           Implements ServiceContracts.IProfileBusiness.CheckEmployee_Contract_Count
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.CheckEmployee_Contract_Count(empCode)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function CheckEmployee_Terminate(ByVal empCode As String) As Integer _
+           Implements ServiceContracts.IProfileBusiness.CheckEmployee_Terminate
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.CheckEmployee_Terminate(empCode)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 
         Public Function ImportAnnualLeave(ByVal P_DOCXML As String, ByVal P_USER As String, ByVal P_YEAR As Decimal) As Boolean _
           Implements ServiceContracts.IProfileBusiness.ImportAnnualLeave
