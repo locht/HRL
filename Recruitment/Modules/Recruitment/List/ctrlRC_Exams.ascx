@@ -35,7 +35,7 @@
                     <tr>
                         <td colspan="6">
                             <b>
-                                <%# Translate("Thiết lập môn thi")%></b>
+                                <%# Translate("Thiết lập vòng phỏng vấn")%></b>
                             <hr />
                         </td>
                     </tr>
@@ -84,14 +84,14 @@
                             </asp:RequiredFieldValidator>--%>
                         </td>
                         <td class="lb">
-                            <%# Translate("Thứ tự môn thi/pv")%><span class="lbReq">*</span>
+                            <%# Translate("Thứ tự vòng phỏng vấn")%><span class="lbReq">*</span>
                         </td>
                         <td>
                             <tlk:RadNumericTextBox ID="rntxtExamsOrder" runat="server" SkinID="number">
                             </tlk:RadNumericTextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rntxtExamsOrder"
-                                runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Thứ tự môn thi/pv %>"
-                                ToolTip="<%$ Translate: Bạn phải nhập Thứ tự môn thi/pv %>"> 
+                                runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Thứ tự vòng phỏng vấn %>"
+                                ToolTip="<%$ Translate: Bạn phải nhập Thứ tự vòng phỏng vấn %>"> 
                             </asp:RequiredFieldValidator>
                         </td>
                         <td class="lb">
@@ -130,7 +130,7 @@
                                 SortExpression="POINT_LADDER" UniqueName="POINT_LADDER" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Điểm đạt %>" DataField="POINT_PASS"
                                 SortExpression="POINT_PASS" UniqueName="POINT_PASS" />--%>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Thứ tự môn thi/pv %>" DataField="EXAMS_ORDER"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Thứ tự vòng phỏng vấn %>" DataField="EXAMS_ORDER"
                                 SortExpression="EXAMS_ORDER" UniqueName="EXAMS_ORDER" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="NOTE" SortExpression="NOTE"
                                 UniqueName="NOTE" />
