@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("6e537cbd-be39-4320-b380-2cd5c7debd5f")>
+<Assembly: EdmSchemaAttribute("0ea4153a-2428-4426-987e-e4c1e9f60a03")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH1), True)>
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_HE_HEC", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_CV", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_CV), True)>
@@ -25046,21 +25046,21 @@ Public Partial Class RC_CANDIDATE_OTHER_INFO
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property CHUC_VU_DANG() As Nullable(Of Global.System.Decimal)
+    Public Property CHUC_VU_DANG() As Global.System.String
         Get
             Return _CHUC_VU_DANG
         End Get
         Set
             OnCHUC_VU_DANGChanging(value)
             ReportPropertyChanging("CHUC_VU_DANG")
-            _CHUC_VU_DANG = StructuralObject.SetValidValue(value)
+            _CHUC_VU_DANG = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("CHUC_VU_DANG")
             OnCHUC_VU_DANGChanged()
         End Set
     End Property
 
-    Private _CHUC_VU_DANG As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnCHUC_VU_DANGChanging(value As Nullable(Of Global.System.Decimal))
+    Private _CHUC_VU_DANG As Global.System.String
+    Private Partial Sub OnCHUC_VU_DANGChanging(value As Global.System.String)
     End Sub
 
     Private Partial Sub OnCHUC_VU_DANGChanged()
@@ -25071,21 +25071,21 @@ Public Partial Class RC_CANDIDATE_OTHER_INFO
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property CHUC_VU_DOAN() As Nullable(Of Global.System.Decimal)
+    Public Property CHUC_VU_DOAN() As Global.System.String
         Get
             Return _CHUC_VU_DOAN
         End Get
         Set
             OnCHUC_VU_DOANChanging(value)
             ReportPropertyChanging("CHUC_VU_DOAN")
-            _CHUC_VU_DOAN = StructuralObject.SetValidValue(value)
+            _CHUC_VU_DOAN = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("CHUC_VU_DOAN")
             OnCHUC_VU_DOANChanged()
         End Set
     End Property
 
-    Private _CHUC_VU_DOAN As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnCHUC_VU_DOANChanging(value As Nullable(Of Global.System.Decimal))
+    Private _CHUC_VU_DOAN As Global.System.String
+    Private Partial Sub OnCHUC_VU_DOANChanging(value As Global.System.String)
     End Sub
 
     Private Partial Sub OnCHUC_VU_DOANChanged()
