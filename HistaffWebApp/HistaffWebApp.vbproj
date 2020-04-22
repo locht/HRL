@@ -1481,6 +1481,7 @@
     <Content Include="ReportTemplates\Profile\Import\import_khenthuong.xls" />
     <Content Include="ReportTemplates\Profile\Import\import_phuluchopdong.xls" />
     <Content Include="ReportTemplates\Profile\Import\Template_Export_Emp.xls" />
+    <Content Include="ReportTemplates\Profile\Import\import_khenthuong1.xls" />
     <None Include="ReportTemplates\Recruitment\Import\Candidate_Error.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

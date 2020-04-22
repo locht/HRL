@@ -598,7 +598,12 @@ Public Class ctrlHU_Health_Mng
             rep.Dispose()
             If File.Exists(System.IO.Path.Combine(Server.MapPath(configPath))) Then
                 'If File.Exists(configPath) Then
-                ExportTemplate(configPath, dsData, Nothing, "Template_QUANLYSUCKHOE_" & Format(Date.Now, "yyyyMMdd"))
+                ' ExportTemplate(configPath, dsData, Nothing, "Template_QUANLYSUCKHOE_" & Format(Date.Now, "yyyyMMdd"))
+                Using xls As New AsposeExcelCommon
+                    Dim bCheck = xls.ExportExcelTemplate(
+                      System.IO.Path.Combine(Server.MapPath(configPath)), "Template_QUANLYSUCKHOE_" & Format(Date.Now, "yyyyMMdd"), dsData, Nothing, Response)
+
+                End Using
             Else
                 ShowMessage(Translate("Template không tồn tại"), Utilities.NotifyType.Error)
                 Exit Sub
