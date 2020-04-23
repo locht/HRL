@@ -50,6 +50,7 @@
             <EntitySet Name="SE_REPORT" EntityType="InsuranceModel.Store.SE_REPORT" store:Type="Tables"  />
             <EntitySet Name="INS_REGIMES" EntityType="InsuranceModel.Store.INS_REGIMES" store:Type="Tables"  />
             <EntitySet Name="INS_ACCIDENT_RISK" EntityType="InsuranceModel.Store.INS_ACCIDENT_RISK" store:Type="Tables"  />
+            <EntitySet Name="HU_JOB_POSITION" EntityType="InsuranceModel.Store.HU_JOB_POSITION" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="InsuranceModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_FE_HEH" Association="InsuranceModel.Store.FK_FE_HEH">
                 <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
@@ -1214,6 +1215,28 @@
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="IS_DELETED" Type="number" Nullable="true" Precision="38" />
         </EntityType>
+        <EntityType Name="HU_JOB_POSITION">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TITLE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="JOB_NOTE" Type="nvarchar2" Nullable="true" MaxLength="2000" />
+            <Property Name="COST_CODE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="IS_LEADER" Type="number" Nullable="true" Precision="5" />
+            <Property Name="DIRECT_MANAGER" Type="number" Nullable="true" Precision="38" />
+            <Property Name="EFFECT_DATE" Type="date" Nullable="true" />
+            <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="JOB_NAME" Type="nvarchar2" Nullable="true" MaxLength="1000" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -1641,6 +1664,7 @@
           </AssociationSet>
           <EntitySet Name="INS_REGIMES" EntityType="InsuranceModel.INS_REGIMES" />
           <EntitySet Name="INS_ACCIDENT_RISK" EntityType="InsuranceModel.INS_ACCIDENT_RISK" />
+          <EntitySet Name="HU_JOB_POSITION" EntityType="InsuranceModel.HU_JOB_POSITION" />
         </EntityContainer>
         <EntityType Name="HU_EMPLOYEE">
           <Key>
@@ -2992,6 +3016,28 @@
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="IS_DELETED" Precision="38" Scale="0" />
         </EntityType>
+        <EntityType Name="HU_JOB_POSITION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="CODE" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TITLE_ID" Precision="38" Scale="0" />
+          <Property Type="String" Name="JOB_NOTE" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="COST_CODE" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="IS_LEADER" />
+          <Property Type="Decimal" Name="DIRECT_MANAGER" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="EFFECT_DATE" />
+          <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="JOB_NAME" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4119,6 +4165,29 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HU_JOB_POSITION">
+            <EntityTypeMapping TypeName="InsuranceModel.HU_JOB_POSITION">
+                <MappingFragment StoreEntitySet="HU_JOB_POSITION">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="CODE" ColumnName="CODE" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                    <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+                    <ScalarProperty Name="JOB_NOTE" ColumnName="JOB_NOTE" />
+                    <ScalarProperty Name="COST_CODE" ColumnName="COST_CODE" />
+                    <ScalarProperty Name="IS_LEADER" ColumnName="IS_LEADER" />
+                    <ScalarProperty Name="DIRECT_MANAGER" ColumnName="DIRECT_MANAGER" />
+                    <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
+                    <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="JOB_NAME" ColumnName="JOB_NAME" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="InsuranceModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -4306,6 +4375,7 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="InsuranceModel.INS_REGIMES" Width="1.5" PointX="7.375" PointY="14.75" Height="7.5570279947916674" />
         <EntityTypeShape EntityType="InsuranceModel.INS_ACCIDENT_RISK" Width="1.5" PointX="9.375" PointY="14.75" Height="4.8648079427083246" />
+        <EntityTypeShape EntityType="InsuranceModel.HU_JOB_POSITION" Width="1.5" PointX="11.375" PointY="14.75" Height="4.2879036458333246" />
       </Diagram>
     </Diagrams>
   </Designer>

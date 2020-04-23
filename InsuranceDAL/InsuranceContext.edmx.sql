@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 4/23/2020 9:50:42 AM
+-- Date Created: 4/23/2020 11:49:51 AM
 -- Generated from EDMX file: D:\SOURCE_GIT_NEW\SOURCR_ACV_NEW\InsuranceDAL\InsuranceContext.edmx
 -- --------------------------------------------------
 
@@ -13,7 +13,7 @@
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "ACV_19_DEV"."INS_ACCIDENT_RISK";
+-- DROP TABLE "ACV_19_DEV"."HU_JOB_POSITION";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -1052,6 +1052,27 @@ CREATE TABLE "dbo"."INS_ACCIDENT_RISK" (
    "IS_DELETED" NUMBER(38,0) NULL
 );
 
+-- Creating table 'HU_JOB_POSITION'
+CREATE TABLE "dbo"."HU_JOB_POSITION" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "CODE" NVARCHAR2(255) NULL,
+   "ORG_ID" NUMBER(38,0) NULL,
+   "TITLE_ID" NUMBER(38,0) NULL,
+   "JOB_NOTE" NVARCHAR2(2000) NULL,
+   "COST_CODE" NVARCHAR2(255) NULL,
+   "IS_LEADER" NUMBER(5,0) NULL,
+   "DIRECT_MANAGER" NUMBER(38,0) NULL,
+   "EFFECT_DATE" DATE NULL,
+   "ACTFLG" NVARCHAR2(1) NULL,
+   "CREATED_DATE" DATE NULL,
+   "CREATED_BY" NVARCHAR2(255) NULL,
+   "CREATED_LOG" NVARCHAR2(255) NULL,
+   "MODIFIED_DATE" DATE NULL,
+   "MODIFIED_BY" NVARCHAR2(255) NULL,
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "JOB_NAME" NVARCHAR2(1000) NULL
+);
+
 -- Creating table 'SE_USER_REPORT'
 CREATE TABLE "dbo"."SE_USER_REPORT" (
    "SE_REPORT_ID" NUMBER(38,0) NOT NULL,
@@ -1410,6 +1431,14 @@ ADD CONSTRAINT "PK_INS_REGIMES"
 -- Creating primary key on "ID"in table 'INS_ACCIDENT_RISK'
 ALTER TABLE "dbo"."INS_ACCIDENT_RISK"
 ADD CONSTRAINT "PK_INS_ACCIDENT_RISK"
+   PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'HU_JOB_POSITION'
+ALTER TABLE "dbo"."HU_JOB_POSITION"
+ADD CONSTRAINT "PK_HU_JOB_POSITION"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;
