@@ -654,7 +654,69 @@ Partial Public Class PayrollRepository
 
     End Function
 #End Region
+#Region "at setup bonus"
+    Public Function GetSetUpBonus(ByVal PageIndex As Integer,
+                                         ByVal PageSize As Integer,
+                                         ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "FROM_DATE desc") As List(Of ATSetUpBonusDTO)
+        Dim lstPeriod As List(Of ATSetUpBonusDTO)
+        Using rep As New PayrollBusinessClient
+            Try
+                lstPeriod = rep.GetSetUpBonus(PageIndex, PageSize, Total, Sorts)
+                Return lstPeriod
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
 
+        Return Nothing
+    End Function
+    Public Function InsertSetUpBonus(ByVal objPeriod As ATSetUpBonusDTO, ByVal objOrgPeriod As List(Of ATSetUpBonusDTO), ByRef gID As Decimal) As Boolean
+        Using rep As New PayrollBusinessClient
+            Try
+                Return rep.InsertSetUpBonus(objPeriod, objOrgPeriod, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    Public Function ModifySetUpBonus(ByVal objPeriod As ATSetUpBonusDTO, ByVal objOrgPeriod As List(Of ATSetUpBonusDTO), ByRef gID As Decimal) As Boolean
+        Using rep As New PayrollBusinessClient
+            Try
+                Return rep.ModifySetUpBonus(objPeriod, objOrgPeriod, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function DeleteSetUpBonus(ByVal lstPeriod As ATSetUpBonusDTO) As Boolean
+        Using rep As New PayrollBusinessClient
+            Try
+                Return rep.DeleteSetUpBonus(lstPeriod)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    Public Function ActiveSetUpBonus(ByVal lstWorkFactor As List(Of Decimal), ByVal sActive As String) As Boolean
+        Using rep As New PayrollBusinessClient
+            Try
+                Return rep.ActiveSetUpBonus(lstWorkFactor, Me.Log, sActive)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+#End Region
 #Region "Salaries List"
 
     Public Function GetListSalaries(ByVal _filter As PAListSalariesDTO,

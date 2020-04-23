@@ -14,11 +14,11 @@ Public Class ctrlPA_SetUpBonus
 
 #Region "Property"
 
-    Public Property vPeriod As List(Of ATPeriodDTO)
+    Public Property vPeriod As List(Of ATSetUpBonusDTO)
         Get
             Return ViewState(Me.ID & "_Period")
         End Get
-        Set(ByVal value As List(Of ATPeriodDTO))
+        Set(ByVal value As List(Of ATSetUpBonusDTO))
             ViewState(Me.ID & "_Period") = value
         End Set
     End Property
@@ -140,11 +140,14 @@ Public Class ctrlPA_SetUpBonus
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             Dim dic As New Dictionary(Of String, Control)
-            dic.Add("YEAR", nmrYear)
-            dic.Add("REMARK", txtRemark)
-            dic.Add("START_DATE", dpStartDate)
-            dic.Add("END_DATE", dpEndDate)
-            dic.Add("BONUS_DATE", dpBonusDate)
+            'dic.Add("YEAR", nmrYear)
+            'dic.Add("NAME_BONUS", txtNameBonus)
+            'dic.Add("FROM_DATE", dpStartDate)
+            'dic.Add("TO_DATE", dpEndDate)
+            'dic.Add("BONUS_DATE", dpBonusDate)
+            'dic.Add("ORDERS", rtxtSTT)
+            'dic.Add("REMARK", txtRemark)
+
             Utilities.OnClientRowSelectedChanged(rgData, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                             CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -153,7 +156,25 @@ Public Class ctrlPA_SetUpBonus
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
+    Private Sub rgData_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles rgData.SelectedIndexChanged
+        Try
+            For Each LINE As GridDataItem In rgData.SelectedItems
+                nmrYear.Value = Decimal.Parse(LINE.GetDataKeyValue("YEAR"))
+                txtNameBonus.Text = LINE.GetDataKeyValue("NAME_BONUS").ToString
+                dpStartDate.SelectedDate = LINE.GetDataKeyValue("FROM_DATE")
+                dpEndDate.SelectedDate = LINE.GetDataKeyValue("TO_DATE")
+                dpBonusDate.SelectedDate = LINE.GetDataKeyValue("BONUS_DATE")
+                rtxtSTT.Value = Decimal.Parse(LINE.GetDataKeyValue("ORDERS"))
+                If LINE.GetDataKeyValue("REMARK") Is Nothing Then
+                    txtRemark.Text = ""
+                Else
+                    txtRemark.Text = LINE.GetDataKeyValue("REMARK").ToString
+                End If
+            Next
+        Catch ex As Exception
 
+        End Try
+    End Sub
     ''' <lastupdate>
     ''' 23/08/2017 09:00
     ''' </lastupdate>
@@ -174,13 +195,13 @@ Public Class ctrlPA_SetUpBonus
                     CType(Me.MainToolBar.Items(2), RadToolBarButton).Enabled = False
                     CType(Me.MainToolBar.Items(3), RadToolBarButton).Enabled = False
                     UpdateCotrolEnabled(False)
-                    ClearControlValue(nmrYear, dpBonusDate, txtRemark, dpStartDate, dpEndDate)
+                    ClearControlValue(nmrYear, txtNameBonus, dpBonusDate, rtxtSTT, txtRemark, dpStartDate, dpEndDate)
                 Case CommonMessage.STATE_NEW
                     CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = False
                     CType(Me.MainToolBar.Items(2), RadToolBarButton).Enabled = True
                     CType(Me.MainToolBar.Items(3), RadToolBarButton).Enabled = True
                     UpdateCotrolEnabled(True)
-                    ClearControlValue(nmrYear, dpBonusDate, txtRemark, dpStartDate, dpEndDate)
+                    ClearControlValue(nmrYear, txtNameBonus, dpBonusDate, rtxtSTT, txtRemark, dpStartDate, dpEndDate)
                     'txtPeriodStanDard.Value = 26
                     EnabledGridNotPostback(rgData, False)
                 Case CommonMessage.STATE_EDIT
@@ -201,7 +222,7 @@ Public Class ctrlPA_SetUpBonus
                         lstDeletes.Add(item.GetDataKeyValue("ID"))
                     Next
                     Using rep As New PayrollRepository
-                        If rep.ActivePeriod(lstDeletes, "A") Then
+                        If rep.ActiveSetUpBonus(lstDeletes, "A") Then
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                             CurrentState = CommonMessage.STATE_NORMAL
                             rgData.Rebind()
@@ -216,7 +237,7 @@ Public Class ctrlPA_SetUpBonus
                         lstDeletes.Add(item.GetDataKeyValue("ID"))
                     Next
                     Using rep As New PayrollRepository
-                        If rep.ActivePeriod(lstDeletes, "I") Then
+                        If rep.ActiveSetUpBonus(lstDeletes, "I") Then
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                             CurrentState = CommonMessage.STATE_NORMAL
                             rgData.Rebind()
@@ -248,12 +269,12 @@ Public Class ctrlPA_SetUpBonus
             Dim startTime As DateTime = DateTime.UtcNow
             ctrlOrg.Enabled = bCheck
             nmrYear.Enabled = bCheck
-
+            txtNameBonus.Enabled = bCheck
             EnableRadDatePicker(dpStartDate, bCheck)
             EnableRadDatePicker(dpEndDate, bCheck)
             EnableRadDatePicker(dpBonusDate, bCheck)
             txtRemark.Enabled = bCheck
-
+            rtxtSTT.Enabled = bCheck
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -315,8 +336,8 @@ Public Class ctrlPA_SetUpBonus
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Protected Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
-        Dim objPeriod As New ATPeriodDTO
-        Dim objOrgPeriod As New List(Of AT_ORG_PERIOD)
+        Dim objPeriod As New ATSetUpBonusDTO
+        Dim objOrgPeriod As New List(Of ATSetUpBonusDTO)
         Dim rep As New PayrollRepository
         Dim gID As Decimal
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
@@ -388,36 +409,26 @@ Public Class ctrlPA_SetUpBonus
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
                         objPeriod.YEAR = nmrYear.Value
-                        objPeriod.MONTH = dpEndDate.SelectedDate.Value.Month
-                   
-                        objPeriod.START_DATE = dpStartDate.SelectedDate
-                        objPeriod.END_DATE = dpEndDate.SelectedDate
+                        objPeriod.NAME_BONUS = txtNameBonus.Text
+                        objPeriod.FROM_DATE = dpStartDate.SelectedDate
+                        objPeriod.TO_DATE = dpEndDate.SelectedDate
                         objPeriod.BONUS_DATE = dpBonusDate.SelectedDate
+                        objPeriod.ORDERS = rtxtSTT.Value
                         objPeriod.REMARK = txtRemark.Text
-                        For Each item As Decimal In ctrlOrg.CheckedValueKeys
-                            Dim objOrg As New AT_ORG_PERIOD
-                            objOrg.ORG_ID = item
-                            objOrgPeriod.Add(objOrg)
-                        Next
+                        objPeriod.ACTFLG = "A"
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
-                                objPeriod.ACTFLG = "A"
-                                If rep.ValidateATPeriodDay(objPeriod) Then
-                                    If rep.InsertPeriod(objPeriod, objOrgPeriod, gID) Then
-                                        CurrentState = CommonMessage.STATE_NORMAL
-                                        IDSelect = gID
-                                        Refresh("N")
-                                        UpdateControlState()
-                                    Else
-                                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
-                                    End If
+                                If rep.InsertSetUpBonus(objPeriod, objOrgPeriod, gID) Then
+                                    CurrentState = CommonMessage.STATE_NORMAL
+                                    IDSelect = gID
+                                    Refresh("N")
+                                    UpdateControlState()
                                 Else
-                                    ShowMessage(Translate("Không được phép tạo 2 kỳ lương 1 tháng"), Utilities.NotifyType.Error)
+                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
                             Case CommonMessage.STATE_EDIT
                                 objPeriod.ID = rgData.SelectedValue
-
-                                If rep.ModifyPeriod(objPeriod, objOrgPeriod, gID) Then
+                                If rep.ModifySetUpBonus(objPeriod, objOrgPeriod, gID) Then
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     IDSelect = objPeriod.ID
                                     Refresh("U")
@@ -450,25 +461,21 @@ Public Class ctrlPA_SetUpBonus
     ''' <remarks></remarks>
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
         Dim rep As New PayrollRepository
-        Dim objDelete As ATPeriodDTO
+        Dim objDelete As ATSetUpBonusDTO
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
-                objDelete = New ATPeriodDTO
+                objDelete = New ATSetUpBonusDTO
                 objDelete.ID = Utilities.ObjToDecima(rgData.SelectedValue)
-                If Not rep.ValidateATPeriod(objDelete) Then
-                    ShowMessage("Kỳ lương đã được sử dụng ở các phòng ban. Bạn không thể xóa!", NotifyType.Warning)
-                    Exit Sub
+                If rep.DeleteSetUpBonus(objDelete) Then
+                    objDelete = Nothing
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                    rgData.Rebind()
                 Else
-                    If rep.DeletePeriod(objDelete) Then
-                        objDelete = Nothing
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                        rgData.Rebind()
-                    Else
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
-                    End If
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
                 End If
+
                 CurrentState = CommonMessage.STATE_DELETE
                 UpdateControlState()
             End If
@@ -592,9 +599,9 @@ Public Class ctrlPA_SetUpBonus
             Dim MaximumRows As Integer
             Dim Sorts As String = rgData.MasterTableView.SortExpressions.GetSortString()
             If Sorts IsNot Nothing Then
-                Me.vPeriod = rep.GetPeriodList(rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, Sorts)
+                Me.vPeriod = rep.GetSetUpBonus(rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, Sorts)
             Else
-                Me.vPeriod = rep.GetPeriodList(rgData.CurrentPageIndex, rgData.PageSize, MaximumRows)
+                Me.vPeriod = rep.GetSetUpBonus(rgData.CurrentPageIndex, rgData.PageSize, MaximumRows)
             End If
 
             rgData.VirtualItemCount = MaximumRows
@@ -626,14 +633,15 @@ Public Class ctrlPA_SetUpBonus
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
-    'TỰ TÍNH NGÀY CÔNG CHUẨN
+
+    
 
 #End Region
 
-   
 
-   
 
-    
+
+
+
 
 End Class

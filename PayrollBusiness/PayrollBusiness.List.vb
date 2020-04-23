@@ -338,6 +338,49 @@ Namespace PayrollBusiness.ServiceImplementations
             End Try
         End Function
 #End Region
+#Region "setupbonus"
+        Public Function GetSetUpBonus(ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "FROM_DATE desc") As List(Of ATSetUpBonusDTO) Implements ServiceContracts.IPayrollBusiness.GetSetUpBonus
+            Try
+                Dim lst = PayrollRepositoryStatic.Instance.GetSetUpBonus(PageIndex, PageSize, Total, Sorts)
+                Return lst
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+        Public Function InsertSetUpBonus(ByVal objPeriod As ATSetUpBonusDTO, ByVal objOrgPeriod As List(Of ATSetUpBonusDTO), ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.IPayrollBusiness.InsertSetUpBonus
+            Try
+                Return PayrollRepositoryStatic.Instance.InsertSetUpBonus(objPeriod, objOrgPeriod, log, gID)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+        Public Function ModifySetUpBonus(ByVal objPeriod As ATSetUpBonusDTO, ByVal objOrgPeriod As List(Of ATSetUpBonusDTO), ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.IPayrollBusiness.ModifySetUpBonus
+            Try
+                Return PayrollRepositoryStatic.Instance.ModifySetUpBonus(objPeriod, objOrgPeriod, log, gID)
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Function
+        Public Function DeleteSetUpBonus(ByVal lstPeriod As ATSetUpBonusDTO) As Boolean Implements ServiceContracts.IPayrollBusiness.DeleteSetUpBonus
+            Try
+                Return PayrollRepositoryStatic.Instance.DeleteSetUpBonus(lstPeriod)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+        Public Function ActiveSetUpBonus(ByVal lstID As List(Of Decimal), ByVal log As UserLog, ByVal bActive As String) As Boolean Implements ServiceContracts.IPayrollBusiness.ActiveSetUpBonus
+            Try
+                Dim rep As New PayrollRepository
+                Return rep.ActiveSetUpBonus(lstID, log, bActive)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+#End Region
 
 #Region "work standard"
         Public Function GetWorkStandard(ByVal _filter As Work_StandardDTO, ByVal PageIndex As Integer,

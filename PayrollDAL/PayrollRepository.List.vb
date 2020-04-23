@@ -908,6 +908,115 @@ Partial Public Class PayrollRepository
         End Try
     End Function
 #End Region
+#Region "setupbonus"
+    Public Function InsertSetUpBonus(ByVal objPeriod As ATSetUpBonusDTO, ByVal objOrgPeriod As List(Of ATSetUpBonusDTO), ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim iCount As Integer = 0
+        Dim objPeriodData As New AT_SETUP_BONUS
+
+        Try
+            objPeriodData.ID = Utilities.GetNextSequence(Context, Context.AT_SETUP_BONUS.EntitySet.Name)
+            objPeriodData.YEAR = objPeriod.YEAR
+            objPeriodData.NAME_BONUS = objPeriod.NAME_BONUS
+            objPeriodData.FROM_DATE = objPeriod.FROM_DATE
+            objPeriodData.TO_DATE = objPeriod.TO_DATE
+            objPeriodData.DATE_BONUS = objPeriod.BONUS_DATE
+            objPeriodData.ORDERS = objPeriod.ORDERS
+            objPeriodData.REMARK = objPeriod.REMARK
+            objPeriodData.ACTFLG = objPeriod.ACTFLG
+            Context.AT_SETUP_BONUS.AddObject(objPeriodData)
+            Context.SaveChanges(log)
+            gID = objPeriodData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+            Throw ex
+        End Try
+    End Function
+    Public Function ModifySetUpBonus(ByVal objPeriod As ATSetUpBonusDTO, ByVal objOrgPeriod As List(Of ATSetUpBonusDTO), ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim objPeriodData As New AT_SETUP_BONUS With {.ID = objPeriod.ID}
+        'Dim objOrgPeriodData As AT_ORG_PERIOD
+        Try
+            Context.AT_SETUP_BONUS.Attach(objPeriodData)
+            objPeriodData.YEAR = objPeriod.YEAR
+            objPeriodData.NAME_BONUS = objPeriod.NAME_BONUS
+            objPeriodData.FROM_DATE = objPeriod.FROM_DATE
+            objPeriodData.TO_DATE = objPeriod.TO_DATE
+            objPeriodData.DATE_BONUS = objPeriod.BONUS_DATE
+            objPeriodData.ORDERS = objPeriod.ORDERS
+            objPeriodData.REMARK = objPeriod.REMARK
+            objPeriodData.ACTFLG = objPeriod.ACTFLG
+            Context.SaveChanges(log)
+            gID = objPeriodData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+            Throw ex
+        End Try
+
+    End Function
+    Public Function GetSetUpBonus(ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "FROM_DATE desc") As List(Of ATSetUpBonusDTO)
+
+        Try
+            Dim query = From p In Context.AT_SETUP_BONUS
+
+            Dim lst = query.Select(Function(p) New ATSetUpBonusDTO With {
+                                       .ID = p.ID,
+                                       .YEAR = p.YEAR,
+                                       .NAME_BONUS = p.NAME_BONUS,
+                                       .FROM_DATE = p.FROM_DATE,
+                                       .TO_DATE = p.TO_DATE,
+                                       .BONUS_DATE = p.DATE_BONUS,
+                                       .ORDERS = p.ORDERS,
+                                       .CREATED_DATE = p.CREATED_DATE,
+                                       .CREATED_BY = p.CREATED_BY,
+                                       .REMARK = p.REMARK,
+                                       .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng")
+                                       })
+
+            lst = lst.OrderBy(Sorts)
+            Total = lst.Count
+            lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
+
+            Return lst.ToList
+
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+            Throw ex
+        End Try
+
+
+    End Function
+    Public Function DeleteSetUpBonus(ByVal lstPeriod As ATSetUpBonusDTO) As Boolean
+        Dim objPeriod As List(Of AT_SETUP_BONUS) = (From p In Context.AT_SETUP_BONUS Where p.ID = lstPeriod.ID).ToList
+        Try
+            For Each item In objPeriod
+                Context.AT_SETUP_BONUS.DeleteObject(item)
+            Next
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+            Throw ex
+        End Try
+    End Function
+    Public Function ActiveSetUpBonus(ByVal lstID As List(Of Decimal), ByVal log As UserLog, ByVal bActive As String) As Boolean
+        Dim lstData As List(Of AT_SETUP_BONUS)
+        Try
+            lstData = (From p In Context.AT_SETUP_BONUS Where lstID.Contains(p.ID)).ToList
+            For index = 0 To lstData.Count - 1
+                lstData(index).ACTFLG = bActive
+            Next
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+            Throw ex
+        End Try
+    End Function
+#End Region
 
 #Region "WORK STANDARD"
     Public Function IsCompanyLevel(ByVal org_id As Decimal) As Boolean

@@ -200,6 +200,22 @@ Namespace PayrollBusiness.ServiceContracts
         <OperationContract()>
         Function CountHoliday(ByVal date1 As Date, ByVal date2 As Date) As Integer
 #End Region
+#Region "at set up bonus"
+        <OperationContract()>
+        Function GetSetUpBonus(ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "FROM_DATE desc") As List(Of ATSetUpBonusDTO)
+        <OperationContract()>
+        Function InsertSetUpBonus(ByVal objPeriod As ATSetUpBonusDTO, ByVal objOrgPeriod As List(Of ATSetUpBonusDTO), ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        <OperationContract()>
+        Function ActiveSetUpBonus(ByVal lstID As List(Of Decimal), ByVal log As UserLog, ByVal bActive As String) As Boolean
+        <OperationContract()>
+        Function DeleteSetUpBonus(ByVal lstPeriod As ATSetUpBonusDTO) As Boolean
+        <OperationContract()>
+        Function ModifySetUpBonus(ByVal objPeriod As ATSetUpBonusDTO, ByVal objOrgPeriod As List(Of ATSetUpBonusDTO), ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+#End Region
+
 #Region "Work Standard"
         <OperationContract()>
         Function GetWorkStandard(ByVal _filter As Work_StandardDTO, ByVal PageIndex As Integer,

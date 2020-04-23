@@ -93,23 +93,23 @@
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
                 <tlk:RadGrid ID="rgData" runat="server" SkinID="GridSingleSelect" Height="100%">
-                    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,REMARK,ACTFLG">
+                    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,YEAR,NAME_BONUS,FROM_DATE,TO_DATE,BONUS_DATE,ORDERS,REMARK,ACTFLG">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Năm %>" DataField="YEAR" SortExpression="YEAR"
                                 UniqueName="YEAR" HeaderStyle-Width="50px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Kỳ thưởng %>" DataField="" SortExpression=""
-                                UniqueName="">
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Kỳ thưởng %>" DataField="NAME_BONUS"
+                                SortExpression="NAME_BONUS" UniqueName="NAME_BONUS">
                             </tlk:GridBoundColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Từ ngày %>" DataField="START_DATE"
-                                SortExpression="START_DATE" UniqueName="START_DATE" DataFormatString="{0:dd/MM/yyyy}">
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Từ ngày %>" DataField="FROM_DATE"
+                                SortExpression="FROM_DATE" UniqueName="START_DATE" DataFormatString="{0:dd/MM/yyyy}">
                                 <HeaderStyle Width="120px" />
                                 <ItemStyle Width="120px" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Đến ngày %>" DataField="END_DATE"
-                                SortExpression="END_DATE" UniqueName="END_DATE" DataFormatString="{0:dd/MM/yyyy}">
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Đến ngày %>" DataField="TO_DATE"
+                                SortExpression="END_DATE" UniqueName="TO_DATE" DataFormatString="{0:dd/MM/yyyy}">
                                 <HeaderStyle Width="120px" />
                                 <ItemStyle Width="120px" />
                             </tlk:GridDateTimeColumn>
@@ -119,7 +119,7 @@
                                 <ItemStyle Width="120px" />
                             </tlk:GridDateTimeColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate:Số thứ tự %>" HeaderStyle-Width="110px"
-                                DataField="" UniqueName="" SortExpression="" />
+                                DataField="ORDERS" UniqueName="ORDERS" SortExpression="ORDERS" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
                                 SortExpression="ACTFLG" UniqueName="ACTFLG" HeaderStyle-Width="130px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" SortExpression="REMARK"
@@ -185,5 +185,6 @@
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
         }
+     
     </script>
 </tlk:RadCodeBlock>

@@ -973,7 +973,11 @@ Namespace PayrollBusiness
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
      System.Runtime.Serialization.DataContractAttribute(Name:="EntityKeyMember", [Namespace]:="http://schemas.datacontract.org/2004/07/System.Data"),  _
      System.SerializableAttribute(),  _
+     System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
+     System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
+     System.Runtime.Serialization.KnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.PAListSalDTO)),  _
+     System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PAListSalDTO))),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.ATPriceLunchDTO))),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.ATPriceLunchDTO)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PA_ORG_LUNCH))),  _
@@ -1022,7 +1026,6 @@ Namespace PayrollBusiness
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.SalaryType_GroupDTO)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.SalaryType_GroupDTO))),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.PA_SALARY_FUND_MAPPINGDTO)),  _
-     System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PAListSalDTO))),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.AllowanceListDTO)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.AllowanceListDTO))),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.AllowanceDTO)),  _
@@ -1038,15 +1041,14 @@ Namespace PayrollBusiness
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.ATPeriodDTO)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.AT_ORG_PERIOD))),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.AT_ORG_PERIOD)),  _
+     System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.ATSetUpBonusDTO))),  _
+     System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.ATSetUpBonusDTO)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.Work_StandardDTO)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.Work_StandardDTO))),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.PAFomulerGroup)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PAFomulerGroup))),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PAFomuler))),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.PAFomuler)),  _
-     System.Runtime.Serialization.KnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
-     System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
-     System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.EntityObject)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.StructuralObject)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.EntityKey)),  _
@@ -8951,6 +8953,213 @@ Namespace PayrollBusiness
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="ATSetUpBonusDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/PayrollDAL"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class ATSetUpBonusDTO
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ACTFLGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private BONUS_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_BYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FROM_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NAME_BONUSField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORDERSField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private REMARKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TO_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private YEARField As System.Nullable(Of Decimal)
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ACTFLG() As String
+            Get
+                Return Me.ACTFLGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ACTFLGField, value) <> true) Then
+                    Me.ACTFLGField = value
+                    Me.RaisePropertyChanged("ACTFLG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property BONUS_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.BONUS_DATEField
+            End Get
+            Set
+                If (Me.BONUS_DATEField.Equals(value) <> true) Then
+                    Me.BONUS_DATEField = value
+                    Me.RaisePropertyChanged("BONUS_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_BY() As String
+            Get
+                Return Me.CREATED_BYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CREATED_BYField, value) <> true) Then
+                    Me.CREATED_BYField = value
+                    Me.RaisePropertyChanged("CREATED_BY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.CREATED_DATEField
+            End Get
+            Set
+                If (Me.CREATED_DATEField.Equals(value) <> true) Then
+                    Me.CREATED_DATEField = value
+                    Me.RaisePropertyChanged("CREATED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FROM_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.FROM_DATEField
+            End Get
+            Set
+                If (Me.FROM_DATEField.Equals(value) <> true) Then
+                    Me.FROM_DATEField = value
+                    Me.RaisePropertyChanged("FROM_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.IDField
+            End Get
+            Set
+                If (Me.IDField.Equals(value) <> true) Then
+                    Me.IDField = value
+                    Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NAME_BONUS() As String
+            Get
+                Return Me.NAME_BONUSField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.NAME_BONUSField, value) <> true) Then
+                    Me.NAME_BONUSField = value
+                    Me.RaisePropertyChanged("NAME_BONUS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORDERS() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ORDERSField
+            End Get
+            Set
+                If (Me.ORDERSField.Equals(value) <> true) Then
+                    Me.ORDERSField = value
+                    Me.RaisePropertyChanged("ORDERS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property REMARK() As String
+            Get
+                Return Me.REMARKField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.REMARKField, value) <> true) Then
+                    Me.REMARKField = value
+                    Me.RaisePropertyChanged("REMARK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TO_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.TO_DATEField
+            End Get
+            Set
+                If (Me.TO_DATEField.Equals(value) <> true) Then
+                    Me.TO_DATEField = value
+                    Me.RaisePropertyChanged("TO_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property YEAR() As System.Nullable(Of Decimal)
+            Get
+                Return Me.YEARField
+            End Get
+            Set
+                If (Me.YEARField.Equals(value) <> true) Then
+                    Me.YEARField = value
+                    Me.RaisePropertyChanged("YEAR")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
      System.Runtime.Serialization.DataContractAttribute(Name:="Work_StandardDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/PayrollDAL"),  _
      System.SerializableAttribute()>  _
     Partial Public Class Work_StandardDTO
@@ -9670,6 +9879,21 @@ Namespace PayrollBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="PayrollBusiness.IPayrollBusiness")>  _
     Public Interface IPayrollBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ActiveListSalaries", ReplyAction:="http://tempuri.org/IPayrollBusiness/ActiveListSalariesResponse")>  _
+        Function ActiveListSalaries(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/DeleteListSalariesStatus", ReplyAction:="http://tempuri.org/IPayrollBusiness/DeleteListSalariesStatusResponse")>  _
+        Function DeleteListSalariesStatus(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/DeleteListSalaries", ReplyAction:="http://tempuri.org/IPayrollBusiness/DeleteListSalariesResponse")>  _
+        Function DeleteListSalaries(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetListSal", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetListSalResponse")>  _
+        Function GetListSal(ByVal _filter As PayrollBusiness.PAListSalDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.PAListSalDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/InsertListSal", ReplyAction:="http://tempuri.org/IPayrollBusiness/InsertListSalResponse")>  _
+        Function InsertListSal(ByVal objListSal As PayrollBusiness.PAListSalDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ModifyListSal", ReplyAction:="http://tempuri.org/IPayrollBusiness/ModifyListSalResponse")>  _
         Function ModifyListSal(ByVal objListSalaries As PayrollBusiness.PAListSalDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
@@ -9877,6 +10101,21 @@ Namespace PayrollBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ActiveSaleCommision", ReplyAction:="http://tempuri.org/IPayrollBusiness/ActiveSaleCommisionResponse")>  _
         Function ActiveSaleCommision(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetSalaryGroupCombo", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetSalaryGroupComboResponse")>  _
+        Function GetSalaryGroupCombo(ByVal dateValue As Date, ByVal isBlank As Boolean) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/InsertSalaryGroup", ReplyAction:="http://tempuri.org/IPayrollBusiness/InsertSalaryGroupResponse")>  _
+        Function InsertSalaryGroup(ByVal objSalaryGroup As PayrollBusiness.SalaryGroupDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ValidateSalaryGroup", ReplyAction:="http://tempuri.org/IPayrollBusiness/ValidateSalaryGroupResponse")>  _
+        Function ValidateSalaryGroup(ByVal objSalaryGroup As PayrollBusiness.SalaryGroupDTO) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ModifySalaryGroup", ReplyAction:="http://tempuri.org/IPayrollBusiness/ModifySalaryGroupResponse")>  _
+        Function ModifySalaryGroup(ByVal objSalaryGroup As PayrollBusiness.SalaryGroupDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ActiveSalaryGroup", ReplyAction:="http://tempuri.org/IPayrollBusiness/ActiveSalaryGroupResponse")>  _
+        Function ActiveSalaryGroup(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/DeleteSalaryGroup", ReplyAction:="http://tempuri.org/IPayrollBusiness/DeleteSalaryGroupResponse")>  _
         Function DeleteSalaryGroup(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
         
@@ -10043,7 +10282,11 @@ Namespace PayrollBusiness
         Function ModifyIncentiveRankIncludeDetail(ByVal objIncentive As PayrollBusiness.IncentiveRankDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ValidateIncentiveRank", ReplyAction:="http://tempuri.org/IPayrollBusiness/ValidateIncentiveRankResponse"),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.PAListSalDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PAListSalDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.ATPriceLunchDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.ATPriceLunchDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PA_ORG_LUNCH))),  _
@@ -10092,7 +10335,6 @@ Namespace PayrollBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.SalaryType_GroupDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.SalaryType_GroupDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.PA_SALARY_FUND_MAPPINGDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PAListSalDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.AllowanceListDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.AllowanceListDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.AllowanceDTO)),  _
@@ -10108,15 +10350,14 @@ Namespace PayrollBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.ATPeriodDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.AT_ORG_PERIOD))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.AT_ORG_PERIOD)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.ATSetUpBonusDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.ATSetUpBonusDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.Work_StandardDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.Work_StandardDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.PAFomulerGroup)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PAFomulerGroup))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PAFomuler))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.PAFomuler)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.EntityObject)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.StructuralObject)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.EntityKey)),  _
@@ -10146,7 +10387,11 @@ Namespace PayrollBusiness
         Function ModifySalaryType_Group(ByVal objSalaryType_Group As PayrollBusiness.SalaryType_GroupDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ValidateSalaryType_Group", ReplyAction:="http://tempuri.org/IPayrollBusiness/ValidateSalaryType_GroupResponse"),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.PAListSalDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PAListSalDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.ATPriceLunchDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.ATPriceLunchDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PA_ORG_LUNCH))),  _
@@ -10195,7 +10440,6 @@ Namespace PayrollBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.SalaryType_GroupDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.SalaryType_GroupDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.PA_SALARY_FUND_MAPPINGDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PAListSalDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.AllowanceListDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.AllowanceListDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.AllowanceDTO)),  _
@@ -10211,15 +10455,14 @@ Namespace PayrollBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.ATPeriodDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.AT_ORG_PERIOD))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.AT_ORG_PERIOD)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.ATSetUpBonusDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.ATSetUpBonusDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.Work_StandardDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.Work_StandardDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.PAFomulerGroup)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PAFomulerGroup))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PAFomuler))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.PAFomuler)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.EntityObject)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.StructuralObject)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.EntityKey)),  _
@@ -10274,21 +10517,6 @@ Namespace PayrollBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ModifyListSalaries", ReplyAction:="http://tempuri.org/IPayrollBusiness/ModifyListSalariesResponse")>  _
         Function ModifyListSalaries(ByVal objListSalaries As PayrollBusiness.PAListSalariesDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ActiveListSalaries", ReplyAction:="http://tempuri.org/IPayrollBusiness/ActiveListSalariesResponse")>  _
-        Function ActiveListSalaries(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/DeleteListSalariesStatus", ReplyAction:="http://tempuri.org/IPayrollBusiness/DeleteListSalariesStatusResponse")>  _
-        Function DeleteListSalariesStatus(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/DeleteListSalaries", ReplyAction:="http://tempuri.org/IPayrollBusiness/DeleteListSalariesResponse")>  _
-        Function DeleteListSalaries(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetListSal", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetListSalResponse")>  _
-        Function GetListSal(ByVal _filter As PayrollBusiness.PAListSalDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.PAListSalDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/InsertListSal", ReplyAction:="http://tempuri.org/IPayrollBusiness/InsertListSalResponse")>  _
-        Function InsertListSal(ByVal objListSal As PayrollBusiness.PAListSalDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetAllowanceList", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetAllowanceListResponse")>  _
         Function GetAllowanceList(ByVal _filter As PayrollBusiness.AllowanceListDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.AllowanceListDTO)
@@ -10464,6 +10692,21 @@ Namespace PayrollBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/CountHoliday", ReplyAction:="http://tempuri.org/IPayrollBusiness/CountHolidayResponse")>  _
         Function CountHoliday(ByVal date1 As Date, ByVal date2 As Date) As Integer
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetSetUpBonus", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetSetUpBonusResponse")>  _
+        Function GetSetUpBonus(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.ATSetUpBonusDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/InsertSetUpBonus", ReplyAction:="http://tempuri.org/IPayrollBusiness/InsertSetUpBonusResponse")>  _
+        Function InsertSetUpBonus(ByVal objPeriod As PayrollBusiness.ATSetUpBonusDTO, ByVal objOrgPeriod As System.Collections.Generic.List(Of PayrollBusiness.ATSetUpBonusDTO), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ActiveSetUpBonus", ReplyAction:="http://tempuri.org/IPayrollBusiness/ActiveSetUpBonusResponse")>  _
+        Function ActiveSetUpBonus(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/DeleteSetUpBonus", ReplyAction:="http://tempuri.org/IPayrollBusiness/DeleteSetUpBonusResponse")>  _
+        Function DeleteSetUpBonus(ByVal lstPeriod As PayrollBusiness.ATSetUpBonusDTO) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ModifySetUpBonus", ReplyAction:="http://tempuri.org/IPayrollBusiness/ModifySetUpBonusResponse")>  _
+        Function ModifySetUpBonus(ByVal objPeriod As PayrollBusiness.ATSetUpBonusDTO, ByVal objOrgPeriod As System.Collections.Generic.List(Of PayrollBusiness.ATSetUpBonusDTO), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetWorkStandard", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetWorkStandardResponse")>  _
         Function GetWorkStandard(ByVal _filter As PayrollBusiness.Work_StandardDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.Work_StandardDTO)
         
@@ -10529,21 +10772,6 @@ Namespace PayrollBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetSalaryGroup", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetSalaryGroupResponse")>  _
         Function GetSalaryGroup(ByVal _filter As PayrollBusiness.SalaryGroupDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.SalaryGroupDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetSalaryGroupCombo", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetSalaryGroupComboResponse")>  _
-        Function GetSalaryGroupCombo(ByVal dateValue As Date, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/InsertSalaryGroup", ReplyAction:="http://tempuri.org/IPayrollBusiness/InsertSalaryGroupResponse")>  _
-        Function InsertSalaryGroup(ByVal objSalaryGroup As PayrollBusiness.SalaryGroupDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ValidateSalaryGroup", ReplyAction:="http://tempuri.org/IPayrollBusiness/ValidateSalaryGroupResponse")>  _
-        Function ValidateSalaryGroup(ByVal objSalaryGroup As PayrollBusiness.SalaryGroupDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ModifySalaryGroup", ReplyAction:="http://tempuri.org/IPayrollBusiness/ModifySalaryGroupResponse")>  _
-        Function ModifySalaryGroup(ByVal objSalaryGroup As PayrollBusiness.SalaryGroupDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ActiveSalaryGroup", ReplyAction:="http://tempuri.org/IPayrollBusiness/ActiveSalaryGroupResponse")>  _
-        Function ActiveSalaryGroup(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -10576,6 +10804,26 @@ Namespace PayrollBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function ActiveListSalaries(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean Implements PayrollBusiness.IPayrollBusiness.ActiveListSalaries
+            Return MyBase.Channel.ActiveListSalaries(lstID, log, bActive)
+        End Function
+        
+        Public Function DeleteListSalariesStatus(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.DeleteListSalariesStatus
+            Return MyBase.Channel.DeleteListSalariesStatus(lstID, log, bActive)
+        End Function
+        
+        Public Function DeleteListSalaries(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements PayrollBusiness.IPayrollBusiness.DeleteListSalaries
+            Return MyBase.Channel.DeleteListSalaries(lstID)
+        End Function
+        
+        Public Function GetListSal(ByVal _filter As PayrollBusiness.PAListSalDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.PAListSalDTO) Implements PayrollBusiness.IPayrollBusiness.GetListSal
+            Return MyBase.Channel.GetListSal(_filter, PageIndex, PageSize, Total, Sorts)
+        End Function
+        
+        Public Function InsertListSal(ByVal objListSal As PayrollBusiness.PAListSalDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.InsertListSal
+            Return MyBase.Channel.InsertListSal(objListSal, log, gID)
+        End Function
         
         Public Function ModifyListSal(ByVal objListSalaries As PayrollBusiness.PAListSalDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.ModifyListSal
             Return MyBase.Channel.ModifyListSal(objListSalaries, log, gID)
@@ -10851,6 +11099,26 @@ Namespace PayrollBusiness
         
         Public Function ActiveSaleCommision(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean Implements PayrollBusiness.IPayrollBusiness.ActiveSaleCommision
             Return MyBase.Channel.ActiveSaleCommision(lstID, log, bActive)
+        End Function
+        
+        Public Function GetSalaryGroupCombo(ByVal dateValue As Date, ByVal isBlank As Boolean) As System.Data.DataTable Implements PayrollBusiness.IPayrollBusiness.GetSalaryGroupCombo
+            Return MyBase.Channel.GetSalaryGroupCombo(dateValue, isBlank)
+        End Function
+        
+        Public Function InsertSalaryGroup(ByVal objSalaryGroup As PayrollBusiness.SalaryGroupDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.InsertSalaryGroup
+            Return MyBase.Channel.InsertSalaryGroup(objSalaryGroup, log, gID)
+        End Function
+        
+        Public Function ValidateSalaryGroup(ByVal objSalaryGroup As PayrollBusiness.SalaryGroupDTO) As Boolean Implements PayrollBusiness.IPayrollBusiness.ValidateSalaryGroup
+            Return MyBase.Channel.ValidateSalaryGroup(objSalaryGroup)
+        End Function
+        
+        Public Function ModifySalaryGroup(ByVal objSalaryGroup As PayrollBusiness.SalaryGroupDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.ModifySalaryGroup
+            Return MyBase.Channel.ModifySalaryGroup(objSalaryGroup, log, gID)
+        End Function
+        
+        Public Function ActiveSalaryGroup(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean Implements PayrollBusiness.IPayrollBusiness.ActiveSalaryGroup
+            Return MyBase.Channel.ActiveSalaryGroup(lstID, log, bActive)
         End Function
         
         Public Function DeleteSalaryGroup(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements PayrollBusiness.IPayrollBusiness.DeleteSalaryGroup
@@ -11173,26 +11441,6 @@ Namespace PayrollBusiness
             Return MyBase.Channel.ModifyListSalaries(objListSalaries, log, gID)
         End Function
         
-        Public Function ActiveListSalaries(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean Implements PayrollBusiness.IPayrollBusiness.ActiveListSalaries
-            Return MyBase.Channel.ActiveListSalaries(lstID, log, bActive)
-        End Function
-        
-        Public Function DeleteListSalariesStatus(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.DeleteListSalariesStatus
-            Return MyBase.Channel.DeleteListSalariesStatus(lstID, log, bActive)
-        End Function
-        
-        Public Function DeleteListSalaries(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements PayrollBusiness.IPayrollBusiness.DeleteListSalaries
-            Return MyBase.Channel.DeleteListSalaries(lstID)
-        End Function
-        
-        Public Function GetListSal(ByVal _filter As PayrollBusiness.PAListSalDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.PAListSalDTO) Implements PayrollBusiness.IPayrollBusiness.GetListSal
-            Return MyBase.Channel.GetListSal(_filter, PageIndex, PageSize, Total, Sorts)
-        End Function
-        
-        Public Function InsertListSal(ByVal objListSal As PayrollBusiness.PAListSalDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.InsertListSal
-            Return MyBase.Channel.InsertListSal(objListSal, log, gID)
-        End Function
-        
         Public Function GetAllowanceList(ByVal _filter As PayrollBusiness.AllowanceListDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.AllowanceListDTO) Implements PayrollBusiness.IPayrollBusiness.GetAllowanceList
             Return MyBase.Channel.GetAllowanceList(_filter, Sorts)
         End Function
@@ -11425,6 +11673,26 @@ Namespace PayrollBusiness
             Return MyBase.Channel.CountHoliday(date1, date2)
         End Function
         
+        Public Function GetSetUpBonus(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.ATSetUpBonusDTO) Implements PayrollBusiness.IPayrollBusiness.GetSetUpBonus
+            Return MyBase.Channel.GetSetUpBonus(PageIndex, PageSize, Total, Sorts)
+        End Function
+        
+        Public Function InsertSetUpBonus(ByVal objPeriod As PayrollBusiness.ATSetUpBonusDTO, ByVal objOrgPeriod As System.Collections.Generic.List(Of PayrollBusiness.ATSetUpBonusDTO), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.InsertSetUpBonus
+            Return MyBase.Channel.InsertSetUpBonus(objPeriod, objOrgPeriod, log, gID)
+        End Function
+        
+        Public Function ActiveSetUpBonus(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean Implements PayrollBusiness.IPayrollBusiness.ActiveSetUpBonus
+            Return MyBase.Channel.ActiveSetUpBonus(lstID, log, bActive)
+        End Function
+        
+        Public Function DeleteSetUpBonus(ByVal lstPeriod As PayrollBusiness.ATSetUpBonusDTO) As Boolean Implements PayrollBusiness.IPayrollBusiness.DeleteSetUpBonus
+            Return MyBase.Channel.DeleteSetUpBonus(lstPeriod)
+        End Function
+        
+        Public Function ModifySetUpBonus(ByVal objPeriod As PayrollBusiness.ATSetUpBonusDTO, ByVal objOrgPeriod As System.Collections.Generic.List(Of PayrollBusiness.ATSetUpBonusDTO), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.ModifySetUpBonus
+            Return MyBase.Channel.ModifySetUpBonus(objPeriod, objOrgPeriod, log, gID)
+        End Function
+        
         Public Function GetWorkStandard(ByVal _filter As PayrollBusiness.Work_StandardDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.Work_StandardDTO) Implements PayrollBusiness.IPayrollBusiness.GetWorkStandard
             Return MyBase.Channel.GetWorkStandard(_filter, PageIndex, PageSize, Total, log, Sorts)
         End Function
@@ -11511,26 +11779,6 @@ Namespace PayrollBusiness
         
         Public Function GetSalaryGroup(ByVal _filter As PayrollBusiness.SalaryGroupDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.SalaryGroupDTO) Implements PayrollBusiness.IPayrollBusiness.GetSalaryGroup
             Return MyBase.Channel.GetSalaryGroup(_filter, PageIndex, PageSize, Total, Sorts)
-        End Function
-        
-        Public Function GetSalaryGroupCombo(ByVal dateValue As Date, ByVal isBlank As Boolean) As System.Data.DataTable Implements PayrollBusiness.IPayrollBusiness.GetSalaryGroupCombo
-            Return MyBase.Channel.GetSalaryGroupCombo(dateValue, isBlank)
-        End Function
-        
-        Public Function InsertSalaryGroup(ByVal objSalaryGroup As PayrollBusiness.SalaryGroupDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.InsertSalaryGroup
-            Return MyBase.Channel.InsertSalaryGroup(objSalaryGroup, log, gID)
-        End Function
-        
-        Public Function ValidateSalaryGroup(ByVal objSalaryGroup As PayrollBusiness.SalaryGroupDTO) As Boolean Implements PayrollBusiness.IPayrollBusiness.ValidateSalaryGroup
-            Return MyBase.Channel.ValidateSalaryGroup(objSalaryGroup)
-        End Function
-        
-        Public Function ModifySalaryGroup(ByVal objSalaryGroup As PayrollBusiness.SalaryGroupDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.ModifySalaryGroup
-            Return MyBase.Channel.ModifySalaryGroup(objSalaryGroup, log, gID)
-        End Function
-        
-        Public Function ActiveSalaryGroup(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean Implements PayrollBusiness.IPayrollBusiness.ActiveSalaryGroup
-            Return MyBase.Channel.ActiveSalaryGroup(lstID, log, bActive)
         End Function
     End Class
 End Namespace
