@@ -864,6 +864,17 @@ Partial Public Class ProfileBusinessRepository
             End Try
         End Using
     End Function
+
+    Public Function Delete_Health_Mng(ByVal lstHealthMng As List(Of HealthMngDTO)) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Dim lst = rep.Delete_Health_Mng(lstHealthMng, Me.Log)
+                Return lst
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
 #End Region
 
 #Region "PLHD"

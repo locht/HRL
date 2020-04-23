@@ -2154,6 +2154,7 @@ Public Class ProfileRepository
                                         Optional ByVal Sorts As String = "CREATED_DATE desc") As DataTable
 
         Try
+            Dim lst As List(Of HealthMngDTO)
 
             Using Sql As New DataAccess.NonQueryData
                 Using cls As New DataAccess.QueryData
@@ -2162,6 +2163,8 @@ Public Class ProfileRepository
                                                         .P_ORGID = _filter.ORG_ID,
                                                         .P_ISDISSOLVE = _param.IS_DISSOLVE,
                                                          .P_CUR = cls.OUT_CURSOR})
+                    lst = dtData.ToList(Of HealthMngDTO)
+                    Total = lst.Count
                     Return dtData
                 End Using
             End Using
@@ -2196,6 +2199,22 @@ Public Class ProfileRepository
             Return False
         End Try
 
+    End Function
+
+    Public Function Delete_Health_Mng(ByVal lstHealthMng() As HealthMngDTO,
+                                   ByVal log As UserLog) As Boolean
+        Dim lstHealthMngData As List(Of HU_HEALTH_MNG)
+        Dim lstIDHealthMng As List(Of Decimal) = (From p In lstHealthMng.ToList Select p.ID).ToList
+
+        lstHealthMngData = (From p In Context.HU_HEALTH_MNG Where lstIDHealthMng.Contains(p.ID)).ToList
+
+        For index = 0 To lstHealthMngData.Count - 1
+            Context.HU_HEALTH_MNG.DeleteObject(lstHealthMngData(index))
+        Next
+        ' lstWelfareEmpData = (From p In Context.HU_WELFARE_MNG_EMP Where lstIDWelfareMng.Contains(p.GROUP_ID)).ToList
+
+        Context.SaveChanges(log)
+        Return True
     End Function
 #End Region
 

@@ -56351,6 +56351,9 @@ Namespace ProfileBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="ProfileBusiness.IProfileBusiness")>  _
     Public Interface IProfileBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_PROCESS_PLCONTRACT", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_PROCESS_PLCONTRACTResponse")>  _
+        Function GET_PROCESS_PLCONTRACT(ByVal P_EMP_CODE As String) As System.Data.DataTable
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/EXPORT_PLHD", ReplyAction:="http://tempuri.org/IProfileBusiness/EXPORT_PLHDResponse")>  _
         Function EXPORT_PLHD(ByVal _param As ProfileBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet
         
@@ -56525,6 +56528,7 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SignerDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HealthMngDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HealthMngDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Temp_ConcurrentlyDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationTreeDTO)),  _
@@ -56750,6 +56754,7 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SignerDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HealthMngDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HealthMngDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Temp_ConcurrentlyDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationTreeDTO)),  _
@@ -57110,6 +57115,7 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SignerDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HealthMngDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HealthMngDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Temp_ConcurrentlyDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationTreeDTO)),  _
@@ -57320,6 +57326,7 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.SignerDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HealthMngDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HealthMngDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Temp_ConcurrentlyDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationTreeDTO)),  _
@@ -57497,6 +57504,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/EXPORT_HEALTH_MNG", ReplyAction:="http://tempuri.org/IProfileBusiness/EXPORT_HEALTH_MNGResponse")>  _
         Function EXPORT_HEALTH_MNG() As System.Data.DataSet
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/Delete_Health_Mng", ReplyAction:="http://tempuri.org/IProfileBusiness/Delete_Health_MngResponse")>  _
+        Function Delete_Health_Mng(ByVal lstHealthMng As System.Collections.Generic.List(Of ProfileBusiness.HealthMngDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_LIST_CONCURRENTLY", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_LIST_CONCURRENTLYResponse")>  _
         Function GET_LIST_CONCURRENTLY(ByVal _filter As ProfileBusiness.Temp_ConcurrentlyDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO)
         
@@ -57541,9 +57551,6 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrgtree", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrgtreeResponse")>  _
         Function GetOrgtree(ByVal _org_id As Decimal) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_PROCESS_PLCONTRACT", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_PROCESS_PLCONTRACTResponse")>  _
-        Function GET_PROCESS_PLCONTRACT(ByVal P_EMP_CODE As String) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCertificateType", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCertificateTypeResponse")>  _
         Function GetCertificateType() As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
@@ -59107,6 +59114,10 @@ Namespace ProfileBusiness
             MyBase.New(binding, remoteAddress)
         End Sub
         
+        Public Function GET_PROCESS_PLCONTRACT(ByVal P_EMP_CODE As String) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_PROCESS_PLCONTRACT
+            Return MyBase.Channel.GET_PROCESS_PLCONTRACT(P_EMP_CODE)
+        End Function
+        
         Public Function EXPORT_PLHD(ByVal _param As ProfileBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.EXPORT_PLHD
             Return MyBase.Channel.EXPORT_PLHD(_param, log)
         End Function
@@ -59531,6 +59542,10 @@ Namespace ProfileBusiness
             Return MyBase.Channel.EXPORT_HEALTH_MNG
         End Function
         
+        Public Function Delete_Health_Mng(ByVal lstHealthMng As System.Collections.Generic.List(Of ProfileBusiness.HealthMngDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.Delete_Health_Mng
+            Return MyBase.Channel.Delete_Health_Mng(lstHealthMng, log)
+        End Function
+        
         Public Function GET_LIST_CONCURRENTLY(ByVal _filter As ProfileBusiness.Temp_ConcurrentlyDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO) Implements ProfileBusiness.IProfileBusiness.GET_LIST_CONCURRENTLY
             Return MyBase.Channel.GET_LIST_CONCURRENTLY(_filter, PageIndex, PageSize, Total, log, Sorts)
         End Function
@@ -59589,10 +59604,6 @@ Namespace ProfileBusiness
         
         Public Function GetOrgtree(ByVal _org_id As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetOrgtree
             Return MyBase.Channel.GetOrgtree(_org_id)
-        End Function
-        
-        Public Function GET_PROCESS_PLCONTRACT(ByVal P_EMP_CODE As String) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_PROCESS_PLCONTRACT
-            Return MyBase.Channel.GET_PROCESS_PLCONTRACT(P_EMP_CODE)
         End Function
         
         Public Function GetCertificateType() As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO) Implements ProfileBusiness.IProfileBusiness.GetCertificateType

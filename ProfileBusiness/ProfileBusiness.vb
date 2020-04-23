@@ -714,6 +714,18 @@ Implements ServiceContracts.IProfileBusiness.GetHU_DataDynamicContractAppendix
                 End Try
             End Using
         End Function
+
+        Public Function Delete_Health_Mng(ByVal lstHealthMng() As HealthMngDTO,
+                                   ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.Delete_Health_Mng
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.Delete_Health_Mng(lstHealthMng, log)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #End Region
 
 #Region "phu luc hop dong"

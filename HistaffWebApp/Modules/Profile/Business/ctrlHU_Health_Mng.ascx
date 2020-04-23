@@ -52,11 +52,12 @@
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None" Height="100%">
                 <tlk:RadGrid PageSize="50" ID="rgWelfareMng" runat="server" Height="100%">
-                    <MasterTableView DataKeyNames="" EditMode="InPlace" ClientDataKeyNames="">
+                     <MasterTableView DataKeyNames="ID" EditMode="InPlace" ClientDataKeyNames="ID">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
-                            </tlk:GridClientSelectColumn>      
+                            </tlk:GridClientSelectColumn>     
+                              <tlk:GridBoundColumn DataField="ID" Visible="false" ReadOnly="true" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
                                 ReadOnly="true" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="60px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên nhân viên %>" DataField="EMPLOYEE_NAME"
@@ -159,8 +160,8 @@
                                 ReadOnly="true" UniqueName="BENH_NN2" HeaderStyle-Width="100px" />
                                  <tlk:GridBoundColumn HeaderText="<%$ Translate: Bệnh TN, NN cần theo dõi %>" DataField="BENH_TN_NN"
                                 ReadOnly="true" UniqueName="BENH_TN_NN" HeaderStyle-Width="100px" />
-                                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày điểu trị %>" DataField="NGAY_DIEU_TRI"
-                                ReadOnly="true" UniqueName="NGAY_DIEU_TRI" HeaderStyle-Width="100px" />
+                                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày điều trị %>" DataField="NGAY_DIEU_TRI"
+                                ReadOnly="true" UniqueName="NGAY_DIEU_TRI" HeaderStyle-Width="100px" DataFormatString="{0:dd/MM/yyyy}"  />
                                  <tlk:GridBoundColumn HeaderText="<%$ Translate: Phương pháp điều trị %>" DataField="PP_DIEU_TRI"
                                 ReadOnly="true" UniqueName="PP_DIEU_TRI" HeaderStyle-Width="100px" />
                                  <tlk:GridBoundColumn HeaderText="<%$ Translate: Kết quả điều trị %>" DataField="KQ_DIEU_TRI"
@@ -257,14 +258,15 @@
                 args.set_cancel(true);
             }
 
-            if (args.get_item().get_commandName() == 'DELETE' || args.get_item().get_commandName() == 'DEACTIVE') {
+            if (args.get_item().get_commandName() == 'DELETE') {
                 bCheck = $find('<%= rgWelfareMng.ClientID %>').get_masterTableView().get_selectedItems().length;
                 if (bCheck == 0) {
                     m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
                     var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                    setTimeout(function () { $.noty.close(n.options.id); }, 10000);
+                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                     args.set_cancel(true);
                 }
+
             }
         }
 

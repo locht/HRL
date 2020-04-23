@@ -222,7 +222,7 @@ Public Class ctrlHU_Health_Mng
             Me.ctrlMessageBox.Listener = Me
             Me.MainToolBar = tbarHealthMng
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Export,
-                                     ToolbarItem.ExportTemplate, ToolbarItem.Import)
+                                     ToolbarItem.ExportTemplate, ToolbarItem.Import, ToolbarItem.Delete)
             MainToolBar.Items(0).Text = Translate("Xuất Excel")
             MainToolBar.Items(1).Text = Translate("Xuất file mẫu")
             CType(Me.MainToolBar.Items(2), RadToolBarButton).ImageUrl = CType(Me.MainToolBar.Items(0), RadToolBarButton).ImageUrl
@@ -295,7 +295,7 @@ Public Class ctrlHU_Health_Mng
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     CurrentState = CommonMessage.STATE_NEW
-                    Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_WelfareMngNewEdit&group=Business")
+
                 Case CommonMessage.TOOLBARITEM_EDIT
                     CurrentState = CommonMessage.STATE_EDIT
                     If rgWelfareMng.SelectedItems.Count = 0 Then
@@ -308,25 +308,12 @@ Public Class ctrlHU_Health_Mng
                     For Each item As GridDataItem In rgWelfareMng.SelectedItems
                         id = item.GetDataKeyValue("ID")
                     Next
-                    Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_WelfareMngNewEdit&group=Business&gUID=" + id)
+
                 Case CommonMessage.TOOLBARITEM_DELETE
                     If rgWelfareMng.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
-
-                    'For Each item As GridDataItem In rgWelfareMng.SelectedItems
-                    '    If item.GetDataKeyValue("WORK_STATUS") = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID Then
-                    '        ShowMessage(Translate("Nhân viên nghỉ việc. Không được xóa thông tin."), Utilities.NotifyType.Warning)
-                    '        Exit Sub
-                    '    End If
-                    'Next
-                    For Each item As GridDataItem In rgWelfareMng.SelectedItems
-                        If item.GetDataKeyValue("EFFECT_DATE") <= Date.Now Then
-                            ShowMessage(Translate("Không được xóa những phúc lợi đã tới ngày hiệu lực"), Utilities.NotifyType.Warning)
-                            Exit Sub
-                        End If
-                    Next
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
                     ctrlMessageBox.DataBind()
@@ -431,39 +418,40 @@ Public Class ctrlHU_Health_Mng
         dtTemp.Columns(17).ColumnName = "XN_NUOC_TIEU"
         dtTemp.Columns(18).ColumnName = "X_QUANG"
         dtTemp.Columns(19).ColumnName = "DIEN_TIM"
-        dtTemp.Columns(20).ColumnName = "SIEU_AM"
-        dtTemp.Columns(21).ColumnName = "SIEU_VI_A"
-        dtTemp.Columns(22).ColumnName = "SIEU_VI_E"
-        dtTemp.Columns(23).ColumnName = "SIEU_VI_B"
-        dtTemp.Columns(24).ColumnName = "KT_VIEN_GAN_B"
-        dtTemp.Columns(25).ColumnName = "CHUC_NANG_GAN"
-        dtTemp.Columns(26).ColumnName = "CHUC_NANG_THAN"
-        dtTemp.Columns(27).ColumnName = "MO_MAU"
-        dtTemp.Columns(28).ColumnName = "KQ1"
-        dtTemp.Columns(29).ColumnName = "KQ2"
-        dtTemp.Columns(30).ColumnName = "KQ3"
-        dtTemp.Columns(31).ColumnName = "KQ4"
-        dtTemp.Columns(32).ColumnName = "KQ5"
-        dtTemp.Columns(33).ColumnName = "KQ6"
-        dtTemp.Columns(34).ColumnName = "KQ7"
-        dtTemp.Columns(35).ColumnName = "KQ8"
-        dtTemp.Columns(36).ColumnName = "KQ9"
-        dtTemp.Columns(37).ColumnName = "KQ10"
-        dtTemp.Columns(38).ColumnName = "HEALTH_TYPE"
-        dtTemp.Columns(39).ColumnName = "NHOM_BENH"
-        dtTemp.Columns(40).ColumnName = "TEN_BENH"
-        dtTemp.Columns(41).ColumnName = "KET_LUAB"
-        dtTemp.Columns(42).ColumnName = "GHI_CHU"
-        dtTemp.Columns(43).ColumnName = "DO_THINH_LUC_SB"
-        dtTemp.Columns(44).ColumnName = "DO_THINH_LUC_HC"
-        dtTemp.Columns(45).ColumnName = "DO_CN_HO_HAP"
-        dtTemp.Columns(46).ColumnName = "XN_HAMLUONG_TOLUEN"
-        dtTemp.Columns(47).ColumnName = "BENH_NN1"
-        dtTemp.Columns(48).ColumnName = "BENH_NN2"
-        dtTemp.Columns(49).ColumnName = "BENH_TN_NN"
-        dtTemp.Columns(50).ColumnName = "NGAY_DIEU_TRI"
-        dtTemp.Columns(51).ColumnName = "PP_DIEU_TRI"
-        dtTemp.Columns(52).ColumnName = "KQ_DIEU_TRI"
+        dtTemp.Columns(20).ColumnName = "XN_PHAN"
+        dtTemp.Columns(21).ColumnName = "SIEU_AM"
+        dtTemp.Columns(22).ColumnName = "SIEU_VI_A"
+        dtTemp.Columns(23).ColumnName = "SIEU_VI_E"
+        dtTemp.Columns(24).ColumnName = "SIEU_VI_B"
+        dtTemp.Columns(25).ColumnName = "KT_VIEN_GAN_B"
+        dtTemp.Columns(26).ColumnName = "CHUC_NANG_GAN"
+        dtTemp.Columns(27).ColumnName = "CHUC_NANG_THAN"
+        dtTemp.Columns(28).ColumnName = "MO_MAU"
+        dtTemp.Columns(29).ColumnName = "KQ1"
+        dtTemp.Columns(30).ColumnName = "KQ2"
+        dtTemp.Columns(31).ColumnName = "KQ3"
+        dtTemp.Columns(32).ColumnName = "KQ4"
+        dtTemp.Columns(33).ColumnName = "KQ5"
+        dtTemp.Columns(34).ColumnName = "KQ6"
+        dtTemp.Columns(35).ColumnName = "KQ7"
+        dtTemp.Columns(36).ColumnName = "KQ8"
+        dtTemp.Columns(37).ColumnName = "KQ9"
+        dtTemp.Columns(38).ColumnName = "KQ10"
+        dtTemp.Columns(39).ColumnName = "HEALTH_TYPE"
+        dtTemp.Columns(40).ColumnName = "NHOM_BENH"
+        dtTemp.Columns(41).ColumnName = "TEN_BENH"
+        dtTemp.Columns(42).ColumnName = "KET_LUAB"
+        dtTemp.Columns(43).ColumnName = "GHI_CHU"
+        dtTemp.Columns(44).ColumnName = "DO_THINH_LUC_SB"
+        dtTemp.Columns(45).ColumnName = "DO_THINH_LUC_HC"
+        dtTemp.Columns(46).ColumnName = "DO_CN_HO_HAP"
+        dtTemp.Columns(47).ColumnName = "XN_HAMLUONG_TOLUEN"
+        dtTemp.Columns(48).ColumnName = "BENH_NN1"
+        dtTemp.Columns(49).ColumnName = "BENH_NN2"
+        dtTemp.Columns(50).ColumnName = "BENH_TN_NN"
+        dtTemp.Columns(51).ColumnName = "NGAY_DIEU_TRI"
+        dtTemp.Columns(52).ColumnName = "PP_DIEU_TRI"
+        dtTemp.Columns(53).ColumnName = "KQ_DIEU_TRI"
 
         dtTemp.Rows(0).Delete()
         dtTemp.Rows(1).Delete()
@@ -695,14 +683,15 @@ Public Class ctrlHU_Health_Mng
         Try
             If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
                 Dim rep As New ProfileBusinessRepository
-                Dim objD As New List(Of WelfareMngDTO)
+                Dim objD As New List(Of HealthMngDTO)
                 Dim lst As New List(Of Decimal)
                 For Each item As GridDataItem In rgWelfareMng.SelectedItems
-                    Dim obj As New WelfareMngDTO
+                    Dim obj As New HealthMngDTO
                     obj.ID = Utilities.ObjToDecima(item.GetDataKeyValue("ID"))
                     objD.Add(obj)
                 Next
-                If rep.DeleteWelfareMng(objD) Then
+
+                If rep.Delete_Health_Mng(objD) Then
                     objD = Nothing
                     Refresh("UpdateView")
                 End If

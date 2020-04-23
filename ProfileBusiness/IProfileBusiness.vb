@@ -2820,6 +2820,9 @@ Namespace ProfileBusiness.ServiceContracts
 
         <OperationContract()>
         Function EXPORT_HEALTH_MNG() As DataSet
+        <OperationContract()>
+        Function Delete_Health_Mng(ByVal lstHealthMng() As HealthMngDTO,
+                                   ByVal log As UserLog) As Boolean
 #End Region
 
 
