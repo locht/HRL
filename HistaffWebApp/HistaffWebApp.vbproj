@@ -445,6 +445,7 @@
     <Content Include="Modules\Payroll\List\ctrlPA_SalaryType.ascx" />
     <Content Include="Modules\Payroll\List\ctrlPA_SaleCommision.ascx" />
     <Content Include="Modules\Payroll\List\ctrlPA_WorkFactor.ascx" />
+    <Content Include="Modules\Payroll\Setting\ctrlPA_SetUpBonus.ascx" />
     <Content Include="Modules\Payroll\Setting\ctrlPA_IncentiveRank.ascx" />
     <Content Include="Modules\Payroll\Setting\ctrlPA_PaymentsList.ascx" />
     <Content Include="Modules\Performance\Dashboard\ctrlDashboard.ascx" />

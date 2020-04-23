@@ -13,6 +13,7 @@
     
     <Item Text="Thiết lập"  PostBack="False">
       <Group>
+        <Item Value="ctrlPA_SetUpBonus" Text="Thiết lập kỳ thưởng" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_SetUpBonus&amp;group=Setting" CheckPermission="true" />
         <Item Value="ctrlPA_Period" Text="Khai báo kỳ lương" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_Period&amp;group=Setting" CheckPermission="true" />
         <Item Value="ctrlPA_Formula" Text="Khai báo công thức lương" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_Formula&amp;group=Setting" CheckPermission="true"/>
         <Item Value="ctrlPA_WorkStandard" Text="Thiết lập ngày công chuẩn" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_WorkStandard&amp;group=Setting" CheckPermission="true"/>

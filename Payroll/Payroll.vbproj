@@ -199,6 +199,7 @@
     <None Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.PaymentSourcesDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <Content Include="Modules\Payroll\Setting\ctrlPA_SetUpBonus.ascx" />
     <Content Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.SalaryExRateDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -554,6 +555,13 @@
     </Compile>
     <Compile Include="Modules\Payroll\List\ctrlPA_ObjectSalary.ascx.vb">
       <DependentUpon>ctrlPA_ObjectSalary.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Payroll\Setting\ctrlPA_SetUpBonus.ascx.designer.vb">
+      <DependentUpon>ctrlPA_SetUpBonus.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Payroll\Setting\ctrlPA_SetUpBonus.ascx.vb">
+      <DependentUpon>ctrlPA_SetUpBonus.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Payroll\Setting\ctrlPA_PaymentsList.ascx.designer.vb">
