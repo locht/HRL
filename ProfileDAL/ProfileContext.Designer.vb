@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("3cac453d-4502-4417-8400-2a38a43471ad")>
+<Assembly: EdmSchemaAttribute("9c2593c6-2045-48ff-bbd6-d0e2a831f8b2")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -19415,6 +19415,31 @@ Public Partial Class HU_CONTRACT
     End Sub
 
     Private Partial Sub OnFORM_WORKChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EFFECT_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _EFFECT_DATE
+        End Get
+        Set
+            OnEFFECT_DATEChanging(value)
+            ReportPropertyChanging("EFFECT_DATE")
+            _EFFECT_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("EFFECT_DATE")
+            OnEFFECT_DATEChanged()
+        End Set
+    End Property
+
+    Private _EFFECT_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnEFFECT_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnEFFECT_DATEChanged()
     End Sub
 
     #End Region
