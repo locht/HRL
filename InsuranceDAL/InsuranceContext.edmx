@@ -49,6 +49,7 @@
             <EntitySet Name="SE_USER" EntityType="InsuranceModel.Store.SE_USER" store:Type="Tables"  />
             <EntitySet Name="SE_REPORT" EntityType="InsuranceModel.Store.SE_REPORT" store:Type="Tables"  />
             <EntitySet Name="INS_REGIMES" EntityType="InsuranceModel.Store.INS_REGIMES" store:Type="Tables"  />
+            <EntitySet Name="INS_ACCIDENT_RISK" EntityType="InsuranceModel.Store.INS_ACCIDENT_RISK" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="InsuranceModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_FE_HEH" Association="InsuranceModel.Store.FK_FE_HEH">
                 <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
@@ -1188,6 +1189,31 @@
             <Property Name="REGIMES_SAL" Type="number" Nullable="true" Precision="38" />
             <Property Name="SICK_TYPE" Type="number" Nullable="true" Precision="38" />
         </EntityType>
+        <EntityType Name="INS_ACCIDENT_RISK">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CONTRACT_NO" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="ROWNUM_NO" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CONTRACT_SIGN_DATE" Type="date" Nullable="true" />
+            <Property Name="CONTRACT_START_DATE" Type="date" Nullable="true" />
+            <Property Name="CONTRACT_EXPIRE_DATE" Type="date" Nullable="true" />
+            <Property Name="PLHD_CONTRACT_NO" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="PLHD_SIGN_DATE" Type="date" Nullable="true" />
+            <Property Name="PLHD_START_DATE" Type="date" Nullable="true" />
+            <Property Name="PLHD_EXPIRE_DATE" Type="date" Nullable="true" />
+            <Property Name="INS_ORG_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1000" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="IS_DELETED" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -1614,6 +1640,7 @@
             <End Role="SE_USER" EntitySet="SE_USER" />
           </AssociationSet>
           <EntitySet Name="INS_REGIMES" EntityType="InsuranceModel.INS_REGIMES" />
+          <EntitySet Name="INS_ACCIDENT_RISK" EntityType="InsuranceModel.INS_ACCIDENT_RISK" />
         </EntityContainer>
         <EntityType Name="HU_EMPLOYEE">
           <Key>
@@ -2940,6 +2967,31 @@
           <Property Type="Decimal" Name="REGIMES_SAL" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="SICK_TYPE" Precision="38" Scale="0" />
         </EntityType>
+        <EntityType Name="INS_ACCIDENT_RISK">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+          <Property Type="String" Name="CONTRACT_NO" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ROWNUM_NO" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CONTRACT_SIGN_DATE" />
+          <Property Type="DateTime" Name="CONTRACT_START_DATE" />
+          <Property Type="DateTime" Name="CONTRACT_EXPIRE_DATE" />
+          <Property Type="String" Name="PLHD_CONTRACT_NO" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="PLHD_SIGN_DATE" />
+          <Property Type="DateTime" Name="PLHD_START_DATE" />
+          <Property Type="DateTime" Name="PLHD_EXPIRE_DATE" />
+          <Property Type="Decimal" Name="INS_ORG_ID" Precision="38" Scale="0" />
+          <Property Type="String" Name="REMARK" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="IS_DELETED" Precision="38" Scale="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4041,6 +4093,32 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="INS_ACCIDENT_RISK">
+            <EntityTypeMapping TypeName="InsuranceModel.INS_ACCIDENT_RISK">
+                <MappingFragment StoreEntitySet="INS_ACCIDENT_RISK">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                    <ScalarProperty Name="CONTRACT_NO" ColumnName="CONTRACT_NO" />
+                    <ScalarProperty Name="ROWNUM_NO" ColumnName="ROWNUM_NO" />
+                    <ScalarProperty Name="CONTRACT_SIGN_DATE" ColumnName="CONTRACT_SIGN_DATE" />
+                    <ScalarProperty Name="CONTRACT_START_DATE" ColumnName="CONTRACT_START_DATE" />
+                    <ScalarProperty Name="CONTRACT_EXPIRE_DATE" ColumnName="CONTRACT_EXPIRE_DATE" />
+                    <ScalarProperty Name="PLHD_CONTRACT_NO" ColumnName="PLHD_CONTRACT_NO" />
+                    <ScalarProperty Name="PLHD_SIGN_DATE" ColumnName="PLHD_SIGN_DATE" />
+                    <ScalarProperty Name="PLHD_START_DATE" ColumnName="PLHD_START_DATE" />
+                    <ScalarProperty Name="PLHD_EXPIRE_DATE" ColumnName="PLHD_EXPIRE_DATE" />
+                    <ScalarProperty Name="INS_ORG_ID" ColumnName="INS_ORG_ID" />
+                    <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="IS_DELETED" ColumnName="IS_DELETED" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="InsuranceModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -4227,6 +4305,7 @@
           <ConnectorPoint PointX="4.781249" PointY="13.875" />
         </AssociationConnector>
         <EntityTypeShape EntityType="InsuranceModel.INS_REGIMES" Width="1.5" PointX="7.375" PointY="14.75" Height="7.5570279947916674" />
+        <EntityTypeShape EntityType="InsuranceModel.INS_ACCIDENT_RISK" Width="1.5" PointX="9.375" PointY="14.75" Height="4.8648079427083246" />
       </Diagram>
     </Diagrams>
   </Designer>

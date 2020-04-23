@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 3/25/2020 10:13:37 AM
--- Generated from EDMX file: D:\HiStaffWebApp\acv_19\InsuranceDAL\InsuranceContext.edmx
+-- Date Created: 4/23/2020 9:50:42 AM
+-- Generated from EDMX file: D:\SOURCE_GIT_NEW\SOURCR_ACV_NEW\InsuranceDAL\InsuranceContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -13,7 +13,7 @@
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "ACV_19_DEV"."INS_REGIMES";
+-- DROP TABLE "ACV_19_DEV"."INS_ACCIDENT_RISK";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -1028,6 +1028,30 @@ CREATE TABLE "dbo"."INS_REGIMES" (
    "SICK_TYPE" NUMBER(38,0) NULL
 );
 
+-- Creating table 'INS_ACCIDENT_RISK'
+CREATE TABLE "dbo"."INS_ACCIDENT_RISK" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "EMPLOYEE_ID" NUMBER(38,0) NULL,
+   "CONTRACT_NO" NVARCHAR2(255) NULL,
+   "ROWNUM_NO" NVARCHAR2(255) NULL,
+   "CONTRACT_SIGN_DATE" DATE NULL,
+   "CONTRACT_START_DATE" DATE NULL,
+   "CONTRACT_EXPIRE_DATE" DATE NULL,
+   "PLHD_CONTRACT_NO" NVARCHAR2(255) NULL,
+   "PLHD_SIGN_DATE" DATE NULL,
+   "PLHD_START_DATE" DATE NULL,
+   "PLHD_EXPIRE_DATE" DATE NULL,
+   "INS_ORG_ID" NUMBER(38,0) NULL,
+   "REMARK" NVARCHAR2(1000) NULL,
+   "CREATED_DATE" DATE NULL,
+   "CREATED_BY" NVARCHAR2(255) NULL,
+   "CREATED_LOG" NVARCHAR2(255) NULL,
+   "MODIFIED_DATE" DATE NULL,
+   "MODIFIED_BY" NVARCHAR2(255) NULL,
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "IS_DELETED" NUMBER(38,0) NULL
+);
+
 -- Creating table 'SE_USER_REPORT'
 CREATE TABLE "dbo"."SE_USER_REPORT" (
    "SE_REPORT_ID" NUMBER(38,0) NOT NULL,
@@ -1378,6 +1402,14 @@ ADD CONSTRAINT "PK_SE_REPORT"
 -- Creating primary key on "ID"in table 'INS_REGIMES'
 ALTER TABLE "dbo"."INS_REGIMES"
 ADD CONSTRAINT "PK_INS_REGIMES"
+   PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'INS_ACCIDENT_RISK'
+ALTER TABLE "dbo"."INS_ACCIDENT_RISK"
+ADD CONSTRAINT "PK_INS_ACCIDENT_RISK"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;
