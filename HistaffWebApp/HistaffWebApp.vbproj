@@ -312,6 +312,7 @@
     <Content Include="Modules\Insurance\Business\ctrlInsRegimesMng.ascx" />
     <Content Include="Modules\Insurance\Business\ctrlInsTotalSalary.ascx" />
     <Content Include="Modules\Insurance\List\ctrlInsListOrgInsurance.ascx" />
+    <Content Include="Modules\Organize\Business\ctrlHU_Determine.ascx" />
     <Content Include="Modules\Organize\Business\ctrlHU_JobPositionNew.ascx" />
     <Content Include="Modules\Organize\Business\ctrlHU_ChartEmployee.ascx" />
     <Content Include="Modules\Organize\Business\ctrlHU_JobPosition.ascx" />

@@ -45118,4 +45118,12 @@ Xin cám ơn!
       <string>Danh mục khoản lương theo nhóm lương</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLHU_DETERMINE</string>
+    </Key>
+    <Value>
+      <string>Hoạch định</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

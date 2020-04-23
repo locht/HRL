@@ -8,6 +8,7 @@
         <Item Value="ctrlHU_Title" Text="Title" PostBack="True" NavigateUrl="Default.aspx?mid=Organize&amp;fid=ctrlHU_Title&amp;group=Business" CheckPermission="true" CausesValidation="False"/>
         <Item Value="ctrlHU_OrgTitle" Text="Unit titles" PostBack="True" NavigateUrl="Default.aspx?mid=Organize&amp;fid=ctrlHU_OrgTitle&amp;group=Business" CheckPermission="true" CausesValidation="False" />
         <Item Value="ctrlHU_ChartEmployee"  Text="Diagram job titles" PostBack="True" NavigateUrl="Default.aspx?mid=Organize&amp;fid=ctrlHU_ChartEmployee&amp;group=Business" CheckPermission="false"/>
+        <Item Value="ctrlHU_Determine" Text="Determine" PostBack="True" NavigateUrl="Default.aspx?mid=Organize&amp;fid=ctrlHU_Determine&amp;group=Business" CheckPermission="true" CausesValidation="False" />
       </Group>
     </Item>
 	<Item Text="Succession"  PostBack="False">

@@ -127,6 +127,8 @@ Public Class Export
                         Timesheet_machineExport()
                     Case "Template_yeucautuyendung_Error"
                         Template_yeucautuyendung_Error()
+                    Case "Export_Determine"
+                        Export_Determine()
                 End Select
             Catch ex As Exception
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "javascriptfunction", "goBack()", True)
@@ -190,6 +192,15 @@ Public Class Export
             ExportTemplate("Recruitment\Import\Template_yeucautuyendung_Error.xls", _
                                       dtData, dtVar, _
                                       "TemplateImportError_" & Format(Date.Now, "yyyyMMdd"))
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub Export_Determine()
+        Try
+            Dim dsData As DataSet = Session("EXPORT_DETERMINE")
+            ExportTemplate("Recruitment\Import\Export_Determine.xls", dsData, Nothing, "Determine" & Format(Date.Now, "yyyyMMdd"))
         Catch ex As Exception
             Throw ex
         End Try

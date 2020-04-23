@@ -595,5 +595,78 @@ Public Class ProfileStoreProcedure
         Return _rs
     End Function
 #End Region
+#Region "Determine"
+    Public Function GetDetermine(ByVal _filter As DetermineDTO,
+                                 ByVal _param As Profile.ProfileBusiness.ParamDTO,
+                                 ByVal PageIndex As Integer,
+                                 ByVal PageSize As Integer,
+                                 ByRef Total As Integer) As DataTable
+        Try
+            Dim dtData As DataTable = Nothing
+            Dim dsData As DataSet = hfr.ExecuteToDataSet("PKG_PROFILE.GET_HOACH_DINH", New List(Of Object)(New Object() {Me.Log.Username.ToUpper, _param.ORG_ID, _param.IS_DISSOLVE}))
+            If dsData IsNot Nothing Then
+                dtData = dsData.Tables(0)
+            End If
+            Dim strWhere As String = "1=1 "
+            If _filter.BRANCH IsNot Nothing Then
+                strWhere += " AND BRANCH LIKE '" + "%" + _filter.BRANCH.ToLower() + "%" + "'"
+            End If
+            If _filter.FACTORY IsNot Nothing Then
+                strWhere += " AND FACTORY LIKE '" + "%" + _filter.FACTORY.ToLower() + "%" + "'"
+            End If
+            If _filter.BAN IsNot Nothing Then
+                strWhere += " AND BAN LIKE '" + "%" + _filter.BAN.ToLower() + "%" + "'"
+            End If
+            If _filter.NGANH IsNot Nothing Then
+                strWhere += " AND NGANH LIKE '" + "%" + _filter.NGANH.ToLower() + "%" + "'"
+            End If
+            If _filter.BO_PHAN IsNot Nothing Then
+                strWhere += " AND BO_PHAN LIKE '" + "%" + _filter.BO_PHAN.ToLower() + "%" + "'"
+            End If
+            If _filter.SHIFT IsNot Nothing Then
+                strWhere += " AND SHIFT LIKE '" + "%" + _filter.SHIFT.ToLower() + "%" + "'"
+            End If
+            If _filter.TO_NHOM IsNot Nothing Then
+                strWhere += " AND TO_NHOM LIKE '" + "%" + _filter.TO_NHOM.ToLower() + "%" + "'"
+            End If
+            If _filter.TITLE_NAME IsNot Nothing Then
+                strWhere += " AND TITLE_NAME LIKE '" + "%" + _filter.TITLE_NAME.ToLower() + "%" + "'"
+            End If
+            If IsNumeric(_filter.DINHBIEN) Then
+                strWhere += " AND DINHBIEN =" + _filter.DINHBIEN.ToString
+            End If
+            If IsNumeric(_filter.HEADCOUNT) Then
+                strWhere += " AND HEADCOUNT =" + _filter.HEADCOUNT.ToString
+            End If
+            If IsNumeric(_filter.ONE_IN_ONE) Then
+                strWhere += " AND ONE_IN_ONE =" + _filter.ONE_IN_ONE.ToString
+            End If
+            If IsNumeric(_filter.MANY_IN_ONE) Then
+                strWhere += " AND MANY_IN_ONE =" + _filter.MANY_IN_ONE.ToString
+            End If
+            If IsNumeric(_filter.BLANK) Then
+                strWhere += " AND BLANK =" + _filter.BLANK
+            End If
+            dtData = dtData.Select(strWhere).CopyToDataTable()
+            Total = dtData.Rows().Count
+            If dtData IsNot Nothing Then
+                dtData = dtData.AsEnumerable().Skip(PageIndex * PageSize).Take(PageSize).CopyToDataTable
+            End If
 
+            Return dtData
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function EXPORT_DETERMINE(ByVal _orgID As Decimal, ByVal _IsDissolve As Boolean)
+        Try
+            Dim dsData As DataSet = hfr.ExecuteToDataSet("PKG_PROFILE.GET_HOACH_DINH", New List(Of Object)(New Object() {Me.Log.Username.ToUpper, _orgID, _IsDissolve}))
+            Return dsData
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
+#End Region
 End Class

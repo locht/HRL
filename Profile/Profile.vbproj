@@ -263,6 +263,7 @@
     <Content Include="Modules\Profile\Dashboard\ctrlDashboardProfile.ascx" />
     <Content Include="Modules\Profile\Dashboard\ctrlDashboardSixCell.ascx" />
     <Content Include="Modules\Profile\Dashboard\ctrlDBInfoProfile.ascx" />
+    <Content Include="Modules\Profile\List\ctrlHU_Determine.ascx" />
     <Content Include="Modules\Profile\List\ctrlHU_RelationshipList.ascx" />
     <Content Include="Modules\Profile\List\ctrlHU_CommendFormula.ascx" />
     <Content Include="Modules\Profile\List\ctrlHU_CommendLevel.ascx" />
@@ -918,6 +919,7 @@
       <DependentUpon>ctrlDBCertificateExpires.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Modules\Profile\BusinessObjects\DetermineDTO.vb" />
     <Compile Include="Modules\Profile\BusinessObjects\HU_ORGANIZATION_NEW.vb" />
     <Compile Include="Modules\Profile\BusinessObjects\SendMail.vb" />
     <Compile Include="Modules\Profile\BusinessObjects\MessageDTO.vb" />
@@ -1515,6 +1517,13 @@
     </Compile>
     <Compile Include="Modules\Profile\Dashboard\ctrlDBInfoProfile.ascx.vb">
       <DependentUpon>ctrlDBInfoProfile.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Profile\List\ctrlHU_Determine.ascx.designer.vb">
+      <DependentUpon>ctrlHU_Determine.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Profile\List\ctrlHU_Determine.ascx.vb">
+      <DependentUpon>ctrlHU_Determine.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Profile\List\ctrlHU_RelationshipList.ascx.designer.vb">

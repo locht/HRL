@@ -18929,4 +18929,12 @@
       <string>Job Information</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLHU_DETERMINE</string>
+    </Key>
+    <Value>
+      <string>DETERMINE</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
