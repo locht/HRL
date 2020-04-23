@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessObjects\Dashboard\StatisticDTO.vb" />
+    <Compile Include="BusinessObjects\List\ATSetUpBonusDTO.vb" />
     <Compile Include="BusinessObjects\List\SaleCommisionDTO.vb" />
     <Compile Include="BusinessObjects\SalaryGroup\SalaryExRateDTO.vb" />
     <Compile Include="BusinessObjects\SalaryGroup\SalaryLevelGroupDTO.vb" />

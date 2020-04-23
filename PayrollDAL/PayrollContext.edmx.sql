@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 04/21/2020 11:51:06 AM
+-- Date Created: 04/23/2020 2:55:19 PM
 -- Generated from EDMX file: D:\MyProject2020\ACV1\acv_19\PayrollDAL\PayrollContext.edmx
 -- --------------------------------------------------
 
@@ -13,7 +13,7 @@
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "ACV_19_DEV"."AT_HOLIDAY";
+-- DROP TABLE "PayrollModelStoreContainer"."AT_SETUP_BONUS";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -1331,6 +1331,27 @@ CREATE TABLE "dbo"."AT_HOLIDAY" (
    "TYPE_NAME" NVARCHAR2(255) NULL
 );
 
+-- Creating table 'AT_SETUP_BONUS'
+CREATE TABLE "dbo"."AT_SETUP_BONUS" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "YEAR" NUMBER(38,0) NULL,
+   "FROM_DATE" DATE NULL,
+   "TO_DATE" DATE NULL,
+   "REMARK" NVARCHAR2(1023) NULL,
+   "ACTFLG" NVARCHAR2(1) NULL,
+   "IS_DELETED" NUMBER(38,0) NULL,
+   "STATUS" NUMBER(38,0) NULL,
+   "ORDERS" NUMBER(38,0) NULL,
+   "CREATED_BY" NVARCHAR2(255) NULL,
+   "CREATED_DATE" DATE NULL,
+   "CREATED_LOG" NVARCHAR2(255) NULL,
+   "MODIFIED_BY" NVARCHAR2(255) NULL,
+   "MODIFIED_DATE" DATE NULL,
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "NAME_BONUS" NVARCHAR2(255) NULL,
+   "DATE_BONUS" DATE NULL
+);
+
 
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
@@ -1843,6 +1864,14 @@ ADD CONSTRAINT "PK_PA_SALARY_EXCHANGE_RATE"
 -- Creating primary key on "ID"in table 'AT_HOLIDAY'
 ALTER TABLE "dbo"."AT_HOLIDAY"
 ADD CONSTRAINT "PK_AT_HOLIDAY"
+   PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'AT_SETUP_BONUS'
+ALTER TABLE "dbo"."AT_SETUP_BONUS"
+ADD CONSTRAINT "PK_AT_SETUP_BONUS"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;

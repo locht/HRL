@@ -70,6 +70,7 @@
             <EntitySet Name="PA_SALARY_LEVEL_GROUP" EntityType="PayrollModel.Store.PA_SALARY_LEVEL_GROUP" store:Type="Tables"  />
             <EntitySet Name="PA_SALARY_EXCHANGE_RATE" EntityType="PayrollModel.Store.PA_SALARY_EXCHANGE_RATE" store:Type="Tables"  />
             <EntitySet Name="AT_HOLIDAY" EntityType="PayrollModel.Store.AT_HOLIDAY" store:Type="Tables"  />
+            <EntitySet Name="AT_SETUP_BONUS" EntityType="PayrollModel.Store.AT_SETUP_BONUS" store:Type="Tables"  />
             <AssociationSet Name="FK_PSG_PSL" Association="PayrollModel.Store.FK_PSG_PSL">
                 <End Role="PA_SALARY_GROUP" EntitySet="PA_SALARY_GROUP" />
                 <End Role="PA_SALARY_LEVEL" EntitySet="PA_SALARY_LEVEL" />
@@ -1513,6 +1514,28 @@
             <Property Name="OFFDAY" Type="number" Nullable="true" Precision="38" />
             <Property Name="TYPE_NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
         </EntityType>
+        <EntityType Name="AT_SETUP_BONUS">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="YEAR" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FROM_DATE" Type="date" Nullable="true" />
+            <Property Name="TO_DATE" Type="date" Nullable="true" />
+            <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+            <Property Name="IS_DELETED" Type="number" Nullable="true" Precision="38" />
+            <Property Name="STATUS" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORDERS" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="NAME_BONUS" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="DATE_BONUS" Type="date" Nullable="true" />
+        </EntityType>
     <Association Name="FK_PSG_PSL">
         <End Role="PA_SALARY_GROUP" Type="PayrollModel.Store.PA_SALARY_GROUP" Multiplicity="1">
         </End>
@@ -1870,6 +1893,7 @@
           <EntitySet Name="PA_SALARY_LEVEL_GROUP" EntityType="PayrollModel.PA_SALARY_LEVEL_GROUP" />
           <EntitySet Name="PA_SALARY_EXCHANGE_RATE" EntityType="PayrollModel.PA_SALARY_EXCHANGE_RATE" />
           <EntitySet Name="AT_HOLIDAY" EntityType="PayrollModel.AT_HOLIDAY" />
+          <EntitySet Name="AT_SETUP_BONUS" EntityType="PayrollModel.AT_SETUP_BONUS" />
           </EntityContainer>
         <EntityType Name="PA_SALARY_GROUP">
           <Key>
@@ -3473,6 +3497,28 @@
           <Property Type="Decimal" Name="OFFDAY" Precision="38" Scale="0" />
           <Property Type="String" Name="TYPE_NAME" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="AT_SETUP_BONUS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="YEAR" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="FROM_DATE" />
+          <Property Type="DateTime" Name="TO_DATE" />
+          <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="IS_DELETED" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="STATUS" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORDERS" Precision="38" Scale="0" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NAME_BONUS" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DATE_BONUS" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4919,6 +4965,29 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="AT_SETUP_BONUS">
+            <EntityTypeMapping TypeName="IsTypeOf(PayrollModel.AT_SETUP_BONUS)">
+                <MappingFragment StoreEntitySet="AT_SETUP_BONUS">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+                    <ScalarProperty Name="FROM_DATE" ColumnName="FROM_DATE" />
+                    <ScalarProperty Name="TO_DATE" ColumnName="TO_DATE" />
+                    <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+                    <ScalarProperty Name="IS_DELETED" ColumnName="IS_DELETED" />
+                    <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                    <ScalarProperty Name="ORDERS" ColumnName="ORDERS" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="NAME_BONUS" ColumnName="NAME_BONUS" />
+                    <ScalarProperty Name="DATE_BONUS" ColumnName="DATE_BONUS" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
     </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -5093,6 +5162,7 @@
         <EntityTypeShape EntityType="PayrollModel.PA_SALARY_LEVEL_GROUP" Width="2.375" PointX="5.375" PointY="23.75" Height="3.7109993489583246" />
         <EntityTypeShape EntityType="PayrollModel.PA_SALARY_EXCHANGE_RATE" Width="2.375" PointX="23.375" PointY="12.75" Height="4.0956022135416674" />
         <EntityTypeShape EntityType="PayrollModel.AT_HOLIDAY" Width="1.5" PointX="24.375" PointY="0.75" Height="4.8648079427083246" />
+        <EntityTypeShape EntityType="PayrollModel.AT_SETUP_BONUS" Width="1.5" PointX="24.375" PointY="6.75" Height="4.2879036458333246" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
