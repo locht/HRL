@@ -27,27 +27,21 @@
                                 Visible="false" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Chi nhánh %>" DataField="BRANCH"
                                 SortExpression="BRANCH" UniqueName="BRANCH" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Nhà máy/ Phòng %>" DataField="FACTORY"
-                                SortExpression="FACTORY" UniqueName="FACTORY" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ban %>" DataField="BAN" SortExpression="BAN"
-                                UniqueName="BAN" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngành/ VPDD %>" DataField="NGANH"
-                                SortExpression="NGANH" UniqueName="NGANH" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Bộ phận %>" DataField="BO_PHAN" SortExpression="BO_PHAN"
-                                UniqueName="BO_PHAN" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ca %>" DataField="SHIFT" SortExpression="SHIFT"
-                                UniqueName="SHIFT" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tổ %>" DataField="TO_NHOM" SortExpression="TO_NHOM"
-                                UniqueName="TO_NHOM" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Nhà máy/ Phòng - Ban %>" DataField="ORG_NAME3"
+                                SortExpression="ORG_NAME3" UniqueName="ORG_NAME3" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngành/ VPDD - Bộ phận %>" DataField="ORG_NAME4"
+                                SortExpression="ORG_NAME4" UniqueName="ORG_NAME4" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ca - Tổ %>" DataField="ORG_NAME5" SortExpression="ORG_NAME5"
+                                UniqueName="ORG_NAME5" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Vị trí công việc %>" DataField="TITLE_NAME" SortExpression="TITLE_NAME"
                                 UniqueName="TITLE_NAME" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Số lượng ghế (định biên) %>" DataField="DINHBIEN"
                                 ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" SortExpression="DINHBIEN"
                                 UniqueName="DINHBIEN" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số lượng nhân viên( HeadCount) %>" DataField="HEADCOUNT"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số lượng nhân viên (HeadCount) %>" DataField="HEADCOUNT"
                                 ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" SortExpression="HEADCOUNT"
                                 UniqueName="HEADCOUNT" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số trương hợp mỗi người 1 ghế %>" DataField="ONE_IN_ONE"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số trường hợp mỗi người 1 ghế %>" DataField="ONE_IN_ONE"
                                 ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" SortExpression="ONE_IN_ONE"
                                 UniqueName="ONE_IN_ONE" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Số trường hợp trên 1 người ngồi cùng ghế %>" DataField="MANY_IN_ONE"

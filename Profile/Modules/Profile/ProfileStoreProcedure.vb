@@ -611,23 +611,14 @@ Public Class ProfileStoreProcedure
             If _filter.BRANCH IsNot Nothing Then
                 strWhere += " AND BRANCH LIKE '" + "%" + _filter.BRANCH.ToLower() + "%" + "'"
             End If
-            If _filter.FACTORY IsNot Nothing Then
-                strWhere += " AND FACTORY LIKE '" + "%" + _filter.FACTORY.ToLower() + "%" + "'"
+            If _filter.ORG_NAME3 IsNot Nothing Then
+                strWhere += " AND ORG_NAME3 LIKE '" + "%" + _filter.ORG_NAME3.ToLower() + "%" + "'"
             End If
-            If _filter.BAN IsNot Nothing Then
-                strWhere += " AND BAN LIKE '" + "%" + _filter.BAN.ToLower() + "%" + "'"
+            If _filter.ORG_NAME4 IsNot Nothing Then
+                strWhere += " AND ORG_NAME4 LIKE '" + "%" + _filter.ORG_NAME4.ToLower() + "%" + "'"
             End If
-            If _filter.NGANH IsNot Nothing Then
-                strWhere += " AND NGANH LIKE '" + "%" + _filter.NGANH.ToLower() + "%" + "'"
-            End If
-            If _filter.BO_PHAN IsNot Nothing Then
-                strWhere += " AND BO_PHAN LIKE '" + "%" + _filter.BO_PHAN.ToLower() + "%" + "'"
-            End If
-            If _filter.SHIFT IsNot Nothing Then
-                strWhere += " AND SHIFT LIKE '" + "%" + _filter.SHIFT.ToLower() + "%" + "'"
-            End If
-            If _filter.TO_NHOM IsNot Nothing Then
-                strWhere += " AND TO_NHOM LIKE '" + "%" + _filter.TO_NHOM.ToLower() + "%" + "'"
+            If _filter.ORG_NAME5 IsNot Nothing Then
+                strWhere += " AND ORG_NAME5 LIKE '" + "%" + _filter.ORG_NAME5.ToLower() + "%" + "'"
             End If
             If _filter.TITLE_NAME IsNot Nothing Then
                 strWhere += " AND TITLE_NAME LIKE '" + "%" + _filter.TITLE_NAME.ToLower() + "%" + "'"
