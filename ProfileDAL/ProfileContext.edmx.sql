@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 20/4/2020 1:48:28 PM
--- Generated from EDMX file: G:\Cty TVC\Source\acv_19\ProfileDAL\ProfileContext.edmx
+-- Date Created: 4/23/2020 11:09:38 AM
+-- Generated from EDMX file: D:\ACV\acv_19\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -829,7 +829,8 @@ CREATE TABLE "dbo"."HU_CONTRACT" (
    "NUMBER_AUTHORITY" NCLOB NULL,
    "WORK_TO_DO" NCLOB NULL,
    "AUTHORITY" NUMBER(38,0) NULL,
-   "FORM_WORK" NUMBER(38,0) NULL
+   "FORM_WORK" NUMBER(38,0) NULL,
+   "EFFECT_DATE" DATE NULL
 );
 
 -- Creating table 'HU_FAMILY'
