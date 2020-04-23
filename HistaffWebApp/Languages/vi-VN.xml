@@ -45126,4 +45126,44 @@ Xin cám ơn!
       <string>Hoạch định</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLPA_SETUPBONUS</string>
+    </Key>
+    <Value>
+      <string>Thiết lập kỳ thưởng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP KỲ THƯỞNG</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập kỳ thưởng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP STT</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập STT</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>KỲ THƯỞNG</string>
+    </Key>
+    <Value>
+      <string>Kỳ thưởng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ THỨ TỰ</string>
+    </Key>
+    <Value>
+      <string>Số thứ tự</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
