@@ -720,6 +720,8 @@ Public Class ctrlHU_EmpDtlProfile
                             txtVienGanB.Text = empHealth.VIEM_GAN_B
                             txtLoaiSucKhoe.Text = empHealth.LOAI_SUC_KHOE
                             rtTTSucKhoe.Text = empHealth.TTSUCKHOE
+                            txtTieuSuBanThan.Text = empHealth.TIEU_SU_BAN_THAN
+                            txtTieuSuGiaDinh.Text = empHealth.TIEU_SU_GIA_DINH
                         End If
 
                         If empUniform IsNot Nothing Then
