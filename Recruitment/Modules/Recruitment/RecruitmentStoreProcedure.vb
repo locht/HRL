@@ -522,6 +522,7 @@ Public Class RecruitmentStoreProcedure
         Dim objects = rep.ExecuteStoreScalar("PKG_RECRUITMENT.CANDIDATE_GET_AVERAGE_MARKS", New List(Of Object)(New Object() {P_RC_PROGRAM_ID, P_RC_CANDIDATE_ID, OUT_NUMBER}))
         Return objects(0).ToString
     End Function
+    'luon trả về gtri khi gọi tới 
     Public Function GET_MAX_EXAMS_ORDER(ByVal P_PROGRAM_ID As Decimal) As Decimal
         Dim objects = rep.ExecuteStoreScalar("PKG_RECRUITMENT_NEW.GET_MAX_EXAMS_ORDER", New List(Of Object)(New Object() {P_PROGRAM_ID, OUT_NUMBER}))
         Return objects(0).ToString
