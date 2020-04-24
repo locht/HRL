@@ -380,8 +380,10 @@ Public Class ctrlHU_ChangeInfoNewEdit
 
                     If chkIsReplace.Checked Then
                         btnEmpReplace.Enabled = True
+                        cboJobPosition.Enabled = False
                     Else
                         btnEmpReplace.Enabled = False
+                        cboJobPosition.Enabled = True
                     End If
 
                 Case "NormalView"
@@ -1613,8 +1615,10 @@ Public Class ctrlHU_ChangeInfoNewEdit
 
             If chkIsReplace.Checked Then
                 btnEmpReplace.Enabled = True
+                cboJobPosition.Enabled = False
             Else
                 btnEmpReplace.Enabled = False
+                cboJobPosition.Enabled = True
             End If
 
         Catch ex As Exception
