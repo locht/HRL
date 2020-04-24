@@ -310,6 +310,8 @@ Namespace ProfileBusiness.ServiceContracts
 
         <OperationContract()>
         Function ValidContract(ByVal empid As Decimal, ByVal rd_date As Date) As Boolean
+        <OperationContract()>
+        Function ValidContract1(ByVal empcode As String, ByVal effectdate As Date) As Boolean
 
         <OperationContract()>
         Function InsertContractType(ByVal objContractType As ContractTypeDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
@@ -2376,7 +2378,13 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function CheckEmployee_Exits(ByVal empCode As String) As Integer
         <OperationContract()>
+        Function EffectDate_Check_Same(ByVal emp_code As String, ByVal effect_date As Date) As Boolean
+        <OperationContract()>
         Function CheckEmployee_Contract_Count(ByVal empCode As String) As Integer
+        <OperationContract()>
+        Function CheckEmployee_EffectDate_exits(ByVal empCode As String, ByVal effect_date As String) As Integer
+        <OperationContract()>
+        Function GetEmpIdByCode(ByVal empCode As String) As EmployeeDTO
         <OperationContract()>
         Function CheckEmployee_Terminate(ByVal empCode As String) As Integer
         <OperationContract()>

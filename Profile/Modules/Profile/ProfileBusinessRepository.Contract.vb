@@ -291,10 +291,43 @@ Partial Public Class ProfileBusinessRepository
         End Using
 
     End Function
+    Public Function CheckEmployee_EffectDate_exits(ByVal empCode As String, ByVal effect_date As String) As Integer
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CheckEmployee_EffectDate_exits(empCode, effect_date)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    Public Function GetEmpIdByCode(ByVal empCode As String) As EmployeeDTO
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetEmpIdByCode(empCode)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
     Public Function CheckEmployee_Contract_Count(ByVal empCode As String) As Integer
         Using rep As New ProfileBusinessClient
             Try
                 Return rep.CheckEmployee_Contract_Count(empCode)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    Public Function EffectDate_Check_Same(ByVal emp_code As String, ByVal effect_date As Date) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.EffectDate_Check_Same(emp_code, effect_date)
             Catch ex As Exception
                 rep.Abort()
                 Throw ex
@@ -495,6 +528,15 @@ Partial Public Class ProfileBusinessRepository
         Using rep As New ProfileBusinessClient
             Try
                 Return rep.ValidContract(empid, rd_date)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function ValidContract1(ByVal empcode As String, ByVal effectdate As Date) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.ValidContract1(empcode, effectdate)
             Catch ex As Exception
                 Throw ex
             End Try

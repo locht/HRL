@@ -141,9 +141,11 @@ Public Class ctrlHU_Contract
                 dt.Columns.Add("AUTHORITY_NO", GetType(String))
                 dt.Columns.Add("WORK_TO_DO", GetType(String))
                 dt.Columns.Add("SIGN_DATE", GetType(String))
-                dt.Columns.Add("SIGN_EMP_CODE", GetType(String))
+                'dt.Columns.Add("SIGN_EMP_CODE", GetType(String))
+                dt.Columns.Add("SIGN_EMP_NAME", GetType(String))
+                dt.Columns.Add("SIGN_EMP_ID", GetType(String))
                 dt.Columns.Add("NOTE", GetType(String))
-                dt.Columns.Add("MAP", GetType(String))
+                'dt.Columns.Add("MAP", GetType(String))
                 
                 ViewState(Me.ID & "_dtData") = dt
             End If
@@ -990,9 +992,10 @@ Public Class ctrlHU_Contract
                 newRow("AUTHORITY_NO") = rows("AUTHORITY_NO")
                 newRow("WORK_TO_DO") = rows("WORK_TO_DO")
                 newRow("SIGN_DATE") = rows("SIGN_DATE")
-                newRow("SIGN_EMP_CODE") = rows("SIGN_EMP_CODE")
+                newRow("SIGN_EMP_NAME") = rows("SIGN_EMP_NAME")
+                newRow("SIGN_EMP_ID") = rows("SIGN_EMP_ID")
                 newRow("NOTE") = rows("NOTE")
-                newRow("MAP") = rows("MAP")
+                'newRow("MAP") = rows("MAP")
 
                 
                 dtData.Rows.Add(newRow)
@@ -1296,28 +1299,58 @@ Public Class ctrlHU_Contract
             Dim _filter As New WorkingDTO
             Dim rep As New ProfileBusinessRepository
             Dim IBusiness As IProfileBusiness = New ProfileBusinessClient()
-            Dim empId As Integer
+            Dim empId, empid1, empid2, empid4 As Integer
+            Dim empid3, emp6 As Boolean
+            Dim empid5 As EmployeeDTO
             For Each row As DataRow In dtData.Rows
                 rowError = dtError.NewRow
                 isError = False
                 'sError = "Chưa nhập mã nhân viên"
                 'ImportValidate.EmptyValue("EMPLOYEE_CODE", row, rowError, isError, sError)
                 empId = rep.CheckEmployee_Exits(row("EMPLOYEE_CODE"))
+                empid1 = rep.CheckEmployee_Terminate(row("EMPLOYEE_CODE"))
+                empid2 = rep.CheckEmployee_Contract_Count(row("EMPLOYEE_CODE"))
+                'If row("EFFECT_SALARY_DATE") Is DBNull.Value OrElse row("EFFECT_SALARY_DATE") = "" Then
+                'empid3 = rep.EffectDate_Check_Same(row("EMPLOYEE_CODE"), ToDate(row("EFFECT_SALARY_DATE")))
+                'emp6 = rep.ValidContract1(row("EMPLOYEE_CODE"), ToDate(row("EFFECT_SALARY_DATE")))
+                'Else
+                'empid3 = True
+                'emp6 = True
+                'End If
+                'empid4 = rep.CheckEmployee_EffectDate_exits
+                empid5 = rep.GetEmpIdByCode(row("EMPLOYEE_CODE"))
 
                 If empId = 0 Then
-                    sError = "Mã nhân viên - Không tồn tại hoặc đã nghỉ việc"
+                    sError = "Mã nhân viên - Không tồn tại"
                     ImportValidate.IsValidTime("EMPLOYEE_CODE", row, rowError, isError, sError)
                 End If
+                If empid1 <> 0 Then
+                    sError = "Nhân viên đã nghỉ việc"
+                    ImportValidate.IsValidTime("EMPLOYEE_CODE", row, rowError, isError, sError)
+                End If
+                If empid2 = 0 Then
+                    sError = "Nhân viên đã có 2 hợp đồng chính thức"
+                    ImportValidate.IsValidTime("EMPLOYEE_CODE", row, rowError, isError, sError)
+                End If
+
                 If row("EFFECT_SALARY_DATE") Is DBNull.Value OrElse row("EFFECT_SALARY_DATE") = "" Then
                     sError = "Chưa nhập ngày hiệu lực lương"
                     ImportValidate.IsValidTime("EFFECT_SALARY_DATE", row, rowError, isError, sError)
-                    'ElseIf CheckDate(row("EFFECT_DATE")) = False Then
-                    '    sError = "Ngày hiệu lực - không đúng định dạng"
-                    '    ImportValidate.IsValidTime("EFFECT_DATE", row, rowError, isError, sError)
+                ElseIf CheckDate(row("EFFECT_SALARY_DATE")) = False Then
+                    sError = "Ngày hiệu lực - không đúng định dạng"
+                    ImportValidate.IsValidTime("EFFECT_SALARY_DATE", row, rowError, isError, sError)
                 Else
                     Try
-                        If IBusiness.ValEffectdateByEmpCode(row("EMPLOYEE_CODE"), ToDate(row("EFFECT_SALARY_DATE"))) = False Then
+                        empid3 = rep.EffectDate_Check_Same(row("EMPLOYEE_CODE"), ToDate(row("EFFECT_SALARY_DATE")))
+                        emp6 = rep.ValidContract1(row("EMPLOYEE_CODE"), ToDate(row("EFFECT_SALARY_DATE")))
+                        If empid3 = False Then
                             sError = "Trùng ngày hiệu lực với hợp đồng cũ"
+                            ImportValidate.IsValidTime("EFFECT_SALARY_DATE", row, rowError, isError, sError)
+                        ElseIf emp6 = False Then
+                            sError = "Ngày hiệu lực phải lớn hơn ngày hết hiệu lực của hợp đồng cũ"
+                            ImportValidate.IsValidTime("EFFECT_SALARY_DATE", row, rowError, isError, sError)
+                        ElseIf Not rep.ValidContract(empid5.EMPLOYEE_ID, ToDate(row("EFFECT_SALARY_DATE"))) Then
+                            sError = "Hợp đồng cũ còn hiệu lực. Không được phép tạo hợp đồng mới."
                             ImportValidate.IsValidTime("EFFECT_SALARY_DATE", row, rowError, isError, sError)
                         End If
                     Catch ex As Exception
@@ -1326,38 +1359,56 @@ Public Class ctrlHU_Contract
                 End If
 VALIDATE:
 
-                If row("CONTRACT_TYPE_ID") Is DBNull.Value OrElse row("CONTRACT_TYPE_ID") = "" Then
+                If Not IsNumeric(row("CONTRACT_TYPE_ID")) Then
                     sError = "Chưa nhập loại hợp đồng"
                     ImportValidate.IsValidTime("CONTRACT_TYPE_ID", row, rowError, isError, sError)
                 End If
-                If row("SIGN_CONTRACT_ID") Is DBNull.Value OrElse row("SIGN_CONTRACT_ID") = "" Then
+                If Not IsNumeric(row("SIGN_CONTRACT_ID")) Then
                     sError = "Chưa nhập đơn vị kí hợp đồng"
                     ImportValidate.IsValidTime("SIGN_CONTRACT_ID", row, rowError, isError, sError)
                 End If
                 If row("START_DATE") Is DBNull.Value OrElse row("START_DATE") = "" Then
                     sError = "Chưa nhập ngày bắt đầu"
                     ImportValidate.IsValidTime("START_DATE", row, rowError, isError, sError)
+                ElseIf CheckDate(row("START_DATE")) = False Then
+                    sError = "Ngày bắt đầu - không đúng định dạng"
+                    ImportValidate.IsValidTime("START_DATE", row, rowError, isError, sError)
                 End If
                 If row("CONTRACT_TYPE_ID") <> 5 Then
                     If row("END_DATE") Is DBNull.Value OrElse row("END_DATE") = "" Then
                         sError = "Chưa nhập ngày kết thúc"
+                        ImportValidate.IsValidTime("END_DATE", row, rowError, isError, sError)
+                    ElseIf CheckDate(row("END_DATE")) = False Then
+                        sError = "Ngày kết thúc - không đúng định dạng"
                         ImportValidate.IsValidTime("END_DATE", row, rowError, isError, sError)
                     End If
                 End If
                 If row("START_TIME_MORNING") Is DBNull.Value OrElse row("START_TIME_MORNING") = "" Then
                     sError = "Chưa nhập thời gian bắt đầu làm việc buổi sáng - hh:mm"
                     ImportValidate.IsValidTime("START_TIME_MORNING", row, rowError, isError, sError)
+                ElseIf CheckTimeIn(row("START_TIME_MORNING")) = False Then
+                    sError = "Thời gian bắt đầu làm việc buổi sáng không đúng định dạng - hh:mm"
+                    ImportValidate.IsValidTime("START_TIME_MORNING", row, rowError, isError, sError)
                 End If
                 If row("END_TIME_MORNING") Is DBNull.Value OrElse row("END_TIME_MORNING") = "" Then
                     sError = "Chưa nhập thời gian kết thúc làm việc buổi sáng - hh:mm"
+                    ImportValidate.IsValidTime("END_TIME_MORNING", row, rowError, isError, sError)
+                ElseIf CheckTimeIn(row("END_TIME_MORNING")) = False Then
+                    sError = "Thời gian kết thúc làm việc buổi sáng không đúng định dạng - hh:mm"
                     ImportValidate.IsValidTime("END_TIME_MORNING", row, rowError, isError, sError)
                 End If
                 If row("START_TIME_AFTERNOON") Is DBNull.Value OrElse row("START_TIME_AFTERNOON") = "" Then
                     sError = "Chưa nhập thời gian bắt đầu làm việc buổi chiều - hh:mm"
                     ImportValidate.IsValidTime("START_TIME_AFTERNOON", row, rowError, isError, sError)
+                ElseIf CheckTimeIn(row("START_TIME_AFTERNOON")) = False Then
+                    sError = "Thời gian bắt đầu làm việc buổi chiều không đúng định dạng - hh:mm"
+                    ImportValidate.IsValidTime("START_TIME_AFTERNOON", row, rowError, isError, sError)
                 End If
                 If row("END_TIME_AFTERNOON") Is DBNull.Value OrElse row("END_TIME_AFTERNOON") = "" Then
                     sError = "Chưa nhập thời gian kết thúc làm việc buổi chiều - hh:mm"
+                    ImportValidate.IsValidTime("END_TIME_AFTERNOON", row, rowError, isError, sError)
+                ElseIf CheckTimeIn(row("END_TIME_AFTERNOON")) = False Then
+                    sError = "Thời gian kết thúc làm việc buổi chiều không đúng định dạng - hh:mm"
                     ImportValidate.IsValidTime("END_TIME_AFTERNOON", row, rowError, isError, sError)
                 End If
 
@@ -1365,24 +1416,27 @@ VALIDATE:
                 If row("SIGN_DATE") Is DBNull.Value OrElse row("SIGN_DATE") = "" Then
                     sError = "Chưa nhập ngày ký"
                     ImportValidate.IsValidTime("SIGN_DATE", row, rowError, isError, sError)
+                ElseIf CheckDate(row("SIGN_DATE")) = False Then
+                    sError = "Ngày ký - không đúng định dạng"
+                    ImportValidate.IsValidTime("SIGN_DATE", row, rowError, isError, sError)
                 End If
-                If row("SIGN_EMP_CODE") Is DBNull.Value OrElse row("SIGN_EMP_CODE") = "" Then
-                    sError = "Chưa nhập mã nhân viên ký"
-                    ImportValidate.IsValidTime("SIGN_EMP_CODE", row, rowError, isError, sError)
+                If row("SIGN_EMP_ID") Is DBNull.Value OrElse row("SIGN_EMP_ID") = "" Then
+                    sError = "Chưa nhập người ký"
+                    ImportValidate.IsValidTime("SIGN_EMP_NAME", row, rowError, isError, sError)
                 End If
-                empId = rep.CheckEmployee_Exits(row("SIGN_EMP_CODE"))
-                If empId = 0 Then
-                    sError = "Mã nhân viên ký - Không tồn tại hoặc đã nghỉ việc"
-                    ImportValidate.IsValidTime("SIGN_EMP_CODE", row, rowError, isError, sError)
-                End If
+                'empId = rep.CheckEmployee_Exits(row("SIGN_EMP_CODE"))
+                'If empId = 0 Then
+                '    sError = "Mã nhân viên ký - Không tồn tại hoặc đã nghỉ việc"
+                '    ImportValidate.IsValidTime("SIGN_EMP_CODE", row, rowError, isError, sError)
+                'End If
                 'If Not IsNumeric(row("PERCENTSALARY")) Then
                 '    sError = "Chưa nhập % hưởng lương - Chỉ được nhập số"
                 '    ImportValidate.IsValidTime("PERCENTSALARY", row, rowError, isError, sError)
                 'End If
-                
-                
+
+
                 If isError Then
-                    rowError("STT") = row("EMPLOYEE_CODE").ToString
+                    'rowError("STT") = row("EMPLOYEE_CODE").ToString
                     If rowError("EMPLOYEE_CODE").ToString = "" Then
                         rowError("EMPLOYEE_CODE") = row("EMPLOYEE_CODE").ToString
                     End If
@@ -1430,5 +1484,43 @@ VALIDATE:
     End Function
 
 #End Region
+    Private Function CheckDate(ByVal value As String) As Boolean
+        Dim dateCheck As Boolean
+        Dim result As Date
 
+        If value = "" Or value = "&nbsp;" Then
+            value = ""
+            Return True
+        End If
+
+        Try
+            dateCheck = DateTime.TryParseExact(value, "dd/MM/yyyy", New CultureInfo("en-US"), DateTimeStyles.None, result)
+            Return dateCheck
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+    Private Function CheckTimeIn(ByVal value As String) As Boolean
+        Dim timeCheck As Boolean
+        Dim result As Date
+
+        If value = "" Or value = "&nbsp;" Then
+            value = ""
+            Return True
+        End If
+
+        Try
+            timeCheck = IsDate(value)
+            Dim a = Format(Now, "h:mm tt")
+            If a Is Nothing Then
+                timeCheck = False
+            Else
+                timeCheck = True
+            End If
+            'dateCheck = DateTime.TryParseExact(value, "HH24:MI", New CultureInfo("en-US"), DateTimeStyles.None, result)
+            Return timeCheck
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
 End Class

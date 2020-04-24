@@ -161,11 +161,43 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function EffectDate_Check_Same(ByVal emp_code As String, ByVal effect_date As Date) As Boolean _
+            Implements ServiceContracts.IProfileBusiness.EffectDate_Check_Same
+            Using rep As New ProfileRepository
+                Try
+
+                    Return rep.EffectDate_Check_Same(emp_code, effect_date)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
         Public Function CheckEmployee_Terminate(ByVal empCode As String) As Integer _
            Implements ServiceContracts.IProfileBusiness.CheckEmployee_Terminate
             Using rep As New ProfileRepository
                 Try
                     Return rep.CheckEmployee_Terminate(empCode)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function CheckEmployee_EffectDate_exits(ByVal empCode As String, ByVal effect_date As String) As Integer _
+           Implements ServiceContracts.IProfileBusiness.CheckEmployee_EffectDate_exits
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.CheckEmployee_EffectDate_exits(empCode, effect_date)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GetEmpIdByCode(ByVal empCode As String) As EmployeeDTO _
+           Implements ServiceContracts.IProfileBusiness.GetEmpIdByCode
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetEmpIdByCode(empCode)
                 Catch ex As Exception
                     Throw ex
                 End Try
@@ -446,6 +478,16 @@ Namespace ProfileBusiness.ServiceImplementations
             Using rep As New ProfileRepository
                 Try
                     Return rep.ValidContract(empid, rd_date)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function ValidContract1(ByVal empcode As String, ByVal effectdate As Date) As Boolean Implements ServiceContracts.IProfileBusiness.ValidContract1
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.ValidContract1(empcode, effectdate)
                 Catch ex As Exception
                     Throw ex
                 End Try

@@ -14,6 +14,7 @@
 
     Public Property FROM_DATE As Date?
     Public Property TO_DATE As Date?
+    Public Property EFFECT_DATE As Date?
 
     Public Property START_DATE As Date?
     Public Property EXPIRE_DATE As Date?

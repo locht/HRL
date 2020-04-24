@@ -1259,6 +1259,23 @@ Partial Class ProfileRepository
             Throw ex
         End Try
     End Function
+    Public Function ValidContract1(ByVal empCode As String, ByVal effectdate As Date) As Boolean
+        Try
+            Dim check = (From p In Context.HU_CONTRACT
+                         From e In Context.HU_EMPLOYEE Where e.EMPLOYEE_CODE = empCode
+                         Where p.EMPLOYEE_ID = e.ID
+                         Select New ContractDTO With {
+                             .EFFECT_DATE = p.EFFECT_DATE}).ToList
+            For Each item In check
+                If effectdate < item.EFFECT_DATE Then
+                    Return False
+                End If
+            Next
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function ValidateContract(ByVal sType As String, ByVal _validate As ContractDTO) As Boolean
         Try
             ' note: đồng bộ phê duyệt
@@ -2110,13 +2127,25 @@ Partial Class ProfileRepository
             Throw ex
         End Try
     End Function
+    Public Function GetEmpIdByCode(ByVal empcode As String) As EmployeeDTO
+        Try
+            Dim em = (From p In Context.HU_EMPLOYEE
+                     Where p.EMPLOYEE_CODE = empcode
+                     Select New EmployeeDTO With {
+                         .EMPLOYEE_ID = p.ID}).FirstOrDefault
+            Return em
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function CheckEmployee_Contract_Count(ByVal empCode As String) As Integer
         Dim count As Decimal
         Dim result As Integer
         Try
             count = (From p In Context.HU_EMPLOYEE Where p.EMPLOYEE_CODE = empCode.Replace(" ", "")
                       From c In Context.HU_CONTRACT Where p.ID = c.EMPLOYEE_ID
-                      Where c.CONTRACT_TYPE_ID <> 5 Or c.CONTRACT_TYPE_ID <> 6
+                      From ct In Context.HU_CONTRACT_TYPE Where c.CONTRACT_TYPE_ID = ct.ID
+                      Where ct.TYPE_ID = 6359 And c.CONTRACT_TYPE_ID <> 5
                       Select New ContractDTO With {
                           .EMPLOYEE_ID = p.ID}).Count
             If count >= 2 Then
@@ -2127,6 +2156,17 @@ Partial Class ProfileRepository
             Return result
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function EffectDate_Check_Same(ByVal emp_code As String, ByVal effect_date As Date) As Boolean
+        Dim empID As Decimal = 0D
+        Try
+            empID = (From p In Context.HU_EMPLOYEE.Where(Function(f) f.EMPLOYEE_CODE.ToLower = emp_code.ToLower) Select p.ID).FirstOrDefault
+            Dim query = (From p In Context.HU_CONTRACT.Where(Function(f) f.EMPLOYEE_ID = empID And f.EFFECT_DATE = effect_date))
+            Return query.Count = 0
+        Catch ex As Exception
             Throw ex
         End Try
     End Function
