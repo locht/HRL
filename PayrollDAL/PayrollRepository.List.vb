@@ -977,6 +977,17 @@ Partial Public Class PayrollRepository
         End Try
 
     End Function
+    Public Function GetListOrg(ByVal id As Decimal) As List(Of AT_ORG_SETUPBONUS)
+        Try
+            Dim DS = (From p In Context.AT_ORG_SETUPBONUS
+                  Where p.SETUP_BONUS_ID = id).ToList
+
+            Return DS
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+            Throw ex
+        End Try
+    End Function
     Public Function GetSetUpBonus(ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
                                         ByRef Total As Integer,

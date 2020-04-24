@@ -694,6 +694,16 @@ Partial Public Class PayrollRepository
         End Using
 
     End Function
+    Public Function GetListOrg(ByVal id As Decimal) As List(Of AT_ORG_SETUPBONUS)
+        Using rep As New PayrollBusinessClient
+            Try
+                Return rep.GetListOrg(id)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
 
     Public Function DeleteSetUpBonus(ByVal lstPeriod As ATSetUpBonusDTO) As Boolean
         Using rep As New PayrollBusinessClient

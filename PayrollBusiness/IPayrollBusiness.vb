@@ -214,6 +214,8 @@ Namespace PayrollBusiness.ServiceContracts
         Function DeleteSetUpBonus(ByVal lstPeriod As ATSetUpBonusDTO) As Boolean
         <OperationContract()>
         Function ModifySetUpBonus(ByVal objPeriod As ATSetUpBonusDTO, ByVal objOrgPeriod As List(Of AT_ORG_SETUPBONUS), ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        <OperationContract()>
+        Function GetListOrg(ByVal id As Decimal) As List(Of AT_ORG_SETUPBONUS)
 #End Region
 
 #Region "Work Standard"

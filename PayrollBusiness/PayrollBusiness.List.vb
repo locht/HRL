@@ -365,6 +365,14 @@ Namespace PayrollBusiness.ServiceImplementations
                 Throw ex
             End Try
         End Function
+        Public Function GetListOrg(ByVal id As Decimal) As List(Of AT_ORG_SETUPBONUS) Implements ServiceContracts.IPayrollBusiness.GetListOrg
+            Try
+                Return PayrollRepositoryStatic.Instance.GetListOrg(id)
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Function
         Public Function DeleteSetUpBonus(ByVal lstPeriod As ATSetUpBonusDTO) As Boolean Implements ServiceContracts.IPayrollBusiness.DeleteSetUpBonus
             Try
                 Return PayrollRepositoryStatic.Instance.DeleteSetUpBonus(lstPeriod)

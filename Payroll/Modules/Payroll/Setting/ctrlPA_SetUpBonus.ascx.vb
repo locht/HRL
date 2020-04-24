@@ -157,6 +157,8 @@ Public Class ctrlPA_SetUpBonus
         End Try
     End Sub
     Private Sub rgData_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles rgData.SelectedIndexChanged
+        Dim lstObject As New List(Of AT_ORG_SETUPBONUS)
+        Dim lstId As New List(Of Decimal)
         Try
             For Each LINE As GridDataItem In rgData.SelectedItems
                 nmrYear.Value = Decimal.Parse(LINE.GetDataKeyValue("YEAR"))
@@ -170,7 +172,13 @@ Public Class ctrlPA_SetUpBonus
                 Else
                     txtRemark.Text = LINE.GetDataKeyValue("REMARK").ToString
                 End If
-
+                Using rep As New PayrollRepository
+                    lstObject = rep.GetListOrg(Decimal.Parse(LINE.GetDataKeyValue("ID")))
+                    For Each item In lstObject
+                        lstId.Add(item.ORG_ID)
+                    Next
+                    ctrlOrg.CheckedValueKeys=lstId
+                End Using
             Next
         Catch ex As Exception
 
