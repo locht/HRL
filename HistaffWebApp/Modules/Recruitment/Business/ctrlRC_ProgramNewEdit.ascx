@@ -31,32 +31,12 @@
                 </td>
             </tr>
             <tr>
-                <%--<td class="lb">
-                    <%# Translate("Mã tuyển dụng")%><span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadTextBox ID="txtProCode" runat="server" Width="100%">
-                    </tlk:RadTextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" ControlToValidate="txtProCode"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Mã tuyển dụng %>"
-                        ToolTip="<%$ Translate: Bạn phải nhập Mã tuyển dụng %>"> 
-                    </asp:RequiredFieldValidator>
-                </td>--%>
-                <td class="lb">
-                    <%# Translate("Đợt tuyển dụng")%>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cboRecruitment" runat="server">
-                    </tlk:RadComboBox>
-                </td>
                  <td class="lb">
-                    <%# Translate("Ngày dự kiến đi làm ")%>
+                    <%# Translate("Ngày đi làm dự kiến")%>
                 </td>
-                <td colspan="3">
+                <td>
                     <asp:Label ID="lblExpectedToWorkDay" runat="server" Text=""></asp:Label>
                 </td>
-            </tr>
-            <tr>
                 <td class="lb">
                     <%# Translate("Ngày gửi yêu cầu")%><span class="lbReq">*</span>
                 </td>
@@ -68,19 +48,14 @@
                         ToolTip="<%$ Translate: Bạn phải nhập Ngày gửi kế hoạch %>"> 
                     </asp:RequiredFieldValidator>
                 </td>
-               <%-- <td class="lb">
-                    <%# Translate("Số lượng cần tuyển")%>
-                </td>
-                <td>
-                    <tlk:RadNumericTextBox ID="rntxtRecruitNumber" runat="server" SkinID="Number" ReadOnly="true">
-                    </tlk:RadNumericTextBox>
-                </td>--%>
                 <td class="lb">
-                    <%# Translate("Số lượng theo yêu cầu")%>
+                    <%# Translate("Số lượng cần tuyển")%>
                 </td>
                 <td>
                     <asp:Label ID="lblRecruitNumber" runat="server" Text="0"></asp:Label>
                 </td>
+            </tr>
+            <tr>
                 <td class="lb">
                     <%# Translate("Lý do tuyển dụng")%><span class="lbReq">*</span>
                 </td>
@@ -91,8 +66,6 @@
                         ToolTip="<%$ Translate: Bạn phải chọn Lý do tuyển dụng %>" ClientValidationFunction="cusRecruitReason">
                     </asp:CustomValidator>
                 </td>
-            </tr>
-            <tr>
                 <td class="lb">
                     <%# Translate("Người theo dõi")%>
                 </td>
@@ -103,14 +76,6 @@
                         CausesValidation="false">
                     </tlk:RadButton>
                 </td>
-                <td class="lb">
-                    <%# Translate("Mức độ ưu tiên")%>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cboPriorityLevel" runat="server">
-                    </tlk:RadComboBox>
-                </td>
-                <td colspan="2"></td>
             </tr>
             <tr>
                 <td class="lb">
@@ -125,7 +90,7 @@
                 <td>
                 </td>
                 <td class="lb">
-                    <tlk:RadButton EnableEmbeddedSkins="false" ID="btnFindEmployee" runat="server" SkinID="ButtonView"
+                    <tlk:RadButton ID="btnFindEmployee" runat="server" SkinID="ButtonView"
                         CausesValidation="false">
                     </tlk:RadButton>
                     <%# Translate("Chọn người được thay thế")%>
@@ -151,34 +116,6 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Nhóm công việc chức năng")%>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cboGroupWork" runat="server">
-                    </tlk:RadComboBox>
-                </td>
-                <td class="lb">
-                    <%# Translate("Mức lương yêu cầu từ")%>
-                </td>
-                <td>
-                    <tlk:RadNumericTextBox ID="rntxtRequestSalaryFrom" runat="server">
-                    </tlk:RadNumericTextBox>
-                </td>
-                <td class="lb">
-                    <%# Translate("Mức lương yêu cầu đến")%>
-                </td>
-                <td>
-                    <tlk:RadNumericTextBox ID="rntxtRequestSalaryTo" runat="server">
-                    </tlk:RadNumericTextBox>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>
-                    <asp:CheckBox ID="chkIsPortal" runat="server" Text="<%$ Translate: Cho phép hiển thị trên Portal %>" />
-                </td>
-                <td class="lb">
                 </td>
                 <td>
                     <asp:CheckBox ID="chkNegotiableSalary" runat="server" Text="<%$ Translate: Lương thỏa thuận %>" />
@@ -201,9 +138,9 @@
                 <tlk:RadTab runat="server" ID="rtID1" PageViewID="rpv1" Text="<%$ Translate: Mô tả công việc %>"
                     Selected="True">
                 </tlk:RadTab>
-                <tlk:RadTab runat="server" ID="rtID2" PageViewID="rpv2" Text="<%$ Translate: Điều kiện học vấn %>">
+                <tlk:RadTab runat="server" ID="rtID2" PageViewID="rpv2" Text="<%$ Translate: Thông tin trình độ %>">
                 </tlk:RadTab>
-                <tlk:RadTab runat="server" ID="rtID3" PageViewID="rpv3" Text="<%$ Translate: Điều kiện khác %>">
+                <tlk:RadTab runat="server" ID="rtID3" PageViewID="rpv3" Text="<%$ Translate: Thông tin khác %>">
                 </tlk:RadTab>
             </Tabs>
         </tlk:RadTabStrip>
@@ -252,7 +189,7 @@
                             </tlk:RadTextBox>
                         </td>
                     </tr>
-                    <tr>
+                    <tr style="display:none">
                         <td class="lb">
                             <%# Translate("Yêu cầu kinh nghiệm")%>
                         </td>
@@ -413,10 +350,10 @@
                             <tlk:RadComboBox ID="cboGraduationTypeSub" runat="server">
                             </tlk:RadComboBox>
                         </td>
-                        <td class="lb">
+                        <td style="display:none">
                             <%# Translate("Trình độ máy tính")%>
                         </td>
-                        <td>
+                        <td style="display:none">
                             <tlk:RadComboBox ID="cboComputerLevel" runat="server">
                             </tlk:RadComboBox>
                         </td>
@@ -566,7 +503,7 @@
                             </tlk:RadComboBox>
                         </td>
                     </tr>
-                    <tr>
+                    <tr style="display:none">
                         <td>
                             <%# Translate("Tính cách")%>
                         </td>
@@ -623,10 +560,10 @@
 
 
         function clientButtonClicking(sender, args) {
-//            if (args.get_item().get_commandName() == 'CANCEL') {
-//                getRadWindow().close(null);
-//                args.set_cancel(true);
-//            }
+            //            if (args.get_item().get_commandName() == 'CANCEL') {
+            //                getRadWindow().close(null);
+            //                args.set_cancel(true);
+            //            }
         }
 
     </script>

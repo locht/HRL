@@ -163,7 +163,7 @@
             enableAjax = true;
         }
         function OpenNew() {
-            window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgrammNewEdit&group=Business', "_self"); /*
+            window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramNewEdit&group=Business', "_self"); /*
             var pos = $("html").offset();
             oWindow.moveTo(pos.left, pos.top);
             oWindow.setSize($(window).width() - 30, $(window).height() - 30); oWindow.center(); */
@@ -179,7 +179,7 @@
             if (bCheck > 1)
                 return 1;
             var id = $find('<%# rgData.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
-            window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgrammNewEdit&group=Business&ID=' + id, "_self"); /*
+            window.open('/Default.aspx?mid=Recruitment&fid=ctrlRC_ProgramNewEdit&group=Business&ID=' + id, "_self"); /*
             var pos = $("html").offset();
             oWindow.moveTo(pos.left, pos.top);
             oWindow.setSize($(window).width() - 30, $(window).height() - 30); oWindow.center(); */

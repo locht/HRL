@@ -122,15 +122,6 @@ Partial Public Class ctrlRC_ProgramNewEdit
     Protected WithEvents chkIsInPlan As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''cboRecruitment control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboRecruitment As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
     '''lblExpectedToWorkDay control.
     '''</summary>
     '''<remarks>
@@ -203,15 +194,6 @@ Partial Public Class ctrlRC_ProgramNewEdit
     Protected WithEvents btnFindEmp As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
-    '''cboPriorityLevel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboPriorityLevel As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
     '''txtRecruitReason control.
     '''</summary>
     '''<remarks>
@@ -246,42 +228,6 @@ Partial Public Class ctrlRC_ProgramNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lstScope As Global.Telerik.Web.UI.RadListBox
-
-    '''<summary>
-    '''cboGroupWork control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboGroupWork As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
-    '''rntxtRequestSalaryFrom control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rntxtRequestSalaryFrom As Global.Telerik.Web.UI.RadNumericTextBox
-
-    '''<summary>
-    '''rntxtRequestSalaryTo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rntxtRequestSalaryTo As Global.Telerik.Web.UI.RadNumericTextBox
-
-    '''<summary>
-    '''chkIsPortal control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents chkIsPortal As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''chkNegotiableSalary control.

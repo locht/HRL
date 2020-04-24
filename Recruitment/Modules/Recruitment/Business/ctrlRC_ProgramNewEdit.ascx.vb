@@ -116,9 +116,6 @@ Public Class ctrlRC_ProgramNewEdit
                     rntxtLanguage1Point.Value = obj.LANGUAGE1_POINT
                     rntxtLanguage2Point.Value = obj.LANGUAGE2_POINT
                     rntxtLanguage3Point.Value = obj.LANGUAGE3_POINT
-                    'rntxtRecruitNumber.Value = obj.REQUEST_NUMBER
-                    rntxtRequestSalaryFrom.Value = obj.REQUEST_SALARY_FROM
-                    rntxtRequestSalaryTo.Value = obj.REQUEST_SALARY_TO
                     If obj.STATUS_ID IsNot Nothing Then
                         cboStatus.SelectedValue = obj.STATUS_ID
                     End If
@@ -142,9 +139,6 @@ Public Class ctrlRC_ProgramNewEdit
                     End If
                     If obj.GRADUATION_TYPE_SUB_ID IsNot Nothing Then
                         cboGraduationTypeSub.SelectedValue = obj.GRADUATION_TYPE_SUB_ID
-                    End If
-                    If obj.GROUP_WORK_ID IsNot Nothing Then
-                        cboGroupWork.SelectedValue = obj.GROUP_WORK_ID
                     End If
                     If obj.HEALTH_STATUS_ID IsNot Nothing Then
                         cboHealthStatus.SelectedValue = obj.HEALTH_STATUS_ID
@@ -173,10 +167,6 @@ Public Class ctrlRC_ProgramNewEdit
                     If obj.MAJOR_SUB_ID IsNot Nothing Then
                         cboMajorSub.SelectedValue = obj.MAJOR_SUB_ID
                     End If
-                    If obj.PRIORITY_LEVEL_ID IsNot Nothing Then
-                        cboPriorityLevel.SelectedValue = obj.PRIORITY_LEVEL_ID
-                    End If
-                    'cboTimeWork.SelectedValue = obj.
                     If obj.TRAINING_LEVEL_MAIN_ID IsNot Nothing Then
                         cboTrainingLevelMain.SelectedValue = obj.TRAINING_LEVEL_MAIN_ID
                     End If
@@ -193,6 +183,8 @@ Public Class ctrlRC_ProgramNewEdit
                         cboTimeWork.SelectedValue = obj.WORK_TIME_ID
                     End If
 
+                    chkNegotiableSalary.Checked = obj.NEGOTIABLESALARY
+
                     rdSendDate.SelectedDate = obj.SEND_DATE
                     rdReceiveEnd.SelectedDate = obj.RECEIVE_END
                     rdRecruitStart.SelectedDate = obj.RECRUIT_START
@@ -204,12 +196,6 @@ Public Class ctrlRC_ProgramNewEdit
                     End If 
                     hidID.Value = obj.ID
                     hidOrgID.Value = obj.ORG_ID
-                    ' bind data to cboRecruitment
-                    dTable = store.STAGE_GetData_Combobox(obj.ORG_ID)
-                    FillRadCombobox(cboRecruitment, dTable, "TITLE", "ID")
-                    If obj.STAGE_ID IsNot Nothing Then
-                        cboRecruitment.SelectedValue = obj.STAGE_ID
-                    End If
                     If obj.SPECIALSKILLS IsNot Nothing Then
                         cboSpecialSkills.SelectedValue = obj.SPECIALSKILLS
                     End If
@@ -217,13 +203,6 @@ Public Class ctrlRC_ProgramNewEdit
                         chkIsInPlan.Checked = False
                     Else
                         chkIsInPlan.Checked = obj.IS_IN_PLAN
-                    End If
-                    chkIsPortal.Checked = False
-                    If obj.IS_PORTAL IsNot Nothing Then
-                        chkIsPortal.Checked = obj.IS_PORTAL
-                    End If
-                    If obj.NEGOTIABLESALARY IsNot Nothing Then
-                        chkIsPortal.Checked = obj.NEGOTIABLESALARY
                     End If
                     txtTitle.Text = obj.TITLE_NAME
                     If obj.REQUESTOTHER IsNot Nothing And obj.REQUESTOTHER <> "" Then
@@ -312,8 +291,6 @@ Public Class ctrlRC_ProgramNewEdit
                         obj.LANGUAGE1_POINT = rntxtLanguage1Point.Value
                         obj.LANGUAGE2_POINT = rntxtLanguage2Point.Value
                         obj.LANGUAGE3_POINT = rntxtLanguage3Point.Value
-                        'obj.REQUEST_NUMBER = rntxtRecruitNumber.Value
-                        obj.REQUEST_SALARY_FROM = rntxtRequestSalaryFrom.Value
                         If cboStatus.SelectedValue <> "" Then
                             obj.STATUS_ID = cboStatus.SelectedValue
                         End If
@@ -337,9 +314,6 @@ Public Class ctrlRC_ProgramNewEdit
                         End If
                         If cboGraduationTypeSub.SelectedValue <> "" Then
                             obj.GRADUATION_TYPE_SUB_ID = cboGraduationTypeSub.SelectedValue
-                        End If
-                        If cboGroupWork.SelectedValue <> "" Then
-                            obj.GROUP_WORK_ID = cboGroupWork.SelectedValue
                         End If
                         If cboHealthStatus.SelectedValue <> "" Then
                             obj.HEALTH_STATUS_ID = cboHealthStatus.SelectedValue
@@ -368,10 +342,6 @@ Public Class ctrlRC_ProgramNewEdit
                         If cboMajorSub.SelectedValue <> "" Then
                             obj.MAJOR_SUB_ID = cboMajorSub.SelectedValue
                         End If
-                        If cboPriorityLevel.SelectedValue <> "" Then
-                            obj.PRIORITY_LEVEL_ID = cboPriorityLevel.SelectedValue
-                        End If
-                        'cboTimeWork.SelectedValue = obj.
                         If cboTrainingLevelMain.SelectedValue <> "" Then
                             obj.TRAINING_LEVEL_MAIN_ID = cboTrainingLevelMain.SelectedValue
                         End If
@@ -393,19 +363,14 @@ Public Class ctrlRC_ProgramNewEdit
                         obj.ID = hidID.Value
 
                         obj.IS_IN_PLAN = chkIsInPlan.Checked
-                        obj.IS_PORTAL = chkIsPortal.Checked
                         If hidEmpID.Value <> "" Then
                             obj.FOLLOWERS_EMP_ID = hidEmpID.Value
-                        End If
-                        If cboRecruitment.SelectedValue <> "" And Not cboRecruitment.SelectedValue Is Nothing Then
-                            obj.STAGE_ID = cboRecruitment.SelectedValue
                         End If
                         If cboSpecialSkills.SelectedValue <> "" And Not cboSpecialSkills.SelectedValue Is Nothing Then
                             obj.SPECIALSKILLS = cboSpecialSkills.SelectedValue
                         End If
                         obj.NEGOTIABLESALARY = chkNegotiableSalary.Checked
                         obj.REQUESTOTHER = txtRequestOther.Text
-                        obj.REQUEST_SALARY_TO = rntxtRequestSalaryTo.Value
 
                         Dim lstEmp As New List(Of ProgramEmpDTO)
                         For Each item As RadListBoxItem In lstEmployee.Items
@@ -546,10 +511,6 @@ Public Class ctrlRC_ProgramNewEdit
                 FillRadCombobox(cboRecruitReason, dtData, "NAME", "ID")
                 dtData = rep.GetOtherList("LEARNING_LEVEL", True)
                 FillRadCombobox(cboLearningLevel, dtData, "NAME", "ID")
-                dtData = rep.GetOtherList("RC_GROUP_WORK", True)
-                FillRadCombobox(cboGroupWork, dtData, "NAME", "ID")
-                dtData = rep.GetOtherList("RC_PRIORITY_LEVEL", True)
-                FillRadCombobox(cboPriorityLevel, dtData, "NAME", "ID")
                 dtData = rep.GetOtherList("LEARNING_LEVEL", True)
                 FillRadCombobox(cboLearningLevel, dtData, "NAME", "ID")
                 dtData = rep.GetOtherList("RC_TRAINING_LEVEL", True)
@@ -568,7 +529,7 @@ Public Class ctrlRC_ProgramNewEdit
                 FillRadCombobox(cboLanguage1, dtData, "NAME", "ID")
                 FillRadCombobox(cboLanguage2, dtData, "NAME", "ID")
                 FillRadCombobox(cboLanguage3, dtData, "NAME", "ID")
-                dtData = rep.GetOtherList("RC_LANGUAGE_LEVEL", True)
+                dtData = rep.GetOtherList("LANGUAGE_LEVEL", True)
                 FillRadCombobox(cboLanguage1Level, dtData, "NAME", "ID")
                 FillRadCombobox(cboLanguage2Level, dtData, "NAME", "ID")
                 FillRadCombobox(cboLanguage3Level, dtData, "NAME", "ID")
