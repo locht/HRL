@@ -909,10 +909,10 @@ Partial Public Class PayrollRepository
     End Function
 #End Region
 #Region "setupbonus"
-    Public Function InsertSetUpBonus(ByVal objPeriod As ATSetUpBonusDTO, ByVal objOrgPeriod As List(Of ATSetUpBonusDTO), ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+    Public Function InsertSetUpBonus(ByVal objPeriod As ATSetUpBonusDTO, ByVal objOrgPeriod As List(Of AT_ORG_SETUPBONUS), ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         Dim iCount As Integer = 0
         Dim objPeriodData As New AT_SETUP_BONUS
-
+        Dim objOrgPeriodData As AT_ORG_SETUPBONUS
         Try
             objPeriodData.ID = Utilities.GetNextSequence(Context, Context.AT_SETUP_BONUS.EntitySet.Name)
             objPeriodData.YEAR = objPeriod.YEAR
@@ -923,6 +923,16 @@ Partial Public Class PayrollRepository
             objPeriodData.ORDERS = objPeriod.ORDERS
             objPeriodData.REMARK = objPeriod.REMARK
             objPeriodData.ACTFLG = objPeriod.ACTFLG
+            If objPeriodData.ID > 0 Then
+                For Each obj As AT_ORG_SETUPBONUS In objOrgPeriod
+                    objOrgPeriodData = New AT_ORG_SETUPBONUS
+                    objOrgPeriodData.ID = Utilities.GetNextSequence(Context, Context.AT_ORG_SETUPBONUS.EntitySet.Name)
+                    objOrgPeriodData.ORG_ID = obj.ORG_ID
+                    objOrgPeriodData.SETUP_BONUS_ID = obj.ID
+                    Context.AT_ORG_SETUPBONUS.AddObject(objOrgPeriodData)
+                    Context.SaveChanges(log)
+                Next
+            End If
             Context.AT_SETUP_BONUS.AddObject(objPeriodData)
             Context.SaveChanges(log)
             gID = objPeriodData.ID
@@ -932,9 +942,9 @@ Partial Public Class PayrollRepository
             Throw ex
         End Try
     End Function
-    Public Function ModifySetUpBonus(ByVal objPeriod As ATSetUpBonusDTO, ByVal objOrgPeriod As List(Of ATSetUpBonusDTO), ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+    Public Function ModifySetUpBonus(ByVal objPeriod As ATSetUpBonusDTO, ByVal objOrgPeriod As List(Of AT_ORG_SETUPBONUS), ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         Dim objPeriodData As New AT_SETUP_BONUS With {.ID = objPeriod.ID}
-        'Dim objOrgPeriodData As AT_ORG_PERIOD
+        Dim objOrgPeriodData As AT_ORG_SETUPBONUS
         Try
             Context.AT_SETUP_BONUS.Attach(objPeriodData)
             objPeriodData.YEAR = objPeriod.YEAR
@@ -945,6 +955,19 @@ Partial Public Class PayrollRepository
             objPeriodData.ORDERS = objPeriod.ORDERS
             objPeriodData.REMARK = objPeriod.REMARK
             objPeriodData.ACTFLG = objPeriod.ACTFLG
+            If objPeriodData.ID > 0 Then
+                Dim objDelete As List(Of AT_ORG_SETUPBONUS) = (From p In Context.AT_ORG_SETUPBONUS Where p.SETUP_BONUS_ID = objPeriodData.ID).ToList
+                For Each obj As AT_ORG_SETUPBONUS In objDelete
+                    Context.AT_ORG_SETUPBONUS.DeleteObject(obj)
+                Next
+                For Each ObjIns As AT_ORG_SETUPBONUS In objOrgPeriod
+                    objOrgPeriodData = New AT_ORG_SETUPBONUS
+                    objOrgPeriodData.ID = Utilities.GetNextSequence(Context, Context.AT_ORG_SETUPBONUS.EntitySet.Name)
+                    objOrgPeriodData.ORG_ID = ObjIns.ORG_ID
+                    objOrgPeriodData.SETUP_BONUS_ID = objPeriodData.ID
+                    Context.AT_ORG_SETUPBONUS.AddObject(objOrgPeriodData)
+                Next
+            End If
             Context.SaveChanges(log)
             gID = objPeriodData.ID
             Return True

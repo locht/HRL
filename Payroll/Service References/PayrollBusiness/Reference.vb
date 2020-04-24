@@ -652,6 +652,7 @@ Namespace PayrollBusiness
      System.SerializableAttribute(),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.EntityObject)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.AT_ORG_PERIOD)),  _
+     System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.AT_ORG_SETUPBONUS)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.PA_ORG_LUNCH))>  _
     Partial Public Class StructuralObject
         Inherits Object
@@ -685,6 +686,7 @@ Namespace PayrollBusiness
      System.Runtime.Serialization.DataContractAttribute(Name:="EntityObject", [Namespace]:="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses", IsReference:=true),  _
      System.SerializableAttribute(),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.AT_ORG_PERIOD)),  _
+     System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.AT_ORG_SETUPBONUS)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.PA_ORG_LUNCH))>  _
     Partial Public Class EntityObject
         Inherits PayrollBusiness.StructuralObject
@@ -892,6 +894,158 @@ Namespace PayrollBusiness
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="AT_ORG_SETUPBONUS", [Namespace]:="http://schemas.datacontract.org/2004/07/PayrollDAL", IsReference:=true),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class AT_ORG_SETUPBONUS
+        Inherits PayrollBusiness.EntityObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_BYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_BYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SETUP_BONUS_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_BY() As String
+            Get
+                Return Me.CREATED_BYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CREATED_BYField, value) <> true) Then
+                    Me.CREATED_BYField = value
+                    Me.RaisePropertyChanged("CREATED_BY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.CREATED_DATEField
+            End Get
+            Set
+                If (Me.CREATED_DATEField.Equals(value) <> true) Then
+                    Me.CREATED_DATEField = value
+                    Me.RaisePropertyChanged("CREATED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_LOG() As String
+            Get
+                Return Me.CREATED_LOGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CREATED_LOGField, value) <> true) Then
+                    Me.CREATED_LOGField = value
+                    Me.RaisePropertyChanged("CREATED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID() As Decimal
+            Get
+                Return Me.IDField
+            End Get
+            Set
+                If (Me.IDField.Equals(value) <> true) Then
+                    Me.IDField = value
+                    Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_BY() As String
+            Get
+                Return Me.MODIFIED_BYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MODIFIED_BYField, value) <> true) Then
+                    Me.MODIFIED_BYField = value
+                    Me.RaisePropertyChanged("MODIFIED_BY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.MODIFIED_DATEField
+            End Get
+            Set
+                If (Me.MODIFIED_DATEField.Equals(value) <> true) Then
+                    Me.MODIFIED_DATEField = value
+                    Me.RaisePropertyChanged("MODIFIED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_LOG() As String
+            Get
+                Return Me.MODIFIED_LOGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MODIFIED_LOGField, value) <> true) Then
+                    Me.MODIFIED_LOGField = value
+                    Me.RaisePropertyChanged("MODIFIED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ORG_IDField
+            End Get
+            Set
+                If (Me.ORG_IDField.Equals(value) <> true) Then
+                    Me.ORG_IDField = value
+                    Me.RaisePropertyChanged("ORG_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SETUP_BONUS_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SETUP_BONUS_IDField
+            End Get
+            Set
+                If (Me.SETUP_BONUS_IDField.Equals(value) <> true) Then
+                    Me.SETUP_BONUS_IDField = value
+                    Me.RaisePropertyChanged("SETUP_BONUS_ID")
+                End If
+            End Set
+        End Property
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
      System.Runtime.Serialization.DataContractAttribute(Name:="EntityKey", [Namespace]:="http://schemas.datacontract.org/2004/07/System.Data", IsReference:=true),  _
      System.SerializableAttribute()>  _
     Partial Public Class EntityKey
@@ -1043,6 +1197,8 @@ Namespace PayrollBusiness
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.AT_ORG_PERIOD)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.ATSetUpBonusDTO))),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.ATSetUpBonusDTO)),  _
+     System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.AT_ORG_SETUPBONUS))),  _
+     System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.AT_ORG_SETUPBONUS)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.Work_StandardDTO)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.Work_StandardDTO))),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.PAFomulerGroup)),  _
@@ -10352,6 +10508,8 @@ Namespace PayrollBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.AT_ORG_PERIOD)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.ATSetUpBonusDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.ATSetUpBonusDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.AT_ORG_SETUPBONUS))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.AT_ORG_SETUPBONUS)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.Work_StandardDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.Work_StandardDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.PAFomulerGroup)),  _
@@ -10457,6 +10615,8 @@ Namespace PayrollBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.AT_ORG_PERIOD)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.ATSetUpBonusDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.ATSetUpBonusDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.AT_ORG_SETUPBONUS))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.AT_ORG_SETUPBONUS)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.Work_StandardDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.Work_StandardDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.PAFomulerGroup)),  _
@@ -10696,7 +10856,7 @@ Namespace PayrollBusiness
         Function GetSetUpBonus(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.ATSetUpBonusDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/InsertSetUpBonus", ReplyAction:="http://tempuri.org/IPayrollBusiness/InsertSetUpBonusResponse")>  _
-        Function InsertSetUpBonus(ByVal objPeriod As PayrollBusiness.ATSetUpBonusDTO, ByVal objOrgPeriod As System.Collections.Generic.List(Of PayrollBusiness.ATSetUpBonusDTO), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        Function InsertSetUpBonus(ByVal objPeriod As PayrollBusiness.ATSetUpBonusDTO, ByVal objOrgPeriod As System.Collections.Generic.List(Of PayrollBusiness.AT_ORG_SETUPBONUS), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ActiveSetUpBonus", ReplyAction:="http://tempuri.org/IPayrollBusiness/ActiveSetUpBonusResponse")>  _
         Function ActiveSetUpBonus(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
@@ -10705,7 +10865,7 @@ Namespace PayrollBusiness
         Function DeleteSetUpBonus(ByVal lstPeriod As PayrollBusiness.ATSetUpBonusDTO) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ModifySetUpBonus", ReplyAction:="http://tempuri.org/IPayrollBusiness/ModifySetUpBonusResponse")>  _
-        Function ModifySetUpBonus(ByVal objPeriod As PayrollBusiness.ATSetUpBonusDTO, ByVal objOrgPeriod As System.Collections.Generic.List(Of PayrollBusiness.ATSetUpBonusDTO), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        Function ModifySetUpBonus(ByVal objPeriod As PayrollBusiness.ATSetUpBonusDTO, ByVal objOrgPeriod As System.Collections.Generic.List(Of PayrollBusiness.AT_ORG_SETUPBONUS), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetWorkStandard", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetWorkStandardResponse")>  _
         Function GetWorkStandard(ByVal _filter As PayrollBusiness.Work_StandardDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.Work_StandardDTO)
@@ -11677,7 +11837,7 @@ Namespace PayrollBusiness
             Return MyBase.Channel.GetSetUpBonus(PageIndex, PageSize, Total, Sorts)
         End Function
         
-        Public Function InsertSetUpBonus(ByVal objPeriod As PayrollBusiness.ATSetUpBonusDTO, ByVal objOrgPeriod As System.Collections.Generic.List(Of PayrollBusiness.ATSetUpBonusDTO), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.InsertSetUpBonus
+        Public Function InsertSetUpBonus(ByVal objPeriod As PayrollBusiness.ATSetUpBonusDTO, ByVal objOrgPeriod As System.Collections.Generic.List(Of PayrollBusiness.AT_ORG_SETUPBONUS), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.InsertSetUpBonus
             Return MyBase.Channel.InsertSetUpBonus(objPeriod, objOrgPeriod, log, gID)
         End Function
         
@@ -11689,7 +11849,7 @@ Namespace PayrollBusiness
             Return MyBase.Channel.DeleteSetUpBonus(lstPeriod)
         End Function
         
-        Public Function ModifySetUpBonus(ByVal objPeriod As PayrollBusiness.ATSetUpBonusDTO, ByVal objOrgPeriod As System.Collections.Generic.List(Of PayrollBusiness.ATSetUpBonusDTO), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.ModifySetUpBonus
+        Public Function ModifySetUpBonus(ByVal objPeriod As PayrollBusiness.ATSetUpBonusDTO, ByVal objOrgPeriod As System.Collections.Generic.List(Of PayrollBusiness.AT_ORG_SETUPBONUS), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.ModifySetUpBonus
             Return MyBase.Channel.ModifySetUpBonus(objPeriod, objOrgPeriod, log, gID)
         End Function
         

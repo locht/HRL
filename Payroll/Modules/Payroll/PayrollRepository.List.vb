@@ -672,7 +672,7 @@ Partial Public Class PayrollRepository
 
         Return Nothing
     End Function
-    Public Function InsertSetUpBonus(ByVal objPeriod As ATSetUpBonusDTO, ByVal objOrgPeriod As List(Of ATSetUpBonusDTO), ByRef gID As Decimal) As Boolean
+    Public Function InsertSetUpBonus(ByVal objPeriod As ATSetUpBonusDTO, ByVal objOrgPeriod As List(Of AT_ORG_SETUPBONUS), ByRef gID As Decimal) As Boolean
         Using rep As New PayrollBusinessClient
             Try
                 Return rep.InsertSetUpBonus(objPeriod, objOrgPeriod, Me.Log, gID)
@@ -683,7 +683,7 @@ Partial Public Class PayrollRepository
         End Using
 
     End Function
-    Public Function ModifySetUpBonus(ByVal objPeriod As ATSetUpBonusDTO, ByVal objOrgPeriod As List(Of ATSetUpBonusDTO), ByRef gID As Decimal) As Boolean
+    Public Function ModifySetUpBonus(ByVal objPeriod As ATSetUpBonusDTO, ByVal objOrgPeriod As List(Of AT_ORG_SETUPBONUS), ByRef gID As Decimal) As Boolean
         Using rep As New PayrollBusinessClient
             Try
                 Return rep.ModifySetUpBonus(objPeriod, objOrgPeriod, Me.Log, gID)

@@ -350,14 +350,14 @@ Namespace PayrollBusiness.ServiceImplementations
                 Throw ex
             End Try
         End Function
-        Public Function InsertSetUpBonus(ByVal objPeriod As ATSetUpBonusDTO, ByVal objOrgPeriod As List(Of ATSetUpBonusDTO), ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.IPayrollBusiness.InsertSetUpBonus
+        Public Function InsertSetUpBonus(ByVal objPeriod As ATSetUpBonusDTO, ByVal objOrgPeriod As List(Of AT_ORG_SETUPBONUS), ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.IPayrollBusiness.InsertSetUpBonus
             Try
                 Return PayrollRepositoryStatic.Instance.InsertSetUpBonus(objPeriod, objOrgPeriod, log, gID)
             Catch ex As Exception
                 Throw ex
             End Try
         End Function
-        Public Function ModifySetUpBonus(ByVal objPeriod As ATSetUpBonusDTO, ByVal objOrgPeriod As List(Of ATSetUpBonusDTO), ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.IPayrollBusiness.ModifySetUpBonus
+        Public Function ModifySetUpBonus(ByVal objPeriod As ATSetUpBonusDTO, ByVal objOrgPeriod As List(Of AT_ORG_SETUPBONUS), ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.IPayrollBusiness.ModifySetUpBonus
             Try
                 Return PayrollRepositoryStatic.Instance.ModifySetUpBonus(objPeriod, objOrgPeriod, log, gID)
             Catch ex As Exception

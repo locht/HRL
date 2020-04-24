@@ -170,6 +170,7 @@ Public Class ctrlPA_SetUpBonus
                 Else
                     txtRemark.Text = LINE.GetDataKeyValue("REMARK").ToString
                 End If
+
             Next
         Catch ex As Exception
 
@@ -337,7 +338,7 @@ Public Class ctrlPA_SetUpBonus
     ''' <remarks></remarks>
     Protected Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
         Dim objPeriod As New ATSetUpBonusDTO
-        Dim objOrgPeriod As New List(Of ATSetUpBonusDTO)
+        Dim objOrgPeriod As New List(Of AT_ORG_SETUPBONUS)
         Dim rep As New PayrollRepository
         Dim gID As Decimal
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
@@ -416,6 +417,11 @@ Public Class ctrlPA_SetUpBonus
                         objPeriod.ORDERS = rtxtSTT.Value
                         objPeriod.REMARK = txtRemark.Text
                         objPeriod.ACTFLG = "A"
+                        For Each item As Decimal In ctrlOrg.CheckedValueKeys
+                            Dim objOrg As New AT_ORG_SETUPBONUS
+                            objOrg.ORG_ID = item
+                            objOrgPeriod.Add(objOrg)
+                        Next
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 If rep.InsertSetUpBonus(objPeriod, objOrgPeriod, gID) Then
