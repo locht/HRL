@@ -283,14 +283,12 @@ Public Class ctrlRC_ProgramInterviewResult
                         For Each item As GridDataItem In rgDataInterview.SelectedItems
                             giatri = Decimal.Parse(item.GetDataKeyValue("EXAMS_ORDER"))
                         Next
-                        For Each item As GridDataItem In rgDataInterview.Items
-                            If giatri >= Decimal.Parse(item.GetDataKeyValue("EXAMS_ORDER")) Then
-                                max = 1
-                            Else
-                                max = 0
-                                Exit For
-                            End If
-                        Next
+                        max = store.GET_MAX_EXAMS_ORDER(hdProgramID.Value)
+                        If giatri >= max Then
+                            max = 1
+                        Else
+                            max = 0
+                        End If
                         If max = 1 Then
                             If obj.IS_PASS = 0 Then
                                 store.UPDATE_CANDIDATE_STATUS(Int32.Parse(dataItem("ID").Text), "KDAT")
@@ -633,6 +631,8 @@ Public Class ctrlRC_ProgramInterviewResult
                 Next
                 dtData.TableName = "DATA"
                 Dim IsSaveCompleted As Boolean
+                Dim max As Decimal = 0
+                max = store.GET_MAX_EXAMS_ORDER(hdProgramID.Value)
                 For Each rows As DataRow In dtData.Rows
 
                     IsSaveCompleted = store.UPDATE_CANDIDATE_RESULT(
@@ -643,19 +643,14 @@ Public Class ctrlRC_ProgramInterviewResult
                                                           Decimal.Parse(rows("STATUS_ID")))
 
                     Dim giatri As New Decimal
-                    Dim max As Decimal = 0
+                    Dim check As Decimal = 0
                     giatri = Decimal.Parse(rows("EXAMS_ORDER"))
-                    For Each item As DataRow In dtData.Rows
-                        If item("ID") = rows("ID") Then
-                            If giatri >= item("EXAMS_ORDER") Then
-                                max = 1
-                            Else
-                                max = 0
-                                Exit For
-                            End If
-                        End If
-                    Next
-                    If max = 1 Then
+                    If giatri >= max Then
+                        check = 1
+                    Else
+                        check = 0
+                    End If
+                    If check = 1 Then
                         If Decimal.Parse(rows("STATUS_ID")) = 0 Then
                             store.UPDATE_CANDIDATE_STATUS(Int32.Parse(rows("ID")), "KDAT")
                         ElseIf Decimal.Parse(rows("STATUS_ID")) = 1 Then
