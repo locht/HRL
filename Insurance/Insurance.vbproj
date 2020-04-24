@@ -66,6 +66,7 @@
     <Reference Include="Aspose.Words, Version=10.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\ref\Aspose.Words.dll</HintPath>
     </Reference>
+    <Reference Include="Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\ref\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
@@ -128,6 +129,20 @@
     <Compile Include="InsuranceRepositoryBase.vb" />
     <Compile Include="InsuranceRepositoryStatic.vb" />
     <Compile Include="InsuranceRepository.vb" />
+    <Compile Include="Modules\Business\ctrlInsAccidentRiskNewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlInsAccidentRiskNewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Business\ctrlInsAccidentRiskNewEdit.ascx.vb">
+      <DependentUpon>ctrlInsAccidentRiskNewEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Business\ctrlInsAccidentRisk.ascx.designer.vb">
+      <DependentUpon>ctrlInsAccidentRisk.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Business\ctrlInsAccidentRisk.ascx.vb">
+      <DependentUpon>ctrlInsAccidentRisk.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Modules\Business\ctrlInsArising.ascx.designer.vb">
       <DependentUpon>ctrlInsArising.ascx</DependentUpon>
     </Compile>
@@ -477,6 +492,8 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <Content Include="Modules\Business\ctrlInsAccidentRiskNewEdit.ascx" />
+    <Content Include="Modules\Business\ctrlInsAccidentRisk.ascx" />
     <Content Include="Modules\Business\ctrlInsArising.ascx" />
     <Content Include="Modules\Business\ctrlInsArisingManual.ascx" />
     <Content Include="Modules\Business\ctrlInsArisingManualMng.ascx" />
@@ -524,6 +541,9 @@
     <None Include="Service References\InsuranceBusiness\Insurance.InsuranceBusiness.EmployeeDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <Content Include="Service References\InsuranceBusiness\Insurance.InsuranceBusiness.INS_ACCIDENT_RISKDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\InsuranceBusiness\Insurance.InsuranceBusiness.INS_ARISINGDTO1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

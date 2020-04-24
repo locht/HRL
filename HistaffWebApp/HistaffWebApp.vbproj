@@ -298,6 +298,8 @@
     <Content Include="Modules\Competency\Report\ctrlHU_Competency_RadarReport.ascx" />
     <Content Include="Modules\Competency\Report\ctrlHU_Competency_RadarReportGaps.ascx" />
     <Content Include="Modules\Competency\Setting\ctrlHU_CompetencyCourse.ascx" />
+    <Content Include="Modules\Insurance\Business\ctrlInsAccidentRisk.ascx" />
+    <Content Include="Modules\Insurance\Business\ctrlInsAccidentRiskNewEdit.ascx" />
     <Content Include="Modules\Insurance\Business\ctrlInsArising.ascx" />
     <Content Include="Modules\Insurance\Business\ctrlInsArisingManual.ascx" />
     <Content Include="Modules\Insurance\Business\ctrlInsArisingManualMng.ascx" />

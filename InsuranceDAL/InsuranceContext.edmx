@@ -51,6 +51,9 @@
             <EntitySet Name="INS_REGIMES" EntityType="InsuranceModel.Store.INS_REGIMES" store:Type="Tables"  />
             <EntitySet Name="INS_ACCIDENT_RISK" EntityType="InsuranceModel.Store.INS_ACCIDENT_RISK" store:Type="Tables"  />
             <EntitySet Name="HU_JOB_POSITION" EntityType="InsuranceModel.Store.HU_JOB_POSITION" store:Type="Tables"  />
+            <EntitySet Name="HU_WARD" EntityType="InsuranceModel.Store.HU_WARD" store:Type="Tables"  />
+            <EntitySet Name="INS_LIST_INSURANCE" EntityType="InsuranceModel.Store.INS_LIST_INSURANCE" store:Type="Tables"  />
+            <EntitySet Name="HUV_ORGANIZATION" EntityType="InsuranceModel.Store.HUV_ORGANIZATION" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="InsuranceModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_FE_HEH" Association="InsuranceModel.Store.FK_FE_HEH">
                 <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
@@ -166,6 +169,7 @@
             <Property Name="TER_LAST_DATE" Type="date" Nullable="true" />
             <Property Name="ITIME_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="STAFF_RANK_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="JOB_POSITION" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_EDUCATION">
             <Key>
@@ -352,6 +356,7 @@
             <Property Name="ADDRESS" Type="nvarchar2" Nullable="true" MaxLength="1023" />
             <Property Name="FAX" Type="nvarchar2" Nullable="true" MaxLength="1023" />
             <Property Name="REPRESENTATIVE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="UNIT_RANK_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_TITLE">
             <Key>
@@ -1237,6 +1242,111 @@
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="JOB_NAME" Type="nvarchar2" Nullable="true" MaxLength="1000" />
         </EntityType>
+        <EntityType Name="HU_WARD">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="NAME_EN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="NAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+            <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="DISTRICT_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="NOTE" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+        </EntityType>
+        <EntityType Name="INS_LIST_INSURANCE">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="ADDRESS" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="TREATMENTCODE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="PHONE_NUMBER" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="STATUS" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="100" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="100" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="500" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="500" />
+            <Property Name="PROVINCECODE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="NOTE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="IS_DELETED" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
+        <EntityType Name="HUV_ORGANIZATION">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="NAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="ORG_NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="PARENT_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="ADDRESS" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="DESCRIPTION_PATH" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="COST_CENTER_CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="PROVINCE_NAME" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="PIT_NO" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="NUMBER_BUSINESS" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="DATE_BUSINESS" Type="date" Nullable="true" />
+            <Property Name="ORG_NAME1" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_NAME2" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_NAME3" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_NAME4" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_NAME5" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_NAME6" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_NAME7" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_NAME8" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_NAME9" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_ID1" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID2" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID3" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID4" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID5" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID6" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID7" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID8" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID9" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_CODE1" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_CODE2" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_CODE3" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_CODE4" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_CODE5" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_CODE6" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_CODE7" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_CODE8" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_CODE9" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_COST_CENTER1" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_COST_CENTER2" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_COST_CENTER3" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_COST_CENTER4" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_COST_CENTER5" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_COST_CENTER6" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_COST_CENTER7" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_COST_CENTER8" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORG_COST_CENTER9" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="ORD_NO1" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ORD_NO2" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ORD_NO3" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ORD_NO4" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ORD_NO5" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ORD_NO6" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ORD_NO7" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ORD_NO8" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ORD_NO9" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ORG_PATH" Type="nvarchar2" Nullable="true" MaxLength="2000" />
+            <Property Name="ORD_NO" Type="number" Nullable="true" Precision="38" />
+            <Property Name="DISSOLVE_DATE" Type="date" Nullable="true" />
+            <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -1665,6 +1775,9 @@
           <EntitySet Name="INS_REGIMES" EntityType="InsuranceModel.INS_REGIMES" />
           <EntitySet Name="INS_ACCIDENT_RISK" EntityType="InsuranceModel.INS_ACCIDENT_RISK" />
           <EntitySet Name="HU_JOB_POSITION" EntityType="InsuranceModel.HU_JOB_POSITION" />
+          <EntitySet Name="HU_WARD" EntityType="InsuranceModel.HU_WARD" />
+          <EntitySet Name="INS_LIST_INSURANCE" EntityType="InsuranceModel.INS_LIST_INSURANCE" />
+          <EntitySet Name="HUV_ORGANIZATION" EntityType="InsuranceModel.HUV_ORGANIZATION" />
         </EntityContainer>
         <EntityType Name="HU_EMPLOYEE">
           <Key>
@@ -1705,6 +1818,7 @@
           <NavigationProperty Name="HU_ORGANIZATION" Relationship="InsuranceModel.FK_HU_ORG_HU_EMP" FromRole="HU_EMPLOYEE" ToRole="HU_ORGANIZATION" />
           <NavigationProperty Name="HU_EMPLOYEE1" Relationship="InsuranceModel.FK_HUEMD_HUEM" FromRole="HU_EMPLOYEE" ToRole="HU_EMPLOYEE1" />
           <NavigationProperty Name="HU_EMPLOYEE2" Relationship="InsuranceModel.FK_HUEMD_HUEM" FromRole="HU_EMPLOYEE1" ToRole="HU_EMPLOYEE" />
+          <Property Type="Decimal" Name="JOB_POSITION" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_EDUCATION">
           <Key>
@@ -1903,6 +2017,7 @@
           <NavigationProperty Name="HU_ORGANIZATION1" Relationship="InsuranceModel.FK_HU_ORG_HU_ORG" FromRole="HU_ORGANIZATION" ToRole="HU_ORGANIZATION1" />
           <NavigationProperty Name="HU_ORGANIZATION2" Relationship="InsuranceModel.FK_HU_ORG_HU_ORG" FromRole="HU_ORGANIZATION1" ToRole="HU_ORGANIZATION" />
           <NavigationProperty Name="HU_WORKING" Relationship="InsuranceModel.FK_HUOG_HUWK" FromRole="HU_ORGANIZATION" ToRole="HU_WORKING" />
+          <Property Type="Decimal" Name="UNIT_RANK_ID" Precision="38" />
         </EntityType>
         <EntityType Name="HU_TITLE">
           <Key>
@@ -3038,6 +3153,111 @@
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="JOB_NAME" MaxLength="1000" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="HU_WARD">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="NAME_EN" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NAME_VN" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CODE" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="DISTRICT_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NOTE" MaxLength="1023" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="INS_LIST_INSURANCE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ADDRESS" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TREATMENTCODE" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PHONE_NUMBER" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="STATUS" Precision="38" Scale="0" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PROVINCECODE" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NOTE" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="IS_DELETED" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="HUV_ORGANIZATION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="NAME_VN" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="PARENT_ID" Precision="38" Scale="0" />
+          <Property Type="String" Name="CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ADDRESS" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DESCRIPTION_PATH" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="COST_CENTER_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PROVINCE_NAME" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PIT_NO" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NUMBER_BUSINESS" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DATE_BUSINESS" />
+          <Property Type="String" Name="ORG_NAME1" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_NAME2" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_NAME3" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_NAME4" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_NAME5" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_NAME6" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_NAME7" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_NAME8" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_NAME9" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="ORG_ID1" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID2" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID3" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID4" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID5" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID6" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID7" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID8" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID9" Precision="38" Scale="0" />
+          <Property Type="String" Name="ORG_CODE1" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_CODE2" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_CODE3" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_CODE4" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_CODE5" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_CODE6" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_CODE7" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_CODE8" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_CODE9" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_COST_CENTER1" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_COST_CENTER2" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_COST_CENTER3" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_COST_CENTER4" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_COST_CENTER5" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_COST_CENTER6" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_COST_CENTER7" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_COST_CENTER8" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORG_COST_CENTER9" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORD_NO1" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ORD_NO2" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ORD_NO3" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ORD_NO4" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ORD_NO5" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ORD_NO6" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ORD_NO7" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ORD_NO8" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ORD_NO9" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ORG_PATH" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="ORD_NO" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="DISSOLVE_DATE" />
+          <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3072,6 +3292,7 @@
                     <ScalarProperty Name="TER_LAST_DATE" ColumnName="TER_LAST_DATE" />
                     <ScalarProperty Name="ITIME_ID" ColumnName="ITIME_ID" />
                     <ScalarProperty Name="STAFF_RANK_ID" ColumnName="STAFF_RANK_ID" />
+                    <ScalarProperty Name="JOB_POSITION" ColumnName="JOB_POSITION" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -3266,6 +3487,7 @@
                     <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
                     <ScalarProperty Name="FAX" ColumnName="FAX" />
                     <ScalarProperty Name="REPRESENTATIVE_ID" ColumnName="REPRESENTATIVE_ID" />
+                    <ScalarProperty Name="UNIT_RANK_ID" ColumnName="UNIT_RANK_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -4188,6 +4410,114 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HU_WARD">
+            <EntityTypeMapping TypeName="InsuranceModel.HU_WARD">
+                <MappingFragment StoreEntitySet="HU_WARD">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+                    <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+                    <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+                    <ScalarProperty Name="CODE" ColumnName="CODE" />
+                    <ScalarProperty Name="DISTRICT_ID" ColumnName="DISTRICT_ID" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
+        <EntitySetMapping Name="INS_LIST_INSURANCE">
+            <EntityTypeMapping TypeName="InsuranceModel.INS_LIST_INSURANCE">
+                <MappingFragment StoreEntitySet="INS_LIST_INSURANCE">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="CODE" ColumnName="CODE" />
+                    <ScalarProperty Name="NAME" ColumnName="NAME" />
+                    <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                    <ScalarProperty Name="TREATMENTCODE" ColumnName="TREATMENTCODE" />
+                    <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
+                    <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="PROVINCECODE" ColumnName="PROVINCECODE" />
+                    <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                    <ScalarProperty Name="IS_DELETED" ColumnName="IS_DELETED" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
+        <EntitySetMapping Name="HUV_ORGANIZATION">
+            <EntityTypeMapping TypeName="InsuranceModel.HUV_ORGANIZATION">
+                <MappingFragment StoreEntitySet="HUV_ORGANIZATION">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+                    <ScalarProperty Name="ORG_NAME" ColumnName="ORG_NAME" />
+                    <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+                    <ScalarProperty Name="CODE" ColumnName="CODE" />
+                    <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                    <ScalarProperty Name="DESCRIPTION_PATH" ColumnName="DESCRIPTION_PATH" />
+                    <ScalarProperty Name="COST_CENTER_CODE" ColumnName="COST_CENTER_CODE" />
+                    <ScalarProperty Name="PROVINCE_NAME" ColumnName="PROVINCE_NAME" />
+                    <ScalarProperty Name="PIT_NO" ColumnName="PIT_NO" />
+                    <ScalarProperty Name="NUMBER_BUSINESS" ColumnName="NUMBER_BUSINESS" />
+                    <ScalarProperty Name="DATE_BUSINESS" ColumnName="DATE_BUSINESS" />
+                    <ScalarProperty Name="ORG_NAME1" ColumnName="ORG_NAME1" />
+                    <ScalarProperty Name="ORG_NAME2" ColumnName="ORG_NAME2" />
+                    <ScalarProperty Name="ORG_NAME3" ColumnName="ORG_NAME3" />
+                    <ScalarProperty Name="ORG_NAME4" ColumnName="ORG_NAME4" />
+                    <ScalarProperty Name="ORG_NAME5" ColumnName="ORG_NAME5" />
+                    <ScalarProperty Name="ORG_NAME6" ColumnName="ORG_NAME6" />
+                    <ScalarProperty Name="ORG_NAME7" ColumnName="ORG_NAME7" />
+                    <ScalarProperty Name="ORG_NAME8" ColumnName="ORG_NAME8" />
+                    <ScalarProperty Name="ORG_NAME9" ColumnName="ORG_NAME9" />
+                    <ScalarProperty Name="ORG_ID1" ColumnName="ORG_ID1" />
+                    <ScalarProperty Name="ORG_ID2" ColumnName="ORG_ID2" />
+                    <ScalarProperty Name="ORG_ID3" ColumnName="ORG_ID3" />
+                    <ScalarProperty Name="ORG_ID4" ColumnName="ORG_ID4" />
+                    <ScalarProperty Name="ORG_ID5" ColumnName="ORG_ID5" />
+                    <ScalarProperty Name="ORG_ID6" ColumnName="ORG_ID6" />
+                    <ScalarProperty Name="ORG_ID7" ColumnName="ORG_ID7" />
+                    <ScalarProperty Name="ORG_ID8" ColumnName="ORG_ID8" />
+                    <ScalarProperty Name="ORG_ID9" ColumnName="ORG_ID9" />
+                    <ScalarProperty Name="ORG_CODE1" ColumnName="ORG_CODE1" />
+                    <ScalarProperty Name="ORG_CODE2" ColumnName="ORG_CODE2" />
+                    <ScalarProperty Name="ORG_CODE3" ColumnName="ORG_CODE3" />
+                    <ScalarProperty Name="ORG_CODE4" ColumnName="ORG_CODE4" />
+                    <ScalarProperty Name="ORG_CODE5" ColumnName="ORG_CODE5" />
+                    <ScalarProperty Name="ORG_CODE6" ColumnName="ORG_CODE6" />
+                    <ScalarProperty Name="ORG_CODE7" ColumnName="ORG_CODE7" />
+                    <ScalarProperty Name="ORG_CODE8" ColumnName="ORG_CODE8" />
+                    <ScalarProperty Name="ORG_CODE9" ColumnName="ORG_CODE9" />
+                    <ScalarProperty Name="ORG_COST_CENTER1" ColumnName="ORG_COST_CENTER1" />
+                    <ScalarProperty Name="ORG_COST_CENTER2" ColumnName="ORG_COST_CENTER2" />
+                    <ScalarProperty Name="ORG_COST_CENTER3" ColumnName="ORG_COST_CENTER3" />
+                    <ScalarProperty Name="ORG_COST_CENTER4" ColumnName="ORG_COST_CENTER4" />
+                    <ScalarProperty Name="ORG_COST_CENTER5" ColumnName="ORG_COST_CENTER5" />
+                    <ScalarProperty Name="ORG_COST_CENTER6" ColumnName="ORG_COST_CENTER6" />
+                    <ScalarProperty Name="ORG_COST_CENTER7" ColumnName="ORG_COST_CENTER7" />
+                    <ScalarProperty Name="ORG_COST_CENTER8" ColumnName="ORG_COST_CENTER8" />
+                    <ScalarProperty Name="ORG_COST_CENTER9" ColumnName="ORG_COST_CENTER9" />
+                    <ScalarProperty Name="ORD_NO1" ColumnName="ORD_NO1" />
+                    <ScalarProperty Name="ORD_NO2" ColumnName="ORD_NO2" />
+                    <ScalarProperty Name="ORD_NO3" ColumnName="ORD_NO3" />
+                    <ScalarProperty Name="ORD_NO4" ColumnName="ORD_NO4" />
+                    <ScalarProperty Name="ORD_NO5" ColumnName="ORD_NO5" />
+                    <ScalarProperty Name="ORD_NO6" ColumnName="ORD_NO6" />
+                    <ScalarProperty Name="ORD_NO7" ColumnName="ORD_NO7" />
+                    <ScalarProperty Name="ORD_NO8" ColumnName="ORD_NO8" />
+                    <ScalarProperty Name="ORD_NO9" ColumnName="ORD_NO9" />
+                    <ScalarProperty Name="ORG_PATH" ColumnName="ORG_PATH" />
+                    <ScalarProperty Name="ORD_NO" ColumnName="ORD_NO" />
+                    <ScalarProperty Name="DISSOLVE_DATE" ColumnName="DISSOLVE_DATE" />
+                    <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="InsuranceModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -4218,7 +4548,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="InsuranceContext" ZoomLevel="88">
-        <EntityTypeShape EntityType="InsuranceModel.HU_EMPLOYEE" Width="1.5" PointX="3" PointY="4.75" Height="0.40000000000000036" IsExpanded="false" />
+        <EntityTypeShape EntityType="InsuranceModel.HU_EMPLOYEE" Width="1.5" PointX="3" PointY="4.75" Height="7.941630859375" IsExpanded="true" />
         <EntityTypeShape EntityType="InsuranceModel.HU_EMPLOYEE_EDUCATION" Width="1.5" PointX="5.25" PointY="5.875" Height="0.40000000000000036" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.HU_EMPLOYEE_FILES" Width="2" PointX="5.25" PointY="4.75" Height="0.40000000000000036" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.HU_EMPLOYEE_HEALTH" Width="1.75" PointX="5.25" PointY="7" Height="0.40000000000000036" IsExpanded="false" />
@@ -4226,28 +4556,26 @@
         <EntityTypeShape EntityType="InsuranceModel.HU_EMPLOYEE_SALARY" Width="1.875" PointX="5.25" PointY="3.625" Height="0.40000000000000036" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.HU_EMPLOYEE_TRAIN" Width="2.25" PointX="0.75" PointY="7.875" Height="0.40000000000000036" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.HU_ORG_TITLE" Width="1.5" PointX="3" PointY="2.75" Height="0.39999999999999858" IsExpanded="false" />
-        <EntityTypeShape EntityType="InsuranceModel.HU_ORGANIZATION" Width="1.5" PointX="0.75" PointY="2.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="InsuranceModel.HU_ORGANIZATION" Width="1.5" PointX="0.75" PointY="2.75" Height="6.0186165364583335" IsExpanded="true" />
         <EntityTypeShape EntityType="InsuranceModel.HU_TITLE" Width="1.5" PointX="0.75" PointY="4.75" Height="0.40000000000000036" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.HU_WORKING" Width="1.5" PointX="5.25" PointY="1.75" Height="0.39999999999999858" IsExpanded="false" />
-        <EntityTypeShape EntityType="InsuranceModel.OT_OTHER_LIST" Width="1.5" PointX="3" PointY="0.75" Height="0.39999999999999858" IsExpanded="false" />
+        <EntityTypeShape EntityType="InsuranceModel.OT_OTHER_LIST" Width="1.5" PointX="3" PointY="0.75" Height="4.8648079427083326" IsExpanded="true" />
         <EntityTypeShape EntityType="InsuranceModel.OT_OTHER_LIST_GROUP" Width="1.5" PointX="1.5" PointY="6.125" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.OT_OTHER_LIST_TYPE" Width="1.5" PointX="0.75" PointY="1.125" Height="0.39999999999999858" IsExpanded="false" />
         <AssociationConnector Association="InsuranceModel.FK_FE_HEH" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.78125" PointY="5.15" />
-          <ConnectorPoint PointX="3.78125" PointY="7.2" />
+          <ConnectorPoint PointX="4.5" PointY="7.2" />
           <ConnectorPoint PointX="5.25" PointY="7.2" />
         </AssociationConnector>
         <AssociationConnector Association="InsuranceModel.FK_HE_HEE" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="5.15" />
-          <ConnectorPoint PointX="5.25" PointY="5.875" />
+          <ConnectorPoint PointX="4.5" PointY="6.075" />
+          <ConnectorPoint PointX="5.25" PointY="6.075" />
         </AssociationConnector>
         <AssociationConnector Association="InsuranceModel.FK_HE_HEF" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="4.9187474999999994" />
-          <ConnectorPoint PointX="5.25" PointY="4.9187474999999994" />
+          <ConnectorPoint PointX="4.5" PointY="4.95" />
+          <ConnectorPoint PointX="5.25" PointY="4.95" />
         </AssociationConnector>
         <AssociationConnector Association="InsuranceModel.FK_HE_HEO" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.3906225" PointY="5.15" />
-          <ConnectorPoint PointX="3.3906225" PointY="8.45" />
+          <ConnectorPoint PointX="4.5" PointY="8.45" />
           <ConnectorPoint PointX="5.25" PointY="8.45" />
         </AssociationConnector>
         <AssociationConnector Association="InsuranceModel.FK_HE_HES" ManuallyRouted="false">
@@ -4255,79 +4583,83 @@
           <ConnectorPoint PointX="5.25" PointY="4.025" />
         </AssociationConnector>
         <AssociationConnector Association="InsuranceModel.FK_HE_HT" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="5.03125" />
-          <ConnectorPoint PointX="2.6979166666666665" PointY="5.0312499999999991" />
-          <ConnectorPoint PointX="2.8645833333333335" PointY="5.03125" />
-          <ConnectorPoint PointX="3" PointY="5.03125" />
+          <ConnectorPoint PointX="2.25" PointY="4.95" />
+          <ConnectorPoint PointX="2.6041666666666665" PointY="4.9499999999999993" />
+          <ConnectorPoint PointX="2.9270833333333335" PointY="4.95" />
+          <ConnectorPoint PointX="3" PointY="4.95" />
         </AssociationConnector>
         <AssociationConnector Association="InsuranceModel.FK_HE_HW" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.4935384615384617" PointY="4.75" />
-          <ConnectorPoint PointX="4.875" PointY="4.37781141985799" />
+          <ConnectorPoint PointX="4.4757692307692309" PointY="4.75" />
+          <ConnectorPoint PointX="4.875" PointY="4.3505650293491138" />
           <ConnectorPoint PointX="4.875" PointY="2.5249999999999986" />
-          <ConnectorPoint PointX="5.25" PointY="1.8918461538461533" />
+          <ConnectorPoint PointX="5.25" PointY="2.1499999999999986" />
         </AssociationConnector>
         <AssociationConnector Association="InsuranceModel.FK_HU_ORG_HU_EMP" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.2499999999999996" PointY="3.15" />
-          <ConnectorPoint PointX="2.625" PointY="3.5250000000000004" />
-          <ConnectorPoint PointX="2.625" PointY="4.3746933076923078" />
-          <ConnectorPoint PointX="2.7223244349011213" PointY="4.4720177425934287" />
-          <ConnectorPoint PointX="2.8401755650988791" PointY="4.5898688727911869" />
-          <ConnectorPoint PointX="3.0003066923076918" PointY="4.75" />
+          <ConnectorPoint PointX="2.25" PointY="7.1999999999999993" />
+          <ConnectorPoint PointX="3" PointY="7.1999999999999993" />
         </AssociationConnector>
         <AssociationConnector Association="InsuranceModel.FK_HUEMD_HUEM" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.5141538461538464" PointY="4.75" />
-          <ConnectorPoint PointX="3.5141538461538464" PointY="4.5" />
-          <ConnectorPoint PointX="3.9970769230769232" PointY="4.5" />
-          <ConnectorPoint PointX="3.9970769230769232" PointY="4.75" />
+          <ConnectorPoint PointX="3.5319230769230767" PointY="12.691630859375" />
+          <ConnectorPoint PointX="3.5319230769230767" PointY="12.941630859375" />
+          <ConnectorPoint PointX="3.9784615384615383" PointY="12.941630859375" />
+          <ConnectorPoint PointX="3.9784615384615383" PointY="12.691630859375" />
         </AssociationConnector>
         <AssociationConnector Association="InsuranceModel.FK_HUOG_HUOT" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="2.9187475000000065" />
-          <ConnectorPoint PointX="2.6354166666666665" PointY="2.9187475000000056" />
-          <ConnectorPoint PointX="2.8645833333333335" PointY="2.9187475000000065" />
-          <ConnectorPoint PointX="3" PointY="2.9187475000000065" />
+          <ConnectorPoint PointX="2.25" PointY="2.9499999999999993" />
+          <ConnectorPoint PointX="2.6041666666666665" PointY="2.949999999999998" />
+          <ConnectorPoint PointX="2.9270833333333335" PointY="2.9499999999999993" />
+          <ConnectorPoint PointX="3" PointY="2.9499999999999993" />
         </AssociationConnector>
         <AssociationConnector Association="InsuranceModel.FK_HUTL_HUOT" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.2435384615384613" PointY="4.75" />
-          <ConnectorPoint PointX="2.7223244349011204" PointY="4.27121402663734" />
-          <ConnectorPoint PointX="2.8401755650988791" PointY="4.1533628964395826" />
-          <ConnectorPoint PointX="2.84375" PointY="4.1497884615384617" />
-          <ConnectorPoint PointX="2.84375" PointY="3.3062499999999986" />
+          <ConnectorPoint PointX="2.25" PointY="4.7503066923076922" />
+          <ConnectorPoint PointX="2.625" PointY="4.3753066923076922" />
+          <ConnectorPoint PointX="2.625" PointY="3.5249999999999986" />
+          <ConnectorPoint PointX="2.6285744349011204" PointY="3.5214255650988773" />
+          <ConnectorPoint PointX="2.7464255650988791" PointY="3.4035744349011194" />
+          <ConnectorPoint PointX="2.7848244349011204" PointY="3.3651755650988773" />
+          <ConnectorPoint PointX="2.9026755650988791" PointY="3.2473244349011194" />
           <ConnectorPoint PointX="3" PointY="3.1499999999999986" />
         </AssociationConnector>
         <AssociationConnector Association="InsuranceModel.FK_HU_ORG_HU_ORG" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.2641538461538462" PointY="3.15" />
-          <ConnectorPoint PointX="1.2641538461538462" PointY="3.4000000000000004" />
-          <ConnectorPoint PointX="1.747076923076923" PointY="3.4000000000000004" />
-          <ConnectorPoint PointX="1.747076923076923" PointY="3.15" />
+          <ConnectorPoint PointX="1.2819230769230767" PointY="8.7686165364583335" />
+          <ConnectorPoint PointX="1.2819230769230767" PointY="9.0186165364583335" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="9.0186165364583335" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="8.7686165364583335" />
         </AssociationConnector>
         <AssociationConnector Association="InsuranceModel.FK_HUOG_HUWK" ManuallyRouted="false">
           <ConnectorPoint PointX="1.5" PointY="2.75" />
           <ConnectorPoint PointX="1.5" PointY="1.9499999999999993" />
-          <ConnectorPoint PointX="2.6979166666666665" PointY="1.9499999999999986" />
-          <ConnectorPoint PointX="2.8645833333333335" PointY="1.9499999999999993" />
-          <ConnectorPoint PointX="5.25" PointY="1.9499999999999993" />
+          <ConnectorPoint PointX="2.75" PointY="1.9499999999999993" />
+          <ConnectorPoint PointX="2.75" PointY="0.5" />
+          <ConnectorPoint PointX="4.875" PointY="0.5" />
+          <ConnectorPoint PointX="4.875" PointY="1.9746093749999991" />
+          <ConnectorPoint PointX="5.25" PointY="1.9746093749999991" />
         </AssociationConnector>
         <AssociationConnector Association="InsuranceModel.FK_HUTL_HUWK" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="4.769999" />
-          <ConnectorPoint PointX="2.71875" PointY="4.301249" />
-          <ConnectorPoint PointX="2.71875" PointY="2.0812519999999926" />
-          <ConnectorPoint PointX="5.0544866763860252" PointY="2.0812519999999921" />
-          <ConnectorPoint PointX="5.2211533430526913" PointY="2.0812519999999926" />
-          <ConnectorPoint PointX="5.25" PointY="2.0812519999999926" />
+          <ConnectorPoint PointX="2.25" PointY="5.0812519999999939" />
+          <ConnectorPoint PointX="2.6875" PointY="5.0812519999999939" />
+          <ConnectorPoint PointX="2.6875" PointY="0.25" />
+          <ConnectorPoint PointX="4.9375" PointY="0.25" />
+          <ConnectorPoint PointX="4.9375" PointY="2.0058618749999928" />
+          <ConnectorPoint PointX="5.25" PointY="2.0058618749999928" />
         </AssociationConnector>
         <AssociationConnector Association="InsuranceModel.FK_OTOTL_HUWK" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="1.1499999999999986" />
-          <ConnectorPoint PointX="5.25" PointY="1.75" />
+          <ConnectorPoint PointX="4.5" PointY="1.7992187499999996" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="1.7992187499999988" />
+          <ConnectorPoint PointX="5.020833333333333" PointY="1.7992187499999996" />
+          <ConnectorPoint PointX="5.25" PointY="1.7992187499999996" />
         </AssociationConnector>
         <AssociationConnector Association="InsuranceModel.FK_OOLT_OOL" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="1.3249999999999993" />
-          <ConnectorPoint PointX="2.625" PointY="1.3249999999999993" />
-          <ConnectorPoint PointX="2.625" PointY="0.94999999999999929" />
-          <ConnectorPoint PointX="3" PointY="0.94999999999999929" />
+          <ConnectorPoint PointX="2.6041666666666665" PointY="1.3249999999999984" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="1.3249999999999993" />
+          <ConnectorPoint PointX="3" PointY="1.3249999999999993" />
         </AssociationConnector>
         <AssociationConnector Association="InsuranceModel.FK_OOLG_OOLT" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.78125" PointY="6.125" />
-          <ConnectorPoint PointX="2.78125" PointY="1.4562524999999926" />
+          <ConnectorPoint PointX="2.84375" PointY="6.125" />
+          <ConnectorPoint PointX="2.84375" PointY="1.4562524999999926" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="1.4562524999999917" />
+          <ConnectorPoint PointX="2.6041666666666665" PointY="1.4562524999999926" />
           <ConnectorPoint PointX="2.25" PointY="1.4562524999999926" />
         </AssociationConnector>
         <EntityTypeShape EntityType="InsuranceModel.HU_DISTRICT" Width="1.5" PointX="12.25" PointY="1" Height="0.39999999999999858" IsExpanded="false" />
@@ -4346,7 +4678,7 @@
         <EntityTypeShape EntityType="InsuranceModel.HU_CONTRACT_TYPE" Width="1.75" PointX="7.75" PointY="6.875" Height="4.0956022135416656" IsExpanded="true" />
         <EntityTypeShape EntityType="InsuranceModel.HU_CONTRACT_MAX_V" Width="1.5" PointX="7.75" PointY="8.875" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.HU_STAFF_RANK" Width="1.5" PointX="0.75" PointY="9.875" Height="0.39999999999999858" IsExpanded="false" />
-        <EntityTypeShape EntityType="InsuranceModel.INS_ARISING" Width="1.5" PointX="2.75" PointY="9.875" Height="0.39999999999999858" IsExpanded="false" />
+        <EntityTypeShape EntityType="InsuranceModel.INS_ARISING" Width="1.5" PointX="0.5" PointY="10.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.INS_CHANGE" Width="2" PointX="9.75" PointY="4.875" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.INS_COST_FOLLOW_LEVER" Width="1.875" PointX="10.75" PointY="2.875" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.INS_ENTITLED_TYPE" Width="2.125" PointX="4.75" PointY="10.875" Height="0.4" IsExpanded="false" />
@@ -4370,12 +4702,19 @@
           <ConnectorPoint PointX="2.375" PointY="14.075" />
           <ConnectorPoint PointX="2.6875" PointY="14.075" />
           <ConnectorPoint PointX="2.6875" PointY="12.8125" />
+          <ConnectorPoint PointX="3.4485897435897432" PointY="12.8125" />
+          <ConnectorPoint PointX="3.61525641025641" PointY="12.8125" />
+          <ConnectorPoint PointX="3.8951282051282048" PointY="12.8125" />
+          <ConnectorPoint PointX="4.0617948717948718" PointY="12.8125" />
           <ConnectorPoint PointX="4.781249" PointY="12.8125" />
           <ConnectorPoint PointX="4.781249" PointY="13.875" />
         </AssociationConnector>
         <EntityTypeShape EntityType="InsuranceModel.INS_REGIMES" Width="1.5" PointX="7.375" PointY="14.75" Height="7.5570279947916674" />
         <EntityTypeShape EntityType="InsuranceModel.INS_ACCIDENT_RISK" Width="1.5" PointX="9.375" PointY="14.75" Height="4.8648079427083246" />
         <EntityTypeShape EntityType="InsuranceModel.HU_JOB_POSITION" Width="1.5" PointX="11.375" PointY="14.75" Height="4.2879036458333246" />
+        <EntityTypeShape EntityType="InsuranceModel.HU_WARD" Width="1.5" PointX="13.375" PointY="14.75" Height="3.5186979166666674" />
+        <EntityTypeShape EntityType="InsuranceModel.INS_LIST_INSURANCE" Width="1.5" PointX="15.375" PointY="10.75" Height="4.0956022135416674" />
+        <EntityTypeShape EntityType="InsuranceModel.HUV_ORGANIZATION" Width="1.5" PointX="15.375" PointY="15.75" Height="12.749166666666667" />
       </Diagram>
     </Diagrams>
   </Designer>

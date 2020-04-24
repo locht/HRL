@@ -10,6 +10,7 @@
         <Item Value="ctrlInsRegimesMng" Text="Quản lý thông tin hưởng chế độ" PostBack="True" NavigateUrl="Default.aspx?mid=Insurance&amp;fid=ctrlInsRegimesMng&amp;group=Business" CheckPermission="true"/>
         <Item Value="ctrlInsMaternityMng" Text="Quản lý thai sản" PostBack="True" NavigateUrl="Default.aspx?mid=Insurance&amp;fid=ctrlInsMaternityMng&amp;group=Business" CheckPermission="true"/>
         <Item Value="ctrlInsManagerSunCare" Text="Quản lý bảo hiểm tư nhân" PostBack="True" NavigateUrl="Default.aspx?mid=Insurance&amp;fid=ctrlInsManagerSunCare&amp;group=Business" CheckPermission="true"/>
+        <Item Value="ctrlInsAccidentRisk" Text="Quản lý tai nạn rủi ro" PostBack="True" NavigateUrl="Default.aspx?mid=Insurance&amp;fid=ctrlInsAccidentRisk&amp;group=Business" CheckPermission="true"/>
       </Group>
     </Item>
     

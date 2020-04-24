@@ -2674,4 +2674,267 @@ Partial Public Class InsuranceRepository
     End Function
 #End Region
 
+#Region "Quản lý tai nạn"
+    Public Function GetAccidentRisk(ByVal _filter As INS_ACCIDENT_RISKDTO,
+                               ByVal OrgId As Integer,
+                               Optional ByVal PageIndex As Integer = 0,
+                               Optional ByVal PageSize As Integer = Integer.MaxValue,
+                               Optional ByRef Total As Integer = 0,
+                               Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of INS_ACCIDENT_RISKDTO)
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username,
+                                           .P_ORGID = OrgId,
+                                           .P_ISDISSOLVE = True})
+            End Using
+            Dim query = From s In Context.INS_ACCIDENT_RISK
+                        From e In Context.HU_EMPLOYEE.Where(Function(es) es.ID = s.EMPLOYEE_ID)
+                        From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = s.EMPLOYEE_ID)
+                        From p In Context.HU_JOB_POSITION.Where(Function(f) f.ID = e.JOB_POSITION).DefaultIfEmpty
+                        From o In Context.HU_ORGANIZATION.Where(Function(eo) eo.ID = e.ORG_ID)
+                        From t In Context.HU_TITLE.Where(Function(ep) ep.ID = e.TITLE_ID).DefaultIfEmpty
+                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = cv.GENDER).DefaultIfEmpty
+                        From w In Context.HU_WARD.Where(Function(f) f.ID = cv.PER_WARD).DefaultIfEmpty
+                        From d In Context.HU_DISTRICT.Where(Function(f) f.ID = cv.PER_DISTRICT).DefaultIfEmpty
+                        From ph In Context.HU_PROVINCE.Where(Function(f) f.ID = cv.PER_PROVINCE).DefaultIfEmpty
+                        From ins In Context.INS_LIST_INSURANCE.Where(Function(f) f.ID = s.INS_ORG_ID).DefaultIfEmpty
+                        From huv In Context.HUV_ORGANIZATION.Where(Function(f) f.ID = o.ID).DefaultIfEmpty
+                        From o3 In Context.HU_ORGANIZATION.Where(Function(f) f.ID = huv.ORG_ID3).DefaultIfEmpty
+                        From ot3 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = o3.UNIT_RANK_ID).DefaultIfEmpty
+                        From o4 In Context.HU_ORGANIZATION.Where(Function(f) f.ID = huv.ORG_ID4).DefaultIfEmpty
+                        From ot4 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = o4.UNIT_RANK_ID).DefaultIfEmpty
+                        From k In Context.SE_CHOSEN_ORG.Where(Function(f) e.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
+                     Order By e.EMPLOYEE_CODE Ascending, s.CONTRACT_START_DATE Descending
+            Dim lst = query.Select(Function(f) New INS_ACCIDENT_RISKDTO With {
+                                       .ID = f.s.ID,
+                                       .EMPLOYEE_ID = f.s.EMPLOYEE_ID,
+                                       .EMPLOYEE_CODE = f.e.EMPLOYEE_CODE,
+                                       .EMPLOYEE_NAME = f.e.FULLNAME_VN,
+                                       .ORG_NAME = f.o.NAME_VN,
+                                       .ORG_DESC = f.o.DESCRIPTION_PATH,
+                                       .TITLE_NAME = f.t.NAME_VN,
+                                       .ORG_NAME2 = f.huv.ORG_NAME2,
+                                       .ORG_NAME3 = If(f.ot3.CODE = 2 Or f.ot3.CODE = 3, f.huv.ORG_NAME3, Nothing),
+                                       .ORG_NAME4 = If(f.ot4.CODE = 4 Or f.ot4.CODE = 5, f.huv.ORG_NAME4, Nothing),
+                                       .BIRTH_DATE = f.cv.BIRTH_DATE,
+                                       .GENDER_NAME = f.ot.NAME_VN,
+                                       .ADDRESS = f.ph.NAME_VN,
+                                       .CONTRACT_NO = f.s.CONTRACT_NO,
+                                       .ROWNUM_NO = f.s.ROWNUM_NO,
+                                       .CONTRACT_SIGN_DATE = f.s.CONTRACT_SIGN_DATE,
+                                       .CONTRACT_START_DATE = f.s.CONTRACT_START_DATE,
+                                       .CONTRACT_EXPIRE_DATE = f.s.CONTRACT_EXPIRE_DATE,
+                                       .PLHD_CONTRACT_NO = f.s.PLHD_CONTRACT_NO,
+                                       .PLHD_SIGN_DATE = f.s.PLHD_SIGN_DATE,
+                                       .PLHD_START_DATE = f.s.PLHD_START_DATE,
+                                       .PLHD_EXPIRE_DATE = f.s.PLHD_EXPIRE_DATE,
+                                       .INS_ORG_NAME = f.ins.NAME,
+                                       .REMARK = f.s.REMARK,
+                                       .JOB_NAME = f.p.JOB_NAME})
+
+            Dim dateNow = Date.Now.Date
+
+            If Not String.IsNullOrEmpty(_filter.EMPLOYEE_CODE) Then
+                lst = lst.Where(Function(f) f.EMPLOYEE_CODE.ToLower().Contains(_filter.EMPLOYEE_CODE.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.EMPLOYEE_NAME) Then
+                lst = lst.Where(Function(f) f.EMPLOYEE_NAME.ToLower().Contains(_filter.EMPLOYEE_NAME.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.ORG_NAME) Then
+                lst = lst.Where(Function(f) f.ORG_NAME.ToLower().Contains(_filter.ORG_NAME.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.TITLE_NAME) Then
+                lst = lst.Where(Function(f) f.TITLE_NAME.ToLower().Contains(_filter.TITLE_NAME.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.ORG_NAME2) Then
+                lst = lst.Where(Function(f) f.ORG_NAME2.ToLower().Contains(_filter.ORG_NAME2.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.ORG_NAME3) Then
+                lst = lst.Where(Function(f) f.ORG_NAME3.ToLower().Contains(_filter.ORG_NAME3.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.ORG_NAME4) Then
+                lst = lst.Where(Function(f) f.ORG_NAME4.ToLower().Contains(_filter.ORG_NAME4.ToLower()))
+            End If
+            If _filter.BIRTH_DATE.HasValue Then
+                lst = lst.Where(Function(f) f.BIRTH_DATE.Value = _filter.BIRTH_DATE)
+            End If
+            If Not String.IsNullOrEmpty(_filter.GENDER_NAME) Then
+                lst = lst.Where(Function(f) f.GENDER_NAME.ToLower().Contains(_filter.GENDER_NAME.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.ADDRESS) Then
+                lst = lst.Where(Function(f) f.ADDRESS.ToLower().Contains(_filter.ADDRESS.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.CONTRACT_NO) Then
+                lst = lst.Where(Function(f) f.CONTRACT_NO.ToLower().Contains(_filter.CONTRACT_NO.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.ROWNUM_NO) Then
+                lst = lst.Where(Function(f) f.ROWNUM_NO.ToLower().Contains(_filter.ROWNUM_NO.ToLower()))
+            End If
+            If _filter.CONTRACT_SIGN_DATE.HasValue Then
+                lst = lst.Where(Function(f) f.CONTRACT_SIGN_DATE.Value = _filter.CONTRACT_SIGN_DATE)
+            End If
+            If _filter.CONTRACT_START_DATE.HasValue Then
+                lst = lst.Where(Function(f) f.CONTRACT_START_DATE.Value = _filter.CONTRACT_START_DATE)
+            End If
+            If _filter.CONTRACT_EXPIRE_DATE.HasValue Then
+                lst = lst.Where(Function(f) f.CONTRACT_EXPIRE_DATE.Value = _filter.CONTRACT_EXPIRE_DATE)
+            End If
+            If Not String.IsNullOrEmpty(_filter.PLHD_CONTRACT_NO) Then
+                lst = lst.Where(Function(f) f.PLHD_CONTRACT_NO.ToLower().Contains(_filter.PLHD_CONTRACT_NO.ToLower()))
+            End If
+            If _filter.PLHD_SIGN_DATE.HasValue Then
+                lst = lst.Where(Function(f) f.PLHD_SIGN_DATE.Value = _filter.PLHD_SIGN_DATE)
+            End If
+            If _filter.PLHD_START_DATE.HasValue Then
+                lst = lst.Where(Function(f) f.PLHD_START_DATE.Value = _filter.PLHD_START_DATE)
+            End If
+            If _filter.PLHD_EXPIRE_DATE.HasValue Then
+                lst = lst.Where(Function(f) f.PLHD_EXPIRE_DATE.Value = _filter.PLHD_EXPIRE_DATE)
+            End If
+
+            If Not String.IsNullOrEmpty(_filter.INS_ORG_NAME) Then
+                lst = lst.Where(Function(f) f.INS_ORG_NAME.ToLower().Contains(_filter.INS_ORG_NAME.ToLower()))
+            End If
+
+            If Not String.IsNullOrEmpty(_filter.REMARK) Then
+                lst = lst.Where(Function(f) f.REMARK.ToLower().Contains(_filter.REMARK.ToLower()))
+            End If
+
+            Total = lst.Count
+            lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
+            Return lst.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iInsurance")
+            Throw ex
+        End Try
+    End Function
+    Public Function DeleteAccidentRisk(ByVal lstID As List(Of Decimal)) As Boolean
+        Dim lstSunCareData As List(Of INS_ACCIDENT_RISK)
+        Try
+            lstSunCareData = (From p In Context.INS_ACCIDENT_RISK Where lstID.Contains(p.ID)).ToList
+            For index = 0 To lstSunCareData.Count - 1
+                Context.INS_ACCIDENT_RISK.DeleteObject(lstSunCareData(index))
+            Next
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iInsurance")
+            ' Utility.WriteExceptionLog(ex, Me.ToString() & ".SunCare")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GET_INS_ACCIDENT_RISK(ByVal P_ID As Integer) As INS_ACCIDENT_RISKDTO
+        Dim obj As New INS_ACCIDENT_RISKDTO
+        Using cls As New DataAccess.QueryData
+            Dim dtData As DataTable = cls.ExecuteStore("PKG_INSURANCE.GET_INS_ACCIDENT_RISK",
+                                           New With {.P_ID = P_ID,
+                                                     .P_CUR = cls.OUT_CURSOR})
+
+            obj.ID = dtData.Rows(0)("ID")
+            obj.EMPLOYEE_ID = dtData.Rows(0)("EMPLOYEE_ID")
+            obj.EMPLOYEE_CODE = dtData.Rows(0)("EMPLOYEE_CODE")
+            obj.EMPLOYEE_NAME = dtData.Rows(0)("EMPLOYEE_NAME")
+            obj.ORG_NAME = dtData.Rows(0)("ORG_NAME")
+            obj.JOB_NAME = If(IsDBNull(dtData.Rows(0)("JOB_NAME")), Nothing, dtData.Rows(0)("JOB_NAME"))
+            obj.BIRTH_DATE = If(IsDBNull(dtData.Rows(0)("BIRTH_DATE")), Nothing, dtData.Rows(0)("BIRTH_DATE"))
+            obj.GENDER_NAME = If(IsDBNull(dtData.Rows(0)("GENDER_NAME")), Nothing, dtData.Rows(0)("GENDER_NAME"))
+            obj.ADDRESS = If(IsDBNull(dtData.Rows(0)("ADDRESS")), Nothing, dtData.Rows(0)("ADDRESS"))
+            obj.CONTRACT_NO = If(IsDBNull(dtData.Rows(0)("CONTRACT_NO")), Nothing, dtData.Rows(0)("CONTRACT_NO"))
+            obj.ROWNUM_NO = If(IsDBNull(dtData.Rows(0)("ROWNUM_NO")), Nothing, dtData.Rows(0)("ROWNUM_NO"))
+            obj.CONTRACT_SIGN_DATE = If(IsDBNull(dtData.Rows(0)("CONTRACT_SIGN_DATE")), Nothing, dtData.Rows(0)("CONTRACT_SIGN_DATE"))
+            obj.CONTRACT_START_DATE = If(IsDBNull(dtData.Rows(0)("CONTRACT_START_DATE")), Nothing, dtData.Rows(0)("CONTRACT_START_DATE"))
+            obj.CONTRACT_EXPIRE_DATE = If(IsDBNull(dtData.Rows(0)("CONTRACT_EXPIRE_DATE")), Nothing, dtData.Rows(0)("CONTRACT_EXPIRE_DATE"))
+            obj.PLHD_CONTRACT_NO = If(IsDBNull(dtData.Rows(0)("PLHD_CONTRACT_NO")), Nothing, dtData.Rows(0)("PLHD_CONTRACT_NO"))
+            obj.PLHD_SIGN_DATE = If(IsDBNull(dtData.Rows(0)("PLHD_SIGN_DATE")), Nothing, dtData.Rows(0)("PLHD_SIGN_DATE"))
+            obj.PLHD_START_DATE = If(IsDBNull(dtData.Rows(0)("PLHD_START_DATE")), Nothing, dtData.Rows(0)("PLHD_START_DATE"))
+            obj.PLHD_EXPIRE_DATE = If(IsDBNull(dtData.Rows(0)("PLHD_EXPIRE_DATE")), Nothing, dtData.Rows(0)("PLHD_EXPIRE_DATE"))
+            obj.INS_ORG_NAME = If(IsDBNull(dtData.Rows(0)("INS_ORG_NAME")), Nothing, dtData.Rows(0)("INS_ORG_NAME"))
+            obj.REMARK = If(IsDBNull(dtData.Rows(0)("REMARK")), Nothing, dtData.Rows(0)("REMARK"))
+            obj.INS_ORG_ID = If(IsDBNull(dtData.Rows(0)("INS_ORG_ID")), Nothing, dtData.Rows(0)("INS_ORG_ID"))
+
+            Return obj
+        End Using
+        Return Nothing
+    End Function
+
+    Public Function GET_EMPLOYEE_ACCIDENT_RISK(ByVal P_EMP_ID As Integer) As INS_ACCIDENT_RISKDTO
+        Dim obj As New INS_ACCIDENT_RISKDTO
+        Using cls As New DataAccess.QueryData
+            Dim dtData As DataTable = cls.ExecuteStore("PKG_INSURANCE.GET_EMPLOYEE_ACCIDENT_RISK",
+                                           New With {.P_EMP_ID = P_EMP_ID,
+                                                     .P_CUR = cls.OUT_CURSOR})
+
+            obj.JOB_NAME = If(IsDBNull(dtData.Rows(0)("JOB_NAME")), Nothing, dtData.Rows(0)("JOB_NAME"))
+            obj.BIRTH_DATE = If(IsDBNull(dtData.Rows(0)("BIRTH_DATE")), Nothing, dtData.Rows(0)("BIRTH_DATE"))
+            obj.GENDER_NAME = If(IsDBNull(dtData.Rows(0)("GENDER_NAME")), Nothing, dtData.Rows(0)("GENDER_NAME"))
+            obj.ADDRESS = If(IsDBNull(dtData.Rows(0)("ADDRESS")), Nothing, dtData.Rows(0)("ADDRESS"))
+            obj.CONTRACT_NO = If(IsDBNull(dtData.Rows(0)("CONTRACT_NO")), Nothing, dtData.Rows(0)("CONTRACT_NO"))
+            obj.CONTRACT_SIGN_DATE = If(IsDBNull(dtData.Rows(0)("CONTRACT_SIGN_DATE")), Nothing, dtData.Rows(0)("CONTRACT_SIGN_DATE"))
+            obj.CONTRACT_START_DATE = If(IsDBNull(dtData.Rows(0)("CONTRACT_START_DATE")), Nothing, dtData.Rows(0)("CONTRACT_START_DATE"))
+            obj.CONTRACT_EXPIRE_DATE = If(IsDBNull(dtData.Rows(0)("CONTRACT_EXPIRE_DATE")), Nothing, dtData.Rows(0)("CONTRACT_EXPIRE_DATE"))
+            obj.PLHD_CONTRACT_NO = If(IsDBNull(dtData.Rows(0)("PLHD_CONTRACT_NO")), Nothing, dtData.Rows(0)("PLHD_CONTRACT_NO"))
+            obj.PLHD_SIGN_DATE = If(IsDBNull(dtData.Rows(0)("PLHD_SIGN_DATE")), Nothing, dtData.Rows(0)("PLHD_SIGN_DATE"))
+            obj.PLHD_START_DATE = If(IsDBNull(dtData.Rows(0)("PLHD_START_DATE")), Nothing, dtData.Rows(0)("PLHD_START_DATE"))
+            obj.PLHD_EXPIRE_DATE = If(IsDBNull(dtData.Rows(0)("PLHD_EXPIRE_DATE")), Nothing, dtData.Rows(0)("PLHD_EXPIRE_DATE"))
+            obj.INS_ORG_NAME = If(IsDBNull(dtData.Rows(0)("INS_ORG_NAME")), Nothing, dtData.Rows(0)("INS_ORG_NAME"))
+            obj.INS_ORG_ID = If(IsDBNull(dtData.Rows(0)("INS_ORG_ID")), Nothing, dtData.Rows(0)("INS_ORG_ID"))
+
+            Return obj
+        End Using
+        Return Nothing
+    End Function
+
+    Public Function INSERT_INS_ACCIDENT_RISK(ByVal obj As INS_ACCIDENT_RISKDTO, Optional ByVal log As UserLog = Nothing) As Boolean
+        Using cls As New DataAccess.QueryData
+            Dim dtData As DataTable = cls.ExecuteStore("PKG_INSURANCE.INSERT_INS_ACCIDENT_RISK",
+                                           New With {.P_EMPLOYEE_ID = obj.EMPLOYEE_ID,
+                                                     .P_CONTRACT_NO = obj.CONTRACT_NO,
+                                                     .P_ROWNUM_NO = obj.ROWNUM_NO,
+                                                     .P_CONTRACT_SIGN_DATE = obj.CONTRACT_SIGN_DATE,
+                                                     .P_CONTRACT_START_DATE = obj.CONTRACT_START_DATE,
+                                                     .P_CONTRACT_EXPIRE_DATE = obj.CONTRACT_EXPIRE_DATE,
+                                                     .P_PLHD_CONTRACT_NO = obj.PLHD_CONTRACT_NO,
+                                                     .P_PLHD_SIGN_DATE = obj.PLHD_SIGN_DATE,
+                                                     .P_PLHD_START_DATE = obj.PLHD_START_DATE,
+                                                     .P_PLHD_EXPIRE_DATE = obj.PLHD_EXPIRE_DATE,
+                                                     .P_INS_ORG_ID = obj.INS_ORG_NAME,
+                                                     .P_REMARK = obj.REMARK,
+                                                     .P_CREATED_BY = log.Username,
+                                                     .P_CREATED_LOG = log.Ip & log.ComputerName,
+                                                     .P_CUR = cls.OUT_CURSOR})
+
+            Return True
+        End Using
+        Return Nothing
+    End Function
+
+    Public Function UPDATE_INS_ACCIDENT_RISK(ByVal obj As INS_ACCIDENT_RISKDTO, Optional ByVal log As UserLog = Nothing) As Boolean
+        Using cls As New DataAccess.QueryData
+            Dim dtData As DataTable = cls.ExecuteStore("PKG_INSURANCE.UPDATE_INS_ACCIDENT_RISK",
+                                           New With {.P_ID = obj.ID,
+                                                     .P_EMPLOYEE_ID = obj.EMPLOYEE_ID,
+                                                     .P_CONTRACT_NO = obj.CONTRACT_NO,
+                                                     .P_ROWNUM_NO = obj.ROWNUM_NO,
+                                                     .P_CONTRACT_SIGN_DATE = obj.CONTRACT_SIGN_DATE,
+                                                     .P_CONTRACT_START_DATE = obj.CONTRACT_START_DATE,
+                                                     .P_CONTRACT_EXPIRE_DATE = obj.CONTRACT_EXPIRE_DATE,
+                                                     .P_PLHD_CONTRACT_NO = obj.PLHD_CONTRACT_NO,
+                                                     .P_PLHD_SIGN_DATE = obj.PLHD_SIGN_DATE,
+                                                     .P_PLHD_START_DATE = obj.PLHD_START_DATE,
+                                                     .P_PLHD_EXPIRE_DATE = obj.PLHD_EXPIRE_DATE,
+                                                     .P_INS_ORG_ID = obj.INS_ORG_NAME,
+                                                     .P_REMARK = obj.REMARK,
+                                                     .P_MODIFIED_BY = log.Username,
+                                                     .P_MODIFIED_LOG = log.Ip & log.ComputerName,
+                                                     .P_CUR = cls.OUT_CURSOR})
+
+            Return True
+        End Using
+        Return Nothing
+    End Function
+
+#End Region
+
 End Class

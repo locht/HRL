@@ -801,4 +801,77 @@ Partial Class InsuranceRepository
         End Using
     End Function
 #End Region
+
+#Region "Quản lý tai nạn"
+    Public Function GetAccidentRisk(ByVal _filter As INS_ACCIDENT_RISKDTO,
+                                 ByVal OrgId As Integer,
+                                 Optional ByVal PageIndex As Integer = 0,
+                                 Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                 Optional ByRef Total As Integer = 0,
+                                 Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of INS_ACCIDENT_RISKDTO)
+        Using rep As New InsuranceBusinessClient
+            Try
+                Return rep.GetAccidentRisk(_filter, OrgId, PageIndex, PageSize, Total, Sorts, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function DeleteAccidentRisk(ByVal lstID As List(Of Decimal)) As Boolean
+        Using rep As New InsuranceBusinessClient
+            Try
+                Return rep.DeleteAccidentRisk(lstID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function GET_INS_ACCIDENT_RISK(ByVal P_ID As Integer) As INS_ACCIDENT_RISKDTO
+        Using rep As New InsuranceBusinessClient
+            Try
+                Return rep.GET_INS_ACCIDENT_RISK(P_ID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function GET_EMPLOYEE_ACCIDENT_RISK(ByVal P_EMP_ID As Integer) As INS_ACCIDENT_RISKDTO
+        Using rep As New InsuranceBusinessClient
+            Try
+                Return rep.GET_EMPLOYEE_ACCIDENT_RISK(P_EMP_ID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function INSERT_INS_ACCIDENT_RISK(ByVal obj As INS_ACCIDENT_RISKDTO) As Boolean
+        Using rep As New InsuranceBusinessClient
+            Try
+                Return rep.INSERT_INS_ACCIDENT_RISK(obj, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function UPDATE_INS_ACCIDENT_RISK(ByVal obj As INS_ACCIDENT_RISKDTO) As Boolean
+        Using rep As New InsuranceBusinessClient
+            Try
+                Return rep.UPDATE_INS_ACCIDENT_RISK(obj, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+#End Region
 End Class

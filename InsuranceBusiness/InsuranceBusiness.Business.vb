@@ -819,5 +819,80 @@ Namespace InsuranceBusiness.ServiceImplementations
             End Using
         End Function
 #End Region
+
+#Region "Quản lý tai nạn"
+        Public Function GetAccidentRisk(ByVal _filter As INS_ACCIDENT_RISKDTO,
+                               ByVal OrgId As Integer,
+                               Optional ByVal PageIndex As Integer = 0,
+                               Optional ByVal PageSize As Integer = Integer.MaxValue,
+                               Optional ByRef Total As Integer = 0,
+                               Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of INS_ACCIDENT_RISKDTO) Implements ServiceContracts.IInsuranceBusiness.GetAccidentRisk
+            Using rep As New InsuranceRepository
+                Try
+
+                    Return rep.GetAccidentRisk(_filter, OrgId, PageIndex, PageSize, Total, Sorts, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function DeleteAccidentRisk(ByVal lstID As List(Of Decimal)) As Boolean Implements ServiceContracts.IInsuranceBusiness.DeleteAccidentRisk
+            Using rep As New InsuranceRepository
+                Try
+
+                    Return rep.DeleteAccidentRisk(lstID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function GET_INS_ACCIDENT_RISK(ByVal P_ID As Integer) As INS_ACCIDENT_RISKDTO Implements ServiceContracts.IInsuranceBusiness.GET_INS_ACCIDENT_RISK
+            Using rep As New InsuranceRepository
+                Try
+
+                    Return rep.GET_INS_ACCIDENT_RISK(P_ID)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function GET_EMPLOYEE_ACCIDENT_RISK(ByVal P_EMP_ID As Integer) As INS_ACCIDENT_RISKDTO Implements ServiceContracts.IInsuranceBusiness.GET_EMPLOYEE_ACCIDENT_RISK
+            Using rep As New InsuranceRepository
+                Try
+
+                    Return rep.GET_EMPLOYEE_ACCIDENT_RISK(P_EMP_ID)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function INSERT_INS_ACCIDENT_RISK(ByVal obj As INS_ACCIDENT_RISKDTO, Optional ByVal log As UserLog = Nothing) As Boolean Implements ServiceContracts.IInsuranceBusiness.INSERT_INS_ACCIDENT_RISK
+            Using rep As New InsuranceRepository
+                Try
+
+                    Return rep.INSERT_INS_ACCIDENT_RISK(obj, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function UPDATE_INS_ACCIDENT_RISK(ByVal obj As INS_ACCIDENT_RISKDTO, Optional ByVal log As UserLog = Nothing) As Boolean Implements ServiceContracts.IInsuranceBusiness.UPDATE_INS_ACCIDENT_RISK
+            Using rep As New InsuranceRepository
+                Try
+
+                    Return rep.UPDATE_INS_ACCIDENT_RISK(obj, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
+
     End Class
 End Namespace

@@ -837,5 +837,29 @@ Namespace InsuranceBusiness.ServiceContracts
         <OperationContract()>
         Function GET_MLTTC(ByVal p_date As Date) As DataTable
 #End Region
+
+        <OperationContract()>
+        Function GetAccidentRisk(ByVal _filter As INS_ACCIDENT_RISKDTO,
+                               ByVal OrgId As Integer,
+                               Optional ByVal PageIndex As Integer = 0,
+                               Optional ByVal PageSize As Integer = Integer.MaxValue,
+                               Optional ByRef Total As Integer = 0,
+                               Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of INS_ACCIDENT_RISKDTO)
+
+        <OperationContract()>
+        Function DeleteAccidentRisk(ByVal lstID As List(Of Decimal)) As Boolean
+
+        <OperationContract()>
+        Function GET_INS_ACCIDENT_RISK(ByVal P_ID As Integer) As INS_ACCIDENT_RISKDTO
+
+        <OperationContract()>
+        Function GET_EMPLOYEE_ACCIDENT_RISK(ByVal P_EMP_ID As Integer) As INS_ACCIDENT_RISKDTO
+
+        <OperationContract()>
+        Function INSERT_INS_ACCIDENT_RISK(ByVal obj As INS_ACCIDENT_RISKDTO, Optional ByVal log As UserLog = Nothing) As Boolean
+
+        <OperationContract()>
+        Function UPDATE_INS_ACCIDENT_RISK(ByVal obj As INS_ACCIDENT_RISKDTO, Optional ByVal log As UserLog = Nothing) As Boolean
+
     End Interface
 End Namespace

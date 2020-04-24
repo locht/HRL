@@ -87,6 +87,7 @@
   <ItemGroup>
     <Compile Include="BusinessObjects\ContractTypeDTO.vb" />
     <Compile Include="BusinessObjects\ComboBoxDataDTO.vb" />
+    <Compile Include="BusinessObjects\INS_ACCIDENT_RISKDTO.vb" />
     <Compile Include="BusinessObjects\Dashboard\StatisticDTO.vb" />
     <Compile Include="BusinessObjects\Dashboard\StatisticInsCeilingDTO.vb" />
     <Compile Include="BusinessObjects\Dashboard\StatisticInsRateDTO.vb" />

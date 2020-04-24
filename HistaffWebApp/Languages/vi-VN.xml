@@ -45166,4 +45166,100 @@ Xin cám ơn!
       <string>Số thứ tự</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLINSACCIDENTRISK</string>
+    </Key>
+    <Value>
+      <string>Quản lý tai nạn rủi ro</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CHI NHÁNH/KHỐI/TRUNG TÂM</string>
+    </Key>
+    <Value>
+      <string>Chi nhánh/Khối/Trung tâm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NHÀ MÁY/PHÒNG/BAN</string>
+    </Key>
+    <Value>
+      <string>Nhà máy/Phòng/Ban</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀNH/VĂN PHÒNG ĐẠI DIỆN/BỘ PHẬN</string>
+    </Key>
+    <Value>
+      <string>Ngành/văn phòng đại diện/Bộ phận</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ THỨ TỰ HD</string>
+    </Key>
+    <Value>
+      <string>Số thứ tự HD</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY KÝ HỢP ĐỒNG</string>
+    </Key>
+    <Value>
+      <string>Ngày ký hợp đồng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY HIỆU LỰC HỢP ĐỒNG</string>
+    </Key>
+    <Value>
+      <string>Ngày hiệu lực hợp đồng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHỤ LỤC HỢP ĐỒNG</string>
+    </Key>
+    <Value>
+      <string>Phụ lục hợp đồng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY KÝ PHỤ LỤC HỢP ĐỒNG</string>
+    </Key>
+    <Value>
+      <string>Ngày ký phụ lục hợp đồng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY HIỆU LỰC CỦA PHỤ LỤC</string>
+    </Key>
+    <Value>
+      <string>Ngày hiệu lực của phụ lục</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY KẾT THÚC CỦA PHỤ LỤC</string>
+    </Key>
+    <Value>
+      <string>Ngày kết thúc của phụ lục</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLINSACCIDENTRISKNEWEDIT</string>
+    </Key>
+    <Value>
+      <string>Thông tin tai nạn rủi ro</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
