@@ -72,6 +72,7 @@
             <EntitySet Name="AT_HOLIDAY" EntityType="PayrollModel.Store.AT_HOLIDAY" store:Type="Tables"  />
             <EntitySet Name="AT_SETUP_BONUS" EntityType="PayrollModel.Store.AT_SETUP_BONUS" store:Type="Tables"  />
             <EntitySet Name="AT_ORG_SETUPBONUS" EntityType="PayrollModel.Store.AT_ORG_SETUPBONUS" store:Type="Tables"  />
+            <EntitySet Name="PA_TAX_FINALIZATION" EntityType="PayrollModel.Store.PA_TAX_FINALIZATION" store:Type="Tables"  />
             <AssociationSet Name="FK_PSG_PSL" Association="PayrollModel.Store.FK_PSG_PSL">
                 <End Role="PA_SALARY_GROUP" EntitySet="PA_SALARY_GROUP" />
                 <End Role="PA_SALARY_LEVEL" EntitySet="PA_SALARY_LEVEL" />
@@ -1551,6 +1552,32 @@
             <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
         </EntityType>
+        <EntityType Name="PA_TAX_FINALIZATION">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="YEAR" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TAX_FINALIZATION_NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="START_DATE" Type="date" Nullable="true" />
+            <Property Name="END_DATE" Type="date" Nullable="true" />
+            <Property Name="START_DATE_MONTH" Type="number" Nullable="true" Precision="38" />
+            <Property Name="END_DATE_MONTH" Type="number" Nullable="true" Precision="38" />
+            <Property Name="START_DATE_YEAR" Type="number" Nullable="true" Precision="38" />
+            <Property Name="END_DATE_YEAR" Type="number" Nullable="true" Precision="38" />
+            <Property Name="YEAR_PERIOD" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PERIOD_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+            <Property Name="IS_TAX" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TAX_FINALIZATION_NAME_EN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+        </EntityType>
     <Association Name="FK_PSG_PSL">
         <End Role="PA_SALARY_GROUP" Type="PayrollModel.Store.PA_SALARY_GROUP" Multiplicity="1">
         </End>
@@ -1910,6 +1937,7 @@
           <EntitySet Name="AT_HOLIDAY" EntityType="PayrollModel.AT_HOLIDAY" />
           <EntitySet Name="AT_SETUP_BONUS" EntityType="PayrollModel.AT_SETUP_BONUS" />
           <EntitySet Name="AT_ORG_SETUPBONUS" EntityType="PayrollModel.AT_ORG_SETUPBONUS" />
+          <EntitySet Name="PA_TAX_FINALIZATION" EntityType="PayrollModel.PA_TAX_FINALIZATION" />
           </EntityContainer>
         <EntityType Name="PA_SALARY_GROUP">
           <Key>
@@ -3549,6 +3577,32 @@
           <Property Type="DateTime" Name="MODIFIED_DATE" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="PA_TAX_FINALIZATION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="YEAR" Precision="38" Scale="0" />
+          <Property Type="String" Name="TAX_FINALIZATION_NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="START_DATE" />
+          <Property Type="DateTime" Name="END_DATE" />
+          <Property Type="Decimal" Name="START_DATE_MONTH" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="END_DATE_MONTH" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="START_DATE_YEAR" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="END_DATE_YEAR" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="YEAR_PERIOD" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PERIOD_ID" Precision="38" Scale="0" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="IS_TAX" Precision="38" Scale="0" />
+          <Property Type="String" Name="TAX_FINALIZATION_NAME_EN" MaxLength="255" Unicode="true" FixedLength="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5033,6 +5087,33 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="PA_TAX_FINALIZATION">
+            <EntityTypeMapping TypeName="IsTypeOf(PayrollModel.PA_TAX_FINALIZATION)">
+                <MappingFragment StoreEntitySet="PA_TAX_FINALIZATION">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+                    <ScalarProperty Name="TAX_FINALIZATION_NAME" ColumnName="TAX_FINALIZATION_NAME" />
+                    <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+                    <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
+                    <ScalarProperty Name="START_DATE_MONTH" ColumnName="START_DATE_MONTH" />
+                    <ScalarProperty Name="END_DATE_MONTH" ColumnName="END_DATE_MONTH" />
+                    <ScalarProperty Name="START_DATE_YEAR" ColumnName="START_DATE_YEAR" />
+                    <ScalarProperty Name="END_DATE_YEAR" ColumnName="END_DATE_YEAR" />
+                    <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR_PERIOD" />
+                    <ScalarProperty Name="PERIOD_ID" ColumnName="PERIOD_ID" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+                    <ScalarProperty Name="IS_TAX" ColumnName="IS_TAX" />
+                    <ScalarProperty Name="TAX_FINALIZATION_NAME_EN" ColumnName="TAX_FINALIZATION_NAME_EN" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
     </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -5209,6 +5290,7 @@
         <EntityTypeShape EntityType="PayrollModel.AT_HOLIDAY" Width="1.5" PointX="24.375" PointY="0.75" Height="4.8648079427083246" />
         <EntityTypeShape EntityType="PayrollModel.AT_SETUP_BONUS" Width="1.5" PointX="24.375" PointY="6.75" Height="4.2879036458333246" />
         <EntityTypeShape EntityType="PayrollModel.AT_ORG_SETUPBONUS" Width="1.5" PointX="14.375" PointY="25.75" Height="2.7494921874999818" />
+        <EntityTypeShape EntityType="PayrollModel.PA_TAX_FINALIZATION" Width="3.25" PointX="30.125" PointY="0.875" Height="5.057109375" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
