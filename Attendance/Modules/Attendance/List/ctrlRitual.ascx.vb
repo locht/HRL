@@ -165,11 +165,13 @@ Public Class ctrlRitual
                     txtNameVN.Text = ""
                     rdNote.Text = ""
                     rdDate.SelectedDate = Nothing
+                    chkInternalHolyday.Checked = False
 
                     txtCode.Enabled = False
                     txtNameVN.Enabled = True
                     rdDate.Enabled = True
                     rdNote.Enabled = True
+                    chkInternalHolyday.Enabled = False
                     EnabledGridNotPostback(rgDanhMuc, False)
 
                 Case CommonMessage.STATE_NORMAL
@@ -177,11 +179,13 @@ Public Class ctrlRitual
                     txtNameVN.Text = ""
                     rdNote.Text = ""
                     rdDate.SelectedDate = Nothing
+                    chkInternalHolyday.Checked = False
 
                     rdDate.Enabled = False
                     txtCode.Enabled = False
                     txtNameVN.Enabled = False
                     rdNote.Enabled = False
+                    chkInternalHolyday.Enabled = False
                     EnabledGridNotPostback(rgDanhMuc, True)
                 Case CommonMessage.STATE_EDIT
 
@@ -189,6 +193,7 @@ Public Class ctrlRitual
                     txtCode.Enabled = False
                     txtNameVN.Enabled = True
                     rdNote.Enabled = True
+                    chkInternalHolyday.Enabled = True
                     EnabledGridNotPostback(rgDanhMuc, False)
 
                 Case CommonMessage.STATE_DEACTIVE
@@ -201,7 +206,7 @@ Public Class ctrlRitual
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         CurrentState = CommonMessage.STATE_NORMAL
                         rgDanhMuc.Rebind()
-                        ClearControlValue(txtCode, rdDate, rdNote, txtNameVN)
+                        ClearControlValue(txtCode, rdDate, rdNote, txtNameVN, chkInternalHolyday)
                         rdDate.SelectedDate = Nothing
                         rgDanhMuc.SelectedIndexes.Clear()
                     Else
@@ -217,7 +222,7 @@ Public Class ctrlRitual
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         CurrentState = CommonMessage.STATE_NORMAL
                         rgDanhMuc.Rebind()
-                        ClearControlValue(txtCode, rdDate, rdNote, txtNameVN)
+                        ClearControlValue(txtCode, rdDate, rdNote, txtNameVN, chkInternalHolyday)
                         rdDate.SelectedDate = Nothing
                         rgDanhMuc.SelectedIndexes.Clear()
                     Else
@@ -265,6 +270,7 @@ Public Class ctrlRitual
             Dim dic As New Dictionary(Of String, Control)
             dic.Add("CODE", txtCode)
             dic.Add("NAME_VN", txtNameVN)
+            dic.Add("INTERNAL_HOLYDAY", chkInternalHolyday)
             dic.Add("WORKINGDAY", rdDate)
             dic.Add("NOTE", rdNote)
             dic.Add("ID", txtID)
@@ -356,6 +362,7 @@ Public Class ctrlRitual
                         objHoliday.NAME_VN = txtNameVN.Text.Trim
                         objHoliday.WORKINGDAY = rdDate.SelectedDate
                         objHoliday.NOTE = rdNote.Text.Trim
+                        objHoliday.INTERNAL_HOLYDAY = chkInternalHolyday.Checked
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 Dim Validate As New AT_HOLIDAYDTO
