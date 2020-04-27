@@ -131,13 +131,13 @@ Partial Public Class ctrlAllowance
     Protected WithEvents RadPane3 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
-    '''txtTennhanvien control.
+    '''txtCode control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtTennhanvien As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtCode As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''btnFindEmployee control.
@@ -149,6 +149,42 @@ Partial Public Class ctrlAllowance
     Protected WithEvents btnFindEmployee As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
+    '''rqCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rqCode As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''txtTennhanvien control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTennhanvien As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''txtTitle control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTitle As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''txtOrgName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtOrgName As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''cboPhucap control.
     '''</summary>
     '''<remarks>
@@ -156,6 +192,15 @@ Partial Public Class ctrlAllowance
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboPhucap As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''rqPhuCap control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rqPhuCap As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''txtSotien control.
@@ -167,6 +212,15 @@ Partial Public Class ctrlAllowance
     Protected WithEvents txtSotien As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
+    '''rqSotien control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rqSotien As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''dpTungay control.
     '''</summary>
     '''<remarks>
@@ -176,6 +230,15 @@ Partial Public Class ctrlAllowance
     Protected WithEvents dpTungay As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''rqTungay control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rqTungay As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''dpDenngay control.
     '''</summary>
     '''<remarks>
@@ -183,6 +246,15 @@ Partial Public Class ctrlAllowance
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dpDenngay As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''cpDenngay control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cpDenngay As Global.System.Web.UI.WebControls.CompareValidator
 
     '''<summary>
     '''txtGhichu control.

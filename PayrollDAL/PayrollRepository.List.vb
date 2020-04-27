@@ -11,32 +11,35 @@ Imports System.Reflection
 Partial Public Class PayrollRepository
 
 #Region "Allowance_list "
+    'lấy ds phu cấp không checked bh
     Public Function GetAllowanceList(ByVal _filter As AllowanceListDTO,
                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AllowanceListDTO)
 
         Try
             Dim query = From p In Context.HU_ALLOWANCE_LIST
-                        From s In Context.OT_OTHER_LIST.Where(Function(e) e.ID = p.ALLOWANCE_TYPE).DefaultIfEmpty()
-                        From n In Context.OT_OTHER_LIST.Where(Function(e) e.ID = p.ALLOWANCE_GROUP).DefaultIfEmpty()
+                            Where (p.IS_INSURANCE = 0)
+            ' From s In Context.OT_OTHER_LIST.Where(Function(e) e.ID = p.ALLOWANCE_TYPE).DefaultIfEmpty()
+            'From n In Context.OT_OTHER_LIST.Where(Function(e) e.ID = p.ALLOWANCE_GROUP).DefaultIfEmpty()
+
             'Join s In Context.OT_OTHER_LIST On p.ALLOWANCE_TYPE Equals (s.ID)
 
             Dim lst = query.Select(Function(e) New AllowanceListDTO With {
-                                       .ID = e.p.ID,
-                                       .CODE = e.p.CODE,
-                                       .NAME = e.p.NAME,
-                                       .REMARK = e.p.REMARK,
-                                       .ACTFLG = e.p.ACTFLG,
-                                       .CREATED_DATE = e.p.CREATED_DATE,
-                                       .ALLOWANCE_TYPE = e.p.ALLOWANCE_TYPE,
-                                       .ORDERS = e.p.ORDERS,
-                                       .IS_CONTRACT = e.p.IS_CONTRACT,
-                                       .IS_INSURANCE = e.p.IS_INSURANCE,
-                                       .IS_PAY = e.p.IS_PAY,
-                                       .ALLOWANCE_TYPE_NAME = e.s.NAME_VN,
-                                       .ALLOWANCE_GROUP = e.p.ALLOWANCE_GROUP,
-                                       .ALLOWANCE_GROUP_NAME = e.n.NAME_VN
+                                       .ID = e.ID,
+                                       .CODE = e.CODE,
+                                       .NAME = e.NAME,
+                                       .REMARK = e.REMARK,
+                                       .ACTFLG = e.ACTFLG,
+                                       .CREATED_DATE = e.CREATED_DATE,
+                                       .ALLOWANCE_TYPE = e.ALLOWANCE_TYPE,
+                                       .ORDERS = e.ORDERS,
+                                       .IS_CONTRACT = e.IS_CONTRACT,
+                                       .IS_INSURANCE = e.IS_INSURANCE,
+                                       .IS_PAY = e.IS_PAY
                                    })
-
+            ',
+            '                           .ALLOWANCE_TYPE_NAME = e.s.NAME_VN,
+            '                           .ALLOWANCE_GROUP = e.p.ALLOWANCE_GROUP,
+            '.ALLOWANCE_GROUP_NAME = e.n.NAME_VN
             If _filter.CODE <> "" Then
                 lst = lst.Where(Function(p) p.CODE.ToUpper.Contains(_filter.CODE.ToUpper))
             End If
@@ -70,12 +73,16 @@ Partial Public Class PayrollRepository
         Try
             Dim lst = (From p In Context.HU_ALLOWANCE
                        From e In Context.HU_EMPLOYEE.Where(Function(e) e.ID = p.EMPLOYEE_ID).DefaultIfEmpty()
+                       From title In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
+                       From org_name In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
                         From o In Context.HU_ALLOWANCE_LIST.Where(Function(o) o.ID = p.ALLOWANCE_TYPE).DefaultIfEmpty()
            Select New AllowanceDTO With {
                                         .ID = p.ID,
                                         .ALLOWANCE_TYPE = p.ALLOWANCE_TYPE,
                                         .ALLOWANCE_TYPE_NAME = o.NAME,
                                         .AMOUNT = p.AMOUNT,
+                                        .TITLE_NAME = title.NAME_VN,
+                                        .ORG_NAME = org_name.NAME_VN,
                                         .EFFECT_DATE = p.EFFECT_DATE,
                                         .EMPLOYEE_ID = p.EMPLOYEE_ID,
                                         .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
@@ -83,7 +90,7 @@ Partial Public Class PayrollRepository
                                         .EXP_DATE = p.EXP_DATE,
                                         .CREATED_DATE = p.CREATED_DATE,
                                         .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng"),
-                                        .REMARK = p.REMARK
+            .REMARK = p.REMARK
                                     })
 
             If _filter.EMPLOYEE_ID <> "" Then
@@ -3339,7 +3346,7 @@ Partial Public Class PayrollRepository
 
             Dim lst = query.Select(Function(p) New PATaxFinalizationDTO With {
                                        .ID = p.ID,
-                                       .Year = p.YEAR,
+                                       .YEAR = p.YEAR,
                                        .TAX_FINALIZATION_NAME = p.TAX_FINALIZATION_NAME,
                                        .START_DATE = p.START_DATE,
                                        .END_DATE = p.END_DATE,
@@ -3456,7 +3463,7 @@ Partial Public Class PayrollRepository
             Dim query = From p In Context.PA_TAX_FINALIZATION Where p.YEAR = year And p.ACTFLG = "A" Order By p.START_DATE Ascending
             Dim Period = query.Select(Function(p) New PATaxFinalizationDTO With {
                                        .ID = p.ID,
-                                       .year = p.YEAR,
+                                       .YEAR = p.YEAR,
                                        .TAX_FINALIZATION_NAME = p.TAX_FINALIZATION_NAME,
                                        .START_DATE = p.START_DATE,
                                        .END_DATE = p.END_DATE,

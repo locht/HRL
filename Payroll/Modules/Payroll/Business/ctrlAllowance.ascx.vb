@@ -92,7 +92,7 @@ Public Class ctrlAllowance
             objdata = rep.GetAllowanceList(obj)
             rep.Dispose()
 
-            FillDropDownList(cboPhucap, objdata, "NAME", "ID", Common.Common.SystemLanguage, False, cboPhucap.SelectedValue)
+            FillDropDownList(cboPhucap, objdata, "NAME", "ID", Common.Common.SystemLanguage, True)
 
         Catch ex As Exception
             Throw ex
@@ -104,8 +104,11 @@ Public Class ctrlAllowance
         GetDataCombobox()
         Dim dic As New Dictionary(Of String, Control)
         dic.Add("EMPLOYEE_ID", hidEmp)
+        dic.Add("EMPLOYEE_CODE", txtCode)
         dic.Add("FULLNAME_VN", txtTennhanvien)
-        dic.Add("ALLOWANCE_TYPE_NAME", cboPhucap)
+        dic.Add("TITLE_NAME", txtTitle)
+        dic.Add("ORG_NAME", txtOrgName)
+        dic.Add("ALLOWANCE_TYPE", cboPhucap)
         dic.Add("AMOUNT", txtSotien)
         dic.Add("EFFECT_DATE", dpTungay)
         dic.Add("EXP_DATE", dpDenngay)
@@ -199,16 +202,16 @@ Public Class ctrlAllowance
             Select Case CurrentState
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgData, True)
-                    EnableControlAll(False, cboPhucap, txtEmployeeCode, txtSotien, txtTennhanvien, txtGhichu, dpTungay, dpDenngay, btnFindEmployee)
+                    EnableControlAll(False, cboPhucap, txtSotien, txtTennhanvien, txtGhichu, dpTungay, dpDenngay, btnFindEmployee, txtCode, txtTitle, txtOrgName)
                 Case CommonMessage.STATE_NEW
                     EnabledGridNotPostback(rgData, False)
-                    EnableControlAll(True, cboPhucap, txtEmployeeCode, txtSotien, txtTennhanvien, txtGhichu, dpTungay, dpDenngay, btnFindEmployee)
-                    ClearControlValue(cboPhucap, txtEmployeeCode, txtSotien, txtTennhanvien, txtGhichu, dpTungay, dpDenngay)
+                    EnableControlAll(True, cboPhucap, txtSotien, txtGhichu, dpTungay, dpDenngay, btnFindEmployee)
+                    ClearControlValue(cboPhucap, txtEmployeeCode, txtSotien, txtTennhanvien, txtGhichu, dpTungay, dpDenngay, txtCode, txtTitle, txtOrgName)
                     CType(Me.MainToolBar.Items(2), RadToolBarButton).Enabled = True
                     CType(Me.MainToolBar.Items(3), RadToolBarButton).Enabled = True
                 Case CommonMessage.STATE_EDIT
                     EnabledGridNotPostback(rgData, False)
-                    EnableControlAll(True, cboPhucap, txtEmployeeCode, txtSotien, txtTennhanvien, txtGhichu, dpTungay, dpDenngay, btnFindEmployee)
+                    EnableControlAll(True, cboPhucap, txtEmployeeCode, txtSotien, txtTennhanvien, txtGhichu, dpTungay, dpDenngay, btnFindEmployee, txtCode, txtTitle, txtOrgName)
                 Case CommonMessage.STATE_ACTIVE
                     Dim lstDeletes As New List(Of Decimal)
                     For idx = 0 To rgData.SelectedItems.Count - 1
@@ -257,6 +260,9 @@ Public Class ctrlAllowance
             Dim empID = ctrlFindEmployeePopup.SelectedEmployee(0)
             txtTennhanvien.Text = empID.FULLNAME_VN
             hidEmp.Value = empID.EMPLOYEE_ID
+            txtCode.Text = empID.EMPLOYEE_CODE
+            txtTitle.Text = empID.TITLE_NAME
+            txtOrgName.Text = empID.ORG_NAME
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -388,7 +394,7 @@ Public Class ctrlAllowance
                     ctrlMessageBox.Show()
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     CurrentState = CommonMessage.STATE_NORMAL
-                    ClearControlValue(txtEmployeeCode, txtGhichu, txtSotien, cboPhucap)
+                    ClearControlValue(txtEmployeeCode, txtGhichu, txtSotien, cboPhucap, txtCode, txtTitle, txtOrgName, txtTennhanvien, dpTungay, dpDenngay)
                     UpdateControlState()
             End Select
             'UpdateControlState()
@@ -460,7 +466,7 @@ Public Class ctrlAllowance
                 End If
             Else
                 If Sorts IsNot Nothing Then
-                    objData = rep.GetAllowance(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, "COL_INDEX ASC")
+                    objData = rep.GetAllowance(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, "CREATED_DATE ASC")
                 Else
                     objData = rep.GetAllowance(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows)
                 End If
