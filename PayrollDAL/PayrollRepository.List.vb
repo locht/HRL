@@ -928,7 +928,7 @@ Partial Public Class PayrollRepository
                     objOrgPeriodData = New AT_ORG_SETUPBONUS
                     objOrgPeriodData.ID = Utilities.GetNextSequence(Context, Context.AT_ORG_SETUPBONUS.EntitySet.Name)
                     objOrgPeriodData.ORG_ID = obj.ORG_ID
-                    objOrgPeriodData.SETUP_BONUS_ID = obj.ID
+                    objOrgPeriodData.SETUP_BONUS_ID = objPeriodData.ID
                     Context.AT_ORG_SETUPBONUS.AddObject(objOrgPeriodData)
                     Context.SaveChanges(log)
                 Next
