@@ -24,6 +24,8 @@ Public Class AllowanceDTO
     Public Property ID As Decimal
     Public Property EMPLOYEE_ID As String
     Public Property EMPLOYEE_CODE As String
+    Public Property TITLE_NAME As String
+    Public Property ORG_NAME As String
     Public Property FULLNAME_VN As String
     Public Property ALLOWANCE_TYPE As Decimal
     Public Property ALLOWANCE_TYPE_NAME As String
