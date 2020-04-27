@@ -346,7 +346,7 @@
     <None Include="Service References\PayrollBusiness\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Service References\PayrollBusiness\service3.wsdl" />
+    <None Include="Service References\PayrollBusiness\service3.wsdl" />
     <None Include="Service References\PayrollBusiness\service7.xsd">
       <SubType>Designer</SubType>
     </None>
