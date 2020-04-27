@@ -291,7 +291,7 @@
         <table class="table-form">
             <tr>
                 <td>
-                    <tlk:RadButton ID="btnTrungTuyen" runat="server" Text="<%$ Translate: Trúng tuyển %>">
+                    <tlk:RadButton ID="btnTrungTuyen" runat="server" Text="<%$ Translate: Xác nhận offer %>">
                     </tlk:RadButton>
                 </td>
                 <td>
@@ -311,11 +311,11 @@
                         OnClientClicked="DisableAjax" Visible="false">
                     </tlk:RadButton>
                 </td>
-                <td>
+               <%-- <td>
                     <tlk:RadButton ID="btnReceive" runat="server" Text="<%$ Translate: Thư mời nhận việc %>"
                         OnClientClicked="DisableAjax">
                     </tlk:RadButton>
-                </td>
+                </td>--%>
               <%--  <td>
                     <tlk:RadButton ID="btnThankLetter" runat="server" Text="<%$ Translate: Thư cảm ơn %>"
                         OnClientClicked="DisableAjax">
@@ -325,10 +325,10 @@
                     <tlk:RadButton ID="btnTransfer" runat="server" Text="<%$ Translate: Chuyển sang HSNV %>">
                     </tlk:RadButton>
                 </td>
-                <td colspan="2">
+               <%-- <td colspan="2">
                     <tlk:RadButton ID="cmdYCTDKhac" runat="server" Width="100%" Text="<%$ Translate: Chuyển sang vị trí tuyển dụng khác %>">
                     </tlk:RadButton>
-                </td>
+                </td>--%>
                 <td>
                     <tlk:RadButton ID="btnExportContract" runat="server" Text="<%$ Translate: Xuất tờ trình ký HĐLĐ thử việc %>"
                         OnClientClicked="DisableAjax" Visible="false">
@@ -356,7 +356,7 @@
 </tlk:RadWindowManager>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
-       
+
         function gridRowDblClick(sender, eventArgs) {
             OpenEditWindow("Normal");
         }

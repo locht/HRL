@@ -10,6 +10,7 @@
     Public Const TUCHOI As String = "TUCHOI"
     Public Const BLACKLIST As String = "BLACKLIST"
     Public Const PONTENTIAL As String = "PONTENTIAL"
+    Public Const XNTT As String = "XNTT"
 End Class
 
 

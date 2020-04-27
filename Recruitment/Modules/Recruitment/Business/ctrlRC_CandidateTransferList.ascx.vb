@@ -134,11 +134,13 @@ Public Class ctrlRC_CandidateTransferList
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Try
                 If Not IsPostBack Then
-                    For Each item As RadListBoxItem In rlbStatus.Items
+                For Each item As RadListBoxItem In rlbStatus.Items
+                    If item.Value = RCContant.DAT Then
                         item.Checked = True
                         strStatus = strStatus & item.Value & ","
-                    Next
-
+                        Exit For
+                    End If
+                Next
                     Dim rep As New RecruitmentRepository
                     Dim objPro = rep.GetProgramByID(New ProgramDTO With {.ID = Decimal.Parse(hidProgramID.Value)})
                     lblOrgName.Text = objPro.ORG_NAME
@@ -274,48 +276,52 @@ Public Class ctrlRC_CandidateTransferList
     '    End If
     'End Sub
 
-    Private Sub cmdYCTDKhac_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdYCTDKhac.Click
-        Dim strEmp As String = ""
-        Dim status As String
-        If rgCandidateList.SelectedItems.Count = 0 Then
-            ShowMessage("Vui lòng chọn 1 ứng viên", NotifyType.Warning)
-            Exit Sub
-        End If
+    'Private Sub cmdYCTDKhac_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdYCTDKhac.Click
+    '    Dim strEmp As String = ""
+    '    Dim status As String
+    '    If rgCandidateList.SelectedItems.Count = 0 Then
+    '        ShowMessage("Vui lòng chọn 1 ứng viên", NotifyType.Warning)
+    '        Exit Sub
+    '    End If
 
-        For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
-            status = dr.GetDataKeyValue("STATUS_CODE").ToString
-            Select Case status
-                'Case RCContant.TUCHOI
-                '    ShowMessage(Translate("Tồn tại ứng viên đang ở từ chối trúng tuyển"), NotifyType.Warning)
-                '    Exit Sub
-                'Case RCContant.BLACKLIST
-                '    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái BlackList"), NotifyType.Warning)
-                '    Exit Sub
-                'Case RCContant.THUMOI
-                '    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Đã gửi thư mời tuyển dụng"), NotifyType.Warning)
-                '    Exit Sub
-                Case RCContant.NHANVIEN
-                    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Đã là nhân viên"), NotifyType.Warning)
-                    Exit Sub
-                Case RCContant.TIEPNHANLD
-                    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái gửi thông báo tiếp nhận LĐ thử việc"), NotifyType.Warning)
-                    Exit Sub
-            End Select
-            If strEmp = "" Then
-                strEmp = dr.GetDataKeyValue("FULLNAME_VN")
-            Else
-                strEmp = strEmp + "," + dr.GetDataKeyValue("FULLNAME_VN")
-            End If
-        Next
-        ctrlMessageBoxTransferProgram.MessageText = Translate("Bạn có muốn chuyển ứng viên: " + strEmp + " sang vị trí khác không")
-        ctrlMessageBoxTransferProgram.ActionName = "CHUYENUNGVIEN"
-        ctrlMessageBoxTransferProgram.DataBind()
-        ctrlMessageBoxTransferProgram.Show()
-    End Sub
+    '    For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
+    '        status = dr.GetDataKeyValue("STATUS_CODE").ToString
+    '        Select Case status
+    '            'Case RCContant.TUCHOI
+    '            '    ShowMessage(Translate("Tồn tại ứng viên đang ở từ chối trúng tuyển"), NotifyType.Warning)
+    '            '    Exit Sub
+    '            'Case RCContant.BLACKLIST
+    '            '    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái BlackList"), NotifyType.Warning)
+    '            '    Exit Sub
+    '            'Case RCContant.THUMOI
+    '            '    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Đã gửi thư mời tuyển dụng"), NotifyType.Warning)
+    '            '    Exit Sub
+    '            Case RCContant.NHANVIEN
+    '                ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Đã là nhân viên"), NotifyType.Warning)
+    '                Exit Sub
+    '            Case RCContant.TIEPNHANLD
+    '                ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái gửi thông báo tiếp nhận LĐ thử việc"), NotifyType.Warning)
+    '                Exit Sub
+    '        End Select
+    '        If strEmp = "" Then
+    '            strEmp = dr.GetDataKeyValue("FULLNAME_VN")
+    '        Else
+    '            strEmp = strEmp + "," + dr.GetDataKeyValue("FULLNAME_VN")
+    '        End If
+    '    Next
+    '    ctrlMessageBoxTransferProgram.MessageText = Translate("Bạn có muốn chuyển ứng viên: " + strEmp + " sang vị trí khác không")
+    '    ctrlMessageBoxTransferProgram.ActionName = "CHUYENUNGVIEN"
+    '    ctrlMessageBoxTransferProgram.DataBind()
+    '    ctrlMessageBoxTransferProgram.Show()
+    'End Sub
 
 
     Private Sub btnBlacklist_Click(sender As Object, e As System.EventArgs) Handles btnBlacklist.Click
         Dim status As String
+        If rgCandidateList.SelectedItems.Count = 0 Then
+            ShowMessage(Translate("Mời chọn ứng viên trước khi cập nhật"), NotifyType.Warning)
+            Exit Sub
+        End If
         For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
             status = dr.GetDataKeyValue("STATUS_CODE").ToString
             Select Case status
@@ -334,6 +340,9 @@ Public Class ctrlRC_CandidateTransferList
                 Case RCContant.TIEPNHANLD
                     ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái gửi thông báo tiếp nhận LĐ thử việc"), NotifyType.Warning)
                     Exit Sub
+                Case RCContant.XNTT
+                    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Xác nhận Offer"), NotifyType.Warning)
+                    Exit Sub
             End Select
         Next
         ctrlMessageBox.MessageText = Translate("Bạn có chắc chắn muốn chuyển trạng thái Blacklist cho các ứng viên?")
@@ -344,6 +353,10 @@ Public Class ctrlRC_CandidateTransferList
 
     Private Sub btnPontential_Click(sender As Object, e As System.EventArgs) Handles btnPontential.Click
         Dim status As String
+        If rgCandidateList.SelectedItems.Count < 0 Then
+            ShowMessage(Translate("Mời chọn nhân viên trước khi cập nhật"), NotifyType.Warning)
+            Exit Sub
+        End If
         For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
             status = dr.GetDataKeyValue("STATUS_CODE").ToString
             Select Case status
@@ -365,6 +378,9 @@ Public Class ctrlRC_CandidateTransferList
                 Case RCContant.TIEPNHANLD
                     ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái gửi thông báo tiếp nhận LĐ thử việc"), NotifyType.Warning)
                     Exit Sub
+                Case RCContant.XNTT
+                    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Xác nhận Offer"), NotifyType.Warning)
+                    Exit Sub
             End Select
         Next
         ctrlMessageBox.MessageText = Translate("Bạn có chắc chắn muốn lưu danh sách tiềm năng?")
@@ -376,6 +392,10 @@ Public Class ctrlRC_CandidateTransferList
     Private Sub btnTransfer_Click(sender As Object, e As System.EventArgs) Handles btnTransfer.Click
 
         Dim status As String
+        If rgCandidateList.SelectedItems.Count = 0 Then
+            ShowMessage(Translate("Mời chọn ứng viên trước khi cập nhật"), NotifyType.Warning)
+            Exit Sub
+        End If
         For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
             status = dr.GetDataKeyValue("STATUS_CODE").ToString
             Select Case status
@@ -409,6 +429,10 @@ Public Class ctrlRC_CandidateTransferList
 
     Private Sub btnTrungTuyen_Click(sender As Object, e As System.EventArgs) Handles btnTrungTuyen.Click
         Dim status As String
+        If rgCandidateList.SelectedItems.Count = 0 Then
+            ShowMessage(Translate("Mời chọn ứng viên trước khi cập nhật"), NotifyType.Warning)
+            Exit Sub
+        End If
         For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
             status = dr.GetDataKeyValue("STATUS_CODE").ToString
             Select Case status
@@ -427,16 +451,23 @@ Public Class ctrlRC_CandidateTransferList
                 Case RCContant.TIEPNHANLD
                     ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái gửi thông báo tiếp nhận LĐ thử việc"), NotifyType.Warning)
                     Exit Sub
+                Case RCContant.XNTT
+                    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Xác nhận Offer"), NotifyType.Warning)
+                    Exit Sub
             End Select
         Next
-        ctrlMessageBox.MessageText = Translate("Bạn có chắc chắn muốn chuyển trạng thái Đủ điều kiện cho các ứng viên?")
-        ctrlMessageBox.ActionName = RCContant.TRUNGTUYEN
+        ctrlMessageBox.MessageText = Translate("Bạn có chắc chắn muốn chuyển trạng thái Xác nhận Offer cho các ứng viên?")
+        ctrlMessageBox.ActionName = RCContant.XNTT
         ctrlMessageBox.DataBind()
         ctrlMessageBox.Show()
     End Sub
 
     Private Sub btnKhongTrungTuyen_Click(sender As Object, e As System.EventArgs) Handles btnKhongTrungTuyen.Click
         Dim status As String
+        If rgCandidateList.SelectedItems.Count = 0 Then
+            ShowMessage(Translate("Mời chọn ứng viên trước khi cập nhật"), NotifyType.Warning)
+            Exit Sub
+        End If
         For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
             status = dr.GetDataKeyValue("STATUS_CODE").ToString
             Select Case status
@@ -454,6 +485,9 @@ Public Class ctrlRC_CandidateTransferList
                     Exit Sub
                 Case RCContant.TIEPNHANLD
                     ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái gửi thông báo tiếp nhận LĐ thử việc"), NotifyType.Warning)
+                    Exit Sub
+                Case RCContant.XNTT
+                    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Xác nhận Offer"), NotifyType.Warning)
                     Exit Sub
             End Select
         Next
@@ -467,6 +501,10 @@ Public Class ctrlRC_CandidateTransferList
     Private Sub btnExportContract_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnExportContract.Click
         Dim strID As String
         Dim tempPath As String = ConfigurationManager.AppSettings("WordFileFolder")
+        If rgCandidateList.SelectedItems.Count = 0 Then
+            ShowMessage(Translate("Mời chọn ứng viên trước khi xuất tờ trình"), NotifyType.Warning)
+            Exit Sub
+        End If
         For Each dr As GridDataItem In rgCandidateList.SelectedItems
             strID = strID & dr.GetDataKeyValue("ID_CANDIDATE") & ","
         Next
@@ -479,61 +517,65 @@ Public Class ctrlRC_CandidateTransferList
         End If
     End Sub
 
-    Private Sub btnReceive_Click(sender As Object, e As System.EventArgs) Handles btnReceive.Click
-        Dim status As String
-        Dim strID As String
-        Dim tempPath As String = ConfigurationManager.AppSettings("WordFileFolder")
-        Dim filePath As String = ""
-        For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
-            status = dr.GetDataKeyValue("STATUS_CODE").ToString
-            Select Case status
-                Case RCContant.TUCHOI
-                    ShowMessage(Translate("Tồn tại ứng viên đang ở từ chối trúng tuyển"), NotifyType.Warning)
-                    Exit Sub
-                Case RCContant.BLACKLIST
-                    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái BlackList"), NotifyType.Warning)
-                    Exit Sub
-                Case RCContant.THUMOI
-                    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Đã gửi thư mời tuyển dụng"), NotifyType.Warning)
-                    Exit Sub
-                Case RCContant.NHANVIEN
-                    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Đã là nhân viên"), NotifyType.Warning)
-                    Exit Sub
-                Case RCContant.TIEPNHANLD
-                    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái gửi thông báo tiếp nhận LĐ thử việc"), NotifyType.Warning)
-                    Exit Sub
-            End Select
-        Next
+    'Private Sub btnReceive_Click(sender As Object, e As System.EventArgs) Handles btnReceive.Click
+    '    Dim status As String
+    '    Dim strID As String
+    '    Dim tempPath As String = ConfigurationManager.AppSettings("WordFileFolder")
+    '    Dim filePath As String = ""
+    '    For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
+    '        status = dr.GetDataKeyValue("STATUS_CODE").ToString
+    '        Select Case status
+    '            Case RCContant.TUCHOI
+    '                ShowMessage(Translate("Tồn tại ứng viên đang ở từ chối trúng tuyển"), NotifyType.Warning)
+    '                Exit Sub
+    '            Case RCContant.BLACKLIST
+    '                ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái BlackList"), NotifyType.Warning)
+    '                Exit Sub
+    '            Case RCContant.THUMOI
+    '                ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Đã gửi thư mời tuyển dụng"), NotifyType.Warning)
+    '                Exit Sub
+    '            Case RCContant.NHANVIEN
+    '                ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Đã là nhân viên"), NotifyType.Warning)
+    '                Exit Sub
+    '            Case RCContant.TIEPNHANLD
+    '                ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái gửi thông báo tiếp nhận LĐ thử việc"), NotifyType.Warning)
+    '                Exit Sub
+    '        End Select
+    '    Next
 
-        For Each dr As GridDataItem In rgCandidateList.SelectedItems
-            strID = strID & dr.GetDataKeyValue("ID_CANDIDATE") & ","
-        Next
-        Dim dtData = psp.LETTER_RECIEVE(strID)
-        If dtData.Rows.Count > 0 Then
-            Using word As New WordCommon
-                Dim sourcePath = Server.MapPath("~/ReportTemplates/Profile/LocationInfo/")
-                word.ExportMailMerge(System.IO.Path.Combine(Server.MapPath(tempPath),
-                                    "Recruitment/LETTER_RECIEVE.doc"),
-                                    "LETTER_RECIEVE_" & dtData.Rows(0)("NAME") & "HOTEN.doc" & "_" & _
-                                    Format(Date.Now, "yyyyMMddHHmmss"),
-                                    dtData,
-                                   sourcePath,
-                                    Response)
-                'word.ExportMailMerge(System.IO.Path.Combine(Server.MapPath(tempPath),
-                '                                      "Recruitment/LETTER_RECIEVE.doc"),
-                '                                     "LETTER_RECIEVE_" & dtData.Rows(0)("NAME") & "HOTEN.doc",
-                '                                      dtData,
-                '                                      Response)
-            End Using
+    '    For Each dr As GridDataItem In rgCandidateList.SelectedItems
+    '        strID = strID & dr.GetDataKeyValue("ID_CANDIDATE") & ","
+    '    Next
+    '    Dim dtData = psp.LETTER_RECIEVE(strID)
+    '    If dtData.Rows.Count > 0 Then
+    '        Using word As New WordCommon
+    '            Dim sourcePath = Server.MapPath("~/ReportTemplates/Profile/LocationInfo/")
+    '            word.ExportMailMerge(System.IO.Path.Combine(Server.MapPath(tempPath),
+    '                                "Recruitment/LETTER_RECIEVE.doc"),
+    '                                "LETTER_RECIEVE_" & dtData.Rows(0)("NAME") & "HOTEN.doc" & "_" & _
+    '                                Format(Date.Now, "yyyyMMddHHmmss"),
+    '                                dtData,
+    '                               sourcePath,
+    '                                Response)
+    '            'word.ExportMailMerge(System.IO.Path.Combine(Server.MapPath(tempPath),
+    '            '                                      "Recruitment/LETTER_RECIEVE.doc"),
+    '            '                                     "LETTER_RECIEVE_" & dtData.Rows(0)("NAME") & "HOTEN.doc",
+    '            '                                      dtData,
+    '            '                                      Response)
+    '        End Using
 
-        Else
-            ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
-            Exit Sub
-        End If
-    End Sub
+    '    Else
+    '        ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
+    '        Exit Sub
+    '    End If
+    'End Sub
 
     Private Sub btnLĐ_Click(sender As Object, e As System.EventArgs) Handles btnLĐ.Click
         Dim status As String
+        If rgCandidateList.SelectedItems.Count = 0 Then
+            ShowMessage(Translate("Mời chọn ứng viên trước khi gửi"), NotifyType.Warning)
+            Exit Sub
+        End If
         For Each dr As Telerik.Web.UI.GridDataItem In rgCandidateList.SelectedItems
             status = dr.GetDataKeyValue("STATUS_CODE").ToString
             Select Case status
@@ -541,7 +583,7 @@ Public Class ctrlRC_CandidateTransferList
                     ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Trúng tuyển"), NotifyType.Warning)
                     Exit Sub
                 Case RCContant.TUCHOI
-                    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Trúng tuyển"), NotifyType.Warning)
+                    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Từ chối trúng tuyển"), NotifyType.Warning)
                     Exit Sub
                 Case RCContant.BLACKLIST
                     ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái BlackList"), NotifyType.Warning)
@@ -554,6 +596,9 @@ Public Class ctrlRC_CandidateTransferList
                     Exit Sub
                 Case RCContant.TIEPNHANLD
                     ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái gửi thông báo tiếp nhận LĐ thử việc"), NotifyType.Warning)
+                    Exit Sub
+                Case RCContant.XNTT
+                    ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Xác nhận Offer"), NotifyType.Warning)
                     Exit Sub
             End Select
         Next
