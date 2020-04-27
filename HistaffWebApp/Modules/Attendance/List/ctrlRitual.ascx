@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlRitual.ascx.vb"
     Inherits="Attendance.ctrlRitual" %>
-    <%@ Import Namespace="Common" %>
-    <link type  = "text/css" href = "/Styles/StyleCustom.css" rel = "Stylesheet"/>
+<%@ Import Namespace="Common" %>
+<link type="text/css" href="/Styles/StyleCustom.css" rel="Stylesheet" />
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
     <tlk:RadPane ID="RadPane1" runat="server" Height="145px" Scrolling="None">
         <tlk:RadToolBar ID="tbarCostCenters" runat="server" />
@@ -39,10 +39,14 @@
                 <td>
                     <tlk:RadDatePicker runat="server" ID="rdDate">
                     </tlk:RadDatePicker>
-                     <asp:CustomValidator ID="cvDate" ControlToValidate="rdDate" runat="server" ErrorMessage="<%$ Translate: Ngày nghỉ lễ đã tồn tại. %>"
+                    <asp:CustomValidator ID="cvDate" ControlToValidate="rdDate" runat="server" ErrorMessage="<%$ Translate: Ngày nghỉ lễ đã tồn tại. %>"
                         ToolTip="<%$ Translate: Ngày nghỉ lễ đã tồn tại. %>"></asp:CustomValidator>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="rdDate"
                         runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập ngày nghỉ. %>"></asp:RequiredFieldValidator>
+                </td>
+                <td>
+                    <asp:CheckBox ID="chkInternalHolyday" runat="server" Text="Ngày nghỉ lễ nội bộ" />
+
                 </td>
             </tr>
             <tr>
@@ -50,39 +54,42 @@
                     <%# Translate("Ghi chú")%>
                 </td>
                 <td colspan="3">
-                    <tlk:RadTextBox ID="rdNote" runat="server" SkinID="Textbox1023" Width="100%" Height = "37px">
+                    <tlk:RadTextBox ID="rdNote" runat="server" SkinID="Textbox1023" Width="100%" Height="37px">
                     </tlk:RadTextBox>
                 </td>
             </tr>
         </table>
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
-        <tlk:RadGrid PageSize=50 ID="rgDanhMuc" runat="server" AutoGenerateColumns="False" AllowPaging="True"
-            Height="100%" AllowSorting="True" AllowMultiRowSelection="true" >
+        <tlk:RadGrid PageSize="50" ID="rgDanhMuc" runat="server" AutoGenerateColumns="False"
+            AllowPaging="True" Height="100%" AllowSorting="True" AllowMultiRowSelection="true">
             <ClientSettings EnableRowHoverStyle="true" AllowKeyboardNavigation="true">
                 <Selecting AllowRowSelect="true" />
                 <ClientEvents OnGridCreated="GridCreated" />
                 <ClientEvents OnCommand="ValidateFilter" />
                 <KeyboardNavigationSettings AllowSubmitOnEnter="true" EnableKeyboardShortcuts="true" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME_VN,NAME_EN,WORKINGDAY,YEAR,ACTFLG,NOTE">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME_VN,NAME_EN,WORKINGDAY,YEAR,ACTFLG,NOTE,INTERNAL_HOLYDAY">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn DataField="ID" Visible="false" />
                     <tlk:GridNumericColumn HeaderText="<%$ Translate: Năm %>" DataField="YEAR" UniqueName="YEAR"
-                        SortExpression="YEAR" DataFormatString = "{0:####}">
+                        SortExpression="YEAR" DataFormatString="{0:####}">
                     </tlk:GridNumericColumn>
                     <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày nghỉ %>" DataField="WORKINGDAY"
                         DataFormatString="{0:dd/MM/yyyy}" DataType="System.DateTime" UniqueName="WORKINGDAY"
-                        SortExpression="WORKINGDAY" >
+                        SortExpression="WORKINGDAY">
                         <HeaderStyle Width="120px" />
-                        </tlk:GridDateTimeColumn>
+                    </tlk:GridDateTimeColumn>
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã ngày nghỉ %>" DataField="CODE"
                         UniqueName="CODE" SortExpression="CODE" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên ngày nghỉ %>" DataField="NAME_VN"
                         UniqueName="NAME_VN" SortExpression="NAME_VN" />
+                    <tlk:GridCheckBoxColumn UniqueName="INTERNAL_HOLYDAY" DataField="INTERNAL_HOLYDAY" HeaderText="<%$ Translate: Ngày nghỉ nội bộ %>"
+                        SortExpression="INTERNAL_HOLYDAY" HeaderStyle-HorizontalAlign="Center" AllowFiltering="false">
+                    </tlk:GridCheckBoxColumn>
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
                         UniqueName="ACTFLG" SortExpression="ACTFLG" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="NOTE" UniqueName="NOTE"
@@ -132,13 +139,13 @@
                     return;
                 }
                 enableAjax = false;
-            } else if (args.get_item().get_commandName() == "SAVE") 
+            } else if (args.get_item().get_commandName() == "SAVE")
             /*{
-                // Nếu nhấn nút SAVE thì resize
-                ResizeSplitter();
+            // Nếu nhấn nút SAVE thì resize
+            ResizeSplitter();
             } else {
-                // Nếu nhấn các nút khác thì resize default
-                ResizeSplitterDefault();
+            // Nếu nhấn các nút khác thì resize default
+            ResizeSplitterDefault();
             }*/
             {
                 // Nếu nhấn nút SAVE thì resize
@@ -149,7 +156,7 @@
             } else {
                 // Nếu nhấn các nút khác thì resize default
                 ResizeSplitterDefault(splitterID, pane1ID, pane2ID, oldSize);
-            } 
+            }
         }
         function onRequestStart(sender, eventArgs) {
             eventArgs.set_enableAjax(enableAjax);
@@ -158,26 +165,26 @@
         // Hàm Resize lại Splitter khi nhấn nút SAVE có validate
         /*
         function ResizeSplitter() {
-            setTimeout(function () {
-                var splitter = $find("<%= RadSplitter3.ClientID%>");
-                var pane = splitter.getPaneById('<%= RadPane1.ClientID %>');
-                var height = pane.getContentElement().scrollHeight;
-                splitter.set_height(splitter.get_height() + pane.get_height() - height);
-                pane.set_height(height);
-            }, 200);
+        setTimeout(function () {
+        var splitter = $find("<%= RadSplitter3.ClientID%>");
+        var pane = splitter.getPaneById('<%= RadPane1.ClientID %>');
+        var height = pane.getContentElement().scrollHeight;
+        splitter.set_height(splitter.get_height() + pane.get_height() - height);
+        pane.set_height(height);
+        }, 200);
         }
         // Hàm khôi phục lại Size ban đầu cho Splitter
         function ResizeSplitterDefault() {
-            var splitter = $find("<%= RadSplitter3.ClientID%>");
-            var pane = splitter.getPaneById('<%= RadPane1.ClientID %>');
-            if (oldSize == 0) {
-                oldSize = pane.getContentElement().scrollHeight;
-            } else {
-                var pane2 = splitter.getPaneById('<%= RadPane2.ClientID %>');
-                splitter.set_height(splitter.get_height() + pane.get_height() - oldSize);
-                pane.set_height(oldSize);
-                pane2.set_height(splitter.get_height() - oldSize - 1);
-            }
+        var splitter = $find("<%= RadSplitter3.ClientID%>");
+        var pane = splitter.getPaneById('<%= RadPane1.ClientID %>');
+        if (oldSize == 0) {
+        oldSize = pane.getContentElement().scrollHeight;
+        } else {
+        var pane2 = splitter.getPaneById('<%= RadPane2.ClientID %>');
+        splitter.set_height(splitter.get_height() + pane.get_height() - oldSize);
+        pane.set_height(oldSize);
+        pane2.set_height(splitter.get_height() - oldSize - 1);
+        }
         }*/
 
     </script>
