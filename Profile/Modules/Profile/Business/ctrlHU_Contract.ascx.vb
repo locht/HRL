@@ -1511,12 +1511,8 @@ VALIDATE:
 
         Try
             timeCheck = IsDate(value)
-            Dim a = Format(Now, "h:mm tt")
-            If a Is Nothing Then
-                timeCheck = False
-            Else
-                timeCheck = True
-            End If
+            'Dim a = Format(Now, "h:mm tt")
+            
             'dateCheck = DateTime.TryParseExact(value, "HH24:MI", New CultureInfo("en-US"), DateTimeStyles.None, result)
             Return timeCheck
         Catch ex As Exception
