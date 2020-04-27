@@ -52,11 +52,11 @@
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None" Height="100%">
                 <tlk:RadGrid PageSize="50" ID="rgWelfareMng" runat="server" Height="100%">
-                     <MasterTableView DataKeyNames="ID" EditMode="InPlace" ClientDataKeyNames="ID">
+                   <MasterTableView DataKeyNames="ID" EditMode="InPlace" ClientDataKeyNames="ID">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
-                            </tlk:GridClientSelectColumn>     
+                            </tlk:GridClientSelectColumn>      
                               <tlk:GridBoundColumn DataField="ID" Visible="false" ReadOnly="true" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
                                 ReadOnly="true" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="60px" />
@@ -193,12 +193,12 @@
 </tlk:RadWindowManager>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
-        function OpenNew() {
-            var oWindow = radopen('Dialog.aspx?mid=Profile&fid=ctrlHU_WelfareMngNewEdit&group=Business&noscroll=1', "rwPopup");
-            var pos = $("html").offset();
-            oWindow.moveTo(pos.left, pos.top);
-            oWindow.setSize($(window).width(), $(window).height());
-        }
+        //function OpenNew() {
+        //    var oWindow = radopen('Dialog.aspx?mid=Profile&fid=ctrlHU_WelfareMngNewEdit&group=Business&noscroll=1', "rwPopup");
+        //    var pos = $("html").offset();
+        //    oWindow.moveTo(pos.left, pos.top);
+        //    oWindow.setSize($(window).width(), $(window).height());
+        //}
         function ValidateFilter(sender, eventArgs) {
             var params = eventArgs.get_commandArgument() + '';
             if (params.indexOf("|") > 0) {
@@ -224,13 +224,13 @@
             return 0;
         }
 
-        function OpenEdit() {
+      <%--  function OpenEdit() {
 
             if ($find('<%= rgWelfareMng.ClientID%>').get_masterTableView().get_selectedItems().length == 1) {
                 var id = $find('<%= rgWelfareMng.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
                 window.open('/Default.aspx?mid=Profile&fid=ctrlHU_WelfareMngNewEdit&group=Business&gUID=' + id + '', "_self");
             }
-        }
+        }--%>
 
         function clientButtonClicking(sender, args) {
             var m;
@@ -258,7 +258,7 @@
                 args.set_cancel(true);
             }
 
-            if (args.get_item().get_commandName() == 'DELETE') {
+           if (args.get_item().get_commandName() == 'DELETE') {
                 bCheck = $find('<%= rgWelfareMng.ClientID %>').get_masterTableView().get_selectedItems().length;
                 if (bCheck == 0) {
                     m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';

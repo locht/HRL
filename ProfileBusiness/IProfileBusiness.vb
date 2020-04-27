@@ -2913,6 +2913,8 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function EXPORT_QLKT() As DataSet
         <OperationContract()>
+        Function INPORT_QLKT(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+        <OperationContract()>
         Function GET_EMPLOYEE(ByVal P_EMP_CODE As String) As DataTable
         <OperationContract()>
         Function GET_PROCESS_PLCONTRACT_PORTAL(ByVal P_EMP_ID As Decimal) As DataTable

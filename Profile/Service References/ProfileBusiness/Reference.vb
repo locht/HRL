@@ -56406,6 +56406,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/EXPORT_QLKT", ReplyAction:="http://tempuri.org/IProfileBusiness/EXPORT_QLKTResponse")>  _
         Function EXPORT_QLKT() As System.Data.DataSet
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INPORT_QLKT", ReplyAction:="http://tempuri.org/IProfileBusiness/INPORT_QLKTResponse")>  _
+        Function INPORT_QLKT(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_EMPLOYEE", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_EMPLOYEEResponse")>  _
         Function GET_EMPLOYEE(ByVal P_EMP_CODE As String) As System.Data.DataTable
         
@@ -59192,6 +59195,10 @@ Namespace ProfileBusiness
         
         Public Function EXPORT_QLKT() As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.EXPORT_QLKT
             Return MyBase.Channel.EXPORT_QLKT
+        End Function
+        
+        Public Function INPORT_QLKT(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean Implements ProfileBusiness.IProfileBusiness.INPORT_QLKT
+            Return MyBase.Channel.INPORT_QLKT(P_DOCXML, P_USER)
         End Function
         
         Public Function GET_EMPLOYEE(ByVal P_EMP_CODE As String) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_EMPLOYEE

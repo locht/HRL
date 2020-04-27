@@ -756,6 +756,8 @@ Partial Class ProfileRepository
             Throw ex
         End Try
     End Function
+
+
 #End Region
 
 #Region "Công thức khen thưởng (Commend_formula)"
@@ -1033,6 +1035,21 @@ Partial Class ProfileRepository
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw ex
+        End Try
+    End Function
+
+    Public Function INPORT_QLKT(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataSet = cls.ExecuteStore("PKG_HU_IPROFILE_EMPLOYEE.INPORT_QLKT",
+                                           New With {.P_CUR = cls.OUT_CURSOR,
+                                                     .P_USER = P_USER})
+            End Using
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+            Return False
         End Try
     End Function
 

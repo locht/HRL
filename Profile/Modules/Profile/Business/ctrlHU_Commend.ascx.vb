@@ -1,6 +1,9 @@
-﻿Imports Common
+﻿Imports System.Globalization
+Imports System.IO
+Imports Common
 Imports Framework.UI
 Imports Framework.UI.Utilities
+Imports HistaffFrameworkPublic
 Imports Profile.ProfileBusiness
 Imports Telerik.Web.UI
 Imports WebAppLog
@@ -69,6 +72,15 @@ Public Class ctrlHU_Commend
 
         Set(ByVal value As ComboBoxDataDTO)
             ViewState(Me.ID & "_ListComboData") = value
+        End Set
+    End Property
+
+    Private Property dtLogs As DataTable
+        Get
+            Return PageViewState(Me.ID & "_dtLogs")
+        End Get
+        Set(ByVal value As DataTable)
+            PageViewState(Me.ID & "_dtLogs") = value
         End Set
     End Property
 
@@ -187,7 +199,10 @@ Public Class ctrlHU_Commend
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create,
                                        ToolbarItem.Edit,
                                        ToolbarItem.Export,
-                                       ToolbarItem.Delete, ToolbarItem.Print)
+                                       ToolbarItem.Delete, ToolbarItem.Print, ToolbarItem.ExportTemplate, ToolbarItem.Import)
+            MainToolBar.Items(5).Text = Translate("Xuất file mẫu")
+            CType(Me.MainToolBar.Items(6), RadToolBarButton).ImageUrl = CType(Me.MainToolBar.Items(0), RadToolBarButton).ImageUrl
+            MainToolBar.Items(6).Text = Translate("Nhập file mẫu")
             Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_CREATE_BATCH,
                                                                   ToolbarIcons.Add,
                                                                   ToolbarAuthorize.Special1,
@@ -511,6 +526,11 @@ Public Class ctrlHU_Commend
 
                 Case CommonMessage.TOOLBARITEM_CREATE_BATCH
                     BatchApproveCommend()
+
+                Case CommonMessage.TOOLBARITEM_EXPORT_TEMPLATE
+                    Template_Import_Commend()
+                Case CommonMessage.TOOLBARITEM_IMPORT
+                    ctrlUpload1.Show()
             End Select
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -519,6 +539,217 @@ Public Class ctrlHU_Commend
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
+#Region "Import and Export Commend"
+
+    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+        Try
+            Import_Data()
+        Catch ex As Exception
+            ShowMessage(Translate("Import bị lỗi"), NotifyType.Error)
+        End Try
+
+    End Sub
+
+    Private Sub Import_Data()
+        Try
+            Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
+            Dim countFile As Integer = ctrlUpload1.UploadedFiles.Count
+            Dim fileName As String
+            Dim savepath = Context.Server.MapPath(tempPath)
+            Dim rep As New ProfileBusinessRepository
+            '_mylog = LogHelper.GetUserLog
+            Dim ds As New DataSet
+            If countFile > 0 Then
+                Dim file As UploadedFile = ctrlUpload1.UploadedFiles(countFile - 1)
+                fileName = System.IO.Path.Combine(savepath, file.FileName)
+                file.SaveAs(fileName, True)
+                Using ep As New ExcelPackage
+                    ds = ep.ReadExcelToDataSet(fileName, False)
+                End Using
+            End If
+            If ds Is Nothing Then
+                Exit Sub
+            End If
+            TableMapping(ds.Tables(0))
+            If dtLogs Is Nothing Or dtLogs.Rows.Count <= 0 Then
+                Dim DocXml As String = String.Empty
+                Dim sw As New StringWriter()
+                If ds.Tables(0) IsNot Nothing AndAlso ds.Tables(0).Rows.Count > 0 Then
+                    ds.Tables(0).WriteXml(sw, False)
+                    DocXml = sw.ToString
+                    If rep.INPORT_QLKT(DocXml) Then
+                        ShowMessage(Translate(Common.CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Framework.UI.Utilities.NotifyType.Success)
+                        rgCommend.Rebind()
+                    Else
+                        ShowMessage(Translate(Common.CommonMessage.MESSAGE_TRANSACTION_FAIL), Framework.UI.Utilities.NotifyType.Warning)
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub TableMapping(ByVal dtTemp As System.Data.DataTable)
+        Dim rep As New ProfileBusinessClient
+        ' lấy dữ liệu thô từ excel vào và tinh chỉnh dữ liệu
+        dtTemp.Columns(0).ColumnName = "EMPLOYEE_CODE"
+        dtTemp.Columns(4).ColumnName = "EFFECT_DATE"
+        dtTemp.Columns(5).ColumnName = "NO"
+        dtTemp.Columns(6).ColumnName = "SIGN_DATE"
+        dtTemp.Columns(7).ColumnName = "SIGN_NAME"
+        dtTemp.Columns(12).ColumnName = "MONEY"
+        dtTemp.Columns(15).ColumnName = "REMARK"
+        dtTemp.Columns(18).ColumnName = "IS_TAX"
+        dtTemp.Columns(19).ColumnName = "YEAR_COMMEND"
+        'dtTemp.Columns(20).ColumnName = "PERIOD_TAX"
+        dtTemp.Columns(21).ColumnName = "NOTE"
+        dtTemp.Columns(22).ColumnName = "SIGN_ID"
+        dtTemp.Columns(23).ColumnName = "POWER_PAY_ID"
+        dtTemp.Columns(24).ColumnName = "COMMEND_PAY"
+        dtTemp.Columns(25).ColumnName = "COMMEND_TYPE"
+        dtTemp.Columns(26).ColumnName = "COMMEND_LIST"
+        dtTemp.Columns(27).ColumnName = "TITLE_ID"
+        dtTemp.Columns(28).ColumnName = "COMMEND_LEVEL"
+        dtTemp.Columns(30).ColumnName = "PERIOD_ID" 'KY LUONG CHI TRA
+        dtTemp.Columns(32).ColumnName = "PERIOD_TAX"
+
+
+        'XOA DONG TIEU DE VA HEADER
+        dtTemp.Rows(0).Delete()
+        dtTemp.Rows(1).Delete()
+        ' add Log
+        Dim _error As Boolean = True
+        Dim count As Integer
+        Dim newRow As DataRow
+        Dim startDate As Date
+        Dim dsEMP As DataTable
+        If dtLogs Is Nothing Then
+            dtLogs = New DataTable("data")
+            dtLogs.Columns.Add("ID", GetType(Integer))
+            dtLogs.Columns.Add("EMPLOYEE_CODE", GetType(String))
+            dtLogs.Columns.Add("DISCIPTION", GetType(String))
+        End If
+        dtLogs.Clear()
+        Dim strEmpCode As String
+
+
+        'XOA NHUNG DONG DU LIEU NULL EMPLOYYE CODE
+        Dim rowDel As DataRow
+        For i As Integer = 0 To dtTemp.Rows.Count - 1
+            If dtTemp.Rows(i).RowState = DataRowState.Deleted OrElse dtTemp.Rows(i).RowState = DataRowState.Detached Then Continue For
+            rowDel = dtTemp.Rows(i)
+            If rowDel("EMPLOYEE_CODE").ToString.Trim = "" Then
+                dtTemp.Rows(i).Delete()
+            End If
+        Next
+
+        For Each rows As DataRow In dtTemp.Rows
+            If rows.RowState = DataRowState.Deleted OrElse rows.RowState = DataRowState.Detached Then Continue For
+
+            newRow = dtLogs.NewRow
+            newRow("ID") = count + 1
+            newRow("EMPLOYEE_CODE") = rows("EMPLOYEE_CODE")
+
+            ' Nhân viên k có trong hệ thống
+            If rep.CHECK_EMPLOYEE(rows("EMPLOYEE_CODE")) = 0 Then
+                newRow("DISCIPTION") = "Mã nhân viên - Không tồn tại,"
+                _error = False
+            Else
+                If strEmpCode <> "" Then
+                    If strEmpCode.Contains(rows("EMPLOYEE_CODE")) Then
+                        newRow("DISCIPTION") = "Mã nhân viên - nhiều hơn 2 dòng trong file,"
+                        _error = False
+                    End If
+                    strEmpCode = strEmpCode + rows("EMPLOYEE_CODE") + ","
+                End If
+            End If
+
+            'If Not (IsNumeric(rows("COMMEND_PAY"))) Then
+            '    rows("COMMEND_PAY") = 0
+            '    newRow("DISCIPTION") = newRow("DISCIPTION") + "Hình thức trả thưởng - Không đúng định dạng,"
+            '    _error = False
+            'End If
+            If IsDBNull(rows("EFFECT_DATE")) OrElse rows("EFFECT_DATE") = "" OrElse CheckDate(rows("EFFECT_DATE"), startDate) = False Then
+                rows("EFFECT_DATE") = "NULL"
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày hiệu lực - Không đúng định dạng,"
+                _error = False
+            End If
+
+            If IsDBNull(rows("SIGN_DATE")) OrElse rows("SIGN_DATE") = "" OrElse CheckDate(rows("SIGN_DATE"), startDate) = False Then
+                rows("SIGN_DATE") = "NULL"
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày ký - Không đúng định dạng,"
+                _error = False
+            End If
+
+            If IsDBNull(rows("NO")) OrElse rows("NO") = "" Then
+                rows("NO") = "NULL"
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Số quyết định - bắt buộc nhập,"
+                _error = False
+            End If
+
+            If IsDBNull(rows("IS_TAX")) Then
+
+            Else
+                If Not rows("IS_TAX") = "Có" AndAlso rows("NO") = "Không" Then
+                    rows("IS_TAX") = "NULL"
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Tính thuế - Không đúng định dạng,"
+                    _error = False
+                End If
+            End If
+
+            If Not (IsNumeric(rows("MONEY"))) Then
+                rows("MONEY") = 0
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Mức thưởng - Không đúng định dạng,"
+                _error = False
+            End If
+
+            If _error = False Then
+                dtLogs.Rows.Add(newRow)
+                count = count + 1
+                _error = True
+            End If
+        Next
+        dtTemp.AcceptChanges()
+    End Sub
+
+    Private Sub Template_Import_Commend()
+        Dim rep As New Profile.ProfileBusinessRepository
+        Try
+
+            Dim tempPath = "~/ReportTemplates//Profile//Import//import_khenthuong1.xls"
+            Dim dsData As DataSet = rep.EXPORT_QLKT()
+            If File.Exists(System.IO.Path.Combine(Server.MapPath(tempPath))) Then
+                Using xls As New AsposeExcelCommon
+                    Dim bCheck = xls.ExportExcelTemplate(
+                      System.IO.Path.Combine(Server.MapPath(tempPath)), "IMPORT_KhenThuong" & Format(Date.Now, "yyyyMMdd"), dsData, Nothing, Response)
+
+                End Using
+            Else
+                ShowMessage(Translate("Template không tồn tại"), Utilities.NotifyType.Error)
+                Exit Sub
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Function CheckDate(ByVal value As String, ByRef result As Date) As Boolean
+        Dim dateCheck As Boolean
+        If value = "" Or value = "&nbsp;" Then
+            value = ""
+            Return True
+        End If
+
+        Try
+            dateCheck = DateTime.TryParseExact(value, "dd/MM/yyyy", New CultureInfo("en-US"), DateTimeStyles.None, result)
+            Return dateCheck
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+#End Region
 
     ''' <lastupdate>11/07/2017</lastupdate>
     ''' <summary> 
@@ -613,7 +844,7 @@ Public Class ctrlHU_Commend
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
 
     End Sub
@@ -726,7 +957,7 @@ Public Class ctrlHU_Commend
                 ListComboData.GET_COMMEND_STATUS = True
                 rep.GetComboList(ListComboData)
             End If
-            
+
             FillDropDownList(cboStatus, ListComboData.LIST_COMMEND_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
             FillDropDownList(cboCommendObj, ListComboData.LIST_COMMEND_OBJ, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
 

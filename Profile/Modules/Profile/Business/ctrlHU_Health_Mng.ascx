@@ -193,12 +193,12 @@
 </tlk:RadWindowManager>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
-        function OpenNew() {
-            var oWindow = radopen('Dialog.aspx?mid=Profile&fid=ctrlHU_WelfareMngNewEdit&group=Business&noscroll=1', "rwPopup");
-            var pos = $("html").offset();
-            oWindow.moveTo(pos.left, pos.top);
-            oWindow.setSize($(window).width(), $(window).height());
-        }
+        //function OpenNew() {
+        //    var oWindow = radopen('Dialog.aspx?mid=Profile&fid=ctrlHU_WelfareMngNewEdit&group=Business&noscroll=1', "rwPopup");
+        //    var pos = $("html").offset();
+        //    oWindow.moveTo(pos.left, pos.top);
+        //    oWindow.setSize($(window).width(), $(window).height());
+        //}
         function ValidateFilter(sender, eventArgs) {
             var params = eventArgs.get_commandArgument() + '';
             if (params.indexOf("|") > 0) {
@@ -224,13 +224,13 @@
             return 0;
         }
 
-        function OpenEdit() {
+      <%--  function OpenEdit() {
 
             if ($find('<%= rgWelfareMng.ClientID%>').get_masterTableView().get_selectedItems().length == 1) {
                 var id = $find('<%= rgWelfareMng.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
                 window.open('/Default.aspx?mid=Profile&fid=ctrlHU_WelfareMngNewEdit&group=Business&gUID=' + id + '', "_self");
             }
-        }
+        }--%>
 
         function clientButtonClicking(sender, args) {
             var m;

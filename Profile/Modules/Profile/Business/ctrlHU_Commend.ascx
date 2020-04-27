@@ -2,6 +2,7 @@
     Inherits="Profile.ctrlHU_Commend" %>
 <%@ Import Namespace="Common" %>
 <%@ Import Namespace="Framework.UI.Utilities" %>
+<%@ Import Namespace="HistaffWebAppResources.My.Resources" %>
 <link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
     <tlk:RadPane ID="LeftPane" runat="server" MinWidth="200" Width="250px" Scrolling="None">
@@ -127,6 +128,7 @@
     </tlk:RadPane>
 </tlk:RadSplitter>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
+<Common:ctrlUpload ID="ctrlUpload1" runat="server" />
 <tlk:RadWindowManager ID="RadWindowManager1" runat="server">
     <Windows>
         <tlk:RadWindow runat="server" ID="rwPopup" Width="800px" VisibleStatusbar="false"
@@ -191,6 +193,9 @@
                 enableAjax = false;
             }
             if (args.get_item().get_commandName() == 'EXPORT') {
+                enableAjax = false;
+            }
+            if (args.get_item().get_commandName() == 'EXPORT_TEMPLATE') {
                 enableAjax = false;
             }
             if (args.get_item().get_commandName() == "EDIT") {
