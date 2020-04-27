@@ -1786,6 +1786,8 @@ Namespace PayrollBusiness
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.StatisticDTO)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.SaleCommisionDTO)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.SaleCommisionDTO))),  _
+     System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PATaxFinalizationDTO))),  _
+     System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.PATaxFinalizationDTO)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.SalaryExRateDTO)),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.SalaryExRateDTO))),  _
      System.Runtime.Serialization.KnownTypeAttribute(GetType(PayrollBusiness.SalaryLevelGroupDTO)),  _
@@ -5413,6 +5415,277 @@ Namespace PayrollBusiness
                 If (Object.ReferenceEquals(Me.SALE_RATE1Field, value) <> true) Then
                     Me.SALE_RATE1Field = value
                     Me.RaisePropertyChanged("SALE_RATE1")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="PATaxFinalizationDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/PayrollDAL"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class PATaxFinalizationDTO
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ACTFLGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_BYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private END_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private END_DATE_MONTHField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private END_DATE_YEARField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PERIOD_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private REMARKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private START_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private START_DATE_MONTHField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private START_DATE_YEARField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TAX_FINALIZATION_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private YEARField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private YEAR_PERIODField As System.Nullable(Of Decimal)
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ACTFLG() As String
+            Get
+                Return Me.ACTFLGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ACTFLGField, value) <> true) Then
+                    Me.ACTFLGField = value
+                    Me.RaisePropertyChanged("ACTFLG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_BY() As String
+            Get
+                Return Me.CREATED_BYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CREATED_BYField, value) <> true) Then
+                    Me.CREATED_BYField = value
+                    Me.RaisePropertyChanged("CREATED_BY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.CREATED_DATEField
+            End Get
+            Set
+                If (Me.CREATED_DATEField.Equals(value) <> true) Then
+                    Me.CREATED_DATEField = value
+                    Me.RaisePropertyChanged("CREATED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property END_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.END_DATEField
+            End Get
+            Set
+                If (Me.END_DATEField.Equals(value) <> true) Then
+                    Me.END_DATEField = value
+                    Me.RaisePropertyChanged("END_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property END_DATE_MONTH() As System.Nullable(Of Decimal)
+            Get
+                Return Me.END_DATE_MONTHField
+            End Get
+            Set
+                If (Me.END_DATE_MONTHField.Equals(value) <> true) Then
+                    Me.END_DATE_MONTHField = value
+                    Me.RaisePropertyChanged("END_DATE_MONTH")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property END_DATE_YEAR() As System.Nullable(Of Decimal)
+            Get
+                Return Me.END_DATE_YEARField
+            End Get
+            Set
+                If (Me.END_DATE_YEARField.Equals(value) <> true) Then
+                    Me.END_DATE_YEARField = value
+                    Me.RaisePropertyChanged("END_DATE_YEAR")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.IDField
+            End Get
+            Set
+                If (Me.IDField.Equals(value) <> true) Then
+                    Me.IDField = value
+                    Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PERIOD_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PERIOD_IDField
+            End Get
+            Set
+                If (Me.PERIOD_IDField.Equals(value) <> true) Then
+                    Me.PERIOD_IDField = value
+                    Me.RaisePropertyChanged("PERIOD_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property REMARK() As String
+            Get
+                Return Me.REMARKField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.REMARKField, value) <> true) Then
+                    Me.REMARKField = value
+                    Me.RaisePropertyChanged("REMARK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property START_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.START_DATEField
+            End Get
+            Set
+                If (Me.START_DATEField.Equals(value) <> true) Then
+                    Me.START_DATEField = value
+                    Me.RaisePropertyChanged("START_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property START_DATE_MONTH() As System.Nullable(Of Decimal)
+            Get
+                Return Me.START_DATE_MONTHField
+            End Get
+            Set
+                If (Me.START_DATE_MONTHField.Equals(value) <> true) Then
+                    Me.START_DATE_MONTHField = value
+                    Me.RaisePropertyChanged("START_DATE_MONTH")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property START_DATE_YEAR() As System.Nullable(Of Decimal)
+            Get
+                Return Me.START_DATE_YEARField
+            End Get
+            Set
+                If (Me.START_DATE_YEARField.Equals(value) <> true) Then
+                    Me.START_DATE_YEARField = value
+                    Me.RaisePropertyChanged("START_DATE_YEAR")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TAX_FINALIZATION_NAME() As String
+            Get
+                Return Me.TAX_FINALIZATION_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TAX_FINALIZATION_NAMEField, value) <> true) Then
+                    Me.TAX_FINALIZATION_NAMEField = value
+                    Me.RaisePropertyChanged("TAX_FINALIZATION_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property YEAR() As System.Nullable(Of Decimal)
+            Get
+                Return Me.YEARField
+            End Get
+            Set
+                If (Me.YEARField.Equals(value) <> true) Then
+                    Me.YEARField = value
+                    Me.RaisePropertyChanged("YEAR")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property YEAR_PERIOD() As System.Nullable(Of Decimal)
+            Get
+                Return Me.YEAR_PERIODField
+            End Get
+            Set
+                If (Me.YEAR_PERIODField.Equals(value) <> true) Then
+                    Me.YEAR_PERIODField = value
+                    Me.RaisePropertyChanged("YEAR_PERIOD")
                 End If
             End Set
         End Property
@@ -10260,6 +10533,24 @@ Namespace PayrollBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ActiveSaleCommision", ReplyAction:="http://tempuri.org/IPayrollBusiness/ActiveSaleCommisionResponse")>  _
         Function ActiveSaleCommision(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetTaxFinalizationList", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetTaxFinalizationListResponse")>  _
+        Function GetTaxFinalizationList(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.PATaxFinalizationDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/InsertTaxFinalization", ReplyAction:="http://tempuri.org/IPayrollBusiness/InsertTaxFinalizationResponse")>  _
+        Function InsertTaxFinalization(ByVal objPeriod As PayrollBusiness.PATaxFinalizationDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ModifyTaxFinalization", ReplyAction:="http://tempuri.org/IPayrollBusiness/ModifyTaxFinalizationResponse")>  _
+        Function ModifyTaxFinalization(ByVal objPeriod As PayrollBusiness.PATaxFinalizationDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/DeleteTaxFinalization", ReplyAction:="http://tempuri.org/IPayrollBusiness/DeleteTaxFinalizationResponse")>  _
+        Function DeleteTaxFinalization(ByVal lstPeriod As PayrollBusiness.PATaxFinalizationDTO) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ActiveTaxFinalization", ReplyAction:="http://tempuri.org/IPayrollBusiness/ActiveTaxFinalizationResponse")>  _
+        Function ActiveTaxFinalization(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetTaxFinalizationbyYear", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetTaxFinalizationbyYearResponse")>  _
+        Function GetTaxFinalizationbyYear(ByVal year As Decimal) As System.Collections.Generic.List(Of PayrollBusiness.PATaxFinalizationDTO)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetSalaryGroup", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetSalaryGroupResponse")>  _
         Function GetSalaryGroup(ByVal _filter As PayrollBusiness.SalaryGroupDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.SalaryGroupDTO)
         
@@ -10480,6 +10771,8 @@ Namespace PayrollBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.StatisticDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.SaleCommisionDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.SaleCommisionDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PATaxFinalizationDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.PATaxFinalizationDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.SalaryExRateDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.SalaryExRateDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.SalaryLevelGroupDTO)),  _
@@ -10587,6 +10880,8 @@ Namespace PayrollBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.StatisticDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.SaleCommisionDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.SaleCommisionDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.PATaxFinalizationDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.PATaxFinalizationDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.SalaryExRateDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of PayrollBusiness.SalaryExRateDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(PayrollBusiness.SalaryLevelGroupDTO)),  _
@@ -11266,6 +11561,30 @@ Namespace PayrollBusiness
         
         Public Function ActiveSaleCommision(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean Implements PayrollBusiness.IPayrollBusiness.ActiveSaleCommision
             Return MyBase.Channel.ActiveSaleCommision(lstID, log, bActive)
+        End Function
+        
+        Public Function GetTaxFinalizationList(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.PATaxFinalizationDTO) Implements PayrollBusiness.IPayrollBusiness.GetTaxFinalizationList
+            Return MyBase.Channel.GetTaxFinalizationList(PageIndex, PageSize, Total, Sorts)
+        End Function
+        
+        Public Function InsertTaxFinalization(ByVal objPeriod As PayrollBusiness.PATaxFinalizationDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.InsertTaxFinalization
+            Return MyBase.Channel.InsertTaxFinalization(objPeriod, log, gID)
+        End Function
+        
+        Public Function ModifyTaxFinalization(ByVal objPeriod As PayrollBusiness.PATaxFinalizationDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.ModifyTaxFinalization
+            Return MyBase.Channel.ModifyTaxFinalization(objPeriod, log, gID)
+        End Function
+        
+        Public Function DeleteTaxFinalization(ByVal lstPeriod As PayrollBusiness.PATaxFinalizationDTO) As Boolean Implements PayrollBusiness.IPayrollBusiness.DeleteTaxFinalization
+            Return MyBase.Channel.DeleteTaxFinalization(lstPeriod)
+        End Function
+        
+        Public Function ActiveTaxFinalization(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean Implements PayrollBusiness.IPayrollBusiness.ActiveTaxFinalization
+            Return MyBase.Channel.ActiveTaxFinalization(lstID, log, bActive)
+        End Function
+        
+        Public Function GetTaxFinalizationbyYear(ByVal year As Decimal) As System.Collections.Generic.List(Of PayrollBusiness.PATaxFinalizationDTO) Implements PayrollBusiness.IPayrollBusiness.GetTaxFinalizationbyYear
+            Return MyBase.Channel.GetTaxFinalizationbyYear(year)
         End Function
         
         Public Function GetSalaryGroup(ByVal _filter As PayrollBusiness.SalaryGroupDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.SalaryGroupDTO) Implements PayrollBusiness.IPayrollBusiness.GetSalaryGroup

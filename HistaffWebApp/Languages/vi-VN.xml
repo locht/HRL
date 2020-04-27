@@ -45262,4 +45262,20 @@ Xin cám ơn!
       <string>Thông tin tai nạn rủi ro</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLPA_TAXFINALIZATION</string>
+    </Key>
+    <Value>
+      <string>Thiết lập kỳ quyết toán thuế TNCN</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY CHI LƯƠNG</string>
+    </Key>
+    <Value>
+      <string>Ngày chi lương</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

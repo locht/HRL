@@ -89,6 +89,7 @@
     <Compile Include="BusinessObjects\SalaryGroup\SalaryExRateDTO.vb" />
     <Compile Include="BusinessObjects\SalaryGroup\SalaryLevelGroupDTO.vb" />
     <Compile Include="BusinessObjects\SalaryGroup\SalaryLevelTypeDTO .vb" />
+    <Compile Include="BusinessObjects\Setting\PATaxFinalizationDTO.vb" />
     <Compile Include="PayrollRepository.Dashboard.vb" />
     <Compile Include="BusinessObjects\Business\EmployeeDTO.vb" />
     <Compile Include="BusinessObjects\Business\PAEmployeeCalculateDTO.vb" />

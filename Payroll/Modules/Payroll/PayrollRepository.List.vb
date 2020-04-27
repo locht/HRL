@@ -1632,4 +1632,88 @@ Partial Public Class PayrollRepository
     End Function
 #End Region
 
+
+#Region "Quyet Toan Thue"
+
+    Public Function GetTaxFinalizationList(ByVal PageIndex As Integer,
+                                         ByVal PageSize As Integer,
+                                         ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "START_DATE desc") As List(Of PATaxFinalizationDTO)
+        Dim lstPeriod As List(Of PATaxFinalizationDTO)
+        Using rep As New PayrollBusinessClient
+            Try
+                lstPeriod = rep.GetTaxFinalizationList(PageIndex, PageSize, Total, Sorts)
+                Return lstPeriod
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function InsertTaxFinalization(ByVal objPeriod As PATaxFinalizationDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New PayrollBusinessClient
+            Try
+                Return rep.InsertTaxFinalization(objPeriod, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function ModifyTaxFinalization(ByVal objPeriod As PATaxFinalizationDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New PayrollBusinessClient
+            Try
+                Return rep.ModifyTaxFinalization(objPeriod, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function DeleteTaxFinalization(ByVal lstPeriod As PATaxFinalizationDTO) As Boolean
+        Using rep As New PayrollBusinessClient
+            Try
+                Return rep.DeleteTaxFinalization(lstPeriod)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    Public Function ActiveTaxFinalization(ByVal lstWorkFactor As List(Of Decimal), ByVal sActive As String) As Boolean
+        Using rep As New PayrollBusinessClient
+            Try
+                Return rep.ActiveTaxFinalization(lstWorkFactor, Me.Log, sActive)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function GetTaxFinalizationbyYear(ByVal year As Decimal) As List(Of PATaxFinalizationDTO)
+        Dim lstPeriod As List(Of PATaxFinalizationDTO)
+        Using rep As New PayrollBusinessClient
+
+            Try
+                lstPeriod = rep.GetTaxFinalizationbyYear(year)
+                Return lstPeriod
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+#End Region
 End Class

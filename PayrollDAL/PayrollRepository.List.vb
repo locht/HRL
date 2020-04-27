@@ -3328,5 +3328,153 @@ Partial Public Class PayrollRepository
 #End Region
 
 
+#Region "Quyet toan thue"
+    Public Function GetTaxFinalizationList(ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "START_DATE desc") As List(Of PATaxFinalizationDTO)
+
+        Try
+            Dim query = From p In Context.PA_TAX_FINALIZATION
+
+            Dim lst = query.Select(Function(p) New PATaxFinalizationDTO With {
+                                       .ID = p.ID,
+                                       .Year = p.YEAR,
+                                       .TAX_FINALIZATION_NAME = p.TAX_FINALIZATION_NAME,
+                                       .START_DATE = p.START_DATE,
+                                       .END_DATE = p.END_DATE,
+                                       .YEAR_PERIOD = p.YEAR_PERIOD,
+                                       .PERIOD_ID = p.PERIOD_ID,
+                                       .CREATED_DATE = p.CREATED_DATE,
+                                       .CREATED_BY = p.CREATED_BY,
+                                       .REMARK = p.REMARK,
+                                       .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng")
+                                       })
+
+
+            lst = lst.OrderBy(Sorts)
+            Total = lst.Count
+            lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
+
+            Return lst.ToList
+
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function InsertTaxFinalization(ByVal obj As PATaxFinalizationDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim iCount As Integer = 0
+        Dim objData As New PA_TAX_FINALIZATION
+
+        Try
+            objData.ID = Utilities.GetNextSequence(Context, Context.PA_TAX_FINALIZATION.EntitySet.Name)
+            objData.YEAR = obj.YEAR
+            objData.TAX_FINALIZATION_NAME = obj.TAX_FINALIZATION_NAME
+            objData.START_DATE = obj.START_DATE
+            objData.END_DATE = obj.END_DATE
+            objData.START_DATE_MONTH = obj.START_DATE_MONTH
+            objData.END_DATE_MONTH = obj.END_DATE_MONTH
+            objData.START_DATE_YEAR = obj.START_DATE_YEAR
+            objData.END_DATE_YEAR = obj.END_DATE_YEAR
+            objData.YEAR_PERIOD = obj.YEAR_PERIOD
+            objData.PERIOD_ID = obj.PERIOD_ID
+            objData.REMARK = obj.REMARK
+            objData.ACTFLG = obj.ACTFLG
+            objData.CREATED_BY = log.Username
+            objData.CREATED_DATE = Date.Now
+            objData.CREATED_LOG = log.Ip & "-" & log.ComputerName
+
+            Context.PA_TAX_FINALIZATION.AddObject(objData)
+            Context.SaveChanges(log)
+            gID = objData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function ModifyTaxFinalization(ByVal obj As PATaxFinalizationDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim objData As New PA_TAX_FINALIZATION With {.ID = obj.ID}
+        Try
+            Context.PA_TAX_FINALIZATION.Attach(objData)
+            objData.YEAR = obj.YEAR
+            objData.TAX_FINALIZATION_NAME = obj.TAX_FINALIZATION_NAME
+            objData.START_DATE = obj.START_DATE
+            objData.END_DATE = obj.END_DATE
+            objData.START_DATE_MONTH = obj.START_DATE_MONTH
+            objData.END_DATE_MONTH = obj.END_DATE_MONTH
+            objData.START_DATE_YEAR = obj.START_DATE_YEAR
+            objData.END_DATE_YEAR = obj.END_DATE_YEAR
+            objData.YEAR_PERIOD = obj.YEAR_PERIOD
+            objData.PERIOD_ID = obj.PERIOD_ID
+            objData.REMARK = obj.REMARK
+
+            Context.SaveChanges(log)
+            gID = objData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function DeleteTaxFinalization(ByVal lstPeriod As PATaxFinalizationDTO) As Boolean
+        Dim objPeriod As List(Of PA_TAX_FINALIZATION) = (From p In Context.PA_TAX_FINALIZATION Where p.ID = lstPeriod.ID).ToList
+        Try
+            For Each item In objPeriod
+                Context.PA_TAX_FINALIZATION.DeleteObject(item)
+            Next
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+            Throw ex
+        End Try
+    End Function
+    Public Function ActiveTaxFinalization(ByVal lstID As List(Of Decimal), ByVal log As UserLog, ByVal bActive As String) As Boolean
+        Dim lstData As List(Of PA_TAX_FINALIZATION)
+        Try
+            lstData = (From p In Context.PA_TAX_FINALIZATION Where lstID.Contains(p.ID)).ToList
+            For index = 0 To lstData.Count - 1
+                lstData(index).ACTFLG = bActive
+            Next
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetTaxFinalizationbyYear(ByVal year As Decimal) As List(Of PATaxFinalizationDTO)
+        Try
+            Dim query = From p In Context.PA_TAX_FINALIZATION Where p.YEAR = year And p.ACTFLG = "A" Order By p.START_DATE Ascending
+            Dim Period = query.Select(Function(p) New PATaxFinalizationDTO With {
+                                       .ID = p.ID,
+                                       .year = p.YEAR,
+                                       .TAX_FINALIZATION_NAME = p.TAX_FINALIZATION_NAME,
+                                       .START_DATE = p.START_DATE,
+                                       .END_DATE = p.END_DATE,
+                                       .YEAR_PERIOD = p.YEAR_PERIOD,
+                                       .PERIOD_ID = p.PERIOD_ID,
+                                       .CREATED_DATE = p.CREATED_DATE,
+                                       .CREATED_BY = p.CREATED_BY,
+                                       .REMARK = p.REMARK,
+                                       .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng")})
+
+
+            Return Period.ToList
+
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+            Throw ex
+        End Try
+    End Function
+#End Region
 End Class
 

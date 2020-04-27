@@ -447,6 +447,7 @@
     <Content Include="Modules\Payroll\List\ctrlPA_SalaryType.ascx" />
     <Content Include="Modules\Payroll\List\ctrlPA_SaleCommision.ascx" />
     <Content Include="Modules\Payroll\List\ctrlPA_WorkFactor.ascx" />
+    <Content Include="Modules\Payroll\Setting\ctrlPA_TaxFinalization.ascx" />
     <Content Include="Modules\Payroll\Setting\ctrlPA_SetUpBonus.ascx" />
     <Content Include="Modules\Payroll\Setting\ctrlPA_IncentiveRank.ascx" />
     <Content Include="Modules\Payroll\Setting\ctrlPA_PaymentsList.ascx" />
@@ -1486,6 +1487,7 @@
     <Content Include="ReportTemplates\Profile\Import\import_phuluchopdong.xls" />
     <Content Include="ReportTemplates\Profile\Import\Template_Export_Emp.xls" />
     <Content Include="ReportTemplates\Profile\Import\import_khenthuong1.xls" />
+    <Content Include="ReportTemplates\Profile\Import\TEMP_IMPORT_CONTRACT_ERR.xls" />
     <None Include="ReportTemplates\Recruitment\Import\Candidate_Error.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

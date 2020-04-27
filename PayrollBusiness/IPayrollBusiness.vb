@@ -832,6 +832,28 @@ Namespace PayrollBusiness.ServiceContracts
 
 #End Region
 
+#Region "Quyet Toan Thue"
+        <OperationContract()>
+        Function GetTaxFinalizationList(ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "START_DATE desc") As List(Of PATaxFinalizationDTO)
+
+        <OperationContract()>
+        Function InsertTaxFinalization(ByVal objPeriod As PATaxFinalizationDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+
+        <OperationContract()>
+        Function ModifyTaxFinalization(ByVal objPeriod As PATaxFinalizationDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+
+        <OperationContract()>
+        Function DeleteTaxFinalization(ByVal lstPeriod As PATaxFinalizationDTO) As Boolean
+
+        <OperationContract()>
+        Function ActiveTaxFinalization(ByVal lstID As List(Of Decimal), ByVal log As UserLog, ByVal bActive As String) As Boolean
+
+        <OperationContract()>
+        Function GetTaxFinalizationbyYear(ByVal year As Decimal) As List(Of PATaxFinalizationDTO)
+#End Region
     End Interface
 End Namespace
 

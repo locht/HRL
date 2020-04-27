@@ -1112,6 +1112,65 @@ Namespace PayrollBusiness.ServiceImplementations
             End Try
         End Function
 #End Region
+
+
+#Region "Quyet Toan Thue"
+        Public Function GetTaxFinalizationList(ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "START_DATE desc") As List(Of PATaxFinalizationDTO) Implements ServiceContracts.IPayrollBusiness.GetTaxFinalizationList
+            Try
+                Dim lst = PayrollRepositoryStatic.Instance.GetTaxFinalizationList(PageIndex, PageSize, Total, Sorts)
+                Return lst
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+
+        Public Function InsertTaxFinalization(ByVal objPeriod As PATaxFinalizationDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.IPayrollBusiness.InsertTaxFinalization
+            Try
+                Return PayrollRepositoryStatic.Instance.InsertTaxFinalization(objPeriod, log, gID)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+
+        Public Function ModifyTaxFinalization(ByVal objPeriod As PATaxFinalizationDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.IPayrollBusiness.ModifyTaxFinalization
+            Try
+                Return PayrollRepositoryStatic.Instance.ModifyTaxFinalization(objPeriod, log, gID)
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Function
+
+        Public Function DeleteTaxFinalization(ByVal lstPeriod As PATaxFinalizationDTO) As Boolean Implements ServiceContracts.IPayrollBusiness.DeleteTaxFinalization
+            Try
+                Return PayrollRepositoryStatic.Instance.DeleteTaxFinalization(lstPeriod)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+
+        Public Function ActiveTaxFinalization(ByVal lstID As List(Of Decimal), ByVal log As UserLog, ByVal bActive As String) As Boolean Implements ServiceContracts.IPayrollBusiness.ActiveTaxFinalization
+            Try
+                Dim rep As New PayrollRepository
+                Return rep.ActiveTaxFinalization(lstID, log, bActive)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+
+        Public Function GetTaxFinalizationbyYear(ByVal year As Decimal) As List(Of PATaxFinalizationDTO) Implements ServiceContracts.IPayrollBusiness.GetTaxFinalizationbyYear
+            Try
+                Dim lst = PayrollRepositoryStatic.Instance.GetTaxFinalizationbyYear(year)
+                Return lst
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+#End Region
+
     End Class
 End Namespace
 

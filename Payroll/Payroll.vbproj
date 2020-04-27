@@ -130,7 +130,13 @@
     <None Include="Service References\PayrollBusiness\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\PayrollBusiness\Arrays3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\PayrollBusiness\Framework.Data.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PayrollBusiness\Framework.Data3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.AllowanceDTO.datasource">
@@ -145,6 +151,12 @@
     <None Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.ATPriceLunchDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <Content Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.ATSetUpBonusDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.AT_ORG_SETUPBONUS.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.ComboBoxDataDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -193,12 +205,16 @@
     <None Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.PATaxationDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <Content Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.PATaxFinalizationDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.PATitleCostDTO1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.PaymentSourcesDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <Content Include="Modules\Payroll\Setting\ctrlPA_TaxFinalization.ascx" />
     <Content Include="Modules\Payroll\Setting\ctrlPA_SetUpBonus.ascx" />
     <Content Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.SalaryExRateDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -244,6 +260,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\PayrollBusiness\PayrollDAL.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PayrollBusiness\PayrollDAL3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\PayrollBusiness\Reference.svcmap">
@@ -327,6 +346,16 @@
     <None Include="Service References\PayrollBusiness\service2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Service References\PayrollBusiness\service3.wsdl" />
+    <None Include="Service References\PayrollBusiness\service7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PayrollBusiness\service8.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PayrollBusiness\service9.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\PayrollBusiness\System.Data.Objects.DataClasses.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -334,6 +363,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\PayrollBusiness\System.Data.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PayrollBusiness\System.Data3.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -555,6 +587,13 @@
     </Compile>
     <Compile Include="Modules\Payroll\List\ctrlPA_ObjectSalary.ascx.vb">
       <DependentUpon>ctrlPA_ObjectSalary.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Payroll\Setting\ctrlPA_TaxFinalization.ascx.designer.vb">
+      <DependentUpon>ctrlPA_TaxFinalization.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Payroll\Setting\ctrlPA_TaxFinalization.ascx.vb">
+      <DependentUpon>ctrlPA_TaxFinalization.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Payroll\Setting\ctrlPA_SetUpBonus.ascx.designer.vb">
