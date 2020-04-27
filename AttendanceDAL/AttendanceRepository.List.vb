@@ -445,6 +445,7 @@ Partial Public Class AttendanceRepository
                                        .YEAR = p.YEAR,
                                        .NOTE = p.NOTE,
                                        .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng Áp dụng"),
+                                       .INTERNAL_HOLYDAY = p.INTERNAL_HOLYDAY,
                                        .CREATED_BY = p.CREATED_BY,
                                        .CREATED_DATE = p.CREATED_DATE,
                                        .CREATED_LOG = p.CREATED_LOG,
@@ -473,6 +474,9 @@ Partial Public Class AttendanceRepository
             If Not String.IsNullOrEmpty(_filter.NOTE) Then
                 lst = lst.Where(Function(f) f.NOTE.ToLower().Contains(_filter.NOTE.ToLower()))
             End If
+            'If IsNumeric(_filter.INTERNAL_HOLYDAY) Then
+            '    lst = lst.Where(Function(f) f.INTERNAL_HOLYDAY = CDec(_filter.INTERNAL_HOLYDAY))
+            'End If
 
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
@@ -498,6 +502,7 @@ Partial Public Class AttendanceRepository
             objTitleData.YEAR = objTitle.YEAR
             objTitleData.NOTE = objTitle.NOTE
             objTitleData.ACTFLG = objTitle.ACTFLG
+            objTitleData.INTERNAL_HOLYDAY = objTitle.INTERNAL_HOLYDAY
             'objTitleData.CREATED_BY = objTitle.CREATED_BY
             'objTitleData.CREATED_DATE = objTitle.CREATED_DATE
             'objTitleData.CREATED_LOG = objTitle.CREATED_LOG
@@ -572,6 +577,7 @@ Partial Public Class AttendanceRepository
             objTitleData.WORKINGDAY = objTitle.WORKINGDAY
             objTitleData.YEAR = objTitle.YEAR
             objTitleData.NOTE = objTitle.NOTE
+            objTitleData.INTERNAL_HOLYDAY = objTitle.INTERNAL_HOLYDAY
             'objTitleData.CREATED_BY = objTitle.CREATED_BY
             'objTitleData.CREATED_DATE = objTitle.CREATED_DATE
             'objTitleData.CREATED_LOG = objTitle.CREATED_LOG

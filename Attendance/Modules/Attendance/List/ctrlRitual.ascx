@@ -42,6 +42,9 @@
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="rdDate"
                         runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập ngày nghỉ. %>"></asp:RequiredFieldValidator>
                 </td>
+                <td>
+                    <asp:CheckBox ID="chkInternalHolyday" runat="server" Text="Ngày nghỉ lễ nội bộ" />
+                </td>
             </tr>
             <tr>
                 <td class="lb">
@@ -55,12 +58,12 @@
         </table>
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
-        <tlk:RadGrid PageSize=50 ID="rgDanhMuc" runat="server" AutoGenerateColumns="False" AllowPaging="True"
-            Height="100%" AllowSorting="True" AllowMultiRowSelection="true">
+        <tlk:RadGrid PageSize="50" ID="rgDanhMuc" runat="server" AutoGenerateColumns="False"
+            AllowPaging="True" Height="100%" AllowSorting="True" AllowMultiRowSelection="true">
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME_VN,NAME_EN,WORKINGDAY,YEAR,ACTFLG,NOTE">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME_VN,NAME_EN,WORKINGDAY,YEAR,ACTFLG,NOTE,INTERNAL_HOLYDAY">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -71,13 +74,16 @@
                     </tlk:GridBoundColumn>
                     <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày nghỉ %>" DataField="WORKINGDAY"
                         DataFormatString="{0:dd/MM/yyyy}" DataType="System.DateTime" UniqueName="WORKINGDAY"
-                        SortExpression="WORKINGDAY" >
+                        SortExpression="WORKINGDAY">
                         <HeaderStyle Width="120px" />
-                        </tlk:GridDateTimeColumn>
+                    </tlk:GridDateTimeColumn>
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã ngày nghỉ %>" DataField="CODE"
                         UniqueName="CODE" SortExpression="CODE" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên ngày nghỉ %>" DataField="NAME_VN"
                         UniqueName="NAME_VN" SortExpression="NAME_VN" />
+                    <tlk:GridCheckBoxColumn UniqueName="INTERNAL_HOLYDAY" DataField="INTERNAL_HOLYDAY" HeaderText="<%$ Translate: Ngày nghỉ nội bộ %>"
+                        SortExpression="INTERNAL_HOLYDAY" HeaderStyle-HorizontalAlign="Center" AllowFiltering="false">
+                    </tlk:GridCheckBoxColumn>
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
                         UniqueName="ACTFLG" SortExpression="ACTFLG" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="NOTE" UniqueName="NOTE"

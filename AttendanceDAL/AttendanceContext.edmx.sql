@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 10/17/2019 2:05:21 PM
--- Generated from EDMX file: D:\SOURCE_TNG\AttendanceDAL\AttendanceContext.edmx
+-- Date Created: 04/27/2020 3:33:55 PM
+-- Generated from EDMX file: F:\WORKING\acv_19\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -989,7 +989,8 @@ CREATE TABLE "dbo"."AT_HOLIDAY" (
    "YEAR" NUMBER(38,0) NULL,
    "OFFDAY" NUMBER(38,0) NULL,
    "IS_SA" NUMBER(38,0) NULL,
-   "IS_SU" NUMBER(38,0) NULL
+   "IS_SU" NUMBER(38,0) NULL,
+   "INTERNAL_HOLYDAY" NUMBER(38,0) NULL
 );
 
 -- Creating table 'AT_HOLIDAY_GENERAL'

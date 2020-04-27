@@ -17,5 +17,6 @@
     Public Property IS_SUN As Boolean?
     Public Property FROMDATE As Date?
     Public Property TODATE As Date?
+    Public Property INTERNAL_HOLYDAY As Boolean?
 
 End Class

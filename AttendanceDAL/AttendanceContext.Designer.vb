@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("17b8fe67-cfd7-4cac-bc08-f6f9818be39a")>
+<Assembly: EdmSchemaAttribute("fdeb7eac-5ddb-4c3e-aeea-c5b36c743db8")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -11141,6 +11141,31 @@ Public Partial Class AT_HOLIDAY
     End Sub
 
     Private Partial Sub OnIS_SUChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property INTERNAL_HOLYDAY() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _INTERNAL_HOLYDAY
+        End Get
+        Set
+            OnINTERNAL_HOLYDAYChanging(value)
+            ReportPropertyChanging("INTERNAL_HOLYDAY")
+            _INTERNAL_HOLYDAY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("INTERNAL_HOLYDAY")
+            OnINTERNAL_HOLYDAYChanged()
+        End Set
+    End Property
+
+    Private _INTERNAL_HOLYDAY As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnINTERNAL_HOLYDAYChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnINTERNAL_HOLYDAYChanged()
     End Sub
 
     #End Region

@@ -131,6 +131,15 @@ Partial Public Class ctrlRitual
     Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''chkInternalHolyday control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkInternalHolyday As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
     '''rdNote control.
     '''</summary>
     '''<remarks>
