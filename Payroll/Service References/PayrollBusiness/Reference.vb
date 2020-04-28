@@ -7948,7 +7948,7 @@ Namespace PayrollBusiness
         Private CREATED_LOGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private EFFECT_DATEField As Date
+        Private EFFECT_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EMPLOYEE_CODEField As String
@@ -8094,7 +8094,7 @@ Namespace PayrollBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property EFFECT_DATE() As Date
+        Public Property EFFECT_DATE() As System.Nullable(Of Date)
             Get
                 Return Me.EFFECT_DATEField
             End Get

@@ -30,7 +30,7 @@ Public Class AllowanceDTO
     Public Property ALLOWANCE_TYPE As Decimal
     Public Property ALLOWANCE_TYPE_NAME As String
     Public Property AMOUNT As Decimal
-    Public Property EFFECT_DATE As Date
+    Public Property EFFECT_DATE As Date?
     Public Property EXP_DATE As Date?
     Public Property ACTFLG As String
     Public Property REMARK As String

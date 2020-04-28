@@ -2,19 +2,46 @@
     Inherits="Payroll.ctrlAllowance" %>
 <%@ Import Namespace="Common" %>
 <asp:HiddenField ID="hidEmp" runat="server" />
-<common:ctrlmessagebox id="ctrlMessageBox" runat="server" />
-<tlk:radsplitter id="RadSplitter1" runat="server" width="100%" height="100%">
-    <tlk:RadPane ID="RadPane4" runat="server" Width="250px" Scrolling="None">
+<Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
+<tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
+    <tlk:RadPane ID="RadPane4" runat="server" Width="270px" Scrolling="None">
         <fieldset style="padding: 0">
             <legend>Thông tin tìm kiếm:</legend>
             <table class="table-form">
                 <tr>
                     <td style="min-width: 70px" class="lb">
-                        Nhân viên
+                        <%# Translate("Mã nhân viên")%>
                     </td>
                     <td>
                         <tlk:RadTextBox ID="txtEmployeeCode" runat="server" Width="140px">
                         </tlk:RadTextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lb">
+                        <%# Translate("Từ ngày")%>
+                    </td>
+                    <td>
+                        <tlk:RadDatePicker runat="server" ID="rdTuNgay">
+                        </tlk:RadDatePicker>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lb">
+                        <%# Translate("Đến ngày")%>
+                    </td>
+                    <td>
+                        <tlk:RadDatePicker runat="server" ID="rdDenNgay">
+                        </tlk:RadDatePicker>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lb">
+                        <%# Translate("Loại phụ cấp")%>
+                    </td>
+                    <td>
+                        <tlk:RadComboBox runat="server" ID="cbPhucap">
+                        </tlk:RadComboBox>
                     </td>
                 </tr>
                 <tr>
@@ -24,6 +51,15 @@
                     <td>
                         <tlk:RadButton ID="chkNhanvienghiviec" AutoPostBack="false" ToggleType="CheckBox"
                             ButtonType="ToggleButton" runat="server" Text="" CausesValidation="False">
+                        </tlk:RadButton>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lb">
+                    </td>
+                    <td>
+                        <tlk:RadButton runat="server" Text="Tìm kiếm" ID="btnSearch" SkinID="ButtonFind"
+                            CausesValidation="false">
                         </tlk:RadButton>
                     </td>
                 </tr>
@@ -170,7 +206,7 @@
                                         <HeaderStyle Width="120px" />
                                         <ItemStyle Width="120px" />
                                     </tlk:GridDateTimeColumn>
-                              <%--      <tlk:GridBoundColumn HeaderStyle-Width="100px" HeaderText="<%$ Translate: Trạng thái %>"
+                                    <%--      <tlk:GridBoundColumn HeaderStyle-Width="100px" HeaderText="<%$ Translate: Trạng thái %>"
                                         DataField="ACTFLG" SortExpression="ACTFLG" UniqueName="ACTFLG" />--%>
                                     <tlk:GridBoundColumn HeaderStyle-Width="100px" HeaderText="<%$ Translate: Ghi chú %>"
                                         DataField="REMARK" SortExpression="REMARK" UniqueName="REMARK" />
@@ -182,9 +218,9 @@
             </tlk:RadPane>
         </tlk:RadSplitter>
     </tlk:RadPane>
-</tlk:radsplitter>
+</tlk:RadSplitter>
 <asp:PlaceHolder ID="FindEmployee" runat="server"></asp:PlaceHolder>
-<common:ctrlupload id="ctrlUpload" runat="server" />
+<Common:ctrlUpload ID="ctrlUpload" runat="server" />
 <script type="text/javascript">
 
     function clientButtonClicking(sender, args) {

@@ -113,6 +113,12 @@ Partial Public Class PayrollRepository
             If _filter.EMPLOYEE_ID <> "" Then
                 lst = lst.Where(Function(p) p.EMPLOYEE_ID.ToUpper.Contains(_filter.EMPLOYEE_ID.ToUpper))
             End If
+            If _filter.EMPLOYEE_CODE <> "" Then
+                lst = lst.Where(Function(p) p.EMPLOYEE_CODE.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper))
+            End If
+            If _filter.FULLNAME_VN <> "" Then
+                lst = lst.Where(Function(p) p.FULLNAME_VN.ToUpper.Contains(_filter.FULLNAME_VN.ToUpper))
+            End If
             If _filter.ALLOWANCE_TYPE_NAME <> "" Then
                 lst = lst.Where(Function(p) p.ALLOWANCE_TYPE_NAME.ToUpper.Contains(_filter.ALLOWANCE_TYPE_NAME.ToUpper))
             End If
@@ -125,6 +131,13 @@ Partial Public Class PayrollRepository
             End If
             If _filter.AMOUNT <> 0 Then
                 lst = lst.Where(Function(p) p.AMOUNT = _filter.AMOUNT)
+            End If
+            If _filter.EFFECT_DATE IsNot Nothing Then
+                lst = lst.Where(Function(p) p.EFFECT_DATE >= _filter.EFFECT_DATE)
+            End If
+
+            If _filter.EXP_DATE IsNot Nothing Then
+                lst = lst.Where(Function(p) p.EXP_DATE <= _filter.EXP_DATE)
             End If
             lst = lst.OrderBy(Sorts)
             Total = lst.Count

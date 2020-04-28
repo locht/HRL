@@ -59,6 +59,33 @@ Partial Public Class ctrlAllowance
     Protected WithEvents txtEmployeeCode As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''rdTuNgay control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdTuNgay As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''rdDenNgay control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdDenNgay As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''cbPhucap control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbPhucap As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
     '''chkNhanvienghiviec control.
     '''</summary>
     '''<remarks>
@@ -66,6 +93,15 @@ Partial Public Class ctrlAllowance
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents chkNhanvienghiviec As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''btnSearch control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnSearch As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
     '''ctrlOrg control.

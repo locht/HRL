@@ -93,7 +93,7 @@ Public Class ctrlAllowance
             rep.Dispose()
 
             FillDropDownList(cboPhucap, objdata, "NAME", "ID", Common.Common.SystemLanguage, True)
-
+            FillDropDownList(cbPhucap, objdata, "NAME", "ID", Common.Common.SystemLanguage, True)
         Catch ex As Exception
             Throw ex
         End Try
@@ -458,7 +458,24 @@ Public Class ctrlAllowance
                                                .IS_DISSOLVE = ctrlOrg.IsDissolve}
             _filter.IS_TER = chkNhanvienghiviec.Checked
             SetValueObjectByRadGrid(rgData, _filter)
+            If rdTuNgay.SelectedDate IsNot Nothing Then
+                _filter.EFFECT_DATE = rdTuNgay.SelectedDate
+            End If
 
+            If rdDenNgay.SelectedDate IsNot Nothing Then
+                _filter.EXP_DATE = rdDenNgay.SelectedDate
+            End If
+
+            If cbPhucap.SelectedValue <> "" Then
+                _filter.ALLOWANCE_TYPE = cbPhucap.SelectedValue
+            End If
+            If txtEmployeeCode.Text <> "" Then
+                If Regex.IsMatch(txtEmployeeCode.Text, "[a-z]") Or Regex.IsMatch(txtEmployeeCode.Text, "[A-Z]") Then
+                    _filter.FULLNAME_VN = txtEmployeeCode.Text
+                Else
+                    _filter.EMPLOYEE_CODE = txtEmployeeCode.Text
+                End If
+            End If
             If isFull Then
                 If Sorts IsNot Nothing Then
                     Return rep.GetAllowance(_filter, _param, Sorts).ToTable()
@@ -483,4 +500,13 @@ Public Class ctrlAllowance
 
 #End Region
 
+    Private Sub btnSearch_Click(sender As Object, e As System.EventArgs) Handles btnSearch.Click
+        Try
+            CreateDataFilter()
+            rgData.Rebind()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    
 End Class
