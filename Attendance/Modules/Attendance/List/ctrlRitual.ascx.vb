@@ -171,7 +171,7 @@ Public Class ctrlRitual
                     txtNameVN.Enabled = True
                     rdDate.Enabled = True
                     rdNote.Enabled = True
-                    chkInternalHolyday.Enabled = False
+                    chkInternalHolyday.Enabled = True
                     EnabledGridNotPostback(rgDanhMuc, False)
 
                 Case CommonMessage.STATE_NORMAL
