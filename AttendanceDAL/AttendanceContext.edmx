@@ -97,6 +97,7 @@
             <EntitySet Name="AT_TIME_MANUAL_RATE" EntityType="AttendanceModel.Store.AT_TIME_MANUAL_RATE" store:Type="Tables"  />
             <EntitySet Name="AT_ENTITLEMENT" EntityType="AttendanceModel.Store.AT_ENTITLEMENT" store:Type="Tables"  />
             <EntitySet Name="AT_SETUP_EXCHANGE" EntityType="AttendanceModel.Store.AT_SETUP_EXCHANGE" store:Type="Tables"  />
+            <EntitySet Name="AT_SYMBOLS" EntityType="AttendanceModel.Store.AT_SYMBOLS" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="AttendanceModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_OOLT_OOL" Association="AttendanceModel.Store.FK_OOLT_OOL">
                 <End Role="OT_OTHER_LIST_TYPE" EntitySet="OT_OTHER_LIST_TYPE" />
@@ -2488,6 +2489,36 @@
             <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="STT" Type="number" Nullable="true" Precision="38" />
         </EntityType>
+        <EntityType Name="AT_SYMBOLS">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="WCODE" Type="nvarchar2" Nullable="false" MaxLength="10" />
+            <Property Name="WNAME" Type="nvarchar2" Nullable="false" MaxLength="1000" />
+            <Property Name="WGROUPID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="WDATATYEID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="WDATAMODEID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EFFECT_DATE" Type="date" Nullable="true" />
+            <Property Name="EXPIRE_DATE" Type="date" Nullable="true" />
+            <Property Name="WINDEX" Type="number" Nullable="false" Precision="5" />
+            <Property Name="NOTE" Type="nvarchar2" Nullable="true" MaxLength="2000" />
+            <Property Name="STATUS" Type="number" Nullable="false" Precision="5" />
+            <Property Name="IS_DISPLAY" Type="number" Nullable="false" Precision="5" />
+            <Property Name="IS_DATAFROMEXCEL" Type="number" Nullable="false" Precision="5" />
+            <Property Name="IS_DISPLAY_PORTAL" Type="number" Nullable="true" Precision="5" />
+            <Property Name="IS_LEAVE" Type="number" Nullable="true" Precision="5" />
+            <Property Name="SYMBOL_FUN_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_LEAVE_WEEKLY" Type="number" Nullable="true" Precision="5" />
+            <Property Name="IS_LAVE_HOLIDAY" Type="number" Nullable="true" Precision="5" />
+            <Property Name="IS_DAY_HALF" Type="number" Nullable="true" Precision="5" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -2804,6 +2835,7 @@
           <EntitySet Name="AT_TIME_MANUAL_RATE" EntityType="AttendanceModel.AT_TIME_MANUAL_RATE" />
           <EntitySet Name="AT_ENTITLEMENT" EntityType="AttendanceModel.AT_ENTITLEMENT" />
           <EntitySet Name="AT_SETUP_EXCHANGE" EntityType="AttendanceModel.AT_SETUP_EXCHANGE" />
+          <EntitySet Name="AT_SYMBOLS" EntityType="AttendanceModel.AT_SYMBOLS" />
           </EntityContainer>
         <EntityType Name="OT_OTHER_LIST">
           <Key>
@@ -5296,6 +5328,36 @@
           <Property Type="String" Name="ACTFLG" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="STT" />
         </EntityType>
+        <EntityType Name="AT_SYMBOLS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="WCODE" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="WNAME" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="WGROUPID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="WDATATYEID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="WDATAMODEID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="EFFECT_DATE" />
+          <Property Type="DateTime" Name="EXPIRE_DATE" />
+          <Property Type="Int16" Name="WINDEX" Nullable="false" />
+          <Property Type="String" Name="NOTE" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="STATUS" Nullable="false" />
+          <Property Type="Int16" Name="IS_DISPLAY" Nullable="false" />
+          <Property Type="Int16" Name="IS_DATAFROMEXCEL" Nullable="false" />
+          <Property Type="Int16" Name="IS_DISPLAY_PORTAL" />
+          <Property Type="Int16" Name="IS_LEAVE" />
+          <Property Type="Decimal" Name="SYMBOL_FUN_ID" Precision="38" Scale="0" />
+          <Property Type="Int16" Name="IS_LEAVE_WEEKLY" />
+          <Property Type="Int16" Name="IS_LAVE_HOLIDAY" />
+          <Property Type="Int16" Name="IS_DAY_HALF" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -7731,6 +7793,37 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="AT_SYMBOLS">
+            <EntityTypeMapping TypeName="AttendanceModel.AT_SYMBOLS">
+                <MappingFragment StoreEntitySet="AT_SYMBOLS">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="WCODE" ColumnName="WCODE" />
+                    <ScalarProperty Name="WNAME" ColumnName="WNAME" />
+                    <ScalarProperty Name="WGROUPID" ColumnName="WGROUPID" />
+                    <ScalarProperty Name="WDATATYEID" ColumnName="WDATATYEID" />
+                    <ScalarProperty Name="WDATAMODEID" ColumnName="WDATAMODEID" />
+                    <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
+                    <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+                    <ScalarProperty Name="WINDEX" ColumnName="WINDEX" />
+                    <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                    <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                    <ScalarProperty Name="IS_DISPLAY" ColumnName="IS_DISPLAY" />
+                    <ScalarProperty Name="IS_DATAFROMEXCEL" ColumnName="IS_DATAFROMEXCEL" />
+                    <ScalarProperty Name="IS_DISPLAY_PORTAL" ColumnName="IS_DISPLAY_PORTAL" />
+                    <ScalarProperty Name="IS_LEAVE" ColumnName="IS_LEAVE" />
+                    <ScalarProperty Name="SYMBOL_FUN_ID" ColumnName="SYMBOL_FUN_ID" />
+                    <ScalarProperty Name="IS_LEAVE_WEEKLY" ColumnName="IS_LEAVE_WEEKLY" />
+                    <ScalarProperty Name="IS_LAVE_HOLIDAY" ColumnName="IS_LAVE_HOLIDAY" />
+                    <ScalarProperty Name="IS_DAY_HALF" ColumnName="IS_DAY_HALF" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="AttendanceModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -7905,6 +7998,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_MANUAL_RATE" Width="1.5" PointX="24.25" PointY="21.5" Height="1.5956835937500031" />
         <EntityTypeShape EntityType="AttendanceModel.AT_ENTITLEMENT" Width="1.5" PointX="0.75" PointY="21.75" Height="21.402731119791667" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SETUP_EXCHANGE" Width="2" PointX="20.375" PointY="24.75" Height="4.0956022135416674" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_SYMBOLS" Width="1.5" PointX="23.375" PointY="24.75" Height="5.8263151041666674" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
