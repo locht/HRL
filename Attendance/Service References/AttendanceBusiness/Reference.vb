@@ -10745,6 +10745,12 @@ Namespace AttendanceBusiness
         Private IS_NOONField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_SHIFT_NIGHTField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_SHOW_IPORTALField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MANUAL_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -10752,6 +10758,9 @@ Namespace AttendanceBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MANUAL_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MANUAL_TYPEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MINHOUSERField As System.Nullable(Of Decimal)
@@ -10799,7 +10808,19 @@ Namespace AttendanceBusiness
         Private SHIFT_DAYField As System.Nullable(Of Double)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SOON_MINUTESField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private START_CAL_LATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private START_CAL_SOONField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private START_MID_HOURSField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private STTField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SUNDAYField As System.Nullable(Of Decimal)
@@ -10809,6 +10830,12 @@ Namespace AttendanceBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SUNDAY_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VALUE_LATEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VALUE_SOONField As System.Nullable(Of Decimal)
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
@@ -11081,6 +11108,32 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_SHIFT_NIGHT() As System.Nullable(Of Decimal)
+            Get
+                Return Me.IS_SHIFT_NIGHTField
+            End Get
+            Set
+                If (Me.IS_SHIFT_NIGHTField.Equals(value) <> true) Then
+                    Me.IS_SHIFT_NIGHTField = value
+                    Me.RaisePropertyChanged("IS_SHIFT_NIGHT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_SHOW_IPORTAL() As System.Nullable(Of Decimal)
+            Get
+                Return Me.IS_SHOW_IPORTALField
+            End Get
+            Set
+                If (Me.IS_SHOW_IPORTALField.Equals(value) <> true) Then
+                    Me.IS_SHOW_IPORTALField = value
+                    Me.RaisePropertyChanged("IS_SHOW_IPORTAL")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property MANUAL_CODE() As String
             Get
                 Return Me.MANUAL_CODEField
@@ -11115,6 +11168,19 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.MANUAL_NAMEField, value) <> true) Then
                     Me.MANUAL_NAMEField = value
                     Me.RaisePropertyChanged("MANUAL_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MANUAL_TYPE() As String
+            Get
+                Return Me.MANUAL_TYPEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MANUAL_TYPEField, value) <> true) Then
+                    Me.MANUAL_TYPEField = value
+                    Me.RaisePropertyChanged("MANUAL_TYPE")
                 End If
             End Set
         End Property
@@ -11315,6 +11381,45 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SOON_MINUTES() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SOON_MINUTESField
+            End Get
+            Set
+                If (Me.SOON_MINUTESField.Equals(value) <> true) Then
+                    Me.SOON_MINUTESField = value
+                    Me.RaisePropertyChanged("SOON_MINUTES")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property START_CAL_LATE() As System.Nullable(Of Date)
+            Get
+                Return Me.START_CAL_LATEField
+            End Get
+            Set
+                If (Me.START_CAL_LATEField.Equals(value) <> true) Then
+                    Me.START_CAL_LATEField = value
+                    Me.RaisePropertyChanged("START_CAL_LATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property START_CAL_SOON() As System.Nullable(Of Date)
+            Get
+                Return Me.START_CAL_SOONField
+            End Get
+            Set
+                If (Me.START_CAL_SOONField.Equals(value) <> true) Then
+                    Me.START_CAL_SOONField = value
+                    Me.RaisePropertyChanged("START_CAL_SOON")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property START_MID_HOURS() As System.Nullable(Of Date)
             Get
                 Return Me.START_MID_HOURSField
@@ -11323,6 +11428,19 @@ Namespace AttendanceBusiness
                 If (Me.START_MID_HOURSField.Equals(value) <> true) Then
                     Me.START_MID_HOURSField = value
                     Me.RaisePropertyChanged("START_MID_HOURS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property STT() As System.Nullable(Of Decimal)
+            Get
+                Return Me.STTField
+            End Get
+            Set
+                If (Me.STTField.Equals(value) <> true) Then
+                    Me.STTField = value
+                    Me.RaisePropertyChanged("STT")
                 End If
             End Set
         End Property
@@ -11362,6 +11480,32 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.SUNDAY_NAMEField, value) <> true) Then
                     Me.SUNDAY_NAMEField = value
                     Me.RaisePropertyChanged("SUNDAY_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VALUE_LATE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.VALUE_LATEField
+            End Get
+            Set
+                If (Me.VALUE_LATEField.Equals(value) <> true) Then
+                    Me.VALUE_LATEField = value
+                    Me.RaisePropertyChanged("VALUE_LATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VALUE_SOON() As System.Nullable(Of Decimal)
+            Get
+                Return Me.VALUE_SOONField
+            End Get
+            Set
+                If (Me.VALUE_SOONField.Equals(value) <> true) Then
+                    Me.VALUE_SOONField = value
+                    Me.RaisePropertyChanged("VALUE_SOON")
                 End If
             End Set
         End Property

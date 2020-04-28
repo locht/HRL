@@ -2288,6 +2288,15 @@
             <Property Name="IS_HOURS_STOP" Type="number" Nullable="true" Precision="38" />
             <Property Name="IS_HOURS_CHECKOUT" Type="number" Nullable="true" Precision="38" />
             <Property Name="IS_MID_END" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MANUAL_TYPE" Type="nclob" Nullable="true" />
+            <Property Name="IS_SHIFT_NIGHT" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_SHOW_IPORTAL" Type="number" Nullable="true" Precision="38" />
+            <Property Name="START_CAL_SOON" Type="date" Nullable="true" />
+            <Property Name="START_CAL_LATE" Type="date" Nullable="true" />
+            <Property Name="SOON_MINUTES" Type="number" Nullable="true" Precision="38" />
+            <Property Name="VALUE_LATE" Type="date" Nullable="true" />
+            <Property Name="VALUE_SOON" Type="number" Nullable="true" Precision="38" />
+            <Property Name="STT" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="AT_LEAVESHEET_DETAIL">
             <Key>
@@ -5147,6 +5156,15 @@
           <Property Type="Decimal" Name="IS_HOURS_STOP" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="IS_HOURS_CHECKOUT" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="IS_MID_END" Precision="38" Scale="0" />
+          <Property Type="String" Name="MANUAL_TYPE" />
+          <Property Type="Decimal" Name="IS_SHIFT_NIGHT" />
+          <Property Type="Decimal" Name="IS_SHOW_IPORTAL" />
+          <Property Type="DateTime" Name="START_CAL_SOON" />
+          <Property Type="DateTime" Name="START_CAL_LATE" />
+          <Property Type="Decimal" Name="SOON_MINUTES" />
+          <Property Type="DateTime" Name="VALUE_LATE" />
+          <Property Type="Decimal" Name="VALUE_SOON" />
+          <Property Type="Decimal" Name="STT" />
         </EntityType>
         <EntityType Name="AT_LEAVESHEET_DETAIL">
           <Key>
@@ -7621,6 +7639,15 @@
                     <ScalarProperty Name="IS_HOURS_STOP" ColumnName="IS_HOURS_STOP" />
                     <ScalarProperty Name="IS_HOURS_CHECKOUT" ColumnName="IS_HOURS_CHECKOUT" />
                     <ScalarProperty Name="IS_MID_END" ColumnName="IS_MID_END" />
+                    <ScalarProperty Name="MANUAL_TYPE" ColumnName="MANUAL_TYPE" />
+                    <ScalarProperty Name="IS_SHIFT_NIGHT" ColumnName="IS_SHIFT_NIGHT" />
+                    <ScalarProperty Name="IS_SHOW_IPORTAL" ColumnName="IS_SHOW_IPORTAL" />
+                    <ScalarProperty Name="START_CAL_SOON" ColumnName="START_CAL_SOON" />
+                    <ScalarProperty Name="START_CAL_LATE" ColumnName="START_CAL_LATE" />
+                    <ScalarProperty Name="SOON_MINUTES" ColumnName="SOON_MINUTES" />
+                    <ScalarProperty Name="VALUE_LATE" ColumnName="VALUE_LATE" />
+                    <ScalarProperty Name="VALUE_SOON" ColumnName="VALUE_SOON" />
+                    <ScalarProperty Name="STT" ColumnName="STT" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -8049,7 +8076,7 @@
         <EntityTypeShape EntityType="AttendanceModel.PROCESS_APPROVED_STATUS" Width="1.5" PointX="18.375" PointY="1.75" Height="3.5186979166666674" />
         <EntityTypeShape EntityType="AttendanceModel.ATV_OFFSETTING" Width="2.375" PointX="20.375" PointY="0.75" Height="1.9802864583333331" />
         <EntityTypeShape EntityType="AttendanceModel.SE_USER_ORG_ACCESS" Width="1.5" PointX="10.625" PointY="23.125" Height="1.5956835937499818" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_SHIFT" Width="1.5" PointX="13.375" PointY="22.75" Height="7.9416308593749818" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_SHIFT" Width="1.5" PointX="13.375" PointY="22.75" Height="9.6723437500000031" />
         <EntityTypeShape EntityType="AttendanceModel.AT_LEAVESHEET_DETAIL" Width="1.5" PointX="18.375" PointY="22.75" Height="3.710999348958353" />
         <EntityTypeShape EntityType="AttendanceModel.AT_LEAVESHEET" Width="1.5" PointX="7.375" PointY="23.75" Height="4.6725065104166674" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TIMESHEET_MACHINET_IMPORT" Width="1.5" PointX="23.375" PointY="15.75" Height="2.1725878906249818" />

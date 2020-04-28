@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("896cdd3a-bff3-4d00-8656-1e420fd236a9")>
+<Assembly: EdmSchemaAttribute("41213531-c013-4687-aea9-788b946aa360")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -22940,6 +22940,231 @@ Public Partial Class AT_SHIFT
     End Sub
 
     Private Partial Sub OnIS_MID_ENDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MANUAL_TYPE() As Global.System.String
+        Get
+            Return _MANUAL_TYPE
+        End Get
+        Set
+            OnMANUAL_TYPEChanging(value)
+            ReportPropertyChanging("MANUAL_TYPE")
+            _MANUAL_TYPE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("MANUAL_TYPE")
+            OnMANUAL_TYPEChanged()
+        End Set
+    End Property
+
+    Private _MANUAL_TYPE As Global.System.String
+    Private Partial Sub OnMANUAL_TYPEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnMANUAL_TYPEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_SHIFT_NIGHT() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_SHIFT_NIGHT
+        End Get
+        Set
+            OnIS_SHIFT_NIGHTChanging(value)
+            ReportPropertyChanging("IS_SHIFT_NIGHT")
+            _IS_SHIFT_NIGHT = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_SHIFT_NIGHT")
+            OnIS_SHIFT_NIGHTChanged()
+        End Set
+    End Property
+
+    Private _IS_SHIFT_NIGHT As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_SHIFT_NIGHTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_SHIFT_NIGHTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_SHOW_IPORTAL() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_SHOW_IPORTAL
+        End Get
+        Set
+            OnIS_SHOW_IPORTALChanging(value)
+            ReportPropertyChanging("IS_SHOW_IPORTAL")
+            _IS_SHOW_IPORTAL = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_SHOW_IPORTAL")
+            OnIS_SHOW_IPORTALChanged()
+        End Set
+    End Property
+
+    Private _IS_SHOW_IPORTAL As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_SHOW_IPORTALChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_SHOW_IPORTALChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property START_CAL_SOON() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _START_CAL_SOON
+        End Get
+        Set
+            OnSTART_CAL_SOONChanging(value)
+            ReportPropertyChanging("START_CAL_SOON")
+            _START_CAL_SOON = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("START_CAL_SOON")
+            OnSTART_CAL_SOONChanged()
+        End Set
+    End Property
+
+    Private _START_CAL_SOON As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnSTART_CAL_SOONChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnSTART_CAL_SOONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property START_CAL_LATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _START_CAL_LATE
+        End Get
+        Set
+            OnSTART_CAL_LATEChanging(value)
+            ReportPropertyChanging("START_CAL_LATE")
+            _START_CAL_LATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("START_CAL_LATE")
+            OnSTART_CAL_LATEChanged()
+        End Set
+    End Property
+
+    Private _START_CAL_LATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnSTART_CAL_LATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnSTART_CAL_LATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SOON_MINUTES() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _SOON_MINUTES
+        End Get
+        Set
+            OnSOON_MINUTESChanging(value)
+            ReportPropertyChanging("SOON_MINUTES")
+            _SOON_MINUTES = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("SOON_MINUTES")
+            OnSOON_MINUTESChanged()
+        End Set
+    End Property
+
+    Private _SOON_MINUTES As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSOON_MINUTESChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSOON_MINUTESChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property VALUE_LATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _VALUE_LATE
+        End Get
+        Set
+            OnVALUE_LATEChanging(value)
+            ReportPropertyChanging("VALUE_LATE")
+            _VALUE_LATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("VALUE_LATE")
+            OnVALUE_LATEChanged()
+        End Set
+    End Property
+
+    Private _VALUE_LATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnVALUE_LATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnVALUE_LATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property VALUE_SOON() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _VALUE_SOON
+        End Get
+        Set
+            OnVALUE_SOONChanging(value)
+            ReportPropertyChanging("VALUE_SOON")
+            _VALUE_SOON = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("VALUE_SOON")
+            OnVALUE_SOONChanged()
+        End Set
+    End Property
+
+    Private _VALUE_SOON As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnVALUE_SOONChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnVALUE_SOONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property STT() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _STT
+        End Get
+        Set
+            OnSTTChanging(value)
+            ReportPropertyChanging("STT")
+            _STT = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("STT")
+            OnSTTChanged()
+        End Set
+    End Property
+
+    Private _STT As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSTTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSTTChanged()
     End Sub
 
     #End Region

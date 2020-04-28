@@ -44,4 +44,13 @@
     Public Property IS_MID_END_NAME As String
     Public Property IS_HOURS_CHECKOUT_NAME As String
 
+    Public Property MANUAL_TYPE As String
+    Public Property IS_SHIFT_NIGHT As Decimal?
+    Public Property IS_SHOW_IPORTAL As Decimal?
+    Public Property SOON_MINUTES As Decimal?
+    Public Property VALUE_LATE As Decimal?
+    Public Property VALUE_SOON As Decimal?
+    Public Property STT As Decimal?
+    Public Property START_CAL_SOON As Date?
+    Public Property START_CAL_LATE As Date?
 End Class
