@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("15a9f567-0cdb-47be-b1d8-34551cbbb1fd")>
+<Assembly: EdmSchemaAttribute("896cdd3a-bff3-4d00-8656-1e420fd236a9")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -1384,6 +1384,20 @@ Public Partial Class AttendanceContext
 
     Private _AT_SYMBOL_FUNC As ObjectSet(Of AT_SYMBOL_FUNC)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property SE_USER_ORG_ACCESS1Set() As ObjectSet(Of SE_USER_ORG_ACCESS1)
+        Get
+            If (_SE_USER_ORG_ACCESS1Set Is Nothing) Then
+                _SE_USER_ORG_ACCESS1Set = MyBase.CreateObjectSet(Of SE_USER_ORG_ACCESS1)("SE_USER_ORG_ACCESS1Set")
+            End If
+            Return _SE_USER_ORG_ACCESS1Set
+        End Get
+    End Property
+
+    Private _SE_USER_ORG_ACCESS1Set As ObjectSet(Of SE_USER_ORG_ACCESS1)
+
     #End Region
 
     #Region "AddTo Methods"
@@ -2037,6 +2051,13 @@ Public Partial Class AttendanceContext
     ''' </summary>
     Public Sub AddToAT_SYMBOL_FUNC(ByVal aT_SYMBOL_FUNC As AT_SYMBOL_FUNC)
         MyBase.AddObject("AT_SYMBOL_FUNC", aT_SYMBOL_FUNC)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the SE_USER_ORG_ACCESS1Set EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToSE_USER_ORG_ACCESS1Set(ByVal sE_USER_ORG_ACCESS1 As SE_USER_ORG_ACCESS1)
+        MyBase.AddObject("SE_USER_ORG_ACCESS1Set", sE_USER_ORG_ACCESS1)
     End Sub
 
     #End Region
@@ -53377,6 +53398,140 @@ Public Partial Class SE_USER_ORG_ACCESS
     End Sub
 
     Private Partial Sub OnORG_IDChanged()
+    End Sub
+
+    #End Region
+
+End Class
+
+''' <summary>
+''' No Metadata Documentation available.
+''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="AttendanceModel", Name:="SE_USER_ORG_ACCESS1")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class SE_USER_ORG_ACCESS1
+    Inherits EntityObject
+    #Region "Factory Method"
+
+    ''' <summary>
+    ''' Create a new SE_USER_ORG_ACCESS1 object.
+    ''' </summary>
+    ''' <param name="id">Initial value of the ID property.</param>
+    ''' <param name="uSER_ID">Initial value of the USER_ID property.</param>
+    ''' <param name="oRG_ID">Initial value of the ORG_ID property.</param>
+    Public Shared Function CreateSE_USER_ORG_ACCESS1(id As Global.System.Decimal, uSER_ID As Global.System.Decimal, oRG_ID As Global.System.Decimal) As SE_USER_ORG_ACCESS1
+        Dim sE_USER_ORG_ACCESS1 as SE_USER_ORG_ACCESS1 = New SE_USER_ORG_ACCESS1
+        sE_USER_ORG_ACCESS1.ID = id
+        sE_USER_ORG_ACCESS1.USER_ID = uSER_ID
+        sE_USER_ORG_ACCESS1.ORG_ID = oRG_ID
+        Return sE_USER_ORG_ACCESS1
+    End Function
+
+    #End Region
+
+    #Region "Primitive Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property ID() As Global.System.Decimal
+        Get
+            Return _ID
+        End Get
+        Set
+            If (_ID <> Value) Then
+                OnIDChanging(value)
+                ReportPropertyChanging("ID")
+                _ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ID")
+                OnIDChanged()
+            End If
+        End Set
+    End Property
+
+    Private _ID As Global.System.Decimal
+    Private Partial Sub OnIDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnIDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property USER_ID() As Global.System.Decimal
+        Get
+            Return _USER_ID
+        End Get
+        Set
+            OnUSER_IDChanging(value)
+            ReportPropertyChanging("USER_ID")
+            _USER_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("USER_ID")
+            OnUSER_IDChanged()
+        End Set
+    End Property
+
+    Private _USER_ID As Global.System.Decimal
+    Private Partial Sub OnUSER_IDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnUSER_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property ORG_ID() As Global.System.Decimal
+        Get
+            Return _ORG_ID
+        End Get
+        Set
+            OnORG_IDChanging(value)
+            ReportPropertyChanging("ORG_ID")
+            _ORG_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("ORG_ID")
+            OnORG_IDChanged()
+        End Set
+    End Property
+
+    Private _ORG_ID As Global.System.Decimal
+    Private Partial Sub OnORG_IDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnORG_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property GROUP_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _GROUP_ID
+        End Get
+        Set
+            OnGROUP_IDChanging(value)
+            ReportPropertyChanging("GROUP_ID")
+            _GROUP_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("GROUP_ID")
+            OnGROUP_IDChanged()
+        End Set
+    End Property
+
+    Private _GROUP_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnGROUP_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnGROUP_IDChanged()
     End Sub
 
     #End Region

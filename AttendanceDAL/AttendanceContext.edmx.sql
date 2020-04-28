@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 4/28/2020 10:17:43 AM
+-- Date Created: 4/28/2020 10:26:19 AM
 -- Generated from EDMX file: C:\workspaces\ACV_US_19\acv_19\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
@@ -13,7 +13,7 @@
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "ACV_19_DEV"."AT_SYMBOL_FUNC";
+-- DROP TABLE "ACV_19_DEV"."SE_USER_ORG_ACCESS";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -2302,6 +2302,14 @@ CREATE TABLE "dbo"."AT_SYMBOL_FUNC" (
    "COL_NAME" NVARCHAR2(100) NULL
 );
 
+-- Creating table 'SE_USER_ORG_ACCESS1Set'
+CREATE TABLE "dbo"."SE_USER_ORG_ACCESS1Set" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "USER_ID" NUMBER(38,0) NOT NULL,
+   "ORG_ID" NUMBER(38,0) NOT NULL,
+   "GROUP_ID" NUMBER(38,0) NULL
+);
+
 -- Creating table 'SE_USER_REPORT'
 CREATE TABLE "dbo"."SE_USER_REPORT" (
    "SE_REPORT_ID" NUMBER(38,0) NOT NULL,
@@ -3053,6 +3061,14 @@ ADD CONSTRAINT "PK_AT_SYMBOLS"
 ALTER TABLE "dbo"."AT_SYMBOL_FUNC"
 ADD CONSTRAINT "PK_AT_SYMBOL_FUNC"
    PRIMARY KEY ("FUNCTION_ID", "SYMBOLS_ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'SE_USER_ORG_ACCESS1Set'
+ALTER TABLE "dbo"."SE_USER_ORG_ACCESS1Set"
+ADD CONSTRAINT "PK_SE_USER_ORG_ACCESS1Set"
+   PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;
 
