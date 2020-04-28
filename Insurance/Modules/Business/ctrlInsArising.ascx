@@ -131,7 +131,7 @@
                         <Resizing AllowColumnResize="true" />
                     </ClientSettings>
                     <MasterTableView TableLayout="Fixed" CommandItemDisplay="None" DataKeyNames="ID"
-                        ClientDataKeyNames="ID,EMPLOYEE_CODE,EMPID,FULL_NAME,DEP_NAME,TITLE_NAME,EFFECT_DATE,ARISING_TYPE_NAME,ARISING_GROUP_TYPE,NOTE,ORG_DESC">
+                        ClientDataKeyNames="ID,EMPLOYEE_CODE,EMPID,FULL_NAME,DEP_NAME,TITLE_NAME,EFFECT_DATE,ARISING_TYPE_NAME,ARISING_GROUP_TYPE,NOTE,ORG_DESC,COUNT_E">
                         <GroupByExpressions>
                             <tlk:GridGroupByExpression>
                                 <SelectFields>
@@ -223,6 +223,8 @@
                                 SortExpression="EMPID" Visible="false" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: ID%>" DataField="ID" UniqueName="ID"
                                 SortExpression="ID" Visible="false" />
+                                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Đếm số lượng trùng%>" DataField="COUNT_E" UniqueName="COUNT_E"
+                                SortExpression="COUNT_E" Visible="false" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: ID%>" DataField="ARISING_GROUP_TYPE"
                                 UniqueName="ARISING_GROUP_TYPE" SortExpression="ARISING_GROUP_TYPE" Visible="false" />                                                        
                             <%--<tlk:GridTemplateColumn Display="false" HeaderText="<%$ Translate: Ghi chú %>" UniqueName="NOTE" SortExpression="NOTE" HeaderStyle-Width="200px">
