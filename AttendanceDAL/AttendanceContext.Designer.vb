@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("00cb8c9b-dba0-471d-8036-4f7f82427b5b")>
+<Assembly: EdmSchemaAttribute("15a9f567-0cdb-47be-b1d8-34551cbbb1fd")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -1370,6 +1370,20 @@ Public Partial Class AttendanceContext
 
     Private _AT_SYMBOLS As ObjectSet(Of AT_SYMBOLS)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property AT_SYMBOL_FUNC() As ObjectSet(Of AT_SYMBOL_FUNC)
+        Get
+            If (_AT_SYMBOL_FUNC Is Nothing) Then
+                _AT_SYMBOL_FUNC = MyBase.CreateObjectSet(Of AT_SYMBOL_FUNC)("AT_SYMBOL_FUNC")
+            End If
+            Return _AT_SYMBOL_FUNC
+        End Get
+    End Property
+
+    Private _AT_SYMBOL_FUNC As ObjectSet(Of AT_SYMBOL_FUNC)
+
     #End Region
 
     #Region "AddTo Methods"
@@ -2016,6 +2030,13 @@ Public Partial Class AttendanceContext
     ''' </summary>
     Public Sub AddToAT_SYMBOLS(ByVal aT_SYMBOLS As AT_SYMBOLS)
         MyBase.AddObject("AT_SYMBOLS", aT_SYMBOLS)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the AT_SYMBOL_FUNC EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToAT_SYMBOL_FUNC(ByVal aT_SYMBOL_FUNC As AT_SYMBOL_FUNC)
+        MyBase.AddObject("AT_SYMBOL_FUNC", aT_SYMBOL_FUNC)
     End Sub
 
     #End Region
@@ -25657,6 +25678,115 @@ Public Partial Class AT_SWIPE_DATA
     End Sub
 
     Private Partial Sub OnEMPLOYEE_IDChanged()
+    End Sub
+
+    #End Region
+
+End Class
+
+''' <summary>
+''' No Metadata Documentation available.
+''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="AttendanceModel", Name:="AT_SYMBOL_FUNC")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class AT_SYMBOL_FUNC
+    Inherits EntityObject
+    #Region "Factory Method"
+
+    ''' <summary>
+    ''' Create a new AT_SYMBOL_FUNC object.
+    ''' </summary>
+    ''' <param name="fUNCTION_ID">Initial value of the FUNCTION_ID property.</param>
+    ''' <param name="sYMBOLS_ID">Initial value of the SYMBOLS_ID property.</param>
+    Public Shared Function CreateAT_SYMBOL_FUNC(fUNCTION_ID As Global.System.Decimal, sYMBOLS_ID As Global.System.Decimal) As AT_SYMBOL_FUNC
+        Dim aT_SYMBOL_FUNC as AT_SYMBOL_FUNC = New AT_SYMBOL_FUNC
+        aT_SYMBOL_FUNC.FUNCTION_ID = fUNCTION_ID
+        aT_SYMBOL_FUNC.SYMBOLS_ID = sYMBOLS_ID
+        Return aT_SYMBOL_FUNC
+    End Function
+
+    #End Region
+
+    #Region "Primitive Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property FUNCTION_ID() As Global.System.Decimal
+        Get
+            Return _FUNCTION_ID
+        End Get
+        Set
+            If (_FUNCTION_ID <> Value) Then
+                OnFUNCTION_IDChanging(value)
+                ReportPropertyChanging("FUNCTION_ID")
+                _FUNCTION_ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("FUNCTION_ID")
+                OnFUNCTION_IDChanged()
+            End If
+        End Set
+    End Property
+
+    Private _FUNCTION_ID As Global.System.Decimal
+    Private Partial Sub OnFUNCTION_IDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnFUNCTION_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property SYMBOLS_ID() As Global.System.Decimal
+        Get
+            Return _SYMBOLS_ID
+        End Get
+        Set
+            If (_SYMBOLS_ID <> Value) Then
+                OnSYMBOLS_IDChanging(value)
+                ReportPropertyChanging("SYMBOLS_ID")
+                _SYMBOLS_ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("SYMBOLS_ID")
+                OnSYMBOLS_IDChanged()
+            End If
+        End Set
+    End Property
+
+    Private _SYMBOLS_ID As Global.System.Decimal
+    Private Partial Sub OnSYMBOLS_IDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnSYMBOLS_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property COL_NAME() As Global.System.String
+        Get
+            Return _COL_NAME
+        End Get
+        Set
+            OnCOL_NAMEChanging(value)
+            ReportPropertyChanging("COL_NAME")
+            _COL_NAME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("COL_NAME")
+            OnCOL_NAMEChanged()
+        End Set
+    End Property
+
+    Private _COL_NAME As Global.System.String
+    Private Partial Sub OnCOL_NAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCOL_NAMEChanged()
     End Sub
 
     #End Region
