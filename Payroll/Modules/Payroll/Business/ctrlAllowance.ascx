@@ -10,7 +10,7 @@
             <table class="table-form">
                 <tr>
                     <td style="min-width: 70px" class="lb">
-                         <%# Translate("Mã nhân viên")%>
+                        <%# Translate("Mã nhân viên")%>
                     </td>
                     <td>
                         <tlk:RadTextBox ID="txtEmployeeCode" runat="server" Width="140px">
@@ -89,6 +89,8 @@
                             <asp:RequiredFieldValidator ID="rqCode" ControlToValidate="txtCode" runat="server"
                                 ErrorMessage="<%$ Translate: Bạn phải chọn nhân viên %>" ToolTip="<%$ Translate: Bạn phải chọn nhân viên %>">
                             </asp:RequiredFieldValidator>
+                            <tlk:RadTextBox ID="txtID" runat="server" Visible="false">
+                            </tlk:RadTextBox>
                         </td>
                         <td class="lb">
                             <%# Translate("Họ và tên")%>

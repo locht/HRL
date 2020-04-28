@@ -9,8 +9,9 @@ Namespace PayrollBusiness.ServiceContracts
         <OperationContract()>
         Function GetAllowanceList(ByVal _filter As AllowanceListDTO,
                                         Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AllowanceListDTO)
-        
 
+        <OperationContract()>
+        Function CheckAllowance(ByVal empId As Decimal, ByVal day As Date, ByVal typeAllowance As Decimal, ByVal id As Decimal) As Boolean
 #End Region
 
 #Region "Allowance"

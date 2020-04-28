@@ -103,16 +103,17 @@ Public Class ctrlAllowance
         Try
             GetDataCombobox()
             Dim dic As New Dictionary(Of String, Control)
+            dic.Add("EMPLOYEE_ID", hidEmp)
             dic.Add("EMPLOYEE_CODE", txtCode)
             dic.Add("FULLNAME_VN", txtTennhanvien)
             dic.Add("TITLE_NAME", txtTitle)
             dic.Add("ORG_NAME", txtOrgName)
-            dic.Add("ALLOWANCE_TYPE", cboPhucap)
             dic.Add("AMOUNT", txtSotien)
-            dic.Add("EFFECT_DATE", dpTungay)
-            dic.Add("EXP_DATE", dpDenngay)
             dic.Add("REMARK", txtGhichu)
-            dic.Add("EMPLOYEE_ID", hidEmp)
+            dic.Add("EFFECT_DATE", dpTungay)
+            dic.Add("ALLOWANCE_TYPE", cboPhucap)
+            dic.Add("EXP_DATE", dpDenngay)
+            dic.Add("ID", txtID)
             Utilities.OnClientRowSelectedChanged(rgData, dic)
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -345,6 +346,10 @@ Public Class ctrlAllowance
                             Select Case CurrentState
                                 Case CommonMessage.STATE_NEW
                                     objAllowance.ACTFLG = "A"
+                                    If Not rep.CheckAllowance(hidEmp.Value, dpTungay.SelectedDate, cboPhucap.SelectedValue, 0) Then
+                                        ShowMessage(Translate("Đã tồn tại loại phụ cấp này,xin kiểm tra lại"), NotifyType.Warning)
+                                        Exit Sub
+                                    End If
                                     If rep.InsertAllowance(objAllowance, gID) Then
                                         CurrentState = CommonMessage.STATE_NORMAL
                                         IDSelect = gID
@@ -355,6 +360,10 @@ Public Class ctrlAllowance
                                     End If
                                 Case CommonMessage.STATE_EDIT
                                     objAllowance.ID = rgData.SelectedValue
+                                    If Not rep.CheckAllowance(hidEmp.Value, dpTungay.SelectedDate, cboPhucap.SelectedValue, objAllowance.ID) Then
+                                        ShowMessage(Translate("Đã tồn tại loại phụ cấp này,xin kiểm tra lại"), NotifyType.Warning)
+                                        Exit Sub
+                                    End If
                                     If rep.ModifyAllowance(objAllowance, gID) Then
                                         CurrentState = CommonMessage.STATE_NORMAL
                                         IDSelect = objAllowance.ID

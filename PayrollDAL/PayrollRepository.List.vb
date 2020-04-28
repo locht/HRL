@@ -65,6 +65,21 @@ Partial Public Class PayrollRepository
 
 
     End Function
+    'Kiểm tra và cảnh báo khi nhập trùng Mã nhân viên/ Ngày hiệu lực/Loại phụ cấp
+    Public Function CheckAllowance(ByVal empId As Decimal, ByVal day As Date, ByVal typeAllowance As Decimal, ByVal id As Decimal) As Boolean
+        Try
+            Dim check = (From p In Context.HU_ALLOWANCE
+                       Where p.EMPLOYEE_ID = empId And p.EFFECT_DATE = day And p.ALLOWANCE_TYPE = typeAllowance And p.ID <> id).ToList.Count
+
+            If check > 0 Then
+                Return False
+            End If
+
+            Return True
+        Catch ex As Exception
+
+        End Try
+    End Function
     Public Function GetAllowance(ByVal _filter As AllowanceDTO,
                                         ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,

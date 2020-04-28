@@ -194,6 +194,15 @@ Partial Public Class ctrlAllowance
     Protected WithEvents rqCode As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''txtID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtID As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''txtTennhanvien control.
     '''</summary>
     '''<remarks>

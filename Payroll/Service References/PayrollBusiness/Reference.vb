@@ -10388,6 +10388,9 @@ Namespace PayrollBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="PayrollBusiness.IPayrollBusiness")>  _
     Public Interface IPayrollBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/InsertListSalaries", ReplyAction:="http://tempuri.org/IPayrollBusiness/InsertListSalariesResponse")>  _
+        Function InsertListSalaries(ByVal objListSalaries As PayrollBusiness.PAListSalariesDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ModifyListSalaries", ReplyAction:="http://tempuri.org/IPayrollBusiness/ModifyListSalariesResponse")>  _
         Function ModifyListSalaries(ByVal objListSalaries As PayrollBusiness.PAListSalariesDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
@@ -10630,6 +10633,9 @@ Namespace PayrollBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetTaxFinalizationbyYear", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetTaxFinalizationbyYearResponse")>  _
         Function GetTaxFinalizationbyYear(ByVal year As Decimal) As System.Collections.Generic.List(Of PayrollBusiness.PATaxFinalizationDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ActiveFolmulerGroup", ReplyAction:="http://tempuri.org/IPayrollBusiness/ActiveFolmulerGroupResponse")>  _
+        Function ActiveFolmulerGroup(ByVal lstID As Decimal, ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetSalaryGroup", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetSalaryGroupResponse")>  _
         Function GetSalaryGroup(ByVal _filter As PayrollBusiness.SalaryGroupDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.SalaryGroupDTO)
@@ -11053,11 +11059,11 @@ Namespace PayrollBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/InsertPA_SAL_MAPPING", ReplyAction:="http://tempuri.org/IPayrollBusiness/InsertPA_SAL_MAPPINGResponse")>  _
         Function InsertPA_SAL_MAPPING(ByVal objListSal As PayrollBusiness.PA_SALARY_FUND_MAPPINGDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/InsertListSalaries", ReplyAction:="http://tempuri.org/IPayrollBusiness/InsertListSalariesResponse")>  _
-        Function InsertListSalaries(ByVal objListSalaries As PayrollBusiness.PAListSalariesDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetAllowanceList", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetAllowanceListResponse")>  _
         Function GetAllowanceList(ByVal _filter As PayrollBusiness.AllowanceListDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.AllowanceListDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/CheckAllowance", ReplyAction:="http://tempuri.org/IPayrollBusiness/CheckAllowanceResponse")>  _
+        Function CheckAllowance(ByVal empId As Decimal, ByVal day As Date, ByVal typeAllowance As Decimal, ByVal id As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetAllowance", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetAllowanceResponse")>  _
         Function GetAllowance(ByVal _filter As PayrollBusiness.AllowanceDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As PayrollBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of PayrollBusiness.AllowanceDTO)
@@ -11307,9 +11313,6 @@ Namespace PayrollBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/CheckFomuler", ReplyAction:="http://tempuri.org/IPayrollBusiness/CheckFomulerResponse")>  _
         Function CheckFomuler(ByVal sCol As String, ByVal sFormuler As String, ByVal objID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ActiveFolmulerGroup", ReplyAction:="http://tempuri.org/IPayrollBusiness/ActiveFolmulerGroupResponse")>  _
-        Function ActiveFolmulerGroup(ByVal lstID As Decimal, ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Decimal) As Boolean
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -11342,6 +11345,10 @@ Namespace PayrollBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function InsertListSalaries(ByVal objListSalaries As PayrollBusiness.PAListSalariesDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.InsertListSalaries
+            Return MyBase.Channel.InsertListSalaries(objListSalaries, log, gID)
+        End Function
         
         Public Function ModifyListSalaries(ByVal objListSalaries As PayrollBusiness.PAListSalariesDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.ModifyListSalaries
             Return MyBase.Channel.ModifyListSalaries(objListSalaries, log, gID)
@@ -11665,6 +11672,10 @@ Namespace PayrollBusiness
         
         Public Function GetTaxFinalizationbyYear(ByVal year As Decimal) As System.Collections.Generic.List(Of PayrollBusiness.PATaxFinalizationDTO) Implements PayrollBusiness.IPayrollBusiness.GetTaxFinalizationbyYear
             Return MyBase.Channel.GetTaxFinalizationbyYear(year)
+        End Function
+        
+        Public Function ActiveFolmulerGroup(ByVal lstID As Decimal, ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.ActiveFolmulerGroup
+            Return MyBase.Channel.ActiveFolmulerGroup(lstID, log, bActive)
         End Function
         
         Public Function GetSalaryGroup(ByVal _filter As PayrollBusiness.SalaryGroupDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.SalaryGroupDTO) Implements PayrollBusiness.IPayrollBusiness.GetSalaryGroup
@@ -12003,12 +12014,12 @@ Namespace PayrollBusiness
             Return MyBase.Channel.InsertPA_SAL_MAPPING(objListSal, log, gID)
         End Function
         
-        Public Function InsertListSalaries(ByVal objListSalaries As PayrollBusiness.PAListSalariesDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.InsertListSalaries
-            Return MyBase.Channel.InsertListSalaries(objListSalaries, log, gID)
-        End Function
-        
         Public Function GetAllowanceList(ByVal _filter As PayrollBusiness.AllowanceListDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.AllowanceListDTO) Implements PayrollBusiness.IPayrollBusiness.GetAllowanceList
             Return MyBase.Channel.GetAllowanceList(_filter, Sorts)
+        End Function
+        
+        Public Function CheckAllowance(ByVal empId As Decimal, ByVal day As Date, ByVal typeAllowance As Decimal, ByVal id As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.CheckAllowance
+            Return MyBase.Channel.CheckAllowance(empId, day, typeAllowance, id)
         End Function
         
         Public Function GetAllowance(ByVal _filter As PayrollBusiness.AllowanceDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As PayrollBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of PayrollBusiness.AllowanceDTO) Implements PayrollBusiness.IPayrollBusiness.GetAllowance
@@ -12341,10 +12352,6 @@ Namespace PayrollBusiness
         
         Public Function CheckFomuler(ByVal sCol As String, ByVal sFormuler As String, ByVal objID As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.CheckFomuler
             Return MyBase.Channel.CheckFomuler(sCol, sFormuler, objID)
-        End Function
-        
-        Public Function ActiveFolmulerGroup(ByVal lstID As Decimal, ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.ActiveFolmulerGroup
-            Return MyBase.Channel.ActiveFolmulerGroup(lstID, log, bActive)
         End Function
     End Class
 End Namespace

@@ -17,7 +17,14 @@ Namespace PayrollBusiness.ServiceImplementations
                 Throw ex
             End Try
         End Function
+        Public Function CheckAllowance(ByVal empId As Decimal, ByVal day As Date, ByVal typeAllowance As Decimal, ByVal id As Decimal) As Boolean Implements ServiceContracts.IPayrollBusiness.CheckAllowance
+            Try
+                Dim rep As New PayrollRepository
+                Return rep.CheckAllowance(empId, day, typeAllowance, id)
+            Catch ex As Exception
 
+            End Try
+        End Function
 
 
 #End Region

@@ -20,7 +20,15 @@ Partial Public Class PayrollRepository
 
         Return Nothing
     End Function
+    Public Function CheckAllowance(ByVal empId As Decimal, ByVal day As Date, ByVal typeAllowance As Decimal, ByVal id As Decimal) As Boolean
+        Using rep As New PayrollBusinessClient
+            Try
+                Return rep.CheckAllowance(empId, day, typeAllowance, id)
+            Catch ex As Exception
 
+            End Try
+        End Using
+    End Function
 
 
 #End Region

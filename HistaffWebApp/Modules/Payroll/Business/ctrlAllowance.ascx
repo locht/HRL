@@ -90,6 +90,8 @@
                             <asp:RequiredFieldValidator ID="rqCode" ControlToValidate="txtCode" runat="server"
                                 ErrorMessage="<%$ Translate: Bạn phải chọn nhân viên %>" ToolTip="<%$ Translate: Bạn phải chọn nhân viên %>">
                             </asp:RequiredFieldValidator>
+                            <tlk:RadTextBox ID="txtID" runat="server" Visible="false">
+                            </tlk:RadTextBox>
                         </td>
                         <td class="lb">
                             <%# Translate("Họ và tên")%>
