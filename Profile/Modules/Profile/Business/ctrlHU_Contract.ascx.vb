@@ -137,7 +137,7 @@ Public Class ctrlHU_Contract
                 dt.Columns.Add("START_TIME_AFTERNOON", GetType(String))
                 dt.Columns.Add("END_TIME_AFTERNOON", GetType(String))
                 dt.Columns.Add("RISK_COMPENSATION", GetType(String))
-                dt.Columns.Add("AUTHORITY", GetType(Decimal))
+                dt.Columns.Add("IS_AUTHORITY", GetType(Decimal))
                 dt.Columns.Add("AUTHORITY_NO", GetType(String))
                 dt.Columns.Add("WORK_TO_DO", GetType(String))
                 dt.Columns.Add("SIGN_DATE", GetType(String))
@@ -988,7 +988,7 @@ Public Class ctrlHU_Contract
                 newRow("END_TIME_AFTERNOON") = rows("END_TIME_AFTERNOON")
 
                 newRow("RISK_COMPENSATION") = rows("RISK_COMPENSATION")
-                newRow("AUTHORITY") = If(IsNumeric(rows("AUTHORITY")), Decimal.Parse(rows("AUTHORITY")), 0)
+                newRow("IS_AUTHORITY") = If(IsNumeric(rows("IS_AUTHORITY")), Decimal.Parse(rows("IS_AUTHORITY")), 0)
                 newRow("AUTHORITY_NO") = rows("AUTHORITY_NO")
                 newRow("WORK_TO_DO") = rows("WORK_TO_DO")
                 newRow("SIGN_DATE") = rows("SIGN_DATE")
@@ -1339,40 +1339,53 @@ Public Class ctrlHU_Contract
                 ElseIf CheckDate(row("EFFECT_SALARY_DATE")) = False Then
                     sError = "Ngày hiệu lực - không đúng định dạng"
                     ImportValidate.IsValidTime("EFFECT_SALARY_DATE", row, rowError, isError, sError)
-                Else
-                    Try
-                        empid3 = rep.EffectDate_Check_Same(row("EMPLOYEE_CODE"), ToDate(row("EFFECT_SALARY_DATE")))
-                        emp6 = rep.ValidContract1(row("EMPLOYEE_CODE"), ToDate(row("EFFECT_SALARY_DATE")))
-                        If empid3 = False Then
-                            sError = "Trùng ngày hiệu lực với hợp đồng cũ"
-                            ImportValidate.IsValidTime("EFFECT_SALARY_DATE", row, rowError, isError, sError)
-                        ElseIf emp6 = False Then
-                            sError = "Ngày hiệu lực phải lớn hơn ngày hết hiệu lực của hợp đồng cũ"
-                            ImportValidate.IsValidTime("EFFECT_SALARY_DATE", row, rowError, isError, sError)
-                        ElseIf Not rep.ValidContract(empid5.EMPLOYEE_ID, ToDate(row("EFFECT_SALARY_DATE"))) Then
-                            sError = "Hợp đồng cũ còn hiệu lực. Không được phép tạo hợp đồng mới."
-                            ImportValidate.IsValidTime("EFFECT_SALARY_DATE", row, rowError, isError, sError)
-                        End If
-                    Catch ex As Exception
-                        GoTo VALIDATE
-                    End Try
+                    'Else
+                    '    Try
+                    '        empid3 = rep.EffectDate_Check_Same(row("EMPLOYEE_CODE"), ToDate(row("EFFECT_SALARY_DATE")))
+                    '        emp6 = rep.ValidContract1(row("EMPLOYEE_CODE"), ToDate(row("EFFECT_SALARY_DATE")))
+                    '        If empid3 = False Then
+                    '            sError = "Trùng ngày hiệu lực với hợp đồng cũ"
+                    '            ImportValidate.IsValidTime("EFFECT_SALARY_DATE", row, rowError, isError, sError)
+                    '        ElseIf emp6 = False Then
+                    '            sError = "Ngày hiệu lực phải lớn hơn ngày hết hiệu lực của hợp đồng cũ"
+                    '            ImportValidate.IsValidTime("EFFECT_SALARY_DATE", row, rowError, isError, sError)
+                    '        ElseIf Not rep.ValidContract(empid5.EMPLOYEE_ID, ToDate(row("EFFECT_SALARY_DATE"))) Then
+                    '            sError = "Hợp đồng cũ còn hiệu lực. Không được phép tạo hợp đồng mới."
+                    '            ImportValidate.IsValidTime("EFFECT_SALARY_DATE", row, rowError, isError, sError)
+                    '        End If
+                    '    Catch ex As Exception
+                    '        GoTo VALIDATE
+                    '    End Try
                 End If
 VALIDATE:
 
                 If Not IsNumeric(row("CONTRACT_TYPE_ID")) Then
                     sError = "Chưa nhập loại hợp đồng"
-                    ImportValidate.IsValidTime("CONTRACT_TYPE_ID", row, rowError, isError, sError)
+                    ImportValidate.IsValidTime("CONTRACT_TYPE", row, rowError, isError, sError)
                 End If
                 If Not IsNumeric(row("SIGN_CONTRACT_ID")) Then
                     sError = "Chưa nhập đơn vị kí hợp đồng"
-                    ImportValidate.IsValidTime("SIGN_CONTRACT_ID", row, rowError, isError, sError)
+                    ImportValidate.IsValidTime("SIGN_CONTRACT", row, rowError, isError, sError)
                 End If
                 If row("START_DATE") Is DBNull.Value OrElse row("START_DATE") = "" Then
                     sError = "Chưa nhập ngày bắt đầu"
                     ImportValidate.IsValidTime("START_DATE", row, rowError, isError, sError)
-                ElseIf CheckDate(row("START_DATE")) = False Then
-                    sError = "Ngày bắt đầu - không đúng định dạng"
-                    ImportValidate.IsValidTime("START_DATE", row, rowError, isError, sError)
+                Else
+                    empid3 = rep.EffectDate_Check_Same(row("EMPLOYEE_CODE"), ToDate(row("START_DATE")))
+                    emp6 = rep.ValidContract1(row("EMPLOYEE_CODE"), ToDate(row("START_DATE")))
+                    If CheckDate(row("START_DATE")) = False Then
+                        sError = "Ngày bắt đầu - không đúng định dạng"
+                        ImportValidate.IsValidTime("START_DATE", row, rowError, isError, sError)
+                    ElseIf empid3 = False Then
+                        sError = "Trùng ngày hiệu lực với hợp đồng cũ"
+                        ImportValidate.IsValidTime("START_DATE", row, rowError, isError, sError)
+                    ElseIf emp6 = False Then
+                        sError = "Ngày hiệu lực phải lớn hơn ngày hết hiệu lực của hợp đồng cũ"
+                        ImportValidate.IsValidTime("START_DATE", row, rowError, isError, sError)
+                    ElseIf Not rep.ValidContract(empid5.EMPLOYEE_ID, ToDate(row("START_DATE"))) Then
+                        sError = "Hợp đồng cũ còn hiệu lực. Không được phép tạo hợp đồng mới."
+                        ImportValidate.IsValidTime("START_DATE", row, rowError, isError, sError)
+                    End If
                 End If
                 If row("CONTRACT_TYPE_ID") <> 5 Then
                     If row("END_DATE") Is DBNull.Value OrElse row("END_DATE") = "" Then

@@ -1265,9 +1265,9 @@ Partial Class ProfileRepository
                          From e In Context.HU_EMPLOYEE Where e.EMPLOYEE_CODE = empCode
                          Where p.EMPLOYEE_ID = e.ID
                          Select New ContractDTO With {
-                             .EFFECT_DATE = p.EFFECT_DATE}).ToList
+                             .START_DATE = p.START_DATE}).ToList
             For Each item In check
-                If effectdate < item.EFFECT_DATE Then
+                If effectdate < item.START_DATE Then
                     Return False
                 End If
             Next
@@ -2164,7 +2164,7 @@ Partial Class ProfileRepository
         Dim empID As Decimal = 0D
         Try
             empID = (From p In Context.HU_EMPLOYEE.Where(Function(f) f.EMPLOYEE_CODE.ToLower = emp_code.ToLower) Select p.ID).FirstOrDefault
-            Dim query = (From p In Context.HU_CONTRACT.Where(Function(f) f.EMPLOYEE_ID = empID And f.EFFECT_DATE = effect_date))
+            Dim query = (From p In Context.HU_CONTRACT.Where(Function(f) f.EMPLOYEE_ID = empID And f.START_DATE = effect_date))
             Return query.Count = 0
         Catch ex As Exception
             Throw ex
