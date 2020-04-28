@@ -80,7 +80,7 @@
             <tlk:RadSplitBar ID="RadSplitBar3" runat="server">
             </tlk:RadSplitBar>
             <tlk:RadPane ID="RadPane4" runat="server" Scrolling="None">
-                <Common:ctrlOrganization ID="ctrlOrg" runat="server" />
+                <Common:ctrlOrganization ID="ctrlOrg" runat="server"/>
             </tlk:RadPane>
         </tlk:RadSplitter>
     </tlk:RadPane>
@@ -122,18 +122,7 @@
                     </tr>
                 </table>
             </tlk:RadPane>
-           <%-- <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
-                <tlk:RadGrid ID="rgGridData" runat="server" Height="100%" AllowPaging="True" AllowSorting="True" EnableLinqExpressions="false"
-                    CellSpacing="0" ShowStatusBar="true" AllowMultiRowSelection="true" GridLines="None"
-                    PageSize="20" AutoGenerateColumns="false" AllowFilteringByColumn="true">
-                    <ClientSettings AllowColumnsReorder="True" EnableRowHoverStyle="true" EnablePostBackOnRowClick="True" 
-                                    Scrolling-AllowScroll="true" Scrolling-SaveScrollPosition="true"  Scrolling-UseStaticHeaders="true">
-                        <Scrolling AllowScroll="True" UseStaticHeaders="True" FrozenColumnsCount="5" />
-                        <Selecting AllowRowSelect="true" />
-                        <Scrolling UseStaticHeaders="true" />
-                        <Resizing AllowColumnResize="true" />
-                    </ClientSettings>--%>
-                <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
+            <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
                 <tlk:RadGrid ID="rgGridData" runat="server" Height="100%" AllowPaging="True" AllowSorting="True" AllowMultiRowSelection="true"  AllowFilteringByColumn="true">
                     <ClientSettings  EnableRowHoverStyle="true" >
                         <Scrolling AllowScroll="True" UseStaticHeaders="True" FrozenColumnsCount="5" />
@@ -142,7 +131,7 @@
                         <Resizing AllowColumnResize="true" />
                     </ClientSettings>
                     <MasterTableView TableLayout="Fixed" CommandItemDisplay="None" DataKeyNames="ID"
-                        ClientDataKeyNames="ID,EMPLOYEE_CODE,EMPID,FULL_NAME,DEP_NAME,TITLE_NAME,EFFECT_DATE,ARISING_TYPE_NAME,ARISING_GROUP_TYPE,NOTE,ORG_DESC">
+                        ClientDataKeyNames="ID,EMPLOYEE_CODE,EMPID,FULL_NAME,DEP_NAME,TITLE_NAME,EFFECT_DATE,ARISING_TYPE_NAME,ARISING_GROUP_TYPE,NOTE,ORG_DESC,COUNT_E">
                         <GroupByExpressions>
                             <tlk:GridGroupByExpression>
                                 <SelectFields>
@@ -167,10 +156,10 @@
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="DEP_NAME"
                                 UniqueName="DEP_NAME" HeaderStyle-Width="150px" SortExpression="DEP_NAME" FilterControlWidth="99%"
                                 ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />
-
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị BH %>" DataField="U_INSURANCE_NAME"
                                 UniqueName="U_INSURANCE_NAME" HeaderStyle-Width="100px" SortExpression="U_INSURANCE_NAME" FilterControlWidth="99%"
                                 ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />
+
                              <%--<tlk:GridTemplateColumn HeaderText="Đơn vị" DataField="DEP_NAME" SortExpression="ORG_NAME"
                                 UniqueName="DEP_NAME">
                                 <HeaderStyle Width="200px" />
@@ -234,6 +223,8 @@
                                 SortExpression="EMPID" Visible="false" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: ID%>" DataField="ID" UniqueName="ID"
                                 SortExpression="ID" Visible="false" />
+                                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Đếm số lượng trùng%>" DataField="COUNT_E" UniqueName="COUNT_E"
+                                SortExpression="COUNT_E" Visible="false" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: ID%>" DataField="ARISING_GROUP_TYPE"
                                 UniqueName="ARISING_GROUP_TYPE" SortExpression="ARISING_GROUP_TYPE" Visible="false" />                                                        
                             <%--<tlk:GridTemplateColumn Display="false" HeaderText="<%$ Translate: Ghi chú %>" UniqueName="NOTE" SortExpression="NOTE" HeaderStyle-Width="200px">

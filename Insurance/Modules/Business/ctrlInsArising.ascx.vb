@@ -509,7 +509,7 @@ Public Class ctrlInsArising
             dtb.Columns.Add("ORG_DESC", GetType(String))
             dtb.Columns.Add("SOCIAL_NUMBER", GetType(String))
             dtb.Columns.Add("U_INSURANCE_NAME", GetType(String))
-
+            dtb.Columns.Add("COUNT_E", GetType(Decimal))
             If lstSource.Rows.Count > 0 Then
                 Dim filterExp = rgGridData.MasterTableView.FilterExpression
                 If lstSource.Select(filterExp).AsEnumerable.Count = 0 Then
@@ -550,6 +550,7 @@ Public Class ctrlInsArising
                     drI("ORG_DESC") = dr("ORG_DESC")
                     drI("SOCIAL_NUMBER") = dr("SOCIAL_NUMBER")
                     drI("U_INSURANCE_NAME") = dr("U_INSURANCE_NAME")
+                    drI("COUNT_E") = dr("COUNT_E")
                     dtb.Rows.Add(drI)
                 Next
             End If
@@ -611,7 +612,7 @@ Public Class ctrlInsArising
                 End If
             End Using
         Catch ex As Exception
-
+            Me.DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
 
@@ -631,9 +632,52 @@ Public Class ctrlInsArising
                 Dim datarow As GridDataItem = DirectCast(e.Item, GridDataItem)
                 datarow("DEP_NAME").ToolTip = Utilities.DrawTreeByString(datarow.GetDataKeyValue("ORG_DESC").ToString)
             End If
-
+            If e.Item.Visible Then
+                For Each item As GridDataItem In rgGridData.Items
+                    If item("COUNT_E").Text.ToString > "1" Then
+                        item("EMPID").BackColor = Drawing.Color.Red
+                        item("EMPID").ForeColor = Drawing.Color.White
+                        item("EMPLOYEE_CODE").BackColor = Drawing.Color.Red
+                        item("EMPLOYEE_CODE").ForeColor = Drawing.Color.White
+                        item("FULL_NAME").BackColor = Drawing.Color.Red
+                        item("FULL_NAME").ForeColor = Drawing.Color.White
+                        item("DEP_NAME").BackColor = Drawing.Color.Red
+                        item("DEP_NAME").ForeColor = Drawing.Color.White
+                        item("TITLE_NAME").BackColor = Drawing.Color.Red
+                        item("TITLE_NAME").ForeColor = Drawing.Color.White
+                        item("EFFECT_DATE").BackColor = Drawing.Color.Red
+                        item("EFFECT_DATE").ForeColor = Drawing.Color.White
+                        item("ARISING_TYPE_NAME").BackColor = Drawing.Color.Red
+                        item("ARISING_TYPE_NAME").ForeColor = Drawing.Color.White
+                        item("OLD_SAL").BackColor = Drawing.Color.Red
+                        item("OLD_SAL").ForeColor = Drawing.Color.White
+                        item("NEW_SAL").BackColor = Drawing.Color.Red
+                        item("NEW_SAL").ForeColor = Drawing.Color.White
+                        item("SI").BackColor = Drawing.Color.Red
+                        item("SI").ForeColor = Drawing.Color.White
+                        item("HI").BackColor = Drawing.Color.Red
+                        item("HI").ForeColor = Drawing.Color.White
+                        item("UI").BackColor = Drawing.Color.Red
+                        item("UI").ForeColor = Drawing.Color.White
+                        item("ARISING_TYPE_ID").BackColor = Drawing.Color.Red
+                        item("ARISING_TYPE_ID").ForeColor = Drawing.Color.White
+                        item("ARISING_GROUP_TYPE").BackColor = Drawing.Color.Red
+                        item("ARISING_GROUP_TYPE").ForeColor = Drawing.Color.White
+                        item("REASONS").BackColor = Drawing.Color.Red
+                        item("REASONS").ForeColor = Drawing.Color.White
+                        item("BHTNLD_BNN").BackColor = Drawing.Color.Red
+                        item("BHTNLD_BNN").ForeColor = Drawing.Color.White
+                        item("SOCIAL_NUMBER").BackColor = Drawing.Color.Red
+                        item("SOCIAL_NUMBER").ForeColor = Drawing.Color.White
+                        item("U_INSURANCE_NAME").BackColor = Drawing.Color.Red
+                        item("U_INSURANCE_NAME").ForeColor = Drawing.Color.White
+                        item("REASONS").BackColor = Drawing.Color.Red
+                        item("REASONS").ForeColor = Drawing.Color.White
+                    End If
+                Next
+            End If
         Catch ex As Exception
-
+            Me.DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
 
