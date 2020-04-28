@@ -40,7 +40,7 @@ Public Class AllowanceDTO
     Public Property MODIFIED_DATE As Date
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
-
-
-
+    Public Property IS_TER As Boolean
+    Public Property WORK_STATUS As Decimal?
+    Public Property TER_EFFECT_DATE As Date?
 End Class

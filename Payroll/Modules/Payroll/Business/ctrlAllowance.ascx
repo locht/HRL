@@ -169,8 +169,8 @@
                                         <HeaderStyle Width="120px" />
                                         <ItemStyle Width="120px" />
                                     </tlk:GridDateTimeColumn>
-                                    <tlk:GridBoundColumn HeaderStyle-Width="100px" HeaderText="<%$ Translate: Trạng thái %>"
-                                        DataField="ACTFLG" SortExpression="ACTFLG" UniqueName="ACTFLG" />
+                                    <%-- <tlk:GridBoundColumn HeaderStyle-Width="100px" HeaderText="<%$ Translate: Trạng thái %>"
+                                        DataField="ACTFLG" SortExpression="ACTFLG" UniqueName="ACTFLG" />--%>
                                     <tlk:GridBoundColumn HeaderStyle-Width="100px" HeaderText="<%$ Translate: Ghi chú %>"
                                         DataField="REMARK" SortExpression="REMARK" UniqueName="REMARK" />
                                 </Columns>

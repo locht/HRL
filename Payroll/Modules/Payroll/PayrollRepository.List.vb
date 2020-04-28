@@ -28,13 +28,13 @@ Partial Public Class PayrollRepository
 #Region "Alowance"
     Public Function GetAllowance(ByVal _filter As AllowanceDTO, ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
-                                        ByRef Total As Integer,
+                                        ByRef Total As Integer, ByVal _param As ParamDTO,
                                         Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AllowanceDTO)
         Dim lstAllowance As List(Of AllowanceDTO)
 
         Using rep As New PayrollBusinessClient
             Try
-                lstAllowance = rep.GetAllowance(_filter, PageIndex, PageSize, Total, Sorts)
+                lstAllowance = rep.GetAllowance(_filter, PageIndex, PageSize, Total, _param, Sorts, Log)
                 Return lstAllowance
             Catch ex As Exception
                 rep.Abort()
@@ -45,12 +45,13 @@ Partial Public Class PayrollRepository
         Return Nothing
     End Function
     Public Function GetAllowance(ByVal _filter As AllowanceDTO,
+                                 ByVal _param As ParamDTO,
                                     Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AllowanceDTO)
         Dim lstAllowance As List(Of AllowanceDTO)
 
         Using rep As New PayrollBusinessClient
             Try
-                lstAllowance = rep.GetAllowance(_filter, 0, Integer.MaxValue, 0, Sorts)
+                lstAllowance = rep.GetAllowance(_filter, 0, Integer.MaxValue, 0, _param, Sorts, Log)
                 Return lstAllowance
             Catch ex As Exception
                 rep.Abort()

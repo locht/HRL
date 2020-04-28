@@ -7966,6 +7966,9 @@ Namespace PayrollBusiness
         Private IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_TERField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -7981,7 +7984,13 @@ Namespace PayrollBusiness
         Private REMARKField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TER_EFFECT_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORK_STATUSField As System.Nullable(Of Decimal)
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
@@ -8163,6 +8172,19 @@ Namespace PayrollBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_TER() As Boolean
+            Get
+                Return Me.IS_TERField
+            End Get
+            Set
+                If (Me.IS_TERField.Equals(value) <> true) Then
+                    Me.IS_TERField = value
+                    Me.RaisePropertyChanged("IS_TER")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property MODIFIED_BY() As String
             Get
                 Return Me.MODIFIED_BYField
@@ -8228,6 +8250,19 @@ Namespace PayrollBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TER_EFFECT_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.TER_EFFECT_DATEField
+            End Get
+            Set
+                If (Me.TER_EFFECT_DATEField.Equals(value) <> true) Then
+                    Me.TER_EFFECT_DATEField = value
+                    Me.RaisePropertyChanged("TER_EFFECT_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property TITLE_NAME() As String
             Get
                 Return Me.TITLE_NAMEField
@@ -8236,6 +8271,19 @@ Namespace PayrollBusiness
                 If (Object.ReferenceEquals(Me.TITLE_NAMEField, value) <> true) Then
                     Me.TITLE_NAMEField = value
                     Me.RaisePropertyChanged("TITLE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORK_STATUS() As System.Nullable(Of Decimal)
+            Get
+                Return Me.WORK_STATUSField
+            End Get
+            Set
+                If (Me.WORK_STATUSField.Equals(value) <> true) Then
+                    Me.WORK_STATUSField = value
+                    Me.RaisePropertyChanged("WORK_STATUS")
                 End If
             End Set
         End Property
@@ -11012,7 +11060,7 @@ Namespace PayrollBusiness
         Function GetAllowanceList(ByVal _filter As PayrollBusiness.AllowanceListDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.AllowanceListDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetAllowance", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetAllowanceResponse")>  _
-        Function GetAllowance(ByVal _filter As PayrollBusiness.AllowanceDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.AllowanceDTO)
+        Function GetAllowance(ByVal _filter As PayrollBusiness.AllowanceDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As PayrollBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of PayrollBusiness.AllowanceDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/InsertAllowance", ReplyAction:="http://tempuri.org/IPayrollBusiness/InsertAllowanceResponse")>  _
         Function InsertAllowance(ByVal objAllowance As PayrollBusiness.AllowanceDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -11963,8 +12011,8 @@ Namespace PayrollBusiness
             Return MyBase.Channel.GetAllowanceList(_filter, Sorts)
         End Function
         
-        Public Function GetAllowance(ByVal _filter As PayrollBusiness.AllowanceDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of PayrollBusiness.AllowanceDTO) Implements PayrollBusiness.IPayrollBusiness.GetAllowance
-            Return MyBase.Channel.GetAllowance(_filter, PageIndex, PageSize, Total, Sorts)
+        Public Function GetAllowance(ByVal _filter As PayrollBusiness.AllowanceDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As PayrollBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of PayrollBusiness.AllowanceDTO) Implements PayrollBusiness.IPayrollBusiness.GetAllowance
+            Return MyBase.Channel.GetAllowance(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
         End Function
         
         Public Function InsertAllowance(ByVal objAllowance As PayrollBusiness.AllowanceDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.InsertAllowance

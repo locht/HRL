@@ -68,13 +68,21 @@ Partial Public Class PayrollRepository
     Public Function GetAllowance(ByVal _filter As AllowanceDTO,
                                         ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
-                                        ByRef Total As Integer,
-                                        Optional ByVal Sorts As String = " CREATED_DATE desc") As List(Of AllowanceDTO)
+                                        ByRef Total As Integer, ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = " CREATED_DATE desc",
+                                          Optional ByVal log As UserLog = Nothing) As List(Of AllowanceDTO)
         Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username,
+                                           .P_ORGID = _param.ORG_ID,
+                                           .P_ISDISSOLVE = _param.IS_DISSOLVE})
+            End Using
             Dim lst = (From p In Context.HU_ALLOWANCE
                        From e In Context.HU_EMPLOYEE.Where(Function(e) e.ID = p.EMPLOYEE_ID).DefaultIfEmpty()
                        From title In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
                        From org_name In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
+                        From k In Context.SE_CHOSEN_ORG.Where(Function(f) e.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
                         From o In Context.HU_ALLOWANCE_LIST.Where(Function(o) o.ID = p.ALLOWANCE_TYPE).DefaultIfEmpty()
            Select New AllowanceDTO With {
                                         .ID = p.ID,
@@ -88,11 +96,20 @@ Partial Public Class PayrollRepository
                                         .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
                                         .FULLNAME_VN = e.FULLNAME_VN,
                                         .EXP_DATE = p.EXP_DATE,
+                                        .TER_EFFECT_DATE = e.TER_EFFECT_DATE,
+                                        .WORK_STATUS = e.WORK_STATUS,
                                         .CREATED_DATE = p.CREATED_DATE,
                                         .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng"),
             .REMARK = p.REMARK
                                     })
+            Dim dateNow = Date.Now.Date
+            Dim terID = 257
+            If Not _filter.IS_TER Then
+                lst = lst.Where(Function(p) Not p.WORK_STATUS.HasValue Or _
+                                    (p.WORK_STATUS.HasValue And _
+                                     ((p.WORK_STATUS <> terID) Or (p.WORK_STATUS = terID And p.TER_EFFECT_DATE > dateNow))))
 
+            End If
             If _filter.EMPLOYEE_ID <> "" Then
                 lst = lst.Where(Function(p) p.EMPLOYEE_ID.ToUpper.Contains(_filter.EMPLOYEE_ID.ToUpper))
             End If

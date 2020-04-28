@@ -2,8 +2,8 @@
     Inherits="Payroll.ctrlAllowance" %>
 <%@ Import Namespace="Common" %>
 <asp:HiddenField ID="hidEmp" runat="server" />
-<Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
-<tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
+<common:ctrlmessagebox id="ctrlMessageBox" runat="server" />
+<tlk:radsplitter id="RadSplitter1" runat="server" width="100%" height="100%">
     <tlk:RadPane ID="RadPane4" runat="server" Width="250px" Scrolling="None">
         <fieldset style="padding: 0">
             <legend>Thông tin tìm kiếm:</legend>
@@ -170,8 +170,8 @@
                                         <HeaderStyle Width="120px" />
                                         <ItemStyle Width="120px" />
                                     </tlk:GridDateTimeColumn>
-                                    <tlk:GridBoundColumn HeaderStyle-Width="100px" HeaderText="<%$ Translate: Trạng thái %>"
-                                        DataField="ACTFLG" SortExpression="ACTFLG" UniqueName="ACTFLG" />
+                              <%--      <tlk:GridBoundColumn HeaderStyle-Width="100px" HeaderText="<%$ Translate: Trạng thái %>"
+                                        DataField="ACTFLG" SortExpression="ACTFLG" UniqueName="ACTFLG" />--%>
                                     <tlk:GridBoundColumn HeaderStyle-Width="100px" HeaderText="<%$ Translate: Ghi chú %>"
                                         DataField="REMARK" SortExpression="REMARK" UniqueName="REMARK" />
                                 </Columns>
@@ -182,9 +182,9 @@
             </tlk:RadPane>
         </tlk:RadSplitter>
     </tlk:RadPane>
-</tlk:RadSplitter>
+</tlk:radsplitter>
 <asp:PlaceHolder ID="FindEmployee" runat="server"></asp:PlaceHolder>
-<Common:ctrlUpload ID="ctrlUpload" runat="server" />
+<common:ctrlupload id="ctrlUpload" runat="server" />
 <script type="text/javascript">
 
     function clientButtonClicking(sender, args) {

@@ -17,8 +17,9 @@ Namespace PayrollBusiness.ServiceContracts
         <OperationContract()>
         Function GetAllowance(ByVal _filter As AllowanceDTO, ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
-                                        ByRef Total As Integer,
-                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AllowanceDTO)
+                                        ByRef Total As Integer, ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                          Optional ByVal log As UserLog = Nothing) As List(Of AllowanceDTO)
 
         <OperationContract()>
         Function InsertAllowance(ByVal objAllowance As AllowanceDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean

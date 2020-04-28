@@ -533,7 +533,7 @@
       <string>CTRLALLOWANCE</string>
     </Key>
     <Value>
-      <string>Thông tin chi tiết phụ cấp</string>
+      <string>Quản lý phụ cấp</string>
     </Value>
   </Item>
   <Item>
@@ -16553,7 +16553,7 @@ Xin cám ơn!
       <string>THIẾT LẬP THÔNG TIN CHI TIẾT PHỤ CẤP</string>
     </Key>
     <Value>
-      <string>Thiết lập thông tin chi tiết phụ cấp</string>
+      <string>Quản lý phụ cấp</string>
     </Value>
   </Item>
   <Item>
@@ -45276,6 +45276,54 @@ Xin cám ơn!
     </Key>
     <Value>
       <string>Ngày chi lương</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN PHỤ CẤP</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn phụ cấp</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY HIỆU LƯC PHẢI NHỎ HƠN NGÀY KẾT THÚC</string>
+    </Key>
+    <Value>
+      <string>Ngày hiệu lưc phải nhỏ hơn ngày kết thúc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TIỀN PHỤ CẤP</string>
+    </Key>
+    <Value>
+      <string>Tiền phụ cấp</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUẢN LÝ PHỤ CẤP, TRỢ CẤP</string>
+    </Key>
+    <Value>
+      <string>Quản lý phụ cấp, trợ cấp</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LOẠI PHỤ CẤP, TRỢ CẤP</string>
+    </Key>
+    <Value>
+      <string>Loại phụ cấp, trợ cấp</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY KẾT HIỆU LỰC</string>
+    </Key>
+    <Value>
+      <string>Ngày kết hiệu lực</string>
     </Value>
   </Item>
 </SerializableDictionaryOfStringString>

@@ -25,11 +25,12 @@ Namespace PayrollBusiness.ServiceImplementations
 #Region "Allowance"
         Public Function GetAllowance(ByVal _filter As AllowanceDTO, ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
-                                        ByRef Total As Integer,
-                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AllowanceDTO) Implements ServiceContracts.IPayrollBusiness.GetAllowance
+                                        ByRef Total As Integer, ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                          Optional ByVal log As UserLog = Nothing) As List(Of AllowanceDTO) Implements ServiceContracts.IPayrollBusiness.GetAllowance
             Try
                 Dim rep As New PayrollRepository
-                Return rep.GetAllowance(_filter, PageIndex, PageSize, Total, Sorts)
+                Return rep.GetAllowance(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
             Catch ex As Exception
 
                 Throw ex

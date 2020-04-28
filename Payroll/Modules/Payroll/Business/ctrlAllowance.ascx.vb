@@ -100,23 +100,20 @@ Public Class ctrlAllowance
     End Sub
 
     Public Overrides Sub BindData()
-
-        GetDataCombobox()
-        Dim dic As New Dictionary(Of String, Control)
-        dic.Add("EMPLOYEE_ID", hidEmp)
-        dic.Add("EMPLOYEE_CODE", txtCode)
-        dic.Add("FULLNAME_VN", txtTennhanvien)
-        dic.Add("TITLE_NAME", txtTitle)
-        dic.Add("ORG_NAME", txtOrgName)
-        dic.Add("ALLOWANCE_TYPE", cboPhucap)
-        dic.Add("AMOUNT", txtSotien)
-        dic.Add("EFFECT_DATE", dpTungay)
-        dic.Add("EXP_DATE", dpDenngay)
-        dic.Add("REMARK", txtGhichu)
-        Utilities.OnClientRowSelectedChanged(rgData, dic)
         Try
-            rgData.PageSize = 50
-            CreateDataFilter()
+            GetDataCombobox()
+            Dim dic As New Dictionary(Of String, Control)
+            dic.Add("EMPLOYEE_CODE", txtCode)
+            dic.Add("FULLNAME_VN", txtTennhanvien)
+            dic.Add("TITLE_NAME", txtTitle)
+            dic.Add("ORG_NAME", txtOrgName)
+            dic.Add("ALLOWANCE_TYPE", cboPhucap)
+            dic.Add("AMOUNT", txtSotien)
+            dic.Add("EFFECT_DATE", dpTungay)
+            dic.Add("EXP_DATE", dpDenngay)
+            dic.Add("REMARK", txtGhichu)
+            dic.Add("EMPLOYEE_ID", hidEmp)
+            Utilities.OnClientRowSelectedChanged(rgData, dic)
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -161,12 +158,12 @@ Public Class ctrlAllowance
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create,
                                        ToolbarItem.Edit,
                                        ToolbarItem.Save, ToolbarItem.Cancel,
-                                       ToolbarItem.Active, ToolbarItem.Deactive,
-                                       ToolbarItem.Delete, ToolbarItem.Export)
+                                       ToolbarItem.Export, ToolbarItem.Next, ToolbarItem.Import,
+                                       ToolbarItem.Delete)
+            CType(Me.MainToolBar.Items(5), RadToolBarButton).Text = Translate("Xuất file mẫu")
+            CType(Me.MainToolBar.Items(5), RadToolBarButton).ImageUrl = CType(Me.MainToolBar.Items(4), RadToolBarButton).ImageUrl
+            CType(Me.MainToolBar.Items(6), RadToolBarButton).Text = Translate("Nhập file mẫu")
             CType(MainToolBar.Items(2), RadToolBarButton).CausesValidation = True
-            CType(Me.MainToolBar.Items(2), RadToolBarButton).Enabled = False
-            CType(Me.MainToolBar.Items(3), RadToolBarButton).Enabled = False
-
         Catch ex As Exception
             Throw ex
         End Try
@@ -327,9 +324,9 @@ Public Class ctrlAllowance
                     End Using
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
-                        objAllowance.employee_id = hidEmp.Value
-                        objAllowance.allowance_type = cboPhucap.SelectedValue
-                        objAllowance.Amount = txtSotien.Text
+                        objAllowance.EMPLOYEE_ID = hidEmp.Value
+                        objAllowance.ALLOWANCE_TYPE = cboPhucap.SelectedValue
+                        objAllowance.AMOUNT = txtSotien.Text
 
                         If Not dpTungay.SelectedDate Is Nothing Then
                             objAllowance.EFFECT_DATE = dpTungay.SelectedDate
@@ -342,12 +339,12 @@ Public Class ctrlAllowance
                             objAllowance.EXP_DATE = Nothing
                         End If
 
-                        objAllowance.remark = txtGhichu.Text
+                        objAllowance.REMARK = txtGhichu.Text
 
                         Using rep As New PayrollRepository
                             Select Case CurrentState
                                 Case CommonMessage.STATE_NEW
-                                    objAllowance.actflg = "A"
+                                    objAllowance.ACTFLG = "A"
                                     If rep.InsertAllowance(objAllowance, gID) Then
                                         CurrentState = CommonMessage.STATE_NORMAL
                                         IDSelect = gID
@@ -357,10 +354,10 @@ Public Class ctrlAllowance
                                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                     End If
                                 Case CommonMessage.STATE_EDIT
-                                    objAllowance.id = rgData.SelectedValue
+                                    objAllowance.ID = rgData.SelectedValue
                                     If rep.ModifyAllowance(objAllowance, gID) Then
                                         CurrentState = CommonMessage.STATE_NORMAL
-                                        IDSelect = objAllowance.id
+                                        IDSelect = objAllowance.ID
                                         Refresh("UpdateView")
                                         UpdateControlState()
                                     Else
@@ -457,18 +454,22 @@ Public Class ctrlAllowance
         Try
             Dim MaximumRows As Integer
             Dim Sorts As String = rgData.MasterTableView.SortExpressions.GetSortString()
+            Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue),
+                                               .IS_DISSOLVE = ctrlOrg.IsDissolve}
+            _filter.IS_TER = chkNhanvienghiviec.Checked
             SetValueObjectByRadGrid(rgData, _filter)
+
             If isFull Then
                 If Sorts IsNot Nothing Then
-                    Return rep.GetAllowance(_filter, Sorts).ToTable()
+                    Return rep.GetAllowance(_filter, _param, Sorts).ToTable()
                 Else
-                    Return rep.GetAllowance(_filter).ToTable()
+                    Return rep.GetAllowance(_filter, _param).ToTable()
                 End If
             Else
                 If Sorts IsNot Nothing Then
-                    objData = rep.GetAllowance(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, "CREATED_DATE ASC")
+                    objData = rep.GetAllowance(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, _param, "CREATED_DATE ASC")
                 Else
-                    objData = rep.GetAllowance(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows)
+                    objData = rep.GetAllowance(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, _param)
                 End If
                 'rgData.MasterTableView.FilterExpression = ""
                 rgData.VirtualItemCount = MaximumRows
