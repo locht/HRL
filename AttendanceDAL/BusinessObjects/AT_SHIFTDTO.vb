@@ -47,6 +47,7 @@
     Public Property MANUAL_TYPE As String
     Public Property IS_SHIFT_NIGHT As Decimal?
     Public Property IS_SHOW_IPORTAL As Decimal?
+    Public Property LATE_MINUTES As Decimal?
     Public Property SOON_MINUTES As Decimal?
     Public Property VALUE_LATE As Decimal?
     Public Property VALUE_SOON As Decimal?

@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 4/28/2020 2:38:01 PM
+-- Date Created: 4/28/2020 3:36:17 PM
 -- Generated from EDMX file: D:\acv_19\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
@@ -2287,7 +2287,7 @@ CREATE TABLE "dbo"."AT_SHIFT" (
    "START_CAL_SOON" DATE NULL,
    "START_CAL_LATE" DATE NULL,
    "SOON_MINUTES" NUMBER(38,0) NULL,
-   "VALUE_LATE" DATE NULL,
+   "VALUE_LATE" NUMBER(38,0) NULL,
    "VALUE_SOON" NUMBER(38,0) NULL,
    "STT" NUMBER(38,0) NULL
 );

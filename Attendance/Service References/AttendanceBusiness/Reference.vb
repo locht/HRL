@@ -10751,6 +10751,9 @@ Namespace AttendanceBusiness
         Private IS_SHOW_IPORTALField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LATE_MINUTESField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MANUAL_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -11129,6 +11132,19 @@ Namespace AttendanceBusiness
                 If (Me.IS_SHOW_IPORTALField.Equals(value) <> true) Then
                     Me.IS_SHOW_IPORTALField = value
                     Me.RaisePropertyChanged("IS_SHOW_IPORTAL")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LATE_MINUTES() As System.Nullable(Of Decimal)
+            Get
+                Return Me.LATE_MINUTESField
+            End Get
+            Set
+                If (Me.LATE_MINUTESField.Equals(value) <> true) Then
+                    Me.LATE_MINUTESField = value
+                    Me.RaisePropertyChanged("LATE_MINUTES")
                 End If
             End Set
         End Property

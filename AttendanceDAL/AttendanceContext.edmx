@@ -2294,7 +2294,7 @@
             <Property Name="START_CAL_SOON" Type="date" Nullable="true" />
             <Property Name="START_CAL_LATE" Type="date" Nullable="true" />
             <Property Name="SOON_MINUTES" Type="number" Nullable="true" Precision="38" />
-            <Property Name="VALUE_LATE" Type="date" Nullable="true" />
+            <Property Name="VALUE_LATE" Type="number" Nullable="true" Precision="38" />
             <Property Name="VALUE_SOON" Type="number" Nullable="true" Precision="38" />
             <Property Name="STT" Type="number" Nullable="true" Precision="38" />
         </EntityType>
@@ -5162,7 +5162,7 @@
           <Property Type="DateTime" Name="START_CAL_SOON" />
           <Property Type="DateTime" Name="START_CAL_LATE" />
           <Property Type="Decimal" Name="SOON_MINUTES" />
-          <Property Type="DateTime" Name="VALUE_LATE" />
+          <Property Type="Decimal" Name="VALUE_LATE" />
           <Property Type="Decimal" Name="VALUE_SOON" />
           <Property Type="Decimal" Name="STT" />
         </EntityType>

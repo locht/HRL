@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("41213531-c013-4687-aea9-788b946aa360")>
+<Assembly: EdmSchemaAttribute("5c2e2c6d-a094-4e7c-88cb-b5f4917c9a1a")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -23097,7 +23097,7 @@ Public Partial Class AT_SHIFT
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property VALUE_LATE() As Nullable(Of Global.System.DateTime)
+    Public Property VALUE_LATE() As Nullable(Of Global.System.Decimal)
         Get
             Return _VALUE_LATE
         End Get
@@ -23110,8 +23110,8 @@ Public Partial Class AT_SHIFT
         End Set
     End Property
 
-    Private _VALUE_LATE As Nullable(Of Global.System.DateTime)
-    Private Partial Sub OnVALUE_LATEChanging(value As Nullable(Of Global.System.DateTime))
+    Private _VALUE_LATE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnVALUE_LATEChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnVALUE_LATEChanged()
