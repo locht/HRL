@@ -648,7 +648,7 @@ Public Class ctrlImportLuong
         Dim startTime As DateTime = DateTime.UtcNow
 
         Try
-            Dim listcol() As String = {"cbStatus", "EMPLOYEE_CODE", "FULLNAME_VN", "ORG_NAME"}
+            Dim listcol() As String = {"cbStatus", "EMPLOYEE_CODE", "FULLNAME_VN", "ORG_NAME", "TITLE_NAME"}
             Dim i As Integer = 0
 
             While (i < rgData.Columns.Count)
@@ -665,6 +665,7 @@ Public Class ctrlImportLuong
             stringKey.Add("EMPLOYEE_CODE")
             stringKey.Add("FULLNAME_VN")
             stringKey.Add("ORG_NAME")
+            stringKey.Add("TITLE_NAME")
 
             For Each node As RadTreeNode In ctrlListSalary.CheckedNodes
                 If node.Value = "NULL" Or node.Value = "0" Then Continue For
