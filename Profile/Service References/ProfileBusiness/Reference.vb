@@ -58253,7 +58253,7 @@ Namespace ProfileBusiness
         Function InsertContract(ByVal objContract As ProfileBusiness.ContractDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckNotAllow", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckNotAllowResponse")>  _
-        Function CheckNotAllow(ByVal empid As Decimal) As Boolean
+        Function CheckNotAllow(ByVal empid As Decimal, ByVal id As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckHasFileContract", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckHasFileContractResponse")>  _
         Function CheckHasFileContract(ByVal id As System.Collections.Generic.List(Of Decimal)) As Decimal
@@ -59102,7 +59102,7 @@ Namespace ProfileBusiness
         Function GetContractType(ByVal _filter As ProfileBusiness.ContractTypeDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.ContractTypeDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidContract", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidContractResponse")>  _
-        Function ValidContract(ByVal empid As Decimal, ByVal rd_date As Date) As Boolean
+        Function ValidContract(ByVal empid As Decimal, ByVal rd_date As Date, ByVal id As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidContract1", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidContract1Response")>  _
         Function ValidContract1(ByVal empcode As String, ByVal effectdate As Date) As Boolean
@@ -60549,8 +60549,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.InsertContract(objContract, log, gID)
         End Function
         
-        Public Function CheckNotAllow(ByVal empid As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.CheckNotAllow
-            Return MyBase.Channel.CheckNotAllow(empid)
+        Public Function CheckNotAllow(ByVal empid As Decimal, ByVal id As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.CheckNotAllow
+            Return MyBase.Channel.CheckNotAllow(empid, id)
         End Function
         
         Public Function CheckHasFileContract(ByVal id As System.Collections.Generic.List(Of Decimal)) As Decimal Implements ProfileBusiness.IProfileBusiness.CheckHasFileContract
@@ -61681,8 +61681,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetContractType(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
         
-        Public Function ValidContract(ByVal empid As Decimal, ByVal rd_date As Date) As Boolean Implements ProfileBusiness.IProfileBusiness.ValidContract
-            Return MyBase.Channel.ValidContract(empid, rd_date)
+        Public Function ValidContract(ByVal empid As Decimal, ByVal rd_date As Date, ByVal id As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ValidContract
+            Return MyBase.Channel.ValidContract(empid, rd_date, id)
         End Function
         
         Public Function ValidContract1(ByVal empcode As String, ByVal effectdate As Date) As Boolean Implements ProfileBusiness.IProfileBusiness.ValidContract1

@@ -406,10 +406,10 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
-        Public Function CheckNotAllow(ByVal empid As Decimal) As Boolean Implements ServiceContracts.IProfileBusiness.CheckNotAllow
+        Public Function CheckNotAllow(ByVal empid As Decimal, ByVal id As Decimal) As Boolean Implements ServiceContracts.IProfileBusiness.CheckNotAllow
             Using rep As New ProfileRepository
                 Try
-                    Return rep.CheckNotAllow(empid)
+                    Return rep.CheckNotAllow(empid, id)
                 Catch ex As Exception
                     Throw ex
                 End Try
@@ -474,10 +474,10 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
-        Public Function ValidContract(ByVal empid As Decimal, ByVal rd_date As Date) As Boolean Implements ServiceContracts.IProfileBusiness.ValidContract
+        Public Function ValidContract(ByVal empid As Decimal, ByVal rd_date As Date, ByVal id As Decimal) As Boolean Implements ServiceContracts.IProfileBusiness.ValidContract
             Using rep As New ProfileRepository
                 Try
-                    Return rep.ValidContract(empid, rd_date)
+                    Return rep.ValidContract(empid, rd_date, id)
                 Catch ex As Exception
                     Throw ex
                 End Try

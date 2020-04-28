@@ -309,7 +309,7 @@ Namespace ProfileBusiness.ServiceContracts
                                         Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of ContractTypeDTO)
 
         <OperationContract()>
-        Function ValidContract(ByVal empid As Decimal, ByVal rd_date As Date) As Boolean
+        Function ValidContract(ByVal empid As Decimal, ByVal rd_date As Date, ByVal id As Decimal) As Boolean
         <OperationContract()>
         Function ValidContract1(ByVal empcode As String, ByVal effectdate As Date) As Boolean
 
@@ -1699,7 +1699,7 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function InsertContract(ByVal objContract As ContractDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         <OperationContract()>
-        Function CheckNotAllow(ByVal empid As Decimal) As Boolean
+        Function CheckNotAllow(ByVal empid As Decimal, ByVal id As Decimal) As Boolean
         <OperationContract()>
         Function CheckHasFileContract(ByVal id As List(Of Decimal)) As Decimal
         <OperationContract()>

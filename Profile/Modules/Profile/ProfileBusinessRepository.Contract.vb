@@ -433,10 +433,10 @@ Partial Public Class ProfileBusinessRepository
             End Try
         End Using
     End Function
-    Public Function CheckNotAllow(ByVal empid As Decimal) As Boolean
+    Public Function CheckNotAllow(ByVal empid As Decimal, ByVal id As Decimal) As Boolean
         Using rep As New ProfileBusinessClient
             Try
-                Return rep.CheckNotAllow(empid)
+                Return rep.CheckNotAllow(empid, id)
             Catch ex As Exception
                 Throw ex
             End Try
@@ -524,10 +524,10 @@ Partial Public Class ProfileBusinessRepository
 
         Return Nothing
     End Function
-    Public Function ValidContract(ByVal empid As Decimal, ByVal rd_date As Date) As Boolean
+    Public Function ValidContract(ByVal empid As Decimal, ByVal rd_date As Date, ByVal id As Decimal) As Boolean
         Using rep As New ProfileBusinessClient
             Try
-                Return rep.ValidContract(empid, rd_date)
+                Return rep.ValidContract(empid, rd_date, id)
             Catch ex As Exception
                 Throw ex
             End Try

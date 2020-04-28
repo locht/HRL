@@ -429,15 +429,15 @@ Public Class ctrlHU_ContractNewEdit
 
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
+                                If Not rep.ValidContract(hidEmployeeID.Value, rdStartDate.SelectedDate, 0) Then
+                                    ShowMessage(Translate("Hợp đồng cũ còn hiệu lực. Không được phép tạo hợp đồng mới."), Utilities.NotifyType.Warning)
+                                    Exit Sub
+                                End If
                                 If cboContractType.Text <> "Hợp đồng không xác định thời hạn" Then
-                                    If Not rep.CheckNotAllow(hidEmployeeID.Value) Then
+                                    If Not rep.CheckNotAllow(hidEmployeeID.Value, 0) Then
                                         ShowMessage(Translate("Đã có 2 hợp đồng chính thức,xin kiểm tra lại"), NotifyType.Warning)
                                         Exit Sub
                                     End If
-                                End If
-                                If Not rep.ValidContract(hidEmployeeID.Value, rdStartDate.SelectedDate) Then
-                                    ShowMessage(Translate("Hợp đồng cũ còn hiệu lực. Không được phép tạo hợp đồng mới."), Utilities.NotifyType.Warning)
-                                    Exit Sub
                                 End If
                                 If rep.InsertContract(objContract, gID) Then
                                     If (isPopup) Then
@@ -457,6 +457,16 @@ Public Class ctrlHU_ContractNewEdit
                                 If rep.ValidateBusiness("HU_CONTRACT", "ID", lstID) Then
                                     ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Error)
                                     Exit Sub
+                                End If
+                                If Not rep.ValidContract(hidEmployeeID.Value, rdStartDate.SelectedDate, hidID.Value) Then
+                                    ShowMessage(Translate("Hợp đồng cũ còn hiệu lực. Không được phép tạo hợp đồng mới."), Utilities.NotifyType.Warning)
+                                    Exit Sub
+                                End If
+                                If cboContractType.Text <> "Hợp đồng không xác định thời hạn" Then
+                                    If Not rep.CheckNotAllow(hidEmployeeID.Value, hidID.Value) Then
+                                        ShowMessage(Translate("Đã có 2 hợp đồng chính thức,xin kiểm tra lại"), NotifyType.Warning)
+                                        Exit Sub
+                                    End If
                                 End If
                                 If rep.ModifyContract(objContract, gID) Then
                                     If (isPopup) Then

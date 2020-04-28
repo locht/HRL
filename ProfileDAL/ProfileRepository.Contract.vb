@@ -1242,16 +1242,16 @@ Partial Class ProfileRepository
 
     End Function
     'k cho tạo hd mới khi hd cũ còn hiệu lực
-    Public Function ValidContract(ByVal empid As Decimal, ByVal rd_date As Date) As Boolean
+    Public Function ValidContract(ByVal empid As Decimal, ByVal rd_date As Date, ByVal id As Decimal) As Boolean
         Try
             'lay hop dong gan nhat
             Dim check = (From p In Context.HU_CONTRACT
-                         Where p.EMPLOYEE_ID = empid
+                         Where p.EMPLOYEE_ID = empid And p.ID <> id
                           Order By p.ID Descending).FirstOrDefault()
             If check Is Nothing Then
                 Return True
             End If
-            If check.EXPIRE_DATE >= rd_date Then
+            If check.EXPIRE_DATE >= rd_date Or check.EXPIRE_DATE >= Date.Now Then
                 Return False
             End If
             Return True
@@ -1468,12 +1468,12 @@ Partial Class ProfileRepository
                                      })
     End Sub
     'ham kiem tra neu 2 hop dong ct thi k cho insert
-    Public Function CheckNotAllow(ByVal empid As Decimal) As Boolean
+    Public Function CheckNotAllow(ByVal empid As Decimal, ByVal id As Decimal) As Boolean
         Try
             Dim check = (From p In Context.HU_CONTRACT
                        From ct In Context.HU_CONTRACT_TYPE.Where(Function(f) f.ID = p.CONTRACT_TYPE_ID).DefaultIfEmpty
                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = ct.TYPE_ID).DefaultIfEmpty
-                       Where p.EMPLOYEE_ID = empid And ot.CODE = "HD").ToList.Count
+                       Where p.EMPLOYEE_ID = empid And ot.CODE = "HD" And p.ID <> id).ToList.Count
             If check >= 2 Then
                 Return False
             End If
