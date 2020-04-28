@@ -601,9 +601,8 @@ Public Class ctrlHU_Commend
         dtTemp.Columns(7).ColumnName = "SIGN_NAME"
         dtTemp.Columns(12).ColumnName = "MONEY"
         dtTemp.Columns(15).ColumnName = "REMARK"
-        dtTemp.Columns(18).ColumnName = "IS_TAX"
+
         dtTemp.Columns(19).ColumnName = "YEAR_COMMEND"
-        'dtTemp.Columns(20).ColumnName = "PERIOD_TAX"
         dtTemp.Columns(21).ColumnName = "NOTE"
         dtTemp.Columns(22).ColumnName = "SIGN_ID"
         dtTemp.Columns(23).ColumnName = "POWER_PAY_ID"
@@ -614,7 +613,7 @@ Public Class ctrlHU_Commend
         dtTemp.Columns(28).ColumnName = "COMMEND_LEVEL"
         dtTemp.Columns(30).ColumnName = "PERIOD_ID" 'KY LUONG CHI TRA
         dtTemp.Columns(32).ColumnName = "PERIOD_TAX"
-
+        dtTemp.Columns(33).ColumnName = "IS_TAX"
 
         'XOA DONG TIEU DE VA HEADER
         dtTemp.Rows(0).Delete()
@@ -689,15 +688,15 @@ Public Class ctrlHU_Commend
                 _error = False
             End If
 
-            If IsDBNull(rows("IS_TAX")) Then
+            'If IsDBNull(rows("IS_TAX")) Then
 
-            Else
-                If Not rows("IS_TAX") = "Có" AndAlso rows("NO") = "Không" Then
-                    rows("IS_TAX") = "NULL"
-                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Tính thuế - Không đúng định dạng,"
-                    _error = False
-                End If
-            End If
+            'Else
+            '    If Not rows("IS_TAX") = "Có" AndAlso rows("NO") = "Không" Then
+            '        rows("IS_TAX") = "NULL"
+            '        newRow("DISCIPTION") = newRow("DISCIPTION") + "Tính thuế - Không đúng định dạng,"
+            '        _error = False
+            '    End If
+            'End If
 
             If Not (IsNumeric(rows("MONEY"))) Then
                 rows("MONEY") = 0

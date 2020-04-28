@@ -1041,8 +1041,8 @@ Partial Class ProfileRepository
     Public Function INPORT_QLKT(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
         Try
             Using cls As New DataAccess.QueryData
-                Dim dtData As DataSet = cls.ExecuteStore("PKG_HU_IPROFILE_EMPLOYEE.INPORT_QLKT",
-                                           New With {.P_CUR = cls.OUT_CURSOR,
+                cls.ExecuteStore("PKG_HU_IPROFILE_EMPLOYEE.INPORT_QLKT",
+                                           New With {.P_DOCXML = P_DOCXML,
                                                      .P_USER = P_USER})
             End Using
             Return True
