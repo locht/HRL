@@ -25,6 +25,13 @@
                             <tlk:RadComboBox ID="cboYear" runat="server" SkinID="dDropdownList" Width="80px">
                             </tlk:RadComboBox>
                         </td>
+                         <td>
+                            <%# Translate("Kỳ quyết toán")%>
+                        </td>
+                        <td>
+                             <tlk:RadComboBox ID="cboTaxFinalization" runat="server"  SkinID="dDropdownList">
+                            </tlk:RadComboBox>
+                        </td>
                         <td>
                             <%# Translate("Mã Nhân viên")%>
                         </td>
@@ -37,20 +44,6 @@
                         <td>
                             <tlk:RadButton ID="btnSeach" runat="server" Text="<%$ Translate: Tìm %>" SkinID="ButtonFind">
                             </tlk:RadButton>
-                        </td>
-                        <td class="lb">
-                            <%-- <%# Translate("Kỳ lương")%>--%>
-                        </td>
-                        <td>
-                            <tlk:RadComboBox ID="cboPeriod" runat="server" SkinID="dDropdownList" Visible="false">
-                            </tlk:RadComboBox>
-                        </td>
-                        <td class="lb">
-                            <%--<%# Translate("THƯỞNG HQCV")%>--%>
-                        </td>
-                        <td>
-                            <tlk:RadComboBox ID="cboSalaryType" Visible="false" runat="server" SkinID="dDropdownList">
-                            </tlk:RadComboBox>
                         </td>
                     </tr>
                 </table>
@@ -69,7 +62,7 @@
                             <ClientSettings EnableRowHoverStyle="true">
                                 <Selecting AllowRowSelect="true" />
                             </ClientSettings>
-                            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,EMPLOYEE_CODE,FULLNAME_VN,ORG_NAME">
+                            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,EMPLOYEE_CODE,FULLNAME_VN,ORG_NAME,JOB_NAME">
                                 <Columns>
                                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -80,6 +73,8 @@
                                         DataField="FULLNAME_VN" SortExpression="FULLNAME_VN" UniqueName="FULLNAME_VN" />
                                     <tlk:GridBoundColumn HeaderStyle-Width="200px" HeaderText="<%$ Translate: Đơn vị %>"
                                         DataField="ORG_NAME" SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
+                                    <tlk:GridBoundColumn HeaderStyle-Width="150px" HeaderText="<%$ Translate: Vị trí công việc %>"
+                                        DataField="JOB_NAME" SortExpression="JOB_NAME" UniqueName="JOB_NAME" />
                                 </Columns>
                             </MasterTableView>
                         </tlk:RadGrid>

@@ -1060,7 +1060,7 @@ Public Class Export
         Try
             Dim dtColName = Session("IMPORTSALARY_COLNAME")
             Dim dtData = Session("IMPORTSALARY_DATACOL")
-            ExportTemplateWithDataCol("Payroll\Business\TEMP_IMPORT_SALARY.xlsx", dtData, dtColName, "TEMP_IMPORTTHUETNCN" & Format(Date.Now, "yyyyMMdd"))
+            ExportTemplateWithDataCol1("Payroll\Business\TEMP_IMPORT_SALARY_TNCN.xlsx", dtData, dtColName, "TEMP_IMPORTTHUETNCN" & Format(Date.Now, "yyyyMMdd"))
 
         Catch ex As Exception
             Throw ex
@@ -1877,5 +1877,58 @@ Public Class Export
 
         End Try
     End Sub
+
+
+    Public Function ExportTemplateWithDataCol1(ByVal sReportFileName As String,
+                                                    ByVal dtDataValue As DataTable,
+                                                    ByVal dtColname As DataTable,
+                                                    ByVal filename As String) As Boolean
+
+        Dim filePath As String
+        Dim templatefolder As String
+
+        Dim designer As WorkbookDesigner
+        Try
+
+            templatefolder = ConfigurationManager.AppSettings("ReportTemplatesFolder")
+            filePath = AppDomain.CurrentDomain.BaseDirectory & "\" & templatefolder & "\" & sReportFileName
+
+            dtDataValue.TableName = "DATA"
+
+            If Not File.Exists(filePath) Then
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "javascriptfunction", "goBack()", True)
+                Return False
+            End If
+
+            designer = New WorkbookDesigner
+            designer.Open(filePath)
+            Dim cell As Cells = designer.Workbook.Worksheets(0).Cells
+            Dim st As New Style
+            st.Number = 4
+            Dim i As Integer = 5
+            For Each dr As DataRow In dtColname.Rows
+                cell(1, i).PutValue(dr("COLNAME"))
+                cell(2, i).PutValue(dr("COLVAL"))
+                cell(3, i).PutValue(dr("COLDATA"))
+                cell(3, i).SetStyle(st)
+                i += 1
+                cell.InsertColumn(i + 1)
+            Next
+            ' Xoa 2 cot thua cuoi cung
+            cell.DeleteColumn(i + 1)
+            cell.DeleteColumn(i)
+
+            designer.SetDataSource(dtDataValue)
+            designer.Process()
+            designer.Workbook.CalculateFormula()
+            designer.Workbook.Worksheets(0).AutoFitColumns()
+            designer.Workbook.Save(HttpContext.Current.Response, filename & ".xls", ContentDisposition.Attachment, New XlsSaveOptions())
+
+        Catch ex As Exception
+            Return False
+        End Try
+        Return True
+    End Function
+
 
 End Class

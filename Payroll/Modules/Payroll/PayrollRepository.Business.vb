@@ -240,4 +240,26 @@ Partial Public Class PayrollRepository
 
 #End Region
 
+    Public Function GetImportSalaryTNCN(ByVal Obj_sal_id As Integer, ByVal taxId As Integer, ByVal OrgId As Integer, ByVal IsDissolve As Integer, ByVal EmployeeId As String, Optional ByVal Sorts As String = "CREATED_DATE DESC") As DataTable
+        Using rep As New PayrollBusinessClient
+            Try
+                Return rep.GetImportSalaryTNCN(Obj_sal_id, taxId, OrgId, IsDissolve, EmployeeId, Me.Log, Sorts)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function SaveImportTNCN(ByVal SalaryGroup As Decimal, ByVal Period As Decimal, ByVal taxId As Decimal, ByVal dtData As DataTable, ByVal lstColVal As List(Of String), ByRef RecordSussces As Integer) As Boolean
+        Using rep As New PayrollBusinessClient
+            Try
+                Return rep.SaveImportTNCN(SalaryGroup, Period, taxId, dtData, lstColVal, Me.Log, RecordSussces)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
 End Class

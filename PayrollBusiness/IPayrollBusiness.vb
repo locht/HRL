@@ -856,6 +856,14 @@ Namespace PayrollBusiness.ServiceContracts
         <OperationContract()>
         Function GetTaxFinalizationbyYear(ByVal year As Decimal) As List(Of PATaxFinalizationDTO)
 #End Region
+
+        <OperationContract()>
+        Function GetImportSalaryTNCN(ByVal obj_sal_id As Integer, ByVal taxId As Integer, ByVal OrgId As Integer, ByVal IsDissolve As Integer, ByVal EmployeeId As String, ByVal log As UserLog,
+                                        Optional ByVal Sorts As String = "CREATED_DATE DESC") As DataTable
+
+        <OperationContract()>
+        Function SaveImportTNCN(ByVal SalaryGroup As Decimal, ByVal Period As Decimal, ByVal TaxId As Decimal, ByVal dtData As DataTable, ByVal lstColVal As List(Of String), ByVal log As UserLog, ByRef RecordSussces As Integer) As Boolean
+
     End Interface
 End Namespace
 

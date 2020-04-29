@@ -10634,6 +10634,12 @@ Namespace PayrollBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetTaxFinalizationbyYear", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetTaxFinalizationbyYearResponse")>  _
         Function GetTaxFinalizationbyYear(ByVal year As Decimal) As System.Collections.Generic.List(Of PayrollBusiness.PATaxFinalizationDTO)
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/GetImportSalaryTNCN", ReplyAction:="http://tempuri.org/IPayrollBusiness/GetImportSalaryTNCNResponse")>  _
+        Function GetImportSalaryTNCN(ByVal obj_sal_id As Integer, ByVal taxId As Integer, ByVal OrgId As Integer, ByVal IsDissolve As Integer, ByVal EmployeeId As String, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/SaveImportTNCN", ReplyAction:="http://tempuri.org/IPayrollBusiness/SaveImportTNCNResponse")>  _
+        Function SaveImportTNCN(ByVal SalaryGroup As Decimal, ByVal Period As Decimal, ByVal TaxId As Decimal, ByVal dtData As System.Data.DataTable, ByVal lstColVal As System.Collections.Generic.List(Of String), ByVal log As Common.CommonBusiness.UserLog, ByRef RecordSussces As Integer) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPayrollBusiness/ActiveFolmulerGroup", ReplyAction:="http://tempuri.org/IPayrollBusiness/ActiveFolmulerGroupResponse")>  _
         Function ActiveFolmulerGroup(ByVal lstID As Decimal, ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Decimal) As Boolean
         
@@ -11672,6 +11678,14 @@ Namespace PayrollBusiness
         
         Public Function GetTaxFinalizationbyYear(ByVal year As Decimal) As System.Collections.Generic.List(Of PayrollBusiness.PATaxFinalizationDTO) Implements PayrollBusiness.IPayrollBusiness.GetTaxFinalizationbyYear
             Return MyBase.Channel.GetTaxFinalizationbyYear(year)
+        End Function
+        
+        Public Function GetImportSalaryTNCN(ByVal obj_sal_id As Integer, ByVal taxId As Integer, ByVal OrgId As Integer, ByVal IsDissolve As Integer, ByVal EmployeeId As String, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Data.DataTable Implements PayrollBusiness.IPayrollBusiness.GetImportSalaryTNCN
+            Return MyBase.Channel.GetImportSalaryTNCN(obj_sal_id, taxId, OrgId, IsDissolve, EmployeeId, log, Sorts)
+        End Function
+        
+        Public Function SaveImportTNCN(ByVal SalaryGroup As Decimal, ByVal Period As Decimal, ByVal TaxId As Decimal, ByVal dtData As System.Data.DataTable, ByVal lstColVal As System.Collections.Generic.List(Of String), ByVal log As Common.CommonBusiness.UserLog, ByRef RecordSussces As Integer) As Boolean Implements PayrollBusiness.IPayrollBusiness.SaveImportTNCN
+            Return MyBase.Channel.SaveImportTNCN(SalaryGroup, Period, TaxId, dtData, lstColVal, log, RecordSussces)
         End Function
         
         Public Function ActiveFolmulerGroup(ByVal lstID As Decimal, ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Decimal) As Boolean Implements PayrollBusiness.IPayrollBusiness.ActiveFolmulerGroup

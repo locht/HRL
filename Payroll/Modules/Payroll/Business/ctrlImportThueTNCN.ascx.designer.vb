@@ -113,22 +113,13 @@ Partial Public Class ctrlImportThueTNCN
     Protected WithEvents cboYear As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''cboPeriod control.
+    '''cboTaxFinalization control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboPeriod As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
-    '''cboSalaryType control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboSalaryType As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents cboTaxFinalization As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''rtxtEmployee control.

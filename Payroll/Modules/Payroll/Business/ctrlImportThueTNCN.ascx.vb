@@ -23,6 +23,14 @@ Public Class ctrlImportThueTNCN
             ViewState(Me.ID & "_ListComboData") = value
         End Set
     End Property
+    Property objData As List(Of PATaxFinalizationDTO)
+        Get
+            Return ViewState(Me.ID & "_objData")
+        End Get
+        Set(ByVal value As List(Of PATaxFinalizationDTO))
+            ViewState(Me.ID & "_objData") = value
+        End Set
+    End Property
     Property vData As DataTable
         Get
             Return ViewState(Me.ID & "_dtDataView")
@@ -212,7 +220,7 @@ Public Class ctrlImportThueTNCN
                 ShowMessage("Bạn phải chọn ít nhất 1 khoản tiền", NotifyType.Warning)
                 Exit Sub
             End If
-            If rep.SaveImport(Utilities.ObjToDecima((11)), Utilities.ObjToDecima(cboYear.SelectedValue), vData, stringKey, RecordSussces) Then
+            If rep.SaveImportTNCN(Utilities.ObjToDecima((11)), 0, Utilities.ObjToDecima(cboTaxFinalization.SelectedValue), vData, stringKey, RecordSussces) Then
                 ShowMessage("Lưu dữ liệu thành công " & RecordSussces & " bản ghi.", NotifyType.Success)
             End If
             rep.Dispose()
@@ -253,31 +261,6 @@ Public Class ctrlImportThueTNCN
     ''' 30/08/2017 14:00
     ''' </lastupdate>
     ''' <summary>
-    ''' Xu ly su kien SelectedIndexChanged cho combobox cboPeriod
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub cboPeriod_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboPeriod.SelectedIndexChanged
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-
-            rgData.CurrentPageIndex = 0
-            rgData.MasterTableView.SortExpressions.Clear()
-            CreateDataFilter()
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                                        CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
-
-    ''' <lastupdate>
-    ''' 30/08/2017 14:00
-    ''' </lastupdate>
-    ''' <summary>
     ''' Ham xu ly cac event click menu tren menu toolbar
     ''' </summary>
     ''' <param name="sender"></param>
@@ -304,7 +287,7 @@ Public Class ctrlImportThueTNCN
                     Next
                     Session("IMPORTSALARY_COLNAME") = dtColName
                     Using rep As New PayrollRepository
-                        Dim dt = rep.GetImportSalary(Utilities.ObjToInt((11)), Utilities.ObjToInt(cboYear.SelectedValue), Utilities.ObjToInt(ctrlOrg.CurrentValue), ctrlOrg.IsDissolve, Utilities.ObjToString(rtxtEmployee.Text))
+                        Dim dt = rep.GetImportSalaryTNCN(Utilities.ObjToInt((11)), Utilities.ObjToInt(cboTaxFinalization.SelectedValue), Utilities.ObjToInt(ctrlOrg.CurrentValue), ctrlOrg.IsDissolve, Utilities.ObjToString(rtxtEmployee.Text))
                         Session("IMPORTSALARY_DATACOL") = dt
                     End Using
                     ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_ImportThueTNCN')", True)
@@ -444,22 +427,17 @@ Public Class ctrlImportThueTNCN
     ''' <remarks></remarks>
     Private Sub ctrlYear_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboYear.SelectedIndexChanged
         Dim rep As New PayrollRepository
-        Dim objPeriod As List(Of ATPeriodDTO)
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
-            cboPeriod.ClearSelection()
-            objPeriod = rep.GetPeriodbyYear(cboYear.SelectedValue)
-            cboPeriod.DataSource = objPeriod
-            cboPeriod.DataValueField = "ID"
-            cboPeriod.DataTextField = "PERIOD_NAME"
-            cboPeriod.DataBind()
-            Dim lst = (From s In objPeriod Where s.MONTH = Date.Now.Month).FirstOrDefault
-            If Not lst Is Nothing Then
-                cboPeriod.SelectedValue = lst.ID
-            Else
-                cboPeriod.SelectedIndex = 0
-            End If
+
+            cboTaxFinalization.ClearSelection()
+            objData = rep.GetTaxFinalizationbyYear(cboYear.SelectedValue)
+            cboTaxFinalization.DataSource = objData
+            cboTaxFinalization.DataValueField = "ID"
+            cboTaxFinalization.DataTextField = "TAX_FINALIZATION_NAME"
+            cboTaxFinalization.DataBind()
+
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -487,9 +465,9 @@ Public Class ctrlImportThueTNCN
             Dim Sorts As String = rgData.MasterTableView.SortExpressions.GetSortString()
             Dim TotalRow As Decimal = 0
             If Sorts Is Nothing Then
-                vData = rep.GetImportSalary(Utilities.ObjToInt((11)), Utilities.ObjToInt(cboYear.SelectedValue), Utilities.ObjToInt(ctrlOrg.CurrentValue), ctrlOrg.IsDissolve, Utilities.ObjToString(rtxtEmployee.Text))
+                vData = rep.GetImportSalaryTNCN(Utilities.ObjToInt((11)), Utilities.ObjToInt(cboTaxFinalization.SelectedValue), Utilities.ObjToInt(ctrlOrg.CurrentValue), ctrlOrg.IsDissolve, Utilities.ObjToString(rtxtEmployee.Text))
             Else
-                vData = rep.GetImportSalary(Utilities.ObjToInt((11)), Utilities.ObjToInt(cboYear.SelectedValue), Utilities.ObjToInt(ctrlOrg.CurrentValue), ctrlOrg.IsDissolve, Utilities.ObjToString(rtxtEmployee.Text), Sorts)
+                vData = rep.GetImportSalaryTNCN(Utilities.ObjToInt((11)), Utilities.ObjToInt(cboTaxFinalization.SelectedValue), Utilities.ObjToInt(ctrlOrg.CurrentValue), ctrlOrg.IsDissolve, Utilities.ObjToString(rtxtEmployee.Text), Sorts)
             End If
             rgData.VirtualItemCount = Utilities.ObjToInt(vData.Rows.Count)
             For Each node As RadTreeNode In ctrlListSalary.CheckedNodes
@@ -553,7 +531,7 @@ Public Class ctrlImportThueTNCN
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
-            Dim listcol() As String = {"cbStatus", "EMPLOYEE_CODE", "FULLNAME_VN", "ORG_NAME"}
+            Dim listcol() As String = {"cbStatus", "EMPLOYEE_CODE", "FULLNAME_VN", "ORG_NAME", "JOB_NAME"}
             Dim i As Integer = 0
             While (i < rgData.Columns.Count)
                 Dim c As GridColumn = rgData.Columns(i)
@@ -568,6 +546,7 @@ Public Class ctrlImportThueTNCN
             stringKey.Add("EMPLOYEE_CODE")
             stringKey.Add("FULLNAME_VN")
             stringKey.Add("ORG_NAME")
+            stringKey.Add("JOB_NAME")
             For Each node As RadTreeNode In ctrlListSalary.CheckedNodes
                 If node.Value = "NULL" Or node.Value = "0" Then Continue For
                 Dim col As New GridBoundColumn
@@ -615,6 +594,14 @@ Public Class ctrlImportThueTNCN
             Next
             FillRadCombobox(cboYear, table, "YEAR", "ID")
             cboYear.SelectedValue = Date.Now.Year
+
+            objData = rep.GetTaxFinalizationbyYear(cboYear.SelectedValue)
+            cboTaxFinalization.DataSource = objData
+            cboTaxFinalization.DataValueField = "ID"
+            cboTaxFinalization.DataTextField = "TAX_FINALIZATION_NAME"
+            cboTaxFinalization.DataBind()
+
+
             'objPeriod = rep.GetPeriodbyYear(cboYear.SelectedValue)
             'cboPeriod.DataSource = objPeriod
             'cboPeriod.DataValueField = "ID"

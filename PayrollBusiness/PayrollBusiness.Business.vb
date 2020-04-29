@@ -197,6 +197,24 @@ Namespace PayrollBusiness.ServiceImplementations
         End Function
 #End Region
 
+        Public Function GetImportSalaryTNCN(ByVal obj_sal_id As Integer, ByVal taxId As Integer, ByVal OrgId As Integer, ByVal IsDissolve As Integer, ByVal EmployeeId As String, ByVal log As UserLog,
+                                        Optional ByVal Sorts As String = "CREATED_DATE DESC") As DataTable Implements ServiceContracts.IPayrollBusiness.GetImportSalaryTNCN
+            Try
+                Dim rep As New PayrollRepository
+                Return rep.GetImportSalaryTNCN(obj_sal_id, taxId, OrgId, IsDissolve, EmployeeId, log, Sorts)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+
+        Public Function SaveImportTNCN(ByVal SalaryGroup As Decimal, ByVal Period As Decimal, ByVal TaxId As Decimal, ByVal dtData As DataTable, ByVal lstColVal As List(Of String), ByVal log As UserLog, ByRef RecordSussces As Integer) As Boolean Implements ServiceContracts.IPayrollBusiness.SaveImportTNCN
+            Try
+                Dim rep As New PayrollRepository
+                Return rep.SaveImportTNCN(SalaryGroup, Period, TaxId, dtData, lstColVal, log, RecordSussces)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
 
     End Class
 End Namespace

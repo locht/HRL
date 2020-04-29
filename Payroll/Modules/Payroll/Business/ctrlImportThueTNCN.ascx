@@ -1,6 +1,8 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlImportThueTNCN.ascx.vb"
     Inherits="Payroll.ctrlImportThueTNCN" %>
 <%@ Import Namespace="Common" %>
+
+<link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
     <tlk:RadPane ID="RadPane4" runat="server" Width="250px" Scrolling="None">
@@ -13,35 +15,25 @@
             <tlk:RadPane ID="RadPaneTop" runat="server" Height="30px" Scrolling="None">
                 <tlk:RadToolBar ID="tbarMenu" runat="server" />
             </tlk:RadPane>
-            <tlk:RadPane ID="RadPane3" runat="server" Height="80px" Scrolling="None">
+            <tlk:RadPane ID="RadPane3" runat="server" Height="50px" Scrolling="None">
                 <table class="table-form">
                     <tr>
                         <td>
                             <%# Translate("Năm")%>
                         </td>
                         <td>
-                            <tlk:RadComboBox ID="cboYear" runat="server" SkinID="dDropdownList"
-                                Width="80px">
+                            <tlk:RadComboBox ID="cboYear" runat="server" SkinID="dDropdownList" Width="80px">
                             </tlk:RadComboBox>
                         </td>
-                        <td class="lb">
-                           <%-- <%# Translate("Kỳ lương")%>--%>
+                         <td>
+                            <%# Translate("Kỳ quyết toán")%>
                         </td>
                         <td>
-                            <tlk:RadComboBox ID="cboPeriod" runat="server" SkinID="dDropdownList" Visible="false">
+                             <tlk:RadComboBox ID="cboTaxFinalization" runat="server"  SkinID="dDropdownList">
                             </tlk:RadComboBox>
                         </td>
-                        <td class="lb">
-                            <%--<%# Translate("THƯỞNG HQCV")%>--%>
-                        </td>
                         <td>
-                              <tlk:RadComboBox ID="cboSalaryType" Visible="false" runat="server" SkinID="dDropdownList">
-                            </tlk:RadComboBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <%# Translate("Nhân viên")%>
+                            <%# Translate("Mã Nhân viên")%>
                         </td>
                         <td>
                             <tlk:RadTextBox ID="rtxtEmployee" runat="server">
@@ -50,7 +42,7 @@
                         <td>
                         </td>
                         <td>
-                            <tlk:RadButton ID="btnSeach" runat="server" Text="<%$ Translate: Tìm kiếm %>" SkinID="ButtonFind">
+                            <tlk:RadButton ID="btnSeach" runat="server" Text="<%$ Translate: Tìm %>" SkinID="ButtonFind">
                             </tlk:RadButton>
                         </td>
                     </tr>
@@ -70,7 +62,7 @@
                             <ClientSettings EnableRowHoverStyle="true">
                                 <Selecting AllowRowSelect="true" />
                             </ClientSettings>
-                            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,EMPLOYEE_CODE,FULLNAME_VN,ORG_NAME">
+                            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,EMPLOYEE_CODE,FULLNAME_VN,ORG_NAME,JOB_NAME">
                                 <Columns>
                                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -81,6 +73,8 @@
                                         DataField="FULLNAME_VN" SortExpression="FULLNAME_VN" UniqueName="FULLNAME_VN" />
                                     <tlk:GridBoundColumn HeaderStyle-Width="200px" HeaderText="<%$ Translate: Đơn vị %>"
                                         DataField="ORG_NAME" SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
+                                    <tlk:GridBoundColumn HeaderStyle-Width="150px" HeaderText="<%$ Translate: Vị trí công việc %>"
+                                        DataField="JOB_NAME" SortExpression="JOB_NAME" UniqueName="JOB_NAME" />
                                 </Columns>
                             </MasterTableView>
                         </tlk:RadGrid>
@@ -92,6 +86,10 @@
 </tlk:RadSplitter>
 <Common:ctrlUpload ID="ctrlUpload" runat="server" />
 <script type="text/javascript">
+
+    $(document).ready(function () {
+        registerOnfocusOut('ctl00_MainContent_ctrlImportThueTNCN_RadSplitter3');
+    });
 
     function clientButtonClicking(sender, args) {
         if (args.get_item().get_commandName() == 'EXPORT') {
