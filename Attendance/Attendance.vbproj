@@ -193,6 +193,7 @@
     <Content Include="Modules\Attendance\Dashboard\ctrlAT_DBTimeOff.ascx" />
     <Content Include="Modules\Attendance\Dashboard\ctrlAT_DBTimeOtByOrg.ascx" />
     <Content Include="Modules\Attendance\Dashboard\ctrlDashboardSixCell.ascx" />
+    <Content Include="Modules\Attendance\List\ctrlAT_Symbols.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlAT_OBJECT_EMP_CSL.ascx" />
     <Content Include="Modules\Attendance\List\ctrlAT_PROJECT_WORK.ascx" />
     <Content Include="Modules\Attendance\List\ctrlAT_PROJECT.ascx" />
@@ -662,6 +663,13 @@
     </Compile>
     <Compile Include="Modules\Attendance\Dashboard\ctrlDashboardSixCell.ascx.vb">
       <DependentUpon>ctrlDashboardSixCell.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\List\ctrlAT_Symbols.ascx.designer.vb">
+      <DependentUpon>ctrlAT_Symbols.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\List\ctrlAT_Symbols.ascx.vb">
+      <DependentUpon>ctrlAT_Symbols.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Attendance\Setting\ctrlAT_OBJECT_EMP_CSL.ascx.designer.vb">

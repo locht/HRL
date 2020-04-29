@@ -30,7 +30,7 @@
     
     <Item Text="Danh mục"  PostBack="False">
       <Group>
-        <Item Value="ctrlDMKieuCong" Text="Ký hiệu chấm công" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlDMKieuCong&amp;group=List" CheckPermission="true" />
+        <Item Value="ctrlAT_Symbols" Text="Ký hiệu chấm công" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlAT_Symbols&amp;group=List" CheckPermission="true" />
         <Item Value="ctrlDMCaLamViec" Text="Ca làm việc" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlDMCaLamViec&amp;group=List" CheckPermission="true" />
         <Item Value="ctrlRitual" Text="Ngày nghỉ lễ" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlRitual&amp;group=List" CheckPermission="true"/>
         <Item Value="ctrlListParamSystem" Text="Tham số hệ thống" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlListParamSystem&amp;group=List" CheckPermission="true"/>

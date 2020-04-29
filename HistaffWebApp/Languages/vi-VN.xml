@@ -45326,4 +45326,12 @@ Xin cám ơn!
       <string>Ngày kết hiệu lực</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLAT_SYMBOLS</string>
+    </Key>
+    <Value>
+      <string>Ký hiệu chấm công</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
