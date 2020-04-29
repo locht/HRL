@@ -1551,11 +1551,12 @@
     <None Include="ReportTemplates\Attendance\Report\AT_011.xls" />
     <None Include="ReportTemplates\Attendance\Report\Dynamic.xls" />
     <None Include="TemplateDynamic\ContractAppendixSupport\PLHD - OLD.doc" />
-    <None Include="TemplateDynamic\ContractAppendixSupport\PLHD.doc" />
+    <Content Include="TemplateDynamic\ContractAppendixSupport\PLHD.doc" />
     <Content Include="TemplateDynamic\ContractAppendixSupport\TNECSG_TDLUONG.doc" />
     <Content Include="TemplateDynamic\ContractAppendixSupport\TNG_TDLUONG.doc" />
     <Content Include="TemplateDynamic\ContractAppendixSupport\TNECSG_X30_GHHD.doc" />
     <Content Include="TemplateDynamic\ContractAppendixSupport\TNECSG_BDH_GHHD.doc" />
+    <Content Include="TemplateDynamic\ContractAppendixSupport\TNG_PLHD.doc" />
     <None Include="TemplateDynamic\ContractSupport\5116.doc" />
     <None Include="TemplateDynamic\ContractSupport\5982.doc" />
     <None Include="TemplateDynamic\ContractSupport\6314.doc" />
