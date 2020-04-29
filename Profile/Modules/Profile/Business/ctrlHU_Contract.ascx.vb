@@ -1383,9 +1383,9 @@ VALIDATE:
                     ElseIf emp6 = False Then
                         sError = "Ngày hiệu lực phải lớn hơn ngày hết hiệu lực của hợp đồng cũ"
                         ImportValidate.IsValidTime("START_DATE", row, rowError, isError, sError)
-                    ElseIf Not rep.ValidContract(empid5.EMPLOYEE_ID, ToDate(row("END_DATE")), 0) Then
+                    ElseIf Not rep.ValidContract(empid5.EMPLOYEE_ID, ToDate(row("START_DATE")), 0) Then
                         sError = "Hợp đồng cũ còn hiệu lực. Không được phép tạo hợp đồng mới."
-                        ImportValidate.IsValidTime("END_DATE", row, rowError, isError, sError)
+                        ImportValidate.IsValidTime("START_DATE", row, rowError, isError, sError)
                     End If
                 End If
                 If row("CONTRACT_TYPE_ID") <> 5 Then
