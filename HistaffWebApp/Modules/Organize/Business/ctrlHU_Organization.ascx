@@ -155,6 +155,17 @@
             </tr>
             <tr>
                 <td class="lb">
+                    <%# Translate("Trực thuộc")%><span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboUnder" runat="server" />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ControlToValidate="cboUnder"
+                        runat="server" ErrorMessage="Bạn phải chọn thông tin trực thuộc" ToolTip="Bạn phải chọn thông tin trực thuộc">
+                    </asp:RequiredFieldValidator>
+                </td>
+            </tr>
+            <tr>
+                <td class="lb">
                     
                     <%# Translate("Nhóm chịu phí")%>
                 </td>

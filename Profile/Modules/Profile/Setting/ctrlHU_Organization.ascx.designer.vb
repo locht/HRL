@@ -221,6 +221,24 @@ Partial Public Class ctrlHU_Organization
     Protected WithEvents txtCONTRACT_CODE As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''cboUnder control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboUnder As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''RequiredFieldValidator5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator5 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''cboGROUP_PAID_ID control.
     '''</summary>
     '''<remarks>

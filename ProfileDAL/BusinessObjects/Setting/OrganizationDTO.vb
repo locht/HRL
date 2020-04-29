@@ -43,4 +43,7 @@
     Public Property CHK_ORGCHART As Decimal?
     Public Property FILES As String
     Public Property EFFECT_DATE As Date?
+
+    Public Property UNDER_ID As Decimal?
+    Public Property UNDER_NAME As String
 End Class

@@ -21279,6 +21279,12 @@ Namespace ProfileBusiness
         Private TYPE_DECISIONField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private UNDER_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private UNDER_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private UNIT_LEVELField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -21823,6 +21829,32 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.TYPE_DECISIONField, value) <> true) Then
                     Me.TYPE_DECISIONField = value
                     Me.RaisePropertyChanged("TYPE_DECISION")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property UNDER_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.UNDER_IDField
+            End Get
+            Set
+                If (Me.UNDER_IDField.Equals(value) <> true) Then
+                    Me.UNDER_IDField = value
+                    Me.RaisePropertyChanged("UNDER_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property UNDER_NAME() As String
+            Get
+                Return Me.UNDER_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.UNDER_NAMEField, value) <> true) Then
+                    Me.UNDER_NAMEField = value
+                    Me.RaisePropertyChanged("UNDER_NAME")
                 End If
             End Set
         End Property

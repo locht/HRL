@@ -288,6 +288,9 @@ Public Class ctrlHU_Organization
             Dim dtcbo = rep.GetOtherList("GROUP_PAID", True)
             FillRadCombobox(cboGROUP_PAID_ID, dtcbo, "NAME", "ID")
 
+            dtcbo = rep.GetOtherList("ORG_UNDER", True)
+            FillRadCombobox(cboUnder, dtcbo, "NAME", "ID")
+
             Dim dtcbo1 = rep.GetOtherList("ORG_LEVEL", True)
             FillRadCombobox(cboUNIT_RANK_ID, dtcbo1, "NAME", "ID")
 
@@ -522,6 +525,9 @@ Public Class ctrlHU_Organization
                         row.MAN_UNI_NAME = txtMAN_UNI_NAME.Text
                         row.AUTHOR_LETTER = txtAUTHOR_LETTER.Text
 
+                        If cboUnder.SelectedValue <> "" Then
+                            row.UNDER_ID = cboUnder.SelectedValue
+                        End If
                         If cboGROUP_PAID_ID.SelectedValue <> "" Then
                             row.GROUP_PAID_ID = cboGROUP_PAID_ID.SelectedValue
                         End If
@@ -913,6 +919,8 @@ Public Class ctrlHU_Organization
         txtSHORT_NAME.Text = ""
         cboGROUP_PAID_ID.SelectedValue = Nothing
         cboGROUP_PAID_ID.Text = ""
+        cboUnder.SelectedValue = Nothing
+        cboUnder.Text = ""
         txtNameVN.Text = ""
         txtREMARK.Text = ""
         rtADDRESS.Text = ""
@@ -990,6 +998,7 @@ Public Class ctrlHU_Organization
         chkIsSignContract.Enabled = IsEnable
         txtCONTRACT_CODE.ReadOnly = Not IsEnable
         cboGROUP_PAID_ID.Enabled = IsEnable
+        cboUnder.Enabled = IsEnable
         cboUNIT_RANK_ID.Enabled = IsEnable
         cboPROVINCE_ID.Enabled = IsEnable
         cboDISTRICT_ID.Enabled = IsEnable
@@ -1234,6 +1243,12 @@ sucssec:
                     cboGROUP_PAID_ID.SelectedValue = row.Field(Of Decimal?)("GROUP_PAID_ID")
                 Else
                     ClearControlValue(cboGROUP_PAID_ID)
+                End If
+
+                If row.Field(Of Decimal?)("UNDER_ID") AndAlso row.Field(Of Decimal?)("UNDER_ID") > 0 Then
+                    cboUnder.SelectedValue = row.Field(Of Decimal?)("UNDER_ID")
+                Else
+                    ClearControlValue(cboUnder)
                 End If
 
                 If row.Field(Of Decimal?)("UNIT_RANK_ID") AndAlso row.Field(Of Decimal?)("UNIT_RANK_ID") > 0 Then

@@ -58,4 +58,7 @@
     Public Property AUTHOR_LETTER As String
     Public Property BUSS_REG_NAME As String
     Public Property MAN_UNI_NAME As String
+
+    Public Property UNDER_ID As Decimal?
+    Public Property UNDER_NAME As String
 End Class

@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 4/23/2020 11:09:38 AM
--- Generated from EDMX file: D:\ACV\acv_19\ProfileDAL\ProfileContext.edmx
+-- Date Created: 04/29/2020 8:55:24 AM
+-- Generated from EDMX file: F:\WORKING\acv_19\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -2976,7 +2976,8 @@ CREATE TABLE "dbo"."HU_ORGANIZATION" (
    "EFFECT_DATE" DATE NULL,
    "CONTRACT_CODE" NCLOB NULL,
    "IS_SIGN_CONTRACT" NUMBER(38,0) NULL,
-   "UNIT_RANK_ID" NUMBER(38,0) NULL
+   "UNIT_RANK_ID" NUMBER(38,0) NULL,
+   "UNDER_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_TALENT_POOL'
