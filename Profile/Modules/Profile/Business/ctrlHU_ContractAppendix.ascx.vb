@@ -283,7 +283,7 @@ Public Class ctrlHU_ContractAppendix
 
                     If dtData.Rows.Count = 1 Then
                         ExportWordMailMerge(System.IO.Path.Combine(Server.MapPath(tempPath), "ContractAppendixSupport\" + (CType(rgContract.SelectedItems(0), GridDataItem)).GetDataKeyValue("CONTRACTTYPE_CODE") + ".doc"),
-                                  (CType(rgContract.SelectedItems(0), GridDataItem)).GetDataKeyValue("EMPLOYEE_CODE") + (CType(rgContract.SelectedItems(0), GridDataItem)).GetDataKeyValue("CONTRACTTYPE_CODE") + ".doc",
+                                  (CType(rgContract.SelectedItems(0), GridDataItem)).GetDataKeyValue("EMPLOYEE_CODE") + "ACV_PLHD" + ".doc",
                                   dtData,
                                   Response,
                                   sourcePath)

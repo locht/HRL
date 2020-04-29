@@ -1904,7 +1904,7 @@ Public Class Export
             designer.Open(filePath)
             Dim cell As Cells = designer.Workbook.Worksheets(0).Cells
             Dim st As New Style
-            st.Number = 4
+            st.Number = 5
             Dim i As Integer = 5
             For Each dr As DataRow In dtColname.Rows
                 cell(1, i).PutValue(dr("COLNAME"))
