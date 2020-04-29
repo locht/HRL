@@ -836,6 +836,10 @@
       <Project>{514CC57F-03AA-4D18-9BF2-3F7B66F6AD9B}</Project>
       <Name>Framework.UI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Profile\Profile.vbproj">
+      <Project>{B8148AB7-8752-487B-ABA0-DDA56B917E35}</Project>
+      <Name>Profile %28Profile\Profile%29</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebAppLog\WebAppLog.vbproj">
       <Project>{780365C3-C031-4841-9B4C-B39840797596}</Project>
       <Name>WebAppLog</Name>
