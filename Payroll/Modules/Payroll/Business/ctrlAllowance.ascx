@@ -184,7 +184,7 @@
                                     <tlk:GridBoundColumn DataField="ID" Visible="false" />
                                     <tlk:GridBoundColumn HeaderStyle-Width="100px" HeaderText="<%$ Translate: Mã nhân viên %>"
                                         DataField="EMPLOYEE_ID" SortExpression="EMPLOYEE_ID" UniqueName="EMPLOYEE_ID"
-                                        Display="False" />
+                                        Display="False" Visible="false" />
                                     <tlk:GridBoundColumn HeaderStyle-Width="100px" HeaderText="<%$ Translate: Mã nhân viên %>"
                                         DataField="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" />
                                     <tlk:GridBoundColumn HeaderStyle-Width="150px" HeaderText="<%$ Translate: Họ và tên %>"
