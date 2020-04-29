@@ -53,7 +53,7 @@
     Public Property LANGUAGE1_NAME As String
     Public Property LANGUAGE1_LEVEL_ID As String
     Public Property LANGUAGE1_LEVEL_NAME As String
-    Public Property LANGUAGE1_POINT As String
+    Public Property LANGUAGE1_POINT As Decimal?
     Public Property LANGUAGE2_ID As String
     Public Property LANGUAGE2_NAME As String
     Public Property LANGUAGE2_LEVEL_ID As String

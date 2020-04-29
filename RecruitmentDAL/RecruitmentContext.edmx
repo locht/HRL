@@ -1577,7 +1577,7 @@
             <Property Name="GRADUATION_TYPE_SUB_ID" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="LANGUAGE1_ID" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="LANGUAGE1_LEVEL_ID" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="LANGUAGE1_POINT_ID" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="LANGUAGE1_POINT_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="LANGUAGE2_ID" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="LANGUAGE2_LEVEL_ID" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="LANGUAGE2_POINT_ID" Type="nvarchar2" Nullable="true" MaxLength="255" />
@@ -3762,7 +3762,7 @@
           <Property Type="String" Name="GRADUATION_TYPE_SUB_ID" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="LANGUAGE1_ID" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="LANGUAGE1_LEVEL_ID" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="LANGUAGE1_POINT_ID" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="LANGUAGE1_POINT_ID" />
           <Property Type="String" Name="LANGUAGE2_ID" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="LANGUAGE2_LEVEL_ID" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="LANGUAGE2_POINT_ID" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -5952,7 +5952,7 @@
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_EXPECT" Width="2.125" PointX="26.625" PointY="6.625" Height="2.3648893229166656" IsExpanded="true" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_HEALTH" Width="2" PointX="0.75" PointY="13.75" Height="4.8648079427083353" IsExpanded="true" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_REFERENCE" Width="1.5" PointX="0.625" PointY="6.875" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM" Width="1.5" PointX="19.375" PointY="21.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM" Width="1.5" PointX="19.375" PointY="21.75" Height="14.095276692708332" IsExpanded="true" />
         <EntityTypeShape EntityType="RecruitmentModel.SE_USER" Width="1.5" PointX="8.375" PointY="2.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.SE_REPORT" Width="1.5" PointX="3.375" PointY="7.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.SE_USER_REPORT" Width="1.5" PointX="0.75" PointY="3.75" Height="0.4" IsExpanded="false" />

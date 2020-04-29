@@ -183,7 +183,11 @@ Public Class ctrlRC_ProgramNewEdit
                         cboTimeWork.SelectedValue = obj.WORK_TIME_ID
                     End If
 
-                    chkNegotiableSalary.Checked = obj.NEGOTIABLESALARY
+                    If obj.NEGOTIABLESALARY IsNot Nothing Then
+                        chkNegotiableSalary.Checked = obj.NEGOTIABLESALARY
+                    Else
+                        chkNegotiableSalary.Checked = False
+                    End If
 
                     rdSendDate.SelectedDate = obj.SEND_DATE
                     rdReceiveEnd.SelectedDate = obj.RECEIVE_END
@@ -193,7 +197,7 @@ Public Class ctrlRC_ProgramNewEdit
                         lblRecruitNumber.Text = 0
                     Else
                         lblRecruitNumber.Text = obj.NUMBERRECRUITMENT
-                    End If 
+                    End If
                     hidID.Value = obj.ID
                     hidOrgID.Value = obj.ORG_ID
                     If obj.SPECIALSKILLS IsNot Nothing Then
@@ -519,7 +523,7 @@ Public Class ctrlRC_ProgramNewEdit
                 dtData = rep.GetOtherList("RC_TRAINING_SCHOOL", True)
                 FillRadCombobox(cboTrainingSchoolMain, dtData, "NAME", "ID")
                 FillRadCombobox(cboTrainingSchoolSub, dtData, "NAME", "ID")
-                dtData = rep.GetOtherList("RC_MAJOR", True)
+                dtData = rep.GetOtherList("MAJOR", True)
                 FillRadCombobox(cboMajorMain, dtData, "NAME", "ID")
                 FillRadCombobox(cboMajorSub, dtData, "NAME", "ID")
                 dtData = rep.GetOtherList("RC_GRADUATION_TYPE", True)

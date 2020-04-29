@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("0ea4153a-2428-4426-987e-e4c1e9f60a03")>
+<Assembly: EdmSchemaAttribute("a4801b80-41ae-4081-8e47-4f56e2b9bc15")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH1), True)>
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_HE_HEC", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_CV", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_CV), True)>
@@ -32234,21 +32234,21 @@ Public Partial Class RC_PROGRAM
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property LANGUAGE1_POINT_ID() As Global.System.String
+    Public Property LANGUAGE1_POINT_ID() As Nullable(Of Global.System.Decimal)
         Get
             Return _LANGUAGE1_POINT_ID
         End Get
         Set
             OnLANGUAGE1_POINT_IDChanging(value)
             ReportPropertyChanging("LANGUAGE1_POINT_ID")
-            _LANGUAGE1_POINT_ID = StructuralObject.SetValidValue(value, true)
+            _LANGUAGE1_POINT_ID = StructuralObject.SetValidValue(value)
             ReportPropertyChanged("LANGUAGE1_POINT_ID")
             OnLANGUAGE1_POINT_IDChanged()
         End Set
     End Property
 
-    Private _LANGUAGE1_POINT_ID As Global.System.String
-    Private Partial Sub OnLANGUAGE1_POINT_IDChanging(value As Global.System.String)
+    Private _LANGUAGE1_POINT_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnLANGUAGE1_POINT_IDChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnLANGUAGE1_POINT_IDChanged()

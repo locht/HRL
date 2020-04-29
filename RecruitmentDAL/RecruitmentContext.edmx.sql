@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 4/22/2020 3:18:25 PM
+-- Date Created: 4/29/2020 11:33:56 AM
 -- Generated from EDMX file: D:\SOURCE_GIT_NEW\SOURCR_ACV_NEW\RecruitmentDAL\RecruitmentContext.edmx
 -- --------------------------------------------------
 
@@ -1568,7 +1568,7 @@ CREATE TABLE "dbo"."RC_PROGRAM" (
    "GRADUATION_TYPE_SUB_ID" NVARCHAR2(255) NULL,
    "LANGUAGE1_ID" NVARCHAR2(255) NULL,
    "LANGUAGE1_LEVEL_ID" NVARCHAR2(255) NULL,
-   "LANGUAGE1_POINT_ID" NVARCHAR2(255) NULL,
+   "LANGUAGE1_POINT_ID" NUMBER(38,0) NULL,
    "LANGUAGE2_ID" NVARCHAR2(255) NULL,
    "LANGUAGE2_LEVEL_ID" NVARCHAR2(255) NULL,
    "LANGUAGE2_POINT_ID" NVARCHAR2(255) NULL,

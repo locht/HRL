@@ -15310,7 +15310,7 @@ Namespace RecruitmentBusiness
         Private LANGUAGE1_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private LANGUAGE1_POINTField As String
+        Private LANGUAGE1_POINTField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LANGUAGE2_IDField As String
@@ -16097,12 +16097,12 @@ Namespace RecruitmentBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property LANGUAGE1_POINT() As String
+        Public Property LANGUAGE1_POINT() As System.Nullable(Of Decimal)
             Get
                 Return Me.LANGUAGE1_POINTField
             End Get
             Set
-                If (Object.ReferenceEquals(Me.LANGUAGE1_POINTField, value) <> true) Then
+                If (Me.LANGUAGE1_POINTField.Equals(value) <> true) Then
                     Me.LANGUAGE1_POINTField = value
                     Me.RaisePropertyChanged("LANGUAGE1_POINT")
                 End If
