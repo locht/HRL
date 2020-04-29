@@ -1328,7 +1328,7 @@ Public Class ctrlHU_Contract
                     sError = "Nhân viên đã nghỉ việc"
                     ImportValidate.IsValidTime("EMPLOYEE_CODE", row, rowError, isError, sError)
                 End If
-                If empid2 = 0 Then
+                If empid2 = 0 And CDec(Val(row("CONTRACT_TYPE_ID"))) <> 5 Then
                     sError = "Nhân viên đã có 2 hợp đồng chính thức"
                     ImportValidate.IsValidTime("EMPLOYEE_CODE", row, rowError, isError, sError)
                 End If
@@ -1358,12 +1358,13 @@ Public Class ctrlHU_Contract
                     '    End Try
                 End If
 VALIDATE:
-
-                If Not IsNumeric(row("CONTRACT_TYPE_ID")) Then
+                'Dim xx = row("CONTRACT_TYPE_ID")
+                'Dim xx1 = row("SIGN_CONTRACT_ID")
+                If row("CONTRACT_TYPE_ID") = 0 Then
                     sError = "Chưa nhập loại hợp đồng"
                     ImportValidate.IsValidTime("CONTRACT_TYPE", row, rowError, isError, sError)
                 End If
-                If Not IsNumeric(row("SIGN_CONTRACT_ID")) Then
+                If row("SIGN_CONTRACT_ID") = 0 Then
                     sError = "Chưa nhập đơn vị kí hợp đồng"
                     ImportValidate.IsValidTime("SIGN_CONTRACT", row, rowError, isError, sError)
                 End If
@@ -1382,9 +1383,9 @@ VALIDATE:
                     ElseIf emp6 = False Then
                         sError = "Ngày hiệu lực phải lớn hơn ngày hết hiệu lực của hợp đồng cũ"
                         ImportValidate.IsValidTime("START_DATE", row, rowError, isError, sError)
-                    ElseIf Not rep.ValidContract(empid5.EMPLOYEE_ID, ToDate(row("START_DATE")), 0) Then
+                    ElseIf Not rep.ValidContract(empid5.EMPLOYEE_ID, ToDate(row("END_DATE")), 0) Then
                         sError = "Hợp đồng cũ còn hiệu lực. Không được phép tạo hợp đồng mới."
-                        ImportValidate.IsValidTime("START_DATE", row, rowError, isError, sError)
+                        ImportValidate.IsValidTime("END_DATE", row, rowError, isError, sError)
                     End If
                 End If
                 If row("CONTRACT_TYPE_ID") <> 5 Then
