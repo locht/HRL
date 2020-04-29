@@ -1647,6 +1647,7 @@ Partial Class ProfileRepository
                 objEmpCVData.IS_ATVS = objEmpCV.IS_ATVS
                 objEmpCVData.WORK_HN = objEmpCV.WORK_HN
                 objEmpCVData.WORK_HN_DATE = objEmpCV.WORK_HN_DATE
+                objEmpCVData.WORK_HN_EXPIRE = objEmpCV.WORK_HN_EXPIRE
                 objEmpCVData.WORK_HN_PLACE = objEmpCV.WORK_HN_PLACE
                 objEmpCVData.TNCN_NO = objEmpCV.TNCN_NO
                 objEmpCVData.IS_TRANSFER = objEmpCV.IS_TRANSFER
@@ -1760,6 +1761,7 @@ Partial Class ProfileRepository
                 objEmpUniformData.WORK_T_SHIRT = objEmpUniform.WORK_T_SHIRT
                 objEmpUniformData.WORK_SLIP = objEmpUniform.WORK_SLIP
                 objEmpUniformData.WORK_HAT = objEmpUniform.WORK_HAT
+                objEmpUniformData.WORK_SHORTS = objEmpUniform.WORK_SHORTS
                 objEmpUniformData.OTHER = objEmpUniform.OTHER
                 If bUpdateUniform = False Then
                     Context.HU_UNIFORM_SIZE.AddObject(objEmpUniformData)

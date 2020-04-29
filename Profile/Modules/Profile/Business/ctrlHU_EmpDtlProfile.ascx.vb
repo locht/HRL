@@ -1027,6 +1027,12 @@ Public Class ctrlHU_EmpDtlProfile
                     ctrlFindEmployeePopup.MultiSelect = False
                     ctrlFindEmployeePopup.LoadAllOrganization = True
                     phPopupLevel.Controls.Add(ctrlFindEmployeePopup)
+                Case 4
+                    If Not phFindEmployee.Controls.Contains(ctrlFindEmployeePopup) Then
+                        ctrlFindEmployeePopup = Me.Register("ctrlFindEmployeePopup", "Common", "ctrlFindEmployeePopup")
+                        phFindEmployee.Controls.Add(ctrlFindEmployeePopup)
+                        ctrlFindEmployeePopup.MultiSelect = False
+                    End If
             End Select
             Dim r As New ProfileBusinessRepository
             Select Case CurrentState
@@ -1036,7 +1042,7 @@ Public Class ctrlHU_EmpDtlProfile
                     EmpCode = r.CreateNewEMPLOYEECode()
                     'txtTimeID.Text = EmpCode.EMPLOYEE_CODE
                     'txtEmpCODE.Text = EmpCode.EMPLOYEE_CODE
-                    EnableControlAll(True, txtOrgName2, btnFindOrg,
+                    EnableControlAll(True, txtOrgName2, btnFindOrg, btnPresenter,
                                      cboTitle, txtTitleGroup, cboStaffRank,
                                      txtmanager, cboObject, cboObjectLabor, cbObjectBook, cboBasic, cboCertificate, cboComputerRank, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank, cboMotoDrivingLicense, txtNote, cboJobDescription, cboProductionProcess, btnUpload)
 
@@ -1067,7 +1073,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus, rtWorkplace,
                                        cboGender, cboLangLevel, cboLangLevel2, cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe, cboDriverType,
                                        cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province, cboNationa_TT, cboNationlity_NQ, cboNationlity_TTRU,
-                                       cboReligion,
+                                       cboReligion, txtPresenter, txtAddress, txtNumberPhone,
                                        cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbBirth_PlaceId,
                                        hidID, hidOrgID, hidDirectManager, hidLevelManager,
                                        chkDoanPhi, rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5, chkDangPhi, chkATVS, chkIS_TRANSFER,
@@ -1116,18 +1122,18 @@ Public Class ctrlHU_EmpDtlProfile
                                           rdBirthDate, rdIDDate, rdSeniorityDate,
                                            rdNgayVaoDoan, rdPassDate, rdPassExpireDate,
                                           rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
-                                           txtCanNang, txtChieuCao,
+                                           txtCanNang, txtChieuCao, txtPresenter, txtAddress, txtNumberPhone,
                                            cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus,
                                            cboGender, cboLangLevel, cboLangLevel2, rtWorkplace, cboDriverType,
                                            cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
                                            cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province, cboNationa_TT, cboNationlity_NQ, cboNationlity_TTRU,
-                                           cboReligion,
+                                           cboReligion, txtPresenter, txtAddress, txtNumberPhone,
                                            cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                                            hidID, hidOrgID, hidDirectManager, hidLevelManager,
                                             chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbBirth_PlaceId, chkDangPhi, chkATVS, chkIS_TRANSFER,
                                            rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
                                            rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
-                                            ckThuong_Binh,
+                                            ckThuong_Binh, btnPresenter,
                                             ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
                                            ckNU_CONG, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
                                            cbQLNN, cbLLCT, cbTDTH, cboTDTH2, rtTTSucKhoe,
@@ -1160,12 +1166,12 @@ Public Class ctrlHU_EmpDtlProfile
                                           rdBirthDate, rdIDDate, rdSeniorityDate,
                                            rdNgayVaoDoan, rdPassDate, rdPassExpireDate,
                                           rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
-                                           txtCanNang, txtChieuCao,
+                                           txtCanNang, txtChieuCao, txtPresenter, txtAddress, txtNumberPhone,
                                            cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus,
                                            cboGender, cboLangLevel, cboLangLevel2, rtWorkplace, cboDriverType,
                                            cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
                                            cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province, cboNationa_TT, cboNationlity_NQ, cboNationlity_TTRU,
-                                           cboReligion,
+                                           cboReligion, btnPresenter,
                                            cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                                            hidID, hidOrgID, hidDirectManager, hidLevelManager,
                                             chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbBirth_PlaceId, chkDangPhi, chkATVS, chkIS_TRANSFER,
@@ -1207,7 +1213,7 @@ Public Class ctrlHU_EmpDtlProfile
                                       rdBirthDate, rdContractExpireDate, rdContractEffectDate, rdIDDate, rdSeniorityDate,
                                       rdNgayVaoDoan, rdPassDate, rdPassExpireDate,
                                       rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
-                                      txtCanNang, txtChieuCao,
+                                      txtCanNang, txtChieuCao, txtPresenter, txtAddress, txtNumberPhone,
                                       cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus,
                                       cboGender, cboLangLevel, cboLangLevel2, rtWorkplace, cboInsRegion, cboDriverType,
                                       cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
@@ -1244,7 +1250,7 @@ Public Class ctrlHU_EmpDtlProfile
                                       rdBirthDate, rdContractExpireDate, rdContractEffectDate, rdIDDate, rdSeniorityDate,
                                       rdNgayVaoDoan, rdPassDate, rdPassExpireDate,
                                       rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
-                                      txtCanNang, txtChieuCao,
+                                      txtCanNang, txtChieuCao, txtPresenter, txtAddress, txtNumberPhone,
                                       cboAcademy, cboGraduateSchool, cboBank, cboBankBranch, cboFamilyStatus,
                                       cboGender, cboLangLevel, cboLangLevel2, rtWorkplace, cboInsRegion, cboDriverType,
                                       cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
@@ -1837,42 +1843,42 @@ Public Class ctrlHU_EmpDtlProfile
         End Try
     End Sub
 
-    Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
-        Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
-        'Dim list As List(Of EmployeeDTO)
-        'Dim rep As New ProfileBusinessRepository
-        Dim _param = New ParamDTO With {.ORG_ID = 46,
-                   .IS_DISSOLVE = False}
-        Dim _filter As New EmployeeDTO
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
-            If lstCommonEmployee.Count <> 0 Then
-                Select Case isLoadPopup
-                    Case 2
-                        txtmanager.Text = lstCommonEmployee(0).TITLE_NAME
-                        'If lstCommonEmployee(0).DIRECT_MANAGER IsNot Nothing Then
-                        '    _filter.DIRECT_MANAGER = lstCommonEmployee(0).DIRECT_MANAGER
-                        '    list = rep.GetListEmployeePaging(_filter, _param)
-                        '    If list.Count > 0 Then
-                        '        txtLevelManager.Text = list(0).FULLNAME_VN
-                        '        hidLevelManager.Value = list(0).ID.ToString()
-                        '    End If
-                        'End If
-                    Case 3
-                        'txtLevelManager.Text = lstCommonEmployee(0).FULLNAME_VN
-                        'hidLevelManager.Value = lstCommonEmployee(0).ID.ToString()
-                End Select
-            End If
-            isLoadPopup = 0
-            ' rep.Dispose()
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-            'DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
+    'Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
+    '    Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
+    '    'Dim list As List(Of EmployeeDTO)
+    '    'Dim rep As New ProfileBusinessRepository
+    '    Dim _param = New ParamDTO With {.ORG_ID = 46,
+    '               .IS_DISSOLVE = False}
+    '    Dim _filter As New EmployeeDTO
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        Dim startTime As DateTime = DateTime.UtcNow
+    '        lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
+    '        If lstCommonEmployee.Count <> 0 Then
+    '            Select Case isLoadPopup
+    '                Case 2
+    '                    txtmanager.Text = lstCommonEmployee(0).TITLE_NAME
+    '                    'If lstCommonEmployee(0).DIRECT_MANAGER IsNot Nothing Then
+    '                    '    _filter.DIRECT_MANAGER = lstCommonEmployee(0).DIRECT_MANAGER
+    '                    '    list = rep.GetListEmployeePaging(_filter, _param)
+    '                    '    If list.Count > 0 Then
+    '                    '        txtLevelManager.Text = list(0).FULLNAME_VN
+    '                    '        hidLevelManager.Value = list(0).ID.ToString()
+    '                    '    End If
+    '                    'End If
+    '                Case 3
+    '                    'txtLevelManager.Text = lstCommonEmployee(0).FULLNAME_VN
+    '                    'hidLevelManager.Value = lstCommonEmployee(0).ID.ToString()
+    '            End Select
+    '        End If
+    '        isLoadPopup = 0
+    '        ' rep.Dispose()
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '        'DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
 
     Private Sub btnFindOrg_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnFindOrg.Click
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
@@ -2228,6 +2234,58 @@ Public Class ctrlHU_EmpDtlProfile
             End If
         Catch ex As Exception
             Throw ex
+        End Try
+    End Sub
+
+    Protected Sub btnPresenter_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnPresenter.Click
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+
+            Select Case sender.ID
+                Case btnPresenter.ID
+                    isLoadPopup = 4
+            End Select
+            UpdateControlState()
+            Select Case sender.ID
+                Case btnPresenter.ID
+                    ctrlFindEmployeePopup.IsHideTerminate = False
+                    ctrlFindEmployeePopup.Show()
+            End Select
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            'DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Event xu ly load tat ca thong tin ve nhân viên khi click button [chọn] o popup ctrlFindEmployeePopup
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
+        Try
+            lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
+            If lstCommonEmployee.Count <> 0 Then
+                For idx = 0 To lstCommonEmployee.Count - 1
+                    txtPresenter.Text = lstCommonEmployee(idx).FULLNAME_VN
+                    txtAddress.Text = lstCommonEmployee(idx).CREATE_PLACE
+                    txtNumberPhone.Text = lstCommonEmployee(idx).MOBILE_PHONE
+                Next
+
+            Else
+
+            End If
+            Refresh()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            'DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
 #End Region
@@ -2639,7 +2697,7 @@ Public Class ctrlHU_EmpDtlProfile
             EmpCV.NO_HOUSEHOLDS = txtNoHouseHolds.Text
             EmpCV.CODE_HOUSEHOLDS = txtCodeHouseHolds.Text
 
-            EmpCV.CHUC_VU_DOAN = rtCHUC_VU_DOAN.Text
+            'EmpCV.CHUC_VU_DOAN = rtCHUC_VU_DOAN.Text
             'EmpCV.DOAN_PHI = ckDOAN_PHI.Checked
 
             '=============================================

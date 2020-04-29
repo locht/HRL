@@ -1749,6 +1749,7 @@
                                             </tlk:RadTextBox>
                                         </td>
                                     </tr>
+                                    
                                 </table>
                             </ContentTemplate>
                         </tlk:RadPanelItem>
@@ -2118,6 +2119,7 @@
     </Windows>
 </tlk:RadWindowManager>
 <Common:ctrlUpload ID="ctrlUpload1" runat="server" />
+<asp:PlaceHolder ID="phFindEmployee" runat="server"></asp:PlaceHolder>
 <tlk:RadScriptBlock runat="server" ID="ScriptBlock">
     <script type="text/javascript">
         function cusPer_District(oSrc, args) {
