@@ -105,6 +105,7 @@ Public Class ctrlAllowance
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         Try
             rgData.AllowCustomPaging = True
+            rgData.SetFilter()
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             InitControl()
             ctrlUpload.isMultiple = AsyncUpload.MultipleFileSelection.Disabled

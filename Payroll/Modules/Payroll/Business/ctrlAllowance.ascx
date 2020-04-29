@@ -10,7 +10,7 @@
             <table class="table-form">
                 <tr>
                     <td style="min-width: 70px" class="lb">
-                        <%# Translate("Mã nhân viên")%>
+                        <%# Translate("Nhân viên")%>
                     </td>
                     <td>
                         <tlk:RadTextBox ID="txtEmployeeCode" runat="server" Width="140px">
@@ -109,7 +109,7 @@
                     </tr>
                     <tr>
                         <td class="lb">
-                            <%# Translate("Đơn vị/phòng ban)%>
+                            <%# Translate("Phòng ban")%>
                         </td>
                         <td>
                             <tlk:RadTextBox ID="txtOrgName" runat="server" ReadOnly="true">
@@ -172,7 +172,7 @@
             <tlk:RadPane ID="RadPaneBotton" runat="server" Scrolling="None">
                 <tlk:RadSplitter ID="RadSplitter2" runat="server" Width="100%" Height="100%">
                     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
-                        <tlk:RadGrid PageSize="50" ID="rgData" runat="server" Height="100%">
+                        <tlk:RadGrid PageSize="50" ID="rgData" runat="server" Height="100%" AllowSorting="True">
                             <ClientSettings EnableRowHoverStyle="true">
                                 <Selecting AllowRowSelect="true" />
                             </ClientSettings>
@@ -191,11 +191,11 @@
                                         DataField="FULLNAME_VN" SortExpression="FULLNAME_VN" UniqueName="FULLNAME_VN" />
                                     <tlk:GridBoundColumn HeaderStyle-Width="150px" HeaderText="<%$ Translate: Vị trí công việc %>"
                                         DataField="TITLE_NAME" SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
-                                    <tlk:GridBoundColumn HeaderStyle-Width="150px" HeaderText="<%$ Translate: Đơn vị/phòng ban %>"
+                                    <tlk:GridBoundColumn HeaderStyle-Width="150px" HeaderText="<%$ Translate: Phòng ban %>"
                                         DataField="ORG_NAME" SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
                                     <tlk:GridBoundColumn HeaderStyle-Width="150px" HeaderText="<%$ Translate: Loại phụ cấp %>"
                                         DataField="ALLOWANCE_TYPE_NAME" SortExpression="ALLOWANCE_TYPE_NAME" UniqueName="ALLOWANCE_TYPE_NAME" />
-                                    <tlk:GridBoundColumn HeaderStyle-Width="150px" HeaderText="<%$ Translate: Tiền phụ cấp %>"
+                                    <tlk:GridNumericColumn HeaderStyle-Width="150px" HeaderText="<%$ Translate: Tiền phụ cấp %>"
                                         DataField="AMOUNT" SortExpression="AMOUNT" UniqueName="AMOUNT" />
                                     <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECT_DATE"
                                         SortExpression="EFFECT_DATE" UniqueName="EFFECT_DATE" DataFormatString="{0:dd/MM/yyyy}">

@@ -152,7 +152,7 @@ Partial Public Class PayrollRepository
             End If
 
             If _filter.EXP_DATE IsNot Nothing Then
-                lst = lst.Where(Function(p) p.EXP_DATE <= _filter.EXP_DATE)
+                lst = lst.Where(Function(p) p.EFFECT_DATE <= _filter.EXP_DATE)
             End If
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
