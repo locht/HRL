@@ -586,7 +586,7 @@ Public Class ctrlAllowance
                 newRow("ORG_NAME") = rows("ORG_NAME")
                 newRow("TYPE_ALLOW_NAME") = rows("TYPE_ALLOW_NAME")
                 newRow("TYPE_ALLOW_ID") = If(IsNumeric(rows("TYPE_ALLOW_ID")), rows("TYPE_ALLOW_ID"), 0)
-                newRow("AMOUNT") = Decimal.Parse(rows("AMOUNT"))
+                newRow("AMOUNT") = If(IsNumeric(rows("AMOUNT")), Decimal.Parse(rows("AMOUNT")), 0)
                 newRow("EFFECT_DATE") = rows("EFFECT_DATE")
                 newRow("EXPIRE_DATE") = rows("EXPIRE_DATE")
                 newRow("REMARK") = rows("REMARK")
@@ -659,14 +659,16 @@ Public Class ctrlAllowance
                 If row("TYPE_ALLOW_NAME") Is DBNull.Value OrElse row("TYPE_ALLOW_NAME") = "" Then
                     sError = "Chưa chọn LOẠI PHỤ CẤP"
                     ImportValidate.EmptyValue("TYPE_ALLOW_NAME", row, rowError, isError, sError)
+                    check = 1
                 End If
-                If row("AMOUNT") = "" Then
+                If row("AMOUNT") = "" Or row("AMOUNT") = 0 Then
                     sError = "Chưa nhập số tiền"
                     ImportValidate.EmptyValue("AMOUNT", row, rowError, isError, sError)
                 End If
-                If CheckDate(row("EFFECT_DATE")) = False Then
+                If CheckDate(row("EFFECT_DATE")) = False Or row("EFFECT_DATE") = "" Then
                     sError = "Ngày hiệu lực - không đúng định dạng"
                     ImportValidate.IsValidTime("EFFECT_DATE", row, rowError, isError, sError)
+                    check = 1
                 End If
                 If CheckDate(row("EXPIRE_DATE")) = False Then
                     sError = "Ngày hết hiệu lực - không đúng định dạng"
