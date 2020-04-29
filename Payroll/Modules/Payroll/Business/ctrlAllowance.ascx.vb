@@ -3,6 +3,9 @@ Imports Framework.UI.Utilities
 Imports Payroll.PayrollBusiness
 Imports Common
 Imports Telerik.Web.UI
+Imports System.IO
+Imports Profile
+Imports System.Globalization
 
 Public Class ctrlAllowance
     Inherits Common.CommonView
@@ -10,6 +13,36 @@ Public Class ctrlAllowance
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
 #Region "Property"
     Dim dtData As New DataTable
+    Property dtData1 As DataTable
+        Get
+            If ViewState(Me.ID & "_dtData1") Is Nothing Then
+                Dim dt As New DataTable("DATA")
+                dt.Columns.Add("EMPLOYEE_CODE", GetType(String))
+                dt.Columns.Add("FULLNAME_VN", GetType(String))
+                dt.Columns.Add("TITLE_NAME", GetType(String))
+                dt.Columns.Add("ORG_NAME", GetType(String))
+                dt.Columns.Add("TYPE_ALLOW_NAME", GetType(String))
+                dt.Columns.Add("TYPE_ALLOW_ID", GetType(String))
+                dt.Columns.Add("AMOUNT", GetType(String))
+                dt.Columns.Add("EFFECT_DATE", GetType(String))
+                dt.Columns.Add("EXPIRE_DATE", GetType(String))
+                dt.Columns.Add("REMARK", GetType(String))
+                ViewState(Me.ID & "_dtData1") = dt
+            End If
+            Return ViewState(Me.ID & "_dtData1")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_dtData1") = value
+        End Set
+    End Property
+    Property dtDataImportWorking As DataTable
+        Get
+            Return ViewState(Me.ID & "_dtDataImportWorking")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_dtDataImportWorking") = value
+        End Set
+    End Property
     Property ListComboData As ComboBoxDataDTO
         Get
             Return ViewState(Me.ID & "_ListComboData")
@@ -388,6 +421,10 @@ Public Class ctrlAllowance
                     ctrlMessageBox.ActionName = CommonMessage.ACTION_ACTIVE
                     ctrlMessageBox.DataBind()
                     ctrlMessageBox.Show()
+                Case CommonMessage.TOOLBARITEM_NEXT
+                    ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_Allowance')", True)
+                Case CommonMessage.TOOLBARITEM_IMPORT
+                    ctrlUpload.Show()
                 Case CommonMessage.TOOLBARITEM_DEACTIVE
                     If rgData.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
@@ -517,5 +554,192 @@ Public Class ctrlAllowance
 
         End Try
     End Sub
-    
+    Private Sub ctrlUpload_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload.OkClicked
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim fileName As String
+        Dim dsDataPrepare As New DataSet
+        Dim workbook As Aspose.Cells.Workbook
+        Dim worksheet As Aspose.Cells.Worksheet
+
+        Try
+            Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
+            Dim savepath = Context.Server.MapPath(tempPath)
+
+            For Each file As UploadedFile In ctrlUpload.UploadedFiles
+                fileName = System.IO.Path.Combine(savepath, Guid.NewGuid().ToString() & ".xls")
+                file.SaveAs(fileName, True)
+                workbook = New Aspose.Cells.Workbook(fileName)
+                worksheet = workbook.Worksheets(0)
+                dsDataPrepare.Tables.Add(worksheet.Cells.ExportDataTableAsString(0, 0, worksheet.Cells.MaxRow + 1, worksheet.Cells.MaxColumn + 1, True))
+                If System.IO.File.Exists(fileName) Then System.IO.File.Delete(fileName)
+            Next
+            dtData1 = dtData1.Clone()
+            TableMapping(dsDataPrepare.Tables(0))
+            For Each rows As DataRow In dsDataPrepare.Tables(0).Select("EMPLOYEE_CODE<>'""'").CopyToDataTable.Rows
+                If IsDBNull(rows("EMPLOYEE_CODE")) OrElse rows("EMPLOYEE_CODE") = "" Then Continue For
+                Dim newRow As DataRow = dtData1.NewRow
+                newRow("EMPLOYEE_CODE") = rows("EMPLOYEE_CODE")
+                newRow("FULLNAME_VN") = rows("FULLNAME_VN")
+                newRow("TITLE_NAME") = rows("TITLE_NAME")
+                newRow("ORG_NAME") = rows("ORG_NAME")
+                newRow("TYPE_ALLOW_NAME") = rows("TYPE_ALLOW_NAME")
+                newRow("TYPE_ALLOW_ID") = If(IsNumeric(rows("TYPE_ALLOW_ID")), rows("TYPE_ALLOW_ID"), 0)
+                newRow("AMOUNT") = Decimal.Parse(rows("AMOUNT"))
+                newRow("EFFECT_DATE") = rows("EFFECT_DATE")
+                newRow("EXPIRE_DATE") = rows("EXPIRE_DATE")
+                newRow("REMARK") = rows("REMARK")
+                dtData1.Rows.Add(newRow)
+            Next
+            dtData1.TableName = "DATA"
+            If loadToGrid() Then
+                Dim sw As New StringWriter()
+                Dim DocXml As String = String.Empty
+                dtData1.WriteXml(sw, False)
+                DocXml = sw.ToString
+                Dim sp As New ProfileStoreProcedure()
+                If sp.Import_HU_ALLOWANCE(LogHelper.GetUserLog().Username.ToUpper, DocXml) Then
+                    ShowMessage(Translate("Import thành công"), NotifyType.Success)
+                Else
+                    ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
+                End If
+                'End edit;
+                rgData.Rebind()
+            End If
+
+        Catch ex As Exception
+            ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
+        End Try
+    End Sub
+    Private Sub TableMapping(ByVal dtdata As DataTable)
+        Dim row As DataRow = dtdata.Rows(1)
+        Dim index As Integer = 0
+        For Each cols As DataColumn In dtdata.Columns
+            Try
+                cols.ColumnName = row(index)
+                index += 1
+                If index > row.ItemArray.Length - 1 Then Exit For
+            Catch ex As Exception
+                Exit For
+            End Try
+        Next
+        dtdata.Rows(0).Delete()
+        dtdata.Rows(0).Delete()
+        dtdata.AcceptChanges()
+    End Sub
+    Function loadToGrid() As Boolean
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim dtError As New DataTable("ERROR")
+        Try
+           
+            Dim rowError As DataRow
+            Dim isError As Boolean = False
+            Dim sError As String = String.Empty
+            dtDataImportWorking = dtData1.Clone
+            dtError = dtData1.Clone
+            Dim iRow = 1
+            'Dim _filter As New WorkingDTO
+            Dim rep As New ProfileBusinessRepository
+            Dim atCall As New ProfileStoreProcedure
+            'Dim IBusiness As IProfileBusiness = New ProfileBusinessClient()
+
+            Dim empId As Integer
+            For Each row As DataRow In dtData1.Rows
+                rowError = dtError.NewRow
+                isError = False
+                Dim check = 0
+                empId = rep.CheckEmployee_Exits(row("EMPLOYEE_CODE"))
+                If empId = 0 Then
+                    sError = "Mã nhân viên - Không tồn tại"
+                    ImportValidate.IsValidTime("EMPLOYEE_CODE", row, rowError, isError, sError)
+                    check = 1
+                End If
+                If row("TYPE_ALLOW_NAME") Is DBNull.Value OrElse row("TYPE_ALLOW_NAME") = "" Then
+                    sError = "Chưa chọn LOẠI PHỤ CẤP"
+                    ImportValidate.EmptyValue("TYPE_ALLOW_NAME", row, rowError, isError, sError)
+                End If
+                If row("AMOUNT") = "" Then
+                    sError = "Chưa nhập số tiền"
+                    ImportValidate.EmptyValue("AMOUNT", row, rowError, isError, sError)
+                End If
+                If CheckDate(row("EFFECT_DATE")) = False Then
+                    sError = "Ngày hiệu lực - không đúng định dạng"
+                    ImportValidate.IsValidTime("EFFECT_DATE", row, rowError, isError, sError)
+                End If
+                If CheckDate(row("EXPIRE_DATE")) = False Then
+                    sError = "Ngày hết hiệu lực - không đúng định dạng"
+                    ImportValidate.IsValidTime("EXPIRE_DATE", row, rowError, isError, sError)
+                End If
+                If check = 0 Then
+                    Using rep1 As New PayrollRepository
+                        Dim idNv = atCall.GET_ID_EMP(row("EMPLOYEE_CODE"))
+                        If Not rep1.CheckAllowance(idNv, ToDate(row("EFFECT_DATE")), Decimal.Parse(row("TYPE_ALLOW_ID")), 0) Then
+                            sError = "Đã tồn tại loại phụ cấp này,xin kiểm tra lại"
+                            row("TYPE_ALLOW_NAME") = ""
+                            ImportValidate.EmptyValue("TYPE_ALLOW_NAME", row, rowError, isError, sError)
+                            isError = True
+                        End If
+                    End Using
+                End If
+                check = 0
+                If isError Then
+                    'rowError("EMPLOYEE_CODE") = row("EMPLOYEE_CODE").ToString
+                    If rowError("EMPLOYEE_CODE").ToString = "" Then
+                        rowError("EMPLOYEE_CODE") = row("EMPLOYEE_CODE").ToString
+                    End If
+                    dtError.Rows.Add(rowError)
+                Else
+                    dtDataImportWorking.ImportRow(row)
+                End If
+                iRow = iRow + 1
+            Next
+            If dtError.Rows.Count > 0 Then
+                dtError.TableName = "DATA"
+                ' gộp các lỗi vào 1 cột ghi chú 
+                Dim dtErrorGroup As New DataTable
+                Dim RowErrorGroup As DataRow
+                dtErrorGroup.Columns.Add("STT")
+                dtErrorGroup.Columns.Add("NOTE")
+                For j As Integer = 0 To dtError.Rows.Count - 1
+                    Dim strNote As String = String.Empty
+                    RowErrorGroup = dtErrorGroup.NewRow
+                    For k As Integer = 1 To dtError.Columns.Count - 1
+                        If Not dtError.Rows(j)(k) Is DBNull.Value Then
+                            strNote &= dtError.Rows(j)(k) & "\"
+                        End If
+                    Next
+                    RowErrorGroup("STT") = dtError.Rows(j)("EMPLOYEE_CODE")
+                    RowErrorGroup("NOTE") = strNote
+                    dtErrorGroup.Rows.Add(RowErrorGroup)
+                Next
+                dtErrorGroup.TableName = "DATA"
+                Session("EXPORTREPORT") = dtErrorGroup
+
+                ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_importIO_error');", True)
+                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+            End If
+            If isError OrElse (dtError IsNot Nothing AndAlso dtError.Rows.Count > 0) Then
+                Return False
+            Else
+                Return True
+            End If
+
+        Catch ex As Exception
+        End Try
+    End Function
+    Private Function CheckDate(ByVal value As String) As Boolean
+        Dim dateCheck As Boolean
+        Dim result As Date
+        If value = "" Or value = "&nbsp;" Then
+            value = ""
+            Return True
+        End If
+        Try
+            dateCheck = DateTime.TryParseExact(value, "dd/MM/yyyy", New CultureInfo("en-US"), DateTimeStyles.None, result)
+            Return dateCheck
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
 End Class

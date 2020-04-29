@@ -129,6 +129,8 @@ Public Class Export
                         Template_yeucautuyendung_Error()
                     Case "Export_Determine"
                         Export_Determine()
+                    Case "Template_Allowance"
+                        Template_Allowance()
                 End Select
             Catch ex As Exception
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "javascriptfunction", "goBack()", True)
@@ -1929,6 +1931,19 @@ Public Class Export
         End Try
         Return True
     End Function
+
+    Private Sub Template_Allowance()
+        Dim rep As New Recruitment.RecruitmentStoreProcedure
+        Try
+            Dim configPath As String = Server.MapPath("ReportTemplates\Payroll\Import\Allowance.xls")
+            Dim dsData As DataSet = rep.GET_ALLOWANCE()
+            dsData.Tables(0).TableName = "Table"
+            ExportTemplate("Payroll\Import\Allowance.xls",
+                                  dsData, Nothing, "Template_Allowance" & Format(Date.Now, "yyyyMMdd"))
+        Catch ex As Exception
+
+        End Try
+    End Sub
 
 
 End Class

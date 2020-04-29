@@ -903,4 +903,15 @@ Public Class RecruitmentStoreProcedure
         End Try
     End Function
 #End Region
+#Region "GET DS PHU CAP"
+    Public Function GET_ALLOWANCE() As DataSet
+        Try
+            Dim ds As New DataSet
+            ds = rep.ExecuteToDataSet("PKG_PA_BUSINESS.GET_ALLOWANCE", New List(Of Object)(New Object() {}))
+            Return ds
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+#End Region
 End Class

@@ -1489,6 +1489,7 @@
     <Content Include="ReportTemplates\Profile\Import\Template_Export_Emp.xls" />
     <Content Include="ReportTemplates\Profile\Import\import_khenthuong1.xls" />
     <Content Include="ReportTemplates\Profile\Import\TEMP_IMPORT_CONTRACT_ERR.xls" />
+    <Content Include="ReportTemplates\Payroll\Import\Allowance.xls" />
     <None Include="ReportTemplates\Recruitment\Import\Candidate_Error.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
