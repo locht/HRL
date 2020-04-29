@@ -97,9 +97,9 @@
             <EntitySet Name="AT_TIME_MANUAL_RATE" EntityType="AttendanceModel.Store.AT_TIME_MANUAL_RATE" store:Type="Tables"  />
             <EntitySet Name="AT_ENTITLEMENT" EntityType="AttendanceModel.Store.AT_ENTITLEMENT" store:Type="Tables"  />
             <EntitySet Name="AT_SETUP_EXCHANGE" EntityType="AttendanceModel.Store.AT_SETUP_EXCHANGE" store:Type="Tables"  />
-            <EntitySet Name="AT_SYMBOLS" EntityType="AttendanceModel.Store.AT_SYMBOLS" store:Type="Tables"  />
             <EntitySet Name="AT_SYMBOL_FUNC" EntityType="AttendanceModel.Store.AT_SYMBOL_FUNC" store:Type="Tables"  />
             <EntitySet Name="SE_USER_ORG_ACCESS1Set" EntityType="AttendanceModel.Store.SE_USER_ORG_ACCESS1Set" store:Type="Tables"  />
+            <EntitySet Name="AT_SYMBOLS" EntityType="AttendanceModel.Store.AT_SYMBOLS" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="AttendanceModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_OOLT_OOL" Association="AttendanceModel.Store.FK_OOLT_OOL">
                 <End Role="OT_OTHER_LIST_TYPE" EntitySet="OT_OTHER_LIST_TYPE" />
@@ -2500,36 +2500,6 @@
             <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="STT" Type="number" Nullable="true" Precision="38" />
         </EntityType>
-        <EntityType Name="AT_SYMBOLS">
-            <Key>
-                <PropertyRef Name="ID" />
-            </Key>
-            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
-            <Property Name="WCODE" Type="nvarchar2" Nullable="false" MaxLength="10" />
-            <Property Name="WNAME" Type="nvarchar2" Nullable="false" MaxLength="1000" />
-            <Property Name="WGROUPID" Type="number" Nullable="false" Precision="38" />
-            <Property Name="WDATATYEID" Type="number" Nullable="false" Precision="38" />
-            <Property Name="WDATAMODEID" Type="number" Nullable="false" Precision="38" />
-            <Property Name="EFFECT_DATE" Type="date" Nullable="true" />
-            <Property Name="EXPIRE_DATE" Type="date" Nullable="true" />
-            <Property Name="WINDEX" Type="number" Nullable="false" Precision="5" />
-            <Property Name="NOTE" Type="nvarchar2" Nullable="true" MaxLength="2000" />
-            <Property Name="STATUS" Type="number" Nullable="false" Precision="5" />
-            <Property Name="IS_DISPLAY" Type="number" Nullable="false" Precision="5" />
-            <Property Name="IS_DATAFROMEXCEL" Type="number" Nullable="false" Precision="5" />
-            <Property Name="IS_DISPLAY_PORTAL" Type="number" Nullable="true" Precision="5" />
-            <Property Name="IS_LEAVE" Type="number" Nullable="true" Precision="5" />
-            <Property Name="SYMBOL_FUN_ID" Type="number" Nullable="true" Precision="38" />
-            <Property Name="IS_LEAVE_WEEKLY" Type="number" Nullable="true" Precision="5" />
-            <Property Name="IS_LAVE_HOLIDAY" Type="number" Nullable="true" Precision="5" />
-            <Property Name="IS_DAY_HALF" Type="number" Nullable="true" Precision="5" />
-            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
-            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
-            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
-        </EntityType>
         <EntityType Name="AT_SYMBOL_FUNC">
             <Key>
                 <PropertyRef Name="FUNCTION_ID" />
@@ -2547,6 +2517,36 @@
             <Property Name="USER_ID" Type="number" Nullable="false" Precision="38" />
             <Property Name="ORG_ID" Type="number" Nullable="false" Precision="38" />
             <Property Name="GROUP_ID" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
+        <EntityType Name="AT_SYMBOLS">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="WCODE" Type="nvarchar2" Nullable="false" MaxLength="10" />
+            <Property Name="WNAME" Type="nvarchar2" Nullable="true" MaxLength="1000" />
+            <Property Name="WGROUPID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="WDATATYEID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="WDATAMODEID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="EFFECT_DATE" Type="date" Nullable="true" />
+            <Property Name="EXPIRE_DATE" Type="date" Nullable="true" />
+            <Property Name="WINDEX" Type="number" Nullable="true" Precision="5" />
+            <Property Name="NOTE" Type="nvarchar2" Nullable="true" MaxLength="2000" />
+            <Property Name="STATUS" Type="number" Nullable="true" Precision="5" />
+            <Property Name="IS_DISPLAY" Type="number" Nullable="true" Precision="5" />
+            <Property Name="IS_DATAFROMEXCEL" Type="number" Nullable="true" Precision="5" />
+            <Property Name="IS_DISPLAY_PORTAL" Type="number" Nullable="true" Precision="5" />
+            <Property Name="IS_LEAVE" Type="number" Nullable="true" Precision="5" />
+            <Property Name="SYMBOL_FUN_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_LEAVE_WEEKLY" Type="number" Nullable="true" Precision="5" />
+            <Property Name="IS_LAVE_HOLIDAY" Type="number" Nullable="true" Precision="5" />
+            <Property Name="IS_DAY_HALF" Type="number" Nullable="true" Precision="5" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
         </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
@@ -2864,9 +2864,9 @@
           <EntitySet Name="AT_TIME_MANUAL_RATE" EntityType="AttendanceModel.AT_TIME_MANUAL_RATE" />
           <EntitySet Name="AT_ENTITLEMENT" EntityType="AttendanceModel.AT_ENTITLEMENT" />
           <EntitySet Name="AT_SETUP_EXCHANGE" EntityType="AttendanceModel.AT_SETUP_EXCHANGE" />
-          <EntitySet Name="AT_SYMBOLS" EntityType="AttendanceModel.AT_SYMBOLS" />
           <EntitySet Name="AT_SYMBOL_FUNC" EntityType="AttendanceModel.AT_SYMBOL_FUNC" />
           <EntitySet Name="SE_USER_ORG_ACCESS1Set" EntityType="AttendanceModel.SE_USER_ORG_ACCESS1" />
+          <EntitySet Name="AT_SYMBOLS" EntityType="AttendanceModel.AT_SYMBOLS" />
           </EntityContainer>
         <EntityType Name="OT_OTHER_LIST">
           <Key>
@@ -5368,36 +5368,6 @@
           <Property Type="String" Name="ACTFLG" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="STT" />
         </EntityType>
-        <EntityType Name="AT_SYMBOLS">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
-          <Property Type="String" Name="WCODE" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="WNAME" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="WGROUPID" Nullable="false" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="WDATATYEID" Nullable="false" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="WDATAMODEID" Nullable="false" Precision="38" Scale="0" />
-          <Property Type="DateTime" Name="EFFECT_DATE" />
-          <Property Type="DateTime" Name="EXPIRE_DATE" />
-          <Property Type="Int16" Name="WINDEX" Nullable="false" />
-          <Property Type="String" Name="NOTE" MaxLength="2000" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="STATUS" Nullable="false" />
-          <Property Type="Int16" Name="IS_DISPLAY" Nullable="false" />
-          <Property Type="Int16" Name="IS_DATAFROMEXCEL" Nullable="false" />
-          <Property Type="Int16" Name="IS_DISPLAY_PORTAL" />
-          <Property Type="Int16" Name="IS_LEAVE" />
-          <Property Type="Decimal" Name="SYMBOL_FUN_ID" Precision="38" Scale="0" />
-          <Property Type="Int16" Name="IS_LEAVE_WEEKLY" />
-          <Property Type="Int16" Name="IS_LAVE_HOLIDAY" />
-          <Property Type="Int16" Name="IS_DAY_HALF" />
-          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="CREATED_DATE" />
-          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="MODIFIED_DATE" />
-          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="AT_SYMBOL_FUNC">
           <Key>
             <PropertyRef Name="FUNCTION_ID" />
@@ -5415,6 +5385,36 @@
           <Property Type="Decimal" Name="USER_ID" Nullable="false" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="ORG_ID" Nullable="false" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="GROUP_ID" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="AT_SYMBOLS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="WCODE" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="WNAME" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="WGROUPID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="WDATATYEID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="WDATAMODEID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="EFFECT_DATE" />
+          <Property Type="DateTime" Name="EXPIRE_DATE" />
+          <Property Type="Int16" Name="WINDEX" />
+          <Property Type="String" Name="NOTE" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="STATUS" />
+          <Property Type="Int16" Name="IS_DISPLAY" />
+          <Property Type="Int16" Name="IS_DATAFROMEXCEL" />
+          <Property Type="Int16" Name="IS_DISPLAY_PORTAL" />
+          <Property Type="Int16" Name="IS_LEAVE" />
+          <Property Type="Decimal" Name="SYMBOL_FUN_ID" Precision="38" Scale="0" />
+          <Property Type="Int16" Name="IS_LEAVE_WEEKLY" />
+          <Property Type="Int16" Name="IS_LAVE_HOLIDAY" />
+          <Property Type="Int16" Name="IS_DAY_HALF" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -7860,6 +7860,25 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="AT_SYMBOL_FUNC">
+            <EntityTypeMapping TypeName="AttendanceModel.AT_SYMBOL_FUNC">
+                <MappingFragment StoreEntitySet="AT_SYMBOL_FUNC">
+                    <ScalarProperty Name="FUNCTION_ID" ColumnName="FUNCTION_ID" />
+                    <ScalarProperty Name="SYMBOLS_ID" ColumnName="SYMBOLS_ID" />
+                    <ScalarProperty Name="COL_NAME" ColumnName="COL_NAME" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
+        <EntitySetMapping Name="SE_USER_ORG_ACCESS1Set">
+            <EntityTypeMapping TypeName="AttendanceModel.SE_USER_ORG_ACCESS1">
+                <MappingFragment StoreEntitySet="SE_USER_ORG_ACCESS1Set">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                    <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <EntitySetMapping Name="AT_SYMBOLS">
             <EntityTypeMapping TypeName="AttendanceModel.AT_SYMBOLS">
                 <MappingFragment StoreEntitySet="AT_SYMBOLS">
@@ -7888,25 +7907,6 @@
                     <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
                     <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
                     <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
-                </MappingFragment>
-            </EntityTypeMapping>
-        </EntitySetMapping>
-        <EntitySetMapping Name="AT_SYMBOL_FUNC">
-            <EntityTypeMapping TypeName="AttendanceModel.AT_SYMBOL_FUNC">
-                <MappingFragment StoreEntitySet="AT_SYMBOL_FUNC">
-                    <ScalarProperty Name="FUNCTION_ID" ColumnName="FUNCTION_ID" />
-                    <ScalarProperty Name="SYMBOLS_ID" ColumnName="SYMBOLS_ID" />
-                    <ScalarProperty Name="COL_NAME" ColumnName="COL_NAME" />
-                </MappingFragment>
-            </EntityTypeMapping>
-        </EntitySetMapping>
-        <EntitySetMapping Name="SE_USER_ORG_ACCESS1Set">
-            <EntityTypeMapping TypeName="AttendanceModel.SE_USER_ORG_ACCESS1">
-                <MappingFragment StoreEntitySet="SE_USER_ORG_ACCESS1Set">
-                    <ScalarProperty Name="ID" ColumnName="ID" />
-                    <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
-                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
-                    <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -7940,7 +7940,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="AttendanceContext" ShowGrid="false" DisplayType="true" ZoomLevel="88" >
+      <Diagram Name="AttendanceContext" ShowGrid="false" DisplayType="true" ZoomLevel="85" >
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST" Width="1.5" PointX="5.125" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST_GROUP" Width="1.5" PointX="0.625" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST_TYPE" Width="1.5" PointX="2.875" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
@@ -8084,9 +8084,9 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_MANUAL_RATE" Width="1.5" PointX="24.25" PointY="21.5" Height="1.5956835937500031" />
         <EntityTypeShape EntityType="AttendanceModel.AT_ENTITLEMENT" Width="1.5" PointX="0.75" PointY="21.75" Height="21.402731119791667" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SETUP_EXCHANGE" Width="2" PointX="20.375" PointY="24.75" Height="4.0956022135416674" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_SYMBOLS" Width="1.5" PointX="23.375" PointY="24.75" Height="5.8263151041666674" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SYMBOL_FUNC" Width="1.5" PointX="9.375" PointY="25.75" Height="1.5956835937499818" />
         <EntityTypeShape EntityType="AttendanceModel.SE_USER_ORG_ACCESS1" Width="1.5" PointX="15.375" PointY="26.75" Height="1.7879850260417243" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_SYMBOLS" Width="1.5" PointX="23.375" PointY="24.75" Height="5.8263151041667243" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("5c2e2c6d-a094-4e7c-88cb-b5f4917c9a1a")>
+<Assembly: EdmSchemaAttribute("2f66d6c8-50e7-4aae-9ce0-9ee32e09400b")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -1359,20 +1359,6 @@ Public Partial Class AttendanceContext
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    Public ReadOnly Property AT_SYMBOLS() As ObjectSet(Of AT_SYMBOLS)
-        Get
-            If (_AT_SYMBOLS Is Nothing) Then
-                _AT_SYMBOLS = MyBase.CreateObjectSet(Of AT_SYMBOLS)("AT_SYMBOLS")
-            End If
-            Return _AT_SYMBOLS
-        End Get
-    End Property
-
-    Private _AT_SYMBOLS As ObjectSet(Of AT_SYMBOLS)
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
     Public ReadOnly Property AT_SYMBOL_FUNC() As ObjectSet(Of AT_SYMBOL_FUNC)
         Get
             If (_AT_SYMBOL_FUNC Is Nothing) Then
@@ -1397,6 +1383,20 @@ Public Partial Class AttendanceContext
     End Property
 
     Private _SE_USER_ORG_ACCESS1Set As ObjectSet(Of SE_USER_ORG_ACCESS1)
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property AT_SYMBOLS() As ObjectSet(Of AT_SYMBOLS)
+        Get
+            If (_AT_SYMBOLS Is Nothing) Then
+                _AT_SYMBOLS = MyBase.CreateObjectSet(Of AT_SYMBOLS)("AT_SYMBOLS")
+            End If
+            Return _AT_SYMBOLS
+        End Get
+    End Property
+
+    Private _AT_SYMBOLS As ObjectSet(Of AT_SYMBOLS)
 
     #End Region
 
@@ -2040,13 +2040,6 @@ Public Partial Class AttendanceContext
     End Sub
 
     ''' <summary>
-    ''' Deprecated Method for adding a new object to the AT_SYMBOLS EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
-    ''' </summary>
-    Public Sub AddToAT_SYMBOLS(ByVal aT_SYMBOLS As AT_SYMBOLS)
-        MyBase.AddObject("AT_SYMBOLS", aT_SYMBOLS)
-    End Sub
-
-    ''' <summary>
     ''' Deprecated Method for adding a new object to the AT_SYMBOL_FUNC EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
     ''' </summary>
     Public Sub AddToAT_SYMBOL_FUNC(ByVal aT_SYMBOL_FUNC As AT_SYMBOL_FUNC)
@@ -2058,6 +2051,13 @@ Public Partial Class AttendanceContext
     ''' </summary>
     Public Sub AddToSE_USER_ORG_ACCESS1Set(ByVal sE_USER_ORG_ACCESS1 As SE_USER_ORG_ACCESS1)
         MyBase.AddObject("SE_USER_ORG_ACCESS1Set", sE_USER_ORG_ACCESS1)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the AT_SYMBOLS EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToAT_SYMBOLS(ByVal aT_SYMBOLS As AT_SYMBOLS)
+        MyBase.AddObject("AT_SYMBOLS", aT_SYMBOLS)
     End Sub
 
     #End Region
@@ -26054,26 +26054,10 @@ Public Partial Class AT_SYMBOLS
     ''' </summary>
     ''' <param name="id">Initial value of the ID property.</param>
     ''' <param name="wCODE">Initial value of the WCODE property.</param>
-    ''' <param name="wNAME">Initial value of the WNAME property.</param>
-    ''' <param name="wGROUPID">Initial value of the WGROUPID property.</param>
-    ''' <param name="wDATATYEID">Initial value of the WDATATYEID property.</param>
-    ''' <param name="wDATAMODEID">Initial value of the WDATAMODEID property.</param>
-    ''' <param name="wINDEX">Initial value of the WINDEX property.</param>
-    ''' <param name="sTATUS">Initial value of the STATUS property.</param>
-    ''' <param name="iS_DISPLAY">Initial value of the IS_DISPLAY property.</param>
-    ''' <param name="iS_DATAFROMEXCEL">Initial value of the IS_DATAFROMEXCEL property.</param>
-    Public Shared Function CreateAT_SYMBOLS(id As Global.System.Decimal, wCODE As Global.System.String, wNAME As Global.System.String, wGROUPID As Global.System.Decimal, wDATATYEID As Global.System.Decimal, wDATAMODEID As Global.System.Decimal, wINDEX As Global.System.Int16, sTATUS As Global.System.Int16, iS_DISPLAY As Global.System.Int16, iS_DATAFROMEXCEL As Global.System.Int16) As AT_SYMBOLS
+    Public Shared Function CreateAT_SYMBOLS(id As Global.System.Decimal, wCODE As Global.System.String) As AT_SYMBOLS
         Dim aT_SYMBOLS as AT_SYMBOLS = New AT_SYMBOLS
         aT_SYMBOLS.ID = id
         aT_SYMBOLS.WCODE = wCODE
-        aT_SYMBOLS.WNAME = wNAME
-        aT_SYMBOLS.WGROUPID = wGROUPID
-        aT_SYMBOLS.WDATATYEID = wDATATYEID
-        aT_SYMBOLS.WDATAMODEID = wDATAMODEID
-        aT_SYMBOLS.WINDEX = wINDEX
-        aT_SYMBOLS.STATUS = sTATUS
-        aT_SYMBOLS.IS_DISPLAY = iS_DISPLAY
-        aT_SYMBOLS.IS_DATAFROMEXCEL = iS_DATAFROMEXCEL
         Return aT_SYMBOLS
     End Function
 
@@ -26136,7 +26120,7 @@ Public Partial Class AT_SYMBOLS
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property WNAME() As Global.System.String
         Get
@@ -26145,7 +26129,7 @@ Public Partial Class AT_SYMBOLS
         Set
             OnWNAMEChanging(value)
             ReportPropertyChanging("WNAME")
-            _WNAME = StructuralObject.SetValidValue(value, false)
+            _WNAME = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("WNAME")
             OnWNAMEChanged()
         End Set
@@ -26161,9 +26145,9 @@ Public Partial Class AT_SYMBOLS
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property WGROUPID() As Global.System.Decimal
+    Public Property WGROUPID() As Nullable(Of Global.System.Decimal)
         Get
             Return _WGROUPID
         End Get
@@ -26176,8 +26160,8 @@ Public Partial Class AT_SYMBOLS
         End Set
     End Property
 
-    Private _WGROUPID As Global.System.Decimal
-    Private Partial Sub OnWGROUPIDChanging(value As Global.System.Decimal)
+    Private _WGROUPID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnWGROUPIDChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnWGROUPIDChanged()
@@ -26186,9 +26170,9 @@ Public Partial Class AT_SYMBOLS
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property WDATATYEID() As Global.System.Decimal
+    Public Property WDATATYEID() As Nullable(Of Global.System.Decimal)
         Get
             Return _WDATATYEID
         End Get
@@ -26201,8 +26185,8 @@ Public Partial Class AT_SYMBOLS
         End Set
     End Property
 
-    Private _WDATATYEID As Global.System.Decimal
-    Private Partial Sub OnWDATATYEIDChanging(value As Global.System.Decimal)
+    Private _WDATATYEID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnWDATATYEIDChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnWDATATYEIDChanged()
@@ -26211,9 +26195,9 @@ Public Partial Class AT_SYMBOLS
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property WDATAMODEID() As Global.System.Decimal
+    Public Property WDATAMODEID() As Nullable(Of Global.System.Decimal)
         Get
             Return _WDATAMODEID
         End Get
@@ -26226,8 +26210,8 @@ Public Partial Class AT_SYMBOLS
         End Set
     End Property
 
-    Private _WDATAMODEID As Global.System.Decimal
-    Private Partial Sub OnWDATAMODEIDChanging(value As Global.System.Decimal)
+    Private _WDATAMODEID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnWDATAMODEIDChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnWDATAMODEIDChanged()
@@ -26286,9 +26270,9 @@ Public Partial Class AT_SYMBOLS
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property WINDEX() As Global.System.Int16
+    Public Property WINDEX() As Nullable(Of Global.System.Int16)
         Get
             Return _WINDEX
         End Get
@@ -26301,8 +26285,8 @@ Public Partial Class AT_SYMBOLS
         End Set
     End Property
 
-    Private _WINDEX As Global.System.Int16
-    Private Partial Sub OnWINDEXChanging(value As Global.System.Int16)
+    Private _WINDEX As Nullable(Of Global.System.Int16)
+    Private Partial Sub OnWINDEXChanging(value As Nullable(Of Global.System.Int16))
     End Sub
 
     Private Partial Sub OnWINDEXChanged()
@@ -26336,9 +26320,9 @@ Public Partial Class AT_SYMBOLS
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property STATUS() As Global.System.Int16
+    Public Property STATUS() As Nullable(Of Global.System.Int16)
         Get
             Return _STATUS
         End Get
@@ -26351,8 +26335,8 @@ Public Partial Class AT_SYMBOLS
         End Set
     End Property
 
-    Private _STATUS As Global.System.Int16
-    Private Partial Sub OnSTATUSChanging(value As Global.System.Int16)
+    Private _STATUS As Nullable(Of Global.System.Int16)
+    Private Partial Sub OnSTATUSChanging(value As Nullable(Of Global.System.Int16))
     End Sub
 
     Private Partial Sub OnSTATUSChanged()
@@ -26361,9 +26345,9 @@ Public Partial Class AT_SYMBOLS
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property IS_DISPLAY() As Global.System.Int16
+    Public Property IS_DISPLAY() As Nullable(Of Global.System.Int16)
         Get
             Return _IS_DISPLAY
         End Get
@@ -26376,8 +26360,8 @@ Public Partial Class AT_SYMBOLS
         End Set
     End Property
 
-    Private _IS_DISPLAY As Global.System.Int16
-    Private Partial Sub OnIS_DISPLAYChanging(value As Global.System.Int16)
+    Private _IS_DISPLAY As Nullable(Of Global.System.Int16)
+    Private Partial Sub OnIS_DISPLAYChanging(value As Nullable(Of Global.System.Int16))
     End Sub
 
     Private Partial Sub OnIS_DISPLAYChanged()
@@ -26386,9 +26370,9 @@ Public Partial Class AT_SYMBOLS
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property IS_DATAFROMEXCEL() As Global.System.Int16
+    Public Property IS_DATAFROMEXCEL() As Nullable(Of Global.System.Int16)
         Get
             Return _IS_DATAFROMEXCEL
         End Get
@@ -26401,8 +26385,8 @@ Public Partial Class AT_SYMBOLS
         End Set
     End Property
 
-    Private _IS_DATAFROMEXCEL As Global.System.Int16
-    Private Partial Sub OnIS_DATAFROMEXCELChanging(value As Global.System.Int16)
+    Private _IS_DATAFROMEXCEL As Nullable(Of Global.System.Int16)
+    Private Partial Sub OnIS_DATAFROMEXCELChanging(value As Nullable(Of Global.System.Int16))
     End Sub
 
     Private Partial Sub OnIS_DATAFROMEXCELChanged()

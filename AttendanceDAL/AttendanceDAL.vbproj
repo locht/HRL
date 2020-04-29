@@ -115,7 +115,7 @@
     <Compile Include="BusinessObjects\AT_ENTITLEMENTDTO.vb" />
     <Compile Include="BusinessObjects\AT_SETUP_EXCHANGEDTO.vb" />
     <Compile Include="BusinessObjects\AT_SHIFTCYCLEDTO.vb" />
-    <Compile Include="BusinessObjects\AT_Symbols.vb" />
+    <Compile Include="BusinessObjects\AT_SymbolsDTO.vb" />
     <Compile Include="BusinessObjects\AT_TERMINALSDTO.vb" />
     <Compile Include="BusinessObjects\AT_SWIPE_DATADTO.vb" />
     <Compile Include="AttendanceRepository.Common.vb" />

@@ -1,231 +1,19 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 4/28/2020 3:36:17 PM
--- Generated from EDMX file: D:\acv_19\AttendanceDAL\AttendanceContext.edmx
+-- Date Created: 4/29/2020 3:07:21 PM
+-- Generated from EDMX file: C:\workspaces\ACV_US_19\acv_19\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- ALTER TABLE "AttendanceModelStoreContainer"."OT_OTHER_LIST" DROP CONSTRAINT "FK_OOLT_OOL" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."OT_OTHER_LIST_TYPE" DROP CONSTRAINT "FK_OOLG_OOLT" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_HEALTH" DROP CONSTRAINT "FK_FE_HEH" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_EDUCATION" DROP CONSTRAINT "FK_HE_HEE" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_FILES" DROP CONSTRAINT "FK_HE_HEF" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_OTHER_INFO" DROP CONSTRAINT "FK_HE_HEO" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_SALARY" DROP CONSTRAINT "FK_HE_HES" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HUEMD_HUEM" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."HU_ORGANIZATION" DROP CONSTRAINT "FK_HU_ORG_HU_ORG" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."HU_ORG_TITLE" DROP CONSTRAINT "FK_HUTL_HUOT" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."SE_USER_REPORT" DROP CONSTRAINT "FK_SE_USER_REPORT_SE_REPORT" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."SE_USER_REPORT" DROP CONSTRAINT "FK_SE_USER_REPORT_SE_USER" CASCADE;
-
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "AttendanceModelStoreContainer"."OT_OTHER_LIST";
-
--- DROP TABLE "AttendanceModelStoreContainer"."OT_OTHER_LIST_GROUP";
-
--- DROP TABLE "AttendanceModelStoreContainer"."OT_OTHER_LIST_TYPE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_CHOSEN_ORG";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_GSIGN";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SWIPE_DATA";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_ORG_PERIOD";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_CONTRACT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_EDUCATION";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_FILES";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_HEALTH";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_OTHER_INFO";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_SALARY";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_TRAIN";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIMESHEET_REGISTER";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_APP_PROCESS";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_APP_SETUP";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_APP_SETUPEXT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_APP_TEMPLATE_DTL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_APP_TEMPLATE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_ORGANIZATION";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_WORKING";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PORTAL_APP";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_RGT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_ORG_TITLE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_TITLE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_WORKSIGN";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PORTAL_REG";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_STAFF_RANK";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIME_TIMESHEET_RICE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIME_TIMESHEET_OT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_DMVS";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_HOLIDAY";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_HOLIDAY_GENERAL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_HOLIDAY_OBJECT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_LATE_COMBACKOUT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PERIOD";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SETUP_SPECIAL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SIGNDEFAULT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIME_MANUAL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIME_RICE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIME_TIMESHEET_DAILY";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIME_TIMESHEET_MACHINET";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_DATA_INOUT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_FML";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TERMINALS";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_ACTION_ORG_LOG";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_CV";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_MAIL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SETUP_TIME_EMP";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_EMPLOYEE_CHOSEN";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_LIST_PARAM_SYSTEM";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_REGISTER_OT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_USER";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_REPORT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_COMPENSATORY";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_ACTION_LOG";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_DECLARE_ENTITLEMENT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PROJECT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PROJECT_TITLE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PROJECT_EMP";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PROJECT_WORK";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PROJECT_ASSIGN";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIMESHEET_OT_DTL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIME_TIMESHEET_MONTHLY";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PORTAL_REG_LIST";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIMESHEET";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SHIFTCYCLE_EMP_DETAIL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SETUP_ATT_EMP";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_OT_REGISTRATION";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_OFFSETTING_TIMEKEEPING";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_OFFSETTING_TIMEKEEPING_EMP";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HUV_AT_PORTAL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SHIFTCYCLE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SHIFTCYCLE_EMP";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SHIFTCYCLE_DETAIL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."ATV_HOLIDAY_HOSE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_ANNUALLEAVE_PLANS";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_CONTRACT_TYPE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."PROCESS_APPROVED_STATUS";
-
--- DROP TABLE "AttendanceModelStoreContainer"."ATV_OFFSETTING";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_USER_ORG_ACCESS";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SHIFT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_LEAVESHEET_DETAIL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_LEAVESHEET";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIMESHEET_MACHINET_IMPORT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TYPE_PROCESS";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIME_MANUAL_RATE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_ENTITLEMENT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SETUP_EXCHANGE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SYMBOLS";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SYMBOL_FUNC";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_USER_ORG_ACCESS1Set";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_USER_REPORT";
+-- DROP TABLE "ACV_19_DEV"."AT_SYMBOLS";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -2487,35 +2275,6 @@ CREATE TABLE "dbo"."AT_SETUP_EXCHANGE" (
    "STT" NUMBER(38,0) NULL
 );
 
--- Creating table 'AT_SYMBOLS'
-CREATE TABLE "dbo"."AT_SYMBOLS" (
-   "ID" NUMBER(38,0) NOT NULL,
-   "WCODE" NVARCHAR2(10) NOT NULL,
-   "WNAME" NVARCHAR2(1000) NOT NULL,
-   "WGROUPID" NUMBER(38,0) NOT NULL,
-   "WDATATYEID" NUMBER(38,0) NOT NULL,
-   "WDATAMODEID" NUMBER(38,0) NOT NULL,
-   "EFFECT_DATE" DATE NULL,
-   "EXPIRE_DATE" DATE NULL,
-   "WINDEX" NUMBER(5,0) NOT NULL,
-   "NOTE" NVARCHAR2(2000) NULL,
-   "STATUS" NUMBER(5,0) NOT NULL,
-   "IS_DISPLAY" NUMBER(5,0) NOT NULL,
-   "IS_DATAFROMEXCEL" NUMBER(5,0) NOT NULL,
-   "IS_DISPLAY_PORTAL" NUMBER(5,0) NULL,
-   "IS_LEAVE" NUMBER(5,0) NULL,
-   "SYMBOL_FUN_ID" NUMBER(38,0) NULL,
-   "IS_LEAVE_WEEKLY" NUMBER(5,0) NULL,
-   "IS_LAVE_HOLIDAY" NUMBER(5,0) NULL,
-   "IS_DAY_HALF" NUMBER(5,0) NULL,
-   "CREATED_BY" NVARCHAR2(255) NULL,
-   "CREATED_DATE" DATE NULL,
-   "CREATED_LOG" NVARCHAR2(255) NULL,
-   "MODIFIED_BY" NVARCHAR2(255) NULL,
-   "MODIFIED_DATE" DATE NULL,
-   "MODIFIED_LOG" NVARCHAR2(255) NULL
-);
-
 -- Creating table 'AT_SYMBOL_FUNC'
 CREATE TABLE "dbo"."AT_SYMBOL_FUNC" (
    "FUNCTION_ID" NUMBER(38,0) NOT NULL,
@@ -2529,6 +2288,35 @@ CREATE TABLE "dbo"."SE_USER_ORG_ACCESS1Set" (
    "USER_ID" NUMBER(38,0) NOT NULL,
    "ORG_ID" NUMBER(38,0) NOT NULL,
    "GROUP_ID" NUMBER(38,0) NULL
+);
+
+-- Creating table 'AT_SYMBOLS'
+CREATE TABLE "dbo"."AT_SYMBOLS" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "WCODE" NVARCHAR2(10) NOT NULL,
+   "WNAME" NVARCHAR2(1000) NULL,
+   "WGROUPID" NUMBER(38,0) NULL,
+   "WDATATYEID" NUMBER(38,0) NULL,
+   "WDATAMODEID" NUMBER(38,0) NULL,
+   "EFFECT_DATE" DATE NULL,
+   "EXPIRE_DATE" DATE NULL,
+   "WINDEX" NUMBER(5,0) NULL,
+   "NOTE" NVARCHAR2(2000) NULL,
+   "STATUS" NUMBER(5,0) NULL,
+   "IS_DISPLAY" NUMBER(5,0) NULL,
+   "IS_DATAFROMEXCEL" NUMBER(5,0) NULL,
+   "IS_DISPLAY_PORTAL" NUMBER(5,0) NULL,
+   "IS_LEAVE" NUMBER(5,0) NULL,
+   "SYMBOL_FUN_ID" NUMBER(38,0) NULL,
+   "IS_LEAVE_WEEKLY" NUMBER(5,0) NULL,
+   "IS_LAVE_HOLIDAY" NUMBER(5,0) NULL,
+   "IS_DAY_HALF" NUMBER(5,0) NULL,
+   "CREATED_BY" NVARCHAR2(255) NULL,
+   "CREATED_DATE" DATE NULL,
+   "CREATED_LOG" NVARCHAR2(255) NULL,
+   "MODIFIED_BY" NVARCHAR2(255) NULL,
+   "MODIFIED_DATE" DATE NULL,
+   "MODIFIED_LOG" NVARCHAR2(255) NULL
 );
 
 -- Creating table 'SE_USER_REPORT'
@@ -3270,14 +3058,6 @@ ADD CONSTRAINT "PK_AT_SETUP_EXCHANGE"
    VALIDATE;
 
 
--- Creating primary key on "ID"in table 'AT_SYMBOLS'
-ALTER TABLE "dbo"."AT_SYMBOLS"
-ADD CONSTRAINT "PK_AT_SYMBOLS"
-   PRIMARY KEY ("ID" )
-   ENABLE
-   VALIDATE;
-
-
 -- Creating primary key on "FUNCTION_ID", "SYMBOLS_ID"in table 'AT_SYMBOL_FUNC'
 ALTER TABLE "dbo"."AT_SYMBOL_FUNC"
 ADD CONSTRAINT "PK_AT_SYMBOL_FUNC"
@@ -3289,6 +3069,14 @@ ADD CONSTRAINT "PK_AT_SYMBOL_FUNC"
 -- Creating primary key on "ID"in table 'SE_USER_ORG_ACCESS1Set'
 ALTER TABLE "dbo"."SE_USER_ORG_ACCESS1Set"
 ADD CONSTRAINT "PK_SE_USER_ORG_ACCESS1Set"
+   PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'AT_SYMBOLS'
+ALTER TABLE "dbo"."AT_SYMBOLS"
+ADD CONSTRAINT "PK_AT_SYMBOLS"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;
