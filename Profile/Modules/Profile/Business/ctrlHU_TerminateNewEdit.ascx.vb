@@ -394,19 +394,6 @@ Public Class ctrlHU_TerminateNewEdit
                             ShowMessage(Translate("Nhân viên có mã số {0} đã có đơn được phê duyệt. Vui lòng kiểm tra lại !", txtEmployeeCode.Text), NotifyType.Warning)
                             Exit Sub
                         End If
-                        
-                        If cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
-                            If txtUpload.Text.Trim = "" Then
-                                ShowMessage(Translate("Bạn phải chọn tập tin đính kèm"), NotifyType.Warning)
-                                Exit Sub
-                            End If
-                        End If
-                        'If cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID Then
-                        'If txtDecisionNo.Text = "" Then
-                        '    ShowMessage(Translate("Bạn phải nhập số quyết định"), NotifyType.Warning)
-                        '    Exit Sub
-                        'End If
-                        'End If
 
                         _objfilter.DECISION_NO = txtDecisionNo.Text
                         If CurrentState = Common.CommonMessage.STATE_EDIT Then
