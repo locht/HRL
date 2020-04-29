@@ -278,106 +278,129 @@ Public Class ctrlDMCaLamViec
         Try
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
+
                     txtCode.Text = ""
                     txtNameVN.Text = ""
                     txtNote.Text = ""
-                    cboMaCong.SelectedValue = 25
-                    cboCongTy.SelectedIndex = Nothing
-                    cboNgayCongCa.SelectedIndex = 2
-                    'cboSunDay.SelectedIndex = 0
-                    'cboSaturday.SelectedIndex = 0
-                    'cbkISNOON.Checked = False
+                    'txtEnglishName.Text = ""
+                    cboManualType.Text = ""
+                    rtxtLATE_MINUTES.Value = 0
+                    rtxtSOON_MINUTES.Value = 0
+                    rtxtValue_Late.Value = 0
+                    rtxtValue_Soon.Value = 0
+                    rtxtSTT.Text = ""
+                    chkIS_Shift_Night.Checked = False
+                    chkIS_Show_Iportal.Checked = False
+
+
                     rdHours_Start.SelectedDate = Nothing
                     rdHours_Stop.SelectedDate = Nothing
                     rdEND_MID_HOURS.SelectedDate = Nothing
                     rdSTART_MID_HOURS.SelectedDate = Nothing
-                    rdHOURS_STAR_CHECKIN.SelectedDate = Nothing
-                    rdHOURS_STAR_CHECKOUT.SelectedDate = Nothing
-                    chkIS_MID_END.Checked = Nothing
-                    chkIS_HOURS_STOP.Checked = Nothing
-                    chkIS_HOURS_CHECKOUT.Checked = Nothing
-                    'cbkISNOON.Enabled = True
-                    'cboSunDay.Enabled = True
-                    'cboSaturday.Enabled = True
+                    rdStart_Cal_Soon.SelectedDate = Nothing
+                    rdStart_Cal_late.SelectedDate = Nothing
+
                     txtCode.Enabled = True
                     txtNameVN.Enabled = True
-                    cboMaCong.Enabled = True
-                    cboNgayCongCa.Enabled = True
-                    cboCongTy.Enabled = True
+                    'txtEnglishName.Enabled = True
+
+                    cboManualType.Enabled = True
+
                     rdHours_Start.Enabled = True
                     rdHours_Stop.Enabled = True
                     rdEND_MID_HOURS.Enabled = True
                     rdSTART_MID_HOURS.Enabled = True
-                    rdHOURS_STAR_CHECKIN.Enabled = True
-                    rdHOURS_STAR_CHECKOUT.Enabled = True
-                    chkIS_MID_END.Enabled = True
-                    chkIS_HOURS_STOP.Enabled = True
-                    chkIS_HOURS_CHECKOUT.Enabled = True
+                    rdStart_Cal_Soon.Enabled = True
+                    rdStart_Cal_late.Enabled = True
+
+                    rtxtLATE_MINUTES.Enabled = True
+                    rtxtSOON_MINUTES.Enabled = True
+                    rtxtValue_Late.Enabled = True
+                    rtxtValue_Soon.Enabled = True
+
+                    chkIS_Shift_Night.Enabled = True
+                    chkIS_Show_Iportal.Enabled = True
+
                     txtNote.Enabled = True
-                    'rntxtMinHours.Enabled = True
+                    rtxtSTT.Enabled = True
+
                     rgDanhMuc.Rebind()
                     EnabledGridNotPostback(rgDanhMuc, False)
                 Case CommonMessage.STATE_NORMAL
+
+                    txtCode.Text = ""
                     txtNameVN.Text = ""
-                    cboMaCong.SelectedValue = 25
-                    cboCongTy.SelectedIndex = Nothing
-                    cboNgayCongCa.SelectedIndex = 2
+                    txtNote.Text = ""
+                    'txtEnglishName.Text = ""
+                    cboManualType.Text = ""
+                    rtxtLATE_MINUTES.Value = 0
+                    rtxtSOON_MINUTES.Value = 0
+                    rtxtValue_Late.Value = 0
+                    rtxtValue_Soon.Value = 0
+                    rtxtSTT.Text = ""
+
                     rdHours_Start.SelectedDate = Nothing
                     rdHours_Stop.SelectedDate = Nothing
                     rdEND_MID_HOURS.SelectedDate = Nothing
                     rdSTART_MID_HOURS.SelectedDate = Nothing
-                    rdHOURS_STAR_CHECKIN.SelectedDate = Nothing
-                    rdHOURS_STAR_CHECKOUT.SelectedDate = Nothing
-                    chkIS_MID_END.Checked = Nothing
-                    chkIS_HOURS_STOP.Checked = Nothing
-                    chkIS_HOURS_CHECKOUT.Checked = Nothing
-                    'cboSaturday.ClearValue()
-                    txtNote.Text = ""
-                    txtCode.Text = ""
+                    rdStart_Cal_Soon.SelectedDate = Nothing
+                    rdStart_Cal_late.SelectedDate = Nothing
 
-                    'cbkISNOON.Enabled = False
-                    'cboSunDay.Enabled = False
-                    'cboSaturday.Enabled = False
                     txtCode.Enabled = False
                     txtNameVN.Enabled = False
-                    cboMaCong.Enabled = False
-                    cboCongTy.Enabled = False
-                    cboNgayCongCa.Enabled = False
+                    'txtEnglishName.Enabled = False
+
+                    cboManualType.Enabled = False
+
                     rdHours_Start.Enabled = False
                     rdHours_Stop.Enabled = False
                     rdEND_MID_HOURS.Enabled = False
                     rdSTART_MID_HOURS.Enabled = False
-                    rdHOURS_STAR_CHECKIN.Enabled = False
-                    rdHOURS_STAR_CHECKOUT.Enabled = False
-                    chkIS_MID_END.Enabled = False
-                    chkIS_HOURS_STOP.Enabled = False
-                    chkIS_HOURS_CHECKOUT.Enabled = False
+                    rdStart_Cal_Soon.Enabled = False
+                    rdStart_Cal_late.Enabled = False
+
+                    rtxtLATE_MINUTES.Enabled = False
+                    rtxtSOON_MINUTES.Enabled = False
+                    rtxtValue_Late.Enabled = False
+                    rtxtValue_Soon.Enabled = False
+
+                    chkIS_Shift_Night.Enabled = False
+                    chkIS_Show_Iportal.Enabled = False
+
                     txtNote.Enabled = False
-                    'rntxtMinHours.Enabled = False
-                    'cboSunDay.SelectedIndex = 0
+                    rtxtSTT.Enabled = False
+                    ClearControlValue(cboManualType, chkIS_Shift_Night, chkIS_Show_Iportal)
                     EnabledGridNotPostback(rgDanhMuc, True)
                 Case CommonMessage.STATE_EDIT
+
                     txtCode.Enabled = True
                     txtNameVN.Enabled = True
-                    'cbkISNOON.Enabled = True
-                    'cboSunDay.Enabled = True
-                    'cboSaturday.Enabled = True
-                    cboMaCong.Enabled = True
-                    cboCongTy.Enabled = True
-                    cboNgayCongCa.Enabled = True
+                    'txtEnglishName.Enabled = True
+
+                    cboManualType.Enabled = True
+
                     rdHours_Start.Enabled = True
                     rdHours_Stop.Enabled = True
                     rdEND_MID_HOURS.Enabled = True
                     rdSTART_MID_HOURS.Enabled = True
-                    rdHOURS_STAR_CHECKIN.Enabled = True
-                    rdHOURS_STAR_CHECKOUT.Enabled = True
-                    chkIS_MID_END.Enabled = True
-                    chkIS_HOURS_STOP.Enabled = True
-                    chkIS_HOURS_CHECKOUT.Enabled = True
+                    rdStart_Cal_Soon.Enabled = True
+                    rdStart_Cal_late.Enabled = True
+
+                    rtxtLATE_MINUTES.Enabled = True
+                    rtxtSOON_MINUTES.Enabled = True
+                    rtxtValue_Late.Enabled = True
+                    rtxtValue_Soon.Enabled = True
+
+                    chkIS_Shift_Night.Enabled = True
+                    chkIS_Show_Iportal.Enabled = True
+
                     txtNote.Enabled = True
-                    'rntxtMinHours.Enabled = True
+                    rtxtSTT.Enabled = True
+
                     EnabledGridNotPostback(rgDanhMuc, False)
+
                 Case CommonMessage.STATE_DEACTIVE
+
                     Dim lstDeletes As New List(Of Decimal)
                     For idx = 0 To rgDanhMuc.SelectedItems.Count - 1
                         Dim item As GridDataItem = rgDanhMuc.SelectedItems(idx)
@@ -387,12 +410,13 @@ Public Class ctrlDMCaLamViec
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         CurrentState = CommonMessage.STATE_NORMAL
                         rgDanhMuc.Rebind()
-                        ClearControlValue(txtCode, txtNameVN, cboMaCong, rdHours_Start, rdHours_Stop, txtNote, cboCongTy, cboNgayCongCa, rdEND_MID_HOURS, rdSTART_MID_HOURS, rdHOURS_STAR_CHECKIN, rdHOURS_STAR_CHECKOUT, chkIS_MID_END, chkIS_HOURS_STOP, chkIS_HOURS_CHECKOUT)
+                        ClearControlValue(txtCode, txtNameVN, rdHours_Start, rdHours_Stop, txtNote, rdEND_MID_HOURS, rdSTART_MID_HOURS)
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                     End If
 
                 Case CommonMessage.STATE_ACTIVE
+
                     Dim lstDeletes As New List(Of Decimal)
                     For idx = 0 To rgDanhMuc.SelectedItems.Count - 1
                         Dim item As GridDataItem = rgDanhMuc.SelectedItems(idx)
@@ -402,7 +426,7 @@ Public Class ctrlDMCaLamViec
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         CurrentState = CommonMessage.STATE_NORMAL
                         rgDanhMuc.Rebind()
-                        ClearControlValue(txtCode, txtNameVN, cboMaCong, rdHours_Start, rdHours_Stop, txtNote, cboCongTy, cboNgayCongCa, rdEND_MID_HOURS, rdSTART_MID_HOURS, rdHOURS_STAR_CHECKIN, rdHOURS_STAR_CHECKOUT, chkIS_MID_END, chkIS_HOURS_STOP, chkIS_HOURS_CHECKOUT)
+                        ClearControlValue(txtCode, txtNameVN, rdHours_Start, rdHours_Stop, txtNote, rdEND_MID_HOURS, rdSTART_MID_HOURS)
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                     End If
@@ -456,15 +480,18 @@ Public Class ctrlDMCaLamViec
             dic.Add("CODE", txtCode)
             dic.Add("NAME_VN", txtNameVN)
 
-            dic.Add("MANUAL_ID", cboMaCong)
-            'dic.Add("HOURS_START", rdHours_Start)
-            'dic.Add("HOURS_STOP", rdHours_Stop)
+            dic.Add("MANUAL_TYPE", cboManualType)
+            dic.Add("START_CAL_SOON", rdStart_Cal_Soon)
+            dic.Add("START_CAL_LATE", rdStart_Cal_late)
+            dic.Add("LATE_MINUTES", rtxtLATE_MINUTES)
+            dic.Add("SOON_MINUTES", rtxtSOON_MINUTES)
+            dic.Add("VALUE_LATE", rtxtValue_Late)
+            dic.Add("VALUE_SOON", rtxtValue_Soon)
+            dic.Add("IS_SHIFT_NIGHT", chkIS_Shift_Night)
+            dic.Add("IS_SHOW_IPORTAL", chkIS_Show_Iportal)
             dic.Add("NOTE", txtNote)
-            dic.Add("ORG_ID", cboCongTy)
-            dic.Add("SHIFT_DAY", cboNgayCongCa)
-            dic.Add("IS_HOURS_STOP", chkIS_HOURS_STOP)
-            dic.Add("IS_HOURS_CHECKOUT", chkIS_HOURS_CHECKOUT)
-            dic.Add("IS_MID_END", chkIS_MID_END)
+            dic.Add("STT", rtxtSTT)
+
             Utilities.OnClientRowSelectedChanged(rgDanhMuc, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -482,6 +509,7 @@ Public Class ctrlDMCaLamViec
         Dim repS As New ProfileStoreProcedure
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
+        '  Dim lstDate As List(Of String)
 
         Try
             If ListComboData Is Nothing Then
@@ -491,6 +519,9 @@ Public Class ctrlDMCaLamViec
                 ListComboData.GET_LIST_SHIFT_SUNDAY = True
                 rep.GetComboboxData(ListComboData)
             End If
+            'lstDate.Add("Ngày làm việc bình thường (X) ")
+            'lstDate.Add("Ngày nghĩ hàng tuần (CN) ")
+            'FillRadCombobox(cboManualType, lstDate, "NAME", "ID")
 
             'FillDropDownList(cboSaturday, ListComboData.LIST_LIST_SHIFT_SUNDAY, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboSaturday.SelectedValue)
             'FillDropDownList(cboSunDay, ListComboData.LIST_LIST_SHIFT_SUNDAY, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboSunDay.SelectedValue)
@@ -508,39 +539,38 @@ Public Class ctrlDMCaLamViec
             dtOrgLevel.Rows.Add(dr)
 
             dtOrgLevel.DefaultView.Sort = "ORG_ID ASC"
-            FillRadCombobox(cboCongTy, dtOrgLevel, "ORG_NAME_VN", "ORG_ID", True)
+            ' FillRadCombobox(cboCongTy, dtOrgLevel, "ORG_NAME_VN", "ORG_ID", True)
 
 
-            'Dim item1 As New RadComboBoxItem()
-            'item1.Text = "0.5"
-            'item1.Value = 0.5
-            'cboNgayCongCa.Items.Add(item1)
-            'Dim item2 As New RadComboBoxItem()
-            'item2.Text = "1"
-            'item2.Value = 1.0
-            'cboNgayCongCa.Items.Add(item2)
-            'Dim item3 As New RadComboBoxItem()
-            'item3.Text = "1.5"
-            'item3.Value = 1.5
-            'cboNgayCongCa.Items.Add(item3)
+            Dim item1 As New RadComboBoxItem()
+            item1.Text = "Ngày làm việc bình thường (X)"
+            item1.Value = 0
+            cboManualType.Items.Add(item1)
+            Dim item2 As New RadComboBoxItem()
+            item2.Text = "Ngày nghĩ hàng tuần (CN)"
+            item2.Value = 1
+            cboManualType.Items.Add(item2)
+
+
+
 
             Dim table As New DataTable
 
             ' Create four typed columns in the DataTable.
             table.Columns.Add("ID", GetType(Double))
             table.Columns.Add("NAME", GetType(String))
-            
+
 
             ' Add five rows with those columns filled in the DataTable.
             table.Rows.Add(0, "0")
             table.Rows.Add(0.5, "0.5")
             table.Rows.Add(1, "1")
             table.Rows.Add(1.5, "1.5")
-            FillRadCombobox(cboNgayCongCa, table, "NAME", "ID")
+            'FillRadCombobox(cboNgayCongCa, table, "NAME", "ID")
             'end
             Dim dtData As DataTable
             dtData = rep.GetAT_TIME_MANUALBINCOMBO()
-            FillRadCombobox(cboMaCong, dtData, "NAME", "ID")
+            'illRadCombobox(cboMaCong, dtData, "NAME", "ID")
 
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -570,7 +600,7 @@ Public Class ctrlDMCaLamViec
 
             Dim dtData As DataTable
             dtData = rep.GetAT_TIME_MANUALBINCOMBO()
-            FillRadCombobox(cboMaCong, dtData, "NAME", "ID")
+            'FillRadCombobox(cboMaCong, dtData, "NAME", "ID")
 
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -650,6 +680,11 @@ Public Class ctrlDMCaLamViec
                         lstID.Add(Decimal.Parse(item("ID").Text))
                     Next
 
+                    If rep.ValidateCheckExistWorkingShift(lstID) = False Then
+                        ShowMessage("Không được xóa. Ca làm việc đã được thiết lập cho phòng ban", NotifyType.Warning)
+                        Exit Sub
+                    End If
+
                     If Not rep.CheckExistInDatabase(lstID, AttendanceCommonTABLE_NAME.AT_SHIFT) Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_IS_USING), NotifyType.Warning)
                         Return
@@ -664,45 +699,26 @@ Public Class ctrlDMCaLamViec
                     If Page.IsValid Then
                         objShift.CODE = txtCode.Text.Trim
                         objShift.NAME_VN = txtNameVN.Text.Trim
-
-                        If String.IsNullOrEmpty(cboMaCong.SelectedValue) Then
-                            objShift.MANUAL_ID = ValueMaCong
-                        Else
-                            objShift.MANUAL_ID = cboMaCong.SelectedValue
-                        End If
-
-                        'If Not String.IsNullOrEmpty(cboSunDay.SelectedValue) Then
-                        '    ValueKieuCongCN = cboSunDay.SelectedValue
-                        'End If
-                        'If Not String.IsNullOrEmpty(cboSaturday.SelectedValue) Then
-                        '    ValueCaThu7 = cboSaturday.SelectedValue
-                        'End If
-
-                        'If ValueKieuCongCN <> 0 Then
-                        '    objShift.SUNDAY = ValueKieuCongCN
-                        'End If
-                        'If ValueCaThu7 <> 0 Then
-                        '    objShift.SATURDAY = ValueCaThu7
-                        'End If
-                        'objShift.SUNDAY = ValueKieuCongCN
-                        'objShift.SATURDAY = ValueCaThu7
                         objShift.HOURS_START = rdHours_Start.SelectedDate
                         objShift.HOURS_STOP = rdHours_Stop.SelectedDate
                         objShift.START_MID_HOURS = rdSTART_MID_HOURS.SelectedDate
                         objShift.END_MID_HOURS = rdEND_MID_HOURS.SelectedDate
-                        'If (objShift.START_MID_HOURS > objShift.END_MID_HOURS) Then
-                        '    ShowMessage("Thiết lập giờ nghỉ giữa ca không hợp lệ", NotifyType.Warning)
-                        '    Exit Sub
-                        'End If
-                        objShift.HOURS_STAR_CHECKIN = rdHOURS_STAR_CHECKIN.SelectedDate
-                        objShift.HOURS_STAR_CHECKOUT = rdHOURS_STAR_CHECKOUT.SelectedDate
-                        objShift.IS_HOURS_STOP = chkIS_HOURS_STOP.Checked
-                        objShift.IS_MID_END = chkIS_MID_END.Checked
-                        objShift.IS_HOURS_CHECKOUT = chkIS_HOURS_CHECKOUT.Checked
+
+                        objShift.MANUAL_TYPE = cboManualType.Text
+                        objShift.IS_SHIFT_NIGHT = chkIS_Shift_Night.Checked
+                        objShift.IS_SHOW_IPORTAL = chkIS_Show_Iportal.Checked
+                        objShift.START_CAL_SOON = rdStart_Cal_Soon.SelectedDate
+                        objShift.START_CAL_LATE = rdStart_Cal_late.SelectedDate
+                        objShift.LATE_MINUTES = rtxtLATE_MINUTES.Value
+                        objShift.SOON_MINUTES = rtxtSOON_MINUTES.Value
+                        objShift.VALUE_LATE = rtxtValue_Late.Value
+                        objShift.VALUE_SOON = rtxtValue_Soon.Value
+                        objShift.STT = rtxtSTT.Value
+
                         objShift.NOTE = txtNote.Text.Trim
                         'hoaivv
-                        objShift.ORG_ID = cboCongTy.SelectedValue
-                        objShift.SHIFT_DAY = Convert.ToDecimal(cboNgayCongCa.SelectedValue)
+                        'objShift.ORG_ID = cboCongTy.SelectedValue
+                        'objShift.SHIFT_DAY = Convert.ToDecimal(cboNgayCongCa.SelectedValue)
 
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
@@ -714,7 +730,7 @@ Public Class ctrlDMCaLamViec
                                     Refresh("InsertView")
                                     UpdateControlState()
                                     'ReloadCombobox()
-                                    ClearControlValue(txtCode, txtNameVN, cboMaCong, rdHours_Start, rdHours_Stop, txtNote)
+                                    ClearControlValue(txtCode, txtNameVN, rdHours_Start, rdHours_Stop, txtNote)
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
 
@@ -750,7 +766,7 @@ Public Class ctrlDMCaLamViec
                                     IDSelect = objShift.ID
                                     Refresh("UpdateView")
                                     UpdateControlState()
-                                    ClearControlValue(txtCode, txtNameVN, cboMaCong, rdHours_Start, rdHours_Stop, txtNote)
+                                    ClearControlValue(txtCode, txtNameVN, rdHours_Start, rdHours_Stop, txtNote)
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
@@ -944,13 +960,13 @@ Public Class ctrlDMCaLamViec
             IDSelect = item.GetDataKeyValue("ID").ToString
             Dim AT_SHIFT1 = (From p In AT_SHIFT Where p.ID = Decimal.Parse(IDSelect)).SingleOrDefault
             Dim value As String = Replace(AT_SHIFT1.SHIFT_DAY.ToString(), ",", ".")
-            cboNgayCongCa.SelectedValue = value
+            ' cboNgayCongCa.SelectedValue = value
             rdHours_Start.SelectedDate = AT_SHIFT1.HOURS_START
             rdHours_Stop.SelectedDate = AT_SHIFT1.HOURS_STOP
             rdSTART_MID_HOURS.SelectedDate = AT_SHIFT1.START_MID_HOURS
             rdEND_MID_HOURS.SelectedDate = AT_SHIFT1.END_MID_HOURS
-            rdHOURS_STAR_CHECKIN.SelectedDate = AT_SHIFT1.HOURS_STAR_CHECKIN
-            rdHOURS_STAR_CHECKOUT.SelectedDate = AT_SHIFT1.HOURS_STAR_CHECKOUT
+            'rdHOURS_STAR_CHECKIN.SelectedDate = AT_SHIFT1.HOURS_STAR_CHECKIN
+            'rdHOURS_STAR_CHECKOUT.SelectedDate = AT_SHIFT1.HOURS_STAR_CHECKOUT
 
             If (IDSelect = 1 Or IDSelect = 2) Then
                 Me.MainToolBar = tbarCostCenters

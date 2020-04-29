@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class ctrlGetSignDefault
-
+    
     '''<summary>
     '''hidID control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidID As Global.System.Web.UI.WebControls.HiddenField
-
+    
     '''<summary>
     '''hidEmpID control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidEmpID As Global.System.Web.UI.WebControls.HiddenField
-
+    
     '''<summary>
     '''hidTitleID control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidTitleID As Global.System.Web.UI.WebControls.HiddenField
-
+    
     '''<summary>
     '''hidOrgID control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidOrgID As Global.System.Web.UI.WebControls.HiddenField
-
+    
     '''<summary>
     '''valSum control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents valSum As Global.System.Web.UI.WebControls.ValidationSummary
-
+    
     '''<summary>
     '''RadSplitter3 control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadSplitter3 As Global.Telerik.Web.UI.RadSplitter
-
+    
     '''<summary>
     '''LeftPane control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LeftPane As Global.Telerik.Web.UI.RadPane
-
+    
     '''<summary>
     '''ctrlOrg control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ctrlOrg As Global.Common.ctrlOrganization
-
+    
     '''<summary>
     '''RadSplitBar1 control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadSplitBar1 As Global.Telerik.Web.UI.RadSplitBar
-
+    
     '''<summary>
     '''MainPane control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents MainPane As Global.Telerik.Web.UI.RadPane
-
+    
     '''<summary>
     '''RadSplitter2 control.
     '''</summary>
@@ -111,7 +111,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadSplitter2 As Global.Telerik.Web.UI.RadSplitter
-
+    
     '''<summary>
     '''RadPane3 control.
     '''</summary>
@@ -120,7 +120,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadPane3 As Global.Telerik.Web.UI.RadPane
-
+    
     '''<summary>
     '''tbarOT control.
     '''</summary>
@@ -129,7 +129,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbarOT As Global.Telerik.Web.UI.RadToolBar
-
+    
     '''<summary>
     '''RadPane1 control.
     '''</summary>
@@ -138,7 +138,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
-
+    
     '''<summary>
     '''txtEmpCode control.
     '''</summary>
@@ -147,7 +147,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEmpCode As Global.Telerik.Web.UI.RadTextBox
-
+    
     '''<summary>
     '''RequiredFieldValidator1 control.
     '''</summary>
@@ -156,7 +156,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
+    
     '''<summary>
     '''btnChooseEmployee control.
     '''</summary>
@@ -165,7 +165,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnChooseEmployee As Global.Telerik.Web.UI.RadButton
-
+    
     '''<summary>
     '''txtEmpName control.
     '''</summary>
@@ -174,7 +174,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEmpName As Global.Telerik.Web.UI.RadTextBox
-
+    
     '''<summary>
     '''txtOrg control.
     '''</summary>
@@ -183,7 +183,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtOrg As Global.Telerik.Web.UI.RadTextBox
-
+    
     '''<summary>
     '''txtTitle control.
     '''</summary>
@@ -192,7 +192,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtTitle As Global.Telerik.Web.UI.RadTextBox
-
+    
     '''<summary>
     '''cboSign control.
     '''</summary>
@@ -201,7 +201,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboSign As Global.Telerik.Web.UI.RadComboBox
-
+    
     '''<summary>
     '''reqSign control.
     '''</summary>
@@ -210,7 +210,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqSign As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
+    
     '''<summary>
     '''cvalSign control.
     '''</summary>
@@ -219,7 +219,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cvalSign As Global.System.Web.UI.WebControls.CustomValidator
-
+    
     '''<summary>
     '''cboSignSat control.
     '''</summary>
@@ -228,7 +228,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboSignSat As Global.Telerik.Web.UI.RadComboBox
-
+    
     '''<summary>
     '''reqSignSat control.
     '''</summary>
@@ -237,7 +237,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqSignSat As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
+    
     '''<summary>
     '''cboSignSun control.
     '''</summary>
@@ -246,7 +246,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboSignSun As Global.Telerik.Web.UI.RadComboBox
-
+    
     '''<summary>
     '''reqSignSun control.
     '''</summary>
@@ -255,7 +255,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqSignSun As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
+    
     '''<summary>
     '''rdFromDate control.
     '''</summary>
@@ -264,7 +264,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdFromDate As Global.Telerik.Web.UI.RadDatePicker
-
+    
     '''<summary>
     '''RequiredFieldValidator2 control.
     '''</summary>
@@ -273,7 +273,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
+    
     '''<summary>
     '''rdToDate control.
     '''</summary>
@@ -282,7 +282,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdToDate As Global.Telerik.Web.UI.RadDatePicker
-
+    
     '''<summary>
     '''RequiredFieldValidator3 control.
     '''</summary>
@@ -291,7 +291,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
+    
     '''<summary>
     '''CompareValidator1 control.
     '''</summary>
@@ -300,16 +300,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents CompareValidator1 As Global.System.Web.UI.WebControls.CompareValidator
-
-    '''<summary>
-    '''cvalEffedate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cvalEffedate As Global.System.Web.UI.WebControls.CustomValidator
-
+    
     '''<summary>
     '''txtNote control.
     '''</summary>
@@ -318,7 +309,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtNote As Global.Telerik.Web.UI.RadTextBox
-
+    
     '''<summary>
     '''RadPane2 control.
     '''</summary>
@@ -327,7 +318,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadPane2 As Global.Telerik.Web.UI.RadPane
-
+    
     '''<summary>
     '''rgWorkschedule control.
     '''</summary>
@@ -336,7 +327,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgWorkschedule As Global.Telerik.Web.UI.RadGrid
-
+    
     '''<summary>
     '''phFindEmployee control.
     '''</summary>
@@ -345,7 +336,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents phFindEmployee As Global.System.Web.UI.WebControls.PlaceHolder
-
+    
     '''<summary>
     '''phFindSign control.
     '''</summary>
@@ -354,7 +345,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents phFindSign As Global.System.Web.UI.WebControls.PlaceHolder
-
+    
     '''<summary>
     '''phPopup control.
     '''</summary>
@@ -363,7 +354,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents phPopup As Global.System.Web.UI.WebControls.PlaceHolder
-
+    
     '''<summary>
     '''ctrlUpload control.
     '''</summary>
@@ -372,7 +363,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ctrlUpload As Global.Common.ctrlUpload
-
+    
     '''<summary>
     '''RadCodeBlock1 control.
     '''</summary>
@@ -381,7 +372,7 @@ Partial Public Class ctrlGetSignDefault
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadCodeBlock1 As Global.Telerik.Web.UI.RadCodeBlock
-
+    
     '''<summary>
     '''ctrlMessageBox control.
     '''</summary>

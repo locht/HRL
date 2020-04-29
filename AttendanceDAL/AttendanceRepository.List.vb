@@ -1637,6 +1637,16 @@ Partial Public Class AttendanceRepository
                                        .ACTFLG = If(p.p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng"),
                                        .ORG_NAME = If(p.p.ORG_ID = -1, check, p.olg.NAME_VN),
                                        .NOTE = p.p.NOTE,
+                                       .LATE_MINUTES = p.p.LATE_MINUTES,
+                                       .SOON_MINUTES = p.p.SOON_MINUTES,
+                                       .MANUAL_TYPE = p.p.MANUAL_TYPE,
+                                       .IS_SHIFT_NIGHT = p.p.IS_SHIFT_NIGHT,
+                                       .IS_SHOW_IPORTAL = p.p.IS_SHOW_IPORTAL,
+                                       .START_CAL_LATE = p.p.START_CAL_LATE,
+                                       .START_CAL_SOON = p.p.START_CAL_SOON,
+                                       .VALUE_LATE = p.p.VALUE_LATE,
+                                       .VALUE_SOON = p.p.VALUE_SOON,
+                                       .STT = p.p.STT,
                                        .IS_NOON = p.p.IS_NOON,
                                        .MINHOUSER = p.p.MINHOURS,
                                        .ORG_ID = p.p.ORG_ID,
@@ -1723,9 +1733,6 @@ Partial Public Class AttendanceRepository
             objTitleData.ID = Utilities.GetNextSequence(Context, Context.AT_SHIFT.EntitySet.Name)
             objTitleData.CODE = objTitle.CODE.Trim
             objTitleData.NAME_VN = objTitle.NAME_VN.Trim
-            'objTitleData.NAME_EN = objTitle.NAME_EN.Trim
-            'objTitleData.APPLY_LAW = objTitle.APPLY_LAW
-            'objTitleData.PENALIZEA = objTitle.PENALIZEA
             objTitleData.SATURDAY = objTitle.SATURDAY
             objTitleData.SUNDAY = objTitle.SUNDAY
             objTitleData.MANUAL_ID = objTitle.MANUAL_ID
@@ -1738,18 +1745,23 @@ Partial Public Class AttendanceRepository
             objTitleData.NOTE = objTitle.NOTE
             objTitleData.IS_NOON = objTitle.IS_NOON
             objTitleData.ACTFLG = objTitle.ACTFLG
-            'objTitleData.CREATED_BY = objTitle.CREATED_BY
-            'objTitleData.CREATED_DATE = objTitle.CREATED_DATE
-            'objTitleData.CREATED_LOG = objTitle.CREATED_LOG
-            'objTitleData.MODIFIED_BY = objTitle.MODIFIED_BY
-            'objTitleData.MODIFIED_DATE = objTitle.MODIFIED_DATE
-            'objTitleData.MODIFIED_LOG = objTitle.MODIFIED_LOG
-            'hoaivv add
+
             objTitleData.ORG_ID = objTitle.ORG_ID
             objTitleData.SHIFT_DAY = objTitle.SHIFT_DAY
             objTitleData.IS_HOURS_STOP = objTitle.IS_HOURS_STOP
             objTitleData.IS_MID_END = objTitle.IS_MID_END
             objTitleData.IS_HOURS_CHECKOUT = objTitle.IS_HOURS_CHECKOUT
+            objTitleData.LATE_MINUTES = objTitle.LATE_MINUTES
+            objTitleData.SOON_MINUTES = objTitle.SOON_MINUTES
+            objTitleData.MANUAL_TYPE = objTitle.MANUAL_TYPE
+            objTitleData.IS_SHIFT_NIGHT = objTitle.IS_SHIFT_NIGHT
+            objTitleData.IS_SHOW_IPORTAL = objTitle.IS_SHOW_IPORTAL
+            objTitleData.START_CAL_SOON = objTitle.START_CAL_SOON
+            objTitleData.START_CAL_LATE = objTitle.START_CAL_LATE
+            objTitleData.VALUE_LATE = objTitle.VALUE_LATE
+            objTitleData.VALUE_SOON = objTitle.VALUE_SOON
+            objTitleData.STT = objTitle.STT
+
             'end
             objTitleData.MINHOURS = objTitle.MINHOUSER
             Context.AT_SHIFT.AddObject(objTitleData)
@@ -5953,6 +5965,31 @@ Partial Public Class AttendanceRepository
             Return True
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function ValidateCheckExistWorkingShift(ByVal lsts As List(Of Decimal)) As Boolean
+
+        Try
+            Dim q As Integer = (From s In Context.AT_SHIFT
+                                Join p In Context.AT_SIGNDEFAULT On p.SINGDEFAULE Equals s.ID
+                                Where lsts.Contains(s.ID) Or (lsts.Contains(s.ID) And s.ACTFLG = "A")).Count
+
+            Dim q1 As Integer = (From s In Context.AT_SHIFT
+                                 Join p In Context.AT_SIGNDEFAULT On p.SING_SAT Equals s.ID
+                                 Where lsts.Contains(s.ID) Or (lsts.Contains(s.ID) And s.ACTFLG = "A")).Count
+
+            Dim q2 As Integer = (From s In Context.AT_SHIFT
+                                 Join p In Context.AT_SIGNDEFAULT On p.SING_SUN Equals s.ID
+                                 Where lsts.Contains(s.ID) Or (lsts.Contains(s.ID) And s.ACTFLG = "A")).Count
+
+            If q > 0 Or q1 > 0 Or q2 > 0 Then
+                Return False
+            End If
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
             Throw ex
         End Try
     End Function

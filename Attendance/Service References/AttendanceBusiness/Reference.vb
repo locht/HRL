@@ -10745,10 +10745,10 @@ Namespace AttendanceBusiness
         Private IS_NOONField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IS_SHIFT_NIGHTField As System.Nullable(Of Decimal)
+        Private IS_SHIFT_NIGHTField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IS_SHOW_IPORTALField As System.Nullable(Of Decimal)
+        Private IS_SHOW_IPORTALField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LATE_MINUTESField As System.Nullable(Of Decimal)
@@ -11111,7 +11111,7 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IS_SHIFT_NIGHT() As System.Nullable(Of Decimal)
+        Public Property IS_SHIFT_NIGHT() As System.Nullable(Of Boolean)
             Get
                 Return Me.IS_SHIFT_NIGHTField
             End Get
@@ -11124,7 +11124,7 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IS_SHOW_IPORTAL() As System.Nullable(Of Decimal)
+        Public Property IS_SHOW_IPORTAL() As System.Nullable(Of Boolean)
             Get
                 Return Me.IS_SHOW_IPORTALField
             End Get
@@ -32101,6 +32101,9 @@ Namespace AttendanceBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="AttendanceBusiness.IAttendanceBusiness")>  _
     Public Interface IAttendanceBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetStatisticTimeOff", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetStatisticTimeOffResponse")>  _
+        Function GetStatisticTimeOff(ByVal _year As Integer, ByVal _month As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.StatisticDTO)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetStatisticTimeOtByOrg", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetStatisticTimeOtByOrgResponse")>  _
         Function GetStatisticTimeOtByOrg(ByVal _year As Integer, ByVal _month As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.StatisticDTO)
         
@@ -32373,6 +32376,9 @@ Namespace AttendanceBusiness
             "")>  _
         Function CheckExistInDatabaseAT_SIGNDEFAULT(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal lstWorking As System.Collections.Generic.List(Of Date), ByVal lstShift As System.Collections.Generic.List(Of Decimal), ByVal table As AttendanceBusiness.AttendanceCommonTABLE_NAME) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ValidateCheckExistWorkingShift", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ValidateCheckExistWorkingShiftResponse")>  _
+        Function ValidateCheckExistWorkingShift(ByVal lsts As System.Collections.Generic.List(Of Decimal)) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/CheckPeriod", ReplyAction:="http://tempuri.org/IAttendanceBusiness/CheckPeriodResponse")>  _
         Function CheckPeriod(ByVal PeriodId As Integer, ByVal EmployeeId As Decimal) As Boolean
         
@@ -32444,9 +32450,6 @@ Namespace AttendanceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetStatisticTotalWorking", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetStatisticTotalWorkingResponse")>  _
         Function GetStatisticTotalWorking(ByVal _year As Integer, ByVal _month As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.StatisticDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetStatisticTimeOff", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetStatisticTimeOffResponse")>  _
-        Function GetStatisticTimeOff(ByVal _year As Integer, ByVal _month As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.StatisticDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ValidateAT_FML", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ValidateAT_FMLResponse")>  _
         Function ValidateAT_FML(ByVal objATFML As AttendanceBusiness.AT_FMLDTO) As Boolean
@@ -33733,6 +33736,10 @@ Namespace AttendanceBusiness
             MyBase.New(binding, remoteAddress)
         End Sub
         
+        Public Function GetStatisticTimeOff(ByVal _year As Integer, ByVal _month As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.StatisticDTO) Implements AttendanceBusiness.IAttendanceBusiness.GetStatisticTimeOff
+            Return MyBase.Channel.GetStatisticTimeOff(_year, _month, log)
+        End Function
+        
         Public Function GetStatisticTimeOtByOrg(ByVal _year As Integer, ByVal _month As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.StatisticDTO) Implements AttendanceBusiness.IAttendanceBusiness.GetStatisticTimeOtByOrg
             Return MyBase.Channel.GetStatisticTimeOtByOrg(_year, _month, log)
         End Function
@@ -34093,6 +34100,10 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.CheckExistInDatabaseAT_SIGNDEFAULT(lstID, lstWorking, lstShift, table)
         End Function
         
+        Public Function ValidateCheckExistWorkingShift(ByVal lsts As System.Collections.Generic.List(Of Decimal)) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.ValidateCheckExistWorkingShift
+            Return MyBase.Channel.ValidateCheckExistWorkingShift(lsts)
+        End Function
+        
         Public Function CheckPeriod(ByVal PeriodId As Integer, ByVal EmployeeId As Decimal) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.CheckPeriod
             Return MyBase.Channel.CheckPeriod(PeriodId, EmployeeId)
         End Function
@@ -34187,10 +34198,6 @@ Namespace AttendanceBusiness
         
         Public Function GetStatisticTotalWorking(ByVal _year As Integer, ByVal _month As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.StatisticDTO) Implements AttendanceBusiness.IAttendanceBusiness.GetStatisticTotalWorking
             Return MyBase.Channel.GetStatisticTotalWorking(_year, _month, log)
-        End Function
-        
-        Public Function GetStatisticTimeOff(ByVal _year As Integer, ByVal _month As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.StatisticDTO) Implements AttendanceBusiness.IAttendanceBusiness.GetStatisticTimeOff
-            Return MyBase.Channel.GetStatisticTimeOff(_year, _month, log)
         End Function
         
         Public Function ValidateAT_FML(ByVal objATFML As AttendanceBusiness.AT_FMLDTO) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.ValidateAT_FML

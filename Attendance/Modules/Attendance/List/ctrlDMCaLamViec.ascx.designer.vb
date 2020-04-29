@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class ctrlDMCaLamViec
-
+    
     '''<summary>
     '''RadSplitter3 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadSplitter3 As Global.Telerik.Web.UI.RadSplitter
-
+    
     '''<summary>
     '''RadPane1 control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
-
+    
     '''<summary>
     '''tbarCostCenters control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbarCostCenters As Global.Telerik.Web.UI.RadToolBar
-
+    
     '''<summary>
     '''valSum control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents valSum As Global.System.Web.UI.WebControls.ValidationSummary
-
+    
     '''<summary>
     '''txtCode control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtCode As Global.Telerik.Web.UI.RadTextBox
-
+    
     '''<summary>
     '''cvalCode control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cvalCode As Global.System.Web.UI.WebControls.CustomValidator
-
+    
     '''<summary>
     '''RequiredFieldValidator2 control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
+    
     '''<summary>
     '''txtNameVN control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtNameVN As Global.Telerik.Web.UI.RadTextBox
-
+    
     '''<summary>
     '''RequiredFieldValidator1 control.
     '''</summary>
@@ -93,25 +93,25 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
+    
     '''<summary>
-    '''cboMaCong control.
+    '''cboManualType control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboMaCong As Global.Telerik.Web.UI.RadComboBox
-
+    Protected WithEvents cboManualType As Global.Telerik.Web.UI.RadComboBox
+    
     '''<summary>
-    '''cboCongTy control.
+    '''RequiredFieldValidator11 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboCongTy As Global.Telerik.Web.UI.RadComboBox
-
+    Protected WithEvents RequiredFieldValidator11 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    
     '''<summary>
     '''rdHours_Start control.
     '''</summary>
@@ -120,7 +120,7 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdHours_Start As Global.Telerik.Web.UI.RadTimePicker
-
+    
     '''<summary>
     '''RequiredFieldValidator5 control.
     '''</summary>
@@ -129,7 +129,7 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator5 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
+    
     '''<summary>
     '''rdHours_Stop control.
     '''</summary>
@@ -138,7 +138,7 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdHours_Stop As Global.Telerik.Web.UI.RadTimePicker
-
+    
     '''<summary>
     '''RequiredFieldValidator6 control.
     '''</summary>
@@ -147,25 +147,7 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator6 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''chkIS_HOURS_STOP control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents chkIS_HOURS_STOP As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''cboNgayCongCa control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboNgayCongCa As Global.Telerik.Web.UI.RadComboBox
-
+    
     '''<summary>
     '''rdSTART_MID_HOURS control.
     '''</summary>
@@ -174,7 +156,7 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdSTART_MID_HOURS As Global.Telerik.Web.UI.RadTimePicker
-
+    
     '''<summary>
     '''RequiredFieldValidator3 control.
     '''</summary>
@@ -183,7 +165,7 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
+    
     '''<summary>
     '''rdEND_MID_HOURS control.
     '''</summary>
@@ -192,7 +174,7 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdEND_MID_HOURS As Global.Telerik.Web.UI.RadTimePicker
-
+    
     '''<summary>
     '''RequiredFieldValidator4 control.
     '''</summary>
@@ -201,7 +183,7 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
+    
     '''<summary>
     '''CompareValidator2 control.
     '''</summary>
@@ -210,25 +192,34 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents CompareValidator2 As Global.System.Web.UI.WebControls.CompareValidator
-
+    
     '''<summary>
-    '''chkIS_MID_END control.
+    '''rdStart_Cal_Soon control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents chkIS_MID_END As Global.System.Web.UI.WebControls.CheckBox
-
+    Protected WithEvents rdStart_Cal_Soon As Global.Telerik.Web.UI.RadTimePicker
+    
     '''<summary>
-    '''rdHOURS_STAR_CHECKIN control.
+    '''rdStart_Cal_late control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rdHOURS_STAR_CHECKIN As Global.Telerik.Web.UI.RadTimePicker
-
+    Protected WithEvents rdStart_Cal_late As Global.Telerik.Web.UI.RadTimePicker
+    
+    '''<summary>
+    '''rtxtLATE_MINUTES control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rtxtLATE_MINUTES As Global.Telerik.Web.UI.RadNumericTextBox
+    
     '''<summary>
     '''RequiredFieldValidator7 control.
     '''</summary>
@@ -237,16 +228,16 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator7 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
+    
     '''<summary>
-    '''rdHOURS_STAR_CHECKOUT control.
+    '''rtxtSOON_MINUTES control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rdHOURS_STAR_CHECKOUT As Global.Telerik.Web.UI.RadTimePicker
-
+    Protected WithEvents rtxtSOON_MINUTES As Global.Telerik.Web.UI.RadNumericTextBox
+    
     '''<summary>
     '''RequiredFieldValidator8 control.
     '''</summary>
@@ -255,16 +246,61 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator8 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
+    
     '''<summary>
-    '''chkIS_HOURS_CHECKOUT control.
+    '''rtxtValue_Late control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents chkIS_HOURS_CHECKOUT As Global.System.Web.UI.WebControls.CheckBox
-
+    Protected WithEvents rtxtValue_Late As Global.Telerik.Web.UI.RadNumericTextBox
+    
+    '''<summary>
+    '''RequiredFieldValidator9 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator9 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    
+    '''<summary>
+    '''rtxtValue_Soon control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rtxtValue_Soon As Global.Telerik.Web.UI.RadNumericTextBox
+    
+    '''<summary>
+    '''RequiredFieldValidator10 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator10 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    
+    '''<summary>
+    '''chkIS_Shift_Night control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkIS_Shift_Night As Global.System.Web.UI.WebControls.CheckBox
+    
+    '''<summary>
+    '''chkIS_Show_Iportal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkIS_Show_Iportal As Global.System.Web.UI.WebControls.CheckBox
+    
     '''<summary>
     '''txtNote control.
     '''</summary>
@@ -273,7 +309,16 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtNote As Global.Telerik.Web.UI.RadTextBox
-
+    
+    '''<summary>
+    '''rtxtSTT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rtxtSTT As Global.Telerik.Web.UI.RadNumericTextBox
+    
     '''<summary>
     '''RadPane2 control.
     '''</summary>
@@ -282,7 +327,7 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadPane2 As Global.Telerik.Web.UI.RadPane
-
+    
     '''<summary>
     '''rgDanhMuc control.
     '''</summary>
@@ -291,7 +336,7 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgDanhMuc As Global.Telerik.Web.UI.RadGrid
-
+    
     '''<summary>
     '''ctrlMessageBox control.
     '''</summary>
@@ -300,7 +345,7 @@ Partial Public Class ctrlDMCaLamViec
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ctrlMessageBox As Global.Common.ctrlMessageBox
-
+    
     '''<summary>
     '''RadCodeBlock1 control.
     '''</summary>

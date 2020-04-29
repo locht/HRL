@@ -112,9 +112,9 @@
                             <asp:CompareValidator ID="CompareValidator1" runat="server" ToolTip="<%$ Translate: Ngày hết hiệu lực phải lớn hơn ngày hiệu lực %>"
                                 ErrorMessage="<%$ Translate: Ngày hết hiệu lực phải lớn hơn ngày hiệu lực %>"
                                 Type="Date" Operator="GreaterThan" ControlToCompare="rdFromDate" ControlToValidate="rdToDate"></asp:CompareValidator>
-                            <asp:CustomValidator ID="cvalEffedate" runat="server" ErrorMessage="<%$ Translate: Khoảng thời gian hiệu lực bị trùng. %>"
+                           <%-- <asp:CustomValidator ID="cvalEffedate" runat="server" ErrorMessage="<%$ Translate: Khoảng thời gian hiệu lực bị trùng. %>"
                                 ToolTip="<%$ Translate: Khoảng thời gian hiệu lực bị trùng. %>">
-                            </asp:CustomValidator>
+                            </asp:CustomValidator>--%>
                         </td>
                     </tr>
                     <tr>

@@ -1803,6 +1803,19 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+
+        Function ValidateCheckExistWorkingShift(ByVal lsts As List(Of Decimal)) As Boolean _
+            Implements ServiceContracts.IAttendanceBusiness.ValidateCheckExistWorkingShift
+            Using rep As New AttendanceRepository
+                Try
+                    Dim lst = rep.ValidateCheckExistWorkingShift(lsts)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
 #End Region
 
 

@@ -1058,6 +1058,9 @@ Namespace AttendanceBusiness.ServiceContracts
         Function CheckExistInDatabase(ByVal lstID As List(Of Decimal), ByVal table As AttendanceCommon.TABLE_NAME) As Boolean
         <OperationContract()>
         Function CheckExistInDatabaseAT_SIGNDEFAULT(ByVal lstID As List(Of Decimal), ByVal lstWorking As List(Of Date), ByVal lstShift As List(Of Decimal), ByVal table As AttendanceCommon.TABLE_NAME) As Boolean
+
+        <OperationContract()>
+        Function ValidateCheckExistWorkingShift(ByVal lsts As List(Of Decimal)) As Boolean
 #End Region
 
 #Region "IPORTAL - View bảng công"

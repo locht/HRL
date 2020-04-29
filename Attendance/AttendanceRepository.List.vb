@@ -2154,6 +2154,19 @@ Partial Class AttendanceRepository
 
         Return Nothing
     End Function
+
+    Public Function ValidateCheckExistWorkingShift(ByVal lsts As List(Of Decimal)) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.ValidateCheckExistWorkingShift(lsts)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
 #End Region
 
 #Region "AT_PROJECT_TITLE"

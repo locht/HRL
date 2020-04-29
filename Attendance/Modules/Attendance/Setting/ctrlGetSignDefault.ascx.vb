@@ -1175,23 +1175,23 @@ Public Class ctrlGetSignDefault
     ''' <param name="source"></param>
     ''' <param name="args"></param>
     ''' <remarks></remarks>
-    Private Sub cvalEffedate_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalEffedate.ServerValidate
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim rep As New AttendanceRepository
-        Dim _validate As New AT_SIGNDEFAULTDTO
-        Try
-            _validate.ID = rgWorkschedule.SelectedValue
-            _validate.EMPLOYEE_ID = hidEmpID.Value
-            _validate.EFFECT_DATE_FROM = rdFromDate.SelectedDate
-            _validate.EFFECT_DATE_TO = rdToDate.SelectedDate
-            args.IsValid = rep.ValidateAT_SIGNDEFAULT(_validate)
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            'DisplayException(Me.ViewName, Me.ID, ex)
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    'Private Sub cvalEffedate_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalEffedate.ServerValidate
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim rep As New AttendanceRepository
+    '    Dim _validate As New AT_SIGNDEFAULTDTO
+    '    Try
+    '        _validate.ID = rgWorkschedule.SelectedValue
+    '        _validate.EMPLOYEE_ID = hidEmpID.Value
+    '        _validate.EFFECT_DATE_FROM = rdFromDate.SelectedDate
+    '        _validate.EFFECT_DATE_TO = rdToDate.SelectedDate
+    '        args.IsValid = rep.ValidateAT_SIGNDEFAULT(_validate)
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        'DisplayException(Me.ViewName, Me.ID, ex)
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
 
     ''' <summary>
     ''' Kiem tra gia tri dang đươc chọn cua combox CA MẶC ĐỊNH có tồn tại hoặc bị ngừng áp dụng hay không? 
