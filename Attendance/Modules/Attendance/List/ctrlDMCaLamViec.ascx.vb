@@ -519,12 +519,6 @@ Public Class ctrlDMCaLamViec
                 ListComboData.GET_LIST_SHIFT_SUNDAY = True
                 rep.GetComboboxData(ListComboData)
             End If
-            'lstDate.Add("Ngày làm việc bình thường (X) ")
-            'lstDate.Add("Ngày nghĩ hàng tuần (CN) ")
-            'FillRadCombobox(cboManualType, lstDate, "NAME", "ID")
-
-            'FillDropDownList(cboSaturday, ListComboData.LIST_LIST_SHIFT_SUNDAY, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboSaturday.SelectedValue)
-            'FillDropDownList(cboSunDay, ListComboData.LIST_LIST_SHIFT_SUNDAY, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboSunDay.SelectedValue)
 
             'hoaivv
             Dim dtOrgLevel As DataTable
@@ -547,12 +541,9 @@ Public Class ctrlDMCaLamViec
             item1.Value = 0
             cboManualType.Items.Add(item1)
             Dim item2 As New RadComboBoxItem()
-            item2.Text = "Ngày nghĩ hàng tuần (CN)"
+            item2.Text = "Ngày nghỉ hàng tuần (CN)"
             item2.Value = 1
             cboManualType.Items.Add(item2)
-
-
-
 
             Dim table As New DataTable
 

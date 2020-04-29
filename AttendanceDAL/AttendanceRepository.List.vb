@@ -1604,11 +1604,11 @@ Partial Public Class AttendanceRepository
         Try
             Dim userNameID As Decimal = _filter.SHIFT_DAY
             Dim check As String = "Dùng chung"
-            Dim lstOrgID = New List(Of Decimal)
-            lstOrgID = (From p In Context.SE_USER_ORG_ACCESS
-                From o In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID)
-                Where p.USER_ID = userNameID
-                Select p.ORG_ID).ToList
+            'Dim lstOrgID = New List(Of Decimal)
+            'lstOrgID = (From p In Context.SE_USER_ORG_ACCESS
+            '    From o In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID)
+            '    Where p.USER_ID = userNameID
+            '    Select p.ORG_ID).ToList
 
             Dim query = From p In Context.AT_SHIFT
                         Group Join g In Context.HU_ORGANIZATION On p.ORG_ID Equals g.ID Into g_olg = Group
@@ -1661,9 +1661,9 @@ Partial Public Class AttendanceRepository
 
             '.ORG_NAME = If(p.p.ORG_ID.Value = -1, "Dùng chung", p.o.NAME_EN),
             'hoavv add 3rc
-            If lstOrgID.Count > 0 And userNameID <> 1 Then
-                lst = lst.Where(Function(f) (lstOrgID.Contains(f.ORG_ID) Or f.ORG_ID = -1))
-            End If
+            'If lstOrgID.Count > 0 And userNameID <> 1 Then
+            '    lst = lst.Where(Function(f) (lstOrgID.Contains(f.ORG_ID) Or f.ORG_ID = -1))
+            'End If
 
             If Not String.IsNullOrEmpty(_filter.CODE) Then
                 lst = lst.Where(Function(f) f.CODE.ToLower().Contains(_filter.CODE.ToLower()))

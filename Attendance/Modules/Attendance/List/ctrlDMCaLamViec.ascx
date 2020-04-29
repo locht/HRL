@@ -17,7 +17,7 @@
     }
 </style>
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
-    <tlk:RadPane ID="RadPane1" runat="server" Height="230px" Scrolling="None">
+    <tlk:RadPane ID="RadPane1" runat="server" Height="250px" Scrolling="None">
         <tlk:RadToolBar ID="tbarCostCenters" runat="server" />
         <asp:ValidationSummary ID="valSum" runat="server" />
         <table class="table-form">
