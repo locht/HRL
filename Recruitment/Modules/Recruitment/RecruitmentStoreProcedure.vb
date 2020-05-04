@@ -696,6 +696,14 @@ Public Class RecruitmentStoreProcedure
         End If
         Return dt
     End Function
+    Public Function GET_INFO_CADIDATE_RCPS_ID(ByVal RCPS_ID As Decimal, ByVal ID As Decimal) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.GET_INFO_CADIDATE_RCPS_ID", New List(Of Object)(New Object() {RCPS_ID, ID}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
     Public Function GET_EMAIL_COMPANY(ByVal empid As Decimal) As String
         Dim obj As New List(Of Object)
         Try
