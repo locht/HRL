@@ -193,7 +193,7 @@ Public Class ctrlInsMaternityDetail
             dateFrom.Enabled = val
             dateTo.Enabled = val
             dateNgaySinh.Enabled = val
-            dateNgayDiLamSom.Enabled = val
+            'dateNgayDiLamSom.Enabled = val
             txtSoCon.Enabled = val
             txtTamUng.Enabled = val
             txtRemark.Enabled = val
@@ -216,10 +216,10 @@ Public Class ctrlInsMaternityDetail
             cbNghiThaiSan.Checked = True
             dateFrom.SelectedDate = Nothing
             dateTo.SelectedDate = Nothing
-            dataFromEnjoy.SelectedDate = Nothing
-            dataToEnjoy.SelectedDate = Nothing
+            'dataFromEnjoy.SelectedDate = Nothing
+            'dataToEnjoy.SelectedDate = Nothing
             dateNgaySinh.SelectedDate = Nothing
-            dateNgayDiLamSom.SelectedDate = Nothing
+            'dateNgayDiLamSom.SelectedDate = Nothing
             txtSoCon.Text = 1
             txtTamUng.Text = 0
             txtRemark.Text = String.Empty
@@ -235,17 +235,17 @@ Public Class ctrlInsMaternityDetail
 
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
-
-                    Dim id As Int32 = store_business.SAVE_INS_MATERNITY_MNG(0, InsCommon.getNumber(txtEMPID.Text), dateNgayDuSinh.SelectedDate, InsCommon.getNumber(IIf(cbNghiThaiSan.Checked, 1, 0)), dateFrom.SelectedDate, dateTo.SelectedDate, dataFromEnjoy.SelectedDate, dataToEnjoy.SelectedDate, dateNgaySinh.SelectedDate, InsCommon.getNumber(txtSoCon.Text), InsCommon.getNumber(txtTamUng.Text), dateNgayDiLamSom.SelectedDate, txtRemark.Text, userlog.Username, String.Format("{0}-{1}", userlog.ComputerName, userlog.Ip))
+                    'dataFromEnjoy.SelectedDate, dataToEnjoy.SelectedDate,dateNgayDiLamSom.SelectedDate
+                    Dim id As Int32 = store_business.SAVE_INS_MATERNITY_MNG(0, InsCommon.getNumber(txtEMPID.Text), dateNgayDuSinh.SelectedDate, InsCommon.getNumber(IIf(cbNghiThaiSan.Checked, 1, 0)), dateFrom.SelectedDate, dateTo.SelectedDate, Nothing, Nothing, dateNgaySinh.SelectedDate, InsCommon.getNumber(txtSoCon.Text), InsCommon.getNumber(txtTamUng.Text), Nothing, txtRemark.Text, userlog.Username, String.Format("{0}-{1}", userlog.ComputerName, userlog.Ip))
 
                     'P_INS_ARISING_TYPE = 3: Cập nhật biến động BH giảm do nghỉ thai sản
                     If cbNghiThaiSan.Checked = True Then
                         store_business.PRI_INS_ARISING_MATERNITY(id, InsCommon.getNumber(txtEMPID.Text), dateFrom.SelectedDate, 3, userlog.Username)
                     End If
 
-                    If dateNgayDiLamSom.SelectedDate IsNot Nothing Then
-                        'Dim result = store_business.DELETE_INS_THAISAN(txtEMPLOYEE_ID.Text, dateNgayDiLamSom.SelectedDate, dateTo.SelectedDate)
-                    End If
+                    'If dateNgayDiLamSom.SelectedDate IsNot Nothing Then
+                    'Dim result = store_business.DELETE_INS_THAISAN(txtEMPLOYEE_ID.Text, dateNgayDiLamSom.SelectedDate, dateTo.SelectedDate)
+                    'End If
 
                     If id > 0 Then
                         Refresh("InsertView")
@@ -256,17 +256,17 @@ Public Class ctrlInsMaternityDetail
                     End If
                     'Common.Common.OrganizationLocationDataSession = Nothing
                 Case CommonMessage.STATE_EDIT
-                    
-                    If store_business.SAVE_INS_MATERNITY_MNG(InsCommon.getNumber(txtID.Text), InsCommon.getNumber(txtEMPID.Text), dateNgayDuSinh.SelectedDate, InsCommon.getNumber(IIf(cbNghiThaiSan.Checked, 1, 0)), dateFrom.SelectedDate, dateTo.SelectedDate, dataFromEnjoy.SelectedDate, dataToEnjoy.SelectedDate, dateNgaySinh.SelectedDate, InsCommon.getNumber(txtSoCon.Text), InsCommon.getNumber(txtTamUng.Text), dateNgayDiLamSom.SelectedDate, txtRemark.Text, userlog.Username, String.Format("{0}-{1}", userlog.ComputerName, userlog.Ip)) Then
+                    'dataFromEnjoy.SelectedDate, dataToEnjoy.SelectedDate dateNgayDiLamSom.SelectedDate
+                    If store_business.SAVE_INS_MATERNITY_MNG(InsCommon.getNumber(txtID.Text), InsCommon.getNumber(txtEMPID.Text), dateNgayDuSinh.SelectedDate, InsCommon.getNumber(IIf(cbNghiThaiSan.Checked, 1, 0)), dateFrom.SelectedDate, dateTo.SelectedDate, Nothing, Nothing, dateNgaySinh.SelectedDate, InsCommon.getNumber(txtSoCon.Text), InsCommon.getNumber(txtTamUng.Text), Nothing, txtRemark.Text, userlog.Username, String.Format("{0}-{1}", userlog.ComputerName, userlog.Ip)) Then
 
                         'P_INS_ARISING_TYPE = 3: Cập nhật biến động BH giảm do nghỉ thai sản
                         If cbNghiThaiSan.Checked = True Then
                             store_business.PRI_INS_ARISING_MATERNITY(InsCommon.getNumber(txtID.Text), InsCommon.getNumber(txtEMPID.Text), dateFrom.SelectedDate, 3, userlog.Username)
                         End If
 
-                        If dateNgayDiLamSom.SelectedDate IsNot Nothing Then
-                            'Dim result = store_business.DELETE_INS_THAISAN(txtEMPLOYEE_ID.Text, dateNgayDiLamSom.SelectedDate, dateTo.SelectedDate)
-                        End If
+                        'If dateNgayDiLamSom.SelectedDate IsNot Nothing Then
+                        'Dim result = store_business.DELETE_INS_THAISAN(txtEMPLOYEE_ID.Text, dateNgayDiLamSom.SelectedDate, dateTo.SelectedDate)
+                        'End If
                         Refresh("UpdateView")
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
                     Else
@@ -320,10 +320,10 @@ Public Class ctrlInsMaternityDetail
                 InsCommon.SetNumber(cbNghiThaiSan, lstSource.Rows(0)("NGHI_THAI_SAN"))
                 InsCommon.SetDate(dateFrom, lstSource.Rows(0)("FROM_DATE"))
                 InsCommon.SetDate(dateTo, lstSource.Rows(0)("TO_DATE"))
-                InsCommon.SetDate(dataFromEnjoy, lstSource.Rows(0)("FROM_DATE_ENJOY"))
-                InsCommon.SetDate(dataToEnjoy, lstSource.Rows(0)("TO_DATE_ENJOY"))
+                'InsCommon.SetDate(dataFromEnjoy, lstSource.Rows(0)("FROM_DATE_ENJOY"))
+                'InsCommon.SetDate(dataToEnjoy, lstSource.Rows(0)("TO_DATE_ENJOY"))
                 InsCommon.SetDate(dateNgaySinh, lstSource.Rows(0)("NGAY_SINH"))
-                InsCommon.SetDate(dateNgayDiLamSom, lstSource.Rows(0)("NGAY_DI_LAM_SOM"))
+                'InsCommon.SetDate(dateNgayDiLamSom, lstSource.Rows(0)("NGAY_DI_LAM_SOM"))
                 InsCommon.SetNumber(txtSoCon, lstSource.Rows(0)("SO_CON"))
                 InsCommon.SetNumber(txtTamUng, lstSource.Rows(0)("TIEN_TAM_UNG"))
                 InsCommon.SetString(txtRemark, lstSource.Rows(0)("REMARK"))
@@ -460,11 +460,11 @@ Public Class ctrlInsMaternityDetail
             Select Case str
                 Case "dateNgaySinh"
                     If dateNgaySinh.SelectedDate IsNot Nothing Then
-                        dataFromEnjoy.SelectedDate = dateNgaySinh.SelectedDate
-                        dataToEnjoy.SelectedDate = dateNgaySinh.SelectedDate.Value.AddMonths(12)
+                        'dataFromEnjoy.SelectedDate = dateNgaySinh.SelectedDate
+                        'dataToEnjoy.SelectedDate = dateNgaySinh.SelectedDate.Value.AddMonths(12)
                     Else
-                        dataFromEnjoy.SelectedDate = Nothing
-                        dataToEnjoy.SelectedDate = Nothing
+                        'dataFromEnjoy.SelectedDate = Nothing
+                        'dataToEnjoy.SelectedDate = Nothing
                     End If
                 Case "dateFrom"
                     If dateFrom.SelectedDate IsNot Nothing Then
@@ -473,11 +473,11 @@ Public Class ctrlInsMaternityDetail
                         dateTo.SelectedDate = Nothing
                     End If
                 Case "dataFromEnjoy"
-                    If dataFromEnjoy.SelectedDate IsNot Nothing Then
-                        dataToEnjoy.SelectedDate = dataFromEnjoy.SelectedDate.Value.AddMonths(12)
-                    Else
-                        dataToEnjoy.SelectedDate = Nothing
-                    End If
+                    'If dataFromEnjoy.SelectedDate IsNot Nothing Then
+                    '    dataToEnjoy.SelectedDate = dataFromEnjoy.SelectedDate.Value.AddMonths(12)
+                    'Else
+                    '    dataToEnjoy.SelectedDate = Nothing
+                    'End If
             End Select
         End If
 

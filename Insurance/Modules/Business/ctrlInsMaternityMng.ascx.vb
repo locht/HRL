@@ -264,7 +264,7 @@ Public Class ctrlInsMaternityMng
             '                                                , txtTODATE.SelectedDate _
             '                                                , InsCommon.getNumber(IIf(chkSTATUS.Checked, 1, 0))
             '                                                )
-            Dim lstSource As DataTable = store.GET_INS_MATERNITY_MNG(Common.Common.GetUserName(), txtEMPLOYEEID_SEARCH.Text, Nothing, Nothing, InsCommon.getNumber(ctrlOrg.CurrentValue), InsCommon.getNumber(IIf(chkSTATUS.Checked, 1, 0)))
+            Dim lstSource As DataTable = store.GET_INS_MATERNITY_MNG(Common.Common.GetUsername(), txtEMPLOYEEID_SEARCH.Text, rdFromDate.SelectedDate, rdToDate.SelectedDate, InsCommon.getNumber(ctrlOrg.CurrentValue), InsCommon.getNumber(IIf(chkSTATUS.Checked, 1, 0)))
 
             Dim dc As DataColumn = New DataColumn("nghi_thai_san_new", Type.GetType("System.Boolean"))
             Dim ordinal = lstSource.Columns("nghi_thai_san").Ordinal

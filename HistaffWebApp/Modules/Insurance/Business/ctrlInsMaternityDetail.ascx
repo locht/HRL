@@ -10,7 +10,7 @@
     </tlk:RadTextBox>
     <asp:HiddenField ID="hdORG_ID" runat="server" />
     <asp:HiddenField ID="hdTITLE_ID" runat="server" />
-</div>
+</div
 <div style="margin-left: 10px; margin-right: 10px;">
     <fieldset style="width: auto; height: auto">
         <legend>
@@ -55,6 +55,41 @@
                     </tlk:RadTextBox>
                 </td>
             </tr>
+            <tr>
+                 <td class="lb">
+                    <%# Translate("Đơn vị đóng bảo hiểm")%>
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="txtINS_PAY_UNIT" ReadOnly="true" runat="server" Width="100%">
+                    </tlk:RadTextBox>
+                </td>
+            </tr>
+            <tr>
+                <td class="lb">
+                    <%# Translate("Sinh thường")%>
+                </td>
+                <td>
+                    <tlk:RadButton ID="cbNormal_Birth" AutoPostBack="false" ToggleType="CheckBox" ButtonType="ToggleButton"
+                        runat="server">
+                    </tlk:RadButton>
+                </td>
+                <td class="lb">
+                    <%# Translate("Sinh mổ")%>
+                </td>
+                <td>
+                    <tlk:RadButton ID="cbNotNormal_Birth" AutoPostBack="false" ToggleType="CheckBox" ButtonType="ToggleButton"
+                        runat="server">
+                    </tlk:RadButton>
+                </td>
+                <td class="lb">
+                    <%# Translate("Nghỉ thai sản")%>
+                </td>
+                <td>
+                    <tlk:RadButton ID="cbNghiThaiSan" AutoPostBack="false" ToggleType="CheckBox" ButtonType="ToggleButton"
+                        runat="server">
+                    </tlk:RadButton>
+                </td>
+            </tr>
             <tr style="display: none">
                 <td class="lb">
                     <%# Translate("Ngày dự sinh")%>
@@ -87,7 +122,7 @@
                     <%# Translate("Số con")%>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox MinValue="0" Value="0" ID="txtSoCon" runat="server" ShowSpinButtons="true">
+                    <tlk:RadNumericTextBox MinValue="0" Value="0" ID="txtSoCon" runat="server" ShowSpinButtons="true" Width="150px">
                         <NumberFormat GroupSeparator="," DecimalDigits="0" />
                     </tlk:RadNumericTextBox>
                 </td>
@@ -125,6 +160,38 @@
                 </td>
             </tr>
             <tr>
+                  <td class="lb">
+                    <%# Translate("Tiền công ty tạm ứng")%>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="txtTamUng" runat="server" SkinID="Money" Width="150px"
+                        ShowSpinButtons="true" IncrementSettings-Step="5000">
+                    </tlk:RadNumericTextBox>
+                </td>
+                 <td class="lb">
+                    <%# Translate("Tiền BH thanh toán")%>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="txtInsPay" runat="server" SkinID="Money" Width="150px"
+                        ShowSpinButtons="true" IncrementSettings-Step="5000">
+                    </tlk:RadNumericTextBox>
+                </td>
+            </tr>
+            <tr>
+                 <td class="lb">
+                    <%# Translate("Tiền chênh lệch")%>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="txtDiffMoney" runat="server" SkinID="Money" Width="150px"
+                        ShowSpinButtons="true" IncrementSettings-Step="5000">
+                    </tlk:RadNumericTextBox>
+                </td>
+            </tr>
+
+
+
+
+            <%--<tr>
                 <td class="lb">
                     <%# Translate("Ngày hưởng chế độ thai sản")%>
                 </td>
@@ -150,25 +217,25 @@
                     <tlk:RadNumericTextBox ID="txtTamUng" runat="server" SkinID="Money" Width="120px"
                         ShowSpinButtons="true" IncrementSettings-Step="5000">
                     </tlk:RadNumericTextBox>
-                </td>
-                <td class="lb">
+                </td>--%>
+               <%-- <td class="lb">
                     <%# Translate("Nghỉ thai sản")%>
                 </td>
                 <td>
                     <tlk:RadButton ID="cbNghiThaiSan" AutoPostBack="false" ToggleType="CheckBox" ButtonType="ToggleButton"
                         runat="server">
                     </tlk:RadButton>
-                </td>
-            </tr>
+                </td>--%>
+            <%--</tr>--%>
             <tr>
-                <td class="lb">
+                <%--<td class="lb">
                     <%# Translate("Ngày đi làm sớm")%>
                 </td>
                 <td>
                     <tlk:RadDatePicker runat="server" DateInput-DateFormat="dd/MM/yyyy" ID="dateNgayDiLamSom"
                         TabIndex="5">
                     </tlk:RadDatePicker>
-                </td>
+                </td>--%>
                 <td class="lb">
                     <%# Translate("Ghi chú")%>
                 </td>

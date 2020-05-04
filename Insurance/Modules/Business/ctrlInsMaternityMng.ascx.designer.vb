@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class ctrlInsMaternityMng
-    
+
     '''<summary>
     '''RadSplitter1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class ctrlInsMaternityMng
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadSplitter1 As Global.Telerik.Web.UI.RadSplitter
-    
+
     '''<summary>
     '''LeftPane control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class ctrlInsMaternityMng
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LeftPane As Global.Telerik.Web.UI.RadPane
-    
+
     '''<summary>
     '''RadSplitter2 control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class ctrlInsMaternityMng
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadSplitter2 As Global.Telerik.Web.UI.RadSplitter
-    
+
     '''<summary>
     '''RadPane3 control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class ctrlInsMaternityMng
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadPane3 As Global.Telerik.Web.UI.RadPane
-    
+
     '''<summary>
     '''txtID control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class ctrlInsMaternityMng
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtID As Global.Telerik.Web.UI.RadTextBox
-    
+
     '''<summary>
     '''txtEMPID control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class ctrlInsMaternityMng
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEMPID As Global.Telerik.Web.UI.RadTextBox
-    
+
     '''<summary>
     '''txtCurrDate control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class ctrlInsMaternityMng
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtCurrDate As Global.Telerik.Web.UI.RadNumericTextBox
-    
+
     '''<summary>
     '''txtEMPLOYEEID_SEARCH control.
     '''</summary>
@@ -84,7 +84,43 @@ Partial Public Class ctrlInsMaternityMng
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEMPLOYEEID_SEARCH As Global.Telerik.Web.UI.RadTextBox
-    
+
+    '''<summary>
+    '''lbStartDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbStartDate As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rdFromDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdFromDate As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''Label1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rdToDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdToDate As Global.Telerik.Web.UI.RadDatePicker
+
     '''<summary>
     '''chkSTATUS control.
     '''</summary>
@@ -93,7 +129,7 @@ Partial Public Class ctrlInsMaternityMng
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents chkSTATUS As Global.System.Web.UI.WebControls.CheckBox
-    
+
     '''<summary>
     '''btnFind control.
     '''</summary>
@@ -102,7 +138,7 @@ Partial Public Class ctrlInsMaternityMng
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnFind As Global.Telerik.Web.UI.RadButton
-    
+
     '''<summary>
     '''RadPane4 control.
     '''</summary>
@@ -111,7 +147,7 @@ Partial Public Class ctrlInsMaternityMng
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadPane4 As Global.Telerik.Web.UI.RadPane
-    
+
     '''<summary>
     '''ctrlOrg control.
     '''</summary>
@@ -120,7 +156,7 @@ Partial Public Class ctrlInsMaternityMng
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ctrlOrg As Global.Common.ctrlOrganization
-    
+
     '''<summary>
     '''MainPane control.
     '''</summary>
@@ -129,7 +165,7 @@ Partial Public Class ctrlInsMaternityMng
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents MainPane As Global.Telerik.Web.UI.RadPane
-    
+
     '''<summary>
     '''rtbMain control.
     '''</summary>
@@ -138,7 +174,7 @@ Partial Public Class ctrlInsMaternityMng
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rtbMain As Global.Telerik.Web.UI.RadToolBar
-    
+
     '''<summary>
     '''rgGridData control.
     '''</summary>
@@ -147,7 +183,7 @@ Partial Public Class ctrlInsMaternityMng
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgGridData As Global.Telerik.Web.UI.RadGrid
-    
+
     '''<summary>
     '''RadWindowManager1 control.
     '''</summary>
@@ -156,7 +192,7 @@ Partial Public Class ctrlInsMaternityMng
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadWindowManager1 As Global.Telerik.Web.UI.RadWindowManager
-    
+
     '''<summary>
     '''rwPopup control.
     '''</summary>
@@ -165,7 +201,7 @@ Partial Public Class ctrlInsMaternityMng
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rwPopup As Global.Telerik.Web.UI.RadWindow
-    
+
     '''<summary>
     '''RadCodeBlock1 control.
     '''</summary>
@@ -174,7 +210,7 @@ Partial Public Class ctrlInsMaternityMng
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadCodeBlock1 As Global.Telerik.Web.UI.RadCodeBlock
-    
+
     '''<summary>
     '''ctrlMessageBox control.
     '''</summary>

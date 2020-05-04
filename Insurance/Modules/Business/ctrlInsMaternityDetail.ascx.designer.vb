@@ -113,6 +113,42 @@ Partial Public Class ctrlInsMaternityDetail
     Protected WithEvents txtPOSITION As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''txtINS_PAY_UNIT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtINS_PAY_UNIT As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''cbNormal_Birth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbNormal_Birth As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''cbNotNormal_Birth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbNotNormal_Birth As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''cbNghiThaiSan control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbNghiThaiSan As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
     '''dateNgayDuSinh control.
     '''</summary>
     '''<remarks>
@@ -212,24 +248,6 @@ Partial Public Class ctrlInsMaternityDetail
     Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''dataFromEnjoy control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dataFromEnjoy As Global.Telerik.Web.UI.RadDatePicker
-
-    '''<summary>
-    '''dataToEnjoy control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dataToEnjoy As Global.Telerik.Web.UI.RadDatePicker
-
-    '''<summary>
     '''txtTamUng control.
     '''</summary>
     '''<remarks>
@@ -239,22 +257,22 @@ Partial Public Class ctrlInsMaternityDetail
     Protected WithEvents txtTamUng As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
-    '''cbNghiThaiSan control.
+    '''txtInsPay control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cbNghiThaiSan As Global.Telerik.Web.UI.RadButton
+    Protected WithEvents txtInsPay As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
-    '''dateNgayDiLamSom control.
+    '''txtDiffMoney control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents dateNgayDiLamSom As Global.Telerik.Web.UI.RadDatePicker
+    Protected WithEvents txtDiffMoney As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''txtRemark control.
