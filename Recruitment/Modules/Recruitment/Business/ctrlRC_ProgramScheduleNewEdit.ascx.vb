@@ -780,7 +780,7 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                     newRow1("ID") = item.GetDataKeyValue("ID")
                     newRow1("CANDIDATE_CODE") = item.GetDataKeyValue("CANDIDATE_CODE")
                     newRow1("FULLNAME_VN") = item.GetDataKeyValue("FULLNAME_VN")
-                    newRow1("BIRTH_DATE") = String.Format(ToDate(item.GetDataKeyValue("BIRTH_DATE")), "DD/MM/YYYY")
+                    newRow1("BIRTH_DATE") = If(Not IsDBNull(item.GetDataKeyValue("BIRTH_DATE")), String.Format(ToDate(item.GetDataKeyValue("BIRTH_DATE")), "DD/MM/YYYY"), Nothing)
                     newRow1("BIRTH_PROVINCE_NAME") = item.GetDataKeyValue("BIRTH_PROVINCE_NAME")
                     newRow1("PER_EMAIL") = item.GetDataKeyValue("PER_EMAIL")
                     newRow1("ID_NO") = item.GetDataKeyValue("ID_NO")
