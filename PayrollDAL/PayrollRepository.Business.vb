@@ -208,6 +208,63 @@ Partial Public Class PayrollRepository
         End Try
     End Function
 #End Region
+#Region "importbonus"
+    Public Function GetlistYear() As DataTable
+        Dim dtData As New DataTable
+        Try
+            dtData = (From p In Context.AT_SETUP_BONUS
+                      Group p By p.YEAR Into Group
+                      Select New With {.Year = YEAR, .ID = YEAR}).ToList.ToTable()
+            Return dtData
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+            Throw ex
+        End Try
+    End Function
+    Public Function GetListGrBonus(ByVal year As Decimal) As DataTable
+        Dim dtData As New DataTable
+        Try
+            dtData = (From p In Context.AT_SETUP_BONUS
+                     Where p.ACTFLG = "A" And p.YEAR = year
+                     Select New With {p.ID, p.NAME_BONUS}).ToList.ToTable
+
+            Return dtData
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+            Throw ex
+        End Try
+    End Function
+    Public Function GetGrBonus() As DataTable
+        Dim dtData As New DataTable
+        Try
+            dtData = (From p In Context.PA_SALARY_TYPE
+                      Where p.IS_INCENTIVE = -1 And p.ACTFLG = "A"
+                      Select New With {p.ID, p.NAME}).ToList.ToTable
+
+            Return dtData
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+            Throw ex
+        End Try
+    End Function
+    'get ds nhan vien thoa dk
+    Public Function GetListEmpBonus(ByVal periodBonus As Decimal, ByVal OrgId As Integer, ByVal IsDissolve As Integer, ByVal log As UserLog,
+                                        Optional ByVal Sorts As String = "CREATED_DATE DESC") As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username,
+                                           .P_ORGID = OrgId,
+                                           .P_ISDISSOLVE = IsDissolve})
+            End Using
+
+
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+            Throw ex
+        End Try
+    End Function
+#End Region
 #Region "Import Bonus"
 
     Public Function GetImportBonus(ByVal Year As Integer, ByVal obj_sal_id As Integer, ByVal PeriodId As Integer, ByVal OrgId As Integer, ByVal IsDissolve As Integer, ByVal log As UserLog,

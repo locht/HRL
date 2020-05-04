@@ -39,6 +39,32 @@ Namespace PayrollBusiness.ServiceImplementations
 
 
 #End Region
+#Region "IMPORTBONUS"
+        Public Function GetlistYear() As DataTable Implements ServiceContracts.IPayrollBusiness.GetlistYear
+            Try
+                Dim rep As New PayrollRepository
+                Return rep.GetlistYear()
+            Catch ex As Exception
+
+            End Try
+        End Function
+        Public Function GetListGrBonus(ByVal year As Decimal) As DataTable Implements ServiceContracts.IPayrollBusiness.GetListGrBonus
+            Try
+                Dim rep As New PayrollRepository
+                Return rep.GetListGrBonus(year)
+            Catch ex As Exception
+
+            End Try
+        End Function
+        Public Function GetGrBonus() As DataTable Implements ServiceContracts.IPayrollBusiness.GetGrBonus
+            Try
+                Dim rep As New PayrollRepository
+                Return rep.GetGrBonus()
+            Catch ex As Exception
+
+            End Try
+        End Function
+#End Region
 #Region "Import Bonus"
 
         Public Function GetImportBonus(ByVal Year As Integer, ByVal obj_sal_id As Integer, ByVal PeriodId As Integer, ByVal OrgId As Integer, ByVal IsDissolve As Integer, ByVal log As UserLog,

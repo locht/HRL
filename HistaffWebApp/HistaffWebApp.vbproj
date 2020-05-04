@@ -409,6 +409,7 @@
     <Content Include="Modules\Insurance\QuickLaunch-en-US.xml" />
     <Content Include="Modules\Insurance\QuickLaunch-vi-VN.xml" />
     <Content Include="Modules\Insurance\Report\ctrlINS_ReportList.ascx" />
+    <Content Include="Modules\Payroll\Business\ctrlImportBonus.ascx" />
     <Content Include="Modules\Payroll\Business\ctrlActionLogPA.ascx" />
     <Content Include="Modules\Payroll\Business\ctrlAllowance.ascx" />
     <Content Include="Modules\Payroll\Business\ctrlImportLuong.ascx" />
