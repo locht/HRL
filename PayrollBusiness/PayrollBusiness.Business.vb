@@ -64,6 +64,23 @@ Namespace PayrollBusiness.ServiceImplementations
 
             End Try
         End Function
+        Public Function GetListImportBonus(ByVal obj_sal_id As Integer, ByVal periodBonus As Integer, ByVal OrgId As Integer, ByVal IsDissolve As Integer, ByVal EmployeeId As String, ByVal log As UserLog,
+                                        Optional ByVal Sorts As String = "CREATED_DATE DESC") As DataTable Implements ServiceContracts.IPayrollBusiness.GetListImportBonus
+            Try
+                Dim rep As New PayrollRepository
+                Return rep.GetListImportBonus(obj_sal_id, periodBonus, OrgId, IsDissolve, EmployeeId, log, Sorts)
+            Catch ex As Exception
+
+            End Try
+        End Function
+        Public Function SaveLstImportBONUS(ByVal SalaryGroup As Decimal, ByVal Period As Decimal, ByVal taxId As Decimal, ByVal dtData As DataTable, ByVal lstColVal As List(Of String), ByVal log As UserLog, ByRef RecordSussces As Integer) As Boolean Implements ServiceContracts.IPayrollBusiness.SaveLstImportBONUS
+            Try
+                Dim rep As New PayrollRepository
+                Return rep.SaveLstImportBONUS(SalaryGroup, Period, taxId, dtData, lstColVal, log, RecordSussces)
+            Catch ex As Exception
+
+            End Try
+        End Function
 #End Region
 #Region "Import Bonus"
 

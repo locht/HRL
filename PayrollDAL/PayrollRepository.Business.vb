@@ -248,8 +248,9 @@ Partial Public Class PayrollRepository
         End Try
     End Function
     'get ds nhan vien thoa dk
-    Public Function GetListEmpBonus(ByVal periodBonus As Decimal, ByVal OrgId As Integer, ByVal IsDissolve As Integer, ByVal log As UserLog,
+    Public Function GetListImportBonus(ByVal obj_sal_id As Integer, ByVal periodBonus As Integer, ByVal OrgId As Integer, ByVal IsDissolve As Integer, ByVal EmployeeId As String, ByVal log As UserLog,
                                         Optional ByVal Sorts As String = "CREATED_DATE DESC") As DataTable
+
         Try
             Using cls As New DataAccess.QueryData
                 cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
@@ -257,8 +258,83 @@ Partial Public Class PayrollRepository
                                            .P_ORGID = OrgId,
                                            .P_ISDISSOLVE = IsDissolve})
             End Using
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_PA_BUSINESS.LOAD_DATA_IMPORT_BONUS",
+                                           New With {.P_USERNAME = log.Username,
+                                                     .P_ORG_ID = OrgId,
+                                                     .P_PERIOD_BONUS = periodBonus,
+                                                     .P_OBJ_SAL_ID = obj_sal_id,
+                                                     .P_EMPLOYEE_ID = EmployeeId,
+                                                     .P_CUR = cls.OUT_CURSOR})
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+            Throw ex
+        End Try
+    End Function
+    'IMPORT BONUS
+    Public Function SaveLstImportBONUS(ByVal SalaryGroup As Decimal, ByVal Period As Decimal, ByVal taxId As Decimal, ByVal dtData As DataTable, ByVal lstColVal As List(Of String), ByVal log As UserLog, ByRef RecordSussces As Integer) As Boolean
+        Try
+            Using conMng As New DataAccess.ConnectionManager
+                Using conn As New OracleConnection(conMng.GetConnectionString())
+                    Dim cmd As New OracleCommand
+                    Dim sqlInsert = lstColVal.Aggregate(Function(cur, [next]) cur & "," & [next])
+                    Dim sqlInsert_Temp As String
+                    conn.Open()
+                    cmd.Connection = conn
+                    cmd.Transaction = cmd.Connection.BeginTransaction()
+                    RecordSussces = 0
+                    For Each dr As DataRow In dtData.Rows
+                        If dr("ID").ToString() Is DBNull.Value OrElse dr("ID").ToString() = "" Then
+                            Continue For
+                        End If
+                        sqlInsert_Temp = "," & sqlInsert & ","
+                        Dim sqlInsertVal = ""
+                        For Each parm As String In lstColVal
+                            If Not dr(parm).ToString Is DBNull.Value AndAlso dr(parm).ToString <> "" Then
+                                If Not Integer.TryParse(dr(parm).ToString(), 1) Then
+                                    sqlInsertVal &= "'" & dr(parm).ToString.Replace(".", Nothing).Replace(",", ".") & "',"
+                                Else
+                                    sqlInsertVal &= dr(parm).ToString & ","
+                                End If
+                            Else
+                                sqlInsert_Temp = sqlInsert_Temp.Replace("," & parm & ",", ",")
+                            End If
+                        Next
+                        If sqlInsertVal <> "" Then
+                            sqlInsertVal = sqlInsertVal.Remove(sqlInsertVal.Length - 1, 1)
+                        End If
+                        If sqlInsert_Temp = "," Then
+                            Continue For
+                        End If
+                        If sqlInsert_Temp <> "" Then
+                            sqlInsert_Temp = sqlInsert_Temp.Remove(0, 1)
+                            sqlInsert_Temp = sqlInsert_Temp.Remove(sqlInsert_Temp.Length - 1, 1)
+                        End If
+                        cmd.CommandText = "PKG_PA_BUSINESS.IMPORT_BONUS"
+                        cmd.CommandType = CommandType.StoredProcedure
+                        cmd.Parameters.Clear()
+                        cmd.Parameters.Add("P_SALARY_GROUP_ID", SalaryGroup).Value = SalaryGroup
+                        cmd.Parameters.Add("P_PERIOD_SALARY_ID", Period).Value = Period
+                        cmd.Parameters.Add("P_EMPLOYEE_ID", dr("ID"))
+                        cmd.Parameters.Add("P_PERIOD_BONUS", taxId).Value = taxId
+                        cmd.Parameters.Add("P_CREATED_USER", log.Username)
+                        cmd.Parameters.Add("P_CREATED_LOG", log.Ip)
+                        cmd.Parameters.Add("P_LISTCOL", sqlInsert_Temp)
+                        cmd.Parameters.Add("P_LISTVAL", sqlInsertVal)
 
-
+                        Dim r As Integer = 0
+                        r = cmd.ExecuteNonQuery()
+                        RecordSussces += 1
+                    Next
+                    cmd.Transaction.Commit()
+                    cmd.Dispose()
+                    conn.Close()
+                    conn.Dispose()
+                End Using
+            End Using
+            Return True
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
             Throw ex

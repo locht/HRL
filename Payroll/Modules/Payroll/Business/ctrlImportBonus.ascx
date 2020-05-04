@@ -74,16 +74,16 @@
                             <ClientSettings EnableRowHoverStyle="true">
                                 <Selecting AllowRowSelect="true" />
                             </ClientSettings>
-                            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,EMPLOYEE_CODE,FULLNAME_VN,ORG_NAME,TITLE_NAME">
+                            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,EMPLOYEE_CODE,FULLNAME_VN,ORG_NAME,JOB_NAME">
                                 <Columns>
                                     <tlk:GridBoundColumn HeaderStyle-Width="100px" HeaderText="<%$ Translate: Mã nhân viên %>"
                                         DataField="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" />
                                     <tlk:GridBoundColumn HeaderStyle-Width="150px" HeaderText="<%$ Translate: Họ và tên %>"
                                         DataField="FULLNAME_VN" SortExpression="FULLNAME_VN" UniqueName="FULLNAME_VN" />
-                                    <tlk:GridBoundColumn HeaderStyle-Width="200px" HeaderText="<%$ Translate: Chức danh %>"
-                                        DataField="TITLE_NAME" SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
-                                    <tlk:GridBoundColumn HeaderStyle-Width="200px" HeaderText="<%$ Translate: Đơn vị %>"
+                                      <tlk:GridBoundColumn HeaderStyle-Width="200px" HeaderText="<%$ Translate: Đơn vị %>"
                                         DataField="ORG_NAME" SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
+                                    <tlk:GridBoundColumn HeaderStyle-Width="150px" HeaderText="<%$ Translate: Vị trí công việc %>"
+                                        DataField="JOB_NAME" SortExpression="JOB_NAME" UniqueName="JOB_NAME" />
                                 </Columns>
                             </MasterTableView>
                         </tlk:RadGrid>

@@ -273,7 +273,7 @@ Public Class ctrlImportBonus
                 Exit Sub
             End If
 
-            If rep.SaveImport(Utilities.ObjToDecima(cboSalaryType.SelectedValue), Utilities.ObjToDecima(cboPeriod.SelectedValue), vData, stringKey, RecordSussces) Then
+            If rep.SaveLstImportBONUS(Utilities.ObjToDecima((13)), 0, Utilities.ObjToDecima(cboPeriod.SelectedValue), vData, stringKey, RecordSussces) Then
                 ShowMessage("Lưu dữ liệu thành công " & RecordSussces & " bản ghi.", NotifyType.Success)
             Else
                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
@@ -372,10 +372,10 @@ Public Class ctrlImportBonus
                     Next
                     Session("IMPORTSALARY_COLNAME") = dtColName
                     Using rep As New PayrollRepository
-                        Dim dt = rep.GetImportSalary(Utilities.ObjToInt(cboSalaryType.SelectedValue), Utilities.ObjToInt(cboPeriod.SelectedValue), Utilities.ObjToInt(ctrlOrg.CurrentValue), ctrlOrg.IsDissolve, Utilities.ObjToString(rtxtEmployee.Text))
+                        Dim dt = rep.GetListImportBonus(Utilities.ObjToInt((13)), Utilities.ObjToInt(cboPeriod.SelectedValue), Utilities.ObjToInt(ctrlOrg.CurrentValue), ctrlOrg.IsDissolve, Utilities.ObjToString(rtxtEmployee.Text))
                         Session("IMPORTSALARY_DATACOL") = dt
                     End Using
-                    ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_ImportSalary')", True)
+                    ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_ImportBonus')", True)
 
                 Case CommonMessage.TOOLBARITEM_IMPORT
                     ctrlUpload.Show()
@@ -562,11 +562,11 @@ Public Class ctrlImportBonus
             Dim TotalRow As Decimal = 0
 
             If Sorts Is Nothing Then
-                vData = New DataTable
-                'vData = rep.GetImportSalary(Utilities.ObjToInt(cboSalaryType.SelectedValue), Utilities.ObjToInt(cboPeriod.SelectedValue), Utilities.ObjToInt(ctrlOrg.CurrentValue), ctrlOrg.IsDissolve, Utilities.ObjToString(rtxtEmployee.Text))
+                ' vData = New DataTable
+                vData = rep.GetListImportBonus(Utilities.ObjToInt((13)), Utilities.ObjToInt(cboPeriod.SelectedValue), Utilities.ObjToInt(ctrlOrg.CurrentValue), ctrlOrg.IsDissolve, Utilities.ObjToString(rtxtEmployee.Text))
             Else
-                vData = New DataTable
-                ' vData = rep.GetImportSalary(Utilities.ObjToInt(cboSalaryType.SelectedValue), Utilities.ObjToInt(cboPeriod.SelectedValue), Utilities.ObjToInt(ctrlOrg.CurrentValue), ctrlOrg.IsDissolve, Utilities.ObjToString(rtxtEmployee.Text), Sorts)
+                'vData = New DataTable
+                vData = rep.GetListImportBonus(Utilities.ObjToInt((13)), Utilities.ObjToInt(cboPeriod.SelectedValue), Utilities.ObjToInt(ctrlOrg.CurrentValue), ctrlOrg.IsDissolve, Utilities.ObjToString(rtxtEmployee.Text), Sorts)
             End If
 
             rgData.VirtualItemCount = Utilities.ObjToInt(vData.Rows.Count)
@@ -643,7 +643,7 @@ Public Class ctrlImportBonus
         Dim startTime As DateTime = DateTime.UtcNow
 
         Try
-            Dim listcol() As String = {"cbStatus", "EMPLOYEE_CODE", "FULLNAME_VN", "ORG_NAME", "TITLE_NAME"}
+            Dim listcol() As String = {"cbStatus", "EMPLOYEE_CODE", "FULLNAME_VN", "ORG_NAME", "JOB_NAME"}
             Dim i As Integer = 0
 
             While (i < rgData.Columns.Count)
@@ -660,7 +660,7 @@ Public Class ctrlImportBonus
             stringKey.Add("EMPLOYEE_CODE")
             stringKey.Add("FULLNAME_VN")
             stringKey.Add("ORG_NAME")
-            stringKey.Add("TITLE_NAME")
+            stringKey.Add("JOB_NAME")
 
             For Each node As RadTreeNode In ctrlListSalary.CheckedNodes
                 If node.Value = "NULL" Or node.Value = "0" Then Continue For
