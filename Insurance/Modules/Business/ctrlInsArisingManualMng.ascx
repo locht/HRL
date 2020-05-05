@@ -87,7 +87,7 @@
                     <PagerStyle AlwaysVisible="true" Mode="NextPrevAndNumeric" />
                     <MasterTableView CommandItemDisplay="None" DataKeyNames="ID" ClientDataKeyNames="ID,EMPLOYEE_ID,SI,HI,UI,BIRTH_DATE,PLACE_OF_BIRTH_NAME,ID_NO,ID_DATE,POSITION_NAME,INS_ORG_NAME,EMPLOYEE_CODE,EMPID,FULL_NAME,DEP_NAME,INS_ORG_ID,INS_ARISING_TYPE_ID,SALARY_PRE_PERIOD,SALARY_NOW_PERIOD,FROM_HEALTH_INS_CARD,EFFECTIVE_DATE,DECLARE_DATE,ARISING_FROM_MONTH,ARISING_TO_MONTH,NOTE,SOCIAL_NOTE,HEALTH_NUMBER,HEALTH_STATUS,HEALTH_EFFECT_FROM_DATE,HEALTH_EFFECT_TO_DATE,HEALTH_AREA_INS_ID,HEALTH_RECEIVE_DATE,HEALTH_RECEIVER,HEALTH_RETURN_DATE,UNEMP_FROM_MOTH,UNEMP_TO_MONTH,UNEMP_REGISTER_MONTH,R_FROM,O_FROM,R_TO,O_TO,R_SI,O_SI,R_HI,O_HI,R_UI,O_UI,A_FROM,A_TO,A_SI,A_HI">
                         <Columns>
-                            <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>    
                             <tlk:GridBoundColumn HeaderText="ID" DataField="ID" UniqueName="ID"
@@ -100,24 +100,6 @@
                                 UniqueName="DEP_NAME" SortExpression="DEP_NAME" HeaderStyle-Width="150px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />
                             <tlk:GridBoundColumn HeaderText="Chức danh" DataField="POSITION_NAME"
                                 UniqueName="POSITION_NAME" HeaderStyle-Width="160px" SortExpression="POSITION_NAME" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />
-                            <tlk:GridBoundColumn HeaderText="CMND" DataField="ID_NO" UniqueName="ID_NO"
-                                SortExpression="ID_NO" HeaderStyle-Width="80px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />
-                            <tlk:GridBoundColumn HeaderText="Nơi cấp" DataField="ID_PLACE_NAME" UniqueName="ID_PLACE_NAME"
-                                SortExpression="ID_PLACE_NAME" HeaderStyle-Width="150px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />
-                            <tlk:GridBoundColumn HeaderText="Ngày cấp" DataField="ID_DATE" UniqueName="ID_DATE" DataFormatString="{0:dd/MM/yyyy}"
-                                SortExpression="ID_DATE" HeaderStyle-Width="80px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" />      
-                            <tlk:GridBoundColumn HeaderText="Ngày sinh" DataField="BIRTH_DATE" UniqueName="BIRTH_DATE" DataFormatString="{0:dd/MM/yyyy}"
-                                SortExpression="BIRTH_DATE" HeaderStyle-Width="80px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" />
-                            <tlk:GridBoundColumn HeaderText="Nơi sinh" DataField="PLACE_OF_BIRTH_NAME"
-                                UniqueName="PLACE_OF_BIRTH_NAME" SortExpression="PLACE_OF_BIRTH_NAME" HeaderStyle-Width="150px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />                     
-                            <tlk:GridBoundColumn HeaderText="INS_ORG_ID" DataField="INS_ORG_ID"
-                                UniqueName="INS_ORG_ID" SortExpression="INS_ORG_ID" Visible="false" />
-                            <tlk:GridBoundColumn HeaderText="INS_ARISING_TYPE_ID" DataField="INS_ARISING_TYPE_ID"
-                                UniqueName="INS_ARISING_TYPE_ID" SortExpression="INS_ARISING_TYPE_ID" Visible="false" />
-                            <tlk:GridBoundColumn HeaderText="Đơn vị BH" DataField="INS_ORG_NAME"
-                                UniqueName="INS_ORG_NAME" SortExpression="INS_ORG_NAME" HeaderStyle-Width="200px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />
-                            <tlk:GridBoundColumn HeaderText="Loại biến động" DataField="ARISING_TYPE_NM"
-                                UniqueName="ARISING_TYPE_NM" SortExpression="ARISING_TYPE_NM" HeaderStyle-Width="180px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />
                             <tlk:GridCheckBoxColumn HeaderText="BHXH" DataField="SI_CHK" DataType="System.Boolean" FilterControlWidth="20px"   
                                 SortExpression="SI_CHK" UniqueName="SI_CHK" >
                                 <HeaderStyle HorizontalAlign="Center" Width="50px"/>
@@ -129,22 +111,28 @@
                             <tlk:GridCheckBoxColumn HeaderText="BHTN" DataField="UI_CHK" DataType="System.Boolean" FilterControlWidth="20px"   
                                 SortExpression="UI_CHK" UniqueName="UI_CHK" >
                                 <HeaderStyle HorizontalAlign="Center" Width="50px"/>
-                            </tlk:GridCheckBoxColumn>     
+                            </tlk:GridCheckBoxColumn>  
+                             <tlk:GridCheckBoxColumn HeaderText="BHTNLĐ – BNN" DataField="BHTNLDBNN_CHK" DataType="System.Boolean" FilterControlWidth="20px"   
+                                SortExpression="BHTNLDBNN_CHK" UniqueName="BHTNLDBNN_CHK" >
+                                <HeaderStyle HorizontalAlign="Center" Width="50px"/>
+                            </tlk:GridCheckBoxColumn>  
+                             <tlk:GridBoundColumn HeaderText="Đơn vị BH" DataField="INS_ORG_NAME"
+                                UniqueName="INS_ORG_NAME" SortExpression="INS_ORG_NAME" HeaderStyle-Width="200px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />
+                            <tlk:GridBoundColumn HeaderText="Loại biến động" DataField="ARISING_TYPE_NM"
+                                UniqueName="ARISING_TYPE_NM" SortExpression="ARISING_TYPE_NM" HeaderStyle-Width="180px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />
+                            <tlk:GridBoundColumn HeaderText="Tháng biến động" DataField="ARISING_FROM_MONTH" UniqueName="ARISING_FROM_MONTH" DataFormatString="{0:MM/yyyy}"
+                                SortExpression="ARISING_FROM_MONTH" HeaderStyle-Width="80px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" />
+                            <tlk:GridBoundColumn HeaderText="Tháng khai báo" DataField="DECLARE_DATE" UniqueName="DECLARE_DATE" DataFormatString="{0:MM/yyyy}"
+                                SortExpression="DECLARE_DATE" HeaderStyle-Width="80px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" />
                             <tlk:GridNumericColumn HeaderText="Lương kỳ trước" DataFormatString="{0:###,##0.##}"
                                 DataField="SALARY_PRE_PERIOD" UniqueName="SALARY_PRE_PERIOD" SortExpression="SALARY_PRE_PERIOD" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" />
                             <tlk:GridNumericColumn HeaderText="Lương kỳ này" DataFormatString="{0:###,##0.##}"
                                 DataField="SALARY_NOW_PERIOD" UniqueName="SALARY_NOW_PERIOD" SortExpression="SALARY_NOW_PERIOD" HeaderStyle-Width="90px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" />                           
-                            <tlk:GridBoundColumn HeaderText="Ngày hiệu lực" DataField="EFFECTIVE_DATE"
-                                DataFormatString="{0:dd/MM/yyyy}" UniqueName="EFFECTIVE_DATE" SortExpression="EFFECTIVE_DATE" HeaderStyle-Width="90px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" />
-                            <tlk:GridBoundColumn HeaderText="Đợt khai báo" DataFormatString="{0:dd/MM/yyyy}" DataField="DECLARE_DATE" UniqueName="DECLARE_DATE" SortExpression="DECLARE_DATE" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" />
-                            <tlk:GridBoundColumn HeaderText="Từ tháng(Khai báo)" DataField="ARISING_FROM_MONTH" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
-                                UniqueName="ARISING_FROM_MONTH" SortExpression="ARISING_FROM_MONTH" DataFormatString="{0:MM/yyyy}"/>
-                            <tlk:GridBoundColumn HeaderText="Tới tháng(Khai báo)" DataField="ARISING_TO_MONTH" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
-                                UniqueName="ARISING_TO_MONTH" SortExpression="ARISING_TO_MONTH" DataFormatString="{0:MM/yyyy}"/>
-                            <tlk:GridBoundColumn HeaderText="Ngày trả thẻ" DataField="HEALTH_RETURN_DATE" DataFormatString="{0:dd/MM/yyyy}" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
-                                UniqueName="HEALTH_RETURN_DATE" SortExpression="HEALTH_RETURN_DATE" HeaderStyle-Width="100px"/>   
-                            <tlk:GridBoundColumn HeaderText="NOTE" DataField="NOTE" UniqueName="NOTE" SortExpression="NOTE" HeaderStyle-Width="180px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />                                                                                                                                                            
-                            <tlk:GridBoundColumn HeaderText="Từ tháng(truy thu BH)" DataField="A_FROM" UniqueName="A_FROM" DataFormatString="{0:MM/yyyy}" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
+                            <tlk:GridBoundColumn HeaderText="Ngày trả sổ BHXH" DataField="SOCIAL_RETURN_DATE" DataFormatString="{0:dd/MM/yyyy}" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
+                                UniqueName="SOCIAL_RETURN_DATE" SortExpression="SOCIAL_RETURN_DATE" HeaderStyle-Width="100px"/> 
+                             <tlk:GridBoundColumn HeaderText="Ngày trả thẻ BHYT" DataField="HEALTH_RETURN_DATE" DataFormatString="{0:dd/MM/yyyy}" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
+                                UniqueName="HEALTH_RETURN_DATE" SortExpression="HEALTH_RETURN_DATE" HeaderStyle-Width="100px"/>
+                             <tlk:GridBoundColumn HeaderText="Từ tháng(truy thu BH)" DataField="A_FROM" UniqueName="A_FROM" DataFormatString="{0:MM/yyyy}" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
                                 SortExpression="A_FROM"/>
                             <tlk:GridBoundColumn HeaderText="Tới tháng(truy thu BH)" DataField="A_TO" UniqueName="A_TO" DataFormatString="{0:MM/yyyy}" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
                                 SortExpression="A_TO"/>
@@ -154,6 +142,8 @@
                                 SortExpression="A_HI"/>
                             <tlk:GridNumericColumn HeaderText="BHTN" DataFormatString="{0:###,##0.##}" DataField="A_UI" UniqueName="A_UI" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
                                 SortExpression="A_UI"/>
+                            <tlk:GridNumericColumn HeaderText="BHTNLĐ – BNN" DataFormatString="{0:###,##0.##}" DataField="A_TNLD_BNN" UniqueName="A_TNLD_BNN" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
+                                SortExpression="A_TNLD_BNN"/>
                             <tlk:GridBoundColumn HeaderText="Từ tháng(thoái thu BH)" DataField="R_FROM" UniqueName="R_FROM" DataFormatString="{0:MM/yyyy}" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
                                 SortExpression="R_FROM"/>                            
                             <tlk:GridBoundColumn HeaderText="Tới tháng(thoái thu BH)" DataField="R_TO" UniqueName="R_TO" DataFormatString="{0:MM/yyyy}" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
@@ -164,6 +154,33 @@
                                 SortExpression="R_HI"/>                            
                             <tlk:GridNumericColumn HeaderText="BHTN" DataFormatString="{0:###,##0.##}" DataField="R_UI" UniqueName="R_UI" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
                                 SortExpression="R_UI"/>
+                            <tlk:GridNumericColumn HeaderText="BHTNLĐ – BNN" DataFormatString="{0:###,##0.##}" DataField="R_TNLD_BNN" UniqueName="R_TNLD_BNN" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
+                                SortExpression="R_TNLD_BNN"/>
+                             <tlk:GridBoundColumn HeaderText="Ngày sinh" DataField="BIRTH_DATE" UniqueName="BIRTH_DATE" DataFormatString="{0:dd/MM/yyyy}"
+                                SortExpression="BIRTH_DATE" HeaderStyle-Width="80px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" />
+                             <tlk:GridBoundColumn HeaderText="Nơi sinh" DataField="PLACE_OF_BIRTH_NAME"
+                                UniqueName="PLACE_OF_BIRTH_NAME" SortExpression="PLACE_OF_BIRTH_NAME" HeaderStyle-Width="150px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />                     
+                            <tlk:GridBoundColumn HeaderText="CMND" DataField="ID_NO" UniqueName="ID_NO"
+                                SortExpression="ID_NO" HeaderStyle-Width="80px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />
+                            <tlk:GridBoundColumn HeaderText="Ngày cấp" DataField="ID_DATE" UniqueName="ID_DATE" DataFormatString="{0:dd/MM/yyyy}"
+                                SortExpression="ID_DATE" HeaderStyle-Width="80px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" />      
+                           <tlk:GridBoundColumn HeaderText="Nơi cấp" DataField="ID_PLACE_NAME" UniqueName="ID_PLACE_NAME"
+                                SortExpression="ID_PLACE_NAME" HeaderStyle-Width="150px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />
+                           <tlk:GridBoundColumn HeaderText="INS_ORG_ID" DataField="INS_ORG_ID"
+                                UniqueName="INS_ORG_ID" SortExpression="INS_ORG_ID" Visible="false" />
+                            <tlk:GridBoundColumn HeaderText="INS_ARISING_TYPE_ID" DataField="INS_ARISING_TYPE_ID"
+                                UniqueName="INS_ARISING_TYPE_ID" SortExpression="INS_ARISING_TYPE_ID" Visible="false" />
+                          
+<%--                           <tlk:GridBoundColumn HeaderText="Ngày hiệu lực" DataField="EFFECTIVE_DATE"
+                                DataFormatString="{0:dd/MM/yyyy}" UniqueName="EFFECTIVE_DATE" SortExpression="EFFECTIVE_DATE" HeaderStyle-Width="90px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" />
+                            <tlk:GridBoundColumn HeaderText="Đợt khai báo" DataFormatString="{0:dd/MM/yyyy}" DataField="DECLARE_DATE" UniqueName="DECLARE_DATE" SortExpression="DECLARE_DATE" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" />
+                            <tlk:GridBoundColumn HeaderText="Từ tháng(Khai báo)" DataField="ARISING_FROM_MONTH" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
+                                UniqueName="ARISING_FROM_MONTH" SortExpression="ARISING_FROM_MONTH" DataFormatString="{0:MM/yyyy}"/>
+                            <tlk:GridBoundColumn HeaderText="Tới tháng(Khai báo)" DataField="ARISING_TO_MONTH" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
+                                UniqueName="ARISING_TO_MONTH" SortExpression="ARISING_TO_MONTH" DataFormatString="{0:MM/yyyy}"/>
+                              
+                            <tlk:GridBoundColumn HeaderText="NOTE" DataField="NOTE" UniqueName="NOTE" SortExpression="NOTE" HeaderStyle-Width="180px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />                                                                                                                                                            
+                           
                             <tlk:GridBoundColumn HeaderText="Từ tháng(bổ sung BH)" DataField="O_FROM" UniqueName="O_FROM" DataFormatString="{0:MM/yyyy}" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
                                 SortExpression="O_FROM"/>
                             <tlk:GridBoundColumn HeaderText="Tới tháng(bổ sung BH)" DataField="O_TO" UniqueName="O_TO" DataFormatString="{0:MM/yyyy}" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 

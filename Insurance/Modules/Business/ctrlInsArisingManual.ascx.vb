@@ -476,7 +476,7 @@ Public Class ctrlInsArisingManual
             FillRadCombobox(ddlINS_ARISING_TYPE_ID, dtData, "ARISING_NAME", "ID", False)
 
             Dim lstSource As DataTable = rep.GetInsListInsuranceByUsername(Common.Common.GetUsername(), False) 'Don vi bao hiem
-            FillRadCombobox(ddlINS_ORG_ID, lstSource, "CODE", "ID", False)
+            FillRadCombobox(ddlINS_ORG_ID, lstSource, "NAME", "ID", False)
         Catch ex As Exception
             Throw ex
         End Try
