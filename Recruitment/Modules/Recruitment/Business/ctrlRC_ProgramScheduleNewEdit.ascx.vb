@@ -557,8 +557,8 @@ Public Class ctrlRC_ProgramScheduleNewEdit
             titleMail = "THƯ MỜI PHỎNG VẤN"
             'mailCC = If(dataMail.Rows(0)("MAIL_CC").ToString <> "", dataMail.Rows(0)("MAIL_CC").ToString, Nothing)
             'mailCC = If(LogHelper.CurrentUser.EMAIL IsNot Nothing, LogHelper.CurrentUser.EMAIL.ToString, Nothing)
-            'mail = store.Get_Email_Employee(If(LogHelper.CurrentUser.EMPLOYEE_ID IsNot Nothing, LogHelper.CurrentUser.EMPLOYEE_ID.ToString, Nothing))
-            dtValues = store.GET_INFO_CADIDATE_RCPS_ID(hidID.Value, ID)
+            mail = store.Get_Email_Employee(If(LogHelper.CurrentUser.EMPLOYEE_ID IsNot Nothing, LogHelper.CurrentUser.EMPLOYEE_ID.ToString, Nothing))
+            dtValues = store.GET_INFO_CADIDATE(item.GetDataKeyValue("ID"))
             Dim values(dtValues.Columns.Count) As String
             If dtValues.Rows.Count > 0 Then
                 For i As Integer = 0 To dtValues.Columns.Count - 1
@@ -583,23 +583,23 @@ Public Class ctrlRC_ProgramScheduleNewEdit
     End Sub
 
     Private Sub btnInterviewList_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnInterviewList.Click
-        Dim template_URL As String = String.Format("~/ReportTemplates/Recruitment/Report/Danh sach phong van.xlxs")
-        Dim fileName As String = String.Format("Danh sách phỏng vấn - {0}", lblJobName.Text)
-        Dim _error As String = ""
-        'Dim dt = lstCanSchedule.ToTable
-        'Dim dt As New DataTable()
-        'dt = DirectCast(rgCanSchedule.DataSource, DataTable)
-        'dt.TableName = "Data"
-        'Dim ds As New DataSet
-        'ds.Tables.Add(dt)
+        Try
 
-        'tabCandidateSchedule = store.GET_PROGRAM_SCHCEDULE_LIST(Decimal.Parse(hidProgramID.Value), Decimal.Parse(hidID.Value))
+            Dim tempPath = "~/ReportTemplates//Recruitment//Report//Template_Candidate_List.xls"
+            Dim dsData As DataSet = store.GET_SCHCEDULE_CAN_LIST_EXPORT(Decimal.Parse(hidProgramID.Value), Decimal.Parse(hidID.Value))
+            If File.Exists(System.IO.Path.Combine(Server.MapPath(tempPath))) Then
+                Using xls As New AsposeExcelCommon
+                    Dim bCheck = xls.ExportExcelTemplate(
+                      System.IO.Path.Combine(Server.MapPath(tempPath)), "Danh sách ứng viên đã đặt lịch" & Format(Date.Now, "yyyyMMdd"), dsData, Nothing, Response)
 
-        Using xls As New ExcelCommon
-            'If dt.Rows.Count > 0 Then
-            rgCanSchedule.ExportExcel(Server, Response, tabCandidateSchedule, "data")
-            'End If
-        End Using
+                End Using
+            Else
+                ShowMessage(Translate("Template không tồn tại"), Utilities.NotifyType.Error)
+                Exit Sub
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub btnRecLetter_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnRecLetter.Click
@@ -744,7 +744,7 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                     newRow1("ID") = item.GetDataKeyValue("ID")
                     newRow1("CANDIDATE_CODE") = item.GetDataKeyValue("CANDIDATE_CODE")
                     newRow1("FULLNAME_VN") = item.GetDataKeyValue("FULLNAME_VN")
-                    newRow1("BIRTH_DATE") = If(Not IsDBNull(item.GetDataKeyValue("BIRTH_DATE")), String.Format(ToDate(item.GetDataKeyValue("BIRTH_DATE")), "DD/MM/YYYY"), Nothing)
+                    newRow1("BIRTH_DATE") = String.Format(ToDate(item.GetDataKeyValue("BIRTH_DATE")), "DD/MM/YYYY")
                     newRow1("BIRTH_PROVINCE_NAME") = item.GetDataKeyValue("BIRTH_PROVINCE_NAME")
                     newRow1("PER_EMAIL") = item.GetDataKeyValue("PER_EMAIL")
                     newRow1("ID_NO") = item.GetDataKeyValue("ID_NO")
@@ -780,7 +780,7 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                     newRow1("ID") = item.GetDataKeyValue("ID")
                     newRow1("CANDIDATE_CODE") = item.GetDataKeyValue("CANDIDATE_CODE")
                     newRow1("FULLNAME_VN") = item.GetDataKeyValue("FULLNAME_VN")
-                    newRow1("BIRTH_DATE") = If(Not IsDBNull(item.GetDataKeyValue("BIRTH_DATE")), String.Format(ToDate(item.GetDataKeyValue("BIRTH_DATE")), "DD/MM/YYYY"), Nothing)
+                    newRow1("BIRTH_DATE") = String.Format(ToDate(item.GetDataKeyValue("BIRTH_DATE")), "DD/MM/YYYY")
                     newRow1("BIRTH_PROVINCE_NAME") = item.GetDataKeyValue("BIRTH_PROVINCE_NAME")
                     newRow1("PER_EMAIL") = item.GetDataKeyValue("PER_EMAIL")
                     newRow1("ID_NO") = item.GetDataKeyValue("ID_NO")
