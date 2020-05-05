@@ -82,6 +82,18 @@ Namespace PayrollBusiness.ServiceImplementations
             End Try
         End Function
 #End Region
+#Region "MANAGEMENTBONUS"
+        Public Function GetListManagementBonus(ByVal obj_sal_id As Integer, ByVal periodBonus As Integer, ByVal OrgId As Integer, ByVal IsDissolve As Integer, ByVal EmployeeId As String, ByVal log As UserLog,
+                                      Optional ByVal Sorts As String = "CREATED_DATE DESC") As DataTable Implements ServiceContracts.IPayrollBusiness.GetListManagementBonus
+
+            Try
+                Dim rep As New PayrollRepository
+                Return rep.GetListManagementBonus(obj_sal_id, periodBonus, OrgId, IsDissolve, EmployeeId, log, Sorts)
+            Catch ex As Exception
+
+            End Try
+        End Function
+#End Region
 #Region "Import Bonus"
 
         Public Function GetImportBonus(ByVal Year As Integer, ByVal obj_sal_id As Integer, ByVal PeriodId As Integer, ByVal OrgId As Integer, ByVal IsDissolve As Integer, ByVal log As UserLog,

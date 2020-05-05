@@ -121,7 +121,17 @@ Partial Public Class PayrollRepository
         End Try
     End Function
 #End Region
+#Region "MANAGEMENTBONUS"
+    Public Function GetListManagementBonus(ByVal obj_sal_id As Integer, ByVal periodBonus As Integer, ByVal OrgId As Integer, ByVal IsDissolve As Integer, ByVal EmployeeId As String,
+                                       Optional ByVal Sorts As String = "CREATED_DATE DESC") As DataTable
+        Try
+            Dim rep As New PayrollBusinessClient
+            Return rep.GetListManagementBonus(obj_sal_id, periodBonus, OrgId, IsDissolve, EmployeeId, Me.Log, Sorts)
+        Catch ex As Exception
 
+        End Try
+    End Function
+#End Region
 #Region "Import Salary"
 
     Public Function GetImportSalaryBonus(ByVal Year As Integer, ByVal Obj_sal_id As Integer, ByVal PeriodId As Integer, ByVal OrgId As Integer, ByVal IsDissolve As Integer, Optional ByVal Sorts As String = "CREATED_DATE DESC") As DataTable

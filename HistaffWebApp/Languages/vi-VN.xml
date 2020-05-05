@@ -45350,4 +45350,12 @@ Xin cám ơn!
       <string>Nhóm thưởng</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLMANAGEMENTBONUS</string>
+    </Key>
+    <Value>
+      <string>Quản lý thưởng</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

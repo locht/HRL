@@ -341,6 +341,34 @@ Partial Public Class PayrollRepository
         End Try
     End Function
 #End Region
+#Region "ManagementBonus"
+    'get ds nhan vien thoa dk
+    Public Function GetListManagementBonus(ByVal obj_sal_id As Integer, ByVal periodBonus As Integer, ByVal OrgId As Integer, ByVal IsDissolve As Integer, ByVal EmployeeId As String, ByVal log As UserLog,
+                                        Optional ByVal Sorts As String = "CREATED_DATE DESC") As DataTable
+
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username,
+                                           .P_ORGID = OrgId,
+                                           .P_ISDISSOLVE = IsDissolve})
+            End Using
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_PA_BUSINESS.LOAD_DATA_MANAGEMENT_BONUS",
+                                           New With {.P_USERNAME = log.Username,
+                                                     .P_ORG_ID = OrgId,
+                                                     .P_PERIOD_BONUS = periodBonus,
+                                                     .P_OBJ_SAL_ID = obj_sal_id,
+                                                     .P_EMPLOYEE_ID = EmployeeId,
+                                                     .P_CUR = cls.OUT_CURSOR})
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+            Throw ex
+        End Try
+    End Function
+#End Region
 #Region "Import Bonus"
 
     Public Function GetImportBonus(ByVal Year As Integer, ByVal obj_sal_id As Integer, ByVal PeriodId As Integer, ByVal OrgId As Integer, ByVal IsDissolve As Integer, ByVal log As UserLog,
