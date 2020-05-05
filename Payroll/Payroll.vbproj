@@ -152,6 +152,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <Content Include="Modules\Payroll\Business\ctrlImportBonus.ascx" />
+    <Content Include="Modules\Payroll\Business\ctrlManagementBonus.ascx" />
     <Content Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.ATSetUpBonusDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -376,6 +377,13 @@
     </Compile>
     <Compile Include="Modules\Payroll\Business\ctrlImportBonus.ascx.vb">
       <DependentUpon>ctrlImportBonus.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Payroll\Business\ctrlManagementBonus.ascx.designer.vb">
+      <DependentUpon>ctrlManagementBonus.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Payroll\Business\ctrlManagementBonus.ascx.vb">
+      <DependentUpon>ctrlManagementBonus.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Payroll\DashboardPL\ctrlDashboardPlanning.ascx.designer.vb">
