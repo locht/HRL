@@ -1149,6 +1149,7 @@ Partial Class ProfileRepository
                 objEmpCVData.IS_ATVS = objEmpCV.IS_ATVS
                 objEmpCVData.WORK_HN = objEmpCV.WORK_HN
                 objEmpCVData.WORK_HN_DATE = objEmpCV.WORK_HN_DATE
+                objEmpCVData.WORK_HN_EXPIRE = objEmpCV.WORK_HN_EXPIRE
                 objEmpCVData.WORK_HN_PLACE = objEmpCV.WORK_HN_PLACE
                 objEmpCVData.TNCN_NO = objEmpCV.TNCN_NO
                 objEmpCVData.IS_TRANSFER = objEmpCV.IS_TRANSFER
