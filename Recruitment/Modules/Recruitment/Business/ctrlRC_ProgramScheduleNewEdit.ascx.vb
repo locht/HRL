@@ -557,8 +557,8 @@ Public Class ctrlRC_ProgramScheduleNewEdit
             titleMail = "THƯ MỜI PHỎNG VẤN"
             'mailCC = If(dataMail.Rows(0)("MAIL_CC").ToString <> "", dataMail.Rows(0)("MAIL_CC").ToString, Nothing)
             'mailCC = If(LogHelper.CurrentUser.EMAIL IsNot Nothing, LogHelper.CurrentUser.EMAIL.ToString, Nothing)
-            mail = store.Get_Email_Employee(If(LogHelper.CurrentUser.EMPLOYEE_ID IsNot Nothing, LogHelper.CurrentUser.EMPLOYEE_ID.ToString, Nothing))
-            dtValues = store.GET_INFO_CADIDATE(item.GetDataKeyValue("ID"))
+            'mail = store.Get_Email_Employee(If(LogHelper.CurrentUser.EMPLOYEE_ID IsNot Nothing, LogHelper.CurrentUser.EMPLOYEE_ID.ToString, Nothing))
+            dtValues = store.GET_INFO_CADIDATE_RCPS_ID(hidID.Value, ID)
             Dim values(dtValues.Columns.Count) As String
             If dtValues.Rows.Count > 0 Then
                 For i As Integer = 0 To dtValues.Columns.Count - 1
@@ -744,7 +744,7 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                     newRow1("ID") = item.GetDataKeyValue("ID")
                     newRow1("CANDIDATE_CODE") = item.GetDataKeyValue("CANDIDATE_CODE")
                     newRow1("FULLNAME_VN") = item.GetDataKeyValue("FULLNAME_VN")
-                    newRow1("BIRTH_DATE") = String.Format(ToDate(item.GetDataKeyValue("BIRTH_DATE")), "DD/MM/YYYY")
+                    newRow1("BIRTH_DATE") = If(Not IsDBNull(item.GetDataKeyValue("BIRTH_DATE")), String.Format(ToDate(item.GetDataKeyValue("BIRTH_DATE")), "DD/MM/YYYY"), Nothing)
                     newRow1("BIRTH_PROVINCE_NAME") = item.GetDataKeyValue("BIRTH_PROVINCE_NAME")
                     newRow1("PER_EMAIL") = item.GetDataKeyValue("PER_EMAIL")
                     newRow1("ID_NO") = item.GetDataKeyValue("ID_NO")
@@ -780,7 +780,7 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                     newRow1("ID") = item.GetDataKeyValue("ID")
                     newRow1("CANDIDATE_CODE") = item.GetDataKeyValue("CANDIDATE_CODE")
                     newRow1("FULLNAME_VN") = item.GetDataKeyValue("FULLNAME_VN")
-                    newRow1("BIRTH_DATE") = String.Format(ToDate(item.GetDataKeyValue("BIRTH_DATE")), "DD/MM/YYYY")
+                    newRow1("BIRTH_DATE") = If(Not IsDBNull(item.GetDataKeyValue("BIRTH_DATE")), String.Format(ToDate(item.GetDataKeyValue("BIRTH_DATE")), "DD/MM/YYYY"), Nothing)
                     newRow1("BIRTH_PROVINCE_NAME") = item.GetDataKeyValue("BIRTH_PROVINCE_NAME")
                     newRow1("PER_EMAIL") = item.GetDataKeyValue("PER_EMAIL")
                     newRow1("ID_NO") = item.GetDataKeyValue("ID_NO")

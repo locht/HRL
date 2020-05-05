@@ -117,6 +117,8 @@ Public Class Export
                         Template_ImportQuyThuongHQCV()
                     Case "Template_ImportThueTNCN"
                         Template_ImportQTThueTNCN()
+                    Case "Template_ImportBonus"
+                        Template_ImportBonus()
                     Case "Template_ImportSalary_FundMapping"
                         Template_ImportSalary_FundMapping()
                     Case "HU_ANNUALLEAVE_PLANS_ERROR"
@@ -1063,6 +1065,16 @@ Public Class Export
             Dim dtColName = Session("IMPORTSALARY_COLNAME")
             Dim dtData = Session("IMPORTSALARY_DATACOL")
             ExportTemplateWithDataCol1("Payroll\Business\TEMP_IMPORT_SALARY_TNCN.xlsx", dtData, dtColName, "TEMP_IMPORTTHUETNCN" & Format(Date.Now, "yyyyMMdd"))
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub Template_ImportBonus()
+        Try
+            Dim dtColName = Session("IMPORTSALARY_COLNAME")
+            Dim dtData = Session("IMPORTSALARY_DATACOL")
+            ExportTemplateWithDataCol1("Payroll\Business\TEMP_IMPORT_SALARY_BONUS.xlsx", dtData, dtColName, "TEMP_IMPORTBONUS" & Format(Date.Now, "yyyyMMdd"))
 
         Catch ex As Exception
             Throw ex

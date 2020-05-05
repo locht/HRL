@@ -45334,4 +45334,20 @@ Xin cám ơn!
       <string>Ký hiệu chấm công</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLIMPORTBONUS</string>
+    </Key>
+    <Value>
+      <string>Import Thưởng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NHÓM THƯỞNG</string>
+    </Key>
+    <Value>
+      <string>Nhóm thưởng</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

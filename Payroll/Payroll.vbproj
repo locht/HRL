@@ -151,6 +151,7 @@
     <None Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.ATPriceLunchDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <Content Include="Modules\Payroll\Business\ctrlImportBonus.ascx" />
     <Content Include="Service References\PayrollBusiness\Payroll.PayrollBusiness.ATSetUpBonusDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -370,6 +371,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Modules\Payroll\Business\ctrlImportBonus.ascx.designer.vb">
+      <DependentUpon>ctrlImportBonus.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Payroll\Business\ctrlImportBonus.ascx.vb">
+      <DependentUpon>ctrlImportBonus.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Modules\Payroll\DashboardPL\ctrlDashboardPlanning.ascx.designer.vb">
       <DependentUpon>ctrlDashboardPlanning.ascx</DependentUpon>
     </Compile>

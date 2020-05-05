@@ -409,6 +409,7 @@
     <Content Include="Modules\Insurance\QuickLaunch-en-US.xml" />
     <Content Include="Modules\Insurance\QuickLaunch-vi-VN.xml" />
     <Content Include="Modules\Insurance\Report\ctrlINS_ReportList.ascx" />
+    <Content Include="Modules\Payroll\Business\ctrlImportBonus.ascx" />
     <Content Include="Modules\Payroll\Business\ctrlActionLogPA.ascx" />
     <Content Include="Modules\Payroll\Business\ctrlAllowance.ascx" />
     <Content Include="Modules\Payroll\Business\ctrlImportLuong.ascx" />
@@ -1490,6 +1491,7 @@
     <Content Include="ReportTemplates\Profile\Import\import_khenthuong1.xls" />
     <Content Include="ReportTemplates\Profile\Import\TEMP_IMPORT_CONTRACT_ERR.xls" />
     <Content Include="ReportTemplates\Payroll\Import\Allowance.xls" />
+    <Content Include="ReportTemplates\Payroll\Business\TEMP_IMPORT_SALARY_BONUS.xlsx" />
     <None Include="ReportTemplates\Recruitment\Import\Candidate_Error.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

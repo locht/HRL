@@ -76,6 +76,52 @@ Partial Public Class PayrollRepository
         End Using
     End Function
 #End Region
+
+#Region "IMPORTBONUS"
+    Public Function GetlistYear() As DataTable
+        Try
+            Dim rep As New PayrollBusinessClient
+            Return rep.GetlistYear()
+        Catch ex As Exception
+
+        End Try
+    End Function
+    Public Function GetListGrBonus(ByVal year As Decimal) As DataTable
+        Try
+            Dim rep As New PayrollBusinessClient
+            Return rep.GetListGrBonus(year)
+        Catch ex As Exception
+
+        End Try
+    End Function
+    Public Function GetGrBonus() As DataTable
+        Try
+            Dim rep As New PayrollBusinessClient
+            Return rep.GetGrBonus()
+        Catch ex As Exception
+
+        End Try
+    End Function
+
+    Public Function GetListImportBonus(ByVal obj_sal_id As Integer, ByVal periodBonus As Integer, ByVal OrgId As Integer, ByVal IsDissolve As Integer, ByVal EmployeeId As String,
+                                       Optional ByVal Sorts As String = "CREATED_DATE DESC") As DataTable
+        Try
+            Dim rep As New PayrollBusinessClient
+            Return rep.GetListImportBonus(obj_sal_id, periodBonus, OrgId, IsDissolve, EmployeeId, Me.Log, Sorts)
+        Catch ex As Exception
+
+        End Try
+    End Function
+    Public Function SaveLstImportBONUS(ByVal SalaryGroup As Decimal, ByVal Period As Decimal, ByVal taxId As Decimal, ByVal dtData As DataTable, ByVal lstColVal As List(Of String), ByRef RecordSussces As Integer) As Boolean
+        Try
+            Dim rep As New PayrollBusinessClient
+            Return rep.SaveLstImportBONUS(SalaryGroup, Period, taxId, dtData, lstColVal, Me.Log, RecordSussces)
+        Catch ex As Exception
+
+        End Try
+    End Function
+#End Region
+
 #Region "Import Salary"
 
     Public Function GetImportSalaryBonus(ByVal Year As Integer, ByVal Obj_sal_id As Integer, ByVal PeriodId As Integer, ByVal OrgId As Integer, ByVal IsDissolve As Integer, Optional ByVal Sorts As String = "CREATED_DATE DESC") As DataTable

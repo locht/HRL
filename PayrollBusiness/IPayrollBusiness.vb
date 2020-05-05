@@ -66,6 +66,19 @@ Namespace PayrollBusiness.ServiceContracts
         Function GetLitsCalculate(ByVal OrgId As Integer, ByVal PeriodId As Integer, ByVal IsDissolve As Integer, ByVal IsLoad As Integer,
                                     ByVal log As UserLog, Optional ByVal Sorts As String = "CREATED_DATE DESC") As DataSet
 #End Region
+#Region "IMPORTBONUS"
+        <OperationContract()>
+        Function GetlistYear() As DataTable
+        <OperationContract()>
+        Function GetListGrBonus(ByVal year As Decimal) As DataTable
+        <OperationContract()>
+        Function GetGrBonus() As DataTable
+        <OperationContract()>
+        Function GetListImportBonus(ByVal obj_sal_id As Integer, ByVal periodBonus As Integer, ByVal OrgId As Integer, ByVal IsDissolve As Integer, ByVal EmployeeId As String, ByVal log As UserLog,
+                                       Optional ByVal Sorts As String = "CREATED_DATE DESC") As DataTable
+        <OperationContract()>
+        Function SaveLstImportBONUS(ByVal SalaryGroup As Decimal, ByVal Period As Decimal, ByVal taxId As Decimal, ByVal dtData As DataTable, ByVal lstColVal As List(Of String), ByVal log As UserLog, ByRef RecordSussces As Integer) As Boolean
+#End Region
 #Region "Import Bonus"
         <OperationContract()>
         Function GetImportBonus(ByVal Year As Integer, ByVal obj_sal_id As Integer, ByVal PeriodId As Integer, ByVal OrgId As Integer, ByVal IsDissolve As Integer, ByVal log As UserLog,

@@ -1990,7 +1990,7 @@ Partial Class RecruitmentRepository
                          .STATUS_US = p.p.STATUS_US,
                          .STATUS_US_NAME = p.s.NAME_VN,
                          .STATUS_ID = p.p.STATUS_ID,
-                         .STATUS_NAME = If(Not p.p.STATUS_ID <> "PONTENTIAL", statusName, p.status.NAME_VN)}) ' p.status.NAME_VN
+                         .STATUS_NAME = p.status.NAME_VN})
 
             If _filter.CANDIDATE_CODE <> "" Then
                 lst = lst.Where(Function(p) p.CANDIDATE_CODE.ToUpper().IndexOf(_filter.CANDIDATE_CODE.ToUpper) >= 0 Or

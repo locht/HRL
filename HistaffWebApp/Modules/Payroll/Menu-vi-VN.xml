@@ -6,6 +6,7 @@
         <Item Value="PAYROLL_CALCULATE" Text="Tính lương" PostBack="True" NavigateUrl="Default.aspx?mid=Common&amp;fid=ctrlPROCESS&amp;programID=PAYROLL_CALCULATE&amp;moduleID=5" CheckPermission="true" />
         <Item Value="TAX_INCOME_CACULATE" Text="Tổng hợp quyết toán thuế TNCN" PostBack="True" NavigateUrl="Default.aspx?mid=Common&amp;fid=ctrlPROCESS&amp;programID=TAX_INCOME_CACULATE&amp;moduleID=5" CheckPermission="true" />
 		    <Item Value="ctrlImportLuong" Text="Import lương" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlImportLuong&amp;group=Business" CheckPermission="true" />
+        <Item Value="ctrlImportBonus" Text="Import thưởng" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlImportBonus&amp;group=Business" CheckPermission="true" />
         <Item Value="ctrlAllowance" Text="Quản lý phụ cấp" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlAllowance&amp;group=Business" CheckPermission="true" />
         <Item Value="ctrlImportThueTNCN" Text="Import quyết toán thuế TNCN" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlImportThueTNCN&amp;group=Business" CheckPermission="true" />
         <Item Value="ctrlSendMailLuong" Text="Gửi mail phiếu lương" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlSendMailLuong&amp;group=Business" CheckPermission="true" />
