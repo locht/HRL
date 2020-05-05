@@ -678,7 +678,7 @@ Public Class ctrlImportBonus
             For Each node As RadTreeNode In ctrlListSalary.CheckedNodes
                 If node.Value = "NULL" Or node.Value = "0" Then Continue For
                 Dim col As New GridBoundColumn
-                col.DataFormatString = "{0:N0}".ToString
+                col.DataFormatString = "{0:#,##0.##}"
                 col.HeaderText = node.Text.Split(":")(1).Trim()
                 col.DataField = node.Value
                 col.UniqueName = node.Value
