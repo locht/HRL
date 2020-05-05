@@ -189,11 +189,7 @@ Public Class ctrlHU_ContractNewEdit
             Me.MainToolBar = tbarContract
 
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Save, ToolbarItem.Cancel)
-            Dim use As New ProfileRepositoryBase
-            If use.Log.Username = "HR.ADMIN" Or use.Log.Username = "ADMIN" Then
-                Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("UNLOCK", ToolbarIcons.Unlock,
-                                                                     ToolbarAuthorize.Export, Translate("Mở chờ phê duyệt")))
-            End If
+            Dim use As New ProfileRepositoryBase           
             CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -482,16 +478,6 @@ Public Class ctrlHU_ContractNewEdit
                         End Select
                     Else
                         Exit Sub
-                    End If
-                Case "UNLOCK"
-                    objContract.ID = Decimal.Parse(hidID.Value)
-                    objContract.STATUS_ID = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID
-                    If rep.UnApproveContract(objContract, gID) Then
-                        Dim str As String = "getRadWindow().close('1');"
-                        ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-                    Else
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                     End If
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     If (isPopup) Then
@@ -1107,20 +1093,7 @@ Public Class ctrlHU_ContractNewEdit
                 Case CommonMessage.STATE_NEW
                 Case CommonMessage.STATE_EDIT
             End Select
-            LoadPopup(isLoadPopup)
-            If (hidID.Value = "") Then
-                If _toolbar Is Nothing Then Exit Sub
-                Dim item As RadToolBarButton
-                For i = 0 To _toolbar.Items.Count - 1
-                    item = CType(_toolbar.Items(i), RadToolBarButton)
-                    'Select Case CurrentState
-                    '    Case CommonMessage.STATE_EDIT, CommonMessage.STATE_NEW
-                    If item.CommandName = "UNLOCK" Then
-                        item.Enabled = False
-                    End If
-                    'End Select
-                Next
-            End If
+            LoadPopup(isLoadPopup)           
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")

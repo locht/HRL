@@ -265,6 +265,10 @@ Public Class ctrlHU_Contract
                                                                   ToolbarIcons.Add,
                                                                   ToolbarAuthorize.Special1,
                                                                   "Phê duyệt hàng loạt"))
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("UNLOCK",
+                                                                     ToolbarIcons.Unlock,
+                                                                     ToolbarAuthorize.Special1,
+                                                                     Translate("Mở chờ phê duyệt")))
 
             'CType(MainToolBar.Items(4), RadToolBarButton).Text = "In hợp đồng"
             CType(MainToolBar.Items(5), RadToolBarButton).Text = Translate("Thanh lý hợp đồng")
@@ -341,6 +345,7 @@ Public Class ctrlHU_Contract
         Dim status As Integer
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
+           
             Dim startTime As DateTime = DateTime.UtcNow
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_NEXT
@@ -650,6 +655,30 @@ Public Class ctrlHU_Contract
                     'ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_REFRESH
                     'ctrlMessageBox.DataBind()
                     'ctrlMessageBox.Show()
+                Case "UNLOCK"
+                    Using rep As New ProfileBusinessRepository
+                        Dim objContract As New ContractDTO
+                        Dim gID As Decimal
+
+                        If rgContract.SelectedItems.Count = 0 Then
+                            ShowMessage("Chưa chọn dòng nào để mở phê duyệt!", NotifyType.Warning)
+                            Exit Sub
+                        ElseIf rgContract.SelectedItems.Count > 1 Then
+                            ShowMessage("Không thể mở phê duyệt hàng loạt!", NotifyType.Warning)
+                            Exit Sub
+                        Else
+                            Dim item As GridDataItem = rgContract.SelectedItems(0)
+                            objContract.ID = Decimal.Parse(item.GetDataKeyValue("ID"))
+                            objContract.STATUS_ID = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID
+                            If rep.UnApproveContract(objContract, gID) Then                                
+                                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                                rgContract.Rebind()
+                            Else
+                                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                            End If
+                        End If
+                       
+                    End Using
             End Select
 
             'UpdateControlState()
