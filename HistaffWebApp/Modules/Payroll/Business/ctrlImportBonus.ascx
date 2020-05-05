@@ -12,7 +12,7 @@
     <tlk:RadPane ID="MainPane" runat="server" Scrolling="None" Height="100%">
         <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
             <tlk:RadPane ID="RadPaneTop" runat="server" Height="35px" Scrolling="None">
-                <tlk:RadToolBar ID="tbarMenu" runat="server" />
+                <tlk:RadToolBar ID="tbarMenu" runat="server" OnClientButtonClicking="clientButtonClicking" />
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane3" runat="server" Height="50px" Scrolling="None">
                 <table class="table-form" style="margin-top: 10px">
@@ -98,7 +98,7 @@
     var enableAjax = true;
 
     function clientButtonClicking(sender, args) {
-        if (args.get_item().get_commandName() == 'EXPORT') {
+        if (args.get_item().get_commandName() == 'NEXT') {
             var grid = $find("<%=rgData.ClientID %>");
             var masterTable = grid.get_masterTableView();
             var rows = masterTable.get_dataItems();

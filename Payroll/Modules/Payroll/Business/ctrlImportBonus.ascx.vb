@@ -168,11 +168,13 @@ Public Class ctrlImportBonus
             Me.MainToolBar = tbarMenu
             Common.Common.BuildToolbar(Me.MainToolBar,
                                        ToolbarItem.Export,
-                                       ToolbarItem.Import)
+                                       ToolbarItem.Import,
+                                       ToolbarItem.Next)
 
             MainToolBar.Items(0).Text = Translate("Xuất file mẫu")
             MainToolBar.Items(1).Text = Translate("Nhập file mẫu")
-
+            MainToolBar.Items(2).Text = Translate("Xuất Excel")
+            CType(Me.MainToolBar.Items(2), RadToolBarButton).ImageUrl = CType(Me.MainToolBar.Items(0), RadToolBarButton).ImageUrl
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -379,7 +381,18 @@ Public Class ctrlImportBonus
 
                 Case CommonMessage.TOOLBARITEM_IMPORT
                     ctrlUpload.Show()
-
+                Case CommonMessage.TOOLBARITEM_NEXT
+                    Using xls As New ExcelCommon
+                        If vData.Rows.Count = 0 Then
+                            ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
+                            Exit Sub
+                        ElseIf vData.Rows.Count > 0 Then
+                            rgData.ExportExcel(Server, Response, vData, "SalaryBonus")
+                            'Session("EXCEL_BONUS") = dtData
+                            'ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('SalaryBonus')", True)
+                            Exit Sub
+                        End If
+                    End Using
                 Case CommonMessage.TOOLBARITEM_SAVE
                     Dim rep As New PayrollRepository
                     Dim stringKey As New List(Of String)
@@ -665,7 +678,7 @@ Public Class ctrlImportBonus
             For Each node As RadTreeNode In ctrlListSalary.CheckedNodes
                 If node.Value = "NULL" Or node.Value = "0" Then Continue For
                 Dim col As New GridBoundColumn
-                col.DataFormatString = "{0:#,##0.##}"
+                col.DataFormatString = "{0:N0}".ToString
                 col.HeaderText = node.Text.Split(":")(1).Trim()
                 col.DataField = node.Value
                 col.UniqueName = node.Value

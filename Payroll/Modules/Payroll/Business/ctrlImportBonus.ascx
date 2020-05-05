@@ -12,7 +12,7 @@
     <tlk:RadPane ID="MainPane" runat="server" Scrolling="None" Height="100%">
         <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
             <tlk:RadPane ID="RadPaneTop" runat="server" Height="35px" Scrolling="None">
-                <tlk:RadToolBar ID="tbarMenu" runat="server" />
+                <tlk:RadToolBar ID="tbarMenu" runat="server" OnClientButtonClicking="clientButtonClicking" />
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane3" runat="server" Height="50px" Scrolling="None">
                 <table class="table-form" style="margin-top: 10px">
@@ -80,7 +80,7 @@
                                         DataField="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" />
                                     <tlk:GridBoundColumn HeaderStyle-Width="150px" HeaderText="<%$ Translate: Họ và tên %>"
                                         DataField="FULLNAME_VN" SortExpression="FULLNAME_VN" UniqueName="FULLNAME_VN" />
-                                      <tlk:GridBoundColumn HeaderStyle-Width="200px" HeaderText="<%$ Translate: Đơn vị %>"
+                                    <tlk:GridBoundColumn HeaderStyle-Width="200px" HeaderText="<%$ Translate: Đơn vị %>"
                                         DataField="ORG_NAME" SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
                                     <tlk:GridBoundColumn HeaderStyle-Width="150px" HeaderText="<%$ Translate: Vị trí công việc %>"
                                         DataField="JOB_NAME" SortExpression="JOB_NAME" UniqueName="JOB_NAME" />
@@ -98,7 +98,7 @@
     var enableAjax = true;
 
     function clientButtonClicking(sender, args) {
-        if (args.get_item().get_commandName() == 'EXPORT') {
+        if (args.get_item().get_commandName() == 'NEXT') {
             var grid = $find("<%=rgData.ClientID %>");
             var masterTable = grid.get_masterTableView();
             var rows = masterTable.get_dataItems();
