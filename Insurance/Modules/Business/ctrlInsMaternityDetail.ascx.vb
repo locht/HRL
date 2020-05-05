@@ -190,12 +190,16 @@ Public Class ctrlInsMaternityDetail
             btnSearchEmp.Enabled = val
             dateNgayDuSinh.Enabled = val
             cbNghiThaiSan.Enabled = val
+            cbNormal_Birth.Enabled = val
+            cbNotNormal_Birth.Enabled = val
             dateFrom.Enabled = val
             dateTo.Enabled = val
             dateNgaySinh.Enabled = val
             'dateNgayDiLamSom.Enabled = val
             txtSoCon.Enabled = val
             txtTamUng.Enabled = val
+            txtINS_PAY_UNIT.Enabled = val
+            txtDiffMoney.Enabled = val
             txtRemark.Enabled = val
         Catch ex As Exception
 
@@ -212,8 +216,11 @@ Public Class ctrlInsMaternityDetail
             txtEMPID.Text = "0"
             'ThanhNT added 05/01/2016
             txtPOSITION.Text = ""
+            txtINS_PAY_UNIT.Text = ""
             dateNgayDuSinh.SelectedDate = Nothing
             cbNghiThaiSan.Checked = True
+            cbNormal_Birth.Checked = True
+            cbNotNormal_Birth.Checked = False
             dateFrom.SelectedDate = Nothing
             dateTo.SelectedDate = Nothing
             'dataFromEnjoy.SelectedDate = Nothing
@@ -222,6 +229,8 @@ Public Class ctrlInsMaternityDetail
             'dateNgayDiLamSom.SelectedDate = Nothing
             txtSoCon.Text = 1
             txtTamUng.Text = 0
+            txtInsPay.Text = 0
+            txtDiffMoney.Text = 0
             txtRemark.Text = String.Empty
         Catch ex As Exception
         End Try
@@ -236,11 +245,33 @@ Public Class ctrlInsMaternityDetail
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
                     'dataFromEnjoy.SelectedDate, dataToEnjoy.SelectedDate,dateNgayDiLamSom.SelectedDate
-                    Dim id As Int32 = store_business.SAVE_INS_MATERNITY_MNG(0, InsCommon.getNumber(txtEMPID.Text), dateNgayDuSinh.SelectedDate, InsCommon.getNumber(IIf(cbNghiThaiSan.Checked, 1, 0)), dateFrom.SelectedDate, dateTo.SelectedDate, Nothing, Nothing, dateNgaySinh.SelectedDate, InsCommon.getNumber(txtSoCon.Text), InsCommon.getNumber(txtTamUng.Text), Nothing, txtRemark.Text, userlog.Username, String.Format("{0}-{1}", userlog.ComputerName, userlog.Ip))
+                    Dim id As Int32 = store_business.SAVE_INS_MATERNITY_MNG(0,
+                                                                            InsCommon.getNumber(txtEMPID.Text),
+                                                                            dateNgayDuSinh.SelectedDate,
+                                                                            InsCommon.getNumber(IIf(cbNghiThaiSan.Checked, 1, 0)),
+                                                                            InsCommon.getNumber(IIf(cbNormal_Birth.Checked, 1, 0)),
+                                                                            InsCommon.getNumber(IIf(cbNotNormal_Birth.Checked, 1, 0)),
+                                                                            dateFrom.SelectedDate,
+                                                                            dateTo.SelectedDate,
+                                                                            Nothing, Nothing,
+                                                                            dateNgaySinh.SelectedDate,
+                                                                            InsCommon.getNumber(txtSoCon.Text),
+                                                                            InsCommon.getNumber(txtTamUng.Text),
+                                                                            InsCommon.getNumber(txtInsPay.Text),
+                                                                            InsCommon.getNumber(txtDiffMoney.Text),
+                                                                            Nothing,
+                                                                            txtRemark.Text,
+                                                                            userlog.Username,
+                                                                            String.Format("{0}-{1}", userlog.ComputerName, userlog.Ip))
 
                     'P_INS_ARISING_TYPE = 3: Cập nhật biến động BH giảm do nghỉ thai sản
                     If cbNghiThaiSan.Checked = True Then
                         store_business.PRI_INS_ARISING_MATERNITY(id, InsCommon.getNumber(txtEMPID.Text), dateFrom.SelectedDate, 3, userlog.Username)
+                        'Dim ed = DateAdd("d", 1, dateTo.SelectedDate)
+                        'store_business.INSERT_INC_VOLATILITY(0,
+                        '                                     InsCommon.getNumber(txtEMPID.Text),
+                        '                                     ed,
+                        '                                     userlog.Username)
                     End If
 
                     'If dateNgayDiLamSom.SelectedDate IsNot Nothing Then
@@ -257,7 +288,21 @@ Public Class ctrlInsMaternityDetail
                     'Common.Common.OrganizationLocationDataSession = Nothing
                 Case CommonMessage.STATE_EDIT
                     'dataFromEnjoy.SelectedDate, dataToEnjoy.SelectedDate dateNgayDiLamSom.SelectedDate
-                    If store_business.SAVE_INS_MATERNITY_MNG(InsCommon.getNumber(txtID.Text), InsCommon.getNumber(txtEMPID.Text), dateNgayDuSinh.SelectedDate, InsCommon.getNumber(IIf(cbNghiThaiSan.Checked, 1, 0)), dateFrom.SelectedDate, dateTo.SelectedDate, Nothing, Nothing, dateNgaySinh.SelectedDate, InsCommon.getNumber(txtSoCon.Text), InsCommon.getNumber(txtTamUng.Text), Nothing, txtRemark.Text, userlog.Username, String.Format("{0}-{1}", userlog.ComputerName, userlog.Ip)) Then
+                    If store_business.SAVE_INS_MATERNITY_MNG(InsCommon.getNumber(txtID.Text),
+                                                             InsCommon.getNumber(txtEMPID.Text),
+                                                             dateNgayDuSinh.SelectedDate,
+                                                             InsCommon.getNumber(IIf(cbNghiThaiSan.Checked, 1, 0)),
+                                                             InsCommon.getNumber(IIf(cbNormal_Birth.Checked, 1, 0)),
+                                                             InsCommon.getNumber(IIf(cbNotNormal_Birth.Checked, 1, 0)),
+                                                             dateFrom.SelectedDate, dateTo.SelectedDate,
+                                                             Nothing, Nothing, dateNgaySinh.SelectedDate,
+                                                             InsCommon.getNumber(txtSoCon.Text),
+                                                             InsCommon.getNumber(txtTamUng.Text),
+                                                             InsCommon.getNumber(txtInsPay.Text),
+                                                             InsCommon.getNumber(txtDiffMoney.Text),
+                                                             Nothing,
+                                                             txtRemark.Text, userlog.Username,
+                                                             String.Format("{0}-{1}", userlog.ComputerName, userlog.Ip)) Then
 
                         'P_INS_ARISING_TYPE = 3: Cập nhật biến động BH giảm do nghỉ thai sản
                         If cbNghiThaiSan.Checked = True Then
@@ -316,8 +361,11 @@ Public Class ctrlInsMaternityDetail
                 InsCommon.SetString(txtFULLNAME, lstSource.Rows(0)("FULL_NAME"))
                 InsCommon.SetString(txtDEP, lstSource.Rows(0)("DEP_NAME"))
                 InsCommon.SetString(txtPOSITION, lstSource.Rows(0)("POSITION_NAME"))
+                InsCommon.SetString(txtINS_PAY_UNIT, lstSource.Rows(0)("INS_PAY_UNIT"))
                 InsCommon.SetDate(dateNgayDuSinh, lstSource.Rows(0)("NGAY_DU_SINH"))
                 InsCommon.SetNumber(cbNghiThaiSan, lstSource.Rows(0)("NGHI_THAI_SAN"))
+                InsCommon.SetNumber(cbNormal_Birth, lstSource.Rows(0)("IS_NORMAL_BIRTH"))
+                InsCommon.SetNumber(cbNotNormal_Birth, lstSource.Rows(0)("IS_NOT_NORMAL_BIRTH"))
                 InsCommon.SetDate(dateFrom, lstSource.Rows(0)("FROM_DATE"))
                 InsCommon.SetDate(dateTo, lstSource.Rows(0)("TO_DATE"))
                 'InsCommon.SetDate(dataFromEnjoy, lstSource.Rows(0)("FROM_DATE_ENJOY"))
@@ -326,6 +374,8 @@ Public Class ctrlInsMaternityDetail
                 'InsCommon.SetDate(dateNgayDiLamSom, lstSource.Rows(0)("NGAY_DI_LAM_SOM"))
                 InsCommon.SetNumber(txtSoCon, lstSource.Rows(0)("SO_CON"))
                 InsCommon.SetNumber(txtTamUng, lstSource.Rows(0)("TIEN_TAM_UNG"))
+                InsCommon.SetNumber(txtInsPay, lstSource.Rows(0)("INSURANCE_FEE_PAY"))
+                InsCommon.SetNumber(txtDiffMoney, lstSource.Rows(0)("DIFFERENCE_FEE"))
                 InsCommon.SetString(txtRemark, lstSource.Rows(0)("REMARK"))
             End If
 
@@ -363,7 +413,6 @@ Public Class ctrlInsMaternityDetail
     End Sub
 
 #End Region
-
 #Region "FindEmployeeButton"
 
     Private Sub ctrlFindEmployeePopup_CancelClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.CancelClicked
@@ -391,6 +440,7 @@ Public Class ctrlInsMaternityDetail
                     InsCommon.SetString(txtFULLNAME, lstSource.Rows(0)("VN_FULLNAME"))
                     InsCommon.SetString(txtDEP, lstSource.Rows(0)("ORG_NAME"))
                     InsCommon.SetString(txtPOSITION, lstSource.Rows(0)("POSITION_NAME"))
+                    InsCommon.SetString(txtINS_PAY_UNIT, lstSource.Rows(0)("INS_PAY_UNIT"))
                     txtEMPID.Text = lstSource.Rows(0)("EMPID")
                 Else
                     ResetForm()
@@ -402,7 +452,7 @@ Public Class ctrlInsMaternityDetail
             isLoadPopup = 0
 
             Dim script As String = "resize(1024,400);"
-            ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "Resize", Script, True)
+            ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "Resize", script, True)
 
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
@@ -483,4 +533,11 @@ Public Class ctrlInsMaternityDetail
 
     End Sub
 
+    Private Sub dateFrom_SelectedDateChanged(sender As Object, e As Calendar.SelectedDateChangedEventArgs) Handles dateFrom.SelectedDateChanged
+        'Dim a = dateFrom.SelectedDate
+
+        If dateFrom.SelectedDate IsNot Nothing Then
+            dateTo.SelectedDate = DateAdd("m", 6, dateFrom.SelectedDate)
+        End If
+    End Sub
 End Class

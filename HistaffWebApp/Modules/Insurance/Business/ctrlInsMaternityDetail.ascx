@@ -131,7 +131,8 @@
                 <td class="lb">
                     <%# Translate("Từ ngày")%><span class="lbReq">*</span>
                 </td>
-                <td  <tlk:RadAjaxPanel ID="RadAjaxPanel2" runat="server" OnAjaxRequest="RadAjaxPanel1_AjaxRequest">
+                <td>
+                      <tlk:RadAjaxPanel ID="RadAjaxPanel2" runat="server" OnAjaxRequest="RadAjaxPanel1_AjaxRequest">
                     </tlk:RadAjaxPanel>
                     <tlk:RadCodeBlock ID="RadCodeBlock3" runat="server">
                         <script type="text/javascript">

@@ -72,10 +72,22 @@ Public Class Store_Insurance_Business
 
     End Function
 
+    Public Function INSERT_INC_VOLATILITY(ByVal P_ID As Int32,
+                                    ByVal P_EMPID As Int32,
+                                    ByVal P_EFFECT_DATE As Date?,
+                                    ByVal P_USER As String) As Int32
+
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_INS_BUSINESS.INSERT_INC_VOLATILITY", New List(Of Object)(New Object() {P_ID, P_EMPID, P_EFFECT_DATE, P_USER, OUT_NUMBER}))
+        Return Int32.Parse(obj(0).ToString())
+
+    End Function
+
     Public Function SAVE_INS_MATERNITY_MNG(ByVal P_ID As Int32,
                                     ByVal P_EMPID As Int32,
                                     ByVal P_NGAY_DU_SINH As Date?,
                                     ByVal P_NGHI_THAI_SAN As Int32,
+                                    ByVal P_NORMAL_BIRTH As Int32,
+                                    ByVal P_NOT_NORMAL_BIRTH As Int32,
                                     ByVal P_FROM_DATE As Date?,
                                     ByVal P_TO_DATE As Date?,
                                     ByVal P_FROM_DATE_ENJOY As Date?,
@@ -83,12 +95,14 @@ Public Class Store_Insurance_Business
                                     ByVal P_NGAY_SINH As Date?,
                                     ByVal P_SO_CON As Int32,
                                     ByVal P_TIEN_TAM_UNG As Int32,
+                                    ByVal P_INS_PAY As Int32,
+                                    ByVal P_DIFF_MONEY As Int32,
                                     ByVal P_NgayDiLamSom As Date?,
                                     ByVal P_REMARK As String,
                                     ByVal P_USER As String,
                                     ByVal P_LOG As String) As Int32
 
-        Dim obj As Object = rep.ExecuteStoreScalar("PKG_INSURANCE_BUSINESS.SAVE_INS_MATERNITY_MNG", New List(Of Object)(New Object() {P_ID, P_EMPID, P_NGAY_DU_SINH, P_NGHI_THAI_SAN, P_FROM_DATE, P_TO_DATE, P_FROM_DATE_ENJOY, P_TO_DATE_ENJOY, P_NGAY_SINH, P_SO_CON, P_TIEN_TAM_UNG, P_NgayDiLamSom, P_REMARK, P_USER, P_LOG, OUT_NUMBER}))
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_INSURANCE_BUSINESS.SAVE_INS_MATERNITY_MNG", New List(Of Object)(New Object() {P_ID, P_EMPID, P_NGAY_DU_SINH, P_NGHI_THAI_SAN, P_NORMAL_BIRTH, P_NOT_NORMAL_BIRTH, P_FROM_DATE, P_TO_DATE, P_FROM_DATE_ENJOY, P_TO_DATE_ENJOY, P_NGAY_SINH, P_SO_CON, P_TIEN_TAM_UNG, P_INS_PAY, P_DIFF_MONEY, P_NgayDiLamSom, P_REMARK, P_USER, P_LOG, OUT_NUMBER}))
 
         Return Int32.Parse(obj(0).ToString())
 
