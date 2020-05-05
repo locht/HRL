@@ -639,6 +639,18 @@ Public Class ctrlHU_Discipline
         End Try
     End Sub
 
+    Private Function SplipKey(ByVal value As String) As String
+        Dim array() As String = value.Split("-")
+        Dim key = array(array.Length - 1)
+        If key IsNot Nothing Then
+            key = key.Replace(" ", "")
+            Return key
+        Else
+            key = ""
+            Return key
+        End If
+    End Function
+
     Private Sub TableMapping(ByVal dtTemp As System.Data.DataTable)
         ' lấy dữ liệu thô từ excel vào và tinh chỉnh dữ liệu
         dtTemp.Columns(0).ColumnName = "EMPLOYEE_CODE"
@@ -656,7 +668,11 @@ Public Class ctrlHU_Discipline
         dtTemp.Columns(15).ColumnName = "DEDUCT_FROM_SALARY"
         dtTemp.Columns(16).ColumnName = "YEAR"
         dtTemp.Columns(17).ColumnName = "PERIOD_NAME"
-        dtTemp.Columns(18).ColumnName = "REMARK"
+        dtTemp.Columns(18).ColumnName = "EXPIRE_DATE"
+        dtTemp.Columns(19).ColumnName = "NO"
+        dtTemp.Columns(20).ColumnName = "ISSUE_DATE"
+        dtTemp.Columns(21).ColumnName = "MONEY_MATERIAL"
+        dtTemp.Columns(22).ColumnName = "REMARK"
 
         'XOA DONG TIEU DE VA HEADER
         dtTemp.Rows(0).Delete()
@@ -752,6 +768,37 @@ Public Class ctrlHU_Discipline
             Else
                 If IsNumeric(rows("PAIDMONEY")) = False Then
                     newRow("DISCIPTION") = newRow("DISCIPTION") + "Số tiền bồi thường - Không đúng định dạng,"
+                    _error = False
+                End If
+            End If
+
+            If IsDBNull(rows("SIGN_CODE")) OrElse rows("SIGN_CODE") = "" Then
+            Else
+                rows("SIGN_CODE") = SplipKey(rows("SIGN_CODE"))
+            End If
+
+            If IsDBNull(rows("EXPIRE_DATE")) OrElse rows("EXPIRE_DATE") = "" Then
+            Else
+                If CheckDate(rows("EXPIRE_DATE"), startDate) = False Then
+                    rows("EXPIRE_DATE") = "NULL"
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày hết hiệu lực - Không đúng định dạng,"
+                    _error = False
+                End If
+            End If
+
+            If IsDBNull(rows("ISSUE_DATE")) OrElse rows("ISSUE_DATE") = "" Then
+            Else
+                If CheckDate(rows("ISSUE_DATE"), startDate) = False Then
+                    rows("ISSUE_DATE") = "NULL"
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày ban hành - Không đúng định dạng,"
+                    _error = False
+                End If
+            End If
+
+            If IsDBNull(rows("MONEY_MATERIAL")) Then
+            Else
+                If IsNumeric(rows("MONEY_MATERIAL")) = False Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Tiền bồi thường vật chất - Không đúng định dạng,"
                     _error = False
                 End If
             End If

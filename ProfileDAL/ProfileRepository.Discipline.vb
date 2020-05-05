@@ -1108,7 +1108,8 @@ Partial Class ProfileRepository
                                                     New With {.P_CUR = cls.OUT_CURSOR,
                                                               .P_CUR1 = cls.OUT_CURSOR,
                                                               .P_CUR2 = cls.OUT_CURSOR,
-                                                              .P_CUR3 = cls.OUT_CURSOR}, False)
+                                                              .P_CUR3 = cls.OUT_CURSOR,
+                                                              .P_CUR4 = cls.OUT_CURSOR}, False)
                 Return dtData
             End Using
 
