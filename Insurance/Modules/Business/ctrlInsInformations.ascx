@@ -46,13 +46,13 @@
                             <%# Translate("Phòng ban/Đơn vị")%>
                         </td>
                         <td>
-                            <tlk:RadTextBox ID="txtDEP" ReadOnly="true" runat="server" Width="200px">
+                            <tlk:RadTextBox ID="txtDEP" ReadOnly="true" runat="server">
                             </tlk:RadTextBox>
                         </td>
                     </tr>
                     <tr>
                         <td class="lb">
-                            <%# Translate("Chức danh bảo hiểm")%>
+                            <%# Translate("Chức danh")%>
                         </td>
                         <td>
                             <tlk:RadTextBox ID="txtPOSITION" ReadOnly="true" runat="server">
@@ -70,11 +70,18 @@
                         </td>
                         <td>
                             <tlk:RadDatePicker DateInput-DisplayDateFormat="dd/MM/yyyy" ReadOnly="true" runat="server"
-                                Width="200px" ID="txtDateIssue">
+                               ID="txtDateIssue">
                             </tlk:RadDatePicker>
                         </td>
                     </tr>
                     <tr>
+                        <td class="lb">
+                            <%# Translate("Nơi cấp CMND")%>
+                        </td>
+                        <td>
+                            <tlk:RadTextBox ID="txtBirthPlaceCmnd" ReadOnly="true" runat="server">
+                            </tlk:RadTextBox>
+                        </td>
                         <td class="lb">
                             <%# Translate("Ngày sinh")%>
                         </td>
@@ -90,34 +97,45 @@
                             <tlk:RadTextBox ID="txtBirthPlace" ReadOnly="true" runat="server">
                             </tlk:RadTextBox>
                         </td>
+                    </tr>
+                    <tr>
                         <td class="lb">
-                            <%# Translate("Thông tin liên lạc")%>
+                            <%# Translate("Năm thâm niên BHXH trước khi vào công ty")%>
                         </td>
                         <td>
-                            <tlk:RadTextBox ID="txtThongTinLL" ReadOnly="true" runat="server" Width="200px">
-                            </tlk:RadTextBox>
+                            <tlk:RadNumericTextBox ID="rtxtSeniortyYear" runat="server" AutoPostBack="true"></tlk:RadNumericTextBox>
+                        </td>
+                        <td class="lb">
+                            <%# Translate("Tháng thâm niên BHXH trước khi vào công ty")%>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rtxtSeniortyMonth" runat="server" AutoPostBack="true"></tlk:RadNumericTextBox>
+                        </td>
+                         <td class="lb">
+                            <%# Translate("Năm thâm niên BHXH trong công ty")%>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rtxtSeniortyYearCT" runat="server" ReadOnly="true"></tlk:RadNumericTextBox>
                         </td>
                     </tr>
                     <tr>
                         <td class="lb">
-                            <%# Translate("Thâm niên BH")%>
+                            <%# Translate("Tháng thâm niên BHXH trong công ty")%>
                         </td>
                         <td>
-                            <tlk:RadTextBox ID="txtSENIORITY_INSURANCE" MaxLength="500" runat="server" TabIndex="2">
-                            </tlk:RadTextBox>
+                            <tlk:RadNumericTextBox ID="rtxtSeniortyMonthCT" runat="server" ReadOnly="true"></tlk:RadNumericTextBox>
                         </td>
                         <td class="lb">
-                            <%# Translate("Thâm niên BH(Công ty)")%>
+                            <%# Translate("Tổng thâm niên tham gia BHXH")%>
                         </td>
                         <td>
-                            <tlk:RadTextBox ID="txtSENIORITY_INSURANCE_COMPANY" MaxLength="500" runat="server">
-                            </tlk:RadTextBox>
+                            <tlk:RadTextBox ID="txtSeniorityTotal" runat="server" ReadOnly="true"></tlk:RadTextBox>
                         </td>
-                        <td class="lb">
+                         <td class="lb">
                             <%# Translate("Đơn vị đóng")%>
                         </td>
                         <td>
-                            <tlk:RadTextBox ID="txtINSORG" ReadOnly="true" runat="server" Width="200px">
+                            <tlk:RadTextBox ID="txtINSORG" ReadOnly="true" runat="server">
                             </tlk:RadTextBox>
                         </td>
                     </tr>
@@ -133,7 +151,7 @@
                         <td class="lb">
                             <%# Translate("Loại bảo hiểm")%>
                         </td>
-                        <td>
+                        <td colspan="2">
                             <tlk:RadButton ID="chkSI" AutoPostBack="false" Text='<%# Translate("BHXH")%>' ToggleType="CheckBox"
                                 TabIndex="3" ButtonType="ToggleButton" runat="server">
                             </tlk:RadButton>
@@ -147,6 +165,7 @@
                                 TabIndex="5" ButtonType="ToggleButton" runat="server">
                             </tlk:RadButton>
                         </td>
+                        <td></td>
                     </tr>
                 </table>
             </fieldset>
@@ -318,11 +337,18 @@
                         </td>
                     </tr>
                     <tr>
+                         <td class="lb">
+                            <%# Translate("Nơi cấp thẻ")%>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox ID="cboPlaceBHYT" runat="server" TabIndex="23">
+                            </tlk:RadComboBox>
+                        </td>
                         <td class="lb">
                             <%# Translate("Nơi khám chữa bệnh")%>
                         </td>
-                        <td colspan="3">
-                            <tlk:RadComboBox ID="ddlHEALTH_AREA_INS_ID" Width="405px" runat="server" TabIndex="23">
+                        <td>
+                            <tlk:RadComboBox ID="ddlHEALTH_AREA_INS_ID" runat="server" TabIndex="23">
                             </tlk:RadComboBox>
                         </td>
                     </tr>
@@ -335,22 +361,15 @@
                                 TabIndex="24">
                             </tlk:RadDatePicker>
                         </td>
-                        <td class="lb">
-                            <%# Translate("Người nhận")%>
-                        </td>
-                        <td>
-                            <tlk:RadTextBox ID="txtHEALTH_RECEIVER" runat="server" TabIndex="25">
-                            </tlk:RadTextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="lb">
+                         <td class="lb">
                             <%# Translate("Ngày trả thẻ")%>
                         </td>
                         <td>
                             <tlk:RadDatePicker DateInput-DisplayDateFormat="dd/MM/yyyy" runat="server" ID="txtHEALTH_RETURN_DATE" TabIndex="26">
                             </tlk:RadDatePicker>
                         </td>
+                    </tr>
+                    <tr> 
                         <td class="lb">
                              <%# Translate("Đã đóng bảo hiểm đủ 5 năm")%>
                         </td>

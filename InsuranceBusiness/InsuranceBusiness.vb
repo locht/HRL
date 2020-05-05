@@ -371,7 +371,13 @@ Namespace InsuranceBusiness.ServiceImplementations
                                             , ByVal bhtnld_bnn As Double? _
                                             , ByVal is_hi_five_year As Double? _
                                             , ByVal bhtnld_bnn_from As Date? _
-                                            , ByVal bhtnld_bnn_to As Date?
+                                            , ByVal bhtnld_bnn_to As Date? _
+                                            , ByVal seniority_year As Decimal? _
+                                            , ByVal seniority_month As Decimal? _
+                                            , ByVal seniority_year_cp As Decimal? _
+                                            , ByVal seniority_month_cp As Decimal? _
+                                            , ByVal seniority_total As String _
+                                            , ByVal place_bhyt_id As Decimal?
                                             ) As Boolean _
                  Implements ServiceContracts.IInsuranceBusiness.UpdateInsInfomation
             Try
@@ -413,7 +419,12 @@ Namespace InsuranceBusiness.ServiceImplementations
                                             , .P_IS_HI_FIVE_YEAR = IIf(is_hi_five_year Is Nothing, System.DBNull.Value, ui) _
                                             , .P_BHTNLD_BNN_FROM_MONTH = IIf(bhtnld_bnn_from Is Nothing, System.DBNull.Value, bhtnld_bnn_from) _
                                             , .P_BHTNLD_BNN_TO_MONTH = IIf(bhtnld_bnn_to Is Nothing, System.DBNull.Value, bhtnld_bnn_to) _
-                                            })
+                                            , .P_SENIORITY_YEAR = seniority_year _
+                                            , .P_SENIORITY_MONTH = seniority_month _
+                                            , .P_SENIORITY_YEAR_CP = seniority_year_cp _
+                                            , .P_SENIORITY_MONTH_CP = seniority_month_cp _
+                                            , .P_SENIORITY_TOTAL = seniority_total _
+                                            , .P_PLACE_BHYT_ID = place_bhyt_id })
 
                 Return 1
             Catch ex As Exception
@@ -1211,5 +1222,6 @@ Namespace InsuranceBusiness.ServiceImplementations
             End Try
         End Function
 #End Region
+
     End Class
 End Namespace

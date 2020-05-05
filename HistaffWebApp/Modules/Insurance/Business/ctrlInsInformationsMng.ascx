@@ -96,10 +96,17 @@
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="150px"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lương%>" DataField="SALARY" UniqueName="SALARY" SortExpression="SALARY" 
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" HeaderStyle-Width="100px"/>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Thâm niên BH(Trước) %>" DataField="SENIORITY_INSURANCE" UniqueName="SENIORITY_INSURANCE" SortExpression="SENIORITY_INSURANCE" 
+                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Năm thâm niên BHXH trước khi vào công ty %>" DataField="SENIORITY_YEAR" UniqueName="SENIORITY_YEAR" SortExpression="SENIORITY_YEAR" 
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" HeaderStyle-Width="80px"/>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Thâm niên(Công ty) %>" DataField="SENIORITY_INSURANCE_COMPANY" UniqueName="SENIORITY_INSURANCE_COMPANY" SortExpression="SENIORITY_INSURANCE_COMPANY" 
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tháng thâm niên BHXH trước khi vào công ty %>" DataField="SENIORITY_MONTH" UniqueName="SENIORITY_MONTH" SortExpression="SENIORITY_MONTH" 
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" HeaderStyle-Width="80px"/>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Năm thâm niên BHXH trong công ty %>" DataField="SENIORITY_YEAR_CP" UniqueName="SENIORITY_YEAR_CP" SortExpression="SENIORITY_YEAR_CP" 
+                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" HeaderStyle-Width="80px"/>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tháng thâm niên BHXH trong công ty %>" DataField="SENIORITY_MONTH_CP" UniqueName="SENIORITY_MONTH_CP" SortExpression="SENIORITY_MONTH_CP" 
+                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" HeaderStyle-Width="80px"/>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tổng thâm niên tham gia BHXH%>" DataField="SENIORITY_TOTAL" UniqueName="SENIORITY_TOTAL" SortExpression="SENIORITY_TOTAL" 
+                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="150px"/>
+                           
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: BHXH(Từ tháng) %>" DataField="SI_FROM_MONTH" DataFormatString="{0:MM/yyyy}" UniqueName="SI_FROM_MONTH" SortExpression="SI_FROM_MONTH" 
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="80px"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: BHXH(Đến tháng) %>" DataField="SI_TO_MONTH" DataFormatString="{0:MM/yyyy}" SortExpression="SI_TO_MONTH" UniqueName="SI_TO_MONTH"
@@ -112,7 +119,7 @@
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" HeaderStyle-Width="80px"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày cấp sổ %>" DataField="SOCIAL_GRANT_DATE" DataFormatString="{0:dd/MM/yyyy}" UniqueName="SOCIAL_GRANT_DATE" SortExpression="SOCIAL_GRANT_DATE" 
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" HeaderStyle-Width="80px"/>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số lưu trữ %>" DataField="SOCIAL_SAVE_NUMBER" UniqueName="SOCIAL_SAVE_NUMBER" SortExpression="SOCIAL_SAVE_NUMBER" 
+                           <%-- <tlk:GridBoundColumn HeaderText="<%$ Translate: Số lưu trữ %>" DataField="SOCIAL_SAVE_NUMBER" UniqueName="SOCIAL_SAVE_NUMBER" SortExpression="SOCIAL_SAVE_NUMBER" 
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="100px"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày giao sổ %>" DataField="SOCIAL_DELIVER_DATE" DataFormatString="{0:dd/MM/yyyy}" UniqueName="SOCIAL_DELIVER_DATE" SortExpression="SOCIAL_DELIVER_DATE" 
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" HeaderStyle-Width="80px"/>
@@ -121,7 +128,7 @@
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Người nhận sổ %>" DataField="SOCIAL_RECEIVER" UniqueName="SOCIAL_RECEIVER" SortExpression="SOCIAL_RECEIVER" 
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="100px"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="SOCIAL_NOTE" UniqueName="SOCIAL_NOTE" SortExpression="SOCIAL_NOTE" 
-                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="150px"/>
+                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="150px"/>--%>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: BHYT(Từ tháng) %>" DataField="HI_FROM_MONTH" DataFormatString="{0:MM/yyyy}" UniqueName="HI_FROM_MONTH" SortExpression="HI_FROM_MONTH" 
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" HeaderStyle-Width="80px"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: BHYT(Đến tháng) %>" DataField="HI_TO_MONTH" DataFormatString="{0:MM/yyyy}" UniqueName="HI_TO_MONTH" SortExpression="HI_TO_MONTH" 
@@ -130,21 +137,21 @@
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="130px"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Tình trạng thẻ %>" DataField="HEALTH_STATUS_NM" UniqueName="HEALTH_STATUS_NM" SortExpression="HEALTH_STATUS_NM" 
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="80px"/>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Từ tháng %>" DataField="HEALTH_EFFECT_FROM_DATE" DataFormatString="{0:dd/MM/yyyy}" UniqueName="HEALTH_EFFECT_FROM_DATE" SortExpression="HEALTH_EFFECT_FROM_DATE" 
+                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày cấp thẻ %>" DataField="HEALTH_EFFECT_FROM_DATE" DataFormatString="{0:dd/MM/yyyy}" UniqueName="HEALTH_EFFECT_FROM_DATE" SortExpression="HEALTH_EFFECT_FROM_DATE" 
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" HeaderStyle-Width="80px"/>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đến tháng %>" DataField="HEALTH_EFFECT_TO_DATE" DataFormatString="{0:dd/MM/yyyy}" UniqueName="HEALTH_EFFECT_TO_DATE" SortExpression="HEALTH_EFFECT_TO_DATE" 
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate:Ngày hết hạn thẻ %>" DataField="HEALTH_EFFECT_TO_DATE" DataFormatString="{0:dd/MM/yyyy}" UniqueName="HEALTH_EFFECT_TO_DATE" SortExpression="HEALTH_EFFECT_TO_DATE" 
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" HeaderStyle-Width="80px"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: HEALTH_AREA_INS_ID %>" DataField="HEALTH_AREA_INS_ID"
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" UniqueName="HEALTH_AREA_INS_ID" SortExpression="HEALTH_AREA_INS_ID" Visible="false"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Nơi khám chữa bệnh %>" DataField="HEALTH_AREA_NM" UniqueName="HEALTH_AREA_NM" SortExpression="HEALTH_AREA_NM" 
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="200px"/>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày nhận thẻ %>" DataField="HEALTH_RECEIVE_DATE" DataFormatString="{0:dd/MM/yyyy}" UniqueName="HEALTH_RECEIVE_DATE" SortExpression="HEALTH_RECEIVE_DATE" 
+                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày nhận thẻ %>" DataField="HEALTH_RECEIVE_DATE" DataFormatString="{0:dd/MM/yyyy}" UniqueName="HEALTH_RECEIVE_DATE" SortExpression="HEALTH_RECEIVE_DATE" 
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" HeaderStyle-Width="80px"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Người nhận thẻ %>" DataField="HEALTH_RECEIVER" DataFormatString="{0:dd/MM/yyyy}" UniqueName="HEALTH_RECEIVER" SortExpression="HEALTH_RECEIVER" 
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="100px"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày trả thẻ %>" DataField="HEALTH_RETURN_DATE" DataFormatString="{0:dd/MM/yyyy}" UniqueName="HEALTH_RETURN_DATE" SortExpression="HEALTH_RETURN_DATE" 
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" HeaderStyle-Width="80px"/>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: BHTN(Từ tháng) %>" DataField="UNEMP_FROM_MONTH" DataFormatString="{0:MM/yyyy}" UniqueName="UNEMP_FROM_MONTH" SortExpression="UNEMP_FROM_MONTH" 
+                            --%><tlk:GridBoundColumn HeaderText="<%$ Translate: BHTN(Từ tháng) %>" DataField="UNEMP_FROM_MONTH" DataFormatString="{0:MM/yyyy}" UniqueName="UNEMP_FROM_MONTH" SortExpression="UNEMP_FROM_MONTH" 
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" HeaderStyle-Width="80px"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: BHTN(Đến tháng) %>" DataField="UNEMP_TO_MONTH" DataFormatString="{0:MM/yyyy}" UniqueName="UNEMP_TO_MONTH" SortExpression="UNEMP_TO_MONTH" 
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" HeaderStyle-Width="80px"/>

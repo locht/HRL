@@ -2935,6 +2935,17 @@ Partial Public Class InsuranceRepository
         Return Nothing
     End Function
 
+    Public Function GET_SENIORITY(ByVal p_EMP_ID As Decimal) As DataTable
+        Using cls As New DataAccess.QueryData
+            Dim dtData As DataTable = cls.ExecuteStore("PKG_INSURANCE_BUSINESS.GET_SENIORITY",
+                                           New With {.p_EMP_ID = p_EMP_ID,
+                                                     .P_CUR = cls.OUT_CURSOR})
+
+            Return dtData
+        End Using
+        Return Nothing
+    End Function
+
 #End Region
 
 End Class

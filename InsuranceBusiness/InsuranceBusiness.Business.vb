@@ -892,6 +892,17 @@ Namespace InsuranceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+
+        Public Function GET_SENIORITY(ByVal p_EMP_ID As Decimal) As DataTable Implements ServiceContracts.IInsuranceBusiness.GET_SENIORITY
+            Using rep As New InsuranceRepository
+                Try
+
+                    Return rep.GET_SENIORITY(p_EMP_ID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #End Region
 
     End Class

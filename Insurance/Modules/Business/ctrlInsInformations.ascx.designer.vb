@@ -149,6 +149,15 @@ Partial Public Class ctrlInsInformations
     Protected WithEvents txtDateIssue As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''txtBirthPlaceCmnd control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtBirthPlaceCmnd As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''txtDoB control.
     '''</summary>
     '''<remarks>
@@ -167,31 +176,49 @@ Partial Public Class ctrlInsInformations
     Protected WithEvents txtBirthPlace As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''txtThongTinLL control.
+    '''rtxtSeniortyYear control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtThongTinLL As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents rtxtSeniortyYear As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
-    '''txtSENIORITY_INSURANCE control.
+    '''rtxtSeniortyMonth control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtSENIORITY_INSURANCE As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents rtxtSeniortyMonth As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
-    '''txtSENIORITY_INSURANCE_COMPANY control.
+    '''rtxtSeniortyYearCT control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtSENIORITY_INSURANCE_COMPANY As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents rtxtSeniortyYearCT As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''rtxtSeniortyMonthCT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rtxtSeniortyMonthCT As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''txtSeniorityTotal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSeniorityTotal As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''txtINSORG control.
@@ -419,6 +446,15 @@ Partial Public Class ctrlInsInformations
     Protected WithEvents txtHEALTH_EFFECT_TO_DATE As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''cboPlaceBHYT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboPlaceBHYT As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
     '''ddlHEALTH_AREA_INS_ID control.
     '''</summary>
     '''<remarks>
@@ -435,15 +471,6 @@ Partial Public Class ctrlInsInformations
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtHEALTH_RECEIVE_DATE As Global.Telerik.Web.UI.RadDatePicker
-
-    '''<summary>
-    '''txtHEALTH_RECEIVER control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtHEALTH_RECEIVER As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''txtHEALTH_RETURN_DATE control.

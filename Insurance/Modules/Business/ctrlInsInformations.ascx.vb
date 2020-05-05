@@ -120,8 +120,8 @@ Public Class ctrlInsInformations
 
                     txtDateIssue.Enabled = False
                     txtDoB.Enabled = False
-                    txtSENIORITY_INSURANCE.Enabled = False
-                    txtSENIORITY_INSURANCE_COMPANY.Enabled = False
+                    'txtSENIORITY_INSURANCE.Enabled = False
+                    'txtSENIORITY_INSURANCE_COMPANY.Enabled = False
                     txtSOCIAL_NUMBER.Enabled = False
                     ddlSOCIAL_STATUS.Enabled = False
                     txtSOCIAL_SUBMIT_DATE.Enabled = False
@@ -137,10 +137,6 @@ Public Class ctrlInsInformations
                     txtHEALTH_EFFECT_TO_DATE.Enabled = False
                     ddlHEALTH_AREA_INS_ID.Enabled = False
                     txtHEALTH_RECEIVE_DATE.Enabled = False
-                    txtHEALTH_RECEIVER.Enabled = False
-                    txtHEALTH_RETURN_DATE.Enabled = False
-                    txtUNEMP_FROM_MONTH.Enabled = False
-                    txtUNEMP_TO_MONTH.Enabled = False
 
                     txtSI_FROM_MONTH.Enabled = False
                     txtSI_TO_MONTH.Enabled = False
@@ -156,6 +152,12 @@ Public Class ctrlInsInformations
                     chkIS_HI_FIVE_YEAR.Enabled = False
                     txtBHTNLD_BNN_FROM_MONTH.Enabled = False
                     txtBHTNLD_BNN_TO_MONTH.Enabled = False
+                    rtxtSeniortyMonth.Enabled = False
+                    rtxtSeniortyMonthCT.Enabled = False
+                    rtxtSeniortyYear.Enabled = False
+                    rtxtSeniortyYearCT.Enabled = False
+                    cboPlaceBHYT.Enabled = False
+
                 Case CommonMessage.STATE_NEW, CommonMessage.STATE_EDIT
                     CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = True
                     CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = True
@@ -164,8 +166,6 @@ Public Class ctrlInsInformations
                     txtDateIssue.Enabled = False
                     txtDoB.Enabled = False
 
-                    txtSENIORITY_INSURANCE.Enabled = True
-                    txtSENIORITY_INSURANCE_COMPANY.Enabled = False
                     txtSOCIAL_NUMBER.Enabled = True
                     ddlSOCIAL_STATUS.Enabled = True
                     txtSOCIAL_SUBMIT_DATE.Enabled = True
@@ -181,7 +181,6 @@ Public Class ctrlInsInformations
                     txtHEALTH_EFFECT_TO_DATE.Enabled = True
                     ddlHEALTH_AREA_INS_ID.Enabled = True
                     txtHEALTH_RECEIVE_DATE.Enabled = True
-                    txtHEALTH_RECEIVER.Enabled = True
                     txtHEALTH_RETURN_DATE.Enabled = True
                     txtUNEMP_FROM_MONTH.Enabled = True
                     txtUNEMP_TO_MONTH.Enabled = True
@@ -200,6 +199,13 @@ Public Class ctrlInsInformations
                     chkIS_HI_FIVE_YEAR.Enabled = True
                     txtBHTNLD_BNN_FROM_MONTH.Enabled = True
                     txtBHTNLD_BNN_TO_MONTH.Enabled = True
+
+                    rtxtSeniortyMonth.Enabled = True
+                    rtxtSeniortyMonthCT.Enabled = True
+                    rtxtSeniortyYear.Enabled = True
+                    rtxtSeniortyYearCT.Enabled = True
+                    cboPlaceBHYT.Enabled = True
+
                 Case "Nothing"
             End Select
         Catch ex As Exception
@@ -240,7 +246,6 @@ Public Class ctrlInsInformations
     Private Sub ResetForm()
         Try
             txtID.Text = "0"
-
             txtEMPLOYEE_ID.Text = ""
             txtFULLNAME.Text = ""
             txtDEP.Text = ""
@@ -252,10 +257,6 @@ Public Class ctrlInsInformations
             txtINSORG.Text = ""
             txtSALARY.Text = 0
             txtEMPID.Text = "0"
-            txtThongTinLL.Text = ""
-
-            txtSENIORITY_INSURANCE.Text = ""
-            txtSENIORITY_INSURANCE_COMPANY.Text = ""
             txtSOCIAL_NUMBER.Text = ""
             ddlSOCIAL_STATUS.SelectedIndex = 0
             txtSOCIAL_SUBMIT_DATE.SelectedDate = Nothing
@@ -270,26 +271,25 @@ Public Class ctrlInsInformations
             txtHEALTH_EFFECT_TO_DATE.SelectedDate = Nothing
             ddlHEALTH_AREA_INS_ID.SelectedIndex = 0
             txtHEALTH_RECEIVE_DATE.SelectedDate = Nothing
-            txtHEALTH_RECEIVER.Text = ""
             txtHEALTH_RETURN_DATE.SelectedDate = Nothing
             txtUNEMP_FROM_MONTH.SelectedDate = Nothing
             txtUNEMP_TO_MONTH.SelectedDate = Nothing
-
-
             txtSI_FROM_MONTH.SelectedDate = Nothing
             txtSI_TO_MONTH.SelectedDate = Nothing
             txtHI_FROM_MONTH.SelectedDate = Nothing
             txtHI_TO_MONTH.SelectedDate = Nothing
-
             chkSI.Checked = True
             chkHI.Checked = True
             chkUI.Checked = True
-
             chkBHTNLD_BNN.Checked = True
             chkIS_HI_FIVE_YEAR.Checked = False
             txtBHTNLD_BNN_FROM_MONTH.SelectedDate = Nothing
             txtBHTNLD_BNN_TO_MONTH.SelectedDate = Nothing
-
+            rtxtSeniortyMonth.Text = Nothing
+            rtxtSeniortyMonthCT.Text = Nothing
+            rtxtSeniortyYear.Text = Nothing
+            rtxtSeniortyYearCT.Text = Nothing
+            cboPlaceBHYT.SelectedIndex = 0
         Catch ex As Exception
         End Try
     End Sub
@@ -304,8 +304,8 @@ Public Class ctrlInsInformations
                     If rep.UpdateInsInfomation(Common.Common.GetUsername(), txtID.Text _
                                                     , InsCommon.getNumber(txtEMPID.Text) _
                                                     , InsCommon.getString(txtINSORG.Text) _
-                                                    , InsCommon.getNumber(txtSENIORITY_INSURANCE.Text) _
-                                                    , txtSENIORITY_INSURANCE_COMPANY.Text _
+                                                    , Nothing _
+                                                    , Nothing _
                                                     , txtSOCIAL_NUMBER.Text _
                                                     , InsCommon.getNumber(ddlSOCIAL_STATUS.SelectedValue) _
                                                     , txtSOCIAL_SUBMIT_DATE.SelectedDate _
@@ -322,7 +322,7 @@ Public Class ctrlInsInformations
                                                     , txtHEALTH_EFFECT_TO_DATE.SelectedDate _
                                                     , InsCommon.getNumber(ddlHEALTH_AREA_INS_ID.SelectedValue) _
                                                     , txtHEALTH_RECEIVE_DATE.SelectedDate _
-                                                    , txtHEALTH_RECEIVER.Text _
+                                                    , Nothing _
                                                     , txtHEALTH_RETURN_DATE.SelectedDate _
                                                     , txtUNEMP_FROM_MONTH.SelectedDate _
                                                     , txtUNEMP_TO_MONTH.SelectedDate _
@@ -338,6 +338,12 @@ Public Class ctrlInsInformations
                                                     , InsCommon.getNumber(IIf(chkIS_HI_FIVE_YEAR.Checked, 1, 0)) _
                                                     , txtBHTNLD_BNN_FROM_MONTH.SelectedDate _
                                                     , txtBHTNLD_BNN_TO_MONTH.SelectedDate _
+                                                    , rtxtSeniortyYear.Value _
+                                                    , rtxtSeniortyMonth.Value _
+                                                    , rtxtSeniortyYearCT.Value _
+                                                    , rtxtSeniortyMonthCT.Value _
+                                                    , txtSeniorityTotal.Text _
+                                                    , cboPlaceBHYT.SelectedValue
                                                     ) Then
                         Refresh("InsertView")
                         'Common.Common.OrganizationLocationDataSession = Nothing
@@ -353,8 +359,8 @@ Public Class ctrlInsInformations
                     If rep.UpdateInsInfomation(Common.Common.GetUsername(), txtID.Text _
                                                     , InsCommon.getNumber(txtEMPID.Text) _
                                                     , InsCommon.getString(txtINSORG.Text) _
-                                                    , InsCommon.getNumber(txtSENIORITY_INSURANCE.Text) _
-                                                    , txtSENIORITY_INSURANCE_COMPANY.Text _
+                                                    , Nothing _
+                                                    , Nothing _
                                                     , txtSOCIAL_NUMBER.Text _
                                                     , InsCommon.getNumber(ddlSOCIAL_STATUS.SelectedValue) _
                                                     , txtSOCIAL_SUBMIT_DATE.SelectedDate _
@@ -371,7 +377,7 @@ Public Class ctrlInsInformations
                                                     , txtHEALTH_EFFECT_TO_DATE.SelectedDate _
                                                     , InsCommon.getNumber(ddlHEALTH_AREA_INS_ID.SelectedValue) _
                                                     , txtHEALTH_RECEIVE_DATE.SelectedDate _
-                                                    , txtHEALTH_RECEIVER.Text _
+                                                    , Nothing _
                                                     , txtHEALTH_RETURN_DATE.SelectedDate _
                                                     , txtUNEMP_FROM_MONTH.SelectedDate _
                                                     , txtUNEMP_TO_MONTH.SelectedDate _
@@ -387,6 +393,12 @@ Public Class ctrlInsInformations
                                                     , InsCommon.getNumber(IIf(chkIS_HI_FIVE_YEAR.Checked, 1, 0)) _
                                                     , txtBHTNLD_BNN_FROM_MONTH.SelectedDate _
                                                     , txtBHTNLD_BNN_TO_MONTH.SelectedDate _
+                                                    , rtxtSeniortyYear.Value _
+                                                    , rtxtSeniortyMonth.Value _
+                                                    , rtxtSeniortyYearCT.Value _
+                                                    , rtxtSeniortyMonthCT.Value _
+                                                    , txtSeniorityTotal.Text _
+                                                    , cboPlaceBHYT.SelectedValue
                                                     ) Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
                         Dim str As String = "getRadWindow().close('1');"
@@ -411,6 +423,9 @@ Public Class ctrlInsInformations
 
             dtData = rep.GetInsListWhereHealth()
             FillRadCombobox(ddlHEALTH_AREA_INS_ID, dtData, "NAME_VN", "ID", False)
+
+            dtData = rep.GetOtherList("PLACE_BHYT", Common.Common.SystemLanguage.Name, False) 'Trang thai thẻ
+            FillRadCombobox(cboPlaceBHYT, dtData, "NAME", "ID", False)
 
         Catch ex As Exception
             Throw ex
@@ -473,29 +488,26 @@ Public Class ctrlInsInformations
 
             If lstSource IsNot Nothing AndAlso lstSource.Rows.Count > 0 Then
 
-
-
                 InsCommon.SetString(txtEMPID, lstSource.Rows(0)("EMPID"))
-
                 InsCommon.SetString(txtEMPLOYEE_ID, lstSource.Rows(0)("EMPLOYEE_CODE"))
                 InsCommon.SetString(txtFULLNAME, lstSource.Rows(0)("FULL_NAME"))
                 InsCommon.SetString(txtDEP, lstSource.Rows(0)("DEP_NAME"))
                 InsCommon.SetDate(txtDoB, lstSource.Rows(0)("BIRTH_DATE"))
                 InsCommon.SetString(txtBirthPlace, lstSource.Rows(0)("PLACE_OF_BIRTH_NAME"))
+                InsCommon.SetString(txtBirthPlaceCmnd, lstSource.Rows(0)("PLACE_OF_BIRTH_NAME"))
                 InsCommon.SetString(txtCMND, lstSource.Rows(0)("ID_NO"))
                 InsCommon.SetDate(txtDateIssue, lstSource.Rows(0)("ID_DATE"))
                 InsCommon.SetString(txtINSORG, lstSource.Rows(0)("INS_ORG_NAME"))
                 InsCommon.SetString(txtPOSITION, lstSource.Rows(0)("POSITION_NAME"))
                 InsCommon.SetNumber(txtSALARY, lstSource.Rows(0)("SALARY"))
-
-                InsCommon.SetString(txtThongTinLL, lstSource.Rows(0)("THONGTIN_LL"))
-
+                InsCommon.SetNumber(rtxtSeniortyMonth, lstSource.Rows(0)("SENIORITY_MONTH"))
+                InsCommon.SetNumber(rtxtSeniortyMonthCT, lstSource.Rows(0)("SENIORITY_MONTH_CP"))
+                InsCommon.SetNumber(rtxtSeniortyYear, lstSource.Rows(0)("SENIORITY_YEAR"))
+                InsCommon.SetNumber(rtxtSeniortyYearCT, lstSource.Rows(0)("SENIORITY_YEAR_CP"))
+                InsCommon.SetNumber(cboPlaceBHYT, lstSource.Rows(0)("PLACE_BHYT_ID"))
                 InsCommon.SetNumber(chkSI, lstSource.Rows(0)("SI"))
                 InsCommon.SetNumber(chkHI, lstSource.Rows(0)("HI"))
                 InsCommon.SetNumber(chkUI, lstSource.Rows(0)("UI"))
-
-                InsCommon.SetString(txtSENIORITY_INSURANCE, lstSource.Rows(0)("SENIORITY_INSURANCE"))
-                InsCommon.SetString(txtSENIORITY_INSURANCE_COMPANY, lstSource.Rows(0)("SENIORITY_INSURANCE_COMPANY"))
                 InsCommon.SetString(txtSOCIAL_NUMBER, lstSource.Rows(0)("SOCIAL_NUMBER"))
                 InsCommon.SetNumber(ddlSOCIAL_STATUS, lstSource.Rows(0)("SOCIAL_STATUS"))
                 InsCommon.SetDate(txtSOCIAL_SUBMIT_DATE, lstSource.Rows(0)("SOCIAL_SUBMIT_DATE"))
@@ -508,28 +520,27 @@ Public Class ctrlInsInformations
                 InsCommon.SetNumber(ddlHEALTH_STATUS, lstSource.Rows(0)("HEALTH_STATUS"))
                 InsCommon.SetDate(txtHEALTH_EFFECT_FROM_DATE, lstSource.Rows(0)("HEALTH_EFFECT_FROM_DATE"))
                 InsCommon.SetDate(txtHEALTH_EFFECT_TO_DATE, lstSource.Rows(0)("HEALTH_EFFECT_TO_DATE"))
-
                 InsCommon.SetNumber(ddlHEALTH_AREA_INS_ID, lstSource.Rows(0)("HEALTH_AREA_INS_ID"))
                 InsCommon.SetDate(txtHEALTH_RECEIVE_DATE, lstSource.Rows(0)("HEALTH_RECEIVE_DATE"))
-                'dic.Add("INS_ORG_ID", ddlINS_ORG_ID)                   
-                'dic.Add("SOCIAL_DELIVER_DATE", txtSOCIAL_DELIVER_DATE)     
-                'dic.Add("UNEMP_REGISTER_MONTH", txtUNEMP_REGISTER_MONTH)
-                InsCommon.SetString(txtHEALTH_RECEIVER, lstSource.Rows(0)("HEALTH_RECEIVER"))
                 InsCommon.SetDate(txtHEALTH_RETURN_DATE, lstSource.Rows(0)("HEALTH_RETURN_DATE"))
                 InsCommon.SetDate(txtUNEMP_FROM_MONTH, lstSource.Rows(0)("UNEMP_FROM_MONTH"))
                 InsCommon.SetDate(txtUNEMP_TO_MONTH, lstSource.Rows(0)("UNEMP_TO_MONTH"))
-
                 InsCommon.SetString(txtSOCIAL_SUBMIT, lstSource.Rows(0)("SOCIAL_SUBMIT"))
-
                 InsCommon.SetDate(txtSI_FROM_MONTH, lstSource.Rows(0)("SI_FROM_MONTH"))
                 InsCommon.SetDate(txtSI_TO_MONTH, lstSource.Rows(0)("SI_TO_MONTH"))
                 InsCommon.SetDate(txtHI_FROM_MONTH, lstSource.Rows(0)("HI_FROM_MONTH"))
                 InsCommon.SetDate(txtHI_TO_MONTH, lstSource.Rows(0)("HI_TO_MONTH"))
-
                 InsCommon.SetNumber(chkBHTNLD_BNN, lstSource.Rows(0)("BHTNLD_BNN"))
                 InsCommon.SetDate(txtBHTNLD_BNN_FROM_MONTH, lstSource.Rows(0)("BHTNLD_BNN_FROM_MONTH"))
                 InsCommon.SetDate(txtBHTNLD_BNN_TO_MONTH, lstSource.Rows(0)("BHTNLD_BNN_TO_MONTH"))
                 InsCommon.SetNumber(chkIS_HI_FIVE_YEAR, lstSource.Rows(0)("IS_HI_FIVE_YEAR"))
+
+                InsCommon.SetNumber(rtxtSeniortyMonth, lstSource.Rows(0)("SENIORITY_MONTH"))
+                InsCommon.SetNumber(rtxtSeniortyMonthCT, lstSource.Rows(0)("SENIORITY_MONTH_CP"))
+                InsCommon.SetNumber(rtxtSeniortyYear, lstSource.Rows(0)("SENIORITY_YEAR"))
+                InsCommon.SetNumber(rtxtSeniortyYearCT, lstSource.Rows(0)("SENIORITY_YEAR_CP"))
+                InsCommon.SetString(txtSeniorityTotal, lstSource.Rows(0)("SENIORITY_TOTAL"))
+                InsCommon.SetNumber(cboPlaceBHYT, lstSource.Rows(0)("PLACE_BHYT_ID"))
 
             End If
         Catch ex As Exception
@@ -547,7 +558,7 @@ Public Class ctrlInsInformations
 
     Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
         Dim lstCommonEmployee As New List(Of Common.CommonBusiness.EmployeePopupFindDTO)
-        'Dim rep As New AttendanceRepository
+        Dim rep As New InsuranceRepository
         Try
             Dim a As Object = ctrlFindEmployeePopup.SelectedEmployee
             lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of Common.CommonBusiness.EmployeePopupFindDTO))
@@ -559,22 +570,18 @@ Public Class ctrlInsInformations
                         txtEMPLOYEE_ID.Text = lstSource.Rows(0)("EMPLOYEE_ID")
                         InsCommon.SetString(txtFULLNAME, lstSource.Rows(0)("VN_FULLNAME"))
                         InsCommon.SetString(txtDEP, lstSource.Rows(0)("ORG_NAME"))
-
                         InsCommon.SetDate(txtDoB, lstSource.Rows(0)("BIRTH_DATE"))
-
                         InsCommon.SetString(txtBirthPlace, lstSource.Rows(0)("PLACE_OF_BIRTH_NAME"))
                         InsCommon.SetString(txtCMND, lstSource.Rows(0)("ID_NO"))
-
                         InsCommon.SetDate(txtDateIssue, lstSource.Rows(0)("ID_DATE"))
-
-
                         InsCommon.SetString(txtPOSITION, lstSource.Rows(0)("POSITION_NAME"))
                         InsCommon.SetString(txtINSORG, lstSource.Rows(0)("INS_ORG_NAME"))
                         InsCommon.SetNumber(txtSALARY, lstSource.Rows(0)("SALARY"))
-
-                        InsCommon.SetString(txtThongTinLL, lstSource.Rows(0)("THONGTIN_LL"))
-                        txtSENIORITY_INSURANCE_COMPANY.Text = lstSource.Rows(0)("INS_SENIORITY_COM")
                         txtEMPID.Text = lstSource.Rows(0)("EMPID")
+                        Dim dtData As DataTable = rep.GET_SENIORITY(lstSource.Rows(0)("EMPLOYEE_ID"))
+                        rtxtSeniortyYearCT.Value = If(IsDBNull(dtData.Rows(0)("SENIORITY_YEAR_CP")), Nothing, dtData.Rows(0)("SENIORITY_YEAR_CP"))
+                        rtxtSeniortyMonthCT.Value = If(IsDBNull(dtData.Rows(0)("SENIORITY_MONTH_CP")), Nothing, dtData.Rows(0)("SENIORITY_MONTH_CP"))
+                        txtSeniorityTotal.Text = dtData.Rows(0)("SENIORITY_TOTAL")
                     Else
                         ShowMessage(Translate("Nhân viên này đã tồn tại, vui lòng chọn lại"), NotifyType.Warning)
                     End If
@@ -602,7 +609,6 @@ Public Class ctrlInsInformations
         Try
             If FindEmployee.Controls.Contains(ctrlFindEmployeePopup) Then
                 FindEmployee.Controls.Remove(ctrlFindEmployeePopup)
-                'Me.Views.Remove(ctrlFindEmployeePopup.ID.ToUpper)
             End If
 
             If isLoadPopup = 1 Then
@@ -644,6 +650,26 @@ Public Class ctrlInsInformations
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
+    End Sub
+
+    Private Sub rtxtSeniorty_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rtxtSeniortyYear.TextChanged, rtxtSeniortyMonth.TextChanged
+        Dim year As Integer
+        Dim month As Integer
+
+        year = If(rtxtSeniortyYear.Value Is Nothing, 0, rtxtSeniortyYear.Value) + If(rtxtSeniortyYearCT.Value Is Nothing, 0, rtxtSeniortyYearCT.Value)
+        month = If(rtxtSeniortyMonth.Value Is Nothing, 0, rtxtSeniortyMonth.Value) + If(rtxtSeniortyMonthCT.Value Is Nothing, 0, rtxtSeniortyMonthCT.Value)
+
+        If year <> 0 And month <> 0 Then
+            txtSeniorityTotal.Text = String.Format("{0} năm {1} tháng", year, month)
+        End If
+
+        If year <> 0 And month = 0 Then
+            txtSeniorityTotal.Text = String.Format("{0} năm", year)
+        End If
+
+        If year = 0 And month <> 0 Then
+            txtSeniorityTotal.Text = String.Format("{0} tháng", month)
+        End If
     End Sub
 
 #End Region

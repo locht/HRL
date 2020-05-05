@@ -562,7 +562,13 @@ Namespace InsuranceBusiness.ServiceContracts
                                     , ByVal bhtnld_bnn As Double? _
                                     , ByVal is_hi_five_year As Double? _
                                     , ByVal bhtnld_bnn_from As Date? _
-                                    , ByVal bhtnld_bnn_to As Date?
+                                    , ByVal bhtnld_bnn_to As Date? _
+                                    , ByVal seniority_year As Decimal? _
+                                    , ByVal seniority_month As Decimal? _
+                                    , ByVal seniority_year_cp As Decimal? _
+                                    , ByVal seniority_month_cp As Decimal? _
+                                    , ByVal seniority_total As String _
+                                    , ByVal place_bhyt_id As Decimal?
                                     ) As Boolean
         <OperationContract()>
         Function DeleteInsInfomation(ByVal username As String, ByVal id As Double?) As Boolean
@@ -860,6 +866,9 @@ Namespace InsuranceBusiness.ServiceContracts
 
         <OperationContract()>
         Function UPDATE_INS_ACCIDENT_RISK(ByVal obj As INS_ACCIDENT_RISKDTO, Optional ByVal log As UserLog = Nothing) As Boolean
+
+        <OperationContract()>
+        Function GET_SENIORITY(ByVal p_EMP_ID As Decimal) As DataTable
 
     End Interface
 End Namespace
