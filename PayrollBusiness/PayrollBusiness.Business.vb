@@ -93,6 +93,22 @@ Namespace PayrollBusiness.ServiceImplementations
 
             End Try
         End Function
+        Public Function SaveLstManagementBONUS(ByVal status_id As Decimal, ByVal SalaryGroup As Decimal, ByVal Period As Decimal, ByVal taxId As Decimal, ByVal dtData As DataTable, ByVal lstColVal As List(Of String), ByVal log As UserLog, ByRef RecordSussces As Integer) As Boolean Implements ServiceContracts.IPayrollBusiness.SaveLstManagementBONUS
+            Try
+                Dim rep As New PayrollRepository
+                Return rep.SaveLstManagementBONUS(status_id, SalaryGroup, Period, taxId, dtData, lstColVal, log, RecordSussces)
+            Catch ex As Exception
+
+            End Try
+        End Function
+        Public Function CHECK_CLOSE_BONUS(ByVal salaryGr_Id As Decimal, ByVal period_salaryId As Decimal, ByVal period_bonusId As Decimal) As Int32 Implements ServiceContracts.IPayrollBusiness.CHECK_CLOSE_BONUS
+            Try
+                Dim rep As New PayrollRepository
+                Return rep.CHECK_CLOSE_BONUS(salaryGr_Id, period_salaryId, period_bonusId)
+            Catch ex As Exception
+
+            End Try
+        End Function
 #End Region
 #Region "Import Bonus"
 

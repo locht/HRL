@@ -74,7 +74,7 @@
                             <ClientSettings EnableRowHoverStyle="true">
                                 <Selecting AllowRowSelect="true" />
                             </ClientSettings>
-                            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,EMPLOYEE_CODE,FULLNAME_VN,ORG_NAME,JOB_NAME">
+                            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,EMPLOYEE_CODE,FULLNAME_VN,ORG_NAME,JOB_NAME,STATUS_NAME">
                                 <Columns>
                                     <tlk:GridBoundColumn HeaderStyle-Width="100px" HeaderText="<%$ Translate: Mã nhân viên %>"
                                         DataField="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" />
@@ -84,6 +84,8 @@
                                         DataField="ORG_NAME" SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
                                     <tlk:GridBoundColumn HeaderStyle-Width="150px" HeaderText="<%$ Translate: Vị trí công việc %>"
                                         DataField="JOB_NAME" SortExpression="JOB_NAME" UniqueName="JOB_NAME" />
+                                    <tlk:GridBoundColumn HeaderStyle-Width="150px" HeaderText="<%$ Translate: Trạng thái %>"
+                                        DataField="STATUS_NAME" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
                                 </Columns>
                             </MasterTableView>
                         </tlk:RadGrid>
@@ -98,7 +100,7 @@
     var enableAjax = true;
 
     function clientButtonClicking(sender, args) {
-        if (args.get_item().get_commandName() == 'NEXT') {
+        if (args.get_item().get_commandName() == 'EXPORT') {
             var grid = $find("<%=rgData.ClientID %>");
             var masterTable = grid.get_masterTableView();
             var rows = masterTable.get_dataItems();

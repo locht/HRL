@@ -83,6 +83,11 @@ Namespace PayrollBusiness.ServiceContracts
         <OperationContract()>
         Function GetListManagementBonus(ByVal obj_sal_id As Integer, ByVal periodBonus As Integer, ByVal OrgId As Integer, ByVal IsDissolve As Integer, ByVal EmployeeId As String, ByVal log As UserLog,
                                       Optional ByVal Sorts As String = "CREATED_DATE DESC") As DataTable
+        <OperationContract()>
+        Function SaveLstManagementBONUS(ByVal status_id As Decimal, ByVal SalaryGroup As Decimal, ByVal Period As Decimal, ByVal taxId As Decimal, ByVal dtData As DataTable, ByVal lstColVal As List(Of String), ByVal log As UserLog, ByRef RecordSussces As Integer) As Boolean
+
+        <OperationContract()>
+        Function CHECK_CLOSE_BONUS(ByVal salaryGr_Id As Decimal, ByVal period_salaryId As Decimal, ByVal period_bonusId As Decimal) As Int32
 #End Region
 #Region "Import Bonus"
         <OperationContract()>

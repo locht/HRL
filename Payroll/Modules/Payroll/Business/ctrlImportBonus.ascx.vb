@@ -275,7 +275,7 @@ Public Class ctrlImportBonus
                 Exit Sub
             End If
 
-            If rep.SaveLstImportBONUS(Utilities.ObjToDecima((13)), 0, Utilities.ObjToDecima(cboPeriod.SelectedValue), vData, stringKey, RecordSussces) Then
+            If rep.SaveLstImportBONUS(Utilities.ObjToDecima((13)), Utilities.ObjToDecima(cboPeriod.SelectedValue), Utilities.ObjToDecima(cboPeriod.SelectedValue), vData, stringKey, RecordSussces) Then
                 ShowMessage("Lưu dữ liệu thành công " & RecordSussces & " bản ghi.", NotifyType.Success)
             Else
                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
@@ -380,6 +380,14 @@ Public Class ctrlImportBonus
                     ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_ImportBonus')", True)
 
                 Case CommonMessage.TOOLBARITEM_IMPORT
+                    Using rep As New PayrollRepository
+                        Dim giatri = rep.CHECK_CLOSE_BONUS(Utilities.ObjToInt((13)), Utilities.ObjToInt(cboPeriod.SelectedValue), Utilities.ObjToInt(cboPeriod.SelectedValue))
+                        If giatri > 0 Then
+                            ShowMessage(Translate("Kì công đã đóng không thể import dữ liệu,Xin kiểm tra lại"), NotifyType.Warning)
+                            Exit Sub
+                        End If
+
+                    End Using
                     ctrlUpload.Show()
                 Case CommonMessage.TOOLBARITEM_NEXT
                     Using xls As New ExcelCommon

@@ -368,6 +368,89 @@ Partial Public Class PayrollRepository
             Throw ex
         End Try
     End Function
+    Public Function SaveLstManagementBONUS(ByVal status_id As Decimal, ByVal SalaryGroup As Decimal, ByVal Period As Decimal, ByVal taxId As Decimal, ByVal dtData As DataTable, ByVal lstColVal As List(Of String), ByVal log As UserLog, ByRef RecordSussces As Integer) As Boolean
+        Try
+            Using conMng As New DataAccess.ConnectionManager
+                Using conn As New OracleConnection(conMng.GetConnectionString())
+                    Dim cmd As New OracleCommand
+                    Dim sqlInsert = lstColVal.Aggregate(Function(cur, [next]) cur & "," & [next])
+                    Dim sqlInsert_Temp As String
+                    conn.Open()
+                    cmd.Connection = conn
+                    cmd.Transaction = cmd.Connection.BeginTransaction()
+                    RecordSussces = 0
+                    For Each dr As DataRow In dtData.Rows
+                        If dr("ID").ToString() Is DBNull.Value OrElse dr("ID").ToString() = "" Then
+                            Continue For
+                        End If
+                        sqlInsert_Temp = "," & sqlInsert & ","
+                        Dim sqlInsertVal = ""
+                        For Each parm As String In lstColVal
+                            If Not dr(parm).ToString Is DBNull.Value AndAlso dr(parm).ToString <> "" Then
+                                If Not Integer.TryParse(dr(parm).ToString(), 1) Then
+                                    sqlInsertVal &= "'" & dr(parm).ToString.Replace(".", Nothing).Replace(",", ".") & "',"
+                                Else
+                                    sqlInsertVal &= dr(parm).ToString & ","
+                                End If
+                            Else
+                                sqlInsert_Temp = sqlInsert_Temp.Replace("," & parm & ",", ",")
+                            End If
+                        Next
+                        If sqlInsertVal <> "" Then
+                            sqlInsertVal = sqlInsertVal.Remove(sqlInsertVal.Length - 1, 1)
+                        End If
+                        If sqlInsert_Temp = "," Then
+                            Continue For
+                        End If
+                        If sqlInsert_Temp <> "" Then
+                            sqlInsert_Temp = sqlInsert_Temp.Remove(0, 1)
+                            sqlInsert_Temp = sqlInsert_Temp.Remove(sqlInsert_Temp.Length - 1, 1)
+                        End If
+                        cmd.CommandText = "PKG_PA_BUSINESS.UPDATE_STATUS_MANAGEMENT_BONUS"
+                        cmd.CommandType = CommandType.StoredProcedure
+                        cmd.Parameters.Clear()
+                        cmd.Parameters.Add("P_STATUS_ID", status_id).Value = status_id
+                        cmd.Parameters.Add("P_SALARY_GROUP_ID", SalaryGroup).Value = SalaryGroup
+                        cmd.Parameters.Add("P_PERIOD_SALARY_ID", Period).Value = Period
+                        cmd.Parameters.Add("P_EMPLOYEE_ID", dr("ID"))
+                        cmd.Parameters.Add("P_PERIOD_BONUS", taxId).Value = taxId
+                        cmd.Parameters.Add("P_CREATED_USER", log.Username)
+                        cmd.Parameters.Add("P_CREATED_LOG", log.Ip)
+                        cmd.Parameters.Add("P_LISTCOL", sqlInsert_Temp)
+                        cmd.Parameters.Add("P_LISTVAL", sqlInsertVal)
+
+                        Dim r As Integer = 0
+                        r = cmd.ExecuteNonQuery()
+                        RecordSussces += 1
+                    Next
+                    cmd.Transaction.Commit()
+                    cmd.Dispose()
+                    conn.Close()
+                    conn.Dispose()
+                End Using
+            End Using
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+            Throw ex
+        End Try
+    End Function
+    'CHECK KI THUONG DONG HAY CHUA
+    Public Function CHECK_CLOSE_BONUS(ByVal salaryGr_Id As Decimal, ByVal period_salaryId As Decimal, ByVal period_bonusId As Decimal) As Int32
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtTable As DataTable = cls.ExecuteStore("PKG_PA_BUSINESS.CHECK_CLOSE_BONUS", New With {.P_SALARY_GROUP_ID = salaryGr_Id,
+                                                                                                          .P_PERIOD_SALARY_ID = period_salaryId,
+                                                                                                          .P_PERIOD_BONUS = period_bonusId,
+                                                                                                          .P_CUR = cls.OUT_CURSOR})
+
+                Return Decimal.Parse(dtTable(0)("DEM"))
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+            Throw ex
+        End Try
+    End Function
 #End Region
 #Region "Import Bonus"
 
