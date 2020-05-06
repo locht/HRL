@@ -1074,7 +1074,7 @@ Public Class Export
         Try
             Dim dtColName = Session("IMPORTSALARY_COLNAME")
             Dim dtData = Session("IMPORTSALARY_DATACOL")
-            ExportTemplateWithDataCol1("Payroll\Business\TEMP_IMPORT_SALARY_BONUS.xlsx", dtData, dtColName, "TEMP_IMPORTBONUS" & Format(Date.Now, "yyyyMMdd"))
+            ExportTemplateWithDataCol("Payroll\Business\TEMP_IMPORT_SALARY_BONUS.xlsx", dtData, dtColName, "TEMP_IMPORTBONUS" & Format(Date.Now, "yyyyMMdd"))
 
         Catch ex As Exception
             Throw ex
