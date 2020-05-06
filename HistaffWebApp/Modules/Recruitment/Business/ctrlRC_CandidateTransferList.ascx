@@ -138,7 +138,7 @@
                 <tlk:RadTab runat="server" ID="rtIdElect" PageViewID="rpvElect" Text="<%$ Translate: Xác nhận trúng tuyển %>"
                     Selected="True">
                 </tlk:RadTab>
-                <tlk:RadTab runat="server" ID="rtIdResult" PageViewID="rpvResult" Text="<%$ Translate: Kết quả môn thi %>">
+                <tlk:RadTab runat="server" ID="rtIdResult" PageViewID="rpvResult" Text="<%$ Translate: Kết quả phỏng vấn %>">
                 </tlk:RadTab>
                 <tlk:RadTab runat="server" ID="rtIdAspiration" PageViewID="rpvAspiration" Text="<%$ Translate: Nguyện vọng %>">
                 </tlk:RadTab>

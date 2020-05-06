@@ -2882,8 +2882,7 @@ Public Class ProfileRepository
     Public Function GetOrgList(ByVal ID As Decimal) As String
         Try
             Dim query = (From p In Context.HUV_ORGANIZATION Where p.ID = ID).FirstOrDefault
-
-            Return query.ORG_CODE2
+            Dim org = (From p In Context.HU_ORGANIZATION Where p.ID = query.ORG_ID2).FirstOrDefault
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw ex

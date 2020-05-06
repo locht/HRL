@@ -154,6 +154,16 @@ Public Class ctrlHU_ContractTemplete
         End Set
 
     End Property
+
+    Private Property StartDateCT As Date?
+        Get
+            Return PageViewState(Me.ID & "_StartDateCT")
+        End Get
+        Set(ByVal value As Date?)
+            PageViewState(Me.ID & "_StartDateCT") = value
+        End Set
+
+    End Property
 #End Region
 
 #Region "Page"
@@ -299,8 +309,15 @@ Public Class ctrlHU_ContractTemplete
                         End If
 
                         If IsDate(EndDateCT) AndAlso rdExpireDate.SelectedDate IsNot Nothing Then
-                            If rdExpireDate.SelectedDate < EndDateCT Then
-                                ShowMessage(Translate("Ngày hết hiệu lực lớn hơn ngày hết hạn của hợp đồng"), NotifyType.Error)
+                            If rdExpireDate.SelectedDate > EndDateCT Then
+                                ShowMessage(Translate("Ngày hết hiệu lực lớn hơn ngày hết hạn của hợp đồng. Kiểm tra lại"), NotifyType.Error)
+                                Exit Sub
+                            End If
+                        End If
+
+                        If IsDate(StartDateCT) AndAlso rdStartDate.SelectedDate IsNot Nothing Then
+                            If rdStartDate.SelectedDate < StartDateCT Then
+                                ShowMessage(Translate("Ngày hiệu lực nhỏ hơn ngày hiệu của hợp đồng. Kiểm tra lại"), NotifyType.Error)
                                 Exit Sub
                             End If
                         End If
@@ -637,7 +654,7 @@ Public Class ctrlHU_ContractTemplete
                 'Working_ID.Text = working.ID
                 Working_ID.Text = If(working.DECISION_NO <> "", working.DECISION_NO, working.EFFECT_DATE.Value.Date)
                 rntxtBasicSal.Value = working.SAL_BASIC
-                Salary_Total.Value = working.SAL_TOTAL
+                Salary_Total.Value = working.SAL_INS
                 SalaryInsurance.Value = working.SAL_INS
                 PercentSalary.Value = working.PERCENT_SALARY
                 'rnOtherSalary1.Value = working.OTHERSALARY1
@@ -751,6 +768,7 @@ Public Class ctrlHU_ContractTemplete
                     radDate.SelectedDate = inforContract.START_DATE
                     PERIOD = rep.GetContractTypeCT(inforContract.CONTRACTTYPE_ID)
                     EndDateCT = inforContract.EXPIRE_DATE
+                    StartDateCT = inforContract.START_DATE
                 End If
             End If
 
@@ -831,6 +849,7 @@ Public Class ctrlHU_ContractTemplete
                 hidContractType_ID.Value = inforContractType.ID
                 PERIOD = rep.GetContractTypeCT(inforContract.CONTRACTTYPE_ID)
                 EndDateCT = inforContract.EXPIRE_DATE
+                StartDateCT = inforContract.START_DATE
                 'txtContractType.Text = inforContractType.NAME
             End If
 
@@ -1259,7 +1278,8 @@ Public Class ctrlHU_ContractTemplete
                 'rnOtherSalary1.Value = wkm.OTHERSALARY1
                 'rnOtherSalary2.Value = wkm.OTHERSALARY2
                 'rnOtherSalary3.Value = wkm.OTHERSALARY3
-                Salary_Total.Value = wkm.SAL_TOTAL
+                'Salary_Total.Value = wkm.SAL_TOTAL
+                Salary_Total.Value = wkm.SAL_INS
                 SetValueComboBox(cboSalTYPE, wkm.SAL_TYPE_ID, wkm.SAL_TYPE_NAME)
 
                 SetValueComboBox(cbSalaryGroup, wkm.SAL_GROUP_ID, wkm.SAL_GROUP_NAME)

@@ -34,7 +34,7 @@
                             <tlk:GridNumericColumn HeaderText="" DataField="SAL_BASIC" SortExpression="SAL_BASIC" UniqueName="SAL_BASIC" DataFormatString="{0:n0}" />
                             <tlk:GridNumericColumn HeaderText="" DataField="SAL_INS" SortExpression="SAL_INS" UniqueName="SAL_INS" DataFormatString="{0:n0}" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Tổng phụ cấp %>" DataField="ALLOWANCE_TOTAL" SortExpression="ALLOWANCE_TOTAL" UniqueName="ALLOWANCE_TOTAL"  DataFormatString="{0:n0}"/>
-                            <tlk:GridNumericColumn HeaderText="" DataField="SAL_TOTAL" SortExpression="SAL_TOTAL" UniqueName="SAL_TOTAL" DataFormatString="{0:n0}" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tổng lương %>" DataField="SAL_INS" SortExpression="SAL_INS" UniqueName="SAL_INS"  DataFormatString="{0:n0}"/>
 
                         </Columns>
                         <HeaderStyle Width="120px" />

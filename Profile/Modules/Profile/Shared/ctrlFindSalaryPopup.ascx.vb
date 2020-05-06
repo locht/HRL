@@ -131,7 +131,7 @@ Public Class ctrlFindSalaryPopup
             rgSalary.MasterTableView.GetColumn("SAL_BASIC").HeaderText = UI.Wage_BasicSalary
             rgSalary.MasterTableView.GetColumn("TAX_TABLE_Name").HeaderText = UI.Wage_TaxTable
             rgSalary.MasterTableView.GetColumn("SAL_INS").HeaderText = UI.Wage_Sal_Ins
-            rgSalary.MasterTableView.GetColumn("SAL_TOTAL").HeaderText = UI.Wage_Salary_Total
+            'rgSalary.MasterTableView.GetColumn("SAL_TOTAL").HeaderText = UI.Wage_Salary_Total
         Catch ex As Exception
             Throw ex
         End Try
