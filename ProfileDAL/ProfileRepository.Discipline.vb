@@ -257,8 +257,8 @@ Partial Class ProfileRepository
                                                                        .AMOUNT_IN_MONTH = p.p.AMOUNT_IN_MONTH,
                                                                        .AMOUNT_DEDUCT_AMOUNT = p.p.AMOUNT_DEDUCT_AMOUNT,
                                                                        .NO_DISCIPLINE = p.p.NO_DISCIPLINE,
-                                                                       .DATE_ISSUES = p.p.DATE_ISSUES,
-                                                                       .MONEY_MATERIAL = p.p.MONEY_MATERIAL
+                                                                       .MONEY_MATERIAL = p.p.MONEY_MATERIAL,
+                                                                       .DATE_ISSUES = p.p.DATE_ISSUES
                                                                       })
             ''Logger.LogInfo(obj)
             Return obj.SingleOrDefault
