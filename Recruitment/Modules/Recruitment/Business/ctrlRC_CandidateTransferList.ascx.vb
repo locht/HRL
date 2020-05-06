@@ -139,12 +139,9 @@ Public Class ctrlRC_CandidateTransferList
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Try
             If Not IsPostBack Then
-                For Each item As RadListBoxItem In rlbStatus.Items
-                    If item.Value = RCContant.DAT Then
-                        item.Checked = True
-                        strStatus = strStatus & item.Value & ","
-                        Exit For
-                    End If
+               For Each item As RadListBoxItem In rlbStatus.Items
+                    item.Checked = True
+                    strStatus = strStatus & item.Value & ","
                 Next
                 Dim rep As New RecruitmentRepository
                 Dim objPro = rep.GetProgramByID(New ProgramDTO With {.ID = Decimal.Parse(hidProgramID.Value)})
@@ -326,7 +323,7 @@ Public Class ctrlRC_CandidateTransferList
     'End Sub
 
 
-    Private Sub btnBlacklist_Click(sender As Object, e As System.EventArgs) Handles btnBlacklist.Click
+    Private Sub btnBlacklist_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnBlacklist.Click
         Dim status As String
         If rgCandidateList.SelectedItems.Count = 0 Then
             ShowMessage(Translate("Mời chọn ứng viên trước khi cập nhật"), NotifyType.Warning)
@@ -361,7 +358,7 @@ Public Class ctrlRC_CandidateTransferList
         ctrlMessageBox.Show()
     End Sub
 
-    Private Sub btnPontential_Click(sender As Object, e As System.EventArgs) Handles btnPontential.Click
+    Private Sub btnPontential_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnPontential.Click
         Dim status As String
         If rgCandidateList.SelectedItems.Count < 0 Then
             ShowMessage(Translate("Mời chọn nhân viên trước khi cập nhật"), NotifyType.Warning)
@@ -399,7 +396,7 @@ Public Class ctrlRC_CandidateTransferList
         ctrlMessageBox.Show()
     End Sub
 
-    Private Sub btnTransfer_Click(sender As Object, e As System.EventArgs) Handles btnTransfer.Click
+    Private Sub btnTransfer_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnTransfer.Click
 
         Dim status As String
         If rgCandidateList.SelectedItems.Count = 0 Then
@@ -437,7 +434,7 @@ Public Class ctrlRC_CandidateTransferList
         ctrlMessageBox.Show()
     End Sub
 
-    Private Sub btnTrungTuyen_Click(sender As Object, e As System.EventArgs) Handles btnTrungTuyen.Click
+    Private Sub btnTrungTuyen_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnTrungTuyen.Click
         Dim status As String
         If rgCandidateList.SelectedItems.Count = 0 Then
             ShowMessage(Translate("Mời chọn ứng viên trước khi cập nhật"), NotifyType.Warning)
@@ -472,7 +469,7 @@ Public Class ctrlRC_CandidateTransferList
         ctrlMessageBox.Show()
     End Sub
 
-    Private Sub btnKhongTrungTuyen_Click(sender As Object, e As System.EventArgs) Handles btnKhongTrungTuyen.Click
+    Private Sub btnKhongTrungTuyen_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnKhongTrungTuyen.Click
         Dim status As String
         If rgCandidateList.SelectedItems.Count = 0 Then
             ShowMessage(Translate("Mời chọn ứng viên trước khi cập nhật"), NotifyType.Warning)
@@ -580,7 +577,7 @@ Public Class ctrlRC_CandidateTransferList
     '    End If
     'End Sub
 
-    Private Sub btnLĐ_Click(sender As Object, e As System.EventArgs) Handles btnLĐ.Click
+    Private Sub btnLĐ_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnLĐ.Click
         Dim status As String
         If rgCandidateList.SelectedItems.Count = 0 Then
             ShowMessage(Translate("Mời chọn ứng viên trước khi gửi"), NotifyType.Warning)
@@ -743,7 +740,7 @@ Public Class ctrlRC_CandidateTransferList
 
     End Sub
 
-    Private Sub rgAspiration_ItemDataBound(sender As Object, e As Telerik.Web.UI.GridItemEventArgs) Handles rgAspiration.ItemDataBound
+    Private Sub rgAspiration_ItemDataBound(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridItemEventArgs) Handles rgAspiration.ItemDataBound
         Dim rep As New RecruitmentRepository
         Try
             Dim dtData As DataTable = rep.GetOtherList("WORK_TIME", True)
@@ -794,7 +791,7 @@ Public Class ctrlRC_CandidateTransferList
 
     End Sub
 
-    Private Sub rgCandidateList_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles rgCandidateList.SelectedIndexChanged
+    Private Sub rgCandidateList_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rgCandidateList.SelectedIndexChanged
         Try
             'If rgCandidateList.SelectedValues IsNot Nothing Then
             '    Dim idProGram = rgCandidateList.SelectedValues.Item("ID")
