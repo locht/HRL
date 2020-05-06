@@ -7,6 +7,10 @@ Imports System.ServiceModel.Web
 Namespace AttendanceBusiness.ServiceContracts
     <ServiceContract()>
     Public Interface IAttendanceBusiness
+#Region "AT_Symbols"
+        <OperationContract()>
+        Function SaveAT_Symnols(ByVal objData As AT_SymbolsDTO, ByVal log As UserLog, ByRef gid As Decimal) As Boolean
+#End Region
 #Region "LeaveSheet"
         <OperationContract()>
         Function ValidateLeaveSheetDetail(ByVal objValidate As AT_LEAVESHEETDTO) As Boolean

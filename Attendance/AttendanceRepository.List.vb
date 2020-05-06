@@ -3,6 +3,17 @@ Imports Framework.UI
 
 Partial Class AttendanceRepository
     Inherits AttendanceRepositoryBase
+#Region "AT_Symbols"
+    Function SaveAT_Symnols(ByVal objData As AT_SymbolsDTO, ByRef gid As Decimal) As Boolean
+        Try
+            Using rep As New AttendanceBusinessClient
+                Return rep.SaveAT_Symnols(objData, Me.Log, gid)
+            End Using
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+#End Region
     Public Function CHECK_CONTRACT(ByVal employee_id As Decimal) As DataTable
         Using rep As New AttendanceBusinessClient
             Try

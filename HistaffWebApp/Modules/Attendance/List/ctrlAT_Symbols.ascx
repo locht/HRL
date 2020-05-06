@@ -83,13 +83,13 @@
             </tr>
             <tr>
                 
-                 <td class="lb">
+               <%--  <td class="lb">
                     <%# Translate("Hiển thị trên màn hình nghiệp vụ")%><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox  ID="rcSYMBOL_FUN_ID" runat="server" CheckBoxes ="true" >
                     </tlk:RadComboBox>
-                </td>
+                </td>--%>
                 <td class="lb">
                     <asp:CheckBox ID="ckIS_DISPLAY" runat="server" />
                 </td>

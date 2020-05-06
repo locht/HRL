@@ -113,6 +113,15 @@ Partial Public Class ctrlAT_Symbols
     Protected WithEvents reqWGROUPID As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''rnWINDEX control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rnWINDEX As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
     '''rcWDATATYEID control.
     '''</summary>
     '''<remarks>
@@ -165,24 +174,6 @@ Partial Public Class ctrlAT_Symbols
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdEXPIRE_DATE As Global.Telerik.Web.UI.RadDatePicker
-
-    '''<summary>
-    '''rnWINDEX control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rnWINDEX As Global.Telerik.Web.UI.RadNumericTextBox
-
-    '''<summary>
-    '''rcSYMBOL_FUN_ID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rcSYMBOL_FUN_ID As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''ckIS_DISPLAY control.

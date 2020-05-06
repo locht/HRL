@@ -7,6 +7,18 @@ Imports LinqKit
 ' NOTE: You can use the "Rename" command on the context menu to change the class name "Service1" in both code and config file together.
 Namespace AttendanceBusiness.ServiceImplementations
     Partial Public Class AttendanceBusiness
+#Region "AT_Symbols"
+        Function SaveAT_Symnols(ByVal objData As AT_SymbolsDTO, ByVal log As UserLog, ByRef gid As Decimal) As Boolean _
+              Implements ServiceContracts.IAttendanceBusiness.SaveAT_Symnols
+            Try
+                Using rep As New AttendanceRepository
+                    Return rep.SaveAT_Symnols(objData, log, gid)
+                End Using
+            Catch ex As Exception
+                Return False
+            End Try
+        End Function
+#End Region
         Public Function CHECK_CONTRACT(ByVal employee_id As Decimal) As DataTable _
               Implements ServiceContracts.IAttendanceBusiness.CHECK_CONTRACT
             Using rep As New AttendanceRepository
@@ -1257,7 +1269,7 @@ Namespace AttendanceBusiness.ServiceImplementations
 #End Region
 
 #Region "Dang ky OT tren iPortal"
-        Public Function GET_REG_PORTAL(ByVal empid As Decimal, ByVal startdate As Date, ByVal enddate As Date, _
+        Public Function GET_REG_PORTAL(ByVal empid As Decimal, ByVal startdate As Date, ByVal enddate As Date,
                                         ByVal strId As String, ByVal type As String) As List(Of APPOINTMENT_DTO) _
                                         Implements IAttendanceBusiness.GET_REG_PORTAL
             Using rep As New AttendanceRepository
@@ -1368,7 +1380,7 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
-        Public Function CHECK_RGT_OT(ByVal EMPID As Decimal, ByVal STARTDATE As Date, ByVal ENDDATE As Date, _
+        Public Function CHECK_RGT_OT(ByVal EMPID As Decimal, ByVal STARTDATE As Date, ByVal ENDDATE As Date,
                                  ByVal FROM_HOUR As String, ByVal TO_HOUR As String, ByVal HOUR_RGT As Decimal) As Int32 _
                                         Implements IAttendanceBusiness.CHECK_RGT_OT
             Using rep As New AttendanceRepository
@@ -1394,7 +1406,7 @@ Namespace AttendanceBusiness.ServiceImplementations
         End Function
         Function GetPlanningAppointmentByEmployee(ByVal empid As Decimal,
                                                   ByVal startdate As DateTime,
-                                                  ByVal enddate As DateTime, _
+                                                  ByVal enddate As DateTime,
                                                   ByVal listSign As List(Of AT_TIME_MANUALDTO)) As List(Of AT_TIMESHEET_REGISTERDTO) _
                                               Implements IAttendanceBusiness.GetPlanningAppointmentByEmployee
             Using rep As New AttendanceRepository

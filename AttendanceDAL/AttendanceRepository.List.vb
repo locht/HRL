@@ -13,6 +13,90 @@ Imports System.Configuration
 Imports System.Reflection
 
 Partial Public Class AttendanceRepository
+#Region "AT_Symbols"
+    Function ConvertStringToDate(ByVal strDate As String) As Date
+        Try
+            Dim year As Integer = Now.Year
+            Dim month As Integer = Now.Month
+            Dim day As Integer = Now.Day
+            If strDate.Split("/").Count <> 3 Then Return Nothing
+            year = Integer.Parse(strDate.Split("/")(2))
+            month = Integer.Parse(strDate.Split("/")(1))
+            day = Integer.Parse(strDate.Split("/")(0))
+            Return New Date(year, month, day)
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
+    Function GetValueObject(ByVal pi As PropertyInfo, ByVal item As Object) As Object
+        Dim value As Object
+        Try
+            Select Case pi.PropertyType
+                Case GetType(DateTime), GetType(DateTime?)
+                    value = ConvertStringToDate(item.ToString())
+                Case GetType(Double), GetType(Double?)
+                    Double.TryParse(item, value)
+                Case GetType(Decimal), GetType(Decimal?)
+                    Decimal.TryParse(item, value)
+                Case GetType(Integer), GetType(Integer?)
+                    Integer.TryParse(item, value)
+                Case GetType(Boolean), GetType(Boolean?)
+                    Boolean.TryParse(item, value)
+                Case Else
+                    value = item
+            End Select
+            Return value
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
+    Public Function SaveAT_Symnols(ByVal objData As AT_SymbolsDTO, ByVal log As UserLog, ByRef gid As Decimal) As Boolean
+        Dim oPropSymbols() As PropertyInfo = Nothing
+        Dim oPropSymbolsData() As PropertyInfo = Nothing
+        Dim objSymbols As New AT_SYMBOLS()
+        Dim obj As AT_SYMBOLS
+        Dim isInsert As Boolean = False
+        Try
+            If IsNumeric(objData.ID) AndAlso objData.ID > 0 Then 'update
+                obj = (From p In Context.AT_SYMBOLS Where p.ID = objData.ID).FirstOrDefault()
+                If obj Is Nothing Then Return False
+            Else 'insert
+                obj = New AT_SYMBOLS()
+                objData.ID = Utilities.GetNextSequence(Context, Context.AT_SYMBOLS.EntitySet.Name)
+                isInsert = True
+            End If
+            oPropSymbols = obj.GetType().GetProperties()
+            oPropSymbolsData = objData.GetType().GetProperties()
+            For Each pi As PropertyInfo In oPropSymbols
+                Try
+                    'gan du lieu dong vo obj
+                    Dim pi1 As PropertyInfo = (From l In oPropSymbolsData Where l.Name.ToUpper.Equals(pi.Name.ToUpper) Select l).FirstOrDefault()
+                    If pi1 Is Nothing Then Continue For
+                    If pi1.PropertyType = GetType(Boolean) Or pi1.PropertyType = GetType(Boolean?) Then
+                        Dim value As Int16 = Int16.Parse(IIf(pi1.GetValue(objData, Nothing), -1, 0))
+                        pi.SetValue(obj, value, Nothing)
+                    Else
+                        pi.SetValue(obj, pi1.GetValue(objData, Nothing), Nothing)
+                    End If
+                Catch ex As Exception
+                    WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "SaveAT_Symnols_" + pi.Name.ToUpper)
+                    Continue For
+                End Try
+            Next
+            If isInsert Then
+                Context.AT_SYMBOLS.AddObject(obj)
+            End If
+            gid = obj.ID
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "SaveAT_Symnols")
+            Return False
+        Finally
+            objSymbols = Nothing
+        End Try
+    End Function
+#End Region
     Dim nvalue_id As Decimal?
     Public Function PRS_COUNT_INOUTKH(ByVal employee_id As Decimal, ByVal year As Decimal) As DataTable
         Using cls As New DataAccess.QueryData
@@ -53,9 +137,9 @@ Partial Public Class AttendanceRepository
         Try
 
             Dim query = From p In Context.HU_CONTRACT
-                      From ce In Context.HU_CONTRACT_TYPE.Where(Function(f) f.ID = p.CONTRACT_TYPE_ID).DefaultIfEmpty
-                      From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = ce.TYPE_ID).DefaultIfEmpty
-                      Where ot.ID = 6358 And p.EMPLOYEE_ID = employee_id
+                        From ce In Context.HU_CONTRACT_TYPE.Where(Function(f) f.ID = p.CONTRACT_TYPE_ID).DefaultIfEmpty
+                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = ce.TYPE_ID).DefaultIfEmpty
+                        Where ot.ID = 6358 And p.EMPLOYEE_ID = employee_id
             Dim lst = query.Select(Function(p) New CONTRACT_DTO With {
                                        .ID = p.p.ID,
                                        .STARTDATE = p.p.START_DATE,
@@ -71,8 +155,8 @@ Partial Public Class AttendanceRepository
         Try
             Dim query = From p In Context.AT_TIME_MANUAL
                         From f In Context.AT_FML.Where(Function(f) f.ID = p.MORNING_ID).DefaultIfEmpty
-                         From f2 In Context.AT_FML.Where(Function(a) a.ID = p.AFTERNOON_ID).DefaultIfEmpty
-                   Where p.ID = type_break_id
+                        From f2 In Context.AT_FML.Where(Function(a) a.ID = p.AFTERNOON_ID).DefaultIfEmpty
+                        Where p.ID = type_break_id
 
             Dim lst = query.Select(Function(p) New AT_TIME_MANUALDTO With {
                                        .ID = p.p.ID,
@@ -93,34 +177,34 @@ Partial Public Class AttendanceRepository
                                   Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_PORTAL_REG_DTO)
         Try
             Dim query = From p In Context.AT_PORTAL_REG
-                       From ce In Context.HUV_AT_PORTAL.Where(Function(f) f.ID_REGGROUP = p.ID)
-                       From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.ID_EMPLOYEE).DefaultIfEmpty
-                       From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
-                       From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
-                       From fl In Context.AT_TIME_MANUAL.Where(Function(f) f.ID = p.ID_SIGN).DefaultIfEmpty
-                       From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS).DefaultIfEmpty
-                       From s In Context.SE_USER.Where(Function(f) f.USERNAME = p.MODIFIED_BY).DefaultIfEmpty
-                       From sh In Context.HU_EMPLOYEE.Where(Function(f) f.EMPLOYEE_CODE = s.EMPLOYEE_CODE).DefaultIfEmpty
-                       Where p.STATUS = 0
-                       Select New AT_PORTAL_REG_DTO With {
-                                                              .ID = p.ID,
-                                                              .ID_EMPLOYEE = p.ID_EMPLOYEE,
-                                                              .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
-                                                              .EMPLOYEE_NAME = e.FULLNAME_VN,
-                                                              .YEAR = If(p.FROM_DATE.HasValue, p.FROM_DATE.Value.Year, 0),
-                                                              .FROM_DATE = ce.FROM_DATE,
-                                                              .TO_DATE = ce.TO_DATE,
-                                                              .ID_SIGN = p.ID_SIGN,
-                                                              .SIGN_CODE = fl.CODE,
-                                                              .TOTAL_LEAVE = ce.NVALUE,
-                                                              .SIGN_NAME = fl.NAME,
-                                                              .STATUS = p.STATUS,
-                                                              .STATUS_NAME = ot.NAME_EN,
-                                                              .NOTE = p.NOTE,
-                                                           .CREATED_DATE = p.CREATED_DATE,
-                                                              .DEPARTMENT = o.NAME_VN,
-           .JOBTITLE = t.NAME_VN
-                                                           }
+                        From ce In Context.HUV_AT_PORTAL.Where(Function(f) f.ID_REGGROUP = p.ID)
+                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.ID_EMPLOYEE).DefaultIfEmpty
+                        From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
+                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
+                        From fl In Context.AT_TIME_MANUAL.Where(Function(f) f.ID = p.ID_SIGN).DefaultIfEmpty
+                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS).DefaultIfEmpty
+                        From s In Context.SE_USER.Where(Function(f) f.USERNAME = p.MODIFIED_BY).DefaultIfEmpty
+                        From sh In Context.HU_EMPLOYEE.Where(Function(f) f.EMPLOYEE_CODE = s.EMPLOYEE_CODE).DefaultIfEmpty
+                        Where p.STATUS = 0
+                        Select New AT_PORTAL_REG_DTO With {
+                                                               .ID = p.ID,
+                                                               .ID_EMPLOYEE = p.ID_EMPLOYEE,
+                                                               .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                                                               .EMPLOYEE_NAME = e.FULLNAME_VN,
+                                                               .YEAR = If(p.FROM_DATE.HasValue, p.FROM_DATE.Value.Year, 0),
+                                                               .FROM_DATE = ce.FROM_DATE,
+                                                               .TO_DATE = ce.TO_DATE,
+                                                               .ID_SIGN = p.ID_SIGN,
+                                                               .SIGN_CODE = fl.CODE,
+                                                               .TOTAL_LEAVE = ce.NVALUE,
+                                                               .SIGN_NAME = fl.NAME,
+                                                               .STATUS = p.STATUS,
+                                                               .STATUS_NAME = ot.NAME_EN,
+                                                               .NOTE = p.NOTE,
+                                                            .CREATED_DATE = p.CREATED_DATE,
+                                                               .DEPARTMENT = o.NAME_VN,
+            .JOBTITLE = t.NAME_VN
+                                                            }
 
             If _filter.ID_EMPLOYEE > 0 Then
                 query = query.Where(Function(f) f.ID_EMPLOYEE = _filter.ID_EMPLOYEE)
@@ -176,33 +260,33 @@ Partial Public Class AttendanceRepository
                                  Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of SetUpCodeAttDTO)
         Try
             Dim query = (From p In Context.AT_SETUP_ATT_EMP
-                       From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
-                       From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID).DefaultIfEmpty
-                       From title In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
-                       From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
-                       From machine In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.MACHINE_ID).DefaultIfEmpty
-                       Select New SetUpCodeAttDTO With {
-                           .ID = p.ID,
-                           .EMPLOYEE_ID = p.EMPLOYEE_ID,
-                           .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
-                           .EMPLOYEE_NAME = e.FULLNAME_VN,
-                           .MACHINE_ID = p.MACHINE_ID,
-                           .MACHINE_NAME = machine.NAME_VN,
-                           .MACHINE_CODE = machine.CODE,
-                           .CODE_ATT = p.CODE_ATT,
-                           .APPROVE_DATE = p.APPROVE_DATE,
-                           .ORG_ID = e.ORG_ID,
-                           .ORG_NAME = org.NAME_VN,
-                           .TITLE_ID = e.TITLE_ID,
-                           .TITLE_NAME = title.NAME_VN,
-                           .NOTE = p.NOTE,
-                           .CREATED_BY = p.CREATED_BY,
-                           .CREATED_DATE = p.CREATED_DATE,
-                           .CREATED_LOG = p.CREATED_LOG,
-                           .MODIFIED_BY = p.MODIFIED_BY,
-                           .MODIFIED_DATE = p.MODIFIED_DATE,
-                           .MODIFIED_LOG = p.MODIFIED_LOG
-                           }
+                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
+                         From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID).DefaultIfEmpty
+                         From title In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
+                         From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
+                         From machine In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.MACHINE_ID).DefaultIfEmpty
+                         Select New SetUpCodeAttDTO With {
+                             .ID = p.ID,
+                             .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                             .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                             .EMPLOYEE_NAME = e.FULLNAME_VN,
+                             .MACHINE_ID = p.MACHINE_ID,
+                             .MACHINE_NAME = machine.NAME_VN,
+                             .MACHINE_CODE = machine.CODE,
+                             .CODE_ATT = p.CODE_ATT,
+                             .APPROVE_DATE = p.APPROVE_DATE,
+                             .ORG_ID = e.ORG_ID,
+                             .ORG_NAME = org.NAME_VN,
+                             .TITLE_ID = e.TITLE_ID,
+                             .TITLE_NAME = title.NAME_VN,
+                             .NOTE = p.NOTE,
+                             .CREATED_BY = p.CREATED_BY,
+                             .CREATED_DATE = p.CREATED_DATE,
+                             .CREATED_LOG = p.CREATED_LOG,
+                             .MODIFIED_BY = p.MODIFIED_BY,
+                             .MODIFIED_DATE = p.MODIFIED_DATE,
+                             .MODIFIED_LOG = p.MODIFIED_LOG
+                             }
                        )
             If Not String.IsNullOrEmpty(_filter.CODE_ATT) Then
                 query = query.Where(Function(f) f.CODE_ATT.ToLower().Contains(_filter.CODE_ATT.ToLower()))
@@ -1904,14 +1988,14 @@ Partial Public Class AttendanceRepository
             If cbxData.GET_LIST_TYPEPUNISH Then
                 Dim ID As Decimal = cbxData.LIST_LIST_TYPEPUNISH(0).ID
                 Dim list As List(Of OT_OTHERLIST_DTO) = (From p In Context.OT_OTHER_LIST Join t In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals t.ID
-                                             Where p.ACTFLG = "A" And t.CODE = "TYPE_PUNISH" And p.ID = ID
-                                             Order By p.CREATED_DATE Descending
-                         Select New OT_OTHERLIST_DTO With {
-                             .ID = p.ID,
-                             .CODE = p.CODE,
-                             .NAME_EN = p.NAME_EN,
-                             .NAME_VN = p.NAME_VN,
-                             .TYPE_ID = p.TYPE_ID}).ToList
+                                                         Where p.ACTFLG = "A" And t.CODE = "TYPE_PUNISH" And p.ID = ID
+                                                         Order By p.CREATED_DATE Descending
+                                                         Select New OT_OTHERLIST_DTO With {
+                                                             .ID = p.ID,
+                                                             .CODE = p.CODE,
+                                                             .NAME_EN = p.NAME_EN,
+                                                             .NAME_VN = p.NAME_VN,
+                                                             .TYPE_ID = p.TYPE_ID}).ToList
                 If list.Count = 0 Then
                     Return False
                 End If
@@ -1920,14 +2004,14 @@ Partial Public Class AttendanceRepository
             If cbxData.GET_LIST_TYPESHIFT Then
                 Dim ID As Decimal = cbxData.LIST_LIST_TYPESHIFT(0).ID
                 Dim list As List(Of OT_OTHERLIST_DTO) = (From p In Context.OT_OTHER_LIST Join t In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals t.ID
-                Where (p.ACTFLG = "A" And t.CODE = "TYPE_SHIFT" And p.ID = ID)
-                                            Order By p.CREATED_DATE Descending
-                        Select New OT_OTHERLIST_DTO With {
-                            .ID = p.ID,
-                            .CODE = p.CODE,
-                            .NAME_EN = p.NAME_EN,
-                            .NAME_VN = p.NAME_VN,
-                            .TYPE_ID = p.TYPE_ID}).ToList
+                                                         Where (p.ACTFLG = "A" And t.CODE = "TYPE_SHIFT" And p.ID = ID)
+                                                         Order By p.CREATED_DATE Descending
+                                                         Select New OT_OTHERLIST_DTO With {
+                                                             .ID = p.ID,
+                                                             .CODE = p.CODE,
+                                                             .NAME_EN = p.NAME_EN,
+                                                             .NAME_VN = p.NAME_VN,
+                                                             .TYPE_ID = p.TYPE_ID}).ToList
                 If list.Count = 0 Then
                     Return False
                 End If
@@ -1936,11 +2020,11 @@ Partial Public Class AttendanceRepository
             If cbxData.GET_LIST_APPLY_LAW Then
                 Dim ID As Decimal = cbxData.LIST_LIST_APPLY_LAW(0).ID
                 Dim list As List(Of AT_GSIGNDTO) = (From p In Context.AT_GSIGN Where p.ACTFLG = "A" And p.ID = ID
-                                               Order By p.NAME_VN Descending
-                                               Select New AT_GSIGNDTO With {
-                                                   .ID = p.ID,
-                                                   .CODE = p.CODE,
-                                                   .NAME_VN = "[" & p.CODE & "] " & p.NAME_VN}).ToList
+                                                    Order By p.NAME_VN Descending
+                                                    Select New AT_GSIGNDTO With {
+                                                        .ID = p.ID,
+                                                        .CODE = p.CODE,
+                                                        .NAME_VN = "[" & p.CODE & "] " & p.NAME_VN}).ToList
                 If list.Count = 0 Then
                     Return False
                 End If
@@ -1949,11 +2033,11 @@ Partial Public Class AttendanceRepository
             If cbxData.GET_LIST_PENALIZEA Then
                 Dim ID As Decimal = cbxData.LIST_LIST_PENALIZEA(0).ID
                 Dim list As List(Of AT_DMVSDTO) = (From p In Context.AT_DMVS Where p.ACTFLG = "A" And p.ID = ID
-                                               Order By p.NAME_VN Descending
-                                               Select New AT_DMVSDTO With {
-                                                   .ID = p.ID,
-                                                   .CODE = p.CODE,
-                                                   .NAME_VN = p.NAME_VN}).ToList
+                                                   Order By p.NAME_VN Descending
+                                                   Select New AT_DMVSDTO With {
+                                                       .ID = p.ID,
+                                                       .CODE = p.CODE,
+                                                       .NAME_VN = p.NAME_VN}).ToList
                 If list.Count = 0 Then
                     Return False
                 End If
@@ -1962,11 +2046,11 @@ Partial Public Class AttendanceRepository
             If cbxData.GET_LIST_SHIFT Then
                 Dim ID As Decimal = cbxData.LIST_LIST_SHIFT(0).ID
                 Dim list As List(Of AT_SHIFTDTO) = (From p In Context.AT_SHIFT Where p.ACTFLG = "A" And p.ID = ID
-                                           Order By p.NAME_VN Descending
-                                               Select New AT_SHIFTDTO With {
-                                                   .ID = p.ID,
-                                                   .CODE = p.CODE,
-                                                   .NAME_VN = "[" & p.CODE & "] " & p.NAME_VN}).ToList
+                                                    Order By p.NAME_VN Descending
+                                                    Select New AT_SHIFTDTO With {
+                                                        .ID = p.ID,
+                                                        .CODE = p.CODE,
+                                                        .NAME_VN = "[" & p.CODE & "] " & p.NAME_VN}).ToList
                 If list.Count = 0 Then
                     Return False
                 End If
@@ -1975,11 +2059,11 @@ Partial Public Class AttendanceRepository
             If cbxData.GET_LIST_SIGN Then
                 Dim ID As Decimal = cbxData.LIST_LIST_SIGN(0).ID
                 Dim list As List(Of AT_FMLDTO) = (From p In Context.AT_FML Where p.ACTFLG = "A" And p.ID = ID
-                                          Order By p.NAME_VN Descending
-                                               Select New AT_FMLDTO With {
-                                                   .ID = p.ID,
-                                                   .CODE = p.CODE,
-                                                   .NAME_VN = "[" & p.CODE & "] " & p.NAME_VN}).ToList
+                                                  Order By p.NAME_VN Descending
+                                                  Select New AT_FMLDTO With {
+                                                      .ID = p.ID,
+                                                      .CODE = p.CODE,
+                                                      .NAME_VN = "[" & p.CODE & "] " & p.NAME_VN}).ToList
                 If list.Count = 0 Then
                     Return False
                 End If
@@ -1988,14 +2072,14 @@ Partial Public Class AttendanceRepository
             If cbxData.GET_LIST_TYPEEMPLOYEE Then
                 Dim ID As Decimal = cbxData.LIST_LIST_TYPEEMPLOYEE(0).ID
                 Dim list As List(Of OT_OTHERLIST_DTO) = (From p In Context.OT_OTHER_LIST Join t In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals t.ID
-                                            Where p.ACTFLG = "A" And t.CODE = "TYPE_EMPLOYEE" And p.ID = ID
-                                            Order By p.CREATED_DATE Descending
-                        Select New OT_OTHERLIST_DTO With {
-                            .ID = p.ID,
-                            .CODE = p.CODE,
-                            .NAME_EN = p.NAME_EN,
-                            .NAME_VN = p.NAME_VN,
-                            .TYPE_ID = p.TYPE_ID}).ToList
+                                                         Where p.ACTFLG = "A" And t.CODE = "TYPE_EMPLOYEE" And p.ID = ID
+                                                         Order By p.CREATED_DATE Descending
+                                                         Select New OT_OTHERLIST_DTO With {
+                                                             .ID = p.ID,
+                                                             .CODE = p.CODE,
+                                                             .NAME_EN = p.NAME_EN,
+                                                             .NAME_VN = p.NAME_VN,
+                                                             .TYPE_ID = p.TYPE_ID}).ToList
                 If list.Count = 0 Then
                     Return False
                 End If
@@ -2004,11 +2088,11 @@ Partial Public Class AttendanceRepository
             If cbxData.GET_LIST_TYPEE_FML Then
                 Dim ID As Decimal = cbxData.LIST_LIST_TYPE_FML(0).ID
                 Dim list As List(Of AT_FMLDTO) = (From p In Context.AT_FML Where p.ACTFLG = "A" And p.ID = ID
-                                              Order By p.NAME_VN Descending
-                                               Select New AT_FMLDTO With {
-                                                   .ID = p.ID,
-                                                   .CODE = p.CODE,
-                                                   .NAME_VN = "[" & p.CODE & "] " & p.NAME_VN}).ToList
+                                                  Order By p.NAME_VN Descending
+                                                  Select New AT_FMLDTO With {
+                                                      .ID = p.ID,
+                                                      .CODE = p.CODE,
+                                                      .NAME_VN = "[" & p.CODE & "] " & p.NAME_VN}).ToList
                 If list.Count = 0 Then
                     Return False
                 End If
@@ -2017,14 +2101,14 @@ Partial Public Class AttendanceRepository
             If cbxData.GET_LIST_REST_DAY Then
                 Dim ID As Decimal = cbxData.LIST_LIST_REST_DAY(0).ID
                 Dim list As List(Of OT_OTHERLIST_DTO) = (From p In Context.OT_OTHER_LIST Join t In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals t.ID
-                                             Where p.ACTFLG = "A" And t.CODE = "AT_TIMELEAVE" And p.ID = ID
-                                             Order By p.CREATED_DATE Descending
-                         Select New OT_OTHERLIST_DTO With {
-                             .ID = p.ID,
-                             .CODE = p.CODE,
-                             .NAME_EN = p.NAME_EN,
-                             .NAME_VN = p.NAME_VN,
-                             .TYPE_ID = p.TYPE_ID}).ToList
+                                                         Where p.ACTFLG = "A" And t.CODE = "AT_TIMELEAVE" And p.ID = ID
+                                                         Order By p.CREATED_DATE Descending
+                                                         Select New OT_OTHERLIST_DTO With {
+                                                             .ID = p.ID,
+                                                             .CODE = p.CODE,
+                                                             .NAME_EN = p.NAME_EN,
+                                                             .NAME_VN = p.NAME_VN,
+                                                             .TYPE_ID = p.TYPE_ID}).ToList
                 If list.Count = 0 Then
                     Return False
                 End If
@@ -2033,12 +2117,12 @@ Partial Public Class AttendanceRepository
             If cbxData.GET_LIST_TYPE_DMVS Then
                 Dim ID As Decimal = cbxData.LIST_LIST_TYPE_DMVS(0).ID
                 Dim list As List(Of OT_OTHERLIST_DTO) = (From p In Context.AT_TIME_MANUAL
-                                                Where p.ACTFLG = "A" And p.CODE = "RDT" Or p.CODE = "RVS" And p.ID = ID
-                                                Order By p.NAME Descending
-                         Select New OT_OTHERLIST_DTO With {
-                             .ID = p.ID,
-                             .CODE = p.CODE,
-                             .NAME_VN = p.NAME}).ToList
+                                                         Where p.ACTFLG = "A" And p.CODE = "RDT" Or p.CODE = "RVS" And p.ID = ID
+                                                         Order By p.NAME Descending
+                                                         Select New OT_OTHERLIST_DTO With {
+                                                             .ID = p.ID,
+                                                             .CODE = p.CODE,
+                                                             .NAME_VN = p.NAME}).ToList
                 If list.Count = 0 Then
                     Return False
                 End If
@@ -2047,16 +2131,16 @@ Partial Public Class AttendanceRepository
             If cbxData.GET_LIST_TYPE_MANUAL_LEAVE Then
                 Dim ID As Decimal = cbxData.LIST_LIST_TYPE_MANUAL_LEAVE(0).ID
                 Dim list As List(Of AT_TIME_MANUALDTO) = (From p In Context.AT_TIME_MANUAL
-                                                 From F In Context.AT_FML.Where(Function(f) f.ID = p.MORNING_ID).DefaultIfEmpty
-                                                 From F2 In Context.AT_FML.Where(Function(f2) f2.ID = p.AFTERNOON_ID).DefaultIfEmpty
-                                                 Where p.ACTFLG = "A" And (F.IS_LEAVE = -1 Or F2.IS_LEAVE = -1) And p.ID = ID
-                                                 Order By p.NAME Descending
-                                               Select New AT_TIME_MANUALDTO With {
-                                                   .ID = p.ID,
-                                                   .CODE = p.CODE,
-                                                   .MORNING_ID = p.MORNING_ID,
-                                                   .AFTERNOON_ID = p.AFTERNOON_ID,
-                                                   .NAME_VN = "[" & p.CODE & "] " & p.NAME}).ToList
+                                                          From F In Context.AT_FML.Where(Function(f) f.ID = p.MORNING_ID).DefaultIfEmpty
+                                                          From F2 In Context.AT_FML.Where(Function(f2) f2.ID = p.AFTERNOON_ID).DefaultIfEmpty
+                                                          Where p.ACTFLG = "A" And (F.IS_LEAVE = -1 Or F2.IS_LEAVE = -1) And p.ID = ID
+                                                          Order By p.NAME Descending
+                                                          Select New AT_TIME_MANUALDTO With {
+                                                              .ID = p.ID,
+                                                              .CODE = p.CODE,
+                                                              .MORNING_ID = p.MORNING_ID,
+                                                              .AFTERNOON_ID = p.AFTERNOON_ID,
+                                                              .NAME_VN = "[" & p.CODE & "] " & p.NAME}).ToList
                 If list.Count = 0 Then
                     Return False
                 End If
@@ -2065,11 +2149,11 @@ Partial Public Class AttendanceRepository
             If cbxData.GET_LIST_TYPE_MANUAL Then
                 Dim ID As Decimal = cbxData.LIST_LIST_TYPE_MANUAL(0).ID
                 Dim list As List(Of AT_TIME_MANUALDTO) = (From p In Context.AT_TIME_MANUAL Where p.ACTFLG = "A" And p.CODE <> "RVS" And p.CODE <> "RDT" And p.ID = ID
-                                                 Order By p.NAME Descending
-                                               Select New AT_TIME_MANUALDTO With {
-                                                   .ID = p.ID,
-                                                   .CODE = p.CODE,
-                                                   .NAME_VN = "[" & p.CODE & "] " & p.NAME}).ToList
+                                                          Order By p.NAME Descending
+                                                          Select New AT_TIME_MANUALDTO With {
+                                                              .ID = p.ID,
+                                                              .CODE = p.CODE,
+                                                              .NAME_VN = "[" & p.CODE & "] " & p.NAME}).ToList
                 If list.Count = 0 Then
                     Return False
                 End If
@@ -2078,11 +2162,11 @@ Partial Public Class AttendanceRepository
             If cbxData.GET_LIST_SHIFT_SUNDAY Then
                 Dim ID As Decimal = cbxData.LIST_LIST_SHIFT_SUNDAY(0).ID
                 Dim list As List(Of AT_TIME_MANUALDTO) = (From p In Context.AT_TIME_MANUAL Where p.ACTFLG = "A" And p.CODE = "RD" And p.ID = ID
-                                                  Order By p.NAME Descending
-                                               Select New AT_TIME_MANUALDTO With {
-                                                   .ID = p.ID,
-                                                   .CODE = p.CODE,
-                                                   .NAME_VN = "[" & p.CODE & "] " & p.NAME}).ToList
+                                                          Order By p.NAME Descending
+                                                          Select New AT_TIME_MANUALDTO With {
+                                                              .ID = p.ID,
+                                                              .CODE = p.CODE,
+                                                              .NAME_VN = "[" & p.CODE & "] " & p.NAME}).ToList
                 If list.Count = 0 Then
                     Return False
                 End If
@@ -2092,11 +2176,11 @@ Partial Public Class AttendanceRepository
             If cbxData.GET_LIST_STAFF_RANK Then
                 Dim ID As Decimal = cbxData.LIST_LIST_STAFF_RANK(0).ID
                 Dim list As List(Of HU_STAFF_RANKDTO) = (From p In Context.HU_STAFF_RANK Where p.ACTFLG = "A" And p.ID = ID
-                                                Order By p.NAME Descending
-                                               Select New HU_STAFF_RANKDTO With {
-                                                   .ID = p.ID,
-                                                   .CODE = p.CODE,
-                                                   .NAME = p.NAME}).ToList
+                                                         Order By p.NAME Descending
+                                                         Select New HU_STAFF_RANKDTO With {
+                                                             .ID = p.ID,
+                                                             .CODE = p.CODE,
+                                                             .NAME = p.NAME}).ToList
                 If list.Count = 0 Then
                     Return False
                 End If
@@ -2105,14 +2189,14 @@ Partial Public Class AttendanceRepository
             If cbxData.GET_LIST_HS_OT Then
                 Dim ID As Decimal = cbxData.LIST_LIST_HS_OT(0).ID
                 Dim list As List(Of OT_OTHERLIST_DTO) = (From p In Context.OT_OTHER_LIST Join t In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals t.ID
-                                            Where p.ACTFLG = "A" And t.CODE = "HS_OT" And p.ID = ID
-                                            Order By p.ID Descending
-                                            Select New OT_OTHERLIST_DTO With {
-                                                .ID = p.ID,
-                                                .CODE = p.CODE,
-                                                .NAME_EN = p.NAME_EN,
-                                                .NAME_VN = p.NAME_VN,
-                                                .TYPE_ID = p.TYPE_ID}).ToList
+                                                         Where p.ACTFLG = "A" And t.CODE = "HS_OT" And p.ID = ID
+                                                         Order By p.ID Descending
+                                                         Select New OT_OTHERLIST_DTO With {
+                                                             .ID = p.ID,
+                                                             .CODE = p.CODE,
+                                                             .NAME_EN = p.NAME_EN,
+                                                             .NAME_VN = p.NAME_VN,
+                                                             .TYPE_ID = p.TYPE_ID}).ToList
                 If list.Count = 0 Then
                     Return False
                 End If
@@ -2121,14 +2205,14 @@ Partial Public Class AttendanceRepository
             If cbxData.GET_LIST_TYPE_OT Then
                 Dim ID As Decimal = cbxData.LIST_LIST_TYPE_OT(0).ID
                 Dim list As List(Of OT_OTHERLIST_DTO) = (From p In Context.OT_OTHER_LIST Join t In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals t.ID
-                                            Where p.ACTFLG = "A" And t.CODE = "TYPE_OT" And p.ID = ID
-                                            Order By p.ID Descending
-                                            Select New OT_OTHERLIST_DTO With {
-                                                .ID = p.ID,
-                                                .CODE = p.CODE,
-                                                .NAME_EN = p.NAME_EN,
-                                                .NAME_VN = p.NAME_VN,
-                                                .TYPE_ID = p.TYPE_ID}).ToList
+                                                         Where p.ACTFLG = "A" And t.CODE = "TYPE_OT" And p.ID = ID
+                                                         Order By p.ID Descending
+                                                         Select New OT_OTHERLIST_DTO With {
+                                                             .ID = p.ID,
+                                                             .CODE = p.CODE,
+                                                             .NAME_EN = p.NAME_EN,
+                                                             .NAME_VN = p.NAME_VN,
+                                                             .TYPE_ID = p.TYPE_ID}).ToList
                 If list.Count = 0 Then
                     Return False
                 End If
@@ -2693,7 +2777,7 @@ Partial Public Class AttendanceRepository
                         From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
                         From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TYPE_EXCHANGE And f.ACTFLG = "A").DefaultIfEmpty
-                         From ot1 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_ATTENDACE And f.ACTFLG = "A").DefaultIfEmpty
+                        From ot1 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_ATTENDACE And f.ACTFLG = "A").DefaultIfEmpty
                         Select New AT_SETUP_EXCHANGEDTO With {
                                        .ID = p.ID,
                                        .ORG_ID = p.ORG_ID,
@@ -2837,14 +2921,14 @@ Partial Public Class AttendanceRepository
         Try
             objlst = (From p In Context.AT_SETUP_EXCHANGE
                       Where id <> p.ID
-                     Select New AT_SETUP_EXCHANGEDTO With {
-                      .FROM_MINUTE = p.FROM_MINUTE,
-                      .TO_MINUTE = p.TO_MINUTE,
-                      .EFFECT_DATE = p.EFFECT_DATE,
-                      .OBJECT_ATTENDACE = p.OBJECT_ATTENDACE,
-                      .TYPE_EXCHANGE = p.TYPE_EXCHANGE,
-                      .ORG_ID = p.ORG_ID
-                    }).ToList
+                      Select New AT_SETUP_EXCHANGEDTO With {
+                       .FROM_MINUTE = p.FROM_MINUTE,
+                       .TO_MINUTE = p.TO_MINUTE,
+                       .EFFECT_DATE = p.EFFECT_DATE,
+                       .OBJECT_ATTENDACE = p.OBJECT_ATTENDACE,
+                       .TYPE_EXCHANGE = p.TYPE_EXCHANGE,
+                       .ORG_ID = p.ORG_ID
+                     }).ToList
             For Each line In objlst
                 If (((line.FROM_MINUTE <= from_minute And line.TO_MINUTE >= from_minute) _
                      Or (line.FROM_MINUTE <= to_minute And line.TO_MINUTE >= to_minute)) And
@@ -3529,7 +3613,7 @@ Partial Public Class AttendanceRepository
             ' Utility.WriteExceptionLog(ex, Me.ToString() & ".")
         End Try
     End Function
-    Public Function GetPlanningAppointmentByEmployee(ByVal empid As Decimal, ByVal startdate As DateTime, ByVal enddate As DateTime, _
+    Public Function GetPlanningAppointmentByEmployee(ByVal empid As Decimal, ByVal startdate As DateTime, ByVal enddate As DateTime,
                                                     ByVal listSign As List(Of AT_TIME_MANUALDTO)) As List(Of AT_TIMESHEET_REGISTERDTO)
         Dim rtnValue As List(Of AT_TIMESHEET_REGISTERDTO)
         Dim lstSignID As List(Of Decimal)
@@ -3576,7 +3660,7 @@ Partial Public Class AttendanceRepository
     End Function
 
     Public Function CheckRegisterPortal(ByVal Emp As EmployeeDTO, ByVal ID_REGGROUP As Guid, ByVal process As String,
-                                       ByVal startdate As Date, ByVal enddate As Date, _
+                                       ByVal startdate As Date, ByVal enddate As Date,
                                       ByVal sign_code As AT_TIMESHEET_REGISTERDTO, ByRef sAction As String) As Boolean
 
         Try
@@ -3601,9 +3685,9 @@ Partial Public Class AttendanceRepository
         Try
 
             Dim query = (From p In Context.AT_PORTAL_REG
-                         Where EmpID = p.ID_EMPLOYEE And _
-                         p.ID_SIGN = sign_code.SIGNID And _
-                         p.FROM_DATE >= startdate And _
+                         Where EmpID = p.ID_EMPLOYEE And
+                         p.ID_SIGN = sign_code.SIGNID And
+                         p.FROM_DATE >= startdate And
                          p.FROM_DATE <= enddate).Count
 
             Return If(query > 0, False, True)
@@ -3631,20 +3715,20 @@ Partial Public Class AttendanceRepository
                          Select p, e, AT).ToList
 
             rtnValue = (From p In query
-                       Select New AT_TIMESHEET_REGISTERDTO With {.ID = p.p.ID,
-                                                        .EMPLOYEEID = p.e.ID,
-                                                        .EMPLOYEECODE = p.e.EMPLOYEE_CODE,
-                                                        .EMPLOYEENAME = p.e.FULLNAME_VN,
-                                                        .WORKINGDAY = p.p.FROM_DATE,
-                                                        .SIGNID = p.p.ID_SIGN,
-                                                        .MORNING_ID = p.AT.MORNING_ID,
-                                                        .AFTERNOON_ID = p.AT.AFTERNOON_ID,
-                                                        .NVALUE = p.p.NVALUE,
-                                                        .SVALUE = p.p.SVALUE,
-                                                        .DVALUE = p.p.DVALUE,
-                                                        .NOTE = p.p.NOTE,
-                                                        .STATUS = p.p.STATUS,
-                                                        .SUBJECT = If(p.p.SVALUE = "WLEO", p.p.NVALUE, Nothing) & " " & FormatRegisterAppointmentSubjectPortal(p.AT, p.p, lstValue)}).ToList
+                        Select New AT_TIMESHEET_REGISTERDTO With {.ID = p.p.ID,
+                                                         .EMPLOYEEID = p.e.ID,
+                                                         .EMPLOYEECODE = p.e.EMPLOYEE_CODE,
+                                                         .EMPLOYEENAME = p.e.FULLNAME_VN,
+                                                         .WORKINGDAY = p.p.FROM_DATE,
+                                                         .SIGNID = p.p.ID_SIGN,
+                                                         .MORNING_ID = p.AT.MORNING_ID,
+                                                         .AFTERNOON_ID = p.AT.AFTERNOON_ID,
+                                                         .NVALUE = p.p.NVALUE,
+                                                         .SVALUE = p.p.SVALUE,
+                                                         .DVALUE = p.p.DVALUE,
+                                                         .NOTE = p.p.NOTE,
+                                                         .STATUS = p.p.STATUS,
+                                                         .SUBJECT = If(p.p.SVALUE = "WLEO", p.p.NVALUE, Nothing) & " " & FormatRegisterAppointmentSubjectPortal(p.AT, p.p, lstValue)}).ToList
             Return rtnValue
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
@@ -3672,21 +3756,21 @@ Partial Public Class AttendanceRepository
                          Select p, e, AT).ToList
 
             rtnValue = (From p In query
-                       Select New AT_TIMESHEET_REGISTERDTO With {.ID = p.p.ID,
-                                                        .EMPLOYEEID = p.e.ID,
-                                                        .EMPLOYEECODE = p.e.EMPLOYEE_CODE,
-                                                        .EMPLOYEENAME = p.e.FULLNAME_VN,
-                                                        .WORKINGDAY = p.p.FROM_DATE,
-                                                        .SIGNID = p.p.ID_SIGN,
-                                                        .NVALUE = p.p.NVALUE,
-                                                        .SVALUE = p.p.SVALUE,
-                                                        .DVALUE = p.p.DVALUE,
-                                                        .NOTE = p.p.NOTE,
-                                                        .STATUS = p.p.STATUS,
-                                                        .SUBJECT = String.Format("{0} [{1}-{2}]    {3}", p.AT.CODE,
-                                                                    If(p.p.FROM_HOUR.HasValue, p.p.FROM_HOUR.Value.ToString("HH:mm"), ""),
-                                                                    If(p.p.TO_HOUR.HasValue, p.p.TO_HOUR.Value.ToString("HH:mm"), ""),
-                                                                    If(p.p.IS_NB = -1, "Nghỉ bù", Nothing))}).ToList
+                        Select New AT_TIMESHEET_REGISTERDTO With {.ID = p.p.ID,
+                                                         .EMPLOYEEID = p.e.ID,
+                                                         .EMPLOYEECODE = p.e.EMPLOYEE_CODE,
+                                                         .EMPLOYEENAME = p.e.FULLNAME_VN,
+                                                         .WORKINGDAY = p.p.FROM_DATE,
+                                                         .SIGNID = p.p.ID_SIGN,
+                                                         .NVALUE = p.p.NVALUE,
+                                                         .SVALUE = p.p.SVALUE,
+                                                         .DVALUE = p.p.DVALUE,
+                                                         .NOTE = p.p.NOTE,
+                                                         .STATUS = p.p.STATUS,
+                                                         .SUBJECT = String.Format("{0} [{1}-{2}]    {3}", p.AT.CODE,
+                                                                     If(p.p.FROM_HOUR.HasValue, p.p.FROM_HOUR.Value.ToString("HH:mm"), ""),
+                                                                     If(p.p.TO_HOUR.HasValue, p.p.TO_HOUR.Value.ToString("HH:mm"), ""),
+                                                                     If(p.p.IS_NB = -1, "Nghỉ bù", Nothing))}).ToList
             Return rtnValue
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
@@ -3715,7 +3799,7 @@ Partial Public Class AttendanceRepository
 
 
 
-    Public Function DeleteRegisterLeavePortal(ByVal EmpID As Decimal, ByVal startdate As Date, ByVal enddate As Date, _
+    Public Function DeleteRegisterLeavePortal(ByVal EmpID As Decimal, ByVal startdate As Date, ByVal enddate As Date,
                                                   ByVal sign_code As AT_TIME_MANUALDTO, ByVal process As String) As Boolean
         Dim query As List(Of AT_PORTAL_REG)
         Dim signID = If(sign_code Is Nothing, 0, sign_code.ID)
@@ -3739,17 +3823,17 @@ Partial Public Class AttendanceRepository
                                 And p.FROM_DATE <= enddate _
                                 And p.ID_SIGN = signID _
                                 And p.ID_EMPLOYEE = EmpID _
-                                And p.SVALUE = process _
+                                And p.SVALUE = process
                                 Select p).ToList
                 Else
                     delShift = (From p In Context.AT_PORTAL_REG
-                               Where p.FROM_DATE >= startdate _
-                               And p.FROM_DATE <= enddate _
-                               And p.ID_SIGN = signID _
-                               And p.ID_EMPLOYEE = EmpID _
-                               And p.SVALUE = process _
-                               And p.ID_SIGN = sign_code.ID _
-                               Select p).ToList
+                                Where p.FROM_DATE >= startdate _
+                                And p.FROM_DATE <= enddate _
+                                And p.ID_SIGN = signID _
+                                And p.ID_EMPLOYEE = EmpID _
+                                And p.SVALUE = process _
+                                And p.ID_SIGN = sign_code.ID
+                                Select p).ToList
                 End If
 
                 For Each shift In delShift
@@ -3763,19 +3847,19 @@ Partial Public Class AttendanceRepository
                 Dim delShift
                 If process = "LEAVE" Then
                     delShift = (From p In Context.AT_PORTAL_REG
-                               Where EntityFunctions.TruncateTime(p.FROM_DATE) = EntityFunctions.TruncateTime(startDateInc) _
-                               And p.ID_SIGN <> signID And EmpID = p.ID_EMPLOYEE _
-                               And p.STATUS <> RegisterStatus.Approved _
-                               And p.SVALUE = process
-                               Select p).ToList
+                                Where EntityFunctions.TruncateTime(p.FROM_DATE) = EntityFunctions.TruncateTime(startDateInc) _
+                                And p.ID_SIGN <> signID And EmpID = p.ID_EMPLOYEE _
+                                And p.STATUS <> RegisterStatus.Approved _
+                                And p.SVALUE = process
+                                Select p).ToList
                 Else
                     delShift = (From p In Context.AT_PORTAL_REG
-                              Where EntityFunctions.TruncateTime(p.FROM_DATE) = EntityFunctions.TruncateTime(startDateInc) _
-                              And p.ID_SIGN <> signID And EmpID = p.ID_EMPLOYEE _
-                              And p.STATUS <> RegisterStatus.Approved _
-                              And p.SVALUE = process _
-                              And p.ID_SIGN = sign_code.ID _
-                              Select p).ToList
+                                Where EntityFunctions.TruncateTime(p.FROM_DATE) = EntityFunctions.TruncateTime(startDateInc) _
+                                And p.ID_SIGN <> signID And EmpID = p.ID_EMPLOYEE _
+                                And p.STATUS <> RegisterStatus.Approved _
+                                And p.SVALUE = process _
+                                And p.ID_SIGN = sign_code.ID
+                                Select p).ToList
                 End If
 
                 For Each shift In delShift
@@ -3800,7 +3884,7 @@ Partial Public Class AttendanceRepository
             Return (From p In Context.AT_HOLIDAY
                     Where p.WORKINGDAY >= startdate And p.WORKINGDAY <= enddate _
                     And p.ACTFLG = ATConstant.ACTFLG_ACTIVE
-                     Select p.WORKINGDAY.Value).ToList()
+                    Select p.WORKINGDAY.Value).ToList()
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
             ' Utility.WriteExceptionLog(ex, Me.ToString() & ".")
@@ -3818,11 +3902,11 @@ Partial Public Class AttendanceRepository
                             Select p).ToList()
             If delLstObject.Count = 0 Then
                 delLstObject = (From z In listappointment
-                            From p In Context.AT_PORTAL_REG
-                            From s In listSign
-                            Where s.ID = p.ID_SIGN _
-                            And p.ID = z.ID And p.STATUS <> RegisterStatus.Approved
-                            Select p).ToList()
+                                From p In Context.AT_PORTAL_REG
+                                From s In listSign
+                                Where s.ID = p.ID_SIGN _
+                                And p.ID = z.ID And p.STATUS <> RegisterStatus.Approved
+                                Select p).ToList()
             End If
 
             For Each delObj As AT_PORTAL_REG In delLstObject
@@ -3854,11 +3938,11 @@ Partial Public Class AttendanceRepository
 
             If delLstObject.Count = 0 Then
                 delLstObject = (From z In listappointment
-                           From p In Context.AT_PORTAL_REG
-                           From s In listSign
-                           Where p.ID = z.ID _
-                            And p.STATUS <> RegisterStatus.Approved
-                           Select p).ToList()
+                                From p In Context.AT_PORTAL_REG
+                                From s In listSign
+                                Where p.ID = z.ID _
+                                 And p.STATUS <> RegisterStatus.Approved
+                                Select p).ToList()
             End If
 
             For Each delObj As AT_PORTAL_REG In delLstObject
@@ -3905,8 +3989,8 @@ Partial Public Class AttendanceRepository
         Dim groupid As Guid = Guid.NewGuid
 
         objLstRegister = (From p In Context.AT_PORTAL_REG
-                         Where objLstRegisterId.Contains(p.ID)
-                         Select p).ToList()
+                          Where objLstRegisterId.Contains(p.ID)
+                          Select p).ToList()
 
         If objLstRegister Is Nothing OrElse objLstRegister.Count = 0 Then Return String.Empty
 
@@ -3955,13 +4039,13 @@ Partial Public Class AttendanceRepository
         If idSendMail.HasValue Then
             ' Kiểm tra nhân viên thay thế
             Dim process_id = (From s In Context.SE_APP_PROCESS
-                               Where s.PROCESS_CODE = process Select s).FirstOrDefault.ID
+                              Where s.PROCESS_CODE = process Select s).FirstOrDefault.ID
 
             Dim approveExt = (From p In Context.SE_APP_SETUPEXT
-                               Where p.EMPLOYEE_ID = idSendMail.Value _
-                               And p.PROCESS_ID = process_id _
-                               And p.FROM_DATE <= Date.Today _
-                               And p.TO_DATE >= Date.Today).FirstOrDefault
+                              Where p.EMPLOYEE_ID = idSendMail.Value _
+                              And p.PROCESS_ID = process_id _
+                              And p.FROM_DATE <= Date.Today _
+                              And p.TO_DATE >= Date.Today).FirstOrDefault
 
             If process = "OVERTIME" Then
                 SendMail(SendMailType.RegToAppTime, objLstRegister(0).ID_EMPLOYEE,
@@ -4012,26 +4096,26 @@ Partial Public Class AttendanceRepository
                 Return False
             End If
 
-            Dim _listField As Dictionary(Of String, String) = _
-                New Dictionary(Of String, String) From {{"[HR_User_Email]", ""}, _
-                                                        {"[Request_User_Id]", ""}, _
-                                                        {"[Request_User_Email]", ""}, _
-                                                        {"[Request_User_Full_Name]", ""}, _
-                                                        {"[Request_User_Position]", ""}, _
-                                                        {"[Request_User_Location]", ""}, _
-                                                        {"[Approve_User_Id]", ""}, _
-                                                        {"[Approve_User_Email]", ""}, _
-                                                        {"[ApproveExt_User_Email]", ""}, _
-                                                        {"[Approve_User_Full_Name]", ""}, _
-                                                        {"[Approve_User_Position]", ""}, _
-                                                        {"[Approve_User_Location]", ""}, _
-                                                        {"[Sign_Name]", ""}, _
-                                                        {"[RJ_REASON]", ""}, _
-                                                        {"[Start_Date]", ""}, _
-                                                        {"[End_Date]", ""}, _
-                                                        {"[Tu_Gio]", ""}, _
-                                                        {"[Den_Gio]", ""}, _
-                                                        {"[Nghi_Bu]", ""}, _
+            Dim _listField As Dictionary(Of String, String) =
+                New Dictionary(Of String, String) From {{"[HR_User_Email]", ""},
+                                                        {"[Request_User_Id]", ""},
+                                                        {"[Request_User_Email]", ""},
+                                                        {"[Request_User_Full_Name]", ""},
+                                                        {"[Request_User_Position]", ""},
+                                                        {"[Request_User_Location]", ""},
+                                                        {"[Approve_User_Id]", ""},
+                                                        {"[Approve_User_Email]", ""},
+                                                        {"[ApproveExt_User_Email]", ""},
+                                                        {"[Approve_User_Full_Name]", ""},
+                                                        {"[Approve_User_Position]", ""},
+                                                        {"[Approve_User_Location]", ""},
+                                                        {"[Sign_Name]", ""},
+                                                        {"[RJ_REASON]", ""},
+                                                        {"[Start_Date]", ""},
+                                                        {"[End_Date]", ""},
+                                                        {"[Tu_Gio]", ""},
+                                                        {"[Den_Gio]", ""},
+                                                        {"[Nghi_Bu]", ""},
                                                         {"[DirectLink]", ""}
                                                        }
 
@@ -4045,9 +4129,9 @@ Partial Public Class AttendanceRepository
 
             Dim registerRecordInfo = (From p In Context.AT_PORTAL_REG
                                       From s In Context.AT_TIME_MANUAL.Where(Function(F) F.ID = p.ID_SIGN).DefaultIfEmpty
-                                     Where p.ID_REGGROUP = registerRecordId
-                                     Select p, s
-                                     Order By p.FROM_DATE).ToList()
+                                      Where p.ID_REGGROUP = registerRecordId
+                                      Select p, s
+                                      Order By p.FROM_DATE).ToList()
 
             If registerRecordInfo Is Nothing Then
                 Return False
@@ -4139,20 +4223,20 @@ Partial Public Class AttendanceRepository
                 'approveExtInfo = Context.HU_EMPLOYEE.SingleOrDefault(Function(p) p.ID = approveExtId)
 
                 approveInfo = (From p In Context.HU_EMPLOYEE
-                              From c In Context.HU_EMPLOYEE_CV.Where(Function(F) F.EMPLOYEE_ID = p.ID).DefaultIfEmpty
-                              From o In Context.HU_ORGANIZATION.Where(Function(F) F.ID = p.ORG_ID).DefaultIfEmpty
-                              From t In Context.HU_TITLE.Where(Function(F) F.ID = p.TITLE_ID).DefaultIfEmpty
-                              Where p.ID = approveId
-                              Select p, c, o, t
-                              Order By p.ID).FirstOrDefault()
+                               From c In Context.HU_EMPLOYEE_CV.Where(Function(F) F.EMPLOYEE_ID = p.ID).DefaultIfEmpty
+                               From o In Context.HU_ORGANIZATION.Where(Function(F) F.ID = p.ORG_ID).DefaultIfEmpty
+                               From t In Context.HU_TITLE.Where(Function(F) F.ID = p.TITLE_ID).DefaultIfEmpty
+                               Where p.ID = approveId
+                               Select p, c, o, t
+                               Order By p.ID).FirstOrDefault()
 
                 approveExtInfo = (From p In Context.HU_EMPLOYEE
-                              From c In Context.HU_EMPLOYEE_CV.Where(Function(F) F.EMPLOYEE_ID = p.ID).DefaultIfEmpty
-                              From o In Context.HU_ORGANIZATION.Where(Function(F) F.ID = p.ORG_ID).DefaultIfEmpty
-                              From t In Context.HU_TITLE.Where(Function(F) F.ID = p.TITLE_ID).DefaultIfEmpty
-                              Where p.ID = approveExtId
-                              Select p, c, o, t
-                              Order By p.ID).FirstOrDefault()
+                                  From c In Context.HU_EMPLOYEE_CV.Where(Function(F) F.EMPLOYEE_ID = p.ID).DefaultIfEmpty
+                                  From o In Context.HU_ORGANIZATION.Where(Function(F) F.ID = p.ORG_ID).DefaultIfEmpty
+                                  From t In Context.HU_TITLE.Where(Function(F) F.ID = p.TITLE_ID).DefaultIfEmpty
+                                  Where p.ID = approveExtId
+                                  Select p, c, o, t
+                                  Order By p.ID).FirstOrDefault()
 
 
                 _listField("[Approve_User_Id]") = approveExtInfo.p.EMPLOYEE_CODE
@@ -4183,10 +4267,10 @@ Partial Public Class AttendanceRepository
                     _cc = "[Request_User_Email]"
                     _viewname = "AT_TIME_REGTOAPP.html"
                     _link = url & ":" & If(config.ContainsKey("PortalPort"),
-                                           config("PortalPort"), "") & _
-                                       "/ProcessApprove.aspx?process=[0]&action=[1]" & _
-                                       "&reggroup=" & registerRecordId.ToString & _
-                                       "&approveid=" & approveId & _
+                                           config("PortalPort"), "") &
+                                       "/ProcessApprove.aspx?process=[0]&action=[1]" &
+                                       "&reggroup=" & registerRecordId.ToString &
+                                       "&approveid=" & approveId &
                                        "&status=" & 2
 
                     Select Case process
@@ -4227,10 +4311,10 @@ Partial Public Class AttendanceRepository
                     _cc = "[Request_User_Email]"
                     _viewname = "AT_TIME_TOREGOT.html"
                     _link = url & ":" & If(config.ContainsKey("PortalPort"),
-                                           config("PortalPort"), "") & _
-                                       "/ProcessApprove.aspx?process=[0]&action=[1]" & _
-                                       "&reggroup=" & registerRecordId.ToString & _
-                                       "&approveid=" & approveId & _
+                                           config("PortalPort"), "") &
+                                       "/ProcessApprove.aspx?process=[0]&action=[1]" &
+                                       "&reggroup=" & registerRecordId.ToString &
+                                       "&approveid=" & approveId &
                                        "&status=" & 2
 
                     Select Case process
@@ -4366,10 +4450,10 @@ Partial Public Class AttendanceRepository
             Dim approveExtInfo As HU_EMPLOYEE
 
             approveRecord = (From a In Context.AT_PORTAL_APP
-                                 Where a.ID_REGGROUP = regID _
-                                 And a.ID_EMPLOYEE = approveId _
-                                 And a.APPROVE_STATUS = 1
-                                 Select a).FirstOrDefault
+                             Where a.ID_REGGROUP = regID _
+                             And a.ID_EMPLOYEE = approveId _
+                             And a.APPROVE_STATUS = 1
+                             Select a).FirstOrDefault
 
 
 
@@ -4408,7 +4492,7 @@ Partial Public Class AttendanceRepository
             If note = "" Then
                 note = "Đồng ý"
             End If
-            registerRecord.ForEach(Sub(x) x.NOTE &= approveRecord.level & ". " & _
+            registerRecord.ForEach(Sub(x) x.NOTE &= approveRecord.level & ". " &
                                        If(bExt, approveExtInfo.FULLNAME_VN, approveInfo.FULLNAME_VN) & ": " & note & "<br />")
 
             ' * nếu trạng thái bản ghi là chưa phê duyệt (-1) thì set trạng thái sang đang chờ phê duyệt (1)
@@ -4423,10 +4507,10 @@ Partial Public Class AttendanceRepository
                 ' + Set trạng thái lại cho bản ghi đăng ký là không phê duyệt
 
                 Dim ApproveRecords1 = From a In Context.AT_PORTAL_APP
-                                     From t In Context.HU_EMPLOYEE_CV.Where(Function(f) a.ID_EMPLOYEE = f.EMPLOYEE_ID).DefaultIfEmpty
-                                 Where a.ID_REGGROUP = regID _
-                                 And a.level <> approveRecord.level
-                                 Select a, t
+                                      From t In Context.HU_EMPLOYEE_CV.Where(Function(f) a.ID_EMPLOYEE = f.EMPLOYEE_ID).DefaultIfEmpty
+                                      Where a.ID_REGGROUP = regID _
+                                      And a.level <> approveRecord.level
+                                      Select a, t
                 Dim EMAILCC As String
                 If ApproveRecords1.Count > 0 Then
                     For Each item In ApproveRecords1
@@ -4454,9 +4538,9 @@ Partial Public Class AttendanceRepository
 
             ' Nếu là phê duyệt bản ghi, lấy cấp tiếp theo và cập nhật trạng thái là đang chờ phê duyệt
             Dim nextApproveRecords = From a In Context.AT_PORTAL_APP
-                                   Where a.ID_REGGROUP = regID _
-                                   And a.level = approveRecord.level + 1
-                                   Select a
+                                     Where a.ID_REGGROUP = regID _
+                                     And a.level = approveRecord.level + 1
+                                     Select a
 
 
             ' * Nếu không có bản ghi nào => đây là bản ghi cuối cùng
@@ -4465,9 +4549,9 @@ Partial Public Class AttendanceRepository
 
                 Dim ApproveRecords1 = From a In Context.AT_PORTAL_APP
                                       From t In Context.HU_EMPLOYEE_CV.Where(Function(f) a.ID_EMPLOYEE = f.EMPLOYEE_ID).DefaultIfEmpty
-                                  Where a.ID_REGGROUP = regID _
-                                  And a.level <> approveRecord.level
-                                  Select a, t
+                                      Where a.ID_REGGROUP = regID _
+                                      And a.level <> approveRecord.level
+                                      Select a, t
                 Dim EMAILCC As String
                 If ApproveRecords1.Count > 0 Then
                     For Each item In ApproveRecords1
@@ -4659,8 +4743,8 @@ Partial Public Class AttendanceRepository
 
 
             For Each itm In registerRecord
-                Dim exists = (From p In Context.AT_LATE_COMBACKOUT _
-                             Where (p.EMPLOYEE_ID = itm.p.ID_EMPLOYEE And p.WORKINGDAY = itm.p.FROM_DATE And p.TYPE_DSVM = itm.p.ID_SIGN)).Any
+                Dim exists = (From p In Context.AT_LATE_COMBACKOUT
+                              Where (p.EMPLOYEE_ID = itm.p.ID_EMPLOYEE And p.WORKINGDAY = itm.p.FROM_DATE And p.TYPE_DSVM = itm.p.ID_SIGN)).Any
                 If exists = False Then
                     leave = New AT_LATE_COMBACKOUT
                     leave.ID = Utilities.GetNextSequence(Context, Context.AT_LATE_COMBACKOUT.EntitySet.Name)
@@ -4673,8 +4757,8 @@ Partial Public Class AttendanceRepository
                     leave.REMARK = itm.p.NOTE
                     Context.AT_LATE_COMBACKOUT.AddObject(leave)
                 Else
-                    Dim details = (From p In Context.AT_LATE_COMBACKOUT _
-                                    Where (p.EMPLOYEE_ID = itm.p.ID_EMPLOYEE And p.WORKINGDAY = itm.p.FROM_DATE And p.TYPE_DSVM = itm.p.ID_SIGN)).ToList
+                    Dim details = (From p In Context.AT_LATE_COMBACKOUT
+                                   Where (p.EMPLOYEE_ID = itm.p.ID_EMPLOYEE And p.WORKINGDAY = itm.p.FROM_DATE And p.TYPE_DSVM = itm.p.ID_SIGN)).ToList
                     For index = 0 To details.Count - 1
                         Context.AT_LATE_COMBACKOUT.DeleteObject(details(index))
                     Next
@@ -4786,8 +4870,8 @@ Partial Public Class AttendanceRepository
                                   Where lstEmp.Contains(p.EMPLOYEE_ID) _
                                   And ((startdate >= p.EFFECT_DATE _
                                         And (Not p.EXPIRE_DATE.HasValue OrElse startdate <= p.EXPIRE_DATE)) _
-                                   Or (enddate >= p.EFFECT_DATE And (Not p.EXPIRE_DATE.HasValue OrElse enddate <= p.EXPIRE_DATE))) _
-                                     Select p).ToList
+                                   Or (enddate >= p.EFFECT_DATE And (Not p.EXPIRE_DATE.HasValue OrElse enddate <= p.EXPIRE_DATE)))
+                                  Select p).ToList
                 End If
 
             End If
@@ -4808,7 +4892,7 @@ Partial Public Class AttendanceRepository
                     End If
                     insObject.NVALUE_ID = item.NVALUE_ID
                     working = (From p In lstWorking
-                               Where p.EMPLOYEE_ID = insObject.HU_EMPLOYEEID And _
+                               Where p.EMPLOYEE_ID = insObject.HU_EMPLOYEEID And
                                p.EFFECT_DATE <= insObject.WORKINGDAY
                                Order By p.EFFECT_DATE Descending
                                Select p).FirstOrDefault()
@@ -4875,36 +4959,36 @@ Partial Public Class AttendanceRepository
             'And f.CODE = process _
             'And f.IS_LEAVE = If(process = "LEAVE", -1, 2) _
             Dim list As List(Of AT_PORTAL_REG_DTO) = (From r In Context.AT_PORTAL_APP
-                                                            From p In Context.AT_PORTAL_REG.Where(Function(F) F.ID_REGGROUP = r.ID_REGGROUP).DefaultIfEmpty
-                                                            From e In Context.HU_EMPLOYEE.Where(Function(C) C.ID = p.ID_EMPLOYEE).DefaultIfEmpty
-                                                            From f In Context.AT_TIME_MANUAL.Where(Function(T) T.ID = p.ID_SIGN).DefaultIfEmpty
-                                                            Where (r.ID_EMPLOYEE = approveId _
-                                                                   And (Not signId.HasValue Or p.ID_SIGN = signId.Value) _
-                                                                   And (empIdName = "" OrElse (e.EMPLOYEE_CODE.ToUpper.Contains(empIdName) OrElse e.FULLNAME_VN.ToUpper.Contains(empIdName))) _
-                                                                   And (p.TO_DATE.Value <= toDate And p.FROM_DATE.Value >= fromDate)) _
-                                                                   And p.SVALUE = process _
-                                                               Order By r.APPROVE_DATE Descending, p.FROM_DATE, r.ID_REGGROUP, f.CODE _
-                                                               Select New AT_PORTAL_REG_DTO With {.ID = p.ID,
-                                                                                                  .ID_EMPLOYEE = p.ID_EMPLOYEE,
-                                                                                                  .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
-                                                                                                  .EMPLOYEE_NAME = e.FULLNAME_VN,
-                                                                                                  .ID_SIGN = p.ID_SIGN,
-                                                                                                  .GSIGN_CODE = f.CODE,
-                                                                                                  .REGDATE = p.REGDATE,
-                                                                                                  .FROM_DATE = p.FROM_DATE,
-                                                                                                  .TO_DATE = p.TO_DATE,
-                                                                                                  .FROM_HOUR = p.FROM_HOUR,
-                                                                                                  .TO_HOUR = p.TO_HOUR,
-                                                                                                  .DAYCOUNT = p.DAYCOUNT,
-                                                                                                  .HOURCOUNT = p.HOURCOUNT,
-                                                                                                  .NOTE = p.NOTE,
-                                                                                                  .STATUS = r.APPROVE_STATUS,
-                                                                                                  .APP_DATE = r.APPROVE_DATE,
-                                                                                                  .APP_LEVEL = r.level,
-                                                                                                  .SIGN_CODE = f.CODE,
-                                                                                                  .SIGN_NAME = f.CODE & " - " & f.NAME,
-                                                                                                  .NVALUE = p.NVALUE,
-                                                                                                  .ID_REGGROUP = r.ID_REGGROUP}).ToList
+                                                      From p In Context.AT_PORTAL_REG.Where(Function(F) F.ID_REGGROUP = r.ID_REGGROUP).DefaultIfEmpty
+                                                      From e In Context.HU_EMPLOYEE.Where(Function(C) C.ID = p.ID_EMPLOYEE).DefaultIfEmpty
+                                                      From f In Context.AT_TIME_MANUAL.Where(Function(T) T.ID = p.ID_SIGN).DefaultIfEmpty
+                                                      Where (r.ID_EMPLOYEE = approveId _
+                                                             And (Not signId.HasValue Or p.ID_SIGN = signId.Value) _
+                                                             And (empIdName = "" OrElse (e.EMPLOYEE_CODE.ToUpper.Contains(empIdName) OrElse e.FULLNAME_VN.ToUpper.Contains(empIdName))) _
+                                                             And (p.TO_DATE.Value <= toDate And p.FROM_DATE.Value >= fromDate)) _
+                                                             And p.SVALUE = process
+                                                      Order By r.APPROVE_DATE Descending, p.FROM_DATE, r.ID_REGGROUP, f.CODE
+                                                      Select New AT_PORTAL_REG_DTO With {.ID = p.ID,
+                                                                                         .ID_EMPLOYEE = p.ID_EMPLOYEE,
+                                                                                         .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                                                                                         .EMPLOYEE_NAME = e.FULLNAME_VN,
+                                                                                         .ID_SIGN = p.ID_SIGN,
+                                                                                         .GSIGN_CODE = f.CODE,
+                                                                                         .REGDATE = p.REGDATE,
+                                                                                         .FROM_DATE = p.FROM_DATE,
+                                                                                         .TO_DATE = p.TO_DATE,
+                                                                                         .FROM_HOUR = p.FROM_HOUR,
+                                                                                         .TO_HOUR = p.TO_HOUR,
+                                                                                         .DAYCOUNT = p.DAYCOUNT,
+                                                                                         .HOURCOUNT = p.HOURCOUNT,
+                                                                                         .NOTE = p.NOTE,
+                                                                                         .STATUS = r.APPROVE_STATUS,
+                                                                                         .APP_DATE = r.APPROVE_DATE,
+                                                                                         .APP_LEVEL = r.level,
+                                                                                         .SIGN_CODE = f.CODE,
+                                                                                         .SIGN_NAME = f.CODE & " - " & f.NAME,
+                                                                                         .NVALUE = p.NVALUE,
+                                                                                         .ID_REGGROUP = r.ID_REGGROUP}).ToList
             Dim lst = list.Select(Function(p) New AT_PORTAL_REG_DTO With {.ID = p.ID,
                                                                                 .ID_EMPLOYEE = p.ID_EMPLOYEE,
                                                                                 .EMPLOYEE_CODE = p.EMPLOYEE_CODE,
@@ -4928,33 +5012,33 @@ Partial Public Class AttendanceRepository
                                                                                 .ID_REGGROUP = p.ID_REGGROUP})
 
             Dim sql = (From T In lst
-                            Group T By
-                              T.ID,
-                              T.FROM_DATE,
-                              T.TO_DATE
-                             Into g = Group
-                            Select
-                              ID = CType(g.Max(Function(p) p.ID), Decimal?),
-                              EMPLOYEE_ID = CType(g.Max(Function(p) p.ID_EMPLOYEE), Decimal?),
-                              EMPLOYEE_CODE = g.Max(Function(p) p.EMPLOYEE_CODE),
-                              VN_FULLNAME = g.Max(Function(p) p.EMPLOYEE_NAME),
-                              ID_SIGN = CType(g.Max(Function(p) p.ID_SIGN), Decimal?),
-                              GSIGN_CODE = g.Max(Function(p) p.GSIGN_CODE),
-                              REGDATE = CType(g.Max(Function(p) p.REGDATE), DateTime?),
-                              FROM_DATE = CType(g.Max(Function(p) p.FROM_DATE), DateTime?),
-                              TO_DATE = CType(g.Max(Function(p) p.TO_DATE), DateTime?),
-                              FROM_HOUR = CType(g.Max(Function(p) p.FROM_HOUR), DateTime?),
-                              TO_HOUR = CType(g.Max(Function(p) p.TO_HOUR), DateTime?),
-                              DAYCOUNT = CType(g.Max(Function(p) p.DAYCOUNT), Decimal?),
-                              HOURCOUNT = CType(g.Max(Function(p) p.HOURCOUNT), Decimal?),
-                              NOTE = g.Max(Function(p) p.NOTE),
-                              STATUS = g.Max(Function(p) p.STATUS),
-                              APP_DATE = CType(g.Max(Function(p) p.APP_DATE), DateTime?),
-                              APP_LEVEL = g.Max(Function(p) p.APP_LEVEL),
-                              SIGN_CODE = g.Max(Function(p) p.SIGN_CODE),
-                              SIGN_NAME = g.Max(Function(p) p.SIGN_NAME),
-                              NVALUE = g.Max(Function(p) p.NVALUE),
-                              ID_REGGROUP = g.Max(Function(p) p.ID_REGGROUP)
+                       Group T By
+                         T.ID,
+                         T.FROM_DATE,
+                         T.TO_DATE
+                        Into g = Group
+                       Select
+                         ID = CType(g.Max(Function(p) p.ID), Decimal?),
+                         EMPLOYEE_ID = CType(g.Max(Function(p) p.ID_EMPLOYEE), Decimal?),
+                         EMPLOYEE_CODE = g.Max(Function(p) p.EMPLOYEE_CODE),
+                         VN_FULLNAME = g.Max(Function(p) p.EMPLOYEE_NAME),
+                         ID_SIGN = CType(g.Max(Function(p) p.ID_SIGN), Decimal?),
+                         GSIGN_CODE = g.Max(Function(p) p.GSIGN_CODE),
+                         REGDATE = CType(g.Max(Function(p) p.REGDATE), DateTime?),
+                         FROM_DATE = CType(g.Max(Function(p) p.FROM_DATE), DateTime?),
+                         TO_DATE = CType(g.Max(Function(p) p.TO_DATE), DateTime?),
+                         FROM_HOUR = CType(g.Max(Function(p) p.FROM_HOUR), DateTime?),
+                         TO_HOUR = CType(g.Max(Function(p) p.TO_HOUR), DateTime?),
+                         DAYCOUNT = CType(g.Max(Function(p) p.DAYCOUNT), Decimal?),
+                         HOURCOUNT = CType(g.Max(Function(p) p.HOURCOUNT), Decimal?),
+                         NOTE = g.Max(Function(p) p.NOTE),
+                         STATUS = g.Max(Function(p) p.STATUS),
+                         APP_DATE = CType(g.Max(Function(p) p.APP_DATE), DateTime?),
+                         APP_LEVEL = g.Max(Function(p) p.APP_LEVEL),
+                         SIGN_CODE = g.Max(Function(p) p.SIGN_CODE),
+                         SIGN_NAME = g.Max(Function(p) p.SIGN_NAME),
+                         NVALUE = g.Max(Function(p) p.NVALUE),
+                         ID_REGGROUP = g.Max(Function(p) p.ID_REGGROUP)
                               ).ToList
 
             Dim listReturn As List(Of AT_PORTAL_REG_DTO) = sql.Select(Function(f) New AT_PORTAL_REG_DTO With {.ID = f.ID,
@@ -4983,11 +5067,11 @@ Partial Public Class AttendanceRepository
             ' Lấy danh sách những người mà người này được phê duyệt thay thế
             Dim listAppExt = (From p In Context.SE_APP_SETUPEXT
                               From c In Context.SE_APP_PROCESS.Where(Function(f) f.ID = p.PROCESS_ID).DefaultIfEmpty
-                             Where p.SUB_EMPLOYEE_ID = approveId _
-                             And p.FROM_DATE <= Date.Today _
-                             And Date.Today <= p.TO_DATE _
-                             And c.PROCESS_CODE = process
-                             Select p).ToList
+                              Where p.SUB_EMPLOYEE_ID = approveId _
+                              And p.FROM_DATE <= Date.Today _
+                              And Date.Today <= p.TO_DATE _
+                              And c.PROCESS_CODE = process
+                              Select p).ToList
 
             For Each setupEx In listAppExt
 
@@ -4998,28 +5082,28 @@ Partial Public Class AttendanceRepository
                                                                Join e In Context.HU_EMPLOYEE On p.ID_EMPLOYEE Equals e.ID
                                                                Where (r.ID_EMPLOYEE = empId _
                                                                       And (p.REGDATE.Value <= toDate And p.REGDATE.Value >= fromDate))
-                                                                      Order By r.APPROVE_DATE Descending, p.FROM_DATE, e.EMPLOYEE_CODE
-                                                                  Select New AT_PORTAL_REG_DTO With {.ID = p.ID,
-                                                                                                     .ID_EMPLOYEE = p.ID_EMPLOYEE,
-                                                                                                     .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
-                                                                                                     .EMPLOYEE_NAME = e.FULLNAME_VN,
-                                                                                                     .ID_SIGN = p.ID_SIGN,
-                                                                                                     .GSIGN_CODE = "2",
-                                                                                                     .REGDATE = p.REGDATE,
-                                                                                                     .FROM_DATE = p.FROM_DATE,
-                                                                                                     .TO_DATE = p.TO_DATE,
-                                                                                                     .FROM_HOUR = p.FROM_HOUR,
-                                                                                                     .TO_HOUR = p.TO_HOUR,
-                                                                                                     .DAYCOUNT = p.DAYCOUNT,
-                                                                                                     .HOURCOUNT = p.HOURCOUNT,
-                                                                                                     .NOTE = p.NOTE,
-                                                                                                     .STATUS = r.APPROVE_STATUS,
-                                                                                                     .APP_DATE = r.APPROVE_DATE,
-                                                                                                     .APP_LEVEL = r.level,
-                                                                                                     .SIGN_CODE = "2",
-                                                                                                     .SIGN_NAME = "ABC",
-                                                                                                     .NVALUE = p.NVALUE,
-                                                                                                     .ID_REGGROUP = p.ID_REGGROUP}).ToList
+                                                               Order By r.APPROVE_DATE Descending, p.FROM_DATE, e.EMPLOYEE_CODE
+                                                               Select New AT_PORTAL_REG_DTO With {.ID = p.ID,
+                                                                                                  .ID_EMPLOYEE = p.ID_EMPLOYEE,
+                                                                                                  .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                                                                                                  .EMPLOYEE_NAME = e.FULLNAME_VN,
+                                                                                                  .ID_SIGN = p.ID_SIGN,
+                                                                                                  .GSIGN_CODE = "2",
+                                                                                                  .REGDATE = p.REGDATE,
+                                                                                                  .FROM_DATE = p.FROM_DATE,
+                                                                                                  .TO_DATE = p.TO_DATE,
+                                                                                                  .FROM_HOUR = p.FROM_HOUR,
+                                                                                                  .TO_HOUR = p.TO_HOUR,
+                                                                                                  .DAYCOUNT = p.DAYCOUNT,
+                                                                                                  .HOURCOUNT = p.HOURCOUNT,
+                                                                                                  .NOTE = p.NOTE,
+                                                                                                  .STATUS = r.APPROVE_STATUS,
+                                                                                                  .APP_DATE = r.APPROVE_DATE,
+                                                                                                  .APP_LEVEL = r.level,
+                                                                                                  .SIGN_CODE = "2",
+                                                                                                  .SIGN_NAME = "ABC",
+                                                                                                  .NVALUE = p.NVALUE,
+                                                                                                  .ID_REGGROUP = p.ID_REGGROUP}).ToList
 
                 If listAppEx.Count > 0 Then
                     listReturn.AddRange(listAppEx)
@@ -5029,25 +5113,25 @@ Partial Public Class AttendanceRepository
             For Each curObjReg In listReturn
                 If curObjReg.ID_REGGROUP IsNot Nothing Then
                     objExistRegGroup = (From p In listChangeReturn
-                                      Where p.ID_REGGROUP = curObjReg.ID_REGGROUP _
-                                      And p.STATUS = curObjReg.STATUS
-                                      Select p).SingleOrDefault()
+                                        Where p.ID_REGGROUP = curObjReg.ID_REGGROUP _
+                                        And p.STATUS = curObjReg.STATUS
+                                        Select p).SingleOrDefault()
 
                     If objExistRegGroup IsNot Nothing Then
                         If Not (objExistRegGroup.SIGN_NAME + "<br />").Contains(curObjReg.SIGN_NAME + "<br />") Then
                             If curObjReg.GSIGN_CODE = ATConstant.GSIGNCODE_LEAVE Then
                                 objExistRegGroup.SIGN_NAME += "<br />" & curObjReg.SIGN_NAME
-                                objExistRegGroup.DISPLAY += "<br />" & curObjReg.SIGN_CODE + " - " + _
+                                objExistRegGroup.DISPLAY += "<br />" & curObjReg.SIGN_CODE + " - " +
                                     Format((From p In listReturn
                                             Where (p.ID_REGGROUP = objExistRegGroup.ID_REGGROUP _
                                                    And p.STATUS = objExistRegGroup.STATUS _
                                                    And p.SIGN_NAME = curObjReg.SIGN_NAME)
-                                               Select p.NVALUE.Value).Sum, "0.##")
+                                            Select p.NVALUE.Value).Sum, "0.##")
                             End If
 
                             If curObjReg.GSIGN_CODE = ATConstant.GSIGNCODE_WLEO Then
                                 objExistRegGroup.SIGN_NAME += "<br />" & curObjReg.SIGN_NAME
-                                objExistRegGroup.DISPLAY += "<br />" & curObjReg.SIGN_CODE + " - " + _
+                                objExistRegGroup.DISPLAY += "<br />" & curObjReg.SIGN_CODE + " - " +
                                     Format((From p In listReturn
                                             Where p.ID_REGGROUP = objExistRegGroup.ID_REGGROUP _
                                             And p.STATUS = objExistRegGroup.STATUS _
@@ -5056,8 +5140,8 @@ Partial Public Class AttendanceRepository
                             End If
                         End If
                         If curObjReg.GSIGN_CODE = ATConstant.GSIGNCODE_OVERTIME Then
-                            objExistRegGroup.DISPLAY += "<br />" + _
-                                curObjReg.FROM_DATE.Value.ToString("dd/MM/yyyy") + ": " + _
+                            objExistRegGroup.DISPLAY += "<br />" +
+                                curObjReg.FROM_DATE.Value.ToString("dd/MM/yyyy") + ": " +
                                 curObjReg.FROM_HOUR.Value.ToString("HH:mm") + "-" + curObjReg.TO_HOUR.Value.ToString("HH:mm")
                         End If
                         objExistRegGroup.DAYCOUNT += Format(If(curObjReg.NVALUE Is Nothing, 0, curObjReg.NVALUE), "0.##")
@@ -5071,20 +5155,20 @@ Partial Public Class AttendanceRepository
                         curObjReg.HOURCOUNT = Format(If(curObjReg.HOURCOUNT Is Nothing, 0, curObjReg.HOURCOUNT), "0.##")
                         Select Case curObjReg.GSIGN_CODE
                             Case ATConstant.GSIGNCODE_OVERTIME
-                                curObjReg.DISPLAY = curObjReg.FROM_DATE.Value.ToString("dd/MM/yyyy") + ": " + _
+                                curObjReg.DISPLAY = curObjReg.FROM_DATE.Value.ToString("dd/MM/yyyy") + ": " +
                                 curObjReg.FROM_HOUR.Value.ToString("HH:mm") + "-" + curObjReg.TO_HOUR.Value.ToString("HH:mm")
                             Case ATConstant.GSIGNCODE_LEAVE
                                 curObjReg.DISPLAY = curObjReg.SIGN_CODE + " - " + Format((From p In listReturn
-                                                                                           Where (p.ID_REGGROUP = curObjReg.ID_REGGROUP _
-                                                                                                  And p.STATUS = curObjReg.STATUS _
-                                                                                                  And p.SIGN_NAME = curObjReg.SIGN_NAME)
-                                                                                              Select p.NVALUE.Value).Sum, "0.##")
+                                                                                          Where (p.ID_REGGROUP = curObjReg.ID_REGGROUP _
+                                                                                                 And p.STATUS = curObjReg.STATUS _
+                                                                                                 And p.SIGN_NAME = curObjReg.SIGN_NAME)
+                                                                                          Select p.NVALUE.Value).Sum, "0.##")
                             Case ATConstant.GSIGNCODE_WLEO
                                 curObjReg.DISPLAY = curObjReg.SIGN_CODE + " - " + Format((From p In listReturn
-                                                                                           Where (p.ID_REGGROUP = curObjReg.ID_REGGROUP _
-                                                                                                  And p.STATUS = curObjReg.STATUS _
-                                                                                                  And p.SIGN_NAME = curObjReg.SIGN_NAME)
-                                                                                              Select p.NVALUE.Value).Sum, "0.##")
+                                                                                          Where (p.ID_REGGROUP = curObjReg.ID_REGGROUP _
+                                                                                                 And p.STATUS = curObjReg.STATUS _
+                                                                                                 And p.SIGN_NAME = curObjReg.SIGN_NAME)
+                                                                                          Select p.NVALUE.Value).Sum, "0.##")
                         End Select
 
                         listChangeReturn.Add(curObjReg)
@@ -5136,37 +5220,37 @@ Partial Public Class AttendanceRepository
             'And f.CODE = process _
             'And f.IS_LEAVE = If(process = "LEAVE", -1, 2) _
             Dim list As List(Of AT_PORTAL_REG_DTO) = (From r In Context.AT_PORTAL_APP
-                                                            From p In Context.AT_PORTAL_REG.Where(Function(F) F.ID_REGGROUP = r.ID_REGGROUP).DefaultIfEmpty
-                                                            From e In Context.HU_EMPLOYEE.Where(Function(C) C.ID = p.ID_EMPLOYEE).DefaultIfEmpty
-                                                            From f In Context.OT_OTHER_LIST.Where(Function(T) T.ID = p.ID_SIGN).DefaultIfEmpty
-                                                            Where (r.ID_EMPLOYEE = approveId _
-                                                                   And (Not signId.HasValue Or p.ID_SIGN = signId.Value) _
-                                                                   And (empIdName = "" OrElse (e.EMPLOYEE_CODE.ToUpper.Contains(empIdName) OrElse e.FULLNAME_VN.ToUpper.Contains(empIdName))) _
-                                                                   And (p.TO_DATE.Value <= toDate And p.FROM_DATE.Value >= fromDate)) _
-                                                                   And p.SVALUE = process _
-                                                               Order By r.APPROVE_DATE Descending, p.FROM_DATE, r.ID_REGGROUP, f.CODE _
-                                                               Select New AT_PORTAL_REG_DTO With {.ID = p.ID,
-                                                                                                  .ID_EMPLOYEE = p.ID_EMPLOYEE,
-                                                                                                  .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
-                                                                                                  .EMPLOYEE_NAME = e.FULLNAME_VN,
-                                                                                                  .ID_SIGN = p.ID_SIGN,
-                                                                                                  .GSIGN_CODE = f.CODE,
-                                                                                                  .REGDATE = p.REGDATE,
-                                                                                                  .FROM_DATE = p.FROM_DATE,
-                                                                                                  .TO_DATE = p.TO_DATE,
-                                                                                                  .FROM_HOUR = p.FROM_HOUR,
-                                                                                                  .TO_HOUR = p.TO_HOUR,
-                                                                                                  .DAYCOUNT = p.DAYCOUNT,
-                                                                                                  .HOURCOUNT = p.HOURCOUNT,
-                                                                                                  .NOTE = p.NOTE,
-                                                                                                  .STATUS = r.APPROVE_STATUS,
-                                                                                                  .APP_DATE = r.APPROVE_DATE,
-                                                                                                  .APP_LEVEL = r.level,
-                                                                                                  .SIGN_CODE = f.CODE,
-                                                                                                  .SIGN_NAME = f.NAME_VN,
-                                                                                                  .NVALUE = p.NVALUE,
-                                                                                                  .NGHI_BU = If(p.IS_NB = -1, "Có", "Không"),
-                                                                                                  .ID_REGGROUP = r.ID_REGGROUP}).ToList
+                                                      From p In Context.AT_PORTAL_REG.Where(Function(F) F.ID_REGGROUP = r.ID_REGGROUP).DefaultIfEmpty
+                                                      From e In Context.HU_EMPLOYEE.Where(Function(C) C.ID = p.ID_EMPLOYEE).DefaultIfEmpty
+                                                      From f In Context.OT_OTHER_LIST.Where(Function(T) T.ID = p.ID_SIGN).DefaultIfEmpty
+                                                      Where (r.ID_EMPLOYEE = approveId _
+                                                             And (Not signId.HasValue Or p.ID_SIGN = signId.Value) _
+                                                             And (empIdName = "" OrElse (e.EMPLOYEE_CODE.ToUpper.Contains(empIdName) OrElse e.FULLNAME_VN.ToUpper.Contains(empIdName))) _
+                                                             And (p.TO_DATE.Value <= toDate And p.FROM_DATE.Value >= fromDate)) _
+                                                             And p.SVALUE = process
+                                                      Order By r.APPROVE_DATE Descending, p.FROM_DATE, r.ID_REGGROUP, f.CODE
+                                                      Select New AT_PORTAL_REG_DTO With {.ID = p.ID,
+                                                                                         .ID_EMPLOYEE = p.ID_EMPLOYEE,
+                                                                                         .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                                                                                         .EMPLOYEE_NAME = e.FULLNAME_VN,
+                                                                                         .ID_SIGN = p.ID_SIGN,
+                                                                                         .GSIGN_CODE = f.CODE,
+                                                                                         .REGDATE = p.REGDATE,
+                                                                                         .FROM_DATE = p.FROM_DATE,
+                                                                                         .TO_DATE = p.TO_DATE,
+                                                                                         .FROM_HOUR = p.FROM_HOUR,
+                                                                                         .TO_HOUR = p.TO_HOUR,
+                                                                                         .DAYCOUNT = p.DAYCOUNT,
+                                                                                         .HOURCOUNT = p.HOURCOUNT,
+                                                                                         .NOTE = p.NOTE,
+                                                                                         .STATUS = r.APPROVE_STATUS,
+                                                                                         .APP_DATE = r.APPROVE_DATE,
+                                                                                         .APP_LEVEL = r.level,
+                                                                                         .SIGN_CODE = f.CODE,
+                                                                                         .SIGN_NAME = f.NAME_VN,
+                                                                                         .NVALUE = p.NVALUE,
+                                                                                         .NGHI_BU = If(p.IS_NB = -1, "Có", "Không"),
+                                                                                         .ID_REGGROUP = r.ID_REGGROUP}).ToList
             Dim lst = list.Select(Function(p) New AT_PORTAL_REG_DTO With {.ID = p.ID,
                                                                                 .ID_EMPLOYEE = p.ID_EMPLOYEE,
                                                                                 .EMPLOYEE_CODE = p.EMPLOYEE_CODE,
@@ -5191,34 +5275,34 @@ Partial Public Class AttendanceRepository
                                                                                 .ID_REGGROUP = p.ID_REGGROUP})
 
             Dim sql = (From T In lst
-                            Group T By
-                              T.ID,
-                              T.FROM_DATE,
-                              T.TO_DATE
-                             Into g = Group
-                            Select
-                              ID = CType(g.Max(Function(p) p.ID), Decimal?),
-                              EMPLOYEE_ID = CType(g.Max(Function(p) p.ID_EMPLOYEE), Decimal?),
-                              EMPLOYEE_CODE = g.Max(Function(p) p.EMPLOYEE_CODE),
-                              VN_FULLNAME = g.Max(Function(p) p.EMPLOYEE_NAME),
-                              ID_SIGN = CType(g.Max(Function(p) p.ID_SIGN), Decimal?),
-                              GSIGN_CODE = g.Max(Function(p) p.GSIGN_CODE),
-                              REGDATE = CType(g.Max(Function(p) p.REGDATE), DateTime?),
-                              FROM_DATE = CType(g.Max(Function(p) p.FROM_DATE), DateTime?),
-                              TO_DATE = CType(g.Max(Function(p) p.TO_DATE), DateTime?),
-                              FROM_HOUR = CType(g.Max(Function(p) p.FROM_HOUR), DateTime?),
-                              TO_HOUR = CType(g.Max(Function(p) p.TO_HOUR), DateTime?),
-                              DAYCOUNT = CType(g.Max(Function(p) p.DAYCOUNT), Decimal?),
-                              HOURCOUNT = CType(g.Max(Function(p) p.HOURCOUNT), Decimal?),
-                              NOTE = g.Max(Function(p) p.NOTE),
-                              STATUS = g.Max(Function(p) p.STATUS),
-                              APP_DATE = CType(g.Max(Function(p) p.APP_DATE), DateTime?),
-                              APP_LEVEL = g.Max(Function(p) p.APP_LEVEL),
-                              SIGN_CODE = g.Max(Function(p) p.SIGN_CODE),
-                              SIGN_NAME = g.Max(Function(p) p.SIGN_NAME),
-                              NVALUE = g.Max(Function(p) p.NVALUE),
-                              NGHI_BU = g.Max(Function(p) p.NGHI_BU),
-                              ID_REGGROUP = g.Max(Function(p) p.ID_REGGROUP)
+                       Group T By
+                         T.ID,
+                         T.FROM_DATE,
+                         T.TO_DATE
+                        Into g = Group
+                       Select
+                         ID = CType(g.Max(Function(p) p.ID), Decimal?),
+                         EMPLOYEE_ID = CType(g.Max(Function(p) p.ID_EMPLOYEE), Decimal?),
+                         EMPLOYEE_CODE = g.Max(Function(p) p.EMPLOYEE_CODE),
+                         VN_FULLNAME = g.Max(Function(p) p.EMPLOYEE_NAME),
+                         ID_SIGN = CType(g.Max(Function(p) p.ID_SIGN), Decimal?),
+                         GSIGN_CODE = g.Max(Function(p) p.GSIGN_CODE),
+                         REGDATE = CType(g.Max(Function(p) p.REGDATE), DateTime?),
+                         FROM_DATE = CType(g.Max(Function(p) p.FROM_DATE), DateTime?),
+                         TO_DATE = CType(g.Max(Function(p) p.TO_DATE), DateTime?),
+                         FROM_HOUR = CType(g.Max(Function(p) p.FROM_HOUR), DateTime?),
+                         TO_HOUR = CType(g.Max(Function(p) p.TO_HOUR), DateTime?),
+                         DAYCOUNT = CType(g.Max(Function(p) p.DAYCOUNT), Decimal?),
+                         HOURCOUNT = CType(g.Max(Function(p) p.HOURCOUNT), Decimal?),
+                         NOTE = g.Max(Function(p) p.NOTE),
+                         STATUS = g.Max(Function(p) p.STATUS),
+                         APP_DATE = CType(g.Max(Function(p) p.APP_DATE), DateTime?),
+                         APP_LEVEL = g.Max(Function(p) p.APP_LEVEL),
+                         SIGN_CODE = g.Max(Function(p) p.SIGN_CODE),
+                         SIGN_NAME = g.Max(Function(p) p.SIGN_NAME),
+                         NVALUE = g.Max(Function(p) p.NVALUE),
+                         NGHI_BU = g.Max(Function(p) p.NGHI_BU),
+                         ID_REGGROUP = g.Max(Function(p) p.ID_REGGROUP)
                               ).ToList
 
             Dim listReturn As List(Of AT_PORTAL_REG_DTO) = sql.Select(Function(f) New AT_PORTAL_REG_DTO With {.ID = f.ID,
@@ -5248,11 +5332,11 @@ Partial Public Class AttendanceRepository
             ' Lấy danh sách những người mà người này được phê duyệt thay thế
             Dim listAppExt = (From p In Context.SE_APP_SETUPEXT
                               From c In Context.SE_APP_PROCESS.Where(Function(f) f.ID = p.PROCESS_ID).DefaultIfEmpty
-                             Where p.SUB_EMPLOYEE_ID = approveId _
-                             And p.FROM_DATE <= Date.Today _
-                             And Date.Today <= p.TO_DATE _
-                             And c.PROCESS_CODE = process
-                             Select p).ToList
+                              Where p.SUB_EMPLOYEE_ID = approveId _
+                              And p.FROM_DATE <= Date.Today _
+                              And Date.Today <= p.TO_DATE _
+                              And c.PROCESS_CODE = process
+                              Select p).ToList
 
             For Each setupEx In listAppExt
 
@@ -5263,29 +5347,29 @@ Partial Public Class AttendanceRepository
                                                                Join e In Context.HU_EMPLOYEE On p.ID_EMPLOYEE Equals e.ID
                                                                Where (r.ID_EMPLOYEE = empId _
                                                                       And (p.REGDATE.Value <= toDate And p.REGDATE.Value >= fromDate))
-                                                                      Order By r.APPROVE_DATE Descending, p.FROM_DATE, e.EMPLOYEE_CODE
-                                                                  Select New AT_PORTAL_REG_DTO With {.ID = p.ID,
-                                                                                                     .ID_EMPLOYEE = p.ID_EMPLOYEE,
-                                                                                                     .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
-                                                                                                     .EMPLOYEE_NAME = e.FULLNAME_VN,
-                                                                                                     .ID_SIGN = p.ID_SIGN,
-                                                                                                     .GSIGN_CODE = "2",
-                                                                                                     .REGDATE = p.REGDATE,
-                                                                                                     .FROM_DATE = p.FROM_DATE,
-                                                                                                     .TO_DATE = p.TO_DATE,
-                                                                                                     .FROM_HOUR = p.FROM_HOUR,
-                                                                                                     .TO_HOUR = p.TO_HOUR,
-                                                                                                     .DAYCOUNT = p.DAYCOUNT,
-                                                                                                     .HOURCOUNT = p.HOURCOUNT,
-                                                                                                     .NOTE = p.NOTE,
-                                                                                                     .STATUS = r.APPROVE_STATUS,
-                                                                                                     .APP_DATE = r.APPROVE_DATE,
-                                                                                                     .APP_LEVEL = r.level,
-                                                                                                     .SIGN_CODE = "2",
-                                                                                                     .SIGN_NAME = "ABC",
-                                                                                                     .NVALUE = p.NVALUE,
-                                                                                                     .NGHI_BU = If(p.IS_NB = -1, "Có", "Không"),
-                                                                                                     .ID_REGGROUP = p.ID_REGGROUP}).ToList
+                                                               Order By r.APPROVE_DATE Descending, p.FROM_DATE, e.EMPLOYEE_CODE
+                                                               Select New AT_PORTAL_REG_DTO With {.ID = p.ID,
+                                                                                                  .ID_EMPLOYEE = p.ID_EMPLOYEE,
+                                                                                                  .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                                                                                                  .EMPLOYEE_NAME = e.FULLNAME_VN,
+                                                                                                  .ID_SIGN = p.ID_SIGN,
+                                                                                                  .GSIGN_CODE = "2",
+                                                                                                  .REGDATE = p.REGDATE,
+                                                                                                  .FROM_DATE = p.FROM_DATE,
+                                                                                                  .TO_DATE = p.TO_DATE,
+                                                                                                  .FROM_HOUR = p.FROM_HOUR,
+                                                                                                  .TO_HOUR = p.TO_HOUR,
+                                                                                                  .DAYCOUNT = p.DAYCOUNT,
+                                                                                                  .HOURCOUNT = p.HOURCOUNT,
+                                                                                                  .NOTE = p.NOTE,
+                                                                                                  .STATUS = r.APPROVE_STATUS,
+                                                                                                  .APP_DATE = r.APPROVE_DATE,
+                                                                                                  .APP_LEVEL = r.level,
+                                                                                                  .SIGN_CODE = "2",
+                                                                                                  .SIGN_NAME = "ABC",
+                                                                                                  .NVALUE = p.NVALUE,
+                                                                                                  .NGHI_BU = If(p.IS_NB = -1, "Có", "Không"),
+                                                                                                  .ID_REGGROUP = p.ID_REGGROUP}).ToList
 
                 If listAppEx.Count > 0 Then
                     listReturn.AddRange(listAppEx)
@@ -5295,13 +5379,13 @@ Partial Public Class AttendanceRepository
             For Each curObjReg In listReturn
                 If curObjReg.ID_REGGROUP IsNot Nothing Then
                     objExistRegGroup = (From p In listChangeReturn
-                                      Where p.ID_REGGROUP = curObjReg.ID_REGGROUP _
-                                      And p.STATUS = curObjReg.STATUS
-                                      Select p).SingleOrDefault()
+                                        Where p.ID_REGGROUP = curObjReg.ID_REGGROUP _
+                                        And p.STATUS = curObjReg.STATUS
+                                        Select p).SingleOrDefault()
 
                     If objExistRegGroup IsNot Nothing Then
-                        objExistRegGroup.DISPLAY += "<br />" + _
-                        curObjReg.FROM_DATE.Value.ToString("dd/MM/yyyy") + ": " + _
+                        objExistRegGroup.DISPLAY += "<br />" +
+                        curObjReg.FROM_DATE.Value.ToString("dd/MM/yyyy") + ": " +
                         curObjReg.FROM_HOUR.Value.ToString("HH:mm") + "-" + curObjReg.TO_HOUR.Value.ToString("HH:mm")
 
                         objExistRegGroup.DAYCOUNT += Format(If(curObjReg.NVALUE Is Nothing, 0, curObjReg.NVALUE), "0.##")
@@ -5313,7 +5397,7 @@ Partial Public Class AttendanceRepository
                     Else
                         curObjReg.DAYCOUNT = Format(If(curObjReg.NVALUE Is Nothing, 0, curObjReg.NVALUE), "0.##")
                         curObjReg.HOURCOUNT = Format(If(curObjReg.HOURCOUNT Is Nothing, 0, curObjReg.HOURCOUNT), "0.##")
-                        curObjReg.DISPLAY = curObjReg.FROM_DATE.Value.ToString("dd/MM/yyyy") + ": " + _
+                        curObjReg.DISPLAY = curObjReg.FROM_DATE.Value.ToString("dd/MM/yyyy") + ": " +
                         curObjReg.FROM_HOUR.Value.ToString("HH:mm") + "-" + curObjReg.TO_HOUR.Value.ToString("HH:mm")
 
                         listChangeReturn.Add(curObjReg)
@@ -6324,22 +6408,22 @@ Partial Public Class AttendanceRepository
                 If _validate.ID <> 0 Then
                     If _validate.ACTFLG <> "" Then
                         query = (From p In Context.OT_OTHER_LIST
-                             Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID
-                             Where q.CODE.ToUpper = _validate.CODE.ToUpper _
-                             And p.ID = _validate.ID _
-                             And p.ACTFLG = _validate.ACTFLG
+                                 Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID
+                                 Where q.CODE.ToUpper = _validate.CODE.ToUpper _
+                                 And p.ID = _validate.ID _
+                                 And p.ACTFLG = _validate.ACTFLG
                              ).FirstOrDefault
                         Return (Not query Is Nothing)
                     Else
                         query = (From p In Context.OT_OTHER_LIST
-                             Where p.CODE.ToUpper = _validate.CODE.ToUpper _
-                             And p.ID <> _validate.ID _
+                                 Where p.CODE.ToUpper = _validate.CODE.ToUpper _
+                                 And p.ID <> _validate.ID
                              ).SingleOrDefault
                         Return (query Is Nothing)
                     End If
                 Else
                     query = (From p In Context.OT_OTHER_LIST
-                             Where p.CODE.ToUpper = _validate.CODE.ToUpper _
+                             Where p.CODE.ToUpper = _validate.CODE.ToUpper
                             ).FirstOrDefault
                     Return (query Is Nothing)
                 End If
@@ -6630,12 +6714,12 @@ Partial Public Class AttendanceRepository
 
         Dim lst As New List(Of APPOINTMENT_DTO)
         Using cls As New DataAccess.QueryData
-            Dim dt As DataTable = cls.ExecuteStore("PKG_AT_ATTENDANCE_PORTAL.GET_REG_PORTAL", _
-                                                   New With {.P_EMLOYEEID = EMPLOYEEID, _
-                                                             .P_FROMDATE = START_DATE, _
-                                                             .P_TODATE = END_DATE, _
-                                                             .P_LSTSTATUS = LSTSTATUS, _
-                                                             .P_TYPE = TYPE, _
+            Dim dt As DataTable = cls.ExecuteStore("PKG_AT_ATTENDANCE_PORTAL.GET_REG_PORTAL",
+                                                   New With {.P_EMLOYEEID = EMPLOYEEID,
+                                                             .P_FROMDATE = START_DATE,
+                                                             .P_TODATE = END_DATE,
+                                                             .P_LSTSTATUS = LSTSTATUS,
+                                                             .P_TYPE = TYPE,
                                                              .P_CUR = cls.OUT_CURSOR})
 
             If dt.Rows.Count > 0 Then
@@ -6674,8 +6758,8 @@ Partial Public Class AttendanceRepository
     ' Lấy tổng số giờ OT phê duyệt và số giờ OT đăng ký chưa phê duyệt
     Public Function GET_TOTAL_OT_APPROVE(ByVal EMPID As Decimal?, ByVal ENDDATE As Date) As Decimal
         Using cls As New DataAccess.QueryData
-            Dim obj = New With {.P_EMPLOYEEID = EMPID, _
-                                .P_ENDDATE = ENDDATE, _
+            Dim obj = New With {.P_EMPLOYEEID = EMPID,
+                                .P_ENDDATE = ENDDATE,
                                 .P_RESULT = cls.OUT_NUMBER}
             Dim objects = cls.ExecuteStore("PKG_AT.GET_TOTAL_OT_APPROVE", obj)
             Return Decimal.Parse(obj.P_RESULT)
@@ -6749,7 +6833,7 @@ Partial Public Class AttendanceRepository
         End Using
     End Function
     ' Kiêm tra một số ràng buộc khi đăng ký OT
-    Public Function CHECK_RGT_OT(ByVal EMPID As Decimal, ByVal STARTDATE As Date, ByVal ENDDATE As Date, _
+    Public Function CHECK_RGT_OT(ByVal EMPID As Decimal, ByVal STARTDATE As Date, ByVal ENDDATE As Date,
                                  ByVal FROM_HOUR As String, ByVal TO_HOUR As String, ByVal HOUR_RGT As Decimal) As Int32
         Using cls As New DataAccess.QueryData
             Dim obj = New With {EMPID, STARTDATE, ENDDATE, FROM_HOUR, TO_HOUR, HOUR_RGT, .P_RESULT = cls.OUT_NUMBER}
@@ -7186,7 +7270,7 @@ Partial Public Class AttendanceRepository
     Public Function GetperiodID(ByVal employee_Id As Decimal, ByVal fromDate As Date, ByVal toDate As Date) As Decimal
         Try
             Dim query = (From d In Context.AT_PERIOD
-                               Where d.START_DATE <= fromDate AndAlso d.END_DATE >= fromDate).Select(Function(f) f.ID).FirstOrDefault()
+                         Where d.START_DATE <= fromDate AndAlso d.END_DATE >= fromDate).Select(Function(f) f.ID).FirstOrDefault()
             Return query
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
@@ -7198,7 +7282,7 @@ Partial Public Class AttendanceRepository
     Public Function GetLeaveEmpDetail(ByVal employee_Id As Decimal, ByVal fromDate As Date, ByVal toDate As Date, Optional ByVal isUpdate As Boolean = False) As List(Of LEAVE_DETAIL_EMP_DTO)
         Try
             Dim query = From d In Context.AT_PORTAL_REG
-                               Where d.FROM_DATE >= fromDate And d.FROM_DATE <= toDate And d.ID_EMPLOYEE = employee_Id
+                        Where d.FROM_DATE >= fromDate And d.FROM_DATE <= toDate And d.ID_EMPLOYEE = employee_Id
                         Select New LEAVE_DETAIL_EMP_DTO With {
              .FROM_DATE = d.FROM_DATE
                             }

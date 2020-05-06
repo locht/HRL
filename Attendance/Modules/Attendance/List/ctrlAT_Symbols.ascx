@@ -39,6 +39,12 @@
                     <asp:RequiredFieldValidator ID="reqWGROUPID" ControlToValidate="rcWGROUPID"
                         runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập nhóm ký hiệu. %>"></asp:RequiredFieldValidator>
                 </td>
+                <td class="lb">
+                    <%# Translate("Thứ tự hiện thị")%><span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="rnWINDEX" runat ="server" Width="30"></tlk:RadNumericTextBox>
+                </td>
             </tr>
             <tr>
                  <td class="lb">
@@ -76,21 +82,14 @@
                 </td>
             </tr>
             <tr>
-                <td class="lb">
-                    <%# Translate("Thứ tự hiện thị")%><span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadNumericTextBox ID="rnWINDEX" runat ="server" Width="30"></tlk:RadNumericTextBox>
-                </td>
-                 <td class="lb">
+                
+               <%--  <td class="lb">
                     <%# Translate("Hiển thị trên màn hình nghiệp vụ")%><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox  ID="rcSYMBOL_FUN_ID" runat="server" CheckBoxes ="true" >
                     </tlk:RadComboBox>
-                </td>
-            </tr>
-            <tr>
+                </td>--%>
                 <td class="lb">
                     <asp:CheckBox ID="ckIS_DISPLAY" runat="server" />
                 </td>
@@ -109,16 +108,14 @@
                 <td>
                     <%# Translate("Hiển thị portal")%>
                 </td>
+            </tr>
+            <tr>
                  <td class="lb">
                     <asp:CheckBox ID="ckIS_LEAVE" runat="server" />
                 </td>
                 <td>
                     <%# Translate("Công nghỉ")%>
                 </td>
-                <td colspan="2">
-                </td>
-            </tr>
-            <tr>
                 <td class="lb">
                     <asp:CheckBox ID="ckIS_LEAVE_WEEKLY" runat="server" />
                 </td>
@@ -136,6 +133,8 @@
                 </td>
                 <td>
                     <%# Translate("Nghỉ nửa ngày")%>
+                </td>
+                <td colspan="2">
                 </td>
             </tr>
             <tr>
@@ -268,7 +267,7 @@
             enableAjax = true;
         }
 
-        
+
         function setDefaultSize() {
             ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgDanhMuc', 0, 0, 7);
         }

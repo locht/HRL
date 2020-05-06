@@ -247,8 +247,8 @@ Public Class ctrlAT_Symbols
                     rdEFFECT_DATE.Enabled = True
                     rdEXPIRE_DATE.ClearValue()
                     rdEXPIRE_DATE.Enabled = True
-                    rcSYMBOL_FUN_ID.ClearCheckedItems()
-                    rcSYMBOL_FUN_ID.Enabled = True
+                    'rcSYMBOL_FUN_ID.ClearCheckedItems()
+                    'rcSYMBOL_FUN_ID.Enabled = True
                     ckIS_DATAFROMEXCEL.Checked = False
                     ckIS_DATAFROMEXCEL.Enabled = True
                     ckIS_DAY_HALF.Checked = False
@@ -285,8 +285,8 @@ Public Class ctrlAT_Symbols
                     rdEFFECT_DATE.Enabled = False
                     rdEXPIRE_DATE.ClearValue()
                     rdEXPIRE_DATE.Enabled = False
-                    rcSYMBOL_FUN_ID.ClearCheckedItems()
-                    rcSYMBOL_FUN_ID.Enabled = False
+                    'rcSYMBOL_FUN_ID.ClearCheckedItems()
+                    'rcSYMBOL_FUN_ID.Enabled = False
                     ckIS_DATAFROMEXCEL.Checked = False
                     ckIS_DATAFROMEXCEL.Enabled = False
                     ckIS_DAY_HALF.Checked = False
@@ -312,7 +312,7 @@ Public Class ctrlAT_Symbols
                     rnWINDEX.Enabled = True
                     rdEFFECT_DATE.Enabled = True
                     rdEXPIRE_DATE.Enabled = True
-                    rcSYMBOL_FUN_ID.Enabled = True
+                    'rcSYMBOL_FUN_ID.Enabled = True
                     ckIS_DATAFROMEXCEL.Enabled = True
                     ckIS_DAY_HALF.Enabled = True
                     ckIS_DISPLAY.Enabled = True
@@ -454,49 +454,41 @@ Public Class ctrlAT_Symbols
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Protected Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
-        Dim objShift As New AT_SHIFTDTO
+        Dim objsYMBOLS As New AT_SymbolsDTO
         Dim rep As New AttendanceRepository
         Dim gID As Decimal
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
-
         Try
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     CurrentState = CommonMessage.STATE_NEW
                     UpdateControlState()
-
                 Case CommonMessage.TOOLBARITEM_EDIT
                     If rgDanhMuc.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
-
                     If rgDanhMuc.SelectedItems.Count > 1 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
-
                     CurrentState = CommonMessage.STATE_EDIT
                     UpdateControlState()
-
                 Case CommonMessage.TOOLBARITEM_ACTIVE
                     If rgDanhMuc.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
-
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_ACTIVE)
                     ctrlMessageBox.ActionName = CommonMessage.ACTION_ACTIVE
                     ctrlMessageBox.DataBind()
                     ctrlMessageBox.Show()
-
                 Case CommonMessage.TOOLBARITEM_DEACTIVE
                     If rgDanhMuc.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
-
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DEACTIVE)
                     ctrlMessageBox.ActionName = CommonMessage.ACTION_DEACTIVE
                     ctrlMessageBox.DataBind()
@@ -507,18 +499,15 @@ Public Class ctrlAT_Symbols
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
-
                     Dim lstID As New List(Of Decimal)
                     For idx = 0 To rgDanhMuc.SelectedItems.Count - 1
                         Dim item As GridDataItem = rgDanhMuc.SelectedItems(idx)
                         lstID.Add(Decimal.Parse(item("ID").Text))
                     Next
-
                     If Not rep.CheckExistInDatabase(lstID, AttendanceCommonTABLE_NAME.AT_SHIFT) Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_IS_USING), NotifyType.Warning)
                         Return
                     End If
-
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
                     ctrlMessageBox.DataBind()
@@ -526,54 +515,57 @@ Public Class ctrlAT_Symbols
 
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
-                        objShift.CODE = rtWCODE.Text.Trim
-                        objShift.NAME_VN = rtWNAME.Text.Trim
-                        objShift.NOTE = txtNote.Text.Trim
+                        objsYMBOLS.STATUS = -1
+                        objsYMBOLS.WCODE = rtWCODE.Text.Trim
+                        objsYMBOLS.WNAME = rtWNAME.Text.Trim
+                        If IsNumeric(rcWGROUPID.SelectedValue) Then
+                            objsYMBOLS.WGROUPID = rcWGROUPID.SelectedValue
+                        End If
+                        If IsNumeric(rnWINDEX.Value) Then
+                            objsYMBOLS.WINDEX = rnWINDEX.Value
+                        End If
+                        If IsNumeric(rcWDATATYEID.SelectedValue) Then
+                            objsYMBOLS.WDATATYEID = rcWDATATYEID.SelectedValue
+                        End If
+                        If IsNumeric(rcWDATAMODEID.SelectedValue) Then
+                            objsYMBOLS.WDATAMODEID = rcWDATAMODEID.SelectedValue
+                        End If
+                        If IsDate(rdEFFECT_DATE.SelectedDate) Then
+                            objsYMBOLS.EFFECT_DATE = rdEFFECT_DATE.SelectedDate
+                        End If
+                        If IsDate(rdEXPIRE_DATE.SelectedDate) Then
+                            objsYMBOLS.EXPIRE_DATE = rdEXPIRE_DATE.SelectedDate
+                        End If
+                        objsYMBOLS.IS_DISPLAY = ckIS_DISPLAY.Checked
+                        objsYMBOLS.IS_DATAFROMEXCEL = ckIS_DATAFROMEXCEL.Checked
+                        objsYMBOLS.IS_DISPLAY_PORTAL = ckIS_DISPLAY_PORTAL.Checked
+                        objsYMBOLS.IS_LEAVE = ckIS_LEAVE.Checked
+                        objsYMBOLS.IS_LEAVE_WEEKLY = ckIS_LEAVE_WEEKLY.Checked
+                        objsYMBOLS.IS_LAVE_HOLIDAY = ckIS_LAVE_HOLIDAY.Checked
+                        objsYMBOLS.IS_DAY_HALF = ckIS_DAY_HALF.Checked
+                        objsYMBOLS.NOTE = txtNote.Text.Trim
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
-                                objShift.ACTFLG = "A"
-                                If rep.InsertAT_SHIFT(objShift, gID) Then
+                                If rep.SaveAT_Symnols(objsYMBOLS, gID) Then
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     CreateDataFilter()
                                     IDSelect = gID
                                     Refresh("InsertView")
                                     UpdateControlState()
-                                    ClearControlValue(rtWCODE, rtWNAME, txtNote, rdEFFECT_DATE, rdEXPIRE_DATE, rnWINDEX)
+                                    ClearControlValue(rtWCODE, rtWNAME, txtNote, rdEFFECT_DATE, rdEXPIRE_DATE, rnWINDEX, rcWDATATYEID, rcWDATAMODEID, ckIS_DISPLAY, ckIS_DATAFROMEXCEL, ckIS_DISPLAY_PORTAL, ckIS_LEAVE, ckIS_LEAVE_WEEKLY, ckIS_LAVE_HOLIDAY, ckIS_DAY_HALF)
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
 
                                 End If
-
                             Case CommonMessage.STATE_EDIT
-
-                                Dim cmRep As New CommonRepository
-                                Dim lstID As New List(Of Decimal)
-
-                                lstID.Add(Convert.ToDecimal(rgDanhMuc.SelectedValue))
-
-                                If cmRep.CheckExistIDTable(lstID, "AT_SHIFT", "ID") Then
-                                    ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Warning)
-                                    CurrentState = CommonMessage.STATE_NORMAL
-                                    Refresh("Cancel")
-                                    UpdateControlState()
-                                    Exit Sub
-                                End If
-
-                                objShift.ID = rgDanhMuc.SelectedValue
-
-                                For Each re As AT_SHIFTDTO In Me.AT_SHIFT
-                                    If re.ID = objShift.ID Then
-                                        objShift.CREATED_DATE = re.CREATED_DATE
-                                        Exit For
-                                    End If
-                                Next
-                                If rep.ModifyAT_SHIFT(objShift, rgDanhMuc.SelectedValue) Then
+                                objsYMBOLS.ID = rgDanhMuc.SelectedValue
+                                If rep.SaveAT_Symnols(objsYMBOLS, rgDanhMuc.SelectedValue) Then
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     CreateDataFilter()
-                                    IDSelect = objShift.ID
+                                    IDSelect = objsYMBOLS.ID
                                     Refresh("UpdateView")
                                     UpdateControlState()
-                                    ClearControlValue(rtWCODE, rtWNAME, txtNote)
+                                    ClearControlValue(rtWCODE, rtWNAME, txtNote, rdEFFECT_DATE, rdEXPIRE_DATE, rnWINDEX, rcWDATATYEID, rcWDATAMODEID, ckIS_DISPLAY, ckIS_DATAFROMEXCEL, ckIS_DISPLAY_PORTAL, ckIS_LEAVE, ckIS_LEAVE_WEEKLY, ckIS_LAVE_HOLIDAY, ckIS_DAY_HALF)
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
@@ -581,12 +573,10 @@ Public Class ctrlAT_Symbols
                     Else
                         ExcuteScript("Script", "setDefaultSize()")
                     End If
-
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     CurrentState = CommonMessage.STATE_NORMAL
                     Refresh("Cancel")
                     UpdateControlState()
-
                 Case CommonMessage.TOOLBARITEM_EXPORT
                     Using xls As New ExcelCommon
                         Dim dtDatas As DataTable
@@ -598,9 +588,7 @@ Public Class ctrlAT_Symbols
                         End If
                     End Using
             End Select
-
             CreateDataFilter()
-
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
