@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("2f66d6c8-50e7-4aae-9ce0-9ee32e09400b")>
+<Assembly: EdmSchemaAttribute("923af5ae-93a2-41eb-83ac-1fe25355c9ef")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -26690,6 +26690,31 @@ Public Partial Class AT_SYMBOLS
     End Sub
 
     Private Partial Sub OnMODIFIED_LOGChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_LEAVE_HOLIDAY() As Nullable(Of Global.System.Int16)
+        Get
+            Return _IS_LEAVE_HOLIDAY
+        End Get
+        Set
+            OnIS_LEAVE_HOLIDAYChanging(value)
+            ReportPropertyChanging("IS_LEAVE_HOLIDAY")
+            _IS_LEAVE_HOLIDAY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_LEAVE_HOLIDAY")
+            OnIS_LEAVE_HOLIDAYChanged()
+        End Set
+    End Property
+
+    Private _IS_LEAVE_HOLIDAY As Nullable(Of Global.System.Int16)
+    Private Partial Sub OnIS_LEAVE_HOLIDAYChanging(value As Nullable(Of Global.System.Int16))
+    End Sub
+
+    Private Partial Sub OnIS_LEAVE_HOLIDAYChanged()
     End Sub
 
     #End Region

@@ -96,6 +96,82 @@ Partial Public Class AttendanceRepository
             objSymbols = Nothing
         End Try
     End Function
+    Public Function GetAT_Symbols(ByVal _filter As AT_SymbolsDTO,
+                                 Optional ByVal PageIndex As Integer = 0,
+                                 Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                 Optional ByRef Total As Integer = 0,
+                                 Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_SymbolsDTO)
+        Try
+
+            Dim query = From p In Context.AT_SYMBOLS
+                        From grp In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.WGROUPID).DefaultIfEmpty()
+                        From datatype In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.WDATATYEID).DefaultIfEmpty()
+                        From DATAMODE In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.WDATAMODEID).DefaultIfEmpty()
+            Dim lst = query.Select(Function(p) New AT_SymbolsDTO With {
+                                       .ID = p.p.ID,
+                                       .WCODE = p.p.WCODE,
+                                       .WNAME = p.p.WNAME,
+                                       .WGROUPID = p.p.WGROUPID,
+                                       .WGROUP_NAME = p.grp.NAME_VN,
+                                       .WDATATYEID = p.p.WDATATYEID,
+                                       .WDATATYE_NAME = p.datatype.NAME_VN,
+                                       .WDATAMODEID p.p.WDATAMODEID,
+                                       .WDATAMODE_NAME = p.DATAMODE.NAME_VN,
+                                        .EFFECT_DATE = p.p.EFFECT_DATE,
+                                        .EXPIRE_DATE = p.p.EXPIRE_DATE,
+                                        .WINDEX = p.p.WINDEX,
+                                        .NOTE = p.p.NOTE,
+                                        .STATUS = p.p.STATUS,
+                                        .IS_DISPLAY = p.p.IS_DISPLAY,
+                                        .IS_DATAFROMEXCEL = p.p.IS_DATAFROMEXCEL,
+                                        .IS_DISPLAY_PORTAL = p.p.IS_DISPLAY_PORTAL,
+                                        .IS_LEAVE = p.p.IS_LEAVE,
+                                        .IS_LEAVE_WEEKLY = p.p.IS_LEAVE_WEEKLY,
+                                        .IS_LAVE_HOLIDAY = p.p.IS_LEAVE_HOLIDAY,
+                                        .IS_DAY_HALF = p.p.IS_DAY_HALF,
+                                        .CREATED_BY = p.p.CREATED_BY,
+                                        .CREATED_DATE = p.p.CREATED_DATE,
+                                        .CREATED_LOG = p.p.CREATED_LOG,
+                                        .MODIFIED_BY = p.p.MODIFIED_BY,
+                                        .MODIFIED_DATE = p.p.MODIFIED_DATE,
+                                        .MODIFIED_LOG = p.p.MODIFIED_LOG})
+
+            If Not String.IsNullOrEmpty(_filter.CODE) Then
+                lst = lst.Where(Function(f) f.CODE.ToLower().Contains(_filter.CODE.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.NAME_VN) Then
+                lst = lst.Where(Function(f) f.NAME_VN.ToLower().Contains(_filter.NAME_VN.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.NAME_EN) Then
+                lst = lst.Where(Function(f) f.NAME_EN.ToLower().Contains(_filter.NAME_EN.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.ACTFLG) Then
+                lst = lst.Where(Function(f) f.ACTFLG.ToLower().Contains(_filter.ACTFLG.ToLower()))
+            End If
+            If _filter.WORKINGDAY.HasValue Then
+                lst = lst.Where(Function(f) f.WORKINGDAY = _filter.WORKINGDAY)
+            End If
+            If _filter.YEAR <> 0 Then
+                lst = lst.Where(Function(f) f.YEAR = _filter.YEAR)
+            End If
+            If Not String.IsNullOrEmpty(_filter.NOTE) Then
+                lst = lst.Where(Function(f) f.NOTE.ToLower().Contains(_filter.NOTE.ToLower()))
+            End If
+            'If IsNumeric(_filter.INTERNAL_HOLYDAY) Then
+            '    lst = lst.Where(Function(f) f.INTERNAL_HOLYDAY = CDec(_filter.INTERNAL_HOLYDAY))
+            'End If
+
+            lst = lst.OrderBy(Sorts)
+            Total = lst.Count
+            lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
+
+            Return lst.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Return New List(Of AT_SymbolsDTO)
+        End Try
+
+    End Function
 #End Region
     Dim nvalue_id As Decimal?
     Public Function PRS_COUNT_INOUTKH(ByVal employee_id As Decimal, ByVal year As Decimal) As DataTable
