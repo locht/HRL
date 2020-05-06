@@ -13,6 +13,19 @@ Partial Class AttendanceRepository
             Return False
         End Try
     End Function
+    Public Function GetAT_Symbols(ByVal _filter As AT_SymbolsDTO,
+                                 Optional ByVal PageIndex As Integer = 0,
+                                 Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                 Optional ByRef Total As Integer = 0,
+                                 Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_SymbolsDTO)
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.GetAT_Symbols(_filter, Total, PageIndex, PageSize, Sorts)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
 #End Region
     Public Function CHECK_CONTRACT(ByVal employee_id As Decimal) As DataTable
         Using rep As New AttendanceBusinessClient

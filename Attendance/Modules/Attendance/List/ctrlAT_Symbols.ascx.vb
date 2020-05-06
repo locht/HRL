@@ -32,12 +32,12 @@ Public Class ctrlAT_Symbols
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Property AT_SHIFT As List(Of AT_SHIFTDTO)
+    Public Property AT_Symbols As List(Of AT_SymbolsDTO)
         Get
-            Return ViewState(Me.ID & "_AT_SHIFT")
+            Return ViewState(Me.ID & "_AT_SymbolsDTO")
         End Get
-        Set(ByVal value As List(Of AT_SHIFTDTO))
-            ViewState(Me.ID & "_AT_SHIFT") = value
+        Set(ByVal value As List(Of AT_SymbolsDTO))
+            ViewState(Me.ID & "_AT_SymbolsDTO") = value
         End Set
     End Property
 
@@ -70,7 +70,6 @@ Public Class ctrlAT_Symbols
     Public Overrides Sub ViewLoad(ByVal e As System.EventArgs)
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
-
         Try
             UpdateControlState()
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -89,7 +88,6 @@ Public Class ctrlAT_Symbols
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
-
         Try
             SetGridFilter(rgDanhMuc)
             rgDanhMuc.AllowCustomPaging = True
@@ -182,30 +180,27 @@ Public Class ctrlAT_Symbols
     ''' <remarks></remarks>
     Protected Function CreateDataFilter(Optional ByVal isFull As Boolean = False) As DataTable
         Dim rep As New AttendanceRepository
-        Dim obj As New AT_SHIFTDTO
+        Dim obj As New AT_SymbolsDTO
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
-
         Try
             Dim MaximumRows As Integer
             SetValueObjectByRadGrid(rgDanhMuc, obj)
             Dim Sorts As String = rgDanhMuc.MasterTableView.SortExpressions.GetSortString()
-            'hoaivv add 2 rc
-            Dim user = LogHelper.CurrentUser
-            obj.SHIFT_DAY = user.ID
+
             If Not isFull Then
                 If Sorts IsNot Nothing Then
-                    Me.AT_SHIFT = rep.GetAT_SHIFT(obj, rgDanhMuc.CurrentPageIndex, rgDanhMuc.PageSize, MaximumRows, "CREATED_DATE desc")
+                    Me.AT_Symbols = rep.GetAT_Symbols(obj, rgDanhMuc.CurrentPageIndex, rgDanhMuc.PageSize, MaximumRows, "CREATED_DATE desc")
                 Else
-                    Me.AT_SHIFT = rep.GetAT_SHIFT(obj, rgDanhMuc.CurrentPageIndex, rgDanhMuc.PageSize, MaximumRows)
+                    Me.AT_Symbols = rep.GetAT_Symbols(obj, rgDanhMuc.CurrentPageIndex, rgDanhMuc.PageSize, MaximumRows)
                 End If
                 rgDanhMuc.VirtualItemCount = MaximumRows
-                rgDanhMuc.DataSource = Me.AT_SHIFT
+                rgDanhMuc.DataSource = Me.AT_Symbols
             Else
                 If Sorts IsNot Nothing Then
-                    Return rep.GetAT_SHIFT(obj, 0, Integer.MaxValue, 0, Sorts).ToTable
+                    Return rep.GetAT_Symbols(obj, 0, Integer.MaxValue, 0, Sorts).ToTable
                 Else
-                    Return rep.GetAT_SHIFT(obj).ToTable
+                    Return rep.GetAT_Symbols(obj).ToTable
                 End If
                 'Return rep.GetAT_SHIFT(obj).ToTable
             End If
@@ -387,8 +382,8 @@ Public Class ctrlAT_Symbols
         Try
             GetDataCombo()
             Dim dic As New Dictionary(Of String, Control)
-            dic.Add("CODE", rtWCODE)
-            dic.Add("NAME_VN", rtWNAME)
+            dic.Add("WCODE", rtWCODE)
+            dic.Add("WNAME", rtWNAME)
             dic.Add("NOTE", txtNote)
             Utilities.OnClientRowSelectedChanged(rgDanhMuc, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

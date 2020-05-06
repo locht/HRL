@@ -115,7 +115,7 @@ Partial Public Class AttendanceRepository
                                        .WGROUP_NAME = p.grp.NAME_VN,
                                        .WDATATYEID = p.p.WDATATYEID,
                                        .WDATATYE_NAME = p.datatype.NAME_VN,
-                                       .WDATAMODEID p.p.WDATAMODEID,
+                                       .WDATAMODEID = p.p.WDATAMODEID,
                                        .WDATAMODE_NAME = p.DATAMODE.NAME_VN,
                                         .EFFECT_DATE = p.p.EFFECT_DATE,
                                         .EXPIRE_DATE = p.p.EXPIRE_DATE,
@@ -136,31 +136,15 @@ Partial Public Class AttendanceRepository
                                         .MODIFIED_DATE = p.p.MODIFIED_DATE,
                                         .MODIFIED_LOG = p.p.MODIFIED_LOG})
 
-            If Not String.IsNullOrEmpty(_filter.CODE) Then
-                lst = lst.Where(Function(f) f.CODE.ToLower().Contains(_filter.CODE.ToLower()))
+            If Not String.IsNullOrEmpty(_filter.WCODE) Then
+                lst = lst.Where(Function(f) f.WCODE.ToLower().Contains(_filter.WCODE.ToLower()))
             End If
-            If Not String.IsNullOrEmpty(_filter.NAME_VN) Then
-                lst = lst.Where(Function(f) f.NAME_VN.ToLower().Contains(_filter.NAME_VN.ToLower()))
-            End If
-            If Not String.IsNullOrEmpty(_filter.NAME_EN) Then
-                lst = lst.Where(Function(f) f.NAME_EN.ToLower().Contains(_filter.NAME_EN.ToLower()))
-            End If
-            If Not String.IsNullOrEmpty(_filter.ACTFLG) Then
-                lst = lst.Where(Function(f) f.ACTFLG.ToLower().Contains(_filter.ACTFLG.ToLower()))
-            End If
-            If _filter.WORKINGDAY.HasValue Then
-                lst = lst.Where(Function(f) f.WORKINGDAY = _filter.WORKINGDAY)
-            End If
-            If _filter.YEAR <> 0 Then
-                lst = lst.Where(Function(f) f.YEAR = _filter.YEAR)
+            If Not String.IsNullOrEmpty(_filter.WNAME) Then
+                lst = lst.Where(Function(f) f.WNAME.ToLower().Contains(_filter.WNAME.ToLower()))
             End If
             If Not String.IsNullOrEmpty(_filter.NOTE) Then
                 lst = lst.Where(Function(f) f.NOTE.ToLower().Contains(_filter.NOTE.ToLower()))
             End If
-            'If IsNumeric(_filter.INTERNAL_HOLYDAY) Then
-            '    lst = lst.Where(Function(f) f.INTERNAL_HOLYDAY = CDec(_filter.INTERNAL_HOLYDAY))
-            'End If
-
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
             lst = lst.Skip(PageIndex * PageSize).Take(PageSize)

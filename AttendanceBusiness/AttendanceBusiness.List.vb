@@ -18,6 +18,20 @@ Namespace AttendanceBusiness.ServiceImplementations
                 Return False
             End Try
         End Function
+        Function GetAT_Symbols(ByVal _filter As AT_SymbolsDTO,
+                                 Optional ByVal PageIndex As Integer = 0,
+                                 Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                 Optional ByRef Total As Integer = 0,
+                                 Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_SymbolsDTO) _
+             Implements ServiceContracts.IAttendanceBusiness.GetAT_Symbols
+            Try
+                Using rep As New AttendanceRepository
+                    Return rep.GetAT_Symbols(_filter, PageIndex, PageSize, Total, Sorts)
+                End Using
+            Catch ex As Exception
+                Return New List(Of AT_SymbolsDTO)
+            End Try
+        End Function
 #End Region
         Public Function CHECK_CONTRACT(ByVal employee_id As Decimal) As DataTable _
               Implements ServiceContracts.IAttendanceBusiness.CHECK_CONTRACT

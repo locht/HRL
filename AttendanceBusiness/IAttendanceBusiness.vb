@@ -10,6 +10,12 @@ Namespace AttendanceBusiness.ServiceContracts
 #Region "AT_Symbols"
         <OperationContract()>
         Function SaveAT_Symnols(ByVal objData As AT_SymbolsDTO, ByVal log As UserLog, ByRef gid As Decimal) As Boolean
+        <OperationContract()>
+        Function GetAT_Symbols(ByVal _filter As AT_SymbolsDTO,
+                                 Optional ByVal PageIndex As Integer = 0,
+                                 Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                 Optional ByRef Total As Integer = 0,
+                                 Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_SymbolsDTO)
 #End Region
 #Region "LeaveSheet"
         <OperationContract()>

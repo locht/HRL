@@ -154,25 +154,25 @@
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,NAME_EN,MANUAL_NAME,MANUAL_ID,HOURS_START,HOURS_STOP,NOTE,SUNDAY,IS_NOON,SATURDAY,MINHOUSER,ORG_ID,SHIFT_DAY,START_MID_HOURS,END_MID_HOURS,HOURS_STAR_CHECKIN,HOURS_STAR_CHECKOUT,IS_HOURS_STOP,IS_HOURS_CHECKOUT,IS_MID_END,ORG_NAME">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,WCODE,WNAME,WGROUPID, WGROUP_NAME, WDATATYEID, WDATATYE_NAME, WDATAMODEID, WDATAMODE_NAME, EFFECT_DATE, EXPIRE_DATE, WINDEX, NOTE, STATUS, IS_DISPLAY, IS_DATAFROMEXCEL, IS_DISPLAY_PORTAL, IS_LEAVE, IS_LEAVE_WEEKLY, IS_LAVE_HOLIDAY, IS_DAY_HALF, CREATED_BY, CREATED_DATE, CREATED_LOG, MODIFIED_BY, MODIFIED_DATE, MODIFIED_LOG">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã ca %>" DataField="CODE" UniqueName="CODE"
-                        SortExpression="CODE" HeaderStyle-Width="120px" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên ca  %>" DataField="NAME_VN" UniqueName="NAME_VN"
-                        SortExpression="NAME_VN">
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã ký hiệu %>" DataField="WCODE" UniqueName="WCODE"
+                        SortExpression="WCODE" HeaderStyle-Width="120px" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên ký hiệu  %>" DataField="WNAME" UniqueName="WNAME"
+                        SortExpression="WNAME">
                         <HeaderStyle Width="150px" />
                         <ItemStyle Width="130px" />
                     </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã công %>" DataField="MANUAL_CODE"
-                        UniqueName="MANUAL_CODE" SortExpression="MANUAL_CODE" HeaderStyle-Width="100px" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Công ty %>" DataField="ORG_NAME"
-                        UniqueName="ORG_ID" SortExpression="ORG_ID" HeaderStyle-Width="200px" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày công ca %>" DataField="SHIFT_DAY"
-                        UniqueName="SHIFT_DAY" SortExpression="SHIFT_DAY" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Nhóm ký hiệu %>" DataField="WGROUP_NAME"
+                        UniqueName="WGROUP_NAME" SortExpression="WGROUP_NAME" HeaderStyle-Width="100px" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Kiểu dữ liệu %>" DataField="WDATATYE_NAME"
+                        UniqueName="WDATATYE_NAME" SortExpression="WDATATYE_NAME" HeaderStyle-Width="200px" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại dữ liệu %>" DataField="WDATAMODE_NAME"
+                        UniqueName="WDATAMODE_NAME" SortExpression="WDATAMODE_NAME" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mô tả mã công %>" DataField="MANUAL_NAME"
                         UniqueName="MANUAL_NAME" SortExpression="MANUAL_NAME" HeaderStyle-Width="200px" />
                     <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Giờ bắt đầu %>" DataField="HOURS_START"
