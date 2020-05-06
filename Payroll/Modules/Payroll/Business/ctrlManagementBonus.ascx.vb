@@ -153,6 +153,7 @@ Public Class ctrlManagementBonus
                 Next
                 ListKey = stringKey
                 CreateTreeSalaryNote()
+                ctrlOrg.CurrentValue = 1
                 CreateDataFilter()
             End If
 
@@ -174,14 +175,12 @@ Public Class ctrlManagementBonus
             Me.ctrlMessageBox.Listener = Me
             Me.MainToolBar = tbarMenu
             Common.Common.BuildToolbar(Me.MainToolBar,
-                                       ToolbarItem.Export,
-                                       ToolbarItem.Import,
-                                       ToolbarItem.Next)
+                                       ToolbarItem.Lock,
+                                       ToolbarItem.Unlock,
+                                       ToolbarItem.Export)
 
-            MainToolBar.Items(0).Text = Translate("Xuất file mẫu")
-            MainToolBar.Items(1).Text = Translate("Nhập file mẫu")
-            MainToolBar.Items(2).Text = Translate("Xuất Excel")
-            CType(Me.MainToolBar.Items(2), RadToolBarButton).ImageUrl = CType(Me.MainToolBar.Items(0), RadToolBarButton).ImageUrl
+            MainToolBar.Items(0).Text = Translate("Đóng")
+            MainToolBar.Items(1).Text = Translate("Mở")
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -282,7 +281,7 @@ Public Class ctrlManagementBonus
                 Exit Sub
             End If
 
-            If rep.SaveLstImportBONUS(Utilities.ObjToDecima((13)), 0, Utilities.ObjToDecima(cboPeriod.SelectedValue), vData, stringKey, RecordSussces) Then
+            If rep.SaveLstImportBONUS(Utilities.ObjToDecima((13)), Utilities.ObjToDecima(cboPeriod.SelectedValue), Utilities.ObjToDecima(cboPeriod.SelectedValue), vData, stringKey, RecordSussces) Then
                 ShowMessage("Lưu dữ liệu thành công " & RecordSussces & " bản ghi.", NotifyType.Success)
             Else
                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
@@ -365,30 +364,63 @@ Public Class ctrlManagementBonus
 
         Try
             Select Case CType(e.Item, RadToolBarButton).CommandName
-                Case CommonMessage.TOOLBARITEM_EXPORT
-                    Dim dtColName As New DataTable
-                    dtColName.Columns.Add("COLVAL")
-                    dtColName.Columns.Add("COLNAME")
-                    dtColName.Columns.Add("COLDATA")
+                
+                Case CommonMessage.TOOLBARITEM_LOCK
+                    Dim rep As New PayrollRepository
+                    Dim stringKey As New List(Of String)
 
                     For Each node As RadTreeNode In ctrlListSalary.CheckedNodes
                         If node.Value = "NULL" Or node.Value = "0" Then Continue For
-                        Dim row As DataRow = dtColName.NewRow
-                        row("COLVAL") = node.Value
-                        row("COLNAME") = node.Text.Split(":")(1).Trim()
-                        row("COLDATA") = "&=DATA." & node.Value
-                        dtColName.Rows.Add(row)
+                        stringKey.Add(node.Value)
                     Next
-                    Session("IMPORTSALARY_COLNAME") = dtColName
-                    Using rep As New PayrollRepository
-                        Dim dt = rep.GetListImportBonus(Utilities.ObjToInt((13)), Utilities.ObjToInt(cboPeriod.SelectedValue), Utilities.ObjToInt(ctrlOrg.CurrentValue), ctrlOrg.IsDissolve, Utilities.ObjToString(rtxtEmployee.Text))
-                        Session("IMPORTSALARY_DATACOL") = dt
-                    End Using
-                    ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_ImportBonus')", True)
 
-                Case CommonMessage.TOOLBARITEM_IMPORT
-                    ctrlUpload.Show()
-                Case CommonMessage.TOOLBARITEM_NEXT
+                    Dim RecordSussces As Integer = 0
+                    If stringKey.Count <= 0 Then
+                        ShowMessage(Translate("Bạn phải chọn ít nhất 1 khoản tiền"), NotifyType.Warning)
+                        Exit Sub
+                    End If
+
+                    If rep.SaveLstManagementBONUS(1, Utilities.ObjToDecima((13)), Utilities.ObjToDecima(cboPeriod.SelectedValue), Utilities.ObjToDecima(cboPeriod.SelectedValue), vData, stringKey, RecordSussces) Then
+                        ShowMessage("Lưu dữ liệu thành công " & RecordSussces & " bản ghi.", NotifyType.Success)
+                    Else
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                    End If
+
+                    If RecordSussces <> 0 Then
+                        rgData.Rebind()
+                    Else
+                        rgData.Rebind()
+                    End If
+                    rep.Dispose()
+                Case CommonMessage.TOOLBARITEM_UNLOCK
+                    Dim rep As New PayrollRepository
+                    Dim stringKey As New List(Of String)
+
+                    For Each node As RadTreeNode In ctrlListSalary.CheckedNodes
+                        If node.Value = "NULL" Or node.Value = "0" Then Continue For
+                        stringKey.Add(node.Value)
+                    Next
+
+                    Dim RecordSussces As Integer = 0
+                    If stringKey.Count <= 0 Then
+                        ShowMessage(Translate("Bạn phải chọn ít nhất 1 khoản tiền"), NotifyType.Warning)
+                        Exit Sub
+                    End If
+
+                    If rep.SaveLstManagementBONUS(0, Utilities.ObjToDecima((13)), Utilities.ObjToDecima(cboPeriod.SelectedValue), Utilities.ObjToDecima(cboPeriod.SelectedValue), vData, stringKey, RecordSussces) Then
+                        ShowMessage("Lưu dữ liệu thành công " & RecordSussces & " bản ghi.", NotifyType.Success)
+                    Else
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                    End If
+
+                    If RecordSussces <> 0 Then
+                        rgData.Rebind()
+                    Else
+                        rgData.Rebind()
+                    End If
+                    rep.Dispose()
+
+                Case CommonMessage.TOOLBARITEM_EXPORT
                     Using xls As New ExcelCommon
                         If vData.Rows.Count = 0 Then
                             ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
@@ -400,25 +432,7 @@ Public Class ctrlManagementBonus
                             Exit Sub
                         End If
                     End Using
-                Case CommonMessage.TOOLBARITEM_SAVE
-                    Dim rep As New PayrollRepository
-                    Dim stringKey As New List(Of String)
 
-                    For Each node As RadTreeNode In ctrlListSalary.CheckedNodes
-                        If node.Value = "NULL" Or node.Value = "0" Then Continue For
-                        stringKey.Add(node.Value)
-                    Next
-
-                    Dim RecordSussces As Integer = 0
-                    If stringKey.Count <= 0 Then
-                        ShowMessage("Bạn phải chọn ít nhất 1 khoản tiền", NotifyType.Warning)
-                        Exit Sub
-                    End If
-
-                    If rep.SaveImport(Utilities.ObjToDecima(cboSalaryType.SelectedValue), Utilities.ObjToDecima(cboPeriod.SelectedValue), vData, stringKey, RecordSussces) Then
-                        ShowMessage("Lưu dữ liệu thành công " & RecordSussces & " bản ghi.", NotifyType.Success)
-                    End If
-                    rep.Dispose()
             End Select
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -663,7 +677,7 @@ Public Class ctrlManagementBonus
         Dim startTime As DateTime = DateTime.UtcNow
 
         Try
-            Dim listcol() As String = {"cbStatus", "EMPLOYEE_CODE", "FULLNAME_VN", "ORG_NAME", "JOB_NAME"}
+            Dim listcol() As String = {"cbStatus", "EMPLOYEE_CODE", "FULLNAME_VN", "ORG_NAME", "JOB_NAME", "STATUS_NAME"}
             Dim i As Integer = 0
 
             While (i < rgData.Columns.Count)
@@ -681,7 +695,7 @@ Public Class ctrlManagementBonus
             stringKey.Add("FULLNAME_VN")
             stringKey.Add("ORG_NAME")
             stringKey.Add("JOB_NAME")
-
+            stringKey.Add("STATUS_NAME")
             For Each node As RadTreeNode In ctrlListSalary.CheckedNodes
                 If node.Value = "NULL" Or node.Value = "0" Then Continue For
                 Dim col As New GridBoundColumn
