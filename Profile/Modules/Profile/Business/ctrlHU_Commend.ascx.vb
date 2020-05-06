@@ -585,9 +585,13 @@ Public Class ctrlHU_Commend
                         ShowMessage(Translate(Common.CommonMessage.MESSAGE_TRANSACTION_FAIL), Framework.UI.Utilities.NotifyType.Warning)
                     End If
                 End If
+            Else
+                Session("EXPORTREPORT") = dtLogs
+                ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('HU_ANNUALLEAVE_PLANS_ERROR')", True)
+                ShowMessage(Translate("Có lỗi trong quá trình import. Lưu file lỗi chi tiết"), Utilities.NotifyType.Error)
             End If
         Catch ex As Exception
-
+            ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
         End Try
     End Sub
 
@@ -601,7 +605,6 @@ Public Class ctrlHU_Commend
         dtTemp.Columns(7).ColumnName = "SIGN_NAME"
         dtTemp.Columns(12).ColumnName = "MONEY"
         dtTemp.Columns(15).ColumnName = "REMARK"
-
         dtTemp.Columns(19).ColumnName = "YEAR_COMMEND"
         dtTemp.Columns(21).ColumnName = "NOTE"
         dtTemp.Columns(22).ColumnName = "SIGN_ID"
@@ -676,15 +679,39 @@ Public Class ctrlHU_Commend
                 _error = False
             End If
 
-            If IsDBNull(rows("SIGN_DATE")) OrElse rows("SIGN_DATE") = "" OrElse CheckDate(rows("SIGN_DATE"), startDate) = False Then
-                rows("SIGN_DATE") = "NULL"
-                newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày ký - Không đúng định dạng,"
-                _error = False
-            End If
-
             If IsDBNull(rows("NO")) OrElse rows("NO") = "" Then
                 rows("NO") = "NULL"
                 newRow("DISCIPTION") = newRow("DISCIPTION") + "Số quyết định - bắt buộc nhập,"
+                _error = False
+            End If
+
+            If IsDBNull(rows("SIGN_DATE")) OrElse rows("SIGN_DATE") = "" OrElse CheckDate(rows("SIGN_DATE"), startDate) = False Then
+                rows("SIGN_DATE") = "NULL"
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày ký - Không đúng định dạng"
+                _error = False
+            End If
+
+            If IsDBNull(rows("SIGN_NAME")) OrElse rows("SIGN_NAME") = "" Then
+                rows("SIGN_NAME") = "NULL"
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Người ký - bắt buộc nhập"
+                _error = False
+            End If
+
+            If Not (IsNumeric(rows("TITLE_ID"))) Then
+                rows("TITLE_ID") = 0
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Danh hiệu khen thưởng - bắt buộc nhập"
+                _error = False
+            End If
+
+            If Not (IsNumeric(rows("COMMEND_TYPE"))) Then
+                rows("COMMEND_TYPE") = 0
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Hình thức khen thưởng - bắt buộc nhập"
+                _error = False
+            End If
+
+            If Not (IsNumeric(rows("COMMEND_LEVEL"))) Then
+                rows("COMMEND_LEVEL") = 0
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Cấp khen thưởng - bắt buộc nhập"
                 _error = False
             End If
 
@@ -743,6 +770,36 @@ Public Class ctrlHU_Commend
 
         Try
             dateCheck = DateTime.TryParseExact(value, "dd/MM/yyyy", New CultureInfo("en-US"), DateTimeStyles.None, result)
+            Return dateCheck
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
+    Private Function CheckYear(ByVal value As String, ByRef result As Date) As Boolean
+        Dim dateCheck As Boolean
+        If value = "" Or value = "&nbsp;" Then
+            value = ""
+            Return True
+        End If
+
+        Try
+            dateCheck = DateTime.TryParseExact(value, "yyyy", New CultureInfo("en-US"), DateTimeStyles.None, result)
+            Return dateCheck
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
+    Private Function CheckMonth(ByVal value As String, ByRef result As Date) As Boolean
+        Dim dateCheck As Boolean
+        If value = "" Or value = "&nbsp;" Then
+            value = ""
+            Return True
+        End If
+
+        Try
+            dateCheck = DateTime.TryParseExact(value, "MM", New CultureInfo("en-US"), DateTimeStyles.None, result)
             Return dateCheck
         Catch ex As Exception
             Return False

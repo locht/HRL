@@ -13,7 +13,7 @@
                 <legend>
                     <%# Translate("Danh sách file")%></legend>
                 <tlk:RadAsyncUpload runat="server" ID="RadAsyncUpload1" OnClientValidationFailed="validationFailed" 
-                    AllowedFileExtensions="xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx" MaxFileInputsCount="1" MaxFileSize="4096000" UploadedFilesRendering="BelowFileInput" 
+                    AllowedFileExtensions="xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx" MaxFileInputsCount="1" MaxFileSize="40960000" UploadedFilesRendering="BelowFileInput" 
                     Skin="Metro" Width="250px" Style="padding: 20px 0px 0px 10px;">
                     <Localization Select="<%$ Translate: Chọn %>" />
                     <Localization Remove="<%$ Translate: Xóa %>" />
