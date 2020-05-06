@@ -423,7 +423,9 @@ Public Class ctrlHU_Contract
                     Dim icheck As GridDataItem = item.Item(0)
 
                     ' Kiểm tra file theo thông tin trong database
-                    If Not Utilities.GetTemplateLinkFile(icheck.GetDataKeyValue("CONTRACTTYPE_CODE"),
+                    'Dim a = icheck.GetDataKeyValue("CONTRACTTYPE_CODE")
+                    Dim b = "HDLD"
+                    If Not Utilities.GetTemplateLinkFile(b,
                                                          folderName,
                                                          filePath,
                                                          extension,
@@ -458,17 +460,17 @@ Public Class ctrlHU_Contract
 
                     If item.Count = 1 Then
                         'Export file mẫu
-                        Using word As New WordCommon
+                        Using word As New WordCommon 'icheck.GetDataKeyValue("CONTRACTTYPE_CODE")
                             word.ExportMailMerge(filePath,
-                                                 icheck.GetDataKeyValue("EMPLOYEE_CODE") & icheck.GetDataKeyValue("CONTRACTTYPE_CODE") & _
+                                                 icheck.GetDataKeyValue("EMPLOYEE_CODE") & "HDLD" & _
                                                  Format(Date.Now, "yyyyMMddHHmmss") & extension,
                                                  dtData,
                                                  sourcePath,
                                                  Response)
                         End Using
                     Else
-                        Dim item1 As GridDataItem = rgContract.SelectedItems(0)
-                        Dim fileName As String = item1.GetDataKeyValue("EMPLOYEE_CODE") & icheck.GetDataKeyValue("CONTRACTTYPE_CODE") & _
+                        Dim item1 As GridDataItem = rgContract.SelectedItems(0) 'icheck.GetDataKeyValue("CONTRACTTYPE_CODE")
+                        Dim fileName As String = item1.GetDataKeyValue("EMPLOYEE_CODE") & "HDLD" & _
                                                  Format(Date.Now, "yyyyMMddHHmmss") & 0 & extension
                         Dim doc As New Document(filePath)
                         doc.MailMerge.Execute(dtData.Rows(0))
@@ -1357,7 +1359,7 @@ Public Class ctrlHU_Contract
                     sError = "Nhân viên đã nghỉ việc"
                     ImportValidate.IsValidTime("EMPLOYEE_CODE", row, rowError, isError, sError)
                 End If
-                If empid2 = 0 And CDec(Val(row("CONTRACT_TYPE_ID"))) <> 5 Then
+                If empid2 = 0 And row("CONTRACT_TYPE_ID") <> 5 Then
                     sError = "Nhân viên đã có 2 hợp đồng chính thức"
                     ImportValidate.IsValidTime("EMPLOYEE_CODE", row, rowError, isError, sError)
                 End If

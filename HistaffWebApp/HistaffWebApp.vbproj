@@ -1570,6 +1570,7 @@
     <None Include="TemplateDynamic\ContractSupport\HDHV.doc" />
     <None Include="TemplateDynamic\ContractSupport\HDKXDTH.doc" />
     <Content Include="TemplateDynamic\ContractSupport\HDTV.doc" />
+    <Content Include="TemplateDynamic\ContractSupport\HDLD.doc" />
     <None Include="TemplateDynamic\ContractSupport\HDTV30.doc" />
     <None Include="TemplateDynamic\ContractSupport\HDTV60.doc" />
     <Content Include="TemplateDynamic\ContractSupport\HDXDTH_12.doc" />
