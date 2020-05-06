@@ -275,6 +275,15 @@ Partial Public Class ctrlRC_CandidateTransferList
     Protected WithEvents rgAspiration As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
+    '''TIME_WORK control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TIME_WORK As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
     '''RadPane4 control.
     '''</summary>
     '''<remarks>

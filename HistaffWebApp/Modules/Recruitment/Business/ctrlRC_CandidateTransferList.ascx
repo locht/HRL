@@ -176,20 +176,20 @@
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Nơi sinh %>" DataField="BIRTH_PLACE_NAME"
-                                UniqueName="BIRTH_PLACE_NAME" SortExpression="BIRTH_PLACE_NAME" />
+                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Nơi sinh %>" DataField="BIRTH_PLACE_NAME"
+                                UniqueName="BIRTH_PLACE_NAME" SortExpression="BIRTH_PLACE_NAME" />--%>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate:Địa chỉ hiện tại %>" DataField="PER_ADDRESS"
                                 UniqueName="PER_ADDRESS" SortExpression="PER_ADDRESS" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate:Số điện thoại %>" DataField="CONTACT_MOBILE"
+                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate:Số điện thoại %>" DataField="CONTACT_MOBILE"
                                 UniqueName="CONTACT_MOBILE" SortExpression="CONTACT_MOBILE" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate:Thông tin đánh giá %>" DataField="ASSESS_NAME"
                                 UniqueName="ASSESS_NAME" SortExpression="ASSESS_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Người phỏng vấn %>" DataField="ASSESSOR"
-                                UniqueName="ASSESSOR" SortExpression="ASSESSOR" />
+                                UniqueName="ASSESSOR" SortExpression="ASSESSOR" />--%>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
                                 UniqueName="STATUS_NAME" SortExpression="STATUS_NAME" />
-                               <tlk:GridBoundColumn HeaderText="<%$ Translate: Email %>" DataField="PER_EMAIL"
-                                UniqueName="PER_EMAIL" SortExpression="PER_EMAIL" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Email %>" DataField="PER_EMAIL" UniqueName="PER_EMAIL"
+                                SortExpression="PER_EMAIL" />
                         </Columns>
                     </MasterTableView>
                 </tlk:RadGrid>
@@ -204,18 +204,23 @@
                                 UniqueName="CANDIDATE_CODE" SortExpression="CANDIDATE_CODE" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên %>" DataField="FULLNAME_VN"
                                 UniqueName="FULLNAME_VN" SortExpression="FULLNAME_VN" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên môn thi %>" DataField="EXAMS_NAME"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Vòng phỏng vấn %>" DataField="EXAMS_NAME"
                                 UniqueName="EXAMS_NAME" SortExpression="EXAMS_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Thang điểm %>" DataField="POINT_LADDER"
-                                UniqueName="POINT_LADDER" SortExpression="POINT_LADDER" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Điểm đạt %>" DataField="POINT_PASS"
-                                UniqueName="POINT_PASS" SortExpression="POINT_PASS" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Kết quả %>" DataField="POINT_RESULT"
-                                UniqueName="POINT_RESULT" SortExpression="POINT_RESULT" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate:Nhận xét %>" DataField="COMMENT_INFO"
                                 UniqueName="COMMENT_INFO" SortExpression="COMMENT_INFO" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate:Thông tin đánh giá %>" DataField="ASSESSMENT_INFO"
-                                UniqueName="ASSESSMENT_INFO" SortExpression="ASSESSMENT_INFO" />
+                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Thang điểm %>" DataField="POINT_LADDER"
+                                UniqueName="POINT_LADDER" SortExpression="POINT_LADDER" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Điểm đạt %>" DataField="POINT_PASS"
+                                UniqueName="POINT_PASS" SortExpression="POINT_PASS" />--%>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Kết quả %>" DataField="STATUS_NAME"
+                                UniqueName="STATUS_NAME" SortExpression="STATUS_NAME" />
+                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate:Thông tin đánh giá %>" DataField="ASSESSMENT_INFO"
+                                UniqueName="ASSESSMENT_INFO" SortExpression="ASSESSMENT_INFO" />--%>
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày phỏng vấn %>" DataField="SCHEDULE_DATE"
+                                UniqueName="SCHEDULE_DATE" DataFormatString="{0:dd/MM/yyyy}" SortExpression="SCHEDULE_DATE">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </tlk:GridDateTimeColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Người phỏng vấn %>" DataField="EMPLOYEE_NAME"
                                 UniqueName="EMPLOYEE_NAME" SortExpression="EMPLOYEE_NAME" />
                         </Columns>
@@ -224,7 +229,7 @@
             </tlk:RadPageView>
             <tlk:RadPageView ID="rpvAspiration" runat="server" Width="100%" Height="360px">
                 <tlk:RadGrid ID="rgAspiration" runat="server" Height="200px" Width="100%" AllowScroll="true">
-                    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CANDIDATE_CODE,ID_CANDIDATE,PLACE_WORK,RECEIVE_FROM,RECEIVE_TO,PROBATION_FROM,PROBATION_TO">
+                    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CANDIDATE_CODE,ID_CANDIDATE,PLACE_WORK,RECEIVE_FROM,RECEIVE_TO,PROBATION_FROM,PROBATION_TO,TIME_WORK,STARTDATE_WORK,PROBATION_SALARY,OFFICAL_SALARY,OTHER_SUGGESTIONS">
                         <Columns>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
                             <tlk:GridBoundColumn DataField="ID_CANDIDATE" Visible="false" />
@@ -232,15 +237,21 @@
                                 HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã ứng viên %>" DataField="CANDIDATE_CODE"
-                                UniqueName="CANDIDATE_CODE" SortExpression="CANDIDATE_CODE" />
+                                UniqueName="CANDIDATE_CODE" SortExpression="CANDIDATE_CODE" HeaderStyle-Width="70px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên %>" DataField="FULLNAME_VN"
-                                UniqueName="FULLNAME_VN" SortExpression="FULLNAME_VN" />
-                            <tlk:GridBoundColumn HeaderStyle-Width="90px" HeaderText="<%$ Translate: Thời gian làm việc %>"
-                                DataField="TIME_WORK" UniqueName="TIME_WORK" SortExpression="TIME_WORK" />
-                            <tlk:GridTemplateColumn HeaderStyle-Width="125px" HeaderText="<%$ Translate: Nơi làm việc %>"
+                                UniqueName="FULLNAME_VN" SortExpression="FULLNAME_VN" HeaderStyle-Width="150px" />
+                            <tlk:GridTemplateColumn HeaderStyle-Width="180px" HeaderText="<%$ Translate: Thời gian làm việc %>"
+                                DataField="TIME_WORK" UniqueName="TIME_WORK" SortExpression="TIME_WORK">
+                                <ItemTemplate>
+                                    
+                                    <tlk:RadComboBox runat="server" ID="TIME_WORK" Width="180px" > 
+                                    </tlk:RadComboBox>
+                                </ItemTemplate>
+                            </tlk:GridTemplateColumn>
+                            <tlk:GridTemplateColumn HeaderStyle-Width="180px" HeaderText="<%$ Translate: Nơi làm việc %>"
                                 DataField="PLACE_WORK" SortExpression="PLACE_WORK" UniqueName="PLACE_WORK">
                                 <ItemTemplate>
-                                    <tlk:RadTextBox ID="PLACE_WORK" runat="server" CausesValidation="false" Width="120px"
+                                    <tlk:RadTextBox ID="PLACE_WORK" runat="server" CausesValidation="false" Width="170px"
                                         Text='<%# (Eval("PLACE_WORK")) %>'>
                                     </tlk:RadTextBox>
                                 </ItemTemplate>
@@ -273,14 +284,37 @@
                                     </tlk:RadDatePicker>
                                 </ItemTemplate>
                             </tlk:GridTemplateColumn>
-                            <tlk:GridBoundColumn HeaderStyle-Width="90px" HeaderText="<%$ Translate: Ngày bắt đầu làm việc %>"
-                                DataField="STARTDATE_WORK" UniqueName="STARTDATE_WORK" SortExpression="STARTDATE_WORK" />
-                            <tlk:GridBoundColumn HeaderStyle-Width="90px" HeaderText="<%$ Translate: Mức lương thử việc %>"
-                                DataField="PROBATION_SALARY" UniqueName="PROBATION_SALARY" SortExpression="PROBATION_SALARY" />
-                            <tlk:GridBoundColumn HeaderStyle-Width="90px" HeaderText="<%$ Translate: Mức lương chính thức %>"
-                                DataField="OFFICAL_SALARY" UniqueName="OFFICAL_SALARY" SortExpression="OFFICAL_SALARY" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đề nghị khác %>" DataField="OTHER_SUGGESTIONS"
-                                UniqueName="OTHER_SUGGESTIONS" SortExpression="OTHER_SUGGESTIONS" />
+                            <tlk:GridTemplateColumn HeaderStyle-Width="125px" HeaderText="<%$ Translate: Ngày bắt đầu làm việc %>"
+                                DataField="STARTDATE_WORK" UniqueName="STARTDATE_WORK" SortExpression="STARTDATE_WORK">
+                                <ItemTemplate>
+                                    <tlk:RadDatePicker ID="STARTDATE_WORK" runat="server" Width="120px" DbSelectedDate='<%# (Eval("STARTDATE_WORK")) %>'>
+                                    </tlk:RadDatePicker>
+                                </ItemTemplate>
+                            </tlk:GridTemplateColumn>
+                            <tlk:GridTemplateColumn HeaderStyle-Width="125px" HeaderText="<%$ Translate: Mức lương thử việc %>"
+                                DataField="PROBATION_SALARY" UniqueName="PROBATION_SALARY" SortExpression="PROBATION_SALARY">
+                                <ItemTemplate>
+                                    <tlk:RadNumericTextBox ID="PROBATION_SALARY" runat="server" CausesValidation="false"
+                                        Width="120px" Text='<%# (Eval("PROBATION_SALARY")) %>'>
+                                    </tlk:RadNumericTextBox>
+                                </ItemTemplate>
+                            </tlk:GridTemplateColumn>
+                            <tlk:GridTemplateColumn HeaderStyle-Width="125px" HeaderText="<%$ Translate: Mức lương chính thức %>"
+                                DataField="OFFICAL_SALARY" UniqueName="OFFICAL_SALARY" SortExpression="OFFICAL_SALARY">
+                                <ItemTemplate>
+                                    <tlk:RadNumericTextBox ID="OFFICAL_SALARY" runat="server" CausesValidation="false"
+                                        Width="120px" Text='<%# (Eval("OFFICAL_SALARY")) %>'>
+                                    </tlk:RadNumericTextBox>
+                                </ItemTemplate>
+                            </tlk:GridTemplateColumn>
+                            <tlk:GridTemplateColumn HeaderText="<%$ Translate: Đề nghị khác %>" DataField="OTHER_SUGGESTIONS"
+                                UniqueName="OTHER_SUGGESTIONS" SortExpression="OTHER_SUGGESTIONS" HeaderStyle-Width="125px">
+                                <ItemTemplate>
+                                    <tlk:RadTextBox ID="OTHER_SUGGESTIONS" runat="server" CausesValidation="false" Width="120px"
+                                        Text='<%# (Eval("OTHER_SUGGESTIONS")) %>'>
+                                    </tlk:RadTextBox>
+                                </ItemTemplate>
+                            </tlk:GridTemplateColumn>
                         </Columns>
                     </MasterTableView>
                 </tlk:RadGrid>
@@ -311,12 +345,12 @@
                         OnClientClicked="DisableAjax" Visible="false">
                     </tlk:RadButton>
                 </td>
-               <%-- <td>
+                <%-- <td>
                     <tlk:RadButton ID="btnReceive" runat="server" Text="<%$ Translate: Thư mời nhận việc %>"
                         OnClientClicked="DisableAjax">
                     </tlk:RadButton>
                 </td>--%>
-              <%--  <td>
+                <%--  <td>
                     <tlk:RadButton ID="btnThankLetter" runat="server" Text="<%$ Translate: Thư cảm ơn %>"
                         OnClientClicked="DisableAjax">
                     </tlk:RadButton>
@@ -325,7 +359,7 @@
                     <tlk:RadButton ID="btnTransfer" runat="server" Text="<%$ Translate: Chuyển sang HSNV %>">
                     </tlk:RadButton>
                 </td>
-               <%-- <td colspan="2">
+                <%-- <td colspan="2">
                     <tlk:RadButton ID="cmdYCTDKhac" runat="server" Width="100%" Text="<%$ Translate: Chuyển sang vị trí tuyển dụng khác %>">
                     </tlk:RadButton>
                 </td>--%>

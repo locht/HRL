@@ -186,7 +186,7 @@
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane3" runat="server" Scrolling="None">
                 <tlk:RadGrid ID="rgCanSchedule" runat="server" Height="100%" AllowSorting="false">
-                    <MasterTableView DataKeyNames="ID,CANDIDATE_CODE,CANDIDATE_CODE,BIRTH_DATE,BIRTH_PROVINCE_NAME,PER_EMAIL,ID_NO,SCHEDULE_DATE,SCHEDULE_BY,EXAM_NAME" 
+                    <MasterTableView DataKeyNames="ID,FULLNAME_VN,CANDIDATE_CODE,CANDIDATE_CODE,BIRTH_DATE,BIRTH_PROVINCE_NAME,PER_EMAIL,ID_NO,SCHEDULE_DATE,SCHEDULE_BY,EXAM_NAME" 
                     Caption="<%$ Translate: Danh sách ứng viên đã đặt lịch %>">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"

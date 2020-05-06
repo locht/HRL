@@ -124,8 +124,13 @@ Public Class ctrlRC_CandidateTransferList
     End Sub
 
     Public Overrides Sub BindData()
+        Dim rep As New RecruitmentRepository
         Try
-
+            'Dim dtData As DataTable = rep.GetOtherList("WORK_TIME", True)
+            'For Each Item As GridDataItem In rgAspiration.Items
+            '    Dim cboTimeWork = DirectCast(Item.FindControl("TIME_WORK"), RadComboBox)
+            '    FillRadCombobox(cboTimeWork, dtData, "NAME_VN", "ID")
+            'Next
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -133,7 +138,7 @@ Public Class ctrlRC_CandidateTransferList
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Try
-                If Not IsPostBack Then
+            If Not IsPostBack Then
                 For Each item As RadListBoxItem In rlbStatus.Items
                     If item.Value = RCContant.DAT Then
                         item.Checked = True
@@ -141,20 +146,20 @@ Public Class ctrlRC_CandidateTransferList
                         Exit For
                     End If
                 Next
-                    Dim rep As New RecruitmentRepository
-                    Dim objPro = rep.GetProgramByID(New ProgramDTO With {.ID = Decimal.Parse(hidProgramID.Value)})
-                    lblOrgName.Text = objPro.ORG_NAME
-                    hidOrg.Value = objPro.ORG_ID
-                    lblTitleName.Text = objPro.TITLE_NAME
-                    hidTitle.Value = objPro.TITLE_ID
-                    lblSendDate.Text = objPro.SEND_DATE.Value.ToString("dd/MM/yyyy")
-                    lblRequestNumber.Text = objPro.REQUEST_NUMBER
-                    lblNumberHaveRecruit.Text = 0
-                    lblCode.Text = objPro.CODE
-                    lblStatus.Text = objPro.STATUS_NAME
-                    lblTypeRecruit.Text = objPro.RECRUIT_TYPE_NAME
-                    lblRecruitReason.Text = objPro.RECRUIT_REASON_NAME
-                End If
+                Dim rep As New RecruitmentRepository
+                Dim objPro = rep.GetProgramByID(New ProgramDTO With {.ID = Decimal.Parse(hidProgramID.Value)})
+                lblOrgName.Text = objPro.ORG_NAME
+                hidOrg.Value = objPro.ORG_ID
+                lblTitleName.Text = objPro.TITLE_NAME
+                hidTitle.Value = objPro.TITLE_ID
+                lblSendDate.Text = objPro.SEND_DATE.Value.ToString("dd/MM/yyyy")
+                lblRequestNumber.Text = objPro.REQUEST_NUMBER
+                lblNumberHaveRecruit.Text = 0
+                lblCode.Text = objPro.CODE
+                lblStatus.Text = objPro.STATUS_NAME
+                lblTypeRecruit.Text = objPro.RECRUIT_TYPE_NAME
+                lblRecruitReason.Text = objPro.RECRUIT_REASON_NAME
+            End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -207,7 +212,12 @@ Public Class ctrlRC_CandidateTransferList
                         Dim RECEIVE_TO As Date? = DirectCast(Item.FindControl("RECEIVE_TO"), RadDatePicker).SelectedDate
                         Dim PROBATION_FROM As Date? = DirectCast(Item.FindControl("PROBATION_FROM"), RadDatePicker).SelectedDate
                         Dim PROBATION_TO As Date? = DirectCast(Item.FindControl("PROBATION_TO"), RadDatePicker).SelectedDate
-                        If psp.UPDATE_ASPIRATION(ID_CANDIDATE, PLACE_WORK, RECEIVE_FROM, RECEIVE_TO, PROBATION_FROM, PROBATION_TO) = 1 Then
+                        Dim TIME_WORK As Decimal? = DirectCast(Item.FindControl("TIME_WORK"), RadComboBox).SelectedValue
+                        Dim STARTDATE_WORK As Date? = DirectCast(Item.FindControl("STARTDATE_WORK"), RadDatePicker).SelectedDate
+                        Dim PROBATION_SALARY As Decimal? = DirectCast(Item.FindControl("PROBATION_SALARY"), RadNumericTextBox).Value
+                        Dim OFFICAL_SALARY As Decimal? = DirectCast(Item.FindControl("OFFICAL_SALARY"), RadNumericTextBox).Value
+                        Dim OTHER_SUGGESTIONS = DirectCast(Item.FindControl("OTHER_SUGGESTIONS"), RadTextBox).Text
+                        If psp.UPDATE_ASPIRATION(ID_CANDIDATE, PLACE_WORK, RECEIVE_FROM, RECEIVE_TO, PROBATION_FROM, PROBATION_TO, TIME_WORK, STARTDATE_WORK, PROBATION_SALARY, OFFICAL_SALARY, OTHER_SUGGESTIONS) = 1 Then
                             rgAspiration.Rebind()
                             ShowMessage(Translate("Lưu thành công"), NotifyType.Success)
                         End If
@@ -733,6 +743,30 @@ Public Class ctrlRC_CandidateTransferList
 
     End Sub
 
+    Private Sub rgAspiration_ItemDataBound(sender As Object, e As Telerik.Web.UI.GridItemEventArgs) Handles rgAspiration.ItemDataBound
+        Dim rep As New RecruitmentRepository
+        Try
+            Dim dtData As DataTable = rep.GetOtherList("WORK_TIME", True)
+            'For Each Item As GridDataItem In rgAspiration.Items
+            '    Dim cboTimeWork = DirectCast(Item.FindControl("TIME_WORK"), RadComboBox)
+            '    FillRadCombobox(cboTimeWork, dtData, "NAME", "ID")
+            '    If IsNumeric(Item.GetDataKeyValue("TIME_WORK")) Then
+            '        cboTimeWork.SelectedValue = Item.GetDataKeyValue("TIME_WORK")
+            '    End If
+            'Next
+            If e.Item.ItemType = GridItemType.Item Or e.Item.ItemType = GridItemType.AlternatingItem Then
+                Dim cboTimeWork = DirectCast(e.Item.FindControl("TIME_WORK"), RadComboBox)
+                FillRadCombobox(cboTimeWork, dtData, "NAME", "ID")
+                Dim datarow As GridDataItem = DirectCast(e.Item, GridDataItem)
+                If IsNumeric(datarow.GetDataKeyValue("TIME_WORK")) Then
+                    cboTimeWork.SelectedValue = CDec(datarow.GetDataKeyValue("TIME_WORK"))
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Protected Sub rgAspiration_NeedDataSource(ByVal source As Object, ByVal e As GridNeedDataSourceEventArgs) Handles rgAspiration.NeedDataSource
         Try
             If hidProgramID.Value <> "" Then
@@ -788,7 +822,11 @@ Public Class ctrlRC_CandidateTransferList
     '    Next
 
     'End Sub
+
+
 #End Region
+
+
 
 #Region "Custom"
     Private Function CreateDataFilter(Optional ByVal isFull As Boolean = False) As DataTable

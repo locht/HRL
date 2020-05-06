@@ -52,9 +52,10 @@ Partial Class RecruitmentRepository
 
     'Cập nhật nguyện vọng
     Public Function UPDATE_ASPIRATION(ByVal P_CADIDATE_ID As Integer, ByVal P_PLACE_WORK As String, ByVal P_RECEIVE_FROM As Date?, ByVal P_RECEIVE_TO As Date?, _
-                                      ByVal P_PROBATION_FROM As Date?, ByVal P_PROBATION_TO As Date?) As Int32
+                                      ByVal P_PROBATION_FROM As Date?, ByVal P_PROBATION_TO As Date?, ByVal P_TIME_WORK As Decimal?, ByVal P_STARTDATE_WORK As Date?, ByVal P_PROBATION_SALARY As Decimal?, _
+                                      ByVal P_OFFICAL_SALARY As Decimal?, ByVal P_OTHER_SUGGESTIONS As String) As Int32
         Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT_NEW.UPDATE_ASPIRATION", New List(Of Object)(New Object() {P_CADIDATE_ID, _
-                                      P_PLACE_WORK, P_RECEIVE_FROM, P_RECEIVE_TO, P_PROBATION_FROM, P_PROBATION_TO, OUT_NUMBER}))
+                                      P_PLACE_WORK, P_RECEIVE_FROM, P_RECEIVE_TO, P_PROBATION_FROM, P_PROBATION_TO, P_TIME_WORK, P_STARTDATE_WORK, P_PROBATION_SALARY, P_OFFICAL_SALARY, P_OTHER_SUGGESTIONS, OUT_NUMBER}))
         Return Int32.Parse(obj(0).ToString())
     End Function
 
