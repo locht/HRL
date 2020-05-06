@@ -670,7 +670,7 @@ Public Class ctrlHU_ContractTemplete
             lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
             If lstCommonEmployee.Count <> 0 Then
                 Dim item = lstCommonEmployee(0)
-               
+
                 ''Load danh sách hợp đồng của nhân viên
 
                 listContract = rep.GetContractList(item.ID)
@@ -731,6 +731,7 @@ Public Class ctrlHU_ContractTemplete
         rgContract.DataSource = lstContract
     End Sub
     Private Sub rdStartDate_SelectedDateChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdStartDate.SelectedDateChanged
+        Dim store As New ProfileStoreProcedure
         Dim PERIOD As String = ""
         If hidEmployeeID.Value <> "" Then
             FillData(Convert.ToDecimal(hidEmployeeID.Value), True)
@@ -757,8 +758,9 @@ Public Class ctrlHU_ContractTemplete
                 rdExpireDate.SelectedDate = rdStartDate.SelectedDate.Value.AddMonths(PERIOD)
             End If
 
+            Dim stt = store.GetLastAppenNumber(hidEmployeeID.Value)
             If rdStartDate.SelectedDate IsNot Nothing Then
-                txtContract_NumAppen.Text = String.Format("{0}/AV-{1}-PL{2}/{3}", txtEmployeeCode.Text, hidOrgCode.Value, rdStartDate.SelectedDate.Value.Month, rdStartDate.SelectedDate.Value.Year)
+                txtContract_NumAppen.Text = String.Format("{0}/{1}/AV/{2}/PL{3}", txtEmployeeCode.Text, rdStartDate.SelectedDate.Value.Year, hidOrgCode.Value, stt + 1)
             Else
                 txtContract_NumAppen.Text = Nothing
             End If
@@ -770,6 +772,7 @@ Public Class ctrlHU_ContractTemplete
     Private Sub cboContract_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboContract.SelectedIndexChanged
         Dim contrItem As New FileContractDTO
         Dim rep As New ProfileRepository
+        Dim store As New ProfileStoreProcedure
         Dim emp_id As Decimal
         Dim idContractType As Decimal
         Dim PERIOD As String = ""
@@ -835,8 +838,9 @@ Public Class ctrlHU_ContractTemplete
                 rdExpireDate.SelectedDate = rdStartDate.SelectedDate.Value.AddMonths(PERIOD)
             End If
 
+            Dim stt = store.GetLastAppenNumber(hidEmployeeID.Value)
             If rdStartDate.SelectedDate IsNot Nothing Then
-                txtContract_NumAppen.Text = String.Format("{0}/AV-{1}-PL{2}/{3}", txtEmployeeCode.Text, hidOrgCode.Value, rdStartDate.SelectedDate.Value.Month, rdStartDate.SelectedDate.Value.Year)
+                txtContract_NumAppen.Text = String.Format("{0}/{1}/AV/{2}/PL{3}", txtEmployeeCode.Text, rdStartDate.SelectedDate.Value.Year, hidOrgCode.Value, stt + 1)
             Else
                 txtContract_NumAppen.Text = Nothing
             End If

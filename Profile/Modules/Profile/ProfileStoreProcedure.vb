@@ -673,4 +673,18 @@ Public Class ProfileStoreProcedure
 
     End Function
 #End Region
+
+#Region "CONTRACT TEMPLATE"
+    Public Function GetLastAppenNumber(ByVal empID As Decimal) As Integer
+        Dim dtData As DataTable
+        Dim stt As Integer
+        Dim dsData As DataSet = hfr.ExecuteToDataSet("PKG_PROFILE_BUSINESS.GET_LAST_APPEND_NUMBER",
+                                             New List(Of Object)(New Object() {empID, OUT_CURSOR}))
+        If dsData.Tables.Count > 0 Then
+            Return CType(dsData.Tables(0).Rows(0)(0), Integer)
+        Else
+            Return 0
+        End If
+    End Function
+#End Region
 End Class

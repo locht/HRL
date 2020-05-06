@@ -58,6 +58,13 @@
                 </tr>
                 <tr>
                     <td class="lb">
+                        <asp:Label ID="lbTitle" runat="server" Text="Chức danh"></asp:Label>
+                    </td>
+                    <td>
+                        <tlk:RadTextBox ID="txtTitle" runat="server">
+                        </tlk:RadTextBox>
+                    </td>
+                    <td class="lb">
                         <asp:Label ID="lbContract" runat="server" Text="Hợp đồng"></asp:Label>
                     </td>
                     <td>
@@ -67,22 +74,15 @@
                             ToolTip="<%$ Translate: Bạn phải chọn hợp đồng %>" ControlToValidate="cboContract">
                         </asp:RequiredFieldValidator>
                     </td>
-                    <td class="lb">
+                    <td class="lb" style="display: none">
                         <asp:Label ID="lbAppend_TypeID" runat="server" Text="Loại phụ lục"></asp:Label>
                     </td>
-                    <td>
+                    <td style="display: none">
                         <tlk:RadComboBox ID="cboAppend_TypeID" runat="server" CausesValidation="false" AutoPostBack="true">
                         </tlk:RadComboBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn loại phụ lục hợp đồng %>"
+                        <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn loại phụ lục hợp đồng %>"
                             ToolTip="<%$ Translate: Bạn phải chọn loại phụ lục hợp đồng %>" ControlToValidate="cboAppend_TypeID">
-                        </asp:RequiredFieldValidator>
-                    </td>
-                    <td class="lb">
-                        <asp:Label ID="lbTitle" runat="server" Text="Công việc"></asp:Label>
-                    </td>
-                    <td>
-                        <tlk:RadTextBox ID="txtTitle" runat="server">
-                        </tlk:RadTextBox>
+                        </asp:RequiredFieldValidator>--%>
                     </td>
                 </tr>
                 <tr>
@@ -106,7 +106,7 @@
                             ErrorMessage="<%$ Translate: Bạn phải nhập ngày bắt đầu. %>" ToolTip="<%$ Translate: Bạn phải nhập ngày bắt đầu. %>"> </asp:RequiredFieldValidator>
                         <asp:CustomValidator ID="CompareStartDate" runat="server" ErrorMessage="<%$ Translate: Ngày hiệu lực phải thuộc khoảng thời gian hiệu lực của hợp đồng. %>"
                             ToolTip="<%$ Translate: Ngày hiệu lực phải lớn hơn thời gian hiệu lực của hợp đồng. %>"></asp:CustomValidator>
-                                <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="<%$ Translate: Không thể tạo phụ lục có hiệu lực nhỏ hơn ngày hiệu lực của hợp đồng. Vui lòng kiểm tra và thử lại. %>"
+                        <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="<%$ Translate: Không thể tạo phụ lục có hiệu lực nhỏ hơn ngày hiệu lực của hợp đồng. Vui lòng kiểm tra và thử lại. %>"
                             ToolTip="<%$ Translate: Không thể tạo phụ lục có hiệu lực nhỏ hơn ngày hiệu lực của hợp đồng. Vui lòng kiểm tra và thử lại. %>">
                         </asp:CustomValidator>
                     </td>
@@ -124,70 +124,7 @@
                         </asp:CustomValidator>
                     </td>
                 </tr>
-                <tr>
-                    <td class="lb">
-                        <asp:Label ID="lbSignDate" runat="server" Text="Ngày ký"></asp:Label>
-                    </td>
-                    <td>
-                        <tlk:RadDatePicker ID="rdSignDate" runat="server" DateInput-DisplayDateFormat="dd/MM/yyyy">
-                        </tlk:RadDatePicker>
-                        <asp:RequiredFieldValidator ID="reqSignDate" ControlToValidate="rdSignDate" runat="server"
-                            ErrorMessage="<%$ Translate: Bạn phải nhập ngày ký. %>" ToolTip="<%$ Translate: Bạn phải nhập
-                        ngày ký. %>"> </asp:RequiredFieldValidator>
-                    </td>
-                    <td class="lb">
-                        <asp:Label ID="lbSign" runat="server" Text="Người ký"></asp:Label>
-                    </td>
-                    <td>
-                        <tlk:RadTextBox ID="txtSign" SkinID="Textbox15" runat="server" Width="130px" ReadOnly="true">
-                        </tlk:RadTextBox>
-                        <tlk:RadButton EnableEmbeddedSkins="false" ID="btnSign" SkinID="ButtonView" runat="server"
-                            CausesValidation="false" Width="40px">
-                        </tlk:RadButton>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" ControlToValidate="txtSign"
-                            runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Người ký. %>" ToolTip="<%$ Translate: Bạn phải chọn Người ký %>"> 
-                        </asp:RequiredFieldValidator>
-                    </td>
-                    <td class="lb">
-                        <asp:Label ID="lbSign_Title" runat="server" Text="Công việc người ký"></asp:Label>
-                    </td>
-                    <td>
-                        <tlk:RadTextBox ID="txtSign_Title" runat="server" ReadOnly="true">
-                        </tlk:RadTextBox>
-                    </td>
-                </tr>
-                <%--<tr>
-                    <td class="lb">
-                        <asp:Label ID="lbSign2" runat="server" Text="Người ký 2"></asp:Label>
-                    </td>
-                    <td>
-                        <tlk:RadTextBox ID="txtSign2" SkinID="Textbox15" runat="server" Width="130px">
-                        </tlk:RadTextBox>
-                        <tlk:RadButton EnableEmbeddedSkins="false" ID="btnSign2" SkinID="ButtonView" runat="server"
-                            CausesValidation="false" Width="40px">
-                        </tlk:RadButton>
-                    </td>
-                    <td class="lb">
-                        <asp:Label ID="lbSign_Title2" runat="server" Text="Chức vụ người ký 2"></asp:Label>
-                    </td>
-                    <td>
-                        <tlk:RadTextBox ID="txtSign_Title2" runat="server">
-                        </tlk:RadTextBox>
-                    </td>
-                </tr>--%>
-                <tr>
-                    <td class="lb">
-                        <asp:Label ID="lbAppend_Content" runat="server" Text="Nội dung thay đổi"></asp:Label>
-                    </td>
-                    <td colspan="5">
-                        <tlk:RadTextBox ID="txtAppend_Content" runat="server" Width="95%">
-                        </tlk:RadTextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtAppend_Content"
-                            runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập nội dung thay đổi. %>"
-                            ToolTip="<%$ Translate: Bạn phải nhập nội dung thay đổi. %>"> </asp:RequiredFieldValidator>
-                    </td>
-                </tr>
-               <%-- <tr>
+                <%-- <tr>
                     <td class="lb">
                         <asp:Label ID="lbRemark" runat="server" Text="Ghi chú"></asp:Label>
                     </td>
@@ -204,25 +141,14 @@
                     <td>
                         <asp:CheckBox runat="server" ID="chkAuthor" Text="Ủy quyền" />
                     </td>
-                     <td class="lb">
-                         <asp:Label ID="lbAuthorNumber" runat="server" Text="Số ủy quyền"></asp:Label>
+                    <td class="lb">
+                        <asp:Label ID="lbAuthorNumber" runat="server" Text="Số ủy quyền"></asp:Label>
                     </td>
                     <td>
                         <tlk:RadTextBox ID="txtAuthorNumber" runat="server">
                         </tlk:RadTextBox>
                     </td>
-
-                    <td class="lb">
-                        <asp:Label ID="lbStatus_ID" runat="server" Text="Trạng Thái"></asp:Label>
-                    </td>
-                    <td>
-                        <tlk:RadComboBox ID="cboStatus_ID" runat="server">
-                        </tlk:RadComboBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Trạng thái %>"
-                            ToolTip="<%$ Translate: Bạn phải chọn Trạng thái %>" ControlToValidate="cboStatus_ID">
-                        </asp:RequiredFieldValidator>
-                    </td>
-                   <%-- <td class="lb">
+                    <%-- <td class="lb">
                         <asp:Label ID="lbUpload" runat="server" Text="Tập tin đính kèm"></asp:Label>
                     </td>
                     <td>
@@ -342,50 +268,50 @@
                                          ToolTip="<%= groupWageWarning %>" ClientValidationFunction="cusSalType">
                     </asp:CustomValidator>--%>
                     </td>
-                   <%-- <td class="lb">
+                    <%-- <td class="lb">
                         <%# UI.Wage_TaxTable %>
                     </td>
                     <td>
                         <tlk:RadComboBox ID="cboTaxTable" runat="server" SkinID="LoadDemand" Enabled="False">
                         </tlk:RadComboBox>
                     </td>--%>
-                </tr>
-                <tr>
-                <td class="lb">
-                    <asp:Label runat="server" ID="lbSalaryGroup" Text="Thang lương"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cbSalaryGroup" runat="server" Enabled="False">
-                    </tlk:RadComboBox>
-                </td>
-                <td class="lb">
-                    <asp:Label runat="server" ID="lbSalaryLevel" Text="Ngạch lương"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cbSalaryLevel" runat="server" Enabled="False">
-                    </tlk:RadComboBox>
-                </td>
-                <td class="lb">
-                    <asp:Label runat="server" ID="lbSalaryRank" Text="Bậc lương"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cbSalaryRank" runat="server" Enabled="False">
-                    </tlk:RadComboBox>
-                </td>
-            </tr>
-                <tr>
                     <td class="lb">
-                        <%# UI.Wage_BasicSalary %>
+                        <asp:Label runat="server" ID="lbSalaryGroup" Text="Thang lương"></asp:Label>
                     </td>
                     <td>
-                        <tlk:RadNumericTextBox ID="rntxtBasicSal" runat="server" MinValue="0" ReadOnly="true">
-                        </tlk:RadNumericTextBox>
+                        <tlk:RadComboBox ID="cbSalaryGroup" runat="server" Enabled="False">
+                        </tlk:RadComboBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lb">
+                        <asp:Label runat="server" ID="lbSalaryLevel" Text="Ngạch lương"></asp:Label>
+                    </td>
+                    <td>
+                        <tlk:RadComboBox ID="cbSalaryLevel" runat="server" Enabled="False">
+                        </tlk:RadComboBox>
+                    </td>
+                    <td class="lb">
+                        <asp:Label runat="server" ID="lbSalaryRank" Text="Bậc lương"></asp:Label>
+                    </td>
+                    <td>
+                        <tlk:RadComboBox ID="cbSalaryRank" runat="server" Enabled="False">
+                        </tlk:RadComboBox>
                     </td>
                     <td class="lb">
                         <asp:Label ID="lbPercentSalary" runat="server" Text="% hưởng lương"></asp:Label>
                     </td>
                     <td>
                         <tlk:RadNumericTextBox ID="PercentSalary" runat="server" Enabled="False">
+                        </tlk:RadNumericTextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lb">
+                        <%# UI.Wage_BasicSalary %>
+                    </td>
+                    <td>
+                        <tlk:RadNumericTextBox ID="rntxtBasicSal" runat="server" MinValue="0" ReadOnly="true">
                         </tlk:RadNumericTextBox>
                     </td>
                     <td style="display: none" class="lb">
@@ -396,22 +322,104 @@
                         </tlk:RadNumericTextBox>
                     </td>
                     <td class="lb">
+                        <%# UI.Wage_Allowance_total %>
+                    </td>
+                    <td>
+                        <tlk:RadNumericTextBox ID="Allowance_Total" runat="server" SkinID="Money" Enabled="False">
+                        </tlk:RadNumericTextBox>
+                    </td>
+                    <td class="lb">
                         <%# UI.Wage_Salary_Total %>
                     </td>
                     <td>
                         <tlk:RadNumericTextBox ID="Salary_Total" runat="server" SkinID="Money" Enabled="False">
                         </tlk:RadNumericTextBox>
                     </td>
-                    <td style="display: none" class="lb">
-                        <%# UI.Wage_Allowance_total %>
+                </tr>
+                <tr>
+                    <td colspan="6">
+                        <b>
+                            <asp:Label ID="Label1" runat="server" Text="Thông tin ký duyệt"></asp:Label>
+                        </b>
+                        <hr />
                     </td>
-                    <td style="display: none">
-                        <tlk:RadNumericTextBox ID="Allowance_Total" runat="server" SkinID="Money" Enabled="False">
-                        </tlk:RadNumericTextBox>
+                </tr>
+                <tr>
+                    <td class="lb">
+                        <asp:Label ID="lbSignDate" runat="server" Text="Ngày ký"></asp:Label>
+                    </td>
+                    <td>
+                        <tlk:RadDatePicker ID="rdSignDate" runat="server" DateInput-DisplayDateFormat="dd/MM/yyyy">
+                        </tlk:RadDatePicker>
+                        <asp:RequiredFieldValidator ID="reqSignDate" ControlToValidate="rdSignDate" runat="server"
+                            ErrorMessage="<%$ Translate: Bạn phải nhập ngày ký. %>" ToolTip="<%$ Translate: Bạn phải nhập
+                        ngày ký. %>"> </asp:RequiredFieldValidator>
+                    </td>
+                    <td class="lb">
+                        <asp:Label ID="lbSign" runat="server" Text="Người ký"></asp:Label>
+                    </td>
+                    <td>
+                        <tlk:RadTextBox ID="txtSign" SkinID="Textbox15" runat="server" Width="130px" ReadOnly="true">
+                        </tlk:RadTextBox>
+                        <tlk:RadButton EnableEmbeddedSkins="false" ID="btnSign" SkinID="ButtonView" runat="server"
+                            CausesValidation="false" Width="40px">
+                        </tlk:RadButton>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" ControlToValidate="txtSign"
+                            runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Người ký. %>" ToolTip="<%$ Translate: Bạn phải chọn Người ký %>"> 
+                        </asp:RequiredFieldValidator>
+                    </td>
+                    <td class="lb">
+                        <asp:Label ID="lbSign_Title" runat="server" Text="Công việc người ký"></asp:Label>
+                    </td>
+                    <td>
+                        <tlk:RadTextBox ID="txtSign_Title" runat="server" ReadOnly="true">
+                        </tlk:RadTextBox>
+                    </td>
+                </tr>
+                <%--<tr>
+                    <td class="lb">
+                        <asp:Label ID="lbSign2" runat="server" Text="Người ký 2"></asp:Label>
+                    </td>
+                    <td>
+                        <tlk:RadTextBox ID="txtSign2" SkinID="Textbox15" runat="server" Width="130px">
+                        </tlk:RadTextBox>
+                        <tlk:RadButton EnableEmbeddedSkins="false" ID="btnSign2" SkinID="ButtonView" runat="server"
+                            CausesValidation="false" Width="40px">
+                        </tlk:RadButton>
+                    </td>
+                    <td class="lb">
+                        <asp:Label ID="lbSign_Title2" runat="server" Text="Chức vụ người ký 2"></asp:Label>
+                    </td>
+                    <td>
+                        <tlk:RadTextBox ID="txtSign_Title2" runat="server">
+                        </tlk:RadTextBox>
+                    </td>
+                </tr>--%>
+                <tr>
+                    <td class="lb">
+                        <asp:Label ID="lbAppend_Content" runat="server" Text="Nội dung thay đổi"></asp:Label>
+                    </td>
+                    <td colspan="5">
+                        <tlk:RadTextBox ID="txtAppend_Content" runat="server" Width="95%">
+                        </tlk:RadTextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtAppend_Content"
+                            runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập nội dung thay đổi. %>"
+                            ToolTip="<%$ Translate: Bạn phải nhập nội dung thay đổi. %>"> </asp:RequiredFieldValidator>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lb">
+                        <asp:Label ID="lbStatus_ID" runat="server" Text="Trạng Thái"></asp:Label>
+                    </td>
+                    <td>
+                        <tlk:RadComboBox ID="cboStatus_ID" runat="server">
+                        </tlk:RadComboBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Trạng thái %>"
+                            ToolTip="<%$ Translate: Bạn phải chọn Trạng thái %>" ControlToValidate="cboStatus_ID">
+                        </asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <%-- <tr>
-                  
                 </tr>--%>
                 <%--<tr>
                     <td class="lb">
@@ -437,8 +445,8 @@
                     </td>
                 </tr>--%>
                 <tr>
-                  <td class="lb">
-                          <tlk:RadDatePicker ID="radDate" runat="server" Visible="false">
+                    <td class="lb">
+                        <tlk:RadDatePicker ID="radDate" runat="server" Visible="false">
                         </tlk:RadDatePicker>
                     </td>
                 </tr>

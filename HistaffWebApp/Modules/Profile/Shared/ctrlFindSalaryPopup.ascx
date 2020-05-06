@@ -13,7 +13,7 @@
             <p>
                 
                 <tlk:RadGrid  ID="rgSalary" runat="server" AutoGenerateColumns="False" AllowPaging="False" Height="300px">
-                    <MasterTableView DataKeyNames="ID,DECISION_NO,EFFECT_DATE,EXPIRE_DATE,SAL_GROUP_NAME,SAL_LEVEL_NAME,SAL_RANK_NAME,SAL_BASIC,PERCENT_SALARY">
+                    <MasterTableView DataKeyNames="ID,DECISION_NO,EFFECT_DATE,EXPIRE_DATE,SAL_GROUP_NAME,SAL_LEVEL_NAME,SAL_RANK_NAME,SAL_BASIC,PERCENT_SALARY,ALLOWANCE_TOTAL">
                         <Columns>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: ID %>" DataField="ID"
                                                  SortExpression="ID" UniqueName="ID"  Visible="false"/>
@@ -27,9 +27,13 @@
                                 DataFormatString="{0:dd/MM/yyyy}" />
 
                             <tlk:GridBoundColumn HeaderText="" DataField="SAL_TYPE_NAME" SortExpression="SAL_TYPE_NAME" UniqueName="SAL_TYPE_NAME" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Thang lương %>" DataField="SAL_GROUP_NAME" SortExpression="SAL_GROUP_NAME" UniqueName="SAL_GROUP_NAME" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngạch lương %>" DataField="SAL_LEVEL_NAME" SortExpression="SAL_LEVEL_NAME" UniqueName="SAL_LEVEL_NAME" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Bậc lương %>" DataField="SAL_RANK_NAME" SortExpression="SAL_RANK_NAME" UniqueName="SAL_RANK_NAME" />
                             <tlk:GridNumericColumn HeaderText="" DataField="TAX_TABLE_Name" SortExpression="TAX_TABLE_Name" UniqueName="TAX_TABLE_Name"/>
                             <tlk:GridNumericColumn HeaderText="" DataField="SAL_BASIC" SortExpression="SAL_BASIC" UniqueName="SAL_BASIC" DataFormatString="{0:n0}" />
-                            <tlk:GridNumericColumn HeaderText="" DataField="SAL_INS" SortExpression="SAL_INS" UniqueName="SAL_INS" DataFormatString="{0:n0}"  Visible="false"/>
+                            <tlk:GridNumericColumn HeaderText="" DataField="SAL_INS" SortExpression="SAL_INS" UniqueName="SAL_INS" DataFormatString="{0:n0}" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tổng phụ cấp %>" DataField="ALLOWANCE_TOTAL" SortExpression="ALLOWANCE_TOTAL" UniqueName="ALLOWANCE_TOTAL"  DataFormatString="{0:n0}"/>
                             <tlk:GridNumericColumn HeaderText="" DataField="SAL_TOTAL" SortExpression="SAL_TOTAL" UniqueName="SAL_TOTAL" DataFormatString="{0:n0}" />
 
                         </Columns>

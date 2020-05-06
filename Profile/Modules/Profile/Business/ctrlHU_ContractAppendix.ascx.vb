@@ -183,15 +183,15 @@ Public Class ctrlHU_ContractAppendix
                                                   Translate("Xuất dữ liệu")))
 
 
-            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_NEXT,
-                                                 ToolbarIcons.Export,
-                                                 ToolbarAuthorize.Export,
-                                                 Translate("Xuất file mẫu")))
+            'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_NEXT,
+            '                                     ToolbarIcons.Export,
+            '                                     ToolbarAuthorize.Export,
+            '                                     Translate("Xuất file mẫu")))
 
-            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_IMPORT,
-                                                 ToolbarIcons.Import,
-                                                 ToolbarAuthorize.Import,
-                                                 Translate("Nhập file mẫu")))
+            'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_IMPORT,
+            '                                     ToolbarIcons.Import,
+            '                                     ToolbarAuthorize.Import,
+            '                                     Translate("Nhập file mẫu")))
 
             Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_CREATE_BATCH,
                                                               ToolbarIcons.Add,
@@ -768,11 +768,11 @@ Public Class ctrlHU_ContractAppendix
         dtb.AcceptChanges()
 
         If dtb.Rows.Count > 0 Then
-            Dim bCheckHasfile = rep.CheckHasFileFileContract(lstID)
-            If bCheckHasfile = 1 Then
-                ShowMessage(Translate("Duyệt khi tất cả các record đã có tập tin đính kèm,bạn kiểm tra lại"), NotifyType.Warning)
-                Exit Sub
-            End If
+            'Dim bCheckHasfile = rep.CheckHasFileFileContract(lstID)
+            'If bCheckHasfile = 1 Then
+            '    ShowMessage(Translate("Duyệt khi tất cả các record đã có tập tin đính kèm,bạn kiểm tra lại"), NotifyType.Warning)
+            '    Exit Sub
+            'End If
             If psp.BatchApprovedListContract(dtb) = dtb.Rows.Count Then
 
                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
