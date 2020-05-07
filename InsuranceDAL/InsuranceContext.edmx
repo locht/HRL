@@ -6,7 +6,6 @@
     <edmx:StorageModels>
     <Schema Namespace="InsuranceModel.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="12.2" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
         <EntityContainer Name="InsuranceModelStoreContainer">
-            <EntitySet Name="HU_EMPLOYEE" EntityType="InsuranceModel.Store.HU_EMPLOYEE" store:Type="Tables"  />
             <EntitySet Name="HU_EMPLOYEE_EDUCATION" EntityType="InsuranceModel.Store.HU_EMPLOYEE_EDUCATION" store:Type="Tables"  />
             <EntitySet Name="HU_EMPLOYEE_FILES" EntityType="InsuranceModel.Store.HU_EMPLOYEE_FILES" store:Type="Tables"  />
             <EntitySet Name="HU_EMPLOYEE_HEALTH" EntityType="InsuranceModel.Store.HU_EMPLOYEE_HEALTH" store:Type="Tables"  />
@@ -54,43 +53,8 @@
             <EntitySet Name="HU_WARD" EntityType="InsuranceModel.Store.HU_WARD" store:Type="Tables"  />
             <EntitySet Name="INS_LIST_INSURANCE" EntityType="InsuranceModel.Store.INS_LIST_INSURANCE" store:Type="Tables"  />
             <EntitySet Name="HUV_ORGANIZATION" EntityType="InsuranceModel.Store.HUV_ORGANIZATION" store:Type="Tables"  />
+            <EntitySet Name="HU_EMPLOYEE" EntityType="InsuranceModel.Store.HU_EMPLOYEE" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="InsuranceModel.Store.SE_USER_REPORT" store:Type="Tables"  />
-            <AssociationSet Name="FK_FE_HEH" Association="InsuranceModel.Store.FK_FE_HEH">
-                <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
-                <End Role="HU_EMPLOYEE_HEALTH" EntitySet="HU_EMPLOYEE_HEALTH" />
-            </AssociationSet>
-            <AssociationSet Name="FK_HE_HEE" Association="InsuranceModel.Store.FK_HE_HEE">
-                <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
-                <End Role="HU_EMPLOYEE_EDUCATION" EntitySet="HU_EMPLOYEE_EDUCATION" />
-            </AssociationSet>
-            <AssociationSet Name="FK_HE_HEF" Association="InsuranceModel.Store.FK_HE_HEF">
-                <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
-                <End Role="HU_EMPLOYEE_FILES" EntitySet="HU_EMPLOYEE_FILES" />
-            </AssociationSet>
-            <AssociationSet Name="FK_HE_HEO" Association="InsuranceModel.Store.FK_HE_HEO">
-                <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
-                <End Role="HU_EMPLOYEE_OTHER_INFO" EntitySet="HU_EMPLOYEE_OTHER_INFO" />
-            </AssociationSet>
-            <AssociationSet Name="FK_HE_HES" Association="InsuranceModel.Store.FK_HE_HES">
-                <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
-                <End Role="HU_EMPLOYEE_SALARY" EntitySet="HU_EMPLOYEE_SALARY" />
-            </AssociationSet>
-            <AssociationSet Name="FK_HE_HT" Association="InsuranceModel.Store.FK_HE_HT">
-                <End Role="HU_TITLE" EntitySet="HU_TITLE" />
-                <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
-            </AssociationSet>
-            <AssociationSet Name="FK_HE_HW" Association="InsuranceModel.Store.FK_HE_HW">
-                <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
-                <End Role="HU_WORKING" EntitySet="HU_WORKING" />
-            </AssociationSet>
-            <AssociationSet Name="FK_HU_ORG_HU_EMP" Association="InsuranceModel.Store.FK_HU_ORG_HU_EMP">
-                <End Role="HU_ORGANIZATION" EntitySet="HU_ORGANIZATION" />
-                <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
-            </AssociationSet>
-            <AssociationSet Name="FK_HUEMD_HUEM" Association="InsuranceModel.Store.FK_HUEMD_HUEM">
-                <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
-                <End Role="HU_EMPLOYEE1" EntitySet="HU_EMPLOYEE" />
-            </AssociationSet>
             <AssociationSet Name="FK_HUOG_HUOT" Association="InsuranceModel.Store.FK_HUOG_HUOT">
                 <End Role="HU_ORGANIZATION" EntitySet="HU_ORGANIZATION" />
                 <End Role="HU_ORG_TITLE" EntitySet="HU_ORG_TITLE" />
@@ -139,38 +103,11 @@
                 <End Role="SE_USER" EntitySet="SE_USER" />
                 <End Role="SE_USER_REPORT" EntitySet="SE_USER_REPORT" />
             </AssociationSet>
+            <AssociationSet Name="FK_HUEMD_HUEM" Association="InsuranceModel.Store.FK_HUEMD_HUEM">
+                <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
+                <End Role="HU_EMPLOYEE1" EntitySet="HU_EMPLOYEE" />
+            </AssociationSet>
         </EntityContainer>
-        <EntityType Name="HU_EMPLOYEE">
-            <Key>
-                <PropertyRef Name="ID" />
-            </Key>
-            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
-            <Property Name="EMPLOYEE_CODE" Type="nvarchar2" Nullable="true" MaxLength="15" />
-            <Property Name="FIRST_NAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="LAST_NAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="FULLNAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="FIRST_NAME_EN" Type="varchar2" Nullable="true" MaxLength="255" />
-            <Property Name="LAST_NAME_EN" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="FULLNAME_EN" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
-            <Property Name="WORK_STATUS" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CONTRACT_ID" Type="number" Nullable="true" Precision="38" />
-            <Property Name="TITLE_ID" Type="number" Nullable="true" Precision="38" />
-            <Property Name="JOIN_DATE" Type="date" Nullable="true" />
-            <Property Name="DIRECT_MANAGER" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
-            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
-            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="LAST_WORKING_ID" Type="number" Nullable="true" Precision="38" />
-            <Property Name="TER_EFFECT_DATE" Type="date" Nullable="true" />
-            <Property Name="TER_LAST_DATE" Type="date" Nullable="true" />
-            <Property Name="ITIME_ID" Type="number" Nullable="true" Precision="38" />
-            <Property Name="STAFF_RANK_ID" Type="number" Nullable="true" Precision="38" />
-            <Property Name="JOB_POSITION" Type="number" Nullable="true" Precision="38" />
-        </EntityType>
         <EntityType Name="HU_EMPLOYEE_EDUCATION">
             <Key>
                 <PropertyRef Name="EMPLOYEE_ID" />
@@ -1347,6 +1284,68 @@
             <Property Name="DISSOLVE_DATE" Type="date" Nullable="true" />
             <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
         </EntityType>
+        <EntityType Name="HU_EMPLOYEE">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EMPLOYEE_CODE" Type="nvarchar2" Nullable="true" MaxLength="15" />
+            <Property Name="FIRST_NAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="LAST_NAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="FULLNAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="FIRST_NAME_EN" Type="varchar2" Nullable="true" MaxLength="255" />
+            <Property Name="LAST_NAME_EN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="FULLNAME_EN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="WORK_STATUS" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CONTRACT_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TITLE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="JOIN_DATE" Type="date" Nullable="true" />
+            <Property Name="DIRECT_MANAGER" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="LAST_WORKING_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TER_EFFECT_DATE" Type="date" Nullable="true" />
+            <Property Name="TER_LAST_DATE" Type="date" Nullable="true" />
+            <Property Name="ITIME_ID" Type="nvarchar2" Nullable="true" MaxLength="15" />
+            <Property Name="STAFF_RANK_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PA_OBJECT_SALARY_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="EXPIREDATE_ENT" Type="date" Nullable="true" />
+            <Property Name="JOIN_DATE_STATE" Type="date" Nullable="true" />
+            <Property Name="LEVEL_MANAGER" Type="number" Nullable="true" Precision="38" />
+            <Property Name="EMPLOYEE_3B_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="EMPLOYEE_CODE_OLD" Type="nvarchar2" Nullable="true" MaxLength="15" />
+            <Property Name="IS_3B" Type="number" Nullable="true" Precision="5" />
+            <Property Name="EMP_STATUS" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AUTOGENTIMESHEET" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_DELETED" Type="number" Nullable="true" Precision="38" />
+            <Property Name="DM_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IDM_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="EMPLOYEE_GROUP" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="BOOK_NO" Type="nvarchar2" Nullable="true" MaxLength="20" />
+            <Property Name="EMPLOYEE_NAME_OTHER" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="DIRECT_MANAGER_2" Type="number" Nullable="true" Precision="38" />
+            <Property Name="DIRECT_MANAGER_3" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ROW_NUMBER" Type="number" Nullable="true" Precision="38" />
+            <Property Name="OBJECTTIMEKEEPING" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_KIEM_NHIEM" Type="number" Nullable="true" Precision="19" />
+            <Property Name="OBJECT_LABOR" Type="number" Nullable="true" Precision="38" />
+            <Property Name="OBJECT_INS" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SENIORITY_DATE" Type="date" Nullable="true" />
+            <Property Name="EMPLOYEE_OBJECT" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_HAZARDOUS" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_HDLD" Type="number" Nullable="true" Precision="38" />
+            <Property Name="JOB_POSITION" Type="number" Nullable="true" Precision="38" />
+            <Property Name="JOB_DESCRIPTION" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PRODUCTION_PROCESS" Type="number" Nullable="true" Precision="38" />
+            <Property Name="JOB_ATTACH_FILE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="JOB_FILENAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="COMPENSATORY_OBJECT" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -1355,132 +1354,6 @@
             <Property Name="SE_REPORT_ID" Type="number" Nullable="false" Precision="38" />
             <Property Name="SE_USER_ID" Type="number" Nullable="false" Precision="38" />
         </EntityType>
-    <Association Name="FK_FE_HEH">
-        <End Role="HU_EMPLOYEE" Type="InsuranceModel.Store.HU_EMPLOYEE" Multiplicity="1">
-        </End>
-        <End Role="HU_EMPLOYEE_HEALTH" Type="InsuranceModel.Store.HU_EMPLOYEE_HEALTH" Multiplicity="0..1">
-        </End>
-        <ReferentialConstraint>
-            <Principal Role="HU_EMPLOYEE">
-                <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="HU_EMPLOYEE_HEALTH">
-                <PropertyRef Name="EMPLOYEE_ID" />
-            </Dependent>
-        </ReferentialConstraint>
-    </Association>
-    <Association Name="FK_HE_HEE">
-        <End Role="HU_EMPLOYEE" Type="InsuranceModel.Store.HU_EMPLOYEE" Multiplicity="1">
-        </End>
-        <End Role="HU_EMPLOYEE_EDUCATION" Type="InsuranceModel.Store.HU_EMPLOYEE_EDUCATION" Multiplicity="0..1">
-        </End>
-        <ReferentialConstraint>
-            <Principal Role="HU_EMPLOYEE">
-                <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="HU_EMPLOYEE_EDUCATION">
-                <PropertyRef Name="EMPLOYEE_ID" />
-            </Dependent>
-        </ReferentialConstraint>
-    </Association>
-    <Association Name="FK_HE_HEF">
-        <End Role="HU_EMPLOYEE" Type="InsuranceModel.Store.HU_EMPLOYEE" Multiplicity="0..1">
-        </End>
-        <End Role="HU_EMPLOYEE_FILES" Type="InsuranceModel.Store.HU_EMPLOYEE_FILES" Multiplicity="*">
-        </End>
-        <ReferentialConstraint>
-            <Principal Role="HU_EMPLOYEE">
-                <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="HU_EMPLOYEE_FILES">
-                <PropertyRef Name="EMPLOYEE_ID" />
-            </Dependent>
-        </ReferentialConstraint>
-    </Association>
-    <Association Name="FK_HE_HEO">
-        <End Role="HU_EMPLOYEE" Type="InsuranceModel.Store.HU_EMPLOYEE" Multiplicity="1">
-        </End>
-        <End Role="HU_EMPLOYEE_OTHER_INFO" Type="InsuranceModel.Store.HU_EMPLOYEE_OTHER_INFO" Multiplicity="0..1">
-        </End>
-        <ReferentialConstraint>
-            <Principal Role="HU_EMPLOYEE">
-                <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="HU_EMPLOYEE_OTHER_INFO">
-                <PropertyRef Name="EMPLOYEE_ID" />
-            </Dependent>
-        </ReferentialConstraint>
-    </Association>
-    <Association Name="FK_HE_HES">
-        <End Role="HU_EMPLOYEE" Type="InsuranceModel.Store.HU_EMPLOYEE" Multiplicity="1">
-        </End>
-        <End Role="HU_EMPLOYEE_SALARY" Type="InsuranceModel.Store.HU_EMPLOYEE_SALARY" Multiplicity="0..1">
-        </End>
-        <ReferentialConstraint>
-            <Principal Role="HU_EMPLOYEE">
-                <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="HU_EMPLOYEE_SALARY">
-                <PropertyRef Name="EMPLOYEE_ID" />
-            </Dependent>
-        </ReferentialConstraint>
-    </Association>
-    <Association Name="FK_HE_HT">
-        <End Role="HU_TITLE" Type="InsuranceModel.Store.HU_TITLE" Multiplicity="0..1">
-        </End>
-        <End Role="HU_EMPLOYEE" Type="InsuranceModel.Store.HU_EMPLOYEE" Multiplicity="*">
-        </End>
-        <ReferentialConstraint>
-            <Principal Role="HU_TITLE">
-                <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="HU_EMPLOYEE">
-                <PropertyRef Name="TITLE_ID" />
-            </Dependent>
-        </ReferentialConstraint>
-    </Association>
-    <Association Name="FK_HE_HW">
-        <End Role="HU_EMPLOYEE" Type="InsuranceModel.Store.HU_EMPLOYEE" Multiplicity="0..1">
-        </End>
-        <End Role="HU_WORKING" Type="InsuranceModel.Store.HU_WORKING" Multiplicity="*">
-        </End>
-        <ReferentialConstraint>
-            <Principal Role="HU_EMPLOYEE">
-                <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="HU_WORKING">
-                <PropertyRef Name="EMPLOYEE_ID" />
-            </Dependent>
-        </ReferentialConstraint>
-    </Association>
-    <Association Name="FK_HU_ORG_HU_EMP">
-        <End Role="HU_ORGANIZATION" Type="InsuranceModel.Store.HU_ORGANIZATION" Multiplicity="0..1">
-        </End>
-        <End Role="HU_EMPLOYEE" Type="InsuranceModel.Store.HU_EMPLOYEE" Multiplicity="*">
-        </End>
-        <ReferentialConstraint>
-            <Principal Role="HU_ORGANIZATION">
-                <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="HU_EMPLOYEE">
-                <PropertyRef Name="ORG_ID" />
-            </Dependent>
-        </ReferentialConstraint>
-    </Association>
-    <Association Name="FK_HUEMD_HUEM">
-        <End Role="HU_EMPLOYEE" Type="InsuranceModel.Store.HU_EMPLOYEE" Multiplicity="0..1">
-        </End>
-        <End Role="HU_EMPLOYEE1" Type="InsuranceModel.Store.HU_EMPLOYEE" Multiplicity="*">
-        </End>
-        <ReferentialConstraint>
-            <Principal Role="HU_EMPLOYEE">
-                <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="HU_EMPLOYEE1">
-                <PropertyRef Name="DIRECT_MANAGER" />
-            </Dependent>
-        </ReferentialConstraint>
-    </Association>
     <Association Name="FK_HUOG_HUOT">
         <End Role="HU_ORGANIZATION" Type="InsuranceModel.Store.HU_ORGANIZATION" Multiplicity="0..1">
         </End>
@@ -1621,6 +1494,20 @@
             </Dependent>
         </ReferentialConstraint>
     </Association>
+    <Association Name="FK_HUEMD_HUEM">
+        <End Role="HU_EMPLOYEE" Type="InsuranceModel.Store.HU_EMPLOYEE" Multiplicity="0..1">
+        </End>
+        <End Role="HU_EMPLOYEE1" Type="InsuranceModel.Store.HU_EMPLOYEE" Multiplicity="*">
+        </End>
+        <ReferentialConstraint>
+            <Principal Role="HU_EMPLOYEE">
+                <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HU_EMPLOYEE1">
+                <PropertyRef Name="DIRECT_MANAGER" />
+            </Dependent>
+        </ReferentialConstraint>
+    </Association>
     <Association Name="FK_SE_USER_REPORT_SE_REPORT">
         <End Role="SE_REPORT" Type="InsuranceModel.Store.SE_REPORT" Multiplicity="1" />
         <End Role="SE_USER_REPORT" Type="InsuranceModel.Store.SE_USER_REPORT" Multiplicity="*" />
@@ -1650,7 +1537,6 @@
     <edmx:ConceptualModels>
       <Schema Namespace="InsuranceModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="InsuranceContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="HU_EMPLOYEE" EntityType="InsuranceModel.HU_EMPLOYEE" />
           <EntitySet Name="HU_EMPLOYEE_EDUCATION" EntityType="InsuranceModel.HU_EMPLOYEE_EDUCATION" />
           <EntitySet Name="HU_EMPLOYEE_FILES" EntityType="InsuranceModel.HU_EMPLOYEE_FILES" />
           <EntitySet Name="HU_EMPLOYEE_HEALTH" EntityType="InsuranceModel.HU_EMPLOYEE_HEALTH" />
@@ -1664,42 +1550,6 @@
           <EntitySet Name="OT_OTHER_LIST" EntityType="InsuranceModel.OT_OTHER_LIST" />
           <EntitySet Name="OT_OTHER_LIST_GROUP" EntityType="InsuranceModel.OT_OTHER_LIST_GROUP" />
           <EntitySet Name="OT_OTHER_LIST_TYPE" EntityType="InsuranceModel.OT_OTHER_LIST_TYPE" />
-          <AssociationSet Name="FK_FE_HEH" Association="InsuranceModel.FK_FE_HEH">
-            <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
-            <End Role="HU_EMPLOYEE_HEALTH" EntitySet="HU_EMPLOYEE_HEALTH" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HE_HEE" Association="InsuranceModel.FK_HE_HEE">
-            <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
-            <End Role="HU_EMPLOYEE_EDUCATION" EntitySet="HU_EMPLOYEE_EDUCATION" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HE_HEF" Association="InsuranceModel.FK_HE_HEF">
-            <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
-            <End Role="HU_EMPLOYEE_FILES" EntitySet="HU_EMPLOYEE_FILES" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HE_HEO" Association="InsuranceModel.FK_HE_HEO">
-            <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
-            <End Role="HU_EMPLOYEE_OTHER_INFO" EntitySet="HU_EMPLOYEE_OTHER_INFO" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HE_HES" Association="InsuranceModel.FK_HE_HES">
-            <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
-            <End Role="HU_EMPLOYEE_SALARY" EntitySet="HU_EMPLOYEE_SALARY" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HE_HT" Association="InsuranceModel.FK_HE_HT">
-            <End Role="HU_TITLE" EntitySet="HU_TITLE" />
-            <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HE_HW" Association="InsuranceModel.FK_HE_HW">
-            <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
-            <End Role="HU_WORKING" EntitySet="HU_WORKING" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HU_ORG_HU_EMP" Association="InsuranceModel.FK_HU_ORG_HU_EMP">
-            <End Role="HU_ORGANIZATION" EntitySet="HU_ORGANIZATION" />
-            <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HUEMD_HUEM" Association="InsuranceModel.FK_HUEMD_HUEM">
-            <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
-            <End Role="HU_EMPLOYEE1" EntitySet="HU_EMPLOYEE" />
-          </AssociationSet>
           <AssociationSet Name="FK_HUOG_HUOT" Association="InsuranceModel.FK_HUOG_HUOT">
             <End Role="HU_ORGANIZATION" EntitySet="HU_ORGANIZATION" />
             <End Role="HU_ORG_TITLE" EntitySet="HU_ORG_TITLE" />
@@ -1778,48 +1628,12 @@
           <EntitySet Name="HU_WARD" EntityType="InsuranceModel.HU_WARD" />
           <EntitySet Name="INS_LIST_INSURANCE" EntityType="InsuranceModel.INS_LIST_INSURANCE" />
           <EntitySet Name="HUV_ORGANIZATION" EntityType="InsuranceModel.HUV_ORGANIZATION" />
+          <EntitySet Name="HU_EMPLOYEE" EntityType="InsuranceModel.HU_EMPLOYEE" />
+          <AssociationSet Name="FK_HUEMD_HUEM" Association="InsuranceModel.FK_HUEMD_HUEM">
+            <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
+            <End Role="HU_EMPLOYEE1" EntitySet="HU_EMPLOYEE" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="HU_EMPLOYEE">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
-          <Property Name="EMPLOYEE_CODE" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
-          <Property Name="FIRST_NAME_VN" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="LAST_NAME_VN" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="FULLNAME_VN" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="FIRST_NAME_EN" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="LAST_NAME_EN" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="FULLNAME_EN" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="ORG_ID" Type="Decimal" Precision="38" Scale="0" />
-          <Property Name="WORK_STATUS" Type="Decimal" Precision="38" Scale="0" />
-          <Property Name="CONTRACT_ID" Type="Decimal" Precision="38" Scale="0" />
-          <Property Name="TITLE_ID" Type="Decimal" Precision="38" Scale="0" />
-          <Property Name="JOIN_DATE" Type="DateTime" />
-          <Property Name="DIRECT_MANAGER" Type="Decimal" Precision="38" Scale="0" />
-          <Property Name="CREATED_DATE" Type="DateTime" />
-          <Property Name="CREATED_BY" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="CREATED_LOG" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="MODIFIED_DATE" Type="DateTime" />
-          <Property Name="MODIFIED_BY" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="MODIFIED_LOG" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="LAST_WORKING_ID" Type="Decimal" Precision="38" Scale="0" />
-          <Property Name="TER_EFFECT_DATE" Type="DateTime" />
-          <Property Name="TER_LAST_DATE" Type="DateTime" />
-          <Property Name="ITIME_ID" Type="Decimal" Precision="38" Scale="0" />
-          <Property Name="STAFF_RANK_ID" Type="Decimal" Precision="38" Scale="0" />
-          <NavigationProperty Name="HU_EMPLOYEE_HEALTH" Relationship="InsuranceModel.FK_FE_HEH" FromRole="HU_EMPLOYEE" ToRole="HU_EMPLOYEE_HEALTH" />
-          <NavigationProperty Name="HU_EMPLOYEE_EDUCATION" Relationship="InsuranceModel.FK_HE_HEE" FromRole="HU_EMPLOYEE" ToRole="HU_EMPLOYEE_EDUCATION" />
-          <NavigationProperty Name="HU_EMPLOYEE_FILES" Relationship="InsuranceModel.FK_HE_HEF" FromRole="HU_EMPLOYEE" ToRole="HU_EMPLOYEE_FILES" />
-          <NavigationProperty Name="HU_EMPLOYEE_OTHER_INFO" Relationship="InsuranceModel.FK_HE_HEO" FromRole="HU_EMPLOYEE" ToRole="HU_EMPLOYEE_OTHER_INFO" />
-          <NavigationProperty Name="HU_EMPLOYEE_SALARY" Relationship="InsuranceModel.FK_HE_HES" FromRole="HU_EMPLOYEE" ToRole="HU_EMPLOYEE_SALARY" />
-          <NavigationProperty Name="HU_TITLE" Relationship="InsuranceModel.FK_HE_HT" FromRole="HU_EMPLOYEE" ToRole="HU_TITLE" />
-          <NavigationProperty Name="HU_WORKING" Relationship="InsuranceModel.FK_HE_HW" FromRole="HU_EMPLOYEE" ToRole="HU_WORKING" />
-          <NavigationProperty Name="HU_ORGANIZATION" Relationship="InsuranceModel.FK_HU_ORG_HU_EMP" FromRole="HU_EMPLOYEE" ToRole="HU_ORGANIZATION" />
-          <NavigationProperty Name="HU_EMPLOYEE1" Relationship="InsuranceModel.FK_HUEMD_HUEM" FromRole="HU_EMPLOYEE" ToRole="HU_EMPLOYEE1" />
-          <NavigationProperty Name="HU_EMPLOYEE2" Relationship="InsuranceModel.FK_HUEMD_HUEM" FromRole="HU_EMPLOYEE1" ToRole="HU_EMPLOYEE" />
-          <Property Type="Decimal" Name="JOB_POSITION" />
-        </EntityType>
         <EntityType Name="HU_EMPLOYEE_EDUCATION">
           <Key>
             <PropertyRef Name="EMPLOYEE_ID" />
@@ -1855,7 +1669,6 @@
           <Property Name="MARK_EDU" Type="Decimal" Precision="38" Scale="0" />
           <Property Name="TRAINING_FORM" Type="Decimal" Precision="38" Scale="0" />
           <Property Name="LEARNING_LEVEL" Type="Decimal" Precision="38" Scale="0" />
-          <NavigationProperty Name="HU_EMPLOYEE" Relationship="InsuranceModel.FK_HE_HEE" FromRole="HU_EMPLOYEE_EDUCATION" ToRole="HU_EMPLOYEE" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_FILES">
           <Key>
@@ -1869,7 +1682,6 @@
           <Property Name="NOTE" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
           <Property Name="UPLOAD_BY" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
           <Property Name="UPLOAD_DATE" Type="DateTime" />
-          <NavigationProperty Name="HU_EMPLOYEE" Relationship="InsuranceModel.FK_HE_HEF" FromRole="HU_EMPLOYEE_FILES" ToRole="HU_EMPLOYEE" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_HEALTH">
           <Key>
@@ -1897,7 +1709,6 @@
           <Property Name="MODIFIED_LOG" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
           <Property Name="LOAI_SUC_KHOE" Type="Decimal" Precision="38" Scale="0" />
           <Property Name="DU_SUC_KHOE" Type="Int16" />
-          <NavigationProperty Name="HU_EMPLOYEE" Relationship="InsuranceModel.FK_FE_HEH" FromRole="HU_EMPLOYEE_HEALTH" ToRole="HU_EMPLOYEE" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_OTHER_INFO">
           <Key>
@@ -1923,7 +1734,6 @@
           <Property Name="MODIFIED_DATE" Type="DateTime" />
           <Property Name="MODIFIED_BY" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
           <Property Name="MODIFIED_LOG" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="HU_EMPLOYEE" Relationship="InsuranceModel.FK_HE_HEO" FromRole="HU_EMPLOYEE_OTHER_INFO" ToRole="HU_EMPLOYEE" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_SALARY">
           <Key>
@@ -1946,7 +1756,6 @@
           <Property Name="ALLOWANCE_SAL" Type="Decimal" Precision="38" Scale="0" />
           <Property Name="ALLOWANCE_TOTAL" Type="Decimal" Precision="38" Scale="0" />
           <Property Name="PERCENT_SALARY" Type="Int16" />
-          <NavigationProperty Name="HU_EMPLOYEE" Relationship="InsuranceModel.FK_HE_HES" FromRole="HU_EMPLOYEE_SALARY" ToRole="HU_EMPLOYEE" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_TRAIN">
           <Key>
@@ -2012,7 +1821,6 @@
           <Property Name="ADDRESS" Type="String" MaxLength="1023" Unicode="true" FixedLength="false" />
           <Property Name="FAX" Type="String" MaxLength="1023" Unicode="true" FixedLength="false" />
           <Property Name="REPRESENTATIVE_ID" Type="Decimal" Precision="38" Scale="0" />
-          <NavigationProperty Name="HU_EMPLOYEE" Relationship="InsuranceModel.FK_HU_ORG_HU_EMP" FromRole="HU_ORGANIZATION" ToRole="HU_EMPLOYEE" />
           <NavigationProperty Name="HU_ORG_TITLE" Relationship="InsuranceModel.FK_HUOG_HUOT" FromRole="HU_ORGANIZATION" ToRole="HU_ORG_TITLE" />
           <NavigationProperty Name="HU_ORGANIZATION1" Relationship="InsuranceModel.FK_HU_ORG_HU_ORG" FromRole="HU_ORGANIZATION" ToRole="HU_ORGANIZATION1" />
           <NavigationProperty Name="HU_ORGANIZATION2" Relationship="InsuranceModel.FK_HU_ORG_HU_ORG" FromRole="HU_ORGANIZATION1" ToRole="HU_ORGANIZATION" />
@@ -2036,7 +1844,6 @@
           <Property Name="MODIFIED_LOG" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
           <Property Name="REMARK" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
           <Property Name="TITLE_GROUP_ID" Type="Decimal" Precision="38" Scale="0" />
-          <NavigationProperty Name="HU_EMPLOYEE" Relationship="InsuranceModel.FK_HE_HT" FromRole="HU_TITLE" ToRole="HU_EMPLOYEE" />
           <NavigationProperty Name="HU_ORG_TITLE" Relationship="InsuranceModel.FK_HUTL_HUOT" FromRole="HU_TITLE" ToRole="HU_ORG_TITLE" />
           <NavigationProperty Name="HU_WORKING" Relationship="InsuranceModel.FK_HUTL_HUWK" FromRole="HU_TITLE" ToRole="HU_WORKING" />
         </EntityType>
@@ -2073,7 +1880,6 @@
           <Property Name="IS_MISSION" Type="Int16" />
           <Property Name="IS_WAGE" Type="Int16" />
           <Property Name="PERCENT_SALARY" Type="Decimal" Precision="38" Scale="0" />
-          <NavigationProperty Name="HU_EMPLOYEE" Relationship="InsuranceModel.FK_HE_HW" FromRole="HU_WORKING" ToRole="HU_EMPLOYEE" />
           <NavigationProperty Name="HU_ORGANIZATION" Relationship="InsuranceModel.FK_HUOG_HUWK" FromRole="HU_WORKING" ToRole="HU_ORGANIZATION" />
           <NavigationProperty Name="HU_TITLE" Relationship="InsuranceModel.FK_HUTL_HUWK" FromRole="HU_WORKING" ToRole="HU_TITLE" />
           <NavigationProperty Name="OT_OTHER_LIST" Relationship="InsuranceModel.FK_OTOTL_HUWK" FromRole="HU_WORKING" ToRole="OT_OTHER_LIST" />
@@ -2138,114 +1944,6 @@
           <NavigationProperty Name="OT_OTHER_LIST" Relationship="InsuranceModel.FK_OOLT_OOL" FromRole="OT_OTHER_LIST_TYPE" ToRole="OT_OTHER_LIST" />
           <NavigationProperty Name="OT_OTHER_LIST_GROUP" Relationship="InsuranceModel.FK_OOLG_OOLT" FromRole="OT_OTHER_LIST_TYPE" ToRole="OT_OTHER_LIST_GROUP" />
         </EntityType>
-        <Association Name="FK_FE_HEH">
-          <End Role="HU_EMPLOYEE" Type="InsuranceModel.HU_EMPLOYEE" Multiplicity="1" />
-          <End Role="HU_EMPLOYEE_HEALTH" Type="InsuranceModel.HU_EMPLOYEE_HEALTH" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="HU_EMPLOYEE">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="HU_EMPLOYEE_HEALTH">
-              <PropertyRef Name="EMPLOYEE_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HE_HEE">
-          <End Role="HU_EMPLOYEE" Type="InsuranceModel.HU_EMPLOYEE" Multiplicity="1" />
-          <End Role="HU_EMPLOYEE_EDUCATION" Type="InsuranceModel.HU_EMPLOYEE_EDUCATION" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="HU_EMPLOYEE">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="HU_EMPLOYEE_EDUCATION">
-              <PropertyRef Name="EMPLOYEE_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HE_HEF">
-          <End Role="HU_EMPLOYEE" Type="InsuranceModel.HU_EMPLOYEE" Multiplicity="0..1" />
-          <End Role="HU_EMPLOYEE_FILES" Type="InsuranceModel.HU_EMPLOYEE_FILES" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HU_EMPLOYEE">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="HU_EMPLOYEE_FILES">
-              <PropertyRef Name="EMPLOYEE_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HE_HEO">
-          <End Role="HU_EMPLOYEE" Type="InsuranceModel.HU_EMPLOYEE" Multiplicity="1" />
-          <End Role="HU_EMPLOYEE_OTHER_INFO" Type="InsuranceModel.HU_EMPLOYEE_OTHER_INFO" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="HU_EMPLOYEE">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="HU_EMPLOYEE_OTHER_INFO">
-              <PropertyRef Name="EMPLOYEE_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HE_HES">
-          <End Role="HU_EMPLOYEE" Type="InsuranceModel.HU_EMPLOYEE" Multiplicity="1" />
-          <End Role="HU_EMPLOYEE_SALARY" Type="InsuranceModel.HU_EMPLOYEE_SALARY" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="HU_EMPLOYEE">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="HU_EMPLOYEE_SALARY">
-              <PropertyRef Name="EMPLOYEE_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HE_HT">
-          <End Role="HU_TITLE" Type="InsuranceModel.HU_TITLE" Multiplicity="0..1" />
-          <End Role="HU_EMPLOYEE" Type="InsuranceModel.HU_EMPLOYEE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HU_TITLE">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="HU_EMPLOYEE">
-              <PropertyRef Name="TITLE_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HE_HW">
-          <End Role="HU_EMPLOYEE" Type="InsuranceModel.HU_EMPLOYEE" Multiplicity="0..1" />
-          <End Role="HU_WORKING" Type="InsuranceModel.HU_WORKING" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HU_EMPLOYEE">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="HU_WORKING">
-              <PropertyRef Name="EMPLOYEE_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HU_ORG_HU_EMP">
-          <End Role="HU_ORGANIZATION" Type="InsuranceModel.HU_ORGANIZATION" Multiplicity="0..1" />
-          <End Role="HU_EMPLOYEE" Type="InsuranceModel.HU_EMPLOYEE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HU_ORGANIZATION">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="HU_EMPLOYEE">
-              <PropertyRef Name="ORG_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HUEMD_HUEM">
-          <End Role="HU_EMPLOYEE" Type="InsuranceModel.HU_EMPLOYEE" Multiplicity="0..1" />
-          <End Role="HU_EMPLOYEE1" Type="InsuranceModel.HU_EMPLOYEE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HU_EMPLOYEE">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="HU_EMPLOYEE1">
-              <PropertyRef Name="DIRECT_MANAGER" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_HUOG_HUOT">
           <End Role="HU_ORGANIZATION" Type="InsuranceModel.HU_ORGANIZATION" Multiplicity="0..1" />
           <End Role="HU_ORG_TITLE" Type="InsuranceModel.HU_ORG_TITLE" Multiplicity="*" />
@@ -3258,44 +2956,88 @@
           <Property Type="DateTime" Name="DISSOLVE_DATE" />
           <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="HU_EMPLOYEE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="EMPLOYEE_CODE" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FIRST_NAME_VN" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LAST_NAME_VN" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FULLNAME_VN" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FIRST_NAME_EN" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LAST_NAME_EN" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FULLNAME_EN" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="WORK_STATUS" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CONTRACT_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TITLE_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="JOIN_DATE" />
+          <Property Type="Decimal" Name="DIRECT_MANAGER" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="LAST_WORKING_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="TER_EFFECT_DATE" />
+          <Property Type="DateTime" Name="TER_LAST_DATE" />
+          <Property Type="String" Name="ITIME_ID" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="STAFF_RANK_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PA_OBJECT_SALARY_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="EXPIREDATE_ENT" />
+          <Property Type="DateTime" Name="JOIN_DATE_STATE" />
+          <Property Type="Decimal" Name="LEVEL_MANAGER" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EMPLOYEE_3B_ID" Precision="38" Scale="0" />
+          <Property Type="String" Name="EMPLOYEE_CODE_OLD" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="IS_3B" />
+          <Property Type="Decimal" Name="EMP_STATUS" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AUTOGENTIMESHEET" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="IS_DELETED" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="DM_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="IDM_ID" Precision="38" Scale="0" />
+          <Property Type="String" Name="EMPLOYEE_GROUP" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BOOK_NO" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EMPLOYEE_NAME_OTHER" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="DIRECT_MANAGER_2" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="DIRECT_MANAGER_3" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ROW_NUMBER" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="OBJECTTIMEKEEPING" Precision="38" Scale="0" />
+          <Property Type="Int64" Name="IS_KIEM_NHIEM" />
+          <Property Type="Decimal" Name="OBJECT_LABOR" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="OBJECT_INS" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="SENIORITY_DATE" />
+          <Property Type="Decimal" Name="EMPLOYEE_OBJECT" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="IS_HAZARDOUS" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="IS_HDLD" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="JOB_POSITION" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="JOB_DESCRIPTION" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PRODUCTION_PROCESS" Precision="38" Scale="0" />
+          <Property Type="String" Name="JOB_ATTACH_FILE" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="JOB_FILENAME" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="COMPENSATORY_OBJECT" Precision="38" Scale="0" />
+          <NavigationProperty Name="HU_EMPLOYEE1" Relationship="InsuranceModel.FK_HUEMD_HUEM" FromRole="HU_EMPLOYEE" ToRole="HU_EMPLOYEE1" />
+          <NavigationProperty Name="HU_EMPLOYEE2" Relationship="InsuranceModel.FK_HUEMD_HUEM" FromRole="HU_EMPLOYEE1" ToRole="HU_EMPLOYEE" />
+        </EntityType>
+        <Association Name="FK_HUEMD_HUEM">
+          <End Type="InsuranceModel.HU_EMPLOYEE" Role="HU_EMPLOYEE" Multiplicity="0..1" />
+          <End Type="InsuranceModel.HU_EMPLOYEE" Role="HU_EMPLOYEE1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HU_EMPLOYEE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HU_EMPLOYEE1">
+              <PropertyRef Name="DIRECT_MANAGER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
     <EntityContainerMapping StorageEntityContainer="InsuranceModelStoreContainer" CdmEntityContainer="InsuranceContext">
-        <EntitySetMapping Name="HU_EMPLOYEE">
-            <EntityTypeMapping TypeName="InsuranceModel.HU_EMPLOYEE">
-                <MappingFragment StoreEntitySet="HU_EMPLOYEE">
-                    <ScalarProperty Name="ID" ColumnName="ID" />
-                    <ScalarProperty Name="EMPLOYEE_CODE" ColumnName="EMPLOYEE_CODE" />
-                    <ScalarProperty Name="FIRST_NAME_VN" ColumnName="FIRST_NAME_VN" />
-                    <ScalarProperty Name="LAST_NAME_VN" ColumnName="LAST_NAME_VN" />
-                    <ScalarProperty Name="FULLNAME_VN" ColumnName="FULLNAME_VN" />
-                    <ScalarProperty Name="FIRST_NAME_EN" ColumnName="FIRST_NAME_EN" />
-                    <ScalarProperty Name="LAST_NAME_EN" ColumnName="LAST_NAME_EN" />
-                    <ScalarProperty Name="FULLNAME_EN" ColumnName="FULLNAME_EN" />
-                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
-                    <ScalarProperty Name="WORK_STATUS" ColumnName="WORK_STATUS" />
-                    <ScalarProperty Name="CONTRACT_ID" ColumnName="CONTRACT_ID" />
-                    <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
-                    <ScalarProperty Name="JOIN_DATE" ColumnName="JOIN_DATE" />
-                    <ScalarProperty Name="DIRECT_MANAGER" ColumnName="DIRECT_MANAGER" />
-                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
-                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
-                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
-                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
-                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
-                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
-                    <ScalarProperty Name="LAST_WORKING_ID" ColumnName="LAST_WORKING_ID" />
-                    <ScalarProperty Name="TER_EFFECT_DATE" ColumnName="TER_EFFECT_DATE" />
-                    <ScalarProperty Name="TER_LAST_DATE" ColumnName="TER_LAST_DATE" />
-                    <ScalarProperty Name="ITIME_ID" ColumnName="ITIME_ID" />
-                    <ScalarProperty Name="STAFF_RANK_ID" ColumnName="STAFF_RANK_ID" />
-                    <ScalarProperty Name="JOB_POSITION" ColumnName="JOB_POSITION" />
-                </MappingFragment>
-            </EntityTypeMapping>
-        </EntitySetMapping>
         <EntitySetMapping Name="HU_EMPLOYEE_EDUCATION">
             <EntityTypeMapping TypeName="InsuranceModel.HU_EMPLOYEE_EDUCATION">
                 <MappingFragment StoreEntitySet="HU_EMPLOYEE_EDUCATION">
@@ -4518,6 +4260,69 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HU_EMPLOYEE">
+            <EntityTypeMapping TypeName="InsuranceModel.HU_EMPLOYEE">
+                <MappingFragment StoreEntitySet="HU_EMPLOYEE">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="EMPLOYEE_CODE" ColumnName="EMPLOYEE_CODE" />
+                    <ScalarProperty Name="FIRST_NAME_VN" ColumnName="FIRST_NAME_VN" />
+                    <ScalarProperty Name="LAST_NAME_VN" ColumnName="LAST_NAME_VN" />
+                    <ScalarProperty Name="FULLNAME_VN" ColumnName="FULLNAME_VN" />
+                    <ScalarProperty Name="FIRST_NAME_EN" ColumnName="FIRST_NAME_EN" />
+                    <ScalarProperty Name="LAST_NAME_EN" ColumnName="LAST_NAME_EN" />
+                    <ScalarProperty Name="FULLNAME_EN" ColumnName="FULLNAME_EN" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                    <ScalarProperty Name="WORK_STATUS" ColumnName="WORK_STATUS" />
+                    <ScalarProperty Name="CONTRACT_ID" ColumnName="CONTRACT_ID" />
+                    <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+                    <ScalarProperty Name="JOIN_DATE" ColumnName="JOIN_DATE" />
+                    <ScalarProperty Name="DIRECT_MANAGER" ColumnName="DIRECT_MANAGER" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="LAST_WORKING_ID" ColumnName="LAST_WORKING_ID" />
+                    <ScalarProperty Name="TER_EFFECT_DATE" ColumnName="TER_EFFECT_DATE" />
+                    <ScalarProperty Name="TER_LAST_DATE" ColumnName="TER_LAST_DATE" />
+                    <ScalarProperty Name="ITIME_ID" ColumnName="ITIME_ID" />
+                    <ScalarProperty Name="STAFF_RANK_ID" ColumnName="STAFF_RANK_ID" />
+                    <ScalarProperty Name="PA_OBJECT_SALARY_ID" ColumnName="PA_OBJECT_SALARY_ID" />
+                    <ScalarProperty Name="EXPIREDATE_ENT" ColumnName="EXPIREDATE_ENT" />
+                    <ScalarProperty Name="JOIN_DATE_STATE" ColumnName="JOIN_DATE_STATE" />
+                    <ScalarProperty Name="LEVEL_MANAGER" ColumnName="LEVEL_MANAGER" />
+                    <ScalarProperty Name="EMPLOYEE_3B_ID" ColumnName="EMPLOYEE_3B_ID" />
+                    <ScalarProperty Name="EMPLOYEE_CODE_OLD" ColumnName="EMPLOYEE_CODE_OLD" />
+                    <ScalarProperty Name="IS_3B" ColumnName="IS_3B" />
+                    <ScalarProperty Name="EMP_STATUS" ColumnName="EMP_STATUS" />
+                    <ScalarProperty Name="AUTOGENTIMESHEET" ColumnName="AUTOGENTIMESHEET" />
+                    <ScalarProperty Name="IS_DELETED" ColumnName="IS_DELETED" />
+                    <ScalarProperty Name="DM_ID" ColumnName="DM_ID" />
+                    <ScalarProperty Name="IDM_ID" ColumnName="IDM_ID" />
+                    <ScalarProperty Name="EMPLOYEE_GROUP" ColumnName="EMPLOYEE_GROUP" />
+                    <ScalarProperty Name="BOOK_NO" ColumnName="BOOK_NO" />
+                    <ScalarProperty Name="EMPLOYEE_NAME_OTHER" ColumnName="EMPLOYEE_NAME_OTHER" />
+                    <ScalarProperty Name="DIRECT_MANAGER_2" ColumnName="DIRECT_MANAGER_2" />
+                    <ScalarProperty Name="DIRECT_MANAGER_3" ColumnName="DIRECT_MANAGER_3" />
+                    <ScalarProperty Name="ROW_NUMBER" ColumnName="ROW_NUMBER" />
+                    <ScalarProperty Name="OBJECTTIMEKEEPING" ColumnName="OBJECTTIMEKEEPING" />
+                    <ScalarProperty Name="IS_KIEM_NHIEM" ColumnName="IS_KIEM_NHIEM" />
+                    <ScalarProperty Name="OBJECT_LABOR" ColumnName="OBJECT_LABOR" />
+                    <ScalarProperty Name="OBJECT_INS" ColumnName="OBJECT_INS" />
+                    <ScalarProperty Name="SENIORITY_DATE" ColumnName="SENIORITY_DATE" />
+                    <ScalarProperty Name="EMPLOYEE_OBJECT" ColumnName="EMPLOYEE_OBJECT" />
+                    <ScalarProperty Name="IS_HAZARDOUS" ColumnName="IS_HAZARDOUS" />
+                    <ScalarProperty Name="IS_HDLD" ColumnName="IS_HDLD" />
+                    <ScalarProperty Name="JOB_POSITION" ColumnName="JOB_POSITION" />
+                    <ScalarProperty Name="JOB_DESCRIPTION" ColumnName="JOB_DESCRIPTION" />
+                    <ScalarProperty Name="PRODUCTION_PROCESS" ColumnName="PRODUCTION_PROCESS" />
+                    <ScalarProperty Name="JOB_ATTACH_FILE" ColumnName="JOB_ATTACH_FILE" />
+                    <ScalarProperty Name="JOB_FILENAME" ColumnName="JOB_FILENAME" />
+                    <ScalarProperty Name="COMPENSATORY_OBJECT" ColumnName="COMPENSATORY_OBJECT" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="InsuranceModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -4547,8 +4352,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="InsuranceContext" ZoomLevel="88">
-        <EntityTypeShape EntityType="InsuranceModel.HU_EMPLOYEE" Width="1.5" PointX="3" PointY="4.75" Height="7.941630859375" IsExpanded="true" />
+      <Diagram Name="InsuranceContext" ZoomLevel="28">
         <EntityTypeShape EntityType="InsuranceModel.HU_EMPLOYEE_EDUCATION" Width="1.5" PointX="5.25" PointY="5.875" Height="0.40000000000000036" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.HU_EMPLOYEE_FILES" Width="2" PointX="5.25" PointY="4.75" Height="0.40000000000000036" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.HU_EMPLOYEE_HEALTH" Width="1.75" PointX="5.25" PointY="7" Height="0.40000000000000036" IsExpanded="false" />
@@ -4562,48 +4366,6 @@
         <EntityTypeShape EntityType="InsuranceModel.OT_OTHER_LIST" Width="1.5" PointX="3" PointY="0.75" Height="4.8648079427083326" IsExpanded="true" />
         <EntityTypeShape EntityType="InsuranceModel.OT_OTHER_LIST_GROUP" Width="1.5" PointX="1.5" PointY="6.125" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.OT_OTHER_LIST_TYPE" Width="1.5" PointX="0.75" PointY="1.125" Height="0.39999999999999858" IsExpanded="false" />
-        <AssociationConnector Association="InsuranceModel.FK_FE_HEH" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="7.2" />
-          <ConnectorPoint PointX="5.25" PointY="7.2" />
-        </AssociationConnector>
-        <AssociationConnector Association="InsuranceModel.FK_HE_HEE" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="6.075" />
-          <ConnectorPoint PointX="5.25" PointY="6.075" />
-        </AssociationConnector>
-        <AssociationConnector Association="InsuranceModel.FK_HE_HEF" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="4.95" />
-          <ConnectorPoint PointX="5.25" PointY="4.95" />
-        </AssociationConnector>
-        <AssociationConnector Association="InsuranceModel.FK_HE_HEO" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="8.45" />
-          <ConnectorPoint PointX="5.25" PointY="8.45" />
-        </AssociationConnector>
-        <AssociationConnector Association="InsuranceModel.FK_HE_HES" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="4.75" />
-          <ConnectorPoint PointX="5.25" PointY="4.025" />
-        </AssociationConnector>
-        <AssociationConnector Association="InsuranceModel.FK_HE_HT" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="4.95" />
-          <ConnectorPoint PointX="2.6041666666666665" PointY="4.9499999999999993" />
-          <ConnectorPoint PointX="2.9270833333333335" PointY="4.95" />
-          <ConnectorPoint PointX="3" PointY="4.95" />
-        </AssociationConnector>
-        <AssociationConnector Association="InsuranceModel.FK_HE_HW" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.4757692307692309" PointY="4.75" />
-          <ConnectorPoint PointX="4.875" PointY="4.3505650293491138" />
-          <ConnectorPoint PointX="4.875" PointY="2.5249999999999986" />
-          <ConnectorPoint PointX="5.25" PointY="2.1499999999999986" />
-        </AssociationConnector>
-        <AssociationConnector Association="InsuranceModel.FK_HU_ORG_HU_EMP" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="7.1999999999999993" />
-          <ConnectorPoint PointX="3" PointY="7.1999999999999993" />
-        </AssociationConnector>
-        <AssociationConnector Association="InsuranceModel.FK_HUEMD_HUEM" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.5319230769230767" PointY="12.691630859375" />
-          <ConnectorPoint PointX="3.5319230769230767" PointY="12.941630859375" />
-          <ConnectorPoint PointX="3.9784615384615383" PointY="12.941630859375" />
-          <ConnectorPoint PointX="3.9784615384615383" PointY="12.691630859375" />
-        </AssociationConnector>
         <AssociationConnector Association="InsuranceModel.FK_HUOG_HUOT" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="2.9499999999999993" />
           <ConnectorPoint PointX="2.6041666666666665" PointY="2.949999999999998" />
@@ -4632,16 +4394,16 @@
           <ConnectorPoint PointX="2.75" PointY="1.9499999999999993" />
           <ConnectorPoint PointX="2.75" PointY="0.5" />
           <ConnectorPoint PointX="4.875" PointY="0.5" />
-          <ConnectorPoint PointX="4.875" PointY="1.9746093749999991" />
-          <ConnectorPoint PointX="5.25" PointY="1.9746093749999991" />
+          <ConnectorPoint PointX="4.875" PointY="1.9499999999999993" />
+          <ConnectorPoint PointX="5.25" PointY="1.9499999999999993" />
         </AssociationConnector>
         <AssociationConnector Association="InsuranceModel.FK_HUTL_HUWK" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="5.0812519999999939" />
           <ConnectorPoint PointX="2.6875" PointY="5.0812519999999939" />
           <ConnectorPoint PointX="2.6875" PointY="0.25" />
           <ConnectorPoint PointX="4.9375" PointY="0.25" />
-          <ConnectorPoint PointX="4.9375" PointY="2.0058618749999928" />
-          <ConnectorPoint PointX="5.25" PointY="2.0058618749999928" />
+          <ConnectorPoint PointX="4.9375" PointY="1.9499999999999993" />
+          <ConnectorPoint PointX="5.25" PointY="1.9499999999999993" />
         </AssociationConnector>
         <AssociationConnector Association="InsuranceModel.FK_OTOTL_HUWK" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="1.7992187499999996" />
@@ -4702,10 +4464,6 @@
           <ConnectorPoint PointX="2.375" PointY="14.075" />
           <ConnectorPoint PointX="2.6875" PointY="14.075" />
           <ConnectorPoint PointX="2.6875" PointY="12.8125" />
-          <ConnectorPoint PointX="3.4485897435897432" PointY="12.8125" />
-          <ConnectorPoint PointX="3.61525641025641" PointY="12.8125" />
-          <ConnectorPoint PointX="3.8951282051282048" PointY="12.8125" />
-          <ConnectorPoint PointX="4.0617948717948718" PointY="12.8125" />
           <ConnectorPoint PointX="4.781249" PointY="12.8125" />
           <ConnectorPoint PointX="4.781249" PointY="13.875" />
         </AssociationConnector>
@@ -4715,6 +4473,13 @@
         <EntityTypeShape EntityType="InsuranceModel.HU_WARD" Width="1.5" PointX="13.375" PointY="14.75" Height="3.5186979166666674" />
         <EntityTypeShape EntityType="InsuranceModel.INS_LIST_INSURANCE" Width="1.5" PointX="15.375" PointY="10.75" Height="4.0956022135416674" />
         <EntityTypeShape EntityType="InsuranceModel.HUV_ORGANIZATION" Width="1.5" PointX="15.375" PointY="15.75" Height="12.749166666666667" />
+        <EntityTypeShape EntityType="InsuranceModel.HU_EMPLOYEE" Width="1.5" PointX="17.375" PointY="0.75" Height="12.364563802083325" />
+        <AssociationConnector Association="InsuranceModel.FK_HUEMD_HUEM" >
+          <ConnectorPoint PointX="17.906923076923075" PointY="13.114563802083325" />
+          <ConnectorPoint PointX="17.906923076923075" PointY="13.364563802083325" />
+          <ConnectorPoint PointX="18.353461538461538" PointY="13.364563802083325" />
+          <ConnectorPoint PointX="18.353461538461538" PointY="13.114563802083325" />
+        </AssociationConnector>
       </Diagram>
     </Diagrams>
   </Designer>

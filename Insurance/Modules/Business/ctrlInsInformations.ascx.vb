@@ -343,7 +343,7 @@ Public Class ctrlInsInformations
                                                     , rtxtSeniortyYearCT.Value _
                                                     , rtxtSeniortyMonthCT.Value _
                                                     , txtSeniorityTotal.Text _
-                                                    , cboPlaceBHYT.SelectedValue
+                                                    , InsCommon.getNumber(cboPlaceBHYT.SelectedValue)
                                                     ) Then
                         Refresh("InsertView")
                         'Common.Common.OrganizationLocationDataSession = Nothing
@@ -398,7 +398,7 @@ Public Class ctrlInsInformations
                                                     , rtxtSeniortyYearCT.Value _
                                                     , rtxtSeniortyMonthCT.Value _
                                                     , txtSeniorityTotal.Text _
-                                                    , cboPlaceBHYT.SelectedValue
+                                                    , InsCommon.getNumber(cboPlaceBHYT.SelectedValue)
                                                     ) Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
                         Dim str As String = "getRadWindow().close('1');"

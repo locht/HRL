@@ -886,7 +886,7 @@ Namespace InsuranceBusiness.ServiceImplementations
 
         Public Function GetInsTotalSalary(ByVal username As String, ByVal year As Double? _
         , ByVal month As Double? _
-        , ByVal ins_org_id As Double? _
+        , ByVal ins_org_id As String _
         , ByVal period As String
         ) As DataTable _
                    Implements ServiceContracts.IInsuranceBusiness.GetInsTotalSalary
@@ -895,7 +895,7 @@ Namespace InsuranceBusiness.ServiceImplementations
                 Dim objS As Object = rep.ExecuteStore("PKG_INS_BUSINESS.SPI_INS_TOTALSALARY", New With {.P_CUR = OUT_CURSOR, .P_USERID = username _
                                                         , .P_YEAR = IIf(year Is Nothing, System.DBNull.Value, year) _
                                                         , .P_MONTH = IIf(month Is Nothing, System.DBNull.Value, month) _
-                                                        , .P_INS_ORG_ID = IIf(ins_org_id Is Nothing, System.DBNull.Value, ins_org_id) _
+                                                        , .P_INS_ORG_ID = ins_org_id _
                                                         , .P_PERIOD = IIf(period Is Nothing, System.DBNull.Value, period)})
 
                 Return objS

@@ -903,6 +903,39 @@ Namespace InsuranceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+
+        Public Function EXPORT_INS_INFORMATION(ByVal P_USER_NAME As String, ByVal P_ORG_ID As Decimal, ByVal P_IS_DISSOLVE As Boolean) As DataSet Implements ServiceContracts.IInsuranceBusiness.EXPORT_INS_INFORMATION
+            Using rep As New InsuranceRepository
+                Try
+
+                    Return rep.EXPORT_INS_INFORMATION(P_USER_NAME, P_ORG_ID, P_IS_DISSOLVE)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function CheckEmployee_Exits(ByVal empCode As String) As Integer _
+          Implements ServiceContracts.IInsuranceBusiness.CheckEmployee_Exits
+            Using rep As New InsuranceRepository
+                Try
+                    Return rep.CheckEmployee_Exits(empCode)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function INPORT_INS_INFORMATION(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean _
+         Implements ServiceContracts.IInsuranceBusiness.INPORT_INS_INFORMATION
+            Using rep As New InsuranceRepository
+                Try
+                    Return rep.INPORT_INS_INFORMATION(P_DOCXML, P_USER)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #End Region
 
     End Class

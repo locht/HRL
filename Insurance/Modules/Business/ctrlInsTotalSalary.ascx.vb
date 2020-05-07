@@ -11,12 +11,12 @@ Public Class ctrlInsTotalSalary
 
     Public Property popupId As String
 
-    Public Property InsCompList As DataTable
+    Public Property DS_INS_ORG As DataTable
         Get
-            Return ViewState(Me.ID & "_InsCompList")
+            Return ViewState(Me.ID & "_DS_INS_ORG")
         End Get
         Set(ByVal value As DataTable)
-            ViewState(Me.ID & "_InsCompList") = value
+            ViewState(Me.ID & "_DS_INS_ORG") = value
         End Set
     End Property
 
@@ -90,7 +90,6 @@ Public Class ctrlInsTotalSalary
     Protected Sub InitControl()
         Try
            
-
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -135,7 +134,6 @@ Public Class ctrlInsTotalSalary
                     CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = True
                     CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = True
                     CType(Me.MainToolBar.Items(2), RadToolBarButton).Enabled = True
-
 
                 Case CommonMessage.STATE_EDIT
                     Utilities.EnabledGridNotPostback(rgGridData, False)
@@ -303,10 +301,10 @@ Public Class ctrlInsTotalSalary
     Private Sub GetDataCombo()
         Try
             Dim rep As New InsuranceBusiness.InsuranceBusinessClient
-            Dim lstSource As DataTable = rep.GetInsListInsuranceByUsername(Common.Common.GetUsername(), False)
-            FillRadCombobox(ddlINS_ORG_ID, lstSource, "NAME", "ID", True)
+            DS_INS_ORG = rep.GetInsListInsuranceByUsername(Common.Common.GetUsername(), False)
+            FillRadCombobox(ddlINS_ORG_ID, DS_INS_ORG, "NAME", "ID", True)
             If ddlINS_ORG_ID.Items.Count > 0 Then
-                ddlINS_ORG_ID.SelectedValue = lstSource.Rows(0)("ID")
+                ddlINS_ORG_ID.SelectedValue = DS_INS_ORG.Rows(0)("ID")
                 LoadComboboxPeriod()
             End If
 
@@ -335,13 +333,25 @@ Public Class ctrlInsTotalSalary
 
     Private Sub LoadData(Optional ByVal isBind As Boolean = False)
         Try
+            Dim strOrg As String
             If txtYear.Text.Equals("") Then
                 txtYear.Text = Now.Year
                 txtMonth.Text = Now.Month
             End If
+
+            If ddlINS_ORG_ID.SelectedValue = "0" Then
+                For i = 1 To DS_INS_ORG.Rows.Count - 1
+                    strOrg &= IIf(strOrg = vbNullString, DS_INS_ORG.Rows(i)("ID"), "," & DS_INS_ORG.Rows(i)("ID"))
+                Next
+            Else
+                strOrg = "," & ddlINS_ORG_ID.SelectedValue
+            End If
+
+            
+
             Dim lstSource As DataTable = (New InsuranceBusiness.InsuranceBusinessClient).GetInsTotalSalary(Common.Common.GetUsername(), InsCommon.getNumber(txtYear.Text) _
                                         , InsCommon.getNumber(txtMonth.Text) _
-                                        , InsCommon.getNumber(ddlINS_ORG_ID.SelectedValue) _
+                                        , strOrg _
                                          , InsCommon.getString(ddlPeriod.SelectedValue) _
                                         )
             rgGridData.DataSource = lstSource

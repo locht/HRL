@@ -10974,6 +10974,15 @@ Namespace InsuranceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GET_SENIORITY", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GET_SENIORITYResponse")>  _
         Function GET_SENIORITY(ByVal p_EMP_ID As Decimal) As System.Data.DataTable
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/EXPORT_INS_INFORMATION", ReplyAction:="http://tempuri.org/IInsuranceBusiness/EXPORT_INS_INFORMATIONResponse")>  _
+        Function EXPORT_INS_INFORMATION(ByVal P_USER_NAME As String, ByVal P_ORG_ID As Decimal, ByVal P_IS_DISSOLVE As Boolean) As System.Data.DataSet
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/CheckEmployee_Exits", ReplyAction:="http://tempuri.org/IInsuranceBusiness/CheckEmployee_ExitsResponse")>  _
+        Function CheckEmployee_Exits(ByVal empCode As String) As Integer
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/INPORT_INS_INFORMATION", ReplyAction:="http://tempuri.org/IInsuranceBusiness/INPORT_INS_INFORMATIONResponse")>  _
+        Function INPORT_INS_INFORMATION(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGEById", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGEByIdResponse")>  _
         Function GetINS_CHANGEById(ByVal _id As System.Nullable(Of Decimal)) As InsuranceBusiness.INS_CHANGEDTO
         
@@ -11154,52 +11163,52 @@ Namespace InsuranceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsInfomation", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsInfomationResponse")>  _
         Function GetInsInfomation(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal org_id As System.Nullable(Of Double), ByVal isTer As System.Nullable(Of Double), ByVal isDISSOLVE As System.Nullable(Of Double)) As System.Data.DataTable
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsInfomation", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsInfomationResponse")> _
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsInfomation", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsInfomationResponse")>  _
         Function UpdateInsInfomation( _
-                    ByVal username As String, _
-                    ByVal id As System.Nullable(Of Double), _
-                    ByVal employee_id As System.Nullable(Of Double), _
-                    ByVal ins_org_name As String, _
-                    ByVal seniority_insurance As System.Nullable(Of Double), _
-                    ByVal seniority_insurance_company As String, _
-                    ByVal social_number As String, _
-                    ByVal social_status As System.Nullable(Of Double), _
-                    ByVal social_submit_date As System.Nullable(Of Date), _
-                    ByVal social_submit As String, _
-                    ByVal social_grant_date As System.Nullable(Of Date), _
-                    ByVal social_save_number As String, _
-                    ByVal social_deliver_date As System.Nullable(Of Date), _
-                    ByVal social_return_date As System.Nullable(Of Date), _
-                    ByVal social_receiver As String, _
-                    ByVal social_note As String, _
-                    ByVal health_number As String, _
-                    ByVal health_status As System.Nullable(Of Double), _
-                    ByVal health_effect_from_date As System.Nullable(Of Date), _
-                    ByVal health_effect_to_date As System.Nullable(Of Date), _
-                    ByVal health_area_ins_id As System.Nullable(Of Double), _
-                    ByVal health_receive_date As System.Nullable(Of Date), _
-                    ByVal health_receiver As String, _
-                    ByVal health_return_date As System.Nullable(Of Date), _
-                    ByVal unemp_from_month As System.Nullable(Of Date), _
-                    ByVal unemp_to_month As System.Nullable(Of Date), _
-                    ByVal unemp_register_month As System.Nullable(Of Date), _
-                    ByVal si_from_month As System.Nullable(Of Date), _
-                    ByVal si_to_month As System.Nullable(Of Date), _
-                    ByVal hi_from_month As System.Nullable(Of Date), _
-                    ByVal hi_to_month As System.Nullable(Of Date), _
-                    ByVal si As System.Nullable(Of Double), _
-                    ByVal hi As System.Nullable(Of Double), _
-                    ByVal ui As System.Nullable(Of Double), _
-                    ByVal bhtnld_bnn As System.Nullable(Of Double), _
-                    ByVal is_hi_five_year As System.Nullable(Of Double), _
-                    ByVal bhtnld_bnn_from As System.Nullable(Of Date), _
-                    ByVal bhtnld_bnn_to As System.Nullable(Of Date),
-                    ByVal seniority_year As System.Nullable(Of Double), _
-                    ByVal seniority_month As System.Nullable(Of Double), _
-                    ByVal seniority_year_cp As System.Nullable(Of Double), _
-                    ByVal seniority_month_cp As System.Nullable(Of Double), _
-                    ByVal seniority_total As String, _
-                    ByVal place_bhyt_id As System.Nullable(Of Double)) As Boolean
+                    ByVal username As String,  _
+                    ByVal id As System.Nullable(Of Double),  _
+                    ByVal employee_id As System.Nullable(Of Double),  _
+                    ByVal ins_org_name As String,  _
+                    ByVal seniority_insurance As System.Nullable(Of Double),  _
+                    ByVal seniority_insurance_company As String,  _
+                    ByVal social_number As String,  _
+                    ByVal social_status As System.Nullable(Of Double),  _
+                    ByVal social_submit_date As System.Nullable(Of Date),  _
+                    ByVal social_submit As String,  _
+                    ByVal social_grant_date As System.Nullable(Of Date),  _
+                    ByVal social_save_number As String,  _
+                    ByVal social_deliver_date As System.Nullable(Of Date),  _
+                    ByVal social_return_date As System.Nullable(Of Date),  _
+                    ByVal social_receiver As String,  _
+                    ByVal social_note As String,  _
+                    ByVal health_number As String,  _
+                    ByVal health_status As System.Nullable(Of Double),  _
+                    ByVal health_effect_from_date As System.Nullable(Of Date),  _
+                    ByVal health_effect_to_date As System.Nullable(Of Date),  _
+                    ByVal health_area_ins_id As System.Nullable(Of Double),  _
+                    ByVal health_receive_date As System.Nullable(Of Date),  _
+                    ByVal health_receiver As String,  _
+                    ByVal health_return_date As System.Nullable(Of Date),  _
+                    ByVal unemp_from_month As System.Nullable(Of Date),  _
+                    ByVal unemp_to_month As System.Nullable(Of Date),  _
+                    ByVal unemp_register_month As System.Nullable(Of Date),  _
+                    ByVal si_from_month As System.Nullable(Of Date),  _
+                    ByVal si_to_month As System.Nullable(Of Date),  _
+                    ByVal hi_from_month As System.Nullable(Of Date),  _
+                    ByVal hi_to_month As System.Nullable(Of Date),  _
+                    ByVal si As System.Nullable(Of Double),  _
+                    ByVal hi As System.Nullable(Of Double),  _
+                    ByVal ui As System.Nullable(Of Double),  _
+                    ByVal bhtnld_bnn As System.Nullable(Of Double),  _
+                    ByVal is_hi_five_year As System.Nullable(Of Double),  _
+                    ByVal bhtnld_bnn_from As System.Nullable(Of Date),  _
+                    ByVal bhtnld_bnn_to As System.Nullable(Of Date),  _
+                    ByVal seniority_year As System.Nullable(Of Decimal),  _
+                    ByVal seniority_month As System.Nullable(Of Decimal),  _
+                    ByVal seniority_year_cp As System.Nullable(Of Decimal),  _
+                    ByVal seniority_month_cp As System.Nullable(Of Decimal),  _
+                    ByVal seniority_total As String,  _
+                    ByVal place_bhyt_id As System.Nullable(Of Decimal)) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsInfomation", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsInfomationResponse")>  _
         Function DeleteInsInfomation(ByVal username As String, ByVal id As System.Nullable(Of Double)) As Boolean
@@ -11351,7 +11360,7 @@ Namespace InsuranceBusiness
         Function CheckInvalidArising(ByVal ins_Org_Id As Decimal) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsTotalSalary", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsTotalSalaryResponse")>  _
-        Function GetInsTotalSalary(ByVal username As String, ByVal year As System.Nullable(Of Double), ByVal month As System.Nullable(Of Double), ByVal ins_org_id As System.Nullable(Of Double), ByVal period As String) As System.Data.DataTable
+        Function GetInsTotalSalary(ByVal username As String, ByVal year As System.Nullable(Of Double), ByVal month As System.Nullable(Of Double), ByVal ins_org_id As String, ByVal period As String) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsTotalSalaryPeriod", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsTotalSalaryPeriodResponse")>  _
         Function GetInsTotalSalaryPeriod(ByVal username As String, ByVal year As System.Nullable(Of Double), ByVal month As System.Nullable(Of Double), ByVal ins_org_id As System.Nullable(Of Double), ByVal period As String) As System.Data.DataTable
@@ -11890,6 +11899,18 @@ Namespace InsuranceBusiness
             Return MyBase.Channel.GET_SENIORITY(p_EMP_ID)
         End Function
         
+        Public Function EXPORT_INS_INFORMATION(ByVal P_USER_NAME As String, ByVal P_ORG_ID As Decimal, ByVal P_IS_DISSOLVE As Boolean) As System.Data.DataSet Implements InsuranceBusiness.IInsuranceBusiness.EXPORT_INS_INFORMATION
+            Return MyBase.Channel.EXPORT_INS_INFORMATION(P_USER_NAME, P_ORG_ID, P_IS_DISSOLVE)
+        End Function
+        
+        Public Function CheckEmployee_Exits(ByVal empCode As String) As Integer Implements InsuranceBusiness.IInsuranceBusiness.CheckEmployee_Exits
+            Return MyBase.Channel.CheckEmployee_Exits(empCode)
+        End Function
+        
+        Public Function INPORT_INS_INFORMATION(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.INPORT_INS_INFORMATION
+            Return MyBase.Channel.INPORT_INS_INFORMATION(P_DOCXML, P_USER)
+        End Function
+        
         Public Function GetINS_CHANGEById(ByVal _id As System.Nullable(Of Decimal)) As InsuranceBusiness.INS_CHANGEDTO Implements InsuranceBusiness.IInsuranceBusiness.GetINS_CHANGEById
             Return MyBase.Channel.GetINS_CHANGEById(_id)
         End Function
@@ -12131,50 +12152,50 @@ Namespace InsuranceBusiness
         End Function
         
         Public Function UpdateInsInfomation( _
-                    ByVal username As String, _
-                    ByVal id As System.Nullable(Of Double), _
-                    ByVal employee_id As System.Nullable(Of Double), _
-                    ByVal ins_org_name As String, _
-                    ByVal seniority_insurance As System.Nullable(Of Double), _
-                    ByVal seniority_insurance_company As String, _
-                    ByVal social_number As String, _
-                    ByVal social_status As System.Nullable(Of Double), _
-                    ByVal social_submit_date As System.Nullable(Of Date), _
-                    ByVal social_submit As String, _
-                    ByVal social_grant_date As System.Nullable(Of Date), _
-                    ByVal social_save_number As String, _
-                    ByVal social_deliver_date As System.Nullable(Of Date), _
-                    ByVal social_return_date As System.Nullable(Of Date), _
-                    ByVal social_receiver As String, _
-                    ByVal social_note As String, _
-                    ByVal health_number As String, _
-                    ByVal health_status As System.Nullable(Of Double), _
-                    ByVal health_effect_from_date As System.Nullable(Of Date), _
-                    ByVal health_effect_to_date As System.Nullable(Of Date), _
-                    ByVal health_area_ins_id As System.Nullable(Of Double), _
-                    ByVal health_receive_date As System.Nullable(Of Date), _
-                    ByVal health_receiver As String, _
-                    ByVal health_return_date As System.Nullable(Of Date), _
-                    ByVal unemp_from_month As System.Nullable(Of Date), _
-                    ByVal unemp_to_month As System.Nullable(Of Date), _
-                    ByVal unemp_register_month As System.Nullable(Of Date), _
-                    ByVal si_from_month As System.Nullable(Of Date), _
-                    ByVal si_to_month As System.Nullable(Of Date), _
-                    ByVal hi_from_month As System.Nullable(Of Date), _
-                    ByVal hi_to_month As System.Nullable(Of Date), _
-                    ByVal si As System.Nullable(Of Double), _
-                    ByVal hi As System.Nullable(Of Double), _
-                    ByVal ui As System.Nullable(Of Double), _
-                    ByVal bhtnld_bnn As System.Nullable(Of Double), _
-                    ByVal is_hi_five_year As System.Nullable(Of Double), _
-                    ByVal bhtnld_bnn_from As System.Nullable(Of Date), _
-                    ByVal bhtnld_bnn_to As System.Nullable(Of Date), _
-                    ByVal seniority_year As System.Nullable(Of Double), _
-                    ByVal seniority_month As System.Nullable(Of Double), _
-                    ByVal seniority_year_cp As System.Nullable(Of Double), _
-                    ByVal seniority_month_cp As System.Nullable(Of Double), _
-                    ByVal seniority_total As String, _
-                    ByVal place_bhyt_id As System.Nullable(Of Double)) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.UpdateInsInfomation
+                    ByVal username As String,  _
+                    ByVal id As System.Nullable(Of Double),  _
+                    ByVal employee_id As System.Nullable(Of Double),  _
+                    ByVal ins_org_name As String,  _
+                    ByVal seniority_insurance As System.Nullable(Of Double),  _
+                    ByVal seniority_insurance_company As String,  _
+                    ByVal social_number As String,  _
+                    ByVal social_status As System.Nullable(Of Double),  _
+                    ByVal social_submit_date As System.Nullable(Of Date),  _
+                    ByVal social_submit As String,  _
+                    ByVal social_grant_date As System.Nullable(Of Date),  _
+                    ByVal social_save_number As String,  _
+                    ByVal social_deliver_date As System.Nullable(Of Date),  _
+                    ByVal social_return_date As System.Nullable(Of Date),  _
+                    ByVal social_receiver As String,  _
+                    ByVal social_note As String,  _
+                    ByVal health_number As String,  _
+                    ByVal health_status As System.Nullable(Of Double),  _
+                    ByVal health_effect_from_date As System.Nullable(Of Date),  _
+                    ByVal health_effect_to_date As System.Nullable(Of Date),  _
+                    ByVal health_area_ins_id As System.Nullable(Of Double),  _
+                    ByVal health_receive_date As System.Nullable(Of Date),  _
+                    ByVal health_receiver As String,  _
+                    ByVal health_return_date As System.Nullable(Of Date),  _
+                    ByVal unemp_from_month As System.Nullable(Of Date),  _
+                    ByVal unemp_to_month As System.Nullable(Of Date),  _
+                    ByVal unemp_register_month As System.Nullable(Of Date),  _
+                    ByVal si_from_month As System.Nullable(Of Date),  _
+                    ByVal si_to_month As System.Nullable(Of Date),  _
+                    ByVal hi_from_month As System.Nullable(Of Date),  _
+                    ByVal hi_to_month As System.Nullable(Of Date),  _
+                    ByVal si As System.Nullable(Of Double),  _
+                    ByVal hi As System.Nullable(Of Double),  _
+                    ByVal ui As System.Nullable(Of Double),  _
+                    ByVal bhtnld_bnn As System.Nullable(Of Double),  _
+                    ByVal is_hi_five_year As System.Nullable(Of Double),  _
+                    ByVal bhtnld_bnn_from As System.Nullable(Of Date),  _
+                    ByVal bhtnld_bnn_to As System.Nullable(Of Date),  _
+                    ByVal seniority_year As System.Nullable(Of Decimal),  _
+                    ByVal seniority_month As System.Nullable(Of Decimal),  _
+                    ByVal seniority_year_cp As System.Nullable(Of Decimal),  _
+                    ByVal seniority_month_cp As System.Nullable(Of Decimal),  _
+                    ByVal seniority_total As String,  _
+                    ByVal place_bhyt_id As System.Nullable(Of Decimal)) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.UpdateInsInfomation
             Return MyBase.Channel.UpdateInsInfomation(username, id, employee_id, ins_org_name, seniority_insurance, seniority_insurance_company, social_number, social_status, social_submit_date, social_submit, social_grant_date, social_save_number, social_deliver_date, social_return_date, social_receiver, social_note, health_number, health_status, health_effect_from_date, health_effect_to_date, health_area_ins_id, health_receive_date, health_receiver, health_return_date, unemp_from_month, unemp_to_month, unemp_register_month, si_from_month, si_to_month, hi_from_month, hi_to_month, si, hi, ui, bhtnld_bnn, is_hi_five_year, bhtnld_bnn_from, bhtnld_bnn_to, seniority_year, seniority_month, seniority_year_cp, seniority_month_cp, seniority_total, place_bhyt_id)
         End Function
         
@@ -12341,7 +12362,7 @@ Namespace InsuranceBusiness
             Return MyBase.Channel.CheckInvalidArising(ins_Org_Id)
         End Function
         
-        Public Function GetInsTotalSalary(ByVal username As String, ByVal year As System.Nullable(Of Double), ByVal month As System.Nullable(Of Double), ByVal ins_org_id As System.Nullable(Of Double), ByVal period As String) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetInsTotalSalary
+        Public Function GetInsTotalSalary(ByVal username As String, ByVal year As System.Nullable(Of Double), ByVal month As System.Nullable(Of Double), ByVal ins_org_id As String, ByVal period As String) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetInsTotalSalary
             Return MyBase.Channel.GetInsTotalSalary(username, year, month, ins_org_id, period)
         End Function
         

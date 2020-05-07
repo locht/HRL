@@ -736,7 +736,7 @@ Namespace InsuranceBusiness.ServiceContracts
         <OperationContract()>
         Function GetInsTotalSalary(ByVal username As String, ByVal year As Double? _
                                 , ByVal month As Double? _
-                                , ByVal ins_org_id As Double? _
+                                , ByVal ins_org_id As String _
                                 , ByVal period As String
                                 ) As DataTable
 
@@ -869,6 +869,15 @@ Namespace InsuranceBusiness.ServiceContracts
 
         <OperationContract()>
         Function GET_SENIORITY(ByVal p_EMP_ID As Decimal) As DataTable
+
+        <OperationContract()>
+        Function EXPORT_INS_INFORMATION(ByVal P_USER_NAME As String, ByVal P_ORG_ID As Decimal, ByVal P_IS_DISSOLVE As Boolean) As DataSet
+
+        <OperationContract()>
+        Function CheckEmployee_Exits(ByVal empCode As String) As Integer
+
+        <OperationContract()>
+        Function INPORT_INS_INFORMATION(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
 
     End Interface
 End Namespace

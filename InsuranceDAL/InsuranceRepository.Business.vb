@@ -2946,6 +2946,51 @@ Partial Public Class InsuranceRepository
         Return Nothing
     End Function
 
+    Public Function EXPORT_INS_INFORMATION(ByVal P_USER_NAME As String, ByVal P_ORG_ID As Decimal, ByVal P_IS_DISSOLVE As Boolean) As DataSet
+        Using cls As New DataAccess.QueryData
+            Dim dtData As DataSet = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.EXPORT_INS_INFORMATION",
+                                           New With {.P_USER_NAME = P_USER_NAME,
+                                                     .P_ORG_ID = P_ORG_ID,
+                                                     .P_IS_DISSOLVE = P_IS_DISSOLVE,
+                                                     .P_CUR = cls.OUT_CURSOR,
+                                                     .P_CUR1 = cls.OUT_CURSOR,
+                                                     .P_CUR2 = cls.OUT_CURSOR}, False)
+
+            Return dtData
+        End Using
+        Return Nothing
+    End Function
+
+    Public Function CheckEmployee_Exits(ByVal empCode As String) As Integer
+        Dim objEmp As HU_EMPLOYEE
+        Dim result As Integer
+        Try
+            objEmp = (From p In Context.HU_EMPLOYEE Where p.EMPLOYEE_CODE = empCode.Replace(" ", "")).SingleOrDefault
+            If objEmp IsNot Nothing Then
+                result = objEmp.ID
+            Else
+                result = 0
+            End If
+            Return result
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "insurance")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function INPORT_INS_INFORMATION(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_HU_IPROFILE_LIST.INPORT_INS_INFORMATION",
+                                 New With {.P_DOCXML = P_DOCXML, .P_USER = P_USER})
+            End Using
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+
+    End Function
+
 #End Region
 
 End Class

@@ -185,6 +185,7 @@
     </tlk:RadPane>
 </tlk:RadSplitter>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
+<Common:ctrlUpload ID="ctrlUpload1" runat="server" />
 <tlk:RadWindowManager ID="RadWindowManager1" runat="server">
     <Windows>
         <tlk:RadWindow runat="server" ID="rwPopup" VisibleStatusbar="false" Width="950px"  OnClientBeforeClose="OnClientBeforeClose"
@@ -199,7 +200,7 @@
         var enableAjax = true;
         function OnClientButtonClicking(sender, args) {
             var item = args.get_item();
-            if (item.get_commandName() == "EXPORT") {
+            if (item.get_commandName() == "EXPORT" || item.get_commandName() == "NEXT") {
                 enableAjax = false;
             }
             if (item.get_commandName() == "CREATE") {

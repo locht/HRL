@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 4/23/2020 2:31:05 PM
+-- Date Created: 5/6/2020 4:46:32 PM
 -- Generated from EDMX file: D:\SOURCE_GIT_NEW\SOURCR_ACV_NEW\InsuranceDAL\InsuranceContext.edmx
 -- --------------------------------------------------
 
@@ -9,183 +9,17 @@
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE_HEALTH" DROP CONSTRAINT "FK_FE_HEH" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE_EDUCATION" DROP CONSTRAINT "FK_HE_HEE" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE_FILES" DROP CONSTRAINT "FK_HE_HEF" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE_OTHER_INFO" DROP CONSTRAINT "FK_HE_HEO" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE_SALARY" DROP CONSTRAINT "FK_HE_HES" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HE_HT" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_WORKING" DROP CONSTRAINT "FK_HE_HW" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HU_ORG_HU_EMP" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HUEMD_HUEM" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_ORG_TITLE" DROP CONSTRAINT "FK_HUOG_HUOT" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_ORG_TITLE" DROP CONSTRAINT "FK_HUTL_HUOT" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_ORGANIZATION" DROP CONSTRAINT "FK_HU_ORG_HU_ORG" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_WORKING" DROP CONSTRAINT "FK_HUOG_HUWK" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_WORKING" DROP CONSTRAINT "FK_HUTL_HUWK" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_WORKING" DROP CONSTRAINT "FK_OTOTL_HUWK" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."OT_OTHER_LIST" DROP CONSTRAINT "FK_OOLT_OOL" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."OT_OTHER_LIST_TYPE" DROP CONSTRAINT "FK_OOLG_OOLT" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_DISTRICT" DROP CONSTRAINT "FK_HU_PRO_HU_DIS" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."HU_PROVINCE" DROP CONSTRAINT "FK_HU_NAT_HU_PRO" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."SE_USER_REPORT" DROP CONSTRAINT "FK_SE_USER_REPORT_SE_REPORT" CASCADE;
-
--- ALTER TABLE "InsuranceModelStoreContainer"."SE_USER_REPORT" DROP CONSTRAINT "FK_SE_USER_REPORT_SE_USER" CASCADE;
+-- ALTER TABLE "ACV_19_DEV"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HUEMD_HUEM" CASCADE;
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE_EDUCATION";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE_FILES";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE_HEALTH";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE_OTHER_INFO";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE_SALARY";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE_TRAIN";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_ORG_TITLE";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_ORGANIZATION";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_TITLE";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_WORKING";
-
--- DROP TABLE "InsuranceModelStoreContainer"."OT_OTHER_LIST";
-
--- DROP TABLE "InsuranceModelStoreContainer"."OT_OTHER_LIST_GROUP";
-
--- DROP TABLE "InsuranceModelStoreContainer"."OT_OTHER_LIST_TYPE";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_DISTRICT";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_NATION";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_PROVINCE";
-
--- DROP TABLE "InsuranceModelStoreContainer"."SE_CHOSEN_ORG";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_CONTRACT";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_CONTRACT_TYPE";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_CONTRACT_MAX_V";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_STAFF_RANK";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_ARISING";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_CHANGE";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_COST_FOLLOW_LEVER";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_ENTITLED_TYPE";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_GROUP_REGIMES";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_GROUP_SUN_CARE";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_SUN_CARE";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_WHEREHEALTH";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_EMPLOYEE_CV";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_WORKING_ALLOW";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_WORKING_MAX";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_SPECIFIED_OBJECTS";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_WORKING_ALLOW1";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_INFOOLD";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_INFORMATION";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_CHANGE_TYPE";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_REMIGE_MANAGER";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_REGION";
-
--- DROP TABLE "InsuranceModelStoreContainer"."SE_USER";
-
--- DROP TABLE "InsuranceModelStoreContainer"."SE_REPORT";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_REGIMES";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_ACCIDENT_RISK";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_JOB_POSITION";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HU_WARD";
-
--- DROP TABLE "InsuranceModelStoreContainer"."INS_LIST_INSURANCE";
-
--- DROP TABLE "InsuranceModelStoreContainer"."HUV_ORGANIZATION";
-
--- DROP TABLE "InsuranceModelStoreContainer"."SE_USER_REPORT";
+-- DROP TABLE "ACV_19_DEV"."HU_EMPLOYEE";
 
 -- --------------------------------------------------
 -- Creating all tables
 -- --------------------------------------------------
-
--- Creating table 'HU_EMPLOYEE'
-CREATE TABLE "dbo"."HU_EMPLOYEE" (
-   "ID" NUMBER(38,0) NOT NULL,
-   "EMPLOYEE_CODE" NVARCHAR2(15) NULL,
-   "FIRST_NAME_VN" NVARCHAR2(255) NULL,
-   "LAST_NAME_VN" NVARCHAR2(255) NULL,
-   "FULLNAME_VN" NVARCHAR2(255) NULL,
-   "FIRST_NAME_EN" VARCHAR2(255) NULL,
-   "LAST_NAME_EN" NVARCHAR2(255) NULL,
-   "FULLNAME_EN" NVARCHAR2(255) NULL,
-   "ORG_ID" NUMBER(38,0) NULL,
-   "WORK_STATUS" NUMBER(38,0) NULL,
-   "CONTRACT_ID" NUMBER(38,0) NULL,
-   "TITLE_ID" NUMBER(38,0) NULL,
-   "JOIN_DATE" DATE NULL,
-   "DIRECT_MANAGER" NUMBER(38,0) NULL,
-   "CREATED_DATE" DATE NULL,
-   "CREATED_BY" NVARCHAR2(255) NULL,
-   "CREATED_LOG" NVARCHAR2(255) NULL,
-   "MODIFIED_DATE" DATE NULL,
-   "MODIFIED_BY" NVARCHAR2(255) NULL,
-   "MODIFIED_LOG" NVARCHAR2(255) NULL,
-   "LAST_WORKING_ID" NUMBER(38,0) NULL,
-   "TER_EFFECT_DATE" DATE NULL,
-   "TER_LAST_DATE" DATE NULL,
-   "ITIME_ID" NUMBER(38,0) NULL,
-   "STAFF_RANK_ID" NUMBER(38,0) NULL,
-   "JOB_POSITION" NUMBER(38,0) NULL
-);
 
 -- Creating table 'HU_EMPLOYEE_EDUCATION'
 CREATE TABLE "dbo"."HU_EMPLOYEE_EDUCATION" (
@@ -1315,6 +1149,67 @@ CREATE TABLE "dbo"."HUV_ORGANIZATION" (
    "ACTFLG" NVARCHAR2(1) NULL
 );
 
+-- Creating table 'HU_EMPLOYEE'
+CREATE TABLE "dbo"."HU_EMPLOYEE" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "EMPLOYEE_CODE" NVARCHAR2(15) NULL,
+   "FIRST_NAME_VN" NVARCHAR2(255) NULL,
+   "LAST_NAME_VN" NVARCHAR2(255) NULL,
+   "FULLNAME_VN" NVARCHAR2(255) NULL,
+   "FIRST_NAME_EN" VARCHAR2(255) NULL,
+   "LAST_NAME_EN" NVARCHAR2(255) NULL,
+   "FULLNAME_EN" NVARCHAR2(255) NULL,
+   "ORG_ID" NUMBER(38,0) NULL,
+   "WORK_STATUS" NUMBER(38,0) NULL,
+   "CONTRACT_ID" NUMBER(38,0) NULL,
+   "TITLE_ID" NUMBER(38,0) NULL,
+   "JOIN_DATE" DATE NULL,
+   "DIRECT_MANAGER" NUMBER(38,0) NULL,
+   "CREATED_DATE" DATE NULL,
+   "CREATED_BY" NVARCHAR2(255) NULL,
+   "CREATED_LOG" NVARCHAR2(255) NULL,
+   "MODIFIED_DATE" DATE NULL,
+   "MODIFIED_BY" NVARCHAR2(255) NULL,
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "LAST_WORKING_ID" NUMBER(38,0) NULL,
+   "TER_EFFECT_DATE" DATE NULL,
+   "TER_LAST_DATE" DATE NULL,
+   "ITIME_ID" NVARCHAR2(15) NULL,
+   "STAFF_RANK_ID" NUMBER(38,0) NULL,
+   "PA_OBJECT_SALARY_ID" NUMBER(38,0) NULL,
+   "EXPIREDATE_ENT" DATE NULL,
+   "JOIN_DATE_STATE" DATE NULL,
+   "LEVEL_MANAGER" NUMBER(38,0) NULL,
+   "EMPLOYEE_3B_ID" NUMBER(38,0) NULL,
+   "EMPLOYEE_CODE_OLD" NVARCHAR2(15) NULL,
+   "IS_3B" NUMBER(5,0) NULL,
+   "EMP_STATUS" NUMBER(38,0) NULL,
+   "AUTOGENTIMESHEET" NUMBER(38,0) NULL,
+   "IS_DELETED" NUMBER(38,0) NULL,
+   "DM_ID" NUMBER(38,0) NULL,
+   "IDM_ID" NUMBER(38,0) NULL,
+   "EMPLOYEE_GROUP" NVARCHAR2(255) NULL,
+   "BOOK_NO" NVARCHAR2(20) NULL,
+   "EMPLOYEE_NAME_OTHER" NVARCHAR2(255) NULL,
+   "DIRECT_MANAGER_2" NUMBER(38,0) NULL,
+   "DIRECT_MANAGER_3" NUMBER(38,0) NULL,
+   "ROW_NUMBER" NUMBER(38,0) NULL,
+   "OBJECTTIMEKEEPING" NUMBER(38,0) NULL,
+   "IS_KIEM_NHIEM" NUMBER(19,0) NULL,
+   "OBJECT_LABOR" NUMBER(38,0) NULL,
+   "OBJECT_INS" NUMBER(38,0) NULL,
+   "SENIORITY_DATE" DATE NULL,
+   "EMPLOYEE_OBJECT" NUMBER(38,0) NULL,
+   "IS_HAZARDOUS" NUMBER(38,0) NULL,
+   "IS_HDLD" NUMBER(38,0) NULL,
+   "JOB_POSITION" NUMBER(38,0) NULL,
+   "JOB_DESCRIPTION" NUMBER(38,0) NULL,
+   "PRODUCTION_PROCESS" NUMBER(38,0) NULL,
+   "JOB_ATTACH_FILE" NVARCHAR2(255) NULL,
+   "JOB_FILENAME" NVARCHAR2(255) NULL,
+   "COMPENSATORY_OBJECT" NUMBER(38,0) NULL
+);
+
 -- Creating table 'SE_USER_REPORT'
 CREATE TABLE "dbo"."SE_USER_REPORT" (
    "SE_REPORT_ID" NUMBER(38,0) NOT NULL,
@@ -1325,14 +1220,6 @@ CREATE TABLE "dbo"."SE_USER_REPORT" (
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
-
--- Creating primary key on "ID"in table 'HU_EMPLOYEE'
-ALTER TABLE "dbo"."HU_EMPLOYEE"
-ADD CONSTRAINT "PK_HU_EMPLOYEE"
-   PRIMARY KEY ("ID" )
-   ENABLE
-   VALIDATE;
-
 
 -- Creating primary key on "EMPLOYEE_ID"in table 'HU_EMPLOYEE_EDUCATION'
 ALTER TABLE "dbo"."HU_EMPLOYEE_EDUCATION"
@@ -1710,6 +1597,14 @@ ADD CONSTRAINT "PK_HUV_ORGANIZATION"
    VALIDATE;
 
 
+-- Creating primary key on "ID"in table 'HU_EMPLOYEE'
+ALTER TABLE "dbo"."HU_EMPLOYEE"
+ADD CONSTRAINT "PK_HU_EMPLOYEE"
+   PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
 -- Creating primary key on "SE_REPORT_ID", "SE_USER_ID"in table 'SE_USER_REPORT'
 ALTER TABLE "dbo"."SE_USER_REPORT"
 ADD CONSTRAINT "PK_SE_USER_REPORT"
@@ -1721,112 +1616,6 @@ ADD CONSTRAINT "PK_SE_USER_REPORT"
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
-
--- Creating foreign key on "EMPLOYEE_ID" in table 'HU_EMPLOYEE_HEALTH'
-ALTER TABLE "dbo"."HU_EMPLOYEE_HEALTH"
-ADD CONSTRAINT "FK_FE_HEH"
-   FOREIGN KEY ("EMPLOYEE_ID")
-   REFERENCES "dbo"."HU_EMPLOYEE"
-       ("ID")
-   ENABLE
-   VALIDATE;
-
--- Creating foreign key on "EMPLOYEE_ID" in table 'HU_EMPLOYEE_EDUCATION'
-ALTER TABLE "dbo"."HU_EMPLOYEE_EDUCATION"
-ADD CONSTRAINT "FK_HE_HEE"
-   FOREIGN KEY ("EMPLOYEE_ID")
-   REFERENCES "dbo"."HU_EMPLOYEE"
-       ("ID")
-   ENABLE
-   VALIDATE;
-
--- Creating foreign key on "EMPLOYEE_ID" in table 'HU_EMPLOYEE_FILES'
-ALTER TABLE "dbo"."HU_EMPLOYEE_FILES"
-ADD CONSTRAINT "FK_HE_HEF"
-   FOREIGN KEY ("EMPLOYEE_ID")
-   REFERENCES "dbo"."HU_EMPLOYEE"
-       ("ID")
-   ENABLE
-   VALIDATE;
-
--- Creating index for FOREIGN KEY 'FK_HE_HEF'
-CREATE INDEX "IX_FK_HE_HEF"
-ON "dbo"."HU_EMPLOYEE_FILES"
-   ("EMPLOYEE_ID");
-
--- Creating foreign key on "EMPLOYEE_ID" in table 'HU_EMPLOYEE_OTHER_INFO'
-ALTER TABLE "dbo"."HU_EMPLOYEE_OTHER_INFO"
-ADD CONSTRAINT "FK_HE_HEO"
-   FOREIGN KEY ("EMPLOYEE_ID")
-   REFERENCES "dbo"."HU_EMPLOYEE"
-       ("ID")
-   ENABLE
-   VALIDATE;
-
--- Creating foreign key on "EMPLOYEE_ID" in table 'HU_EMPLOYEE_SALARY'
-ALTER TABLE "dbo"."HU_EMPLOYEE_SALARY"
-ADD CONSTRAINT "FK_HE_HES"
-   FOREIGN KEY ("EMPLOYEE_ID")
-   REFERENCES "dbo"."HU_EMPLOYEE"
-       ("ID")
-   ENABLE
-   VALIDATE;
-
--- Creating foreign key on "TITLE_ID" in table 'HU_EMPLOYEE'
-ALTER TABLE "dbo"."HU_EMPLOYEE"
-ADD CONSTRAINT "FK_HE_HT"
-   FOREIGN KEY ("TITLE_ID")
-   REFERENCES "dbo"."HU_TITLE"
-       ("ID")
-   ENABLE
-   VALIDATE;
-
--- Creating index for FOREIGN KEY 'FK_HE_HT'
-CREATE INDEX "IX_FK_HE_HT"
-ON "dbo"."HU_EMPLOYEE"
-   ("TITLE_ID");
-
--- Creating foreign key on "EMPLOYEE_ID" in table 'HU_WORKING'
-ALTER TABLE "dbo"."HU_WORKING"
-ADD CONSTRAINT "FK_HE_HW"
-   FOREIGN KEY ("EMPLOYEE_ID")
-   REFERENCES "dbo"."HU_EMPLOYEE"
-       ("ID")
-   ENABLE
-   VALIDATE;
-
--- Creating index for FOREIGN KEY 'FK_HE_HW'
-CREATE INDEX "IX_FK_HE_HW"
-ON "dbo"."HU_WORKING"
-   ("EMPLOYEE_ID");
-
--- Creating foreign key on "ORG_ID" in table 'HU_EMPLOYEE'
-ALTER TABLE "dbo"."HU_EMPLOYEE"
-ADD CONSTRAINT "FK_HU_ORG_HU_EMP"
-   FOREIGN KEY ("ORG_ID")
-   REFERENCES "dbo"."HU_ORGANIZATION"
-       ("ID")
-   ENABLE
-   VALIDATE;
-
--- Creating index for FOREIGN KEY 'FK_HU_ORG_HU_EMP'
-CREATE INDEX "IX_FK_HU_ORG_HU_EMP"
-ON "dbo"."HU_EMPLOYEE"
-   ("ORG_ID");
-
--- Creating foreign key on "DIRECT_MANAGER" in table 'HU_EMPLOYEE'
-ALTER TABLE "dbo"."HU_EMPLOYEE"
-ADD CONSTRAINT "FK_HUEMD_HUEM"
-   FOREIGN KEY ("DIRECT_MANAGER")
-   REFERENCES "dbo"."HU_EMPLOYEE"
-       ("ID")
-   ENABLE
-   VALIDATE;
-
--- Creating index for FOREIGN KEY 'FK_HUEMD_HUEM'
-CREATE INDEX "IX_FK_HUEMD_HUEM"
-ON "dbo"."HU_EMPLOYEE"
-   ("DIRECT_MANAGER");
 
 -- Creating foreign key on "ORG_ID" in table 'HU_ORG_TITLE'
 ALTER TABLE "dbo"."HU_ORG_TITLE"
@@ -1995,6 +1784,20 @@ ADD CONSTRAINT "FK_SE_USER_REPORT_SE_USER"
 CREATE INDEX "IX_FK_SE_USER_REPORT_SE_USER"
 ON "dbo"."SE_USER_REPORT"
    ("SE_USER_ID");
+
+-- Creating foreign key on "DIRECT_MANAGER" in table 'HU_EMPLOYEE'
+ALTER TABLE "dbo"."HU_EMPLOYEE"
+ADD CONSTRAINT "FK_HUEMD_HUEM"
+   FOREIGN KEY ("DIRECT_MANAGER")
+   REFERENCES "dbo"."HU_EMPLOYEE"
+       ("ID")
+   ENABLE
+   VALIDATE;
+
+-- Creating index for FOREIGN KEY 'FK_HUEMD_HUEM'
+CREATE INDEX "IX_FK_HUEMD_HUEM"
+ON "dbo"."HU_EMPLOYEE"
+   ("DIRECT_MANAGER");
 
 -- --------------------------------------------------
 -- Script has ended

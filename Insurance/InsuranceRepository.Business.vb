@@ -884,5 +884,38 @@ Partial Class InsuranceRepository
             End Try
         End Using
     End Function
+
+    Public Function EXPORT_INS_INFORMATION(ByVal P_USER_NAME As String, ByVal P_ORG_ID As Decimal, ByVal P_IS_DISSOLVE As Boolean) As DataSet
+        Using rep As New InsuranceBusinessClient
+            Try
+                Return rep.EXPORT_INS_INFORMATION(P_USER_NAME, P_ORG_ID, P_IS_DISSOLVE)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function CheckEmployee_Exits(ByVal empCode As String) As Integer
+        Using rep As New InsuranceBusinessClient
+            Try
+                Return rep.CheckEmployee_Exits(empCode)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function INPORT_INS_INFORMATION(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+        Using rep As New InsuranceBusinessClient
+            Try
+                Return rep.INPORT_INS_INFORMATION(P_DOCXML, Me.Log.Username)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
 #End Region
 End Class

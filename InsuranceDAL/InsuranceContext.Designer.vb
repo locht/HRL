@@ -18,17 +18,8 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("101623f4-9afa-454e-9240-a89d3f759889")>
+<Assembly: EdmSchemaAttribute("042d6493-5944-425c-b2f9-848982af9420")>
 #Region "EDM Relationship Metadata"
-<Assembly: EdmRelationshipAttribute("InsuranceModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH), True)>
-<Assembly: EdmRelationshipAttribute("InsuranceModel", "FK_HE_HEE", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_EDUCATION", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_EDUCATION), True)>
-<Assembly: EdmRelationshipAttribute("InsuranceModel", "FK_HE_HEF", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_FILES", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_EMPLOYEE_FILES), True)>
-<Assembly: EdmRelationshipAttribute("InsuranceModel", "FK_HE_HEO", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_OTHER_INFO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_OTHER_INFO), True)>
-<Assembly: EdmRelationshipAttribute("InsuranceModel", "FK_HE_HES", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_SALARY", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_SALARY), True)>
-<Assembly: EdmRelationshipAttribute("InsuranceModel", "FK_HE_HT", "HU_TITLE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_TITLE), "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_EMPLOYEE), True)>
-<Assembly: EdmRelationshipAttribute("InsuranceModel", "FK_HE_HW", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE), "HU_WORKING", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_WORKING), True)>
-<Assembly: EdmRelationshipAttribute("InsuranceModel", "FK_HU_ORG_HU_EMP", "HU_ORGANIZATION", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_ORGANIZATION), "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_EMPLOYEE), True)>
-<Assembly: EdmRelationshipAttribute("InsuranceModel", "FK_HUEMD_HUEM", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE), "HU_EMPLOYEE1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_EMPLOYEE), True)>
 <Assembly: EdmRelationshipAttribute("InsuranceModel", "FK_HUOG_HUOT", "HU_ORGANIZATION", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_ORGANIZATION), "HU_ORG_TITLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_ORG_TITLE), True)>
 <Assembly: EdmRelationshipAttribute("InsuranceModel", "FK_HUTL_HUOT", "HU_TITLE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_TITLE), "HU_ORG_TITLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_ORG_TITLE), True)>
 <Assembly: EdmRelationshipAttribute("InsuranceModel", "FK_HU_ORG_HU_ORG", "HU_ORGANIZATION", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_ORGANIZATION), "HU_ORGANIZATION1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_ORGANIZATION), True)>
@@ -40,6 +31,7 @@ Imports System.Xml.Serialization
 <Assembly: EdmRelationshipAttribute("InsuranceModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
 <Assembly: EdmRelationshipAttribute("InsuranceModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("InsuranceModel", "SE_USER_REPORT", "SE_REPORT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_REPORT), "SE_USER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_USER))>
+<Assembly: EdmRelationshipAttribute("InsuranceModel", "FK_HUEMD_HUEM", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE), "HU_EMPLOYEE1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_EMPLOYEE), True)>
 
 #End Region
 
@@ -90,20 +82,6 @@ Public Partial Class InsuranceContext
     #End Region
 
     #Region "ObjectSet Properties"
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    Public ReadOnly Property HU_EMPLOYEE() As ObjectSet(Of HU_EMPLOYEE)
-        Get
-            If (_HU_EMPLOYEE Is Nothing) Then
-                _HU_EMPLOYEE = MyBase.CreateObjectSet(Of HU_EMPLOYEE)("HU_EMPLOYEE")
-            End If
-            Return _HU_EMPLOYEE
-        End Get
-    End Property
-
-    Private _HU_EMPLOYEE As ObjectSet(Of HU_EMPLOYEE)
 
     ''' <summary>
     ''' No Metadata Documentation available.
@@ -763,16 +741,23 @@ Public Partial Class InsuranceContext
 
     Private _HUV_ORGANIZATION As ObjectSet(Of HUV_ORGANIZATION)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property HU_EMPLOYEE() As ObjectSet(Of HU_EMPLOYEE)
+        Get
+            If (_HU_EMPLOYEE Is Nothing) Then
+                _HU_EMPLOYEE = MyBase.CreateObjectSet(Of HU_EMPLOYEE)("HU_EMPLOYEE")
+            End If
+            Return _HU_EMPLOYEE
+        End Get
+    End Property
+
+    Private _HU_EMPLOYEE As ObjectSet(Of HU_EMPLOYEE)
+
     #End Region
 
     #Region "AddTo Methods"
-
-    ''' <summary>
-    ''' Deprecated Method for adding a new object to the HU_EMPLOYEE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
-    ''' </summary>
-    Public Sub AddToHU_EMPLOYEE(ByVal hU_EMPLOYEE As HU_EMPLOYEE)
-        MyBase.AddObject("HU_EMPLOYEE", hU_EMPLOYEE)
-    End Sub
 
     ''' <summary>
     ''' Deprecated Method for adding a new object to the HU_EMPLOYEE_EDUCATION EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
@@ -1101,6 +1086,13 @@ Public Partial Class InsuranceContext
     ''' </summary>
     Public Sub AddToHUV_ORGANIZATION(ByVal hUV_ORGANIZATION As HUV_ORGANIZATION)
         MyBase.AddObject("HUV_ORGANIZATION", hUV_ORGANIZATION)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the HU_EMPLOYEE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToHU_EMPLOYEE(ByVal hU_EMPLOYEE As HU_EMPLOYEE)
+        MyBase.AddObject("HU_EMPLOYEE", hU_EMPLOYEE)
     End Sub
 
     #End Region
@@ -3622,21 +3614,21 @@ Public Partial Class HU_EMPLOYEE
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property ITIME_ID() As Nullable(Of Global.System.Decimal)
+    Public Property ITIME_ID() As Global.System.String
         Get
             Return _ITIME_ID
         End Get
         Set
             OnITIME_IDChanging(value)
             ReportPropertyChanging("ITIME_ID")
-            _ITIME_ID = StructuralObject.SetValidValue(value)
+            _ITIME_ID = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("ITIME_ID")
             OnITIME_IDChanged()
         End Set
     End Property
 
-    Private _ITIME_ID As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnITIME_IDChanging(value As Nullable(Of Global.System.Decimal))
+    Private _ITIME_ID As Global.System.String
+    Private Partial Sub OnITIME_IDChanging(value As Global.System.String)
     End Sub
 
     Private Partial Sub OnITIME_IDChanged()
@@ -3672,6 +3664,656 @@ Public Partial Class HU_EMPLOYEE
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
+    Public Property PA_OBJECT_SALARY_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _PA_OBJECT_SALARY_ID
+        End Get
+        Set
+            OnPA_OBJECT_SALARY_IDChanging(value)
+            ReportPropertyChanging("PA_OBJECT_SALARY_ID")
+            _PA_OBJECT_SALARY_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("PA_OBJECT_SALARY_ID")
+            OnPA_OBJECT_SALARY_IDChanged()
+        End Set
+    End Property
+
+    Private _PA_OBJECT_SALARY_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnPA_OBJECT_SALARY_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnPA_OBJECT_SALARY_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EXPIREDATE_ENT() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _EXPIREDATE_ENT
+        End Get
+        Set
+            OnEXPIREDATE_ENTChanging(value)
+            ReportPropertyChanging("EXPIREDATE_ENT")
+            _EXPIREDATE_ENT = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("EXPIREDATE_ENT")
+            OnEXPIREDATE_ENTChanged()
+        End Set
+    End Property
+
+    Private _EXPIREDATE_ENT As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnEXPIREDATE_ENTChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnEXPIREDATE_ENTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property JOIN_DATE_STATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _JOIN_DATE_STATE
+        End Get
+        Set
+            OnJOIN_DATE_STATEChanging(value)
+            ReportPropertyChanging("JOIN_DATE_STATE")
+            _JOIN_DATE_STATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("JOIN_DATE_STATE")
+            OnJOIN_DATE_STATEChanged()
+        End Set
+    End Property
+
+    Private _JOIN_DATE_STATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnJOIN_DATE_STATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnJOIN_DATE_STATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property LEVEL_MANAGER() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _LEVEL_MANAGER
+        End Get
+        Set
+            OnLEVEL_MANAGERChanging(value)
+            ReportPropertyChanging("LEVEL_MANAGER")
+            _LEVEL_MANAGER = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("LEVEL_MANAGER")
+            OnLEVEL_MANAGERChanged()
+        End Set
+    End Property
+
+    Private _LEVEL_MANAGER As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnLEVEL_MANAGERChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnLEVEL_MANAGERChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EMPLOYEE_3B_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _EMPLOYEE_3B_ID
+        End Get
+        Set
+            OnEMPLOYEE_3B_IDChanging(value)
+            ReportPropertyChanging("EMPLOYEE_3B_ID")
+            _EMPLOYEE_3B_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("EMPLOYEE_3B_ID")
+            OnEMPLOYEE_3B_IDChanged()
+        End Set
+    End Property
+
+    Private _EMPLOYEE_3B_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnEMPLOYEE_3B_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnEMPLOYEE_3B_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EMPLOYEE_CODE_OLD() As Global.System.String
+        Get
+            Return _EMPLOYEE_CODE_OLD
+        End Get
+        Set
+            OnEMPLOYEE_CODE_OLDChanging(value)
+            ReportPropertyChanging("EMPLOYEE_CODE_OLD")
+            _EMPLOYEE_CODE_OLD = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("EMPLOYEE_CODE_OLD")
+            OnEMPLOYEE_CODE_OLDChanged()
+        End Set
+    End Property
+
+    Private _EMPLOYEE_CODE_OLD As Global.System.String
+    Private Partial Sub OnEMPLOYEE_CODE_OLDChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnEMPLOYEE_CODE_OLDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_3B() As Nullable(Of Global.System.Int16)
+        Get
+            Return _IS_3B
+        End Get
+        Set
+            OnIS_3BChanging(value)
+            ReportPropertyChanging("IS_3B")
+            _IS_3B = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_3B")
+            OnIS_3BChanged()
+        End Set
+    End Property
+
+    Private _IS_3B As Nullable(Of Global.System.Int16)
+    Private Partial Sub OnIS_3BChanging(value As Nullable(Of Global.System.Int16))
+    End Sub
+
+    Private Partial Sub OnIS_3BChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EMP_STATUS() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _EMP_STATUS
+        End Get
+        Set
+            OnEMP_STATUSChanging(value)
+            ReportPropertyChanging("EMP_STATUS")
+            _EMP_STATUS = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("EMP_STATUS")
+            OnEMP_STATUSChanged()
+        End Set
+    End Property
+
+    Private _EMP_STATUS As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnEMP_STATUSChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnEMP_STATUSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property AUTOGENTIMESHEET() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _AUTOGENTIMESHEET
+        End Get
+        Set
+            OnAUTOGENTIMESHEETChanging(value)
+            ReportPropertyChanging("AUTOGENTIMESHEET")
+            _AUTOGENTIMESHEET = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("AUTOGENTIMESHEET")
+            OnAUTOGENTIMESHEETChanged()
+        End Set
+    End Property
+
+    Private _AUTOGENTIMESHEET As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnAUTOGENTIMESHEETChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnAUTOGENTIMESHEETChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_DELETED() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_DELETED
+        End Get
+        Set
+            OnIS_DELETEDChanging(value)
+            ReportPropertyChanging("IS_DELETED")
+            _IS_DELETED = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_DELETED")
+            OnIS_DELETEDChanged()
+        End Set
+    End Property
+
+    Private _IS_DELETED As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_DELETEDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_DELETEDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property DM_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _DM_ID
+        End Get
+        Set
+            OnDM_IDChanging(value)
+            ReportPropertyChanging("DM_ID")
+            _DM_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("DM_ID")
+            OnDM_IDChanged()
+        End Set
+    End Property
+
+    Private _DM_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnDM_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnDM_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IDM_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IDM_ID
+        End Get
+        Set
+            OnIDM_IDChanging(value)
+            ReportPropertyChanging("IDM_ID")
+            _IDM_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IDM_ID")
+            OnIDM_IDChanged()
+        End Set
+    End Property
+
+    Private _IDM_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIDM_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIDM_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EMPLOYEE_GROUP() As Global.System.String
+        Get
+            Return _EMPLOYEE_GROUP
+        End Get
+        Set
+            OnEMPLOYEE_GROUPChanging(value)
+            ReportPropertyChanging("EMPLOYEE_GROUP")
+            _EMPLOYEE_GROUP = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("EMPLOYEE_GROUP")
+            OnEMPLOYEE_GROUPChanged()
+        End Set
+    End Property
+
+    Private _EMPLOYEE_GROUP As Global.System.String
+    Private Partial Sub OnEMPLOYEE_GROUPChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnEMPLOYEE_GROUPChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property BOOK_NO() As Global.System.String
+        Get
+            Return _BOOK_NO
+        End Get
+        Set
+            OnBOOK_NOChanging(value)
+            ReportPropertyChanging("BOOK_NO")
+            _BOOK_NO = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("BOOK_NO")
+            OnBOOK_NOChanged()
+        End Set
+    End Property
+
+    Private _BOOK_NO As Global.System.String
+    Private Partial Sub OnBOOK_NOChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnBOOK_NOChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EMPLOYEE_NAME_OTHER() As Global.System.String
+        Get
+            Return _EMPLOYEE_NAME_OTHER
+        End Get
+        Set
+            OnEMPLOYEE_NAME_OTHERChanging(value)
+            ReportPropertyChanging("EMPLOYEE_NAME_OTHER")
+            _EMPLOYEE_NAME_OTHER = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("EMPLOYEE_NAME_OTHER")
+            OnEMPLOYEE_NAME_OTHERChanged()
+        End Set
+    End Property
+
+    Private _EMPLOYEE_NAME_OTHER As Global.System.String
+    Private Partial Sub OnEMPLOYEE_NAME_OTHERChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnEMPLOYEE_NAME_OTHERChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property DIRECT_MANAGER_2() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _DIRECT_MANAGER_2
+        End Get
+        Set
+            OnDIRECT_MANAGER_2Changing(value)
+            ReportPropertyChanging("DIRECT_MANAGER_2")
+            _DIRECT_MANAGER_2 = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("DIRECT_MANAGER_2")
+            OnDIRECT_MANAGER_2Changed()
+        End Set
+    End Property
+
+    Private _DIRECT_MANAGER_2 As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnDIRECT_MANAGER_2Changing(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnDIRECT_MANAGER_2Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property DIRECT_MANAGER_3() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _DIRECT_MANAGER_3
+        End Get
+        Set
+            OnDIRECT_MANAGER_3Changing(value)
+            ReportPropertyChanging("DIRECT_MANAGER_3")
+            _DIRECT_MANAGER_3 = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("DIRECT_MANAGER_3")
+            OnDIRECT_MANAGER_3Changed()
+        End Set
+    End Property
+
+    Private _DIRECT_MANAGER_3 As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnDIRECT_MANAGER_3Changing(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnDIRECT_MANAGER_3Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ROW_NUMBER() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _ROW_NUMBER
+        End Get
+        Set
+            OnROW_NUMBERChanging(value)
+            ReportPropertyChanging("ROW_NUMBER")
+            _ROW_NUMBER = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("ROW_NUMBER")
+            OnROW_NUMBERChanged()
+        End Set
+    End Property
+
+    Private _ROW_NUMBER As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnROW_NUMBERChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnROW_NUMBERChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OBJECTTIMEKEEPING() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _OBJECTTIMEKEEPING
+        End Get
+        Set
+            OnOBJECTTIMEKEEPINGChanging(value)
+            ReportPropertyChanging("OBJECTTIMEKEEPING")
+            _OBJECTTIMEKEEPING = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OBJECTTIMEKEEPING")
+            OnOBJECTTIMEKEEPINGChanged()
+        End Set
+    End Property
+
+    Private _OBJECTTIMEKEEPING As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnOBJECTTIMEKEEPINGChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnOBJECTTIMEKEEPINGChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_KIEM_NHIEM() As Nullable(Of Global.System.Int64)
+        Get
+            Return _IS_KIEM_NHIEM
+        End Get
+        Set
+            OnIS_KIEM_NHIEMChanging(value)
+            ReportPropertyChanging("IS_KIEM_NHIEM")
+            _IS_KIEM_NHIEM = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_KIEM_NHIEM")
+            OnIS_KIEM_NHIEMChanged()
+        End Set
+    End Property
+
+    Private _IS_KIEM_NHIEM As Nullable(Of Global.System.Int64)
+    Private Partial Sub OnIS_KIEM_NHIEMChanging(value As Nullable(Of Global.System.Int64))
+    End Sub
+
+    Private Partial Sub OnIS_KIEM_NHIEMChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OBJECT_LABOR() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _OBJECT_LABOR
+        End Get
+        Set
+            OnOBJECT_LABORChanging(value)
+            ReportPropertyChanging("OBJECT_LABOR")
+            _OBJECT_LABOR = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OBJECT_LABOR")
+            OnOBJECT_LABORChanged()
+        End Set
+    End Property
+
+    Private _OBJECT_LABOR As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnOBJECT_LABORChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnOBJECT_LABORChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OBJECT_INS() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _OBJECT_INS
+        End Get
+        Set
+            OnOBJECT_INSChanging(value)
+            ReportPropertyChanging("OBJECT_INS")
+            _OBJECT_INS = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OBJECT_INS")
+            OnOBJECT_INSChanged()
+        End Set
+    End Property
+
+    Private _OBJECT_INS As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnOBJECT_INSChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnOBJECT_INSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SENIORITY_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _SENIORITY_DATE
+        End Get
+        Set
+            OnSENIORITY_DATEChanging(value)
+            ReportPropertyChanging("SENIORITY_DATE")
+            _SENIORITY_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("SENIORITY_DATE")
+            OnSENIORITY_DATEChanged()
+        End Set
+    End Property
+
+    Private _SENIORITY_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnSENIORITY_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnSENIORITY_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EMPLOYEE_OBJECT() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _EMPLOYEE_OBJECT
+        End Get
+        Set
+            OnEMPLOYEE_OBJECTChanging(value)
+            ReportPropertyChanging("EMPLOYEE_OBJECT")
+            _EMPLOYEE_OBJECT = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("EMPLOYEE_OBJECT")
+            OnEMPLOYEE_OBJECTChanged()
+        End Set
+    End Property
+
+    Private _EMPLOYEE_OBJECT As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnEMPLOYEE_OBJECTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnEMPLOYEE_OBJECTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_HAZARDOUS() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_HAZARDOUS
+        End Get
+        Set
+            OnIS_HAZARDOUSChanging(value)
+            ReportPropertyChanging("IS_HAZARDOUS")
+            _IS_HAZARDOUS = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_HAZARDOUS")
+            OnIS_HAZARDOUSChanged()
+        End Set
+    End Property
+
+    Private _IS_HAZARDOUS As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_HAZARDOUSChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_HAZARDOUSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_HDLD() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_HDLD
+        End Get
+        Set
+            OnIS_HDLDChanging(value)
+            ReportPropertyChanging("IS_HDLD")
+            _IS_HDLD = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_HDLD")
+            OnIS_HDLDChanged()
+        End Set
+    End Property
+
+    Private _IS_HDLD As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_HDLDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_HDLDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
     Public Property JOB_POSITION() As Nullable(Of Global.System.Decimal)
         Get
             Return _JOB_POSITION
@@ -3692,231 +4334,134 @@ Public Partial Class HU_EMPLOYEE
     Private Partial Sub OnJOB_POSITIONChanged()
     End Sub
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property JOB_DESCRIPTION() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _JOB_DESCRIPTION
+        End Get
+        Set
+            OnJOB_DESCRIPTIONChanging(value)
+            ReportPropertyChanging("JOB_DESCRIPTION")
+            _JOB_DESCRIPTION = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("JOB_DESCRIPTION")
+            OnJOB_DESCRIPTIONChanged()
+        End Set
+    End Property
+
+    Private _JOB_DESCRIPTION As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnJOB_DESCRIPTIONChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnJOB_DESCRIPTIONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property PRODUCTION_PROCESS() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _PRODUCTION_PROCESS
+        End Get
+        Set
+            OnPRODUCTION_PROCESSChanging(value)
+            ReportPropertyChanging("PRODUCTION_PROCESS")
+            _PRODUCTION_PROCESS = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("PRODUCTION_PROCESS")
+            OnPRODUCTION_PROCESSChanged()
+        End Set
+    End Property
+
+    Private _PRODUCTION_PROCESS As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnPRODUCTION_PROCESSChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnPRODUCTION_PROCESSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property JOB_ATTACH_FILE() As Global.System.String
+        Get
+            Return _JOB_ATTACH_FILE
+        End Get
+        Set
+            OnJOB_ATTACH_FILEChanging(value)
+            ReportPropertyChanging("JOB_ATTACH_FILE")
+            _JOB_ATTACH_FILE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("JOB_ATTACH_FILE")
+            OnJOB_ATTACH_FILEChanged()
+        End Set
+    End Property
+
+    Private _JOB_ATTACH_FILE As Global.System.String
+    Private Partial Sub OnJOB_ATTACH_FILEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnJOB_ATTACH_FILEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property JOB_FILENAME() As Global.System.String
+        Get
+            Return _JOB_FILENAME
+        End Get
+        Set
+            OnJOB_FILENAMEChanging(value)
+            ReportPropertyChanging("JOB_FILENAME")
+            _JOB_FILENAME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("JOB_FILENAME")
+            OnJOB_FILENAMEChanged()
+        End Set
+    End Property
+
+    Private _JOB_FILENAME As Global.System.String
+    Private Partial Sub OnJOB_FILENAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnJOB_FILENAMEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property COMPENSATORY_OBJECT() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _COMPENSATORY_OBJECT
+        End Get
+        Set
+            OnCOMPENSATORY_OBJECTChanging(value)
+            ReportPropertyChanging("COMPENSATORY_OBJECT")
+            _COMPENSATORY_OBJECT = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("COMPENSATORY_OBJECT")
+            OnCOMPENSATORY_OBJECTChanged()
+        End Set
+    End Property
+
+    Private _COMPENSATORY_OBJECT As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnCOMPENSATORY_OBJECTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnCOMPENSATORY_OBJECTChanged()
+    End Sub
+
     #End Region
 
     #Region "Navigation Properties"
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <XmlIgnoreAttribute()>
-    <SoapIgnoreAttribute()>
-    <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("InsuranceModel", "FK_FE_HEH", "HU_EMPLOYEE_HEALTH")>
-    Public Property HU_EMPLOYEE_HEALTH() As HU_EMPLOYEE_HEALTH
-        Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE_HEALTH)("InsuranceModel.FK_FE_HEH", "HU_EMPLOYEE_HEALTH").Value
-        End Get
-        Set
-            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE_HEALTH)("InsuranceModel.FK_FE_HEH", "HU_EMPLOYEE_HEALTH").Value = value
-        End Set
-    End Property
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <BrowsableAttribute(False)>
-    <DataMemberAttribute()>
-    Public Property HU_EMPLOYEE_HEALTHReference() As EntityReference(Of HU_EMPLOYEE_HEALTH)
-        Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE_HEALTH)("InsuranceModel.FK_FE_HEH", "HU_EMPLOYEE_HEALTH")
-        End Get
-        Set
-            If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of HU_EMPLOYEE_HEALTH)("InsuranceModel.FK_FE_HEH", "HU_EMPLOYEE_HEALTH", value)
-            End If
-        End Set
-    End Property
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <XmlIgnoreAttribute()>
-    <SoapIgnoreAttribute()>
-    <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("InsuranceModel", "FK_HE_HEE", "HU_EMPLOYEE_EDUCATION")>
-    Public Property HU_EMPLOYEE_EDUCATION() As HU_EMPLOYEE_EDUCATION
-        Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE_EDUCATION)("InsuranceModel.FK_HE_HEE", "HU_EMPLOYEE_EDUCATION").Value
-        End Get
-        Set
-            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE_EDUCATION)("InsuranceModel.FK_HE_HEE", "HU_EMPLOYEE_EDUCATION").Value = value
-        End Set
-    End Property
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <BrowsableAttribute(False)>
-    <DataMemberAttribute()>
-    Public Property HU_EMPLOYEE_EDUCATIONReference() As EntityReference(Of HU_EMPLOYEE_EDUCATION)
-        Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE_EDUCATION)("InsuranceModel.FK_HE_HEE", "HU_EMPLOYEE_EDUCATION")
-        End Get
-        Set
-            If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of HU_EMPLOYEE_EDUCATION)("InsuranceModel.FK_HE_HEE", "HU_EMPLOYEE_EDUCATION", value)
-            End If
-        End Set
-    End Property
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <XmlIgnoreAttribute()>
-    <SoapIgnoreAttribute()>
-    <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("InsuranceModel", "FK_HE_HEF", "HU_EMPLOYEE_FILES")>
-     Public Property HU_EMPLOYEE_FILES() As EntityCollection(Of HU_EMPLOYEE_FILES)
-        Get
-            Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of HU_EMPLOYEE_FILES)("InsuranceModel.FK_HE_HEF", "HU_EMPLOYEE_FILES")
-        End Get
-        Set
-            If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of HU_EMPLOYEE_FILES)("InsuranceModel.FK_HE_HEF", "HU_EMPLOYEE_FILES", value)
-            End If
-        End Set
-    End Property
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <XmlIgnoreAttribute()>
-    <SoapIgnoreAttribute()>
-    <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("InsuranceModel", "FK_HE_HEO", "HU_EMPLOYEE_OTHER_INFO")>
-    Public Property HU_EMPLOYEE_OTHER_INFO() As HU_EMPLOYEE_OTHER_INFO
-        Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE_OTHER_INFO)("InsuranceModel.FK_HE_HEO", "HU_EMPLOYEE_OTHER_INFO").Value
-        End Get
-        Set
-            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE_OTHER_INFO)("InsuranceModel.FK_HE_HEO", "HU_EMPLOYEE_OTHER_INFO").Value = value
-        End Set
-    End Property
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <BrowsableAttribute(False)>
-    <DataMemberAttribute()>
-    Public Property HU_EMPLOYEE_OTHER_INFOReference() As EntityReference(Of HU_EMPLOYEE_OTHER_INFO)
-        Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE_OTHER_INFO)("InsuranceModel.FK_HE_HEO", "HU_EMPLOYEE_OTHER_INFO")
-        End Get
-        Set
-            If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of HU_EMPLOYEE_OTHER_INFO)("InsuranceModel.FK_HE_HEO", "HU_EMPLOYEE_OTHER_INFO", value)
-            End If
-        End Set
-    End Property
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <XmlIgnoreAttribute()>
-    <SoapIgnoreAttribute()>
-    <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("InsuranceModel", "FK_HE_HES", "HU_EMPLOYEE_SALARY")>
-    Public Property HU_EMPLOYEE_SALARY() As HU_EMPLOYEE_SALARY
-        Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE_SALARY)("InsuranceModel.FK_HE_HES", "HU_EMPLOYEE_SALARY").Value
-        End Get
-        Set
-            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE_SALARY)("InsuranceModel.FK_HE_HES", "HU_EMPLOYEE_SALARY").Value = value
-        End Set
-    End Property
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <BrowsableAttribute(False)>
-    <DataMemberAttribute()>
-    Public Property HU_EMPLOYEE_SALARYReference() As EntityReference(Of HU_EMPLOYEE_SALARY)
-        Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE_SALARY)("InsuranceModel.FK_HE_HES", "HU_EMPLOYEE_SALARY")
-        End Get
-        Set
-            If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of HU_EMPLOYEE_SALARY)("InsuranceModel.FK_HE_HES", "HU_EMPLOYEE_SALARY", value)
-            End If
-        End Set
-    End Property
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <XmlIgnoreAttribute()>
-    <SoapIgnoreAttribute()>
-    <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("InsuranceModel", "FK_HE_HT", "HU_TITLE")>
-    Public Property HU_TITLE() As HU_TITLE
-        Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_TITLE)("InsuranceModel.FK_HE_HT", "HU_TITLE").Value
-        End Get
-        Set
-            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_TITLE)("InsuranceModel.FK_HE_HT", "HU_TITLE").Value = value
-        End Set
-    End Property
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <BrowsableAttribute(False)>
-    <DataMemberAttribute()>
-    Public Property HU_TITLEReference() As EntityReference(Of HU_TITLE)
-        Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_TITLE)("InsuranceModel.FK_HE_HT", "HU_TITLE")
-        End Get
-        Set
-            If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of HU_TITLE)("InsuranceModel.FK_HE_HT", "HU_TITLE", value)
-            End If
-        End Set
-    End Property
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <XmlIgnoreAttribute()>
-    <SoapIgnoreAttribute()>
-    <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("InsuranceModel", "FK_HE_HW", "HU_WORKING")>
-     Public Property HU_WORKING() As EntityCollection(Of HU_WORKING)
-        Get
-            Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of HU_WORKING)("InsuranceModel.FK_HE_HW", "HU_WORKING")
-        End Get
-        Set
-            If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of HU_WORKING)("InsuranceModel.FK_HE_HW", "HU_WORKING", value)
-            End If
-        End Set
-    End Property
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <XmlIgnoreAttribute()>
-    <SoapIgnoreAttribute()>
-    <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("InsuranceModel", "FK_HU_ORG_HU_EMP", "HU_ORGANIZATION")>
-    Public Property HU_ORGANIZATION() As HU_ORGANIZATION
-        Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_ORGANIZATION)("InsuranceModel.FK_HU_ORG_HU_EMP", "HU_ORGANIZATION").Value
-        End Get
-        Set
-            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_ORGANIZATION)("InsuranceModel.FK_HU_ORG_HU_EMP", "HU_ORGANIZATION").Value = value
-        End Set
-    End Property
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <BrowsableAttribute(False)>
-    <DataMemberAttribute()>
-    Public Property HU_ORGANIZATIONReference() As EntityReference(Of HU_ORGANIZATION)
-        Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_ORGANIZATION)("InsuranceModel.FK_HU_ORG_HU_EMP", "HU_ORGANIZATION")
-        End Get
-        Set
-            If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of HU_ORGANIZATION)("InsuranceModel.FK_HU_ORG_HU_EMP", "HU_ORGANIZATION", value)
-            End If
-        End Set
-    End Property
 
     ''' <summary>
     ''' No Metadata Documentation available.
@@ -6229,41 +6774,6 @@ Public Partial Class HU_EMPLOYEE_EDUCATION
 
     #End Region
 
-    #Region "Navigation Properties"
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <XmlIgnoreAttribute()>
-    <SoapIgnoreAttribute()>
-    <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("InsuranceModel", "FK_HE_HEE", "HU_EMPLOYEE")>
-    Public Property HU_EMPLOYEE() As HU_EMPLOYEE
-        Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE)("InsuranceModel.FK_HE_HEE", "HU_EMPLOYEE").Value
-        End Get
-        Set
-            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE)("InsuranceModel.FK_HE_HEE", "HU_EMPLOYEE").Value = value
-        End Set
-    End Property
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <BrowsableAttribute(False)>
-    <DataMemberAttribute()>
-    Public Property HU_EMPLOYEEReference() As EntityReference(Of HU_EMPLOYEE)
-        Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE)("InsuranceModel.FK_HE_HEE", "HU_EMPLOYEE")
-        End Get
-        Set
-            If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of HU_EMPLOYEE)("InsuranceModel.FK_HE_HEE", "HU_EMPLOYEE", value)
-            End If
-        End Set
-    End Property
-
-    #End Region
-
 End Class
 
 ''' <summary>
@@ -6491,41 +7001,6 @@ Public Partial Class HU_EMPLOYEE_FILES
 
     Private Partial Sub OnUPLOAD_DATEChanged()
     End Sub
-
-    #End Region
-
-    #Region "Navigation Properties"
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <XmlIgnoreAttribute()>
-    <SoapIgnoreAttribute()>
-    <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("InsuranceModel", "FK_HE_HEF", "HU_EMPLOYEE")>
-    Public Property HU_EMPLOYEE() As HU_EMPLOYEE
-        Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE)("InsuranceModel.FK_HE_HEF", "HU_EMPLOYEE").Value
-        End Get
-        Set
-            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE)("InsuranceModel.FK_HE_HEF", "HU_EMPLOYEE").Value = value
-        End Set
-    End Property
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <BrowsableAttribute(False)>
-    <DataMemberAttribute()>
-    Public Property HU_EMPLOYEEReference() As EntityReference(Of HU_EMPLOYEE)
-        Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE)("InsuranceModel.FK_HE_HEF", "HU_EMPLOYEE")
-        End Get
-        Set
-            If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of HU_EMPLOYEE)("InsuranceModel.FK_HE_HEF", "HU_EMPLOYEE", value)
-            End If
-        End Set
-    End Property
 
     #End Region
 
@@ -7109,41 +7584,6 @@ Public Partial Class HU_EMPLOYEE_HEALTH
 
     #End Region
 
-    #Region "Navigation Properties"
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <XmlIgnoreAttribute()>
-    <SoapIgnoreAttribute()>
-    <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("InsuranceModel", "FK_FE_HEH", "HU_EMPLOYEE")>
-    Public Property HU_EMPLOYEE() As HU_EMPLOYEE
-        Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE)("InsuranceModel.FK_FE_HEH", "HU_EMPLOYEE").Value
-        End Get
-        Set
-            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE)("InsuranceModel.FK_FE_HEH", "HU_EMPLOYEE").Value = value
-        End Set
-    End Property
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <BrowsableAttribute(False)>
-    <DataMemberAttribute()>
-    Public Property HU_EMPLOYEEReference() As EntityReference(Of HU_EMPLOYEE)
-        Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE)("InsuranceModel.FK_FE_HEH", "HU_EMPLOYEE")
-        End Get
-        Set
-            If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of HU_EMPLOYEE)("InsuranceModel.FK_FE_HEH", "HU_EMPLOYEE", value)
-            End If
-        End Set
-    End Property
-
-    #End Region
-
 End Class
 
 ''' <summary>
@@ -7674,41 +8114,6 @@ Public Partial Class HU_EMPLOYEE_OTHER_INFO
 
     #End Region
 
-    #Region "Navigation Properties"
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <XmlIgnoreAttribute()>
-    <SoapIgnoreAttribute()>
-    <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("InsuranceModel", "FK_HE_HEO", "HU_EMPLOYEE")>
-    Public Property HU_EMPLOYEE() As HU_EMPLOYEE
-        Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE)("InsuranceModel.FK_HE_HEO", "HU_EMPLOYEE").Value
-        End Get
-        Set
-            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE)("InsuranceModel.FK_HE_HEO", "HU_EMPLOYEE").Value = value
-        End Set
-    End Property
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <BrowsableAttribute(False)>
-    <DataMemberAttribute()>
-    Public Property HU_EMPLOYEEReference() As EntityReference(Of HU_EMPLOYEE)
-        Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE)("InsuranceModel.FK_HE_HEO", "HU_EMPLOYEE")
-        End Get
-        Set
-            If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of HU_EMPLOYEE)("InsuranceModel.FK_HE_HEO", "HU_EMPLOYEE", value)
-            End If
-        End Set
-    End Property
-
-    #End Region
-
 End Class
 
 ''' <summary>
@@ -8161,41 +8566,6 @@ Public Partial Class HU_EMPLOYEE_SALARY
 
     Private Partial Sub OnPERCENT_SALARYChanged()
     End Sub
-
-    #End Region
-
-    #Region "Navigation Properties"
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <XmlIgnoreAttribute()>
-    <SoapIgnoreAttribute()>
-    <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("InsuranceModel", "FK_HE_HES", "HU_EMPLOYEE")>
-    Public Property HU_EMPLOYEE() As HU_EMPLOYEE
-        Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE)("InsuranceModel.FK_HE_HES", "HU_EMPLOYEE").Value
-        End Get
-        Set
-            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE)("InsuranceModel.FK_HE_HES", "HU_EMPLOYEE").Value = value
-        End Set
-    End Property
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <BrowsableAttribute(False)>
-    <DataMemberAttribute()>
-    Public Property HU_EMPLOYEEReference() As EntityReference(Of HU_EMPLOYEE)
-        Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE)("InsuranceModel.FK_HE_HES", "HU_EMPLOYEE")
-        End Get
-        Set
-            If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of HU_EMPLOYEE)("InsuranceModel.FK_HE_HES", "HU_EMPLOYEE", value)
-            End If
-        End Set
-    End Property
 
     #End Region
 
@@ -10372,24 +10742,6 @@ Public Partial Class HU_ORGANIZATION
     <XmlIgnoreAttribute()>
     <SoapIgnoreAttribute()>
     <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("InsuranceModel", "FK_HU_ORG_HU_EMP", "HU_EMPLOYEE")>
-     Public Property HU_EMPLOYEE() As EntityCollection(Of HU_EMPLOYEE)
-        Get
-            Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of HU_EMPLOYEE)("InsuranceModel.FK_HU_ORG_HU_EMP", "HU_EMPLOYEE")
-        End Get
-        Set
-            If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of HU_EMPLOYEE)("InsuranceModel.FK_HU_ORG_HU_EMP", "HU_EMPLOYEE", value)
-            End If
-        End Set
-    End Property
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <XmlIgnoreAttribute()>
-    <SoapIgnoreAttribute()>
-    <DataMemberAttribute()>
     <EdmRelationshipNavigationPropertyAttribute("InsuranceModel", "FK_HUOG_HUOT", "HU_ORG_TITLE")>
      Public Property HU_ORG_TITLE() As EntityCollection(Of HU_ORG_TITLE)
         Get
@@ -11490,24 +11842,6 @@ Public Partial Class HU_TITLE
     #End Region
 
     #Region "Navigation Properties"
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <XmlIgnoreAttribute()>
-    <SoapIgnoreAttribute()>
-    <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("InsuranceModel", "FK_HE_HT", "HU_EMPLOYEE")>
-     Public Property HU_EMPLOYEE() As EntityCollection(Of HU_EMPLOYEE)
-        Get
-            Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of HU_EMPLOYEE)("InsuranceModel.FK_HE_HT", "HU_EMPLOYEE")
-        End Get
-        Set
-            If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of HU_EMPLOYEE)("InsuranceModel.FK_HE_HT", "HU_EMPLOYEE", value)
-            End If
-        End Set
-    End Property
 
     ''' <summary>
     ''' No Metadata Documentation available.
@@ -12658,37 +12992,6 @@ Public Partial Class HU_WORKING
     #End Region
 
     #Region "Navigation Properties"
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <XmlIgnoreAttribute()>
-    <SoapIgnoreAttribute()>
-    <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("InsuranceModel", "FK_HE_HW", "HU_EMPLOYEE")>
-    Public Property HU_EMPLOYEE() As HU_EMPLOYEE
-        Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE)("InsuranceModel.FK_HE_HW", "HU_EMPLOYEE").Value
-        End Get
-        Set
-            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE)("InsuranceModel.FK_HE_HW", "HU_EMPLOYEE").Value = value
-        End Set
-    End Property
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <BrowsableAttribute(False)>
-    <DataMemberAttribute()>
-    Public Property HU_EMPLOYEEReference() As EntityReference(Of HU_EMPLOYEE)
-        Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of HU_EMPLOYEE)("InsuranceModel.FK_HE_HW", "HU_EMPLOYEE")
-        End Get
-        Set
-            If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of HU_EMPLOYEE)("InsuranceModel.FK_HE_HW", "HU_EMPLOYEE", value)
-            End If
-        End Set
-    End Property
 
     ''' <summary>
     ''' No Metadata Documentation available.
