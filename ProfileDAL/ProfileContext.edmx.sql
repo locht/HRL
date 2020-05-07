@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 04/29/2020 8:55:24 AM
+-- Date Created: 05/07/2020 5:32:11 PM
 -- Generated from EDMX file: F:\WORKING\acv_19\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -1830,7 +1830,9 @@ CREATE TABLE "dbo"."HU_EMPLOYEE_EDIT" (
    "PERSON_INHERITANCE" NVARCHAR2(250) NULL,
    "BANK_NO" NVARCHAR2(250) NULL,
    "BANK_ID" NUMBER(38,0) NULL,
-   "BANK_BRANCH_ID" NUMBER(38,0) NULL
+   "BANK_BRANCH_ID" NUMBER(38,0) NULL,
+   "PER_COUNTRY" NUMBER(38,0) NULL,
+   "NAV_COUNTRY" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_PRO_TRAIN_OUT_COMPANY_EDIT'

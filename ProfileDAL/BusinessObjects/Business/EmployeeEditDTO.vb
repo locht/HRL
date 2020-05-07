@@ -8,6 +8,8 @@
     Public Property REASON_UNAPROVE As String
     Public Property MARITAL_STATUS As Decimal?
     Public Property MARITAL_STATUS_NAME As String
+    Public Property PER_COUNTRY As Decimal?
+    Public Property PER_COUNTRY_NAME As String
     Public Property PER_ADDRESS As String
     Public Property PER_PROVINCE As Decimal?
     Public Property PER_PROVINCE_NAME As String
@@ -20,6 +22,8 @@
     Public Property ID_PLACE As String
     Public Property ID_PLACE_NAME As String
     Public Property NAV_ADDRESS As String
+    Public Property NAV_COUNTRY As Decimal?
+    Public Property NAV_COUNTRY_NAME As String
     Public Property NAV_PROVINCE As Decimal?
     Public Property NAV_PROVINCE_NAME As String
     Public Property NAV_DISTRICT As Decimal?

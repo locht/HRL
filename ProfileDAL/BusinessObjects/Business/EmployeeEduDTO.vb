@@ -32,6 +32,7 @@
     Public Property NOTE_TDTH1 As String
 
     Public Property LANGUAGE2 As Decimal?
+    Public Property LANGUAGE_NAME2 As String
     Public Property LANGUAGE_LEVEL2 As Decimal?
     Public Property LANGUAGE_LEVEL_NAME2 As String
     Public Property LANGUAGE_MARK2 As String
@@ -41,6 +42,7 @@
     Public Property NOTE_TDTH2 As String
     'TRINH DO TIN HỌC ỨNG DUNG
     Public Property COMPUTER_CERTIFICATE As String
+    Public Property COMPUTER_CERTIFICATE_NAME As String
     'TRINH DO TIN HOC CO BAN
     Public Property COMPUTER_RANK As Decimal?
     Public Property COMPUTER_RANK_NAME As String

@@ -2196,12 +2196,14 @@ Partial Class ProfileRepository
                      From train In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.TRAINING_FORM).DefaultIfEmpty
                      From learn In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.LEARNING_LEVEL).DefaultIfEmpty
                      From ll In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.LANGUAGE).DefaultIfEmpty
+                     From lng2 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.LANGUAGE2).DefaultIfEmpty
                      From ll1 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.LANGUAGE_LEVEL).DefaultIfEmpty
                      From ll2 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.LANGUAGE_LEVEL2).DefaultIfEmpty
                      From school In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.GRADUATE_SCHOOL_ID).DefaultIfEmpty
                      From OT In Context.OT_OTHER_LIST.Where(Function(F) F.ID = edu.COMPUTER_MARK).DefaultIfEmpty
                       From OT1 In Context.OT_OTHER_LIST.Where(Function(F) F.ID = edu.COMPUTER_RANK).DefaultIfEmpty
                        From driver In Context.OT_OTHER_LIST.Where(Function(F) F.ID = edu.DRIVER_TYPE).DefaultIfEmpty
+                       From compoter In Context.OT_OTHER_LIST.Where(Function(F) F.ID = edu.COMPUTER_CERTIFICATE).DefaultIfEmpty
                      Where edu.EMPLOYEE_ID = sEmployeeID
                      Select New EmployeeEduDTO With {
                          .EMPLOYEE_ID = edu.EMPLOYEE_ID,
@@ -2209,6 +2211,7 @@ Partial Class ProfileRepository
                          .ACADEMY_NAME = a.NAME_VN,
                          .MAJOR = edu.MAJOR,
                          .COMPUTER_CERTIFICATE = edu.COMPUTER_CERTIFICATE,
+                         .COMPUTER_CERTIFICATE_NAME = compoter.NAME_VN,
                          .COMPUTER_MARK = edu.COMPUTER_MARK,
                          .COMPUTER_MARK_NAME = OT.NAME_VN,
                          .COMPUTER_RANK = edu.COMPUTER_RANK,
@@ -2222,6 +2225,7 @@ Partial Class ProfileRepository
                          .LANGUAGE = edu.LANGUAGE,
                          .LANGUAGE_NAME = ll.NAME_VN,
                          .LANGUAGE2 = edu.LANGUAGE2,
+                         .LANGUAGE_NAME2 = lng2.NAME_VN,
                          .LANGUAGE_LEVEL = edu.LANGUAGE_LEVEL,
                          .LANGUAGE_LEVEL2 = edu.LANGUAGE_LEVEL2,
                          .LANGUAGE_LEVEL_NAME2 = ll2.NAME_VN,

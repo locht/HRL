@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("c98300e5-fcf3-4719-b9cc-4cc95cc02384")>
+<Assembly: EdmSchemaAttribute("f2969832-837f-48f1-b8c6-6cde3ab32b59")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -32299,6 +32299,56 @@ Public Partial Class HU_EMPLOYEE_EDIT
     End Sub
 
     Private Partial Sub OnBANK_BRANCH_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property PER_COUNTRY() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _PER_COUNTRY
+        End Get
+        Set
+            OnPER_COUNTRYChanging(value)
+            ReportPropertyChanging("PER_COUNTRY")
+            _PER_COUNTRY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("PER_COUNTRY")
+            OnPER_COUNTRYChanged()
+        End Set
+    End Property
+
+    Private _PER_COUNTRY As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnPER_COUNTRYChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnPER_COUNTRYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NAV_COUNTRY() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _NAV_COUNTRY
+        End Get
+        Set
+            OnNAV_COUNTRYChanging(value)
+            ReportPropertyChanging("NAV_COUNTRY")
+            _NAV_COUNTRY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("NAV_COUNTRY")
+            OnNAV_COUNTRYChanged()
+        End Set
+    End Property
+
+    Private _NAV_COUNTRY As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnNAV_COUNTRYChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnNAV_COUNTRYChanged()
     End Sub
 
     #End Region

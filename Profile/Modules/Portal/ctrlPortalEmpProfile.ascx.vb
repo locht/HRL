@@ -45,6 +45,10 @@ Public Class ctrlPortalEmpProfile
         EnableControlAll(False, txtEmpCODE,
                                       txtBankNo, txtEmpStatus, txtWorkStatus,
                                       txtFirstNameVN, txtITimeID, txtObjectLabor,
+                                      txtObject, txtEMPLOYEE_OBJECT, chkIs_Hazardous, chkIS_HDLD, txtOrg_C2, txtOrg_C3, txtOrg_C3_1, txtOrg_C4,
+                                      txtOrg_C4_1, txtOrg_C5, txtOrg_C5_1, txtJobPosition, txtUpload, txtUploadFile, txtProductionProcess,
+                                      txtManager, chkForeigner, rdDateOfEntry, txtPassNo, rdPassDate, rdPassExpireDate, txtPassPlace,
+                                      txtNationa_TT, txtNationlity_NQ, txtNationlity_TTRU, txtPROVINCEEMP_ID, txtDISTRICTEMP_ID, txtWARDEMP_ID,
                                       txtHomePhone, txtObjectIns,
                                       cboIDPlace, txtManager,
                                       txtLastNameVN, txtID_NO,
@@ -79,9 +83,12 @@ Public Class ctrlPortalEmpProfile
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Dim EmployeeInfo As EmployeeDTO
+        Dim store As New ProfileStoreProcedure
         Try
             If Not IsPostBack Then
                 Dim orgTree As OrganizationTreeDTO
+                Dim dtData As DataTable
+                Dim dtDirectMng As DataTable
                 Using rep As New ProfileBusinessRepository
                     EmployeeInfo = rep.GetEmployeeByEmployeeID(EmployeeID)
                     Using repRepo As New ProfileRepository
@@ -97,7 +104,49 @@ Public Class ctrlPortalEmpProfile
                         txtTitle.Text = EmployeeInfo.TITLE_ID
                         txtTitle.Text = EmployeeInfo.TITLE_NAME_VN
                         rdQuitDate.SelectedDate = EmployeeInfo.TER_EFFECT_DATE
-                       
+
+                        '' begin TAMBT 07052020
+                        txtEMPLOYEE_OBJECT.Text = EmployeeInfo.EMPLOYEE_OBJECT_NAME
+                        txtObject.Text = EmployeeInfo.OBJECTTIMEKEEPING_NAME
+                        chkIs_Hazardous.Checked = EmployeeInfo.IS_HAZARDOUS
+                        chkIS_HDLD.Checked = EmployeeInfo.IS_HDLD
+                        dtData = rep.GetOrgtree(EmployeeInfo.ORG_ID)
+                        If dtData IsNot Nothing Then
+                            Dim row As DataRow = dtData.Rows(0)
+                            txtOrg_C2.Text = row("ORG_NAME2")
+                            If If(Not IsDBNull(row("UNIT_RANK3")), row("UNIT_RANK3"), 0) = 2 Then
+                                txtOrg_C3.Text = row("ORG_NAME3")
+                            ElseIf If(Not IsDBNull(row("UNIT_RANK3")), row("UNIT_RANK3"), 0) = 3 Then
+                                txtOrg_C3_1.Text = row("ORG_NAME3")
+                            End If
+                            If If(Not IsDBNull(row("UNIT_RANK4")), row("UNIT_RANK4"), 0) = 4 Then
+                                txtOrg_C4.Text = row("ORG_NAME4")
+                            ElseIf If(Not IsDBNull(row("UNIT_RANK4")), row("UNIT_RANK4"), 0) = 5 Then
+                                txtOrg_C4_1.Text = row("ORG_NAME4")
+                            End If
+                            If If(Not IsDBNull(row("UNIT_RANK5")), row("UNIT_RANK5"), 0) = 6 Then
+                                txtOrg_C5.Text = row("ORG_NAME5")
+                            ElseIf If(Not IsDBNull(row("UNIT_RANK5")), row("UNIT_RANK5"), 0) = 7 Then
+                                txtOrg_C5_1.Text = row("ORG_NAME5")
+                            End If
+                        End If
+                        txtJobPosition.Text = EmployeeInfo.JOB_POSITION_NAME
+                        If IsNumeric(EmployeeInfo.JOB_POSITION) Then
+                            dtDirectMng = store.GET_DIRECT_MANAGER_BY_JOB_POS(EmployeeInfo.JOB_POSITION)
+                            FillRadCombobox(cboDirectManager, dtDirectMng, "FULLNAME_VN", "ID", True)
+                        End If
+
+                        If IsNumeric(EmployeeInfo.TITLE_ID) And IsNumeric(EmployeeInfo.ORG_ID) Then
+                            dtData = store.GET_JOB_DESCRIPTION_BY_TITLE_ORG(EmployeeInfo.TITLE_ID, EmployeeInfo.ORG_ID)
+                            FillRadCombobox(cboJobDescription, dtData, "NAME", "ID", True)
+                        End If
+                        If cboDirectManager.SelectedValue <> "" Then
+                            txtManager.Text = (From p In dtDirectMng Where p("ID") = cboDirectManager.SelectedValue Select p("TITLE_NAME")).FirstOrDefault
+                        End If
+                        txtContractNo.Text = EmployeeInfo.CONTRACT_NO
+
+                        ''end
+
                         txtDirectManager.Text = EmployeeInfo.DIRECT_MANAGER_NAME
                         txtContractType.Text = EmployeeInfo.CONTRACT_TYPE_NAME
                         rdContractEffectDate.SelectedDate = EmployeeInfo.CONTRACT_EFFECT_DATE
@@ -139,7 +188,34 @@ Public Class ctrlPortalEmpProfile
                                 'FillRadCombobox(cboLangLevel, dtLanguageleve, "NAME", "ID")
                                 'FillRadCombobox(cboBIRTH_PLACE, dtPlace, "NAME", "ID")
                             End Using
-
+                            ''begin TamBT 07052020
+                            If IsNumeric(empCV.IS_FOREIGNER) Then
+                                chkForeigner.Checked = CType(empCV.IS_FOREIGNER, Boolean)
+                            End If
+                            If IsDate(empCV.DATEOFENTRY) Then
+                                rdDateOfEntry.SelectedDate = empCV.DATEOFENTRY
+                            End If
+                            txtContactMobilePhone.Text = empCV.CONTACT_PER_MBPHONE
+                            rdWeddingDay.SelectedDate = empCV.WEDDINGDAY
+                            ckCONG_DOAN.Checked = empCV.CONG_DOAN
+                            rdNGAY_VAO_DOAN.SelectedDate = empCV.NGAY_VAO_DOAN
+                            txtNoiVaoDoan.Text = empCV.NOI_VAO_DOAN
+                            txtCHUC_VU_DOAN.Text = empCV.CHUC_VU_DANG
+                            ckDANG.Checked = empCV.DANG
+                            rdNGAY_VAO_DANG.SelectedDate = empCV.NGAY_VAO_DANG
+                            txtNOI_VAO_DANG.Text = empCV.NOI_VAO_DANG
+                            chkDangPhi.Checked = empCV.DANG_PHI
+                            rtCHUC_VU_DANG.Text = empCV.CHUC_VU_DANG
+                            chkATVS.Checked = empCV.IS_ATVS
+                            txtGPHN.Text = empCV.WORK_HN
+                            rdFrom_GPHN.SelectedDate = empCV.WORK_HN_DATE
+                            rdTo_GPHN.SelectedDate = empCV.WORK_HN_EXPIRE
+                            txtNoiCap_GPHN.Text = empCV.WORK_HN_PLACE
+                            txtWorkPermit.Text = empCV.WORK_PERMIT
+                            rdWorkPermitDate.SelectedDate = empCV.WORK_PERMIT_DATE
+                            rdWorPermitExpireDate.SelectedDate = empCV.WORK_PERMIT_EXPIRE
+                            txtWorkPermitPlace.Text = empCV.WORK_PERMIT_PLACE
+                            '' end
                             txtGender.Text = empCV.GENDER_NAME
                             rdBirthDate.SelectedDate = empCV.BIRTH_DATE
                             'cboBIRTH_PLACE.SelectedValue = empCV.BIRTH_PLACE
@@ -148,10 +224,12 @@ Public Class ctrlPortalEmpProfile
                             txtNative.Text = empCV.NATIVE_NAME
                             txtNationlity.Text = empCV.NATIONALITY_NAME
                             txtNavAddress.Text = empCV.NAV_ADDRESS
+                            txtNationlity_TTRU.Text = empCV.NAV_COUNTRY_NAME
                             txtNav_Province.Text = empCV.NAV_PROVINCE_NAME
                             txtNav_District.Text = empCV.NAV_DISTRICT_NAME
                             txtNav_Ward.Text = empCV.NAV_WARD_NAME
                             txtPerAddress.Text = empCV.PER_ADDRESS
+                            txtNationa_TT.Text = empCV.PER_COUNTRY_NAME
                             txtPer_Province.Text = empCV.PER_PROVINCE_NAME
                             txtPer_District.Text = empCV.PER_DISTRICT_NAME
                             txtPer_Ward.Text = empCV.PER_WARD_NAME
@@ -160,9 +238,14 @@ Public Class ctrlPortalEmpProfile
                             txtDistrictBorn.Text = empCV.DISTRICTEMP_NAME
                             txtWardBorn.Text = empCV.WARDEMP_NAME
                             txtInsArea.Text = empCV.INS_REGION_NAME
-                            txtDomicile.Text = empCV.PROVINCENQ_NAME
+                            txtDomicile.Text = empCV.RESIDENCE
+                            txtNationlity_NQ.Text = empCV.NATIONEMP_ID_NAME
+                            txtPROVINCEEMP_ID.Text = empCV.PROVINCEEMP_NAME
+                            txtDISTRICTEMP_ID.Text = empCV.DISTRICTEMP_NAME
+                            txtWARDEMP_ID.Text = empCV.WARDEMP_NAME
                             txtID_REMARK.Text = empCV.ID_REMARK
                             txtNOI_VAO_DANG.Text = empCV.NOI_VAO_DANG
+
                             ' Đối tượng đóng bảo hiểm
                             If empCV.OBJECT_INS IsNot Nothing Then
                                 txtObjectIns.Text = empCV.OBJECT_INS_NAME
@@ -203,7 +286,7 @@ Public Class ctrlPortalEmpProfile
                             rdPassExpireDate.SelectedDate = empCV.PASS_EXPIRE
                             txtPassPlace.Text = empCV.PASS_PLACE
                             'Visa
-                           
+
                             'Giấy phép lao động                           
                             txtPitCode.Text = empCV.PIT_CODE
                             txtPerEmail.Text = empCV.PER_EMAIL
@@ -226,20 +309,17 @@ Public Class ctrlPortalEmpProfile
                             txtBank.Text = empCV.BANK_NAME
                             txtBankBranch.Text = empCV.BANK_BRANCH_NAME
                             txtBankNo.Text = empCV.BANK_NO
+                            chkIS_TRANSFER.Checked = empCV.IS_TRANSFER
+
                             txtHang_Thuong_Binh.Text = empCV.HANG_THUONG_BINH_NAME
                             txtGD_Chinh_Sach.Text = empCV.GD_CHINH_SACH_NAME
                             '=========================================================
-                            If IsNumeric(empCV.DANG) Then
-                                ckDANG.Checked = CType(empCV.DANG, Boolean)
-                            End If
+                            
                             If IsNumeric(empCV.CA) Then
                                 ckCA.Checked = CType(empCV.CA, Boolean)
                             End If
                             If IsNumeric(empCV.BANTT) Then
                                 ckBanTT_ND.Checked = CType(empCV.BANTT, Boolean)
-                            End If
-                            If IsNumeric(empCV.CONG_DOAN) Then
-                                ckCONG_DOAN.Checked = CType(empCV.CONG_DOAN, Boolean)
                             End If
                             rtCV_BANTT.Text = empCV.CV_BANTT
                             If IsDate(empCV.NGAY_TG_BANTT) Then
@@ -272,26 +352,16 @@ Public Class ctrlPortalEmpProfile
                             If IsNumeric(empCV.THUONG_BINH) Then
                                 ckThuong_Binh.Checked = CType(empCV.THUONG_BINH, Boolean)
                             End If
-                            If IsDate(empCV.NGAY_VAO_DANG_DB) Then
-                                rdNGAY_VAO_DANG_DB.SelectedDate = empCV.NGAY_VAO_DANG_DB
-                            End If
-                            rtCHUC_VU_DANG.Text = empCV.CHUC_VU_DANG
-                            If IsDate(empCV.NGAY_VAO_DANG) Then
-                                rdNGAY_VAO_DANG.SelectedDate = empCV.NGAY_VAO_DANG
-                            End If
+                            
                             'rtCHUC_VU_DOAN.Text = empCV.CHUC_VU_DOAN
                             If IsNumeric(empCV.DOAN_PHI) Then
                                 ckDOAN_PHI.Checked = CType(empCV.DOAN_PHI, Boolean)
                             End If
 
-                            If IsDate(empCV.NGAY_VAO_DOAN) Then
-                                rdNGAY_VAO_DOAN.SelectedDate = empCV.NGAY_VAO_DOAN
-                            End If
                             '===============================================
                         End If
                         If empEdu IsNot Nothing Then
                             Dim dtLanguage As DataTable
-                            Dim dtData As DataTable
                             Using repEdu As New ProfileRepository
                                 dtLanguage = repEdu.GetOtherList("RC_LANGUAGE_LEVEL", True)
                                 'FillRadCombobox(cboLanguage2, dtLanguage, "NAME", "ID")
@@ -321,7 +391,7 @@ Public Class ctrlPortalEmpProfile
                             If empEdu.COMPUTER_MARK IsNot Nothing Then
                                 txtCertificate.Text = empEdu.COMPUTER_MARK_NAME
                             End If
-                            txtAppDung.Text = empEdu.COMPUTER_CERTIFICATE
+                            txtAppDung.Text = empEdu.COMPUTER_CERTIFICATE_NAME
 
                             If empEdu.LANGUAGE IsNot Nothing Then
                                 txtLanguage.Text = empEdu.LANGUAGE_NAME
@@ -337,7 +407,21 @@ Public Class ctrlPortalEmpProfile
                             If IsNumeric(empEdu.TDTH) Then
                                 'cboTDTH.SelectedValue = empEdu.TDTH
                             End If
+                            txtLanguage2.Text = empEdu.LANGUAGE_NAME2
+                            txtLangLevel2.Text = empEdu.LANGUAGE_LEVEL_NAME2
+                            txtDriverType.Text = empEdu.DRIVER_TYPE_NAME
+                            txtMotoDrivingLicense.Text = empEdu.MOTO_DRIVING_LICENSE
+                            txtNote.Text = empEdu.MORE_INFORMATION
                             'txtITMark.Text = empEdu.DIEM_XLTH
+                        End If
+
+                        If empHealth IsNot Nothing Then
+                            txtChieuCao.Text = empHealth.CHIEU_CAO
+                            txtCanNang.Text = empHealth.CAN_NANG
+                            txtNhomMau.Text = empHealth.NHOM_MAU
+                            txtTieuSuBanThan.Text = empHealth.TIEU_SU_BAN_THAN
+                            txtTieuSuGiaDinh.Text = empHealth.TIEU_SU_GIA_DINH
+                            txtGhiChuSK.Text = empHealth.GHI_CHU_SUC_KHOE
                         End If
                     End If
 
@@ -436,7 +520,7 @@ Public Class ctrlPortalEmpProfile
         Dim reportNameOut As String = "String.Empty"
         Dim tempPath As String = ConfigurationManager.AppSettings("WordFileFolder")
         Try
-            
+
             dsData = rp.PRINT_CV(EmployeeID)
 
             If dsData Is Nothing Then

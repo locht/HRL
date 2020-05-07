@@ -253,6 +253,9 @@ Public Class ctrlPortalEmpProfile_Edit
                         If cboPer_Ward.SelectedValue <> "" Then
                             obj.PER_WARD = Decimal.Parse(cboPer_Ward.SelectedValue)
                         End If
+                        If cboNationa_TT.SelectedValue <> "" Then
+                        End If
+
                         ' CMND
                         obj.ID_NO = txtID_NO.Text.Trim()
                         obj.ID_DATE = rdIDDate.SelectedDate
@@ -305,7 +308,7 @@ Public Class ctrlPortalEmpProfile_Edit
                     ctrlMessageBox.DataBind()
                     ctrlMessageBox.Show()
 
-                    
+
             End Select
         Catch ex As Exception
             Me.DisplayException(Me.ViewName, Me.ID, ex)
@@ -315,7 +318,7 @@ Public Class ctrlPortalEmpProfile_Edit
     Protected Sub cboCommon_ItemsRequested(ByVal sender As Object, ByVal e As RadComboBoxItemsRequestedEventArgs) _
     Handles cboFamilyStatus.ItemsRequested, cboNav_Province.ItemsRequested, cboPer_Province.ItemsRequested,
     cboPer_District.ItemsRequested, cboPer_Ward.ItemsRequested, cboNav_District.ItemsRequested, cboNav_Ward.ItemsRequested,
-    cboBank.ItemsRequested, cboBankBranch.ItemsRequested
+    cboBank.ItemsRequested, cboBankBranch.ItemsRequested, cboNationa_TT.ItemsRequested, cboNationlity_TTRU.ItemsRequested
         Using rep As New ProfileRepository
             Dim dtData As DataTable
             Dim sText As String = e.Text
@@ -324,8 +327,6 @@ Public Class ctrlPortalEmpProfile_Edit
             Select Case sender.ID
                 Case cboFamilyStatus.ID
                     dtData = rep.GetOtherList("FAMILY_STATUS", True)
-                Case cboNav_Province.ID, cboPer_Province.ID
-                    dtData = rep.GetProvinceList(True)
                 Case cboNav_District.ID, cboPer_District.ID
                     dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
                     dtData = rep.GetDistrictList(dValue, True)
@@ -337,6 +338,13 @@ Public Class ctrlPortalEmpProfile_Edit
                 Case cboBankBranch.ID
                     dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
                     dtData = rep.GetBankBranchList(dValue, True)
+                Case cboPer_Province.ID, cboNav_Province.ID
+                    dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
+                    dtData = rep.GetProvinceList1(dValue, True)
+                Case cboNationa_TT.ID
+                    dtData = rep.GetNationList(True)
+                Case cboNationlity_TTRU.ID
+                    dtData = rep.GetNationList(True)
             End Select
 
             If sText <> "" Then
@@ -405,7 +413,7 @@ Public Class ctrlPortalEmpProfile_Edit
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
         Try
             If e.ActionName = CommonMessage.TOOLBARITEM_APPROVE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
-                
+
                 Using rep As New ProfileBusinessRepository
                     Dim lstID As New List(Of Decimal)
                     lstID.Add(hidID.Value)

@@ -51943,6 +51943,9 @@ Namespace ProfileBusiness
         Private COMPUTER_CERTIFICATEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COMPUTER_CERTIFICATE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private COMPUTER_MARKField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -52016,6 +52019,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LANGUAGE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LANGUAGE_NAME2Field As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LEARNING_LEVELField As System.Nullable(Of Decimal)
@@ -52116,6 +52122,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.COMPUTER_CERTIFICATEField, value) <> true) Then
                     Me.COMPUTER_CERTIFICATEField = value
                     Me.RaisePropertyChanged("COMPUTER_CERTIFICATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COMPUTER_CERTIFICATE_NAME() As String
+            Get
+                Return Me.COMPUTER_CERTIFICATE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.COMPUTER_CERTIFICATE_NAMEField, value) <> true) Then
+                    Me.COMPUTER_CERTIFICATE_NAMEField = value
+                    Me.RaisePropertyChanged("COMPUTER_CERTIFICATE_NAME")
                 End If
             End Set
         End Property
@@ -52441,6 +52460,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.LANGUAGE_NAMEField, value) <> true) Then
                     Me.LANGUAGE_NAMEField = value
                     Me.RaisePropertyChanged("LANGUAGE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LANGUAGE_NAME2() As String
+            Get
+                Return Me.LANGUAGE_NAME2Field
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LANGUAGE_NAME2Field, value) <> true) Then
+                    Me.LANGUAGE_NAME2Field = value
+                    Me.RaisePropertyChanged("LANGUAGE_NAME2")
                 End If
             End Set
         End Property
