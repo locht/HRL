@@ -1066,7 +1066,7 @@ Public Class Export
         Try
             Dim dtColName = Session("IMPORTSALARY_COLNAME")
             Dim dtData = Session("IMPORTSALARY_DATACOL")
-            ExportTemplateWithDataCol("Payroll\Business\TEMP_IMPORT_SALARY_TNCN.xlsx", dtData, dtColName, "TEMP_IMPORTTHUETNCN" & Format(Date.Now, "yyyyMMdd"))
+            ExportTemplateWithDataCol1("Payroll\Business\TEMP_IMPORT_SALARY_TNCN.xlsx", dtData, dtColName, "TEMP_IMPORTTHUETNCN" & Format(Date.Now, "yyyyMMdd"))
 
         Catch ex As Exception
             Throw ex
@@ -1076,7 +1076,7 @@ Public Class Export
         Try
             Dim dtColName = Session("IMPORTSALARY_COLNAME")
             Dim dtData = Session("IMPORTSALARY_DATACOL")
-            ExportTemplateWithDataCol("Payroll\Business\TEMP_IMPORT_SALARY_BONUS.xlsx", dtData, dtColName, "TEMP_IMPORTBONUS" & Format(Date.Now, "yyyyMMdd"))
+            ExportTemplateWithDataCol1("Payroll\Business\TEMP_IMPORT_SALARY_BONUS.xlsx", dtData, dtColName, "TEMP_IMPORTBONUS" & Format(Date.Now, "yyyyMMdd"))
 
         Catch ex As Exception
             Throw ex
@@ -1936,7 +1936,7 @@ Public Class Export
             designer.Open(filePath)
             Dim cell As Cells = designer.Workbook.Worksheets(0).Cells
             Dim st As New Style
-            st.Number = 5
+            st.Number = 4
             Dim i As Integer = 5
             For Each dr As DataRow In dtColname.Rows
                 cell(1, i).PutValue(dr("COLNAME"))
