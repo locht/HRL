@@ -1054,6 +1054,7 @@
     <Content Include="ReportTemplates\Recruitment\Import\Candidate_Error.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ReportTemplates\Recruitment\Import\Import_CV_mau.xls" />
     <Content Include="ReportTemplates\Recruitment\Import\Template_PLAN_RES.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

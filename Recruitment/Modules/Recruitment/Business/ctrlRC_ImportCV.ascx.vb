@@ -199,10 +199,13 @@ Public Class ctrlRC_ImportCV
     Protected Sub InitControl()
         Try
             Me.MainToolBar = tbarMain
-            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.ExportTemplate, ToolbarItem.Import, ToolbarItem.Export, ToolbarItem.Save, ToolbarItem.Cancel)
-            MainToolBar.Items(0).Text = Translate("Xuất file CV mẫu")
-            MainToolBar.Items(1).Text = Translate("Import CV")
-            MainToolBar.Items(2).Text = Translate("Xuất file CV lỗi")
+            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.ExportTemplate, ToolbarItem.Import, ToolbarItem.Export, ToolbarItem.Next, ToolbarItem.Save, ToolbarItem.Cancel)
+            MainToolBar.Items(0).Text = Translate("Xuất file template DS ứng viên")
+            MainToolBar.Items(1).Text = Translate("Import DS ứng viên")
+            'MainToolBar.Items(2).Text = Translate("Xuất file CV lỗi")
+            MainToolBar.Items(2).Text = Translate("Xuất file template CV")
+            CType(Me.MainToolBar.Items(3), RadToolBarButton).ImageUrl = CType(Me.MainToolBar.Items(1), RadToolBarButton).ImageUrl
+            MainToolBar.Items(3).Text = Translate("Import CV")
         Catch ex As Exception
             Throw ex
         End Try
@@ -315,43 +318,44 @@ Public Class ctrlRC_ImportCV
                     ctrlUpload.isMultiple = AsyncUpload.MultipleFileSelection.Automatic
                     ctrlUpload.Show()
                 Case CommonMessage.TOOLBARITEM_EXPORT
-                    If rgData.SelectedItems.Count = 0 Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
-                        Exit Sub
-                    End If
-                    If rgData.SelectedItems.Count > 1 Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW), NotifyType.Warning)
-                        Exit Sub
-                    End If
-                    For Each item As GridDataItem In rgData.SelectedItems
-                        If item.GetDataKeyValue("IS_CMND") = 1 Then
-                            ShowMessage(Translate("Ứng viên đã là nhân viên!"), NotifyType.Warning)
-                            Exit Sub
-                        ElseIf item.GetDataKeyValue("IS_CMND") = 2 Then
-                            ShowMessage(Translate("Ứng viên là nhân viên đã nghỉ việc!"), NotifyType.Warning)
-                            Exit Sub
-                        ElseIf item.GetDataKeyValue("IS_CMND") = 3 Then
-                            ShowMessage(Translate("Ứng viên đã từng ứng tuyển!"), NotifyType.Warning)
-                            Exit Sub
-                        End If
-                    Next
-                    Dim dt = dtError.Clone
-                    For Each item As GridDataItem In rgData.SelectedItems
-                        Dim key As String = item.GetDataKeyValue("FILE_NAME").ToString
-                        For Each r As DataRow In dtError.Rows
-                            If r("FILE_NAME").ToString <> "" Then
-                                If r("FILE_NAME").ToString = key Then
-                                    dt.ImportRow(r)
-                                End If
-                            End If
-                        Next
-                    Next
-                    Session("EXPORTREPORT") = dt
-                    Session("DATA_E1") = dtError1
-                    Session("DATA_E2") = dtError2
-                    Session("DATA_E3") = dtError3
-                    ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('RC_CANDIDATE_IMPORT_ERROR')", True)
+                    GetInformationLists()
+                    'If rgData.SelectedItems.Count = 0 Then
+                    '    ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
+                    '    Exit Sub
                     'End If
+                    'If rgData.SelectedItems.Count > 1 Then
+                    '    ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW), NotifyType.Warning)
+                    '    Exit Sub
+                    'End If
+                    'For Each item As GridDataItem In rgData.SelectedItems
+                    '    If item.GetDataKeyValue("IS_CMND") = 1 Then
+                    '        ShowMessage(Translate("Ứng viên đã là nhân viên!"), NotifyType.Warning)
+                    '        Exit Sub
+                    '    ElseIf item.GetDataKeyValue("IS_CMND") = 2 Then
+                    '        ShowMessage(Translate("Ứng viên là nhân viên đã nghỉ việc!"), NotifyType.Warning)
+                    '        Exit Sub
+                    '    ElseIf item.GetDataKeyValue("IS_CMND") = 3 Then
+                    '        ShowMessage(Translate("Ứng viên đã từng ứng tuyển!"), NotifyType.Warning)
+                    '        Exit Sub
+                    '    End If
+                    'Next
+                    'Dim dt = dtError.Clone
+                    'For Each item As GridDataItem In rgData.SelectedItems
+                    '    Dim key As String = item.GetDataKeyValue("FILE_NAME").ToString
+                    '    For Each r As DataRow In dtError.Rows
+                    '        If r("FILE_NAME").ToString <> "" Then
+                    '            If r("FILE_NAME").ToString = key Then
+                    '                dt.ImportRow(r)
+                    '            End If
+                    '        End If
+                    '    Next
+                    'Next
+                    'Session("EXPORTREPORT") = dt
+                    'Session("DATA_E1") = dtError1
+                    'Session("DATA_E2") = dtError2
+                    'Session("DATA_E3") = dtError3
+                    'ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('RC_CANDIDATE_IMPORT_ERROR')", True)
+                    ''End If
             End Select
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -361,7 +365,8 @@ Public Class ctrlRC_ImportCV
         Dim repStore As New RecruitmentStoreProcedure
         Dim dsDB As New DataSet
         Dim dtTonGiao, dtMoiQH, dtQuocGia, dtTinh, dtHuyen, dtXa, dtChuyenNganh,
-            dtChuyenMon, dtHonNhan, dtDanToc, dtLogo, dtGender, dtSchool, dtTDVH As New DataTable
+            dtChuyenMon, dtHonNhan, dtDanToc, dtLogo, dtGender, dtSchool, dtTDVH,
+            dtNgoaiNgu, dtBangCapNgoaiNgu, dtChungChiTinHoc, dtTrinhDoTinHoc, dtXepLoaiHocVan As New DataTable
         Try
             dsDB = repStore.GET_ALL_LIST(1)
             If dsDB.Tables.Count > 0 Then
@@ -431,8 +436,32 @@ Public Class ctrlRC_ImportCV
                 If dsDB.Tables(13) IsNot Nothing AndAlso dsDB.Tables(13).Rows.Count > 0 Then
                     dtTDVH = dsDB.Tables(13)
                 End If
+                'ngoai ngu
+                If dsDB.Tables(14) IsNot Nothing AndAlso dsDB.Tables(14).Rows.Count > 0 Then
+                    dtNgoaiNgu = dsDB.Tables(14)
+                End If
+                'bang cap ngoai ngu
+                If dsDB.Tables(15) IsNot Nothing AndAlso dsDB.Tables(15).Rows.Count > 0 Then
+                    dtBangCapNgoaiNgu = dsDB.Tables(15)
+                End If
+                'chung chi tin hoc
+                If dsDB.Tables(16) IsNot Nothing AndAlso dsDB.Tables(16).Rows.Count > 0 Then
+                    dtChungChiTinHoc = dsDB.Tables(16)
+                End If
+                'trinh do tin hoc
+                If dsDB.Tables(17) IsNot Nothing AndAlso dsDB.Tables(17).Rows.Count > 0 Then
+                    dtTrinhDoTinHoc = dsDB.Tables(17)
+                End If
+                'xep loai hoc van
+                If dsDB.Tables(18) IsNot Nothing AndAlso dsDB.Tables(18).Rows.Count > 0 Then
+                    dtXepLoaiHocVan = dsDB.Tables(18)
+                End If
 
-                ExportTemplate("Recruitment\Import\Import_ungvien_acv.xls", dtTonGiao, dtMoiQH, dtQuocGia, dtTinh, dtHuyen, dtXa, dtChuyenNganh, dtChuyenMon, dtHonNhan, dtDanToc, dtLogo, dtGender, dtSchool, dtTDVH, "Import_UngVien")
+                ExportTemplate("Recruitment\Import\Import_CV_mau.xls",
+                               dtTonGiao, dtMoiQH, dtQuocGia, dtTinh, dtHuyen, dtXa,
+                               dtChuyenNganh, dtChuyenMon, dtHonNhan, dtDanToc, dtLogo, dtGender, dtSchool, dtTDVH,
+                               dtNgoaiNgu, dtBangCapNgoaiNgu, dtChungChiTinHoc, dtTrinhDoTinHoc, dtXepLoaiHocVan,
+                               "Import_CV_mau")
             End If
 
         Catch ex As Exception
@@ -454,6 +483,11 @@ Public Class ctrlRC_ImportCV
                                                     ByVal dt12 As DataTable,
                                                     ByVal dt13 As DataTable,
                                                     ByVal dt14 As DataTable,
+                                                    ByVal dt15 As DataTable,
+                                                    ByVal dt16 As DataTable,
+                                                    ByVal dt17 As DataTable,
+                                                    ByVal dt18 As DataTable,
+                                                    ByVal dt19 As DataTable,
                                                     ByVal filename As String) As Boolean
 
         Dim filePath As String
@@ -533,6 +567,27 @@ Public Class ctrlRC_ImportCV
             If dt14 IsNot Nothing Then
                 dt14.TableName = "TableTDVH"
                 designer.SetDataSource(dt14)
+            End If
+
+            If dt15 IsNot Nothing Then
+                dt15.TableName = "TableNgoaiNgu"
+                designer.SetDataSource(dt15)
+            End If
+            If dt16 IsNot Nothing Then
+                dt16.TableName = "TableBangCapNgoaiNgu"
+                designer.SetDataSource(dt16)
+            End If
+            If dt17 IsNot Nothing Then
+                dt17.TableName = "TableCCTH"
+                designer.SetDataSource(dt17)
+            End If
+            If dt18 IsNot Nothing Then
+                dt18.TableName = "TableTDTH"
+                designer.SetDataSource(dt18)
+            End If
+            If dt19 IsNot Nothing Then
+                dt19.TableName = "TableXepLoaiHocVan"
+                designer.SetDataSource(dt19)
             End If
 
             designer.Process()
