@@ -2074,7 +2074,7 @@ Public Class ctrlHU_CommendNewEdit
     Private Sub btnExport_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnExport.Click
         Try
             Dim dsDanhMuc As DataSet
-            Dim tempPath = "~/ReportTemplates//Profile//Import//import_khenthuong1.xls"
+            Dim tempPath = "~/ReportTemplates//Profile//Import//IMPORT_KhenThuong.xls"
             If Not File.Exists(System.IO.Path.Combine(Server.MapPath(tempPath))) Then
                 ' Mẫu báo cáo không tồn tại
                 ShowMessage(Translate("Mẫu báo cáo không tồn tại"), Framework.UI.Utilities.NotifyType.Warning)
@@ -2087,7 +2087,6 @@ Public Class ctrlHU_CommendNewEdit
             Using xls As New AsposeExcelCommon
                 Dim bCheck = xls.ExportExcelTemplate(
                   System.IO.Path.Combine(Server.MapPath(tempPath)), "IMPORT_KhenThuong", dsDanhMuc, Nothing, Response)
-
             End Using
         Catch ex As Exception
 
@@ -2137,8 +2136,8 @@ Public Class ctrlHU_CommendNewEdit
                             Dim employee As New CommendEmpDTO
                             employee.GUID_ID = Guid.NewGuid.ToString()
                             employee.EMPLOYEE_CODE = rows("EMPLOYEE_CODE")
-                            'employee.COMMEND_PAY = Decimal.Parse(rows("COMMEND_PAY"))
-                            'employee.MONEY = Decimal.Parse(rows("MONEY"))
+                            employee.COMMEND_PAY = Decimal.Parse(rows("COMMEND_PAY"))
+                            employee.MONEY = Decimal.Parse(rows("MONEY"))
                             Using rep As New ProfileBusinessRepository
                                 dtData = rep.GET_EMPLOYEE(rows("EMPLOYEE_CODE"))
                                 employee.ORG_ID = dtData(0)("ORG_ID")
@@ -2180,8 +2179,8 @@ Public Class ctrlHU_CommendNewEdit
         Dim rep As New ProfileBusinessClient
         ' lấy dữ liệu thô từ excel vào và tinh chỉnh dữ liệu
         dtTemp.Columns(0).ColumnName = "EMPLOYEE_CODE"
-        'dtTemp.Columns(4).ColumnName = "COMMEND_PAY"
-        'dtTemp.Columns(5).ColumnName = "MONEY"
+        dtTemp.Columns(4).ColumnName = "COMMEND_PAY"
+        dtTemp.Columns(5).ColumnName = "MONEY"
 
         'XOA DONG TIEU DE VA HEADER
         dtTemp.Rows(0).Delete()
@@ -2232,17 +2231,17 @@ Public Class ctrlHU_CommendNewEdit
                 End If
             End If
 
-            'If Not (IsNumeric(rows("COMMEND_PAY"))) Then
-            '    rows("COMMEND_PAY") = 0
-            '    newRow("DISCIPTION") = newRow("DISCIPTION") + "Hình thức trả thưởng - Không đúng định dạng,"
-            '    _error = False
-            'End If
+            If Not (IsNumeric(rows("COMMEND_PAY"))) Then
+                rows("COMMEND_PAY") = 0
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Hình thức trả thưởng - Không đúng định dạng,"
+                _error = False
+            End If
 
-            'If Not (IsNumeric(rows("MONEY"))) Then
-            '    rows("MONEY") = 0
-            '    newRow("DISCIPTION") = newRow("DISCIPTION") + "Mức thưởng - Không đúng định dạng,"
-            '    _error = False
-            'End If
+            If Not (IsNumeric(rows("MONEY"))) Then
+                rows("MONEY") = 0
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Mức thưởng - Không đúng định dạng,"
+                _error = False
+            End If
 
             If _error = False Then
                 dtLogs.Rows.Add(newRow)

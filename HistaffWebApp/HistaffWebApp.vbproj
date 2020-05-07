@@ -1486,13 +1486,13 @@
     <Content Include="ReportTemplates\Payroll\IPAY_REPORT_08.xlsx" />
     <Content Include="ReportTemplates\Profile\TMP_HU_TITLE.xls" />
     <Content Include="ReportTemplates\Profile\Import\import_hopdong.xls" />
-    <Content Include="ReportTemplates\Profile\Import\import_khenthuong.xls" />
     <Content Include="ReportTemplates\Profile\Import\import_phuluchopdong.xls" />
     <Content Include="ReportTemplates\Profile\Import\Template_Export_Emp.xls" />
     <Content Include="ReportTemplates\Profile\Import\import_khenthuong1.xls" />
     <Content Include="ReportTemplates\Profile\Import\TEMP_IMPORT_CONTRACT_ERR.xls" />
     <Content Include="ReportTemplates\Payroll\Import\Allowance.xls" />
     <Content Include="ReportTemplates\Payroll\Business\TEMP_IMPORT_SALARY_BONUS.xlsx" />
+    <Content Include="ReportTemplates\Profile\Import\IMPORT_KhenThuong.xls" />
     <None Include="ReportTemplates\Recruitment\Import\Candidate_Error.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1507,6 +1507,9 @@
     <Content Include="ReportTemplates\Recruitment\Report\Template_Candidate_List.xls" />
     <Content Include="ReportTemplates\Recruitment\Report\AVNS-BM04A-TDNS.xls" />
     <Content Include="ReportTemplates\Recruitment\Report\AVNS-BM04B-TDNS.xls" />
+    <Content Include="ReportTemplates\Recruitment\Import\Template_AVNS-BM01A-TDNS.xls" />
+    <Content Include="ReportTemplates\Recruitment\Import\Template_AVNS-BM01B-TDNS.xlsx" />
+    <Content Include="ReportTemplates\Recruitment\Import\Template_AVNS-BM01C-TDNS.xlsx" />
     <None Include="Styles\ImgConfig.jquery.css" />
     <Content Include="Styles\font-awesome.css" />
     <Content Include="Styles\img\icon-tree.png" />
