@@ -39,7 +39,15 @@ Public Class ctrlManagementBonus
             ViewState(Me.ID & "_ListComboData") = value
         End Set
     End Property
-
+    'Dim Lststr As New List(Of String)
+    Property Lststr As List(Of String)
+        Get
+            Return ViewState(Me.ID & "_Lststr")
+        End Get
+        Set(ByVal value As List(Of String))
+            ViewState(Me.ID & "_Lststr") = value
+        End Set
+    End Property
     ''' <summary>
     ''' vData
     ''' </summary>
@@ -143,16 +151,9 @@ Public Class ctrlManagementBonus
         Dim rep As New PayrollRepository
         Try
             If Not Page.IsPostBack Then
-                Dim stringKey As New List(Of String)
-                Dim objSalari As List(Of PAListSalariesDTO)
+            
                 rgData.PageSize = 50
                 GetDataCombo()
-                objSalari = rep.GetSalaryList_TYPE(13)
-                For Each item In objSalari
-                    stringKey.Add(item.COL_NAME)
-                Next
-                ListKey = stringKey
-                CreateTreeSalaryNote()
                 ctrlOrg.CurrentValue = 1
                 CreateDataFilter()
             End If
@@ -204,7 +205,7 @@ Public Class ctrlManagementBonus
         Dim startTime As DateTime = DateTime.UtcNow
 
         Try
-            CreateTreeSalaryNote()
+            'CreateTreeSalaryNote()
             rgData.Rebind()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -370,7 +371,7 @@ Public Class ctrlManagementBonus
                     Dim stringKey As New List(Of String)
 
                     For Each node As RadTreeNode In ctrlListSalary.CheckedNodes
-                        If node.Value = "NULL" Or node.Value = "0" Then Continue For
+                        If node.Value = "NULL" Or node.Value = "0" Or Lststr.Contains(node.Value) Then Continue For
                         stringKey.Add(node.Value)
                     Next
 
@@ -397,7 +398,7 @@ Public Class ctrlManagementBonus
                     Dim stringKey As New List(Of String)
 
                     For Each node As RadTreeNode In ctrlListSalary.CheckedNodes
-                        If node.Value = "NULL" Or node.Value = "0" Then Continue For
+                        If node.Value = "NULL" Or node.Value = "0" Or Lststr.Contains(node.Value) Then Continue For
                         stringKey.Add(node.Value)
                     Next
 
@@ -590,8 +591,16 @@ Public Class ctrlManagementBonus
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Dim rep As New PayrollRepository
-
+        Dim stringKey As New List(Of String)
+        Dim objSalari As List(Of PAListSalariesDTO)
         Try
+            objSalari = rep.GetSalaryList_TYPE(13)
+            For Each item In objSalari
+                stringKey.Add(item.COL_NAME)
+            Next
+            ListKey = stringKey
+            CreateTreeSalaryNote()
+
             Dim Sorts As String = rgData.MasterTableView.SortExpressions.GetSortString()
             Dim TotalRow As Decimal = 0
 
@@ -602,12 +611,32 @@ Public Class ctrlManagementBonus
                 'vData = New DataTable
                 vData = rep.GetListManagementBonus(Utilities.ObjToInt((13)), Utilities.ObjToInt(cboPeriod.SelectedValue), Utilities.ObjToInt(ctrlOrg.CurrentValue), ctrlOrg.IsDissolve, Utilities.ObjToString(rtxtEmployee.Text), Sorts)
             End If
-
+            Lststr = New List(Of String)
+forTuDau:
+            Dim isFlag = 0
+            For Each colums In vData.Columns
+                For Each row In vData.Rows
+                    If row(colums).ToString <> "" Then
+                        isFlag = 1
+                        Exit For
+                    End If
+                Next
+                If isFlag = 0 Then
+                    Lststr.Add(colums.ToString)
+                    vData.Columns.Remove(colums)
+                    vData.AcceptChanges()
+                    GoTo forTuDau
+                End If
+                isFlag = 0
+            Next
+            isFlag = 0
             rgData.VirtualItemCount = Utilities.ObjToInt(vData.Rows.Count)
 
             For Each node As RadTreeNode In ctrlListSalary.CheckedNodes
                 If Not vData.Columns.Contains(node.Value) Then
-                    vData.Columns.Add(node.Value)
+                    If Not Lststr.Contains(node.Value) Then
+                        vData.Columns.Add(node.Value)
+                    End If
                 End If
             Next
             rep.Dispose()
@@ -696,8 +725,12 @@ Public Class ctrlManagementBonus
             stringKey.Add("ORG_NAME")
             stringKey.Add("JOB_NAME")
             stringKey.Add("STATUS_NAME")
+            Dim giatri = 0
             For Each node As RadTreeNode In ctrlListSalary.CheckedNodes
-                If node.Value = "NULL" Or node.Value = "0" Then Continue For
+                If Lststr.Count = 0 Then
+                    Continue For
+                End If
+                If node.Value = "NULL" Or node.Value = "0" Or Lststr.Contains(node.Value) Then Continue For
                 Dim col As New GridBoundColumn
                 col.DataFormatString = "{0:#,##0.##}"
                 col.HeaderText = node.Text.Split(":")(1).Trim()

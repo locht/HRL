@@ -26,7 +26,7 @@
                             </tlk:RadComboBox>
                         </td>
                         <td class="lb">
-                            <%# Translate("Kỳ lương")%>
+                            <%# Translate("Kỳ thưởng")%>
                         </td>
                         <td>
                             <tlk:RadComboBox ID="cboPeriod" runat="server" SkinID="dDropdownList">
