@@ -886,7 +886,18 @@ Namespace RecruitmentBusiness.ServiceImplementations
                 Throw ex
             End Try
         End Function
+        Public Function FormSuggestIntern(ByVal program_id As Decimal, Optional ByVal log As UserLog = Nothing) As DataSet Implements ServiceContracts.IRecruitmentBusiness.FormSuggestIntern
+            Dim dsdata As DataSet
 
+            Try
+                dsdata = RecruitmentRepositoryStatic.Instance.FormSuggestIntern(program_id, log)
+                Return dsdata
+            Catch ex As Exception
+                Throw ex
+            End Try
+
+            Return Nothing
+        End Function
 #End Region
 
 #Region "CandidateResult"

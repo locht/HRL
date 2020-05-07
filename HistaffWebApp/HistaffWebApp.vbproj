@@ -1505,6 +1505,8 @@
     </None>
     <Content Include="ReportTemplates\Recruitment\Import\Template_import_kqtuyendung.xls" />
     <Content Include="ReportTemplates\Recruitment\Report\Template_Candidate_List.xls" />
+    <Content Include="ReportTemplates\Recruitment\Report\AVNS-BM04A-TDNS.xls" />
+    <Content Include="ReportTemplates\Recruitment\Report\AVNS-BM04B-TDNS.xls" />
     <None Include="Styles\ImgConfig.jquery.css" />
     <Content Include="Styles\font-awesome.css" />
     <Content Include="Styles\img\icon-tree.png" />

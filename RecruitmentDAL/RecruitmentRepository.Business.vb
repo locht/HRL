@@ -4240,6 +4240,21 @@ Partial Class RecruitmentRepository
         End Try
     End Function
 
+    Public Function FormSuggestIntern(ByVal program_id As Decimal, Optional ByVal log As UserLog = Nothing) As DataSet
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dsdata As DataSet = cls.ExecuteStore("PKG_RECRUITMENT.GET_LIST_SUGGEST_INTERNSHIP",
+                                                         New With {.P_PROGRAM_ID = program_id,
+                                                                   .P_CUR = cls.OUT_CURSOR,
+                                                                   .P_CUR1 = cls.OUT_CURSOR}, False)
+                Return dsdata
+            End Using
+        Catch ex As Exception
+            Utility.WriteExceptionLog(ex, Me.ToString() & ".FormSuggestIntern")
+            Throw ex
+        End Try
+    End Function
+  
 #End Region
 
 #Region "ProgramResult"

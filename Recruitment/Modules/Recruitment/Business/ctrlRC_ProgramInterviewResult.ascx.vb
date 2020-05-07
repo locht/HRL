@@ -206,6 +206,11 @@ Public Class ctrlRC_ProgramInterviewResult
     End Sub
 
     Public Overrides Sub BindData()
+        Using rep As New RecruitmentRepository
+            Dim dtData As New DataTable
+            dtData = rep.GetOtherList("RC_SUGGEST_INTERN_FORM", True)
+            FillRadCombobox(cboSuggestIntern, dtData, "NAME", "CODE")
+        End Using
         Dim dic As New Dictionary(Of String, Control)
         dic.Add("EXAM_NAME", lblExamName_Interview)
         dic.Add("IS_PASS", cbbStatus)
@@ -697,5 +702,30 @@ Public Class ctrlRC_ProgramInterviewResult
         dtdata.Rows(0).Delete()
         dtdata.AcceptChanges()
     End Sub
+#Region "DS Đề nghị thử việc - Button"
+
+    Private Sub btnSuggestIntern_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSuggestIntern.Click
+        Try
+            If cboSuggestIntern.SelectedValue.ToString = "" Then
+                ShowMessage(Translate("Vui lòng chọn biểu mẫu"), NotifyType.Warning)
+                cboSuggestIntern.Focus()
+                Exit Sub
+            End If
+            Form_Suggest_Intern_Clicked()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub Form_Suggest_Intern_Clicked()
+        Try            
+            HttpContext.Current.Session("SuggestIntern_Value") = cboSuggestIntern.SelectedValue.ToString
+            HttpContext.Current.Session("PROGRAMID") = hdProgramID.Value
+            ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Form_Suggest_Intern');", True)          
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub    
+#End Region
+
 
 End Class

@@ -601,7 +601,9 @@ Namespace RecruitmentBusiness.ServiceContracts
         <OperationContract()>
         Function UpdateProgramSchedule(ByVal objExams As ProgramScheduleDTO, ByVal log As UserLog) As Boolean
 
-
+        <OperationContract()>
+        Function FormSuggestIntern(ByVal program_id As Decimal, Optional ByVal log As UserLog = Nothing) As DataSet
+        
 #End Region
 
 #Region "CandidateResult"

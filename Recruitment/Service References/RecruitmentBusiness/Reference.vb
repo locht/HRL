@@ -20441,6 +20441,9 @@ Namespace RecruitmentBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="RecruitmentBusiness.IRecruitmentBusiness")>  _
     Public Interface IRecruitmentBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/FormSuggestIntern", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/FormSuggestInternResponse")>  _
+        Function FormSuggestIntern(ByVal program_id As Decimal, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IRecruitmentBusiness/GetCandidateResult", ReplyAction:="http://tempuri.org/IRecruitmentBusiness/GetCandidateResultResponse")>  _
         Function GetCandidateResult(ByVal _filter As RecruitmentBusiness.ProgramScheduleCanDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleCanDTO)
         
@@ -20815,6 +20818,10 @@ Namespace RecruitmentBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function FormSuggestIntern(ByVal program_id As Decimal, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet Implements RecruitmentBusiness.IRecruitmentBusiness.FormSuggestIntern
+            Return MyBase.Channel.FormSuggestIntern(program_id, log)
+        End Function
         
         Public Function GetCandidateResult(ByVal _filter As RecruitmentBusiness.ProgramScheduleCanDTO) As System.Collections.Generic.List(Of RecruitmentBusiness.ProgramScheduleCanDTO) Implements RecruitmentBusiness.IRecruitmentBusiness.GetCandidateResult
             Return MyBase.Channel.GetCandidateResult(_filter)

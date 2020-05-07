@@ -1078,7 +1078,20 @@ Partial Class RecruitmentRepository
         End Using
 
     End Function
+    Public Function FormSuggestIntern(ByVal program_id As Decimal) As DataSet
+        Dim dsdata As DataSet
 
+        Using rep As New RecruitmentBusinessClient
+            Try
+                dsdata = rep.FormSuggestIntern(program_id, Me.Log)
+                Return dsdata
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
 #End Region
 
 #Region "CandidateResult"

@@ -8,15 +8,24 @@
             <legend></legend>
             <tlk:RadButton ID="cmdSendEmail" runat="server" CausesValidation="false" Text="<%$ Translate: Gửi thư cảm ơn %>">
             </tlk:RadButton>
-            <tlk:RadButton ID="RadButton3" runat="server" CausesValidation="false" Text="<%$ Translate: DS đề nghị thử việc %>">
+            <tlk:RadButton ID="btnSuggestIntern" runat="server" CausesValidation="false" Text="<%$ Translate: DS đề nghị thử việc %>">
             </tlk:RadButton>
             <tlk:RadButton ID="btnExport" runat="server" CausesValidation="false" Text="<%$ Translate: Xuất file mẫu %>">
             </tlk:RadButton>
             <tlk:RadButton ID="btnImport" runat="server" CausesValidation="false" Text="<%$ Translate: Nhập file mẫu %>">
             </tlk:RadButton>
-            <br />
-            <br />
-            <tlk:RadGrid ID="gridCadidate" runat="server" Height="300px" AllowMultiRowEdit="false"
+             <table class="table-form">
+                    <tr>
+                        <td class="lb">
+                            <asp:Label ID="lbTemplatePrint" runat="server" Text="Biễu mẫu hỗ trợ DS đề nghị thử việc"></asp:Label>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox runat="server" Width="260px" ID="cboSuggestIntern">
+                            </tlk:RadComboBox>
+                        </td>                       
+                    </tr>
+                </table>
+            <tlk:RadGrid ID="gridCadidate" runat="server" Height="360px" AllowMultiRowEdit="false"
                 OnSelectedIndexChanged="gridCadidate_SelectedIndexChanged" AllowSorting="false">
                 <MasterTableView DataKeyNames="ID" SkinID="GridSingleSelect" ClientDataKeyNames="ID">
                     <Columns>
@@ -43,10 +52,11 @@
                     </Columns>
                 </MasterTableView><ClientSettings EnablePostBackOnRowClick="true">
                     <Selecting AllowRowSelect="True" />
-                    <ClientEvents OnCellSelected="true" />
                 </ClientSettings>
                 <HeaderStyle HorizontalAlign="Center" Width="150px" />
-            </tlk:RadGrid></fieldset>
+            </tlk:RadGrid>
+
+            </fieldset>
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane1" runat="server" MinWidth="200" Width="730px" Scrolling="None">
         <fieldset style="height: 90%">
@@ -102,7 +112,7 @@
             <tlk:RadToolBar ID="tbarMain" runat="server" />
             <tlk:RadGrid ID="rgDataInterview" runat="server" Height="230px" AllowMultiRowEdit="false"
                 AllowSorting="false">
-                <%--  <ClientSettings EnableRowHoverStyle="true">
+                <%-- <ClientSettings EnableRowHoverStyle="true">
                     <Selecting AllowRowSelect="true" />
                     <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="3" />
                 </ClientSettings>--%>
@@ -130,14 +140,20 @@
                             SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
                         <tlk:GridBoundColumn HeaderText="<%$ Translate: Người phỏng vấn %>" DataField="PV_PERSON"
                             UniqueName="PV_PERSON" SortExpression="PV_PERSON" ReadOnly="true" />
-                        <%-- <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày thi %>" DataField="SCHEDULE_DATE"
+                        <%--  <tlk:GridBoundColumn HeaderText="<%$ Translate: Vòng phỏng vấn %>" DataField="EXAM_NAME"
+                            UniqueName="EXAM_NAME" SortExpression="EXAM_NAME" ReadOnly="true" HeaderStyle-Width="200px" />
+                        <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày thi %>" DataField="SCHEDULE_DATE"
                             UniqueName="SCHEDULE_DATE" SortExpression="SCHEDULE_DATE" DataFormatString="{0:dd/MM/yyyy}"
                             HeaderStyle-Width="70px" ReadOnly="true">
                             <HeaderStyle HorizontalAlign="Center" />
                             <ItemStyle HorizontalAlign="Center" />
                         </tlk:GridDateTimeColumn>
                         <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Đạt %>" DataField="ISPASS" HeaderStyle-Width="30px"
-                            UniqueName="ISPASS" SortExpression="ISPASS" ShowFilterIcon="true" />--%>
+                            UniqueName="ISPASS" SortExpression="ISPASS" ShowFilterIcon="true" />
+                        <tlk:GridBoundColumn HeaderText="<%$ Translate: Nhận xét %>" DataField="COMMENT_INFO"
+                            SortExpression="COMMENT_INFO" UniqueName="COMMENT_INFO" />
+                        <tlk:GridBoundColumn HeaderText="<%$ Translate: Đánh giá %>" DataField="ASSESSMENT_INFO"
+                            SortExpression="ASSESSMENT_INFO" UniqueName="ASSESSMENT_INFO" />--%>
                     </Columns>
                 </MasterTableView></tlk:RadGrid></fieldset>
     </tlk:RadPane>
@@ -161,7 +177,8 @@
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
         }
-      
-
+        function btnExportClicking(sender, args) {
+            enableAjax = false;
+        }
     </script>
 </tlk:RadCodeBlock>

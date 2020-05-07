@@ -15,6 +15,8 @@ Public Class Export
                         ' TR_ASSESSMENT_RESULT()
                     Case "Template_ExportProgramDeclare"
                         Template_ExportProgramDeclare()
+                    Case "Form_Suggest_Intern"
+                        Form_Suggest_Intern()
                     Case "TR_ASSESSMENT_RESULT_ERROR"
                         TR_ASSESSMENT_RESULT_ERROR()
                     Case "TR_REQUEST_EMPLOYEE"
@@ -1893,6 +1895,21 @@ Public Class Export
         End Try
     End Sub
 
+    Private Sub Form_Suggest_Intern()
+        Try
+            Dim rep As New Recruitment.RecruitmentRepository
+            Dim dsData As DataSet = rep.FormSuggestIntern(Session("PROGRAMID"))
+            dsData.Tables(0).TableName = "Table"
+            dsData.Tables(1).TableName = "Table1"
+            ExportTemplate("Recruitment\Report\AVNS-" + Session("SuggestIntern_Value") + "-TDNS.xls",
+                                      dsData, Nothing,
+                                      "AVNS-" + Session("SuggestIntern_Value") + "-TDNS" & Format(Date.Now, "yyyyMMdd"))
+            Session.Remove("PROGRAMID")
+            Session.Remove("SuggestIntern_Value")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
     Public Function ExportTemplateWithDataCol1(ByVal sReportFileName As String,
                                                     ByVal dtDataValue As DataTable,

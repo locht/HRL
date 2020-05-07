@@ -8,15 +8,24 @@
             <legend></legend>
             <tlk:RadButton ID="cmdSendEmail" runat="server" CausesValidation="false" Text="<%$ Translate: Gửi thư cảm ơn %>">
             </tlk:RadButton>
-            <tlk:RadButton ID="RadButton3" runat="server" CausesValidation="false" Text="<%$ Translate: DS đề nghị thử việc %>">
+            <tlk:RadButton ID="btnSuggestIntern" runat="server" CausesValidation="false" Text="<%$ Translate: DS đề nghị thử việc %>">
             </tlk:RadButton>
             <tlk:RadButton ID="btnExport" runat="server" CausesValidation="false" Text="<%$ Translate: Xuất file mẫu %>">
             </tlk:RadButton>
             <tlk:RadButton ID="btnImport" runat="server" CausesValidation="false" Text="<%$ Translate: Nhập file mẫu %>">
             </tlk:RadButton>
-            <br />
-            <br />
-            <tlk:RadGrid ID="gridCadidate" runat="server" Height="380px" AllowMultiRowEdit="false"
+             <table class="table-form">
+                    <tr>
+                        <td class="lb">
+                            <asp:Label ID="lbTemplatePrint" runat="server" Text="Biễu mẫu hỗ trợ DS đề nghị thử việc"></asp:Label>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox runat="server" Width="260px" ID="cboSuggestIntern">
+                            </tlk:RadComboBox>
+                        </td>                       
+                    </tr>
+                </table>
+            <tlk:RadGrid ID="gridCadidate" runat="server" Height="360px" AllowMultiRowEdit="false"
                 OnSelectedIndexChanged="gridCadidate_SelectedIndexChanged" AllowSorting="false">
                 <MasterTableView DataKeyNames="ID" SkinID="GridSingleSelect" ClientDataKeyNames="ID">
                     <Columns>
@@ -45,7 +54,9 @@
                     <Selecting AllowRowSelect="True" />
                 </ClientSettings>
                 <HeaderStyle HorizontalAlign="Center" Width="150px" />
-            </tlk:RadGrid></fieldset>
+            </tlk:RadGrid>
+
+            </fieldset>
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane1" runat="server" MinWidth="200" Width="730px" Scrolling="None">
         <fieldset style="height: 90%">
@@ -169,6 +180,5 @@
         function btnExportClicking(sender, args) {
             enableAjax = false;
         }
-
     </script>
 </tlk:RadCodeBlock>
