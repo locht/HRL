@@ -214,11 +214,10 @@ Public Class ctrlRC_CandidateTransferList
                         Dim PROBATION_SALARY As Decimal? = DirectCast(Item.FindControl("PROBATION_SALARY"), RadNumericTextBox).Value
                         Dim OFFICAL_SALARY As Decimal? = DirectCast(Item.FindControl("OFFICAL_SALARY"), RadNumericTextBox).Value
                         Dim OTHER_SUGGESTIONS = DirectCast(Item.FindControl("OTHER_SUGGESTIONS"), RadTextBox).Text
-                        If psp.UPDATE_ASPIRATION(ID_CANDIDATE, PLACE_WORK, RECEIVE_FROM, RECEIVE_TO, PROBATION_FROM, PROBATION_TO, TIME_WORK, STARTDATE_WORK, PROBATION_SALARY, OFFICAL_SALARY, OTHER_SUGGESTIONS) = 1 Then
-                            rgAspiration.Rebind()
-                            ShowMessage(Translate("Lưu thành công"), NotifyType.Success)
-                        End If
+                        psp.UPDATE_ASPIRATION(ID_CANDIDATE, PLACE_WORK, RECEIVE_FROM, RECEIVE_TO, PROBATION_FROM, PROBATION_TO, TIME_WORK, STARTDATE_WORK, PROBATION_SALARY, OFFICAL_SALARY, OTHER_SUGGESTIONS)
                     Next
+                    rgAspiration.Rebind()
+                    ShowMessage(Translate("Lưu thành công"), NotifyType.Success)
             End Select
             'UpdateControlState()
         Catch ex As Exception
