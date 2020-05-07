@@ -713,7 +713,7 @@ Public Class ctrlRC_ProgramInterviewResult
             End If
             Form_Suggest_Intern_Clicked()
         Catch ex As Exception
-
+            DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
     Private Sub Form_Suggest_Intern_Clicked()
@@ -724,8 +724,7 @@ Public Class ctrlRC_ProgramInterviewResult
         Catch ex As Exception
             Throw ex
         End Try
-    End Sub    
+    End Sub
+   
 #End Region
-
-
 End Class

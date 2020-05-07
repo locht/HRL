@@ -8,8 +8,7 @@
             <legend></legend>
             <tlk:RadButton ID="cmdSendEmail" runat="server" CausesValidation="false" Text="<%$ Translate: Gửi thư cảm ơn %>">
             </tlk:RadButton>
-            <tlk:RadButton ID="btnSuggestIntern" runat="server" CausesValidation="false" Text="<%$ Translate: DS đề nghị thử việc %>">
-            </tlk:RadButton>
+           
             <tlk:RadButton ID="btnExport" runat="server" CausesValidation="false" Text="<%$ Translate: Xuất file mẫu %>">
             </tlk:RadButton>
             <tlk:RadButton ID="btnImport" runat="server" CausesValidation="false" Text="<%$ Translate: Nhập file mẫu %>">
@@ -22,7 +21,11 @@
                         <td>
                             <tlk:RadComboBox runat="server" Width="260px" ID="cboSuggestIntern">
                             </tlk:RadComboBox>
-                        </td>                       
+                        </td>               
+                        <td>
+                         <tlk:RadButton ID="btnSuggestIntern" runat="server" CausesValidation="false" Text="<%$ Translate: DS đề nghị thử việc %>">
+            </tlk:RadButton>
+                        </td>        
                     </tr>
                 </table>
             <tlk:RadGrid ID="gridCadidate" runat="server" Height="360px" AllowMultiRowEdit="false"

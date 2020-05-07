@@ -11,6 +11,7 @@
     Public Const BLACKLIST As String = "BLACKLIST"
     Public Const PONTENTIAL As String = "PONTENTIAL"
     Public Const XNTT As String = "XNTT"
+    Public Const PROCESS As String = "PROCESS"
 End Class
 
 

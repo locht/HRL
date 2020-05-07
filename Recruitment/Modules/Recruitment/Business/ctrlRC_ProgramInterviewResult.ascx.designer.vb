@@ -50,15 +50,6 @@ Partial Public Class ctrlRC_ProgramInterviewResult
     Protected WithEvents cmdSendEmail As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
-    '''btnSuggestIntern control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnSuggestIntern As Global.Telerik.Web.UI.RadButton
-
-    '''<summary>
     '''btnExport control.
     '''</summary>
     '''<remarks>
@@ -93,6 +84,15 @@ Partial Public Class ctrlRC_ProgramInterviewResult
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboSuggestIntern As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''btnSuggestIntern control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnSuggestIntern As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
     '''gridCadidate control.
