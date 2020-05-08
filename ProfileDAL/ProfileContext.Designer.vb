@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("f2969832-837f-48f1-b8c6-6cde3ab32b59")>
+<Assembly: EdmSchemaAttribute("05ae0736-ea85-4c71-b07c-a5419db06ae5")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -70082,6 +70082,56 @@ Public Partial Class HU_WORKING_BEFORE
     End Sub
 
     Private Partial Sub OnREMARKChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NOT_APPROVE_REASON() As Global.System.String
+        Get
+            Return _NOT_APPROVE_REASON
+        End Get
+        Set
+            OnNOT_APPROVE_REASONChanging(value)
+            ReportPropertyChanging("NOT_APPROVE_REASON")
+            _NOT_APPROVE_REASON = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("NOT_APPROVE_REASON")
+            OnNOT_APPROVE_REASONChanged()
+        End Set
+    End Property
+
+    Private _NOT_APPROVE_REASON As Global.System.String
+    Private Partial Sub OnNOT_APPROVE_REASONChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnNOT_APPROVE_REASONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property STATUS() As Global.System.String
+        Get
+            Return _STATUS
+        End Get
+        Set
+            OnSTATUSChanging(value)
+            ReportPropertyChanging("STATUS")
+            _STATUS = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("STATUS")
+            OnSTATUSChanged()
+        End Set
+    End Property
+
+    Private _STATUS As Global.System.String
+    Private Partial Sub OnSTATUSChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnSTATUSChanged()
     End Sub
 
     #End Region

@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 05/07/2020 5:32:11 PM
--- Generated from EDMX file: F:\WORKING\acv_19\ProfileDAL\ProfileContext.edmx
+-- Date Created: 5/8/2020 9:23:31 AM
+-- Generated from EDMX file: D:\acv_19\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -956,7 +956,9 @@ CREATE TABLE "dbo"."HU_WORKING_BEFORE" (
    "MODIFIED_LOG" NVARCHAR2(255) NOT NULL,
    "TITLE_NAME" VARCHAR2(255) NULL,
    "LEVEL_NAME" VARCHAR2(255) NULL,
-   "REMARK" NCLOB NULL
+   "REMARK" NCLOB NULL,
+   "NOT_APPROVE_REASON" NCLOB NULL,
+   "STATUS" NCLOB NULL
 );
 
 -- Creating table 'HU_TERMINATE'
