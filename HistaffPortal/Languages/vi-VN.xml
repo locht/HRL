@@ -43046,4 +43046,12 @@ Xin cám ơn!
       <string>Phiếu lương</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLPORTALEMPHEALTH</string>
+    </Key>
+    <Value>
+      <string>Quá trình sức khỏe</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

@@ -13,6 +13,7 @@
     <Item Value="Profile;ctrlPortalSalary;NoPer;NoEdit" Text="Quá trình thay đổi lương - phụ cấp" ImageUrl="~/Static/Images/RibbonBar/salary.png" />
     <Item Value="Profile;ctrlPortalCommend;NoPer;NoEdit" Text="Quá trình khen thưởng" ImageUrl="~/Static/Images/RibbonBar/commend.png" />
     <Item Value="Profile;ctrlPortalDiscipline;NoPer;NoEdit" Text="Quá trình kỷ luật" ImageUrl="~/Static/Images/RibbonBar/discipline.png" />
+    <Item Value="Profile;ctrlPortalEmpHealth;NoPer;NoEdit" Text="Health Process" ImageUrl="~/Static/Images/RibbonBar/discipline.png" />
   </Item>
   <Item Text="Leave &amp; OT" Expanded="True" Value="Attendance">
     <Item Value="Attendance;ctrlRegisterLeave;NoPer;NoEdit" Text="Đăng ký nghỉ" ImageUrl="~/Static/Images/RibbonBar/leave.png"/>
