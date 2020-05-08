@@ -18,16 +18,6 @@
                     ErrorMessage="<%$ Translate: Bạn phải nhập họ tên %>" ToolTip="<%$ Translate: Bạn phải nhập họ tên  %>">
                 </asp:RequiredFieldValidator>
             </td>
-            <td class="lb" style="width: 150px">
-                <%# Translate("Mối quan hệ")%><span class="lbReq">*</span>
-            </td>
-            <td>
-                <tlk:RadComboBox runat="server" ID="cboRelationship" CausesValidation="false">
-                </tlk:RadComboBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="cboRelationship"
-                    runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Mối quan hệ %>" ToolTip="<%$ Translate: Bạn phải chọn Mối quan hệ  %>">
-                </asp:RequiredFieldValidator>
-            </td>
             <td class="lb">
                 <%# Translate("Ngày sinh")%>
                 <span class="lbReq">*</span>
@@ -38,6 +28,42 @@
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rdBirthDate"
                     runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Ngày sinh %>" ToolTip="<%$ Translate: Bạn phải nhập Ngày sinh %>">
                 </asp:RequiredFieldValidator>
+            </td>
+            <td class="lb">
+                <asp:Label ID="lbDieDate" runat="server" Text="Ngày mất"></asp:Label>
+            </td>
+            <td>
+                <tlk:RadDatePicker runat="server" ID="rdDieDate">
+                </tlk:RadDatePicker>
+            </td>
+            <td class="lb" style="width: 150px">
+                <%# Translate("Mối quan hệ")%><span class="lbReq">*</span>
+            </td>
+            <td>
+                <tlk:RadComboBox runat="server" ID="cboRelationship" CausesValidation="false">
+                </tlk:RadComboBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="cboRelationship"
+                    runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Mối quan hệ %>" ToolTip="<%$ Translate: Bạn phải chọn Mối quan hệ  %>">
+                </asp:RequiredFieldValidator>
+            </td>
+        </tr>
+        <tr>
+            <td class="lb">
+            </td>
+            <td>
+                <asp:CheckBox runat="server" ID="chkIs_Owner" Text="<%$ Translate : Là chủ hộ %>"
+                    AutoPostBack="true" />
+            </td>
+            <td class="lb">
+                <%# Translate("Số hộ khẩu")%>
+            </td>
+            <td>
+                <tlk:RadTextBox runat="server" ID="txtHouseCertificate_Num" />
+            </td>
+            <td class="lb">
+            </td>
+            <td>
+                <asp:CheckBox runat="server" ID="chkIsDeduct" AutoPostBack="true" Text="<%$ Translate : Đối tượng giảm trừ  %>" />
             </td>
             <td class="lb">
                 <%# Translate("Giới tính")%>
@@ -60,78 +86,39 @@
                 </asp:CustomValidator>
             </td>
             <td class="lb">
-                <%# Translate("Ngày cấp CMND")%>
+                <%# Translate("Số điện thoại")%>
             </td>
             <td>
-                <tlk:RadDatePicker runat="server" ID="rdIDDate">
-                </tlk:RadDatePicker>
+                <tlk:RadTextBox runat="server" ID="txtPhone" />
             </td>
-            <td class="lb">
-                <%# Translate("Nơi cấp CMND")%>
-            </td>
-            <td>
-                <tlk:RadTextBox runat="server" ID="txtIDPlace" SkinID="Textbox15">
-                </tlk:RadTextBox>
-            </td>
-        </tr>
-        <tr>
-            <td class="lb">
-                <%# Translate("Số hộ khẩu")%>
-            </td>
-            <td>
-                <tlk:RadTextBox runat="server" ID="txtHouseCertificate_Num" />
-            </td>
-            <td class="lb">
-                <%# Translate("Mã hộ gia đình")%>
-            </td>
-            <td>
-                <tlk:RadTextBox runat="server" ID="txtHouseCertificate_Code" />
-            </td>
-            <td class="lb">
-            </td>
-            <td>
-                <asp:CheckBox runat="server" ID="chkIs_Owner" Text="<%$ Translate : Là chủ hộ %>"
-                    AutoPostBack="true" />
-            </td>
-        </tr>
-        <tr>
             <td class="lb">
                 <%# Translate("Nghề nghiệp")%>
             </td>
-            <td colspan="5">
+            <td colspan="3">
                 <tlk:RadTextBox runat="server" ID="txtCareer" Width="100%">
                 </tlk:RadTextBox>
             </td>
-            <td style="display: none">
-                <%# Translate("Chức danh")%>
-            </td>
-            <td style="display: none">
-                <tlk:RadTextBox runat="server" ID="txtTitle" SkinID="Textbox1023">
-                </tlk:RadTextBox>
-            </td>
-        </tr>
-        <tr style="display: none">
             <td class="lb">
-                <%# Translate("Nguyên quán")%>
+                <asp:Label ID="lbCollecttion" runat="server" Text="Thu nhập"></asp:Label>
             </td>
-            <td colspan="2">
-                <tlk:RadComboBox runat="server" ID="cboNguyenQuan">
-                </tlk:RadComboBox>
+            <td>
+                <tlk:RadNumericTextBox runat="server" ID="rnCollecttion">
+                </tlk:RadNumericTextBox>
             </td>
         </tr>
         <tr>
             <td class="lb">
-                <%# Translate("Địa chỉ thường trú")%>
-            </td>
-            <td colspan="5">
-                <tlk:RadTextBox runat="server" ID="txtAdress" Width="100%" />
-            </td>
-            <td class="lb">
-                <%# Translate("Quốc gia")%>
+                <asp:Label ID="Label11" runat="server" Text="Đơn vị công tác"></asp:Label>
             </td>
             <td>
-                <tlk:RadComboBox runat="server" ID="cboNationlity" SkinID="LoadDemand" AutoPostBack="true">
-                </tlk:RadComboBox>
+                <tlk:RadTextBox runat="server" ID="txtCompanyWork">
+                </tlk:RadTextBox>
+            </td>
+            <td class="lb">
+                <asp:Label ID="lbAdresss" runat="server" Text="Địa chỉ"></asp:Label>
+            </td>
+            <td colspan="5">
+                <tlk:RadTextBox runat="server" ID="txtAdress1" Width="100%" />
             </td>
         </tr>
         <tr>
@@ -160,7 +147,7 @@
                 </tlk:RadComboBox>
             </td>
             <td class="lb">
-                <%# Translate("Thôn/Ấp")%>
+                <%# Translate("Địa chỉ đăng ký giấy khai sinh")%>
             </td>
             <td>
                 <tlk:RadTextBox runat="server" ID="txtAD_Village" />
@@ -168,13 +155,12 @@
         </tr>
         <tr>
             <td class="lb">
-                <%# Translate("Địa chỉ tạm trú")%>
+                <%# Translate("Quốc gia")%>
             </td>
-            <td colspan="5">
-                <tlk:RadTextBox runat="server" ID="txtTempAdress" Width="100%" />
+            <td>
+                <tlk:RadComboBox runat="server" ID="cboNationlity" SkinID="LoadDemand" AutoPostBack="true">
+                </tlk:RadComboBox>
             </td>
-        </tr>
-        <tr>
             <td class="lb">
                 <%# Translate("Tỉnh/Thành phố")%>
             </td>
@@ -202,15 +188,63 @@
         </tr>
         <tr>
             <td class="lb">
+                <%# Translate("Ghi chú")%>
+            </td>
+            <td colspan="3">
+                <tlk:RadTextBox runat="server" ID="txtRemark" SkinID="Textbox1023" Width="100%" />
+            </td>
+        </tr>
+        <tr style="display: none">
+            <td class="lb">
+                <%# Translate("Ngày cấp CMND")%>
+            </td>
+            <td>
+                <tlk:RadDatePicker runat="server" ID="rdIDDate">
+                </tlk:RadDatePicker>
+            </td>
+            <td class="lb">
+                <%# Translate("Nơi cấp CMND")%>
+            </td>
+            <td>
+                <tlk:RadTextBox runat="server" ID="txtIDPlace" SkinID="Textbox15">
+                </tlk:RadTextBox>
+            </td>
+            <td class="lb">
+                <%# Translate("Mã hộ gia đình")%>
+            </td>
+            <td>
+                <tlk:RadTextBox runat="server" ID="txtHouseCertificate_Code" />
+            </td>
+            <td style="display: none">
+                <%# Translate("Chức danh")%>
+            </td>
+            <td style="display: none">
+                <tlk:RadTextBox runat="server" ID="txtTitle" SkinID="Textbox1023">
+                </tlk:RadTextBox>
+            </td>
+            <td class="lb">
+                <%# Translate("Nguyên quán")%>
+            </td>
+            <td colspan="2">
+                <tlk:RadComboBox runat="server" ID="cboNguyenQuan">
+                </tlk:RadComboBox>
+            </td>
+            <td class="lb">
+                <%# Translate("Địa chỉ thường trú")%>
+            </td>
+            <td colspan="5">
+                <tlk:RadTextBox runat="server" ID="txtAdress" Width="100%" />
+            </td>
+            <td class="lb">
+                <%# Translate("Địa chỉ tạm trú")%>
+            </td>
+            <td colspan="5">
+                <tlk:RadTextBox runat="server" ID="txtTempAdress" Width="100%" />
+            </td>
+            <td class="lb">
             </td>
             <td>
                 <asp:CheckBox runat="server" ID="chkIs_Pass" AutoPostBack="true" Text="<%$ Translate : Đã mất  %>" />
-            </td>
-            <td class="lb">
-                <%# Translate("Số điện thoại")%>
-            </td>
-            <td>
-                <tlk:RadTextBox runat="server" ID="txtPhone" />
             </td>
             <td class="lb">
                 <%# Translate("Mã số thuế")%>
@@ -226,21 +260,12 @@
                 <tlk:RadDatePicker runat="server" ID="rdMSTDate">
                 </tlk:RadDatePicker>
             </td>
-        </tr>
-        <tr>
             <td class="lb">
                 <%# Translate("Nơi cấp mã số thuế")%>
             </td>
             <td colspan="5">
                 <tlk:RadTextBox runat="server" ID="txt_MSTPLACE" Width="100%">
                 </tlk:RadTextBox>
-            </td>
-        </tr>
-        <tr>
-            <td class="lb">
-            </td>
-            <td>
-                <asp:CheckBox runat="server" ID="chkIsDeduct" AutoPostBack="true" Text="<%$ Translate : Đối tượng giảm trừ  %>" />
             </td>
             <td class="lb">
                 <%# Translate("Ngày đăng ký giảm trừ")%>
@@ -268,13 +293,6 @@
                     Type="Date">
                 </asp:CompareValidator>
             </td>
-        </tr>
-        <tr>
-            <td colspan="7" style="color: red">
-                <asp:Label runat="server" ID="lbNKS" Text="Nơi đăng ký khai sinh:"></asp:Label>
-            </td>
-        </tr>
-        <tr>
             <td class="lb">
                 <%# Translate("Giấy khai sinh")%>
             </td>
@@ -297,8 +315,6 @@
                     OnClientItemsRequesting="OnClientItemsRequesting" AutoPostBack="true">
                 </tlk:RadComboBox>
             </td>
-        </tr>
-        <tr>
             <td class="lb">
                 <%# Translate("Tỉnh/Thành phố")%>
             </td>
@@ -322,14 +338,6 @@
                 <tlk:RadComboBox runat="server" ID="cbTempKtWARD_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
                     OnClientItemsRequesting="OnClientItemsRequesting">
                 </tlk:RadComboBox>
-            </td>
-        </tr>
-        <tr>
-            <td class="lb">
-                <%# Translate("Ghi chú")%>
-            </td>
-            <td colspan="3">
-                <tlk:RadTextBox runat="server" ID="txtRemark" SkinID="Textbox1023" Width="100%" />
             </td>
         </tr>
     </table>
@@ -471,7 +479,7 @@
                     <HeaderStyle HorizontalAlign="Center" />
                     <ItemStyle HorizontalAlign="Center" />
                 </tlk:GridDateTimeColumn>
-               <%-- <tlk:GridBoundColumn DataField="CAREER" HeaderText="<%$ Translate: Nghề nghiệp %>"
+                <%-- <tlk:GridBoundColumn DataField="CAREER" HeaderText="<%$ Translate: Nghề nghiệp %>"
                     UniqueName="CAREER" Visible="True" EmptyDataText="">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
@@ -508,7 +516,7 @@
             }
 
             function OnClientSelectedIndexChanged(sender, eventArgs) {
-                
+
             }
 
             function clearSelectRadcombo(cbo) {

@@ -183,7 +183,7 @@ Public Class ctrlPortalFamily_Edit
             Select Case CurrentState
                 Case CommonMessage.STATE_NORMAL
                     EnableControlAll(False, txtAdress, txtFullName, txtIDNO, txtRemark, txtTax, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID,
-                                     rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo, txtAD_Village, txtQuyen, txt_MSTPLACE,
+                                     rdBirthDate, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtAD_Village, txtQuyen, txt_MSTPLACE,
                                      chkIsDeduct, cboRelationship, cboNguyenQuan, txtCareer, txtTitle,
                                      chkIs_Owner, chkIs_Pass, txtHouseCertificate_Code, txtHouseCertificate_Num,
                                      cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, txtAdress, txtTempAdress, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
@@ -196,7 +196,7 @@ Public Class ctrlPortalFamily_Edit
                     EnabledGridNotPostback(rgFamilyEdit, True)
                 Case CommonMessage.STATE_NEW
                     EnableControlAll(True, txtAdress, txtFullName, txtIDNO, txtRemark, txtTax, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID,
-                                     rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo, txtAD_Village, txtQuyen,
+                                     rdBirthDate, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtAD_Village, txtQuyen,
                                      chkIsDeduct, cboRelationship, cboNguyenQuan, txtCareer, txtTitle,
                                      chkIs_Owner, chkIs_Pass, txt_MSTPLACE,
                                      cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, txtAdress, txtTempAdress, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
@@ -209,7 +209,7 @@ Public Class ctrlPortalFamily_Edit
                     EnabledGridNotPostback(rgFamilyEdit, False)
                 Case CommonMessage.STATE_EDIT
                     EnableControlAll(True, txtAdress, txtFullName, txtIDNO, txtRemark, txtTax, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID,
-                                     rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo, txtAD_Village, txtQuyen,
+                                     rdBirthDate, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtAD_Village, txtQuyen,
                                      chkIsDeduct, cboRelationship, cboNguyenQuan, txtCareer, txtTitle, txt_MSTPLACE,
                                      chkIs_Owner, chkIs_Pass, txtHouseCertificate_Code, txtHouseCertificate_Num,
                                      cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, txtAdress, txtTempAdress, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
@@ -241,7 +241,7 @@ Public Class ctrlPortalFamily_Edit
                     CurrentState = CommonMessage.STATE_NEW
                     ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num,
                                       chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax, txt_MSTPLACE,
-                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
+                                      rdBirthDate, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
                                       chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan,
                                       cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
                     UpdateControlState()
@@ -422,7 +422,7 @@ Public Class ctrlPortalFamily_Edit
                     Else
                         ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen,
                                       chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax, txtQuyen,
-                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
+                                      rdBirthDate, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
                                       chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan, txt_MSTPLACE,
                                       cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
                     End If
@@ -512,7 +512,7 @@ Public Class ctrlPortalFamily_Edit
                 End Select
                 ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen,
                                                     chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax, txtQuyen,
-                                                    rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
+                                                    rdBirthDate, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
                                                     chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan, txt_MSTPLACE,
                                                     cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
                 hidFamilyID.Value = item.GetDataKeyValue("ID")
@@ -644,7 +644,7 @@ Public Class ctrlPortalFamily_Edit
                 CurrentState = CommonMessage.STATE_EDIT
                 ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen,
                                     chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax, txtQuyen,
-                                    rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
+                                    rdBirthDate, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
                                     chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan, txt_MSTPLACE,
                                     cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
                 Dim item = CType(e.Item, GridDataItem)
@@ -917,14 +917,14 @@ Public Class ctrlPortalFamily_Edit
             If rgFamilyEdit.SelectedItems.Count = 0 Then
                 ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num,
                                         chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax, txt_MSTPLACE,
-                                        rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
+                                        rdBirthDate, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
                                         chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen,
                                         cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
                 Exit Sub
             End If
             ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num,
                                       chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax, txt_MSTPLACE,
-                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
+                                      rdBirthDate, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
                                       chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen,
                                       cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
 
@@ -1042,14 +1042,14 @@ Public Class ctrlPortalFamily_Edit
             If rgFamily.SelectedItems.Count = 0 Then
                 ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num,
                                       chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID,
-                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle, txtQuyen,
+                                      rdBirthDate, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle, txtQuyen,
                                       chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan, txt_MSTPLACE,
                                       cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
                 Exit Sub
             End If
             ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num,
                                       chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax, txtQuyen, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID,
-                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
+                                      rdBirthDate, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
                                       chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan, txt_MSTPLACE,
                                       cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
             CurrentState = CommonMessage.STATE_NORMAL

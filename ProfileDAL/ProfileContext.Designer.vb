@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("05ae0736-ea85-4c71-b07c-a5419db06ae5")>
+<Assembly: EdmSchemaAttribute("8322b557-5034-4ac1-a8c1-fd82618d72c4")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -39685,6 +39685,81 @@ Public Partial Class HU_FAMILY_EDIT
     End Sub
 
     Private Partial Sub OnGENDERChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property DIE_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _DIE_DATE
+        End Get
+        Set
+            OnDIE_DATEChanging(value)
+            ReportPropertyChanging("DIE_DATE")
+            _DIE_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("DIE_DATE")
+            OnDIE_DATEChanged()
+        End Set
+    End Property
+
+    Private _DIE_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnDIE_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnDIE_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SALARY_EARN() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _SALARY_EARN
+        End Get
+        Set
+            OnSALARY_EARNChanging(value)
+            ReportPropertyChanging("SALARY_EARN")
+            _SALARY_EARN = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("SALARY_EARN")
+            OnSALARY_EARNChanged()
+        End Set
+    End Property
+
+    Private _SALARY_EARN As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSALARY_EARNChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSALARY_EARNChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property COMPANY_WORK() As Global.System.String
+        Get
+            Return _COMPANY_WORK
+        End Get
+        Set
+            OnCOMPANY_WORKChanging(value)
+            ReportPropertyChanging("COMPANY_WORK")
+            _COMPANY_WORK = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("COMPANY_WORK")
+            OnCOMPANY_WORKChanged()
+        End Set
+    End Property
+
+    Private _COMPANY_WORK As Global.System.String
+    Private Partial Sub OnCOMPANY_WORKChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCOMPANY_WORKChanged()
     End Sub
 
     #End Region
