@@ -2178,6 +2178,7 @@ Partial Class ProfileRepository
                        Select New WorkingAllowanceDTO With {.ALLOWANCE_LIST_ID = p.ALLOWANCE_LIST_ID,
                                                             .ALLOWANCE_LIST_NAME = allow.NAME,
                                                             .AMOUNT = p.AMOUNT,
+                                                           .AMOUNT_EX = p.AMOUNT_EX,
                                                             .EFFECT_DATE = p.EFFECT_DATE,
                                                             .EXPIRE_DATE = p.EXPIRE_DATE,
                                                             .IS_INSURRANCE = p.IS_INSURRANCE,

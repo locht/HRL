@@ -2979,7 +2979,10 @@ Partial Class ProfileRepository
                                                     .SAL_TOTAL = p.SAL_TOTAL + If((From a In Context.HU_WORKING_ALLOW.Where(Function(f) f.HU_WORKING_ID = p.ID) Select a.AMOUNT).Sum Is Nothing, 0, (From a In Context.HU_WORKING_ALLOW.Where(Function(f) f.HU_WORKING_ID = p.ID) Select a.AMOUNT).Sum),
                                                     .COST_SUPPORT = p.COST_SUPPORT,
                                                     .PERCENT_SALARY = p.PERCENT_SALARY,
-                                                    .CREATED_DATE = p.CREATED_DATE}
+                                                    .CREATED_DATE = p.CREATED_DATE,
+                                                    .ALLOWANCE_TOTAL = p.ALLOWANCE_TOTAL,
+                                                    .SAL_INS = p.SAL_INS,
+                                                    .REASON_EDIT_EFDATE = p.REASON_EDIT_EFDATE}
 
             Return query.ToList
         Catch ex As Exception
