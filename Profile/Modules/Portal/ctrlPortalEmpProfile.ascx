@@ -751,6 +751,7 @@
         </td>
     </tr>
     <tr>
+        <td></td>
         <td class="control3">
             <asp:CheckBox ID="ckCONG_DOAN" Text="Cán bộ đoàn" runat="server" />
         </td>
@@ -760,9 +761,9 @@
             <asp:CheckBox ID="ckDOAN_PHI" Text="Công đoàn phí" runat="server" />
         </td>
         <td class="lb3">
-            <asp:Label runat="server" ID="lbNGAY_VAO_DOAN" Text="Ngày tham gia"></asp:Label>
+            <asp:Label runat="server" ID="lbNGAY_VAO_DOAN" Text="Ngày vào đoàn"></asp:Label>
         </td>
-        <td class="control3">
+        <td class="control">
             <tlk:RadDatePicker runat="server" ID="rdNGAY_VAO_DOAN">
             </tlk:RadDatePicker>
         </td>
@@ -784,6 +785,7 @@
         </td>
     </tr>
     <tr>
+        <td></td>
         <td class="control3">
             <asp:CheckBox ID="ckDANG" Text="Cán bộ Đảng" runat="server" />
         </td>

@@ -53771,6 +53771,12 @@ Namespace ProfileBusiness
         Private NAV_ADDRESSField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NAV_COUNTRYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NAV_COUNTRY_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private NAV_DISTRICTField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -53793,6 +53799,12 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private PER_ADDRESSField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PER_COUNTRYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PER_COUNTRY_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private PER_DISTRICTField As System.Nullable(Of Decimal)
@@ -54198,6 +54210,32 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NAV_COUNTRY() As System.Nullable(Of Decimal)
+            Get
+                Return Me.NAV_COUNTRYField
+            End Get
+            Set
+                If (Me.NAV_COUNTRYField.Equals(value) <> true) Then
+                    Me.NAV_COUNTRYField = value
+                    Me.RaisePropertyChanged("NAV_COUNTRY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NAV_COUNTRY_NAME() As String
+            Get
+                Return Me.NAV_COUNTRY_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.NAV_COUNTRY_NAMEField, value) <> true) Then
+                    Me.NAV_COUNTRY_NAMEField = value
+                    Me.RaisePropertyChanged("NAV_COUNTRY_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property NAV_DISTRICT() As System.Nullable(Of Decimal)
             Get
                 Return Me.NAV_DISTRICTField
@@ -54297,6 +54335,32 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.PER_ADDRESSField, value) <> true) Then
                     Me.PER_ADDRESSField = value
                     Me.RaisePropertyChanged("PER_ADDRESS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PER_COUNTRY() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PER_COUNTRYField
+            End Get
+            Set
+                If (Me.PER_COUNTRYField.Equals(value) <> true) Then
+                    Me.PER_COUNTRYField = value
+                    Me.RaisePropertyChanged("PER_COUNTRY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PER_COUNTRY_NAME() As String
+            Get
+                Return Me.PER_COUNTRY_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.PER_COUNTRY_NAMEField, value) <> true) Then
+                    Me.PER_COUNTRY_NAMEField = value
+                    Me.RaisePropertyChanged("PER_COUNTRY_NAME")
                 End If
             End Set
         End Property

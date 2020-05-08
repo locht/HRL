@@ -3817,10 +3817,12 @@ Partial Class ProfileRepository
             objEmployeeEditData.ID_PLACE = objEmployeeEdit.ID_PLACE
             objEmployeeEditData.MARITAL_STATUS = objEmployeeEdit.MARITAL_STATUS
             objEmployeeEditData.NAV_ADDRESS = objEmployeeEdit.NAV_ADDRESS
+
             objEmployeeEditData.NAV_DISTRICT = objEmployeeEdit.NAV_DISTRICT
             objEmployeeEditData.NAV_PROVINCE = objEmployeeEdit.NAV_PROVINCE
             objEmployeeEditData.NAV_WARD = objEmployeeEdit.NAV_WARD
             objEmployeeEditData.PER_ADDRESS = objEmployeeEdit.PER_ADDRESS
+
             objEmployeeEditData.PER_DISTRICT = objEmployeeEdit.PER_DISTRICT
             objEmployeeEditData.PER_PROVINCE = objEmployeeEdit.PER_PROVINCE
             objEmployeeEditData.PER_WARD = objEmployeeEdit.PER_WARD
@@ -3838,7 +3840,8 @@ Partial Class ProfileRepository
             objEmployeeEditData.BANK_NO = objEmployeeEdit.BANK_NO
             objEmployeeEditData.BANK_ID = objEmployeeEdit.BANK_ID
             objEmployeeEditData.BANK_BRANCH_ID = objEmployeeEdit.BANK_BRANCH_ID
-
+            objEmployeeEditData.PER_COUNTRY = objEmployeeEdit.PER_COUNTRY
+            objEmployeeEditData.NAV_COUNTRY = objEmployeeEdit.NAV_COUNTRY
             objEmployeeEditData.STATUS = 0
             Context.HU_EMPLOYEE_EDIT.AddObject(objEmployeeEditData)
             Context.SaveChanges(log)
@@ -3883,7 +3886,8 @@ Partial Class ProfileRepository
             objEmployeeEditData.BANK_NO = objEmployeeEdit.BANK_NO
             objEmployeeEditData.BANK_ID = objEmployeeEdit.BANK_ID
             objEmployeeEditData.BANK_BRANCH_ID = objEmployeeEdit.BANK_BRANCH_ID
-
+            objEmployeeEditData.PER_COUNTRY = objEmployeeEdit.PER_COUNTRY
+            objEmployeeEditData.NAV_COUNTRY = objEmployeeEdit.NAV_COUNTRY
             objEmployeeEditData.STATUS = 0
 
             Context.SaveChanges(log)
@@ -3906,6 +3910,8 @@ Partial Class ProfileRepository
             If existEdit Then
                 objEmpEdit = (From p In Context.HU_EMPLOYEE_EDIT
                               From nav_pro In Context.HU_PROVINCE.Where(Function(f) f.ID = p.NAV_PROVINCE).DefaultIfEmpty
+                              From nav_nation In Context.HU_NATION.Where(Function(f) f.ID = p.NAV_COUNTRY).DefaultIfEmpty
+                              From per_nation In Context.HU_NATION.Where(Function(f) f.ID = p.PER_COUNTRY).DefaultIfEmpty
                               From nav_dis In Context.HU_DISTRICT.Where(Function(f) f.ID = p.NAV_DISTRICT).DefaultIfEmpty
                               From nav_ward In Context.HU_WARD.Where(Function(f) f.ID = p.NAV_WARD).DefaultIfEmpty
                               From per_pro In Context.HU_PROVINCE.Where(Function(f) f.ID = p.PER_PROVINCE).DefaultIfEmpty
@@ -3925,6 +3931,8 @@ Partial Class ProfileRepository
                                  .MARITAL_STATUS = p.MARITAL_STATUS,
                                  .MARITAL_STATUS_NAME = marital.NAME_VN,
                                  .NAV_ADDRESS = p.NAV_ADDRESS,
+                                 .NAV_COUNTRY = p.NAV_COUNTRY,
+                                 .NAV_COUNTRY_NAME = nav_nation.NAME_VN,
                                  .NAV_DISTRICT = p.NAV_DISTRICT,
                                  .NAV_DISTRICT_NAME = nav_dis.NAME_VN,
                                  .NAV_PROVINCE = p.NAV_PROVINCE,
@@ -3932,6 +3940,8 @@ Partial Class ProfileRepository
                                  .NAV_WARD = p.NAV_WARD,
                                  .NAV_WARD_NAME = nav_ward.NAME_VN,
                                  .PER_ADDRESS = p.PER_ADDRESS,
+                                 .PER_COUNTRY = p.PER_COUNTRY,
+                                 .PER_COUNTRY_NAME = per_nation.NAME_VN,
                                  .PER_DISTRICT = p.PER_DISTRICT,
                                  .PER_DISTRICT_NAME = per_dis.NAME_VN,
                                  .PER_PROVINCE = p.PER_PROVINCE,
@@ -3963,6 +3973,8 @@ Partial Class ProfileRepository
             Else
                 objEmpEdit = (From p In Context.HU_EMPLOYEE_CV
                               From nav_pro In Context.HU_PROVINCE.Where(Function(f) f.ID = p.NAV_PROVINCE).DefaultIfEmpty
+                              From nav_nation In Context.HU_NATION.Where(Function(f) f.ID = p.NAV_COUNTRY).DefaultIfEmpty
+                              From per_nation In Context.HU_NATION.Where(Function(f) f.ID = p.PER_COUNTRY).DefaultIfEmpty
                               From nav_dis In Context.HU_DISTRICT.Where(Function(f) f.ID = p.NAV_DISTRICT).DefaultIfEmpty
                               From nav_ward In Context.HU_WARD.Where(Function(f) f.ID = p.NAV_WARD).DefaultIfEmpty
                               From per_pro In Context.HU_PROVINCE.Where(Function(f) f.ID = p.PER_PROVINCE).DefaultIfEmpty
@@ -3981,6 +3993,10 @@ Partial Class ProfileRepository
                                   .MARITAL_STATUS = p.MARITAL_STATUS,
                                   .MARITAL_STATUS_NAME = marital.NAME_VN,
                                  .NAV_ADDRESS = p.NAV_ADDRESS,
+                                  .NAV_COUNTRY = p.NAV_COUNTRY,
+                                  .NAV_COUNTRY_NAME = nav_nation.NAME_VN,
+                                  .PER_COUNTRY = p.PER_COUNTRY,
+                                  .PER_COUNTRY_NAME = per_nation.NAME_VN,
                                  .NAV_DISTRICT = p.NAV_DISTRICT,
                                  .NAV_DISTRICT_NAME = nav_dis.NAME_VN,
                                  .NAV_PROVINCE = p.NAV_PROVINCE,
@@ -4170,10 +4186,12 @@ Partial Class ProfileRepository
                     objEmployeeData.ID_PLACE = item.ID_PLACE
                     objEmployeeData.MARITAL_STATUS = item.MARITAL_STATUS
                     objEmployeeData.NAV_ADDRESS = item.NAV_ADDRESS
+                    objEmployeeData.NAV_COUNTRY = item.NAV_COUNTRY
                     objEmployeeData.NAV_DISTRICT = item.NAV_DISTRICT
                     objEmployeeData.NAV_PROVINCE = item.NAV_PROVINCE
                     objEmployeeData.NAV_WARD = item.NAV_WARD
                     objEmployeeData.PER_ADDRESS = item.PER_ADDRESS
+                    objEmployeeData.PER_COUNTRY = item.PER_COUNTRY
                     objEmployeeData.PER_DISTRICT = item.PER_DISTRICT
                     objEmployeeData.PER_PROVINCE = item.PER_PROVINCE
                     objEmployeeData.PER_WARD = item.PER_WARD

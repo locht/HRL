@@ -66,6 +66,10 @@ Public Class ctrlPortalEmpProfile_Edit
                         cboFamilyStatus.Text = empCV.MARITAL_STATUS_NAME
                     End If
                     txtNavAddress.Text = empCV.NAV_ADDRESS
+                    If empCV.NAV_COUNTRY IsNot Nothing Then
+                        cboNationlity_TTRU.SelectedValue = empCV.NAV_COUNTRY
+                        cboNationlity_TTRU.Text = empCV.NAV_COUNTRY_NAME
+                    End If
                     If empCV.NAV_PROVINCE IsNot Nothing Then
                         cboNav_Province.SelectedValue = empCV.NAV_PROVINCE
                         cboNav_Province.Text = empCV.NAV_PROVINCE_NAME
@@ -79,6 +83,10 @@ Public Class ctrlPortalEmpProfile_Edit
                         cboNav_Ward.Text = empCV.NAV_WARD_NAME
                     End If
                     txtPerAddress.Text = empCV.PER_ADDRESS
+                    If empCV.PER_COUNTRY IsNot Nothing Then
+                        cboNationa_TT.SelectedValue = empCV.PER_COUNTRY
+                        cboNationa_TT.Text = empCV.PER_COUNTRY_NAME
+                    End If
                     If empCV.PER_PROVINCE IsNot Nothing Then
                         cboPer_Province.SelectedValue = empCV.PER_PROVINCE
                         cboPer_Province.Text = empCV.PER_PROVINCE_NAME
@@ -162,13 +170,15 @@ Public Class ctrlPortalEmpProfile_Edit
                     tbarMainToolBar.Items(3).Enabled = True
                     EnableControlAll(True, cboFamilyStatus, cboNav_District, cboNav_Province, cboNav_Ward,
                                      cboPer_District, cboPer_Province, cboPer_Ward, txtID_NO,
-                                     cboIDPlace, txtNavAddress, txtPerAddress, rdIDDate,
+                                     cboIDPlace, txtNavAddress, txtPerAddress, rdIDDate, cboNationa_TT,
+                                     cboNationlity_TTRU,
                                      rdIDDateEnd, txtContactPerson, cboRelationNLH, txtPerMobilePhone, txtPerThonAp, txtHomePhone, txtMobilePhone,
                                      txtWorkEmail, txtPerEmail, txtFirstNameVN, txtBankNo, cboBank, cboBankBranch)
                 Case 1 ' Chờ phê duyệt
                     EnableControlAll(False, cboFamilyStatus, cboNav_District, cboNav_Province, cboNav_Ward,
                                      cboPer_District, cboPer_Province, cboPer_Ward, txtID_NO,
-                                     cboIDPlace, txtNavAddress, txtPerAddress, rdIDDate,
+                                     cboIDPlace, txtNavAddress, txtPerAddress, rdIDDate, cboNationa_TT,
+                                     cboNationlity_TTRU,
                                      rdIDDateEnd, txtContactPerson, cboRelationNLH, txtPerMobilePhone, txtPerThonAp, txtHomePhone, txtMobilePhone,
                                      txtWorkEmail, txtPerEmail, txtFirstNameVN, txtBankNo, cboBank, cboBankBranch)
                     lbStatus.Text = "Thông tin chỉnh sửa đang ở trạng thái [ Chờ phê duyệt ], Bạn không thể chỉnh sửa"
@@ -181,7 +191,8 @@ Public Class ctrlPortalEmpProfile_Edit
                     tbarMainToolBar.Items(3).Enabled = False
                     EnableControlAll(True, cboFamilyStatus, cboNav_District, cboNav_Province, cboNav_Ward,
                                      cboPer_District, cboPer_Province, cboPer_Ward, txtID_NO,
-                                     cboIDPlace, txtNavAddress, txtPerAddress, rdIDDate,
+                                     cboIDPlace, txtNavAddress, txtPerAddress, rdIDDate, cboNationa_TT,
+                                     cboNationlity_TTRU,
                                      rdIDDateEnd, txtContactPerson, cboRelationNLH, txtPerMobilePhone, txtPerThonAp, txtHomePhone, txtMobilePhone,
                                      txtWorkEmail, txtPerEmail, txtFirstNameVN, txtBankNo, cboBank, cboBankBranch)
                 Case 3 ' Không duyệt
@@ -190,7 +201,8 @@ Public Class ctrlPortalEmpProfile_Edit
                     tbarMainToolBar.Items(3).Enabled = False
                     EnableControlAll(True, cboFamilyStatus, cboNav_District, cboNav_Province, cboNav_Ward,
                                      cboPer_District, cboPer_Province, cboPer_Ward, txtID_NO,
-                                     cboIDPlace, txtNavAddress, txtPerAddress, rdIDDate,
+                                     cboIDPlace, txtNavAddress, txtPerAddress, rdIDDate, cboNationa_TT,
+                                     cboNationlity_TTRU,
                                      rdIDDateEnd, txtContactPerson, cboRelationNLH, txtPerMobilePhone, txtPerThonAp, txtHomePhone, txtMobilePhone,
                                      txtWorkEmail, txtPerEmail, txtFirstNameVN, txtBankNo, cboBank, cboBankBranch)
                 Case Else
@@ -199,7 +211,8 @@ Public Class ctrlPortalEmpProfile_Edit
                     tbarMainToolBar.Items(3).Enabled = False
                     EnableControlAll(True, cboFamilyStatus, cboNav_District, cboNav_Province, cboNav_Ward,
                                      cboPer_District, cboPer_Province, cboPer_Ward, txtID_NO,
-                                     cboIDPlace, txtNavAddress, txtPerAddress, rdIDDate,
+                                     cboIDPlace, txtNavAddress, txtPerAddress, rdIDDate, cboNationa_TT,
+                                     cboNationlity_TTRU,
                                      rdIDDateEnd, txtContactPerson, cboRelationNLH, txtPerMobilePhone, txtPerThonAp, txtHomePhone, txtMobilePhone,
                                      txtWorkEmail, txtPerEmail, txtFirstNameVN, txtBankNo, cboBank, cboBankBranch)
             End Select
@@ -221,7 +234,8 @@ Public Class ctrlPortalEmpProfile_Edit
                     ClearControlValue(cboFamilyStatus, cboNav_District, cboNav_Province, cboNav_Ward,
                                      cboPer_District, cboPer_Province, cboPer_Ward, txtID_NO,
                                      cboIDPlace, txtNavAddress, txtPerAddress, hidFamilyID,
-                                     rdIDDateEnd, txtContactPerson, cboRelationNLH, txtPerMobilePhone, txtPerThonAp, txtHomePhone, txtMobilePhone,
+                                     rdIDDateEnd, txtContactPerson, cboRelationNLH, txtPerMobilePhone, txtPerThonAp, txtHomePhone, txtMobilePhone, cboNationa_TT,
+                                     cboNationlity_TTRU,
                                      txtWorkEmail, txtPerEmail, txtFirstNameVN, txtBankNo, cboBank, cboBankBranch)
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_SAVE
@@ -234,6 +248,9 @@ Public Class ctrlPortalEmpProfile_Edit
                             obj.MARITAL_STATUS = Decimal.Parse(cboFamilyStatus.SelectedValue)
                         End If
                         obj.NAV_ADDRESS = txtNavAddress.Text.Trim()
+                        If cboNationlity_TTRU.SelectedValue <> "" Then
+                            obj.NAV_COUNTRY = cboNationlity_TTRU.SelectedValue
+                        End If
                         If cboNav_Province.SelectedValue <> "" Then
                             obj.NAV_PROVINCE = Decimal.Parse(cboNav_Province.SelectedValue)
                         End If
@@ -244,6 +261,9 @@ Public Class ctrlPortalEmpProfile_Edit
                             obj.NAV_WARD = Decimal.Parse(cboNav_Ward.SelectedValue)
                         End If
                         obj.PER_ADDRESS = txtPerAddress.Text.Trim()
+                        If cboNationa_TT.SelectedValue <> "" Then
+                            obj.PER_COUNTRY = Decimal.Parse(cboNationa_TT.SelectedValue)
+                        End If
                         If cboPer_Province.SelectedValue <> "" Then
                             obj.PER_PROVINCE = Decimal.Parse(cboPer_Province.SelectedValue)
                         End If
@@ -424,7 +444,7 @@ Public Class ctrlPortalEmpProfile_Edit
                         tbarMainToolBar.Items(0).Enabled = False
                         tbarMainToolBar.Items(3).Enabled = False
                         EnableControlAll(False, cboFamilyStatus, cboNav_District, cboNav_Province, cboNav_Ward,
-                                    cboPer_District, cboPer_Province, cboPer_Ward, txtID_NO,
+                                    cboPer_District, cboPer_Province, cboPer_Ward, txtID_NO, cboNationa_TT, cboNationlity_TTRU,
                                     cboIDPlace, txtNavAddress, txtPerAddress, rdIDDate,
                                     rdIDDateEnd, txtContactPerson, cboRelationNLH, txtPerMobilePhone, txtPerThonAp, txtHomePhone, txtMobilePhone,
                                     txtWorkEmail, txtPerEmail, txtFirstNameVN, txtBankNo, cboBank, cboBankBranch)
