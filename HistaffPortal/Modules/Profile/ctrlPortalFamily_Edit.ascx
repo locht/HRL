@@ -94,7 +94,7 @@
             <td class="lb">
                 <%# Translate("Nghề nghiệp")%>
             </td>
-            <td colspan="3">
+            <td>
                 <tlk:RadTextBox runat="server" ID="txtCareer" Width="100%">
                 </tlk:RadTextBox>
             </td>
@@ -118,7 +118,7 @@
                 <asp:Label ID="lbAdresss" runat="server" Text="Địa chỉ"></asp:Label>
             </td>
             <td colspan="5">
-                <tlk:RadTextBox runat="server" ID="txtAdress1" Width="100%" />
+                <tlk:RadTextBox runat="server" ID="txtAdress" Width="100%" />
             </td>
         </tr>
         <tr>
@@ -233,7 +233,7 @@
                 <%# Translate("Địa chỉ thường trú")%>
             </td>
             <td colspan="5">
-                <tlk:RadTextBox runat="server" ID="txtAdress" Width="100%" />
+                <tlk:RadTextBox runat="server" ID="txtAdress1" Width="100%" />
             </td>
             <td class="lb">
                 <%# Translate("Địa chỉ tạm trú")%>
@@ -345,8 +345,8 @@
         <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="true">
             <Selecting AllowRowSelect="true" />
         </ClientSettings>
-        <MasterTableView DataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,FK_PKEY,STATUS,REASON_UNAPROVE,TAXTATION,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS"
-            ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,FK_PKEY,STATUS,REASON_UNAPROVE,TAXTATION,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS,NATION_ID,ID_NO_DATE,ID_NO_PLACE_NAME,PHONE,TAXTATION_DATE,TAXTATION_PLACE,BIRTH_CODE,QUYEN,BIRTH_NATION_ID,BIRTH_PROVINCE_ID,BIRTH_DISTRICT_ID,BIRTH_WARD_ID,GENDER"
+        <MasterTableView DataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,FK_PKEY,STATUS,REASON_UNAPROVE,TAXTATION,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS,DIE_DATE,COMPANY_WORK,SALARY_EARN"
+            ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,FK_PKEY,STATUS,REASON_UNAPROVE,TAXTATION,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS,NATION_ID,ID_NO_DATE,ID_NO_PLACE_NAME,PHONE,TAXTATION_DATE,TAXTATION_PLACE,BIRTH_CODE,QUYEN,BIRTH_NATION_ID,BIRTH_PROVINCE_ID,BIRTH_DISTRICT_ID,BIRTH_WARD_ID,GENDER,DIE_DATE,COMPANY_WORK,SALARY_EARN"
             Caption="<%$ Translate: Thông tin chỉnh sửa %>">
             <Columns>
                 <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
@@ -356,10 +356,6 @@
                     <HeaderStyle Width="60px" />
                     <ItemStyle Font-Underline="true" Wrap="false" Width="60px" ForeColor="Blue" />
                 </tlk:GridButtonColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Quan hệ %>" DataField="RELATION_NAME"
-                    UniqueName="RELATION_NAME" SortExpression="RELATION_NAME">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ và tên %>" DataField="FULLNAME"
                     UniqueName="FULLNAME" SortExpression="FULLNAME">
                     <HeaderStyle HorizontalAlign="Center" />
@@ -368,54 +364,46 @@
                     ReadOnly="True" DataFormatString="{0:dd/MM/yyyy}" DataField="BIRTH_DATE">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridDateTimeColumn>
-                <tlk:GridBoundColumn DataField="ID_NO" HeaderText="<%$ Translate: CMND %>" UniqueName="ID_NO"
-                    Visible="True" EmptyDataText="">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã thuế %>" DataField="TAXTATION"
-                    UniqueName="TAXTATION" SortExpression="TAXTATION">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
-                <tlk:GridDateTimeColumn DataField="DEDUCT_REG" HeaderText="<%$ Translate: Ngày đăng ký giảm trừ%>"
-                    UniqueName="DEDUCT_REG" Visible="true" DataFormatString="{0:dd/MM/yyyy}">
+                <tlk:GridDateTimeColumn UniqueName="DIE_DATE" HeaderText="<%$ Translate: Ngày mất%>"
+                    ReadOnly="True" DataFormatString="{0:dd/MM/yyyy}" DataField="DIE_DATE">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridDateTimeColumn>
-                <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Giảm trừ %>" DataField="IS_DEDUCT"
-                    UniqueName="IS_DEDUCT" SortExpression="IS_DEDUCT" HeaderStyle-Width="80px">
-                    <HeaderStyle HorizontalAlign="Center" />
-                    <ItemStyle HorizontalAlign="Center" />
-                </tlk:GridCheckBoxColumn>
-                <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày giảm trừ %>" DataField="DEDUCT_FROM"
-                    UniqueName="DEDUCT_FROM" DataFormatString="{0:dd/MM/yyyy}" SortExpression="DEDUCT_FROM">
-                    <HeaderStyle HorizontalAlign="Center" />
-                    <ItemStyle HorizontalAlign="Center" />
-                </tlk:GridDateTimeColumn>
-                <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày kết thúc %>" DataField="DEDUCT_TO"
-                    UniqueName="DEDUCT_TO" DataFormatString="{0:dd/MM/yyyy}" SortExpression="DEDUCT_TO">
-                    <HeaderStyle HorizontalAlign="Center" />
-                    <ItemStyle HorizontalAlign="Center" />
-                </tlk:GridDateTimeColumn>
-                <%-- <tlk:GridBoundColumn DataField="CAREER" HeaderText="<%$ Translate: Nghề nghiệp %>"
-                    UniqueName="CAREER" Visible="True" EmptyDataText="">
+                <tlk:GridBoundColumn HeaderText="<%$ Translate: Quan hệ %>" DataField="RELATION_NAME"
+                    UniqueName="RELATION_NAME" SortExpression="RELATION_NAME">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
-                <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Là chủ hộ %>" DataField="IS_OWNER"
+                <tlk:GridCheckBoxColumn  AllowFiltering="false" HeaderText="<%$ Translate: Là chủ hộ %>" DataField="IS_OWNER"
                     UniqueName="IS_OWNER" SortExpression="IS_OWNER" HeaderStyle-Width="80px">
                     <HeaderStyle HorizontalAlign="Center" />
                     <ItemStyle HorizontalAlign="Center" />
                 </tlk:GridCheckBoxColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã hộ gia đình %>" DataField="CERTIFICATE_CODE"
-                    UniqueName="CERTIFICATE_CODE" SortExpression="CERTIFICATE_CODE">
+                <tlk:GridBoundColumn  DataField="CERTIFICATE_NUM" HeaderText="<%$ Translate: Số hộ khẩu%>"
+                    UniqueName="CERTIFICATE_NUM" Visible="True">
+                </tlk:GridBoundColumn>
+                <tlk:GridCheckBoxColumn AllowFiltering="false" HeaderText="<%$ Translate: Giảm trừ %>"
+                    DataField="IS_DEDUCT" UniqueName="IS_DEDUCT" SortExpression="IS_DEDUCT" HeaderStyle-Width="80px">
+                    <HeaderStyle HorizontalAlign="Center" />
+                    <ItemStyle HorizontalAlign="Center" />
+                </tlk:GridCheckBoxColumn>
+                <tlk:GridBoundColumn DataField="GENDER_NAME" HeaderText="<%$ Translate: Giới tính %>"
+                    UniqueName="GENDER_NAME" Visible="True">
+                    <HeaderStyle Width="60px" HorizontalAlign="Center" />
+                </tlk:GridBoundColumn>
+                <tlk:GridBoundColumn DataField="ID_NO" HeaderText="<%$ Translate: CMND %>" UniqueName="ID_NO"
+                    Visible="True" EmptyDataText="">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Địa chỉ thường trú %>" DataField="ADDRESS"
-                    UniqueName="ADDRESS" SortExpression="ADDRESS">
-                    <HeaderStyle HorizontalAlign="Center" />
+                <tlk:GridBoundColumn DataField="PHONE" HeaderText="<%$ Translate: Số điện thoại %>"
+                    UniqueName="PHONE" Visible="True">
+                    <HeaderStyle Width="60px" HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" UniqueName="REMARK"
-                    SortExpression="REMARK">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>--%>
+                <tlk:GridBoundColumn DataField="CAREER" HeaderText="<%$ Translate: Nghề nghiệp %>"
+                    UniqueName="CAREER" Visible="True">
+                    <HeaderStyle Width="60px" HorizontalAlign="Center" />
+                </tlk:GridBoundColumn>
+                <tlk:GridNumericColumn DataField="SALARY_EARN" HeaderText="<%$ Translate: Thu nhập %>"
+                    UniqueName="SALARY_EARN">
+                </tlk:GridNumericColumn>
                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
                     UniqueName="STATUS_NAME" SortExpression="STATUS_NAME">
                     <HeaderStyle HorizontalAlign="Center" />
@@ -432,18 +420,14 @@
         <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="true">
             <Selecting AllowRowSelect="true" />
         </ClientSettings>
-        <MasterTableView DataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,TAXTATION,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS"
-            ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,TAXTATION,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS,NATION_ID,ID_NO_DATE,ID_NO_PLACE_NAME,PHONE,TAXTATION_DATE,TAXTATION_PLACE,BIRTH_CODE,QUYEN,BIRTH_NATION_ID,BIRTH_PROVINCE_ID,BIRTH_DISTRICT_ID,BIRTH_WARD_ID,GENDER"
+        <MasterTableView DataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,TAXTATION,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS,DIE_DATE,COMPANY_WORK,SALARY_EARN"
+            ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,TAXTATION,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS,NATION_ID,ID_NO_DATE,ID_NO_PLACE_NAME,PHONE,TAXTATION_DATE,TAXTATION_PLACE,BIRTH_CODE,QUYEN,BIRTH_NATION_ID,BIRTH_PROVINCE_ID,BIRTH_DISTRICT_ID,BIRTH_WARD_ID,GENDER,DIE_DATE,COMPANY_WORK,SALARY_EARN"
             Caption="<%$ Translate: Thông tin hiện tại %>">
             <Columns>
                 <tlk:GridButtonColumn HeaderText="" Text="Sửa" CommandName="EditRow">
                     <HeaderStyle Wrap="False" Width="60px" />
                     <ItemStyle Font-Underline="true" Wrap="false" Width="60px" ForeColor="Blue" />
                 </tlk:GridButtonColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Quan hệ %>" DataField="RELATION_NAME"
-                    UniqueName="RELATION_NAME" SortExpression="RELATION_NAME">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ và tên %>" DataField="FULLNAME"
                     UniqueName="FULLNAME" SortExpression="FULLNAME">
                     <HeaderStyle HorizontalAlign="Center" />
@@ -452,54 +436,46 @@
                     ReadOnly="True" DataFormatString="{0:dd/MM/yyyy}" DataField="BIRTH_DATE">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridDateTimeColumn>
-                <tlk:GridBoundColumn DataField="ID_NO" HeaderText="<%$ Translate: CMND %>" UniqueName="ID_NO"
-                    Visible="True" EmptyDataText="">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã thuế %>" DataField="TAXTATION"
-                    UniqueName="TAXTATION" SortExpression="TAXTATION">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
-                <tlk:GridDateTimeColumn DataField="DEDUCT_REG" HeaderText="<%$ Translate: Ngày đăng ký giảm trừ%>"
-                    UniqueName="DEDUCT_REG" Visible="true" DataFormatString="{0:dd/MM/yyyy}">
+                <tlk:GridDateTimeColumn UniqueName="DIE_DATE" HeaderText="<%$ Translate: Ngày mất%>"
+                    ReadOnly="True" DataFormatString="{0:dd/MM/yyyy}" DataField="DIE_DATE">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridDateTimeColumn>
-                <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Giảm trừ %>" DataField="IS_DEDUCT"
-                    UniqueName="IS_DEDUCT" SortExpression="IS_DEDUCT" HeaderStyle-Width="80px">
-                    <HeaderStyle HorizontalAlign="Center" />
-                    <ItemStyle HorizontalAlign="Center" />
-                </tlk:GridCheckBoxColumn>
-                <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày giảm trừ %>" DataField="DEDUCT_FROM"
-                    UniqueName="DEDUCT_FROM" DataFormatString="{0:dd/MM/yyyy}" SortExpression="DEDUCT_FROM">
-                    <HeaderStyle HorizontalAlign="Center" />
-                    <ItemStyle HorizontalAlign="Center" />
-                </tlk:GridDateTimeColumn>
-                <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày kết thúc %>" DataField="DEDUCT_TO"
-                    UniqueName="DEDUCT_TO" DataFormatString="{0:dd/MM/yyyy}" SortExpression="DEDUCT_TO">
-                    <HeaderStyle HorizontalAlign="Center" />
-                    <ItemStyle HorizontalAlign="Center" />
-                </tlk:GridDateTimeColumn>
-                <%-- <tlk:GridBoundColumn DataField="CAREER" HeaderText="<%$ Translate: Nghề nghiệp %>"
-                    UniqueName="CAREER" Visible="True" EmptyDataText="">
+                <tlk:GridBoundColumn HeaderText="<%$ Translate: Quan hệ %>" DataField="RELATION_NAME"
+                    UniqueName="RELATION_NAME" SortExpression="RELATION_NAME">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
-                <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Là chủ hộ %>" DataField="IS_OWNER"
+                <tlk:GridCheckBoxColumn  AllowFiltering="false" HeaderText="<%$ Translate: Là chủ hộ %>" DataField="IS_OWNER"
                     UniqueName="IS_OWNER" SortExpression="IS_OWNER" HeaderStyle-Width="80px">
                     <HeaderStyle HorizontalAlign="Center" />
                     <ItemStyle HorizontalAlign="Center" />
                 </tlk:GridCheckBoxColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã hộ gia đình %>" DataField="CERTIFICATE_CODE"
-                    UniqueName="CERTIFICATE_CODE" SortExpression="CERTIFICATE_CODE">
+                <tlk:GridBoundColumn  DataField="CERTIFICATE_NUM" HeaderText="<%$ Translate: Số hộ khẩu%>"
+                    UniqueName="CERTIFICATE_NUM" Visible="True">
+                </tlk:GridBoundColumn>
+                <tlk:GridCheckBoxColumn AllowFiltering="false" HeaderText="<%$ Translate: Giảm trừ %>"
+                    DataField="IS_DEDUCT" UniqueName="IS_DEDUCT" SortExpression="IS_DEDUCT" HeaderStyle-Width="80px">
+                    <HeaderStyle HorizontalAlign="Center" />
+                    <ItemStyle HorizontalAlign="Center" />
+                </tlk:GridCheckBoxColumn>
+                <tlk:GridBoundColumn DataField="GENDER_NAME" HeaderText="<%$ Translate: Giới tính %>"
+                    UniqueName="GENDER_NAME" Visible="True">
+                    <HeaderStyle Width="60px" HorizontalAlign="Center" />
+                </tlk:GridBoundColumn>
+                <tlk:GridBoundColumn DataField="ID_NO" HeaderText="<%$ Translate: CMND %>" UniqueName="ID_NO"
+                    Visible="True" EmptyDataText="">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Địa chỉ thường trú %>" DataField="ADDRESS"
-                    UniqueName="ADDRESS" SortExpression="ADDRESS">
-                    <HeaderStyle HorizontalAlign="Center" />
+                <tlk:GridBoundColumn DataField="PHONE" HeaderText="<%$ Translate: Số điện thoại %>"
+                    UniqueName="PHONE" Visible="True">
+                    <HeaderStyle Width="60px" HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" UniqueName="REMARK"
-                    SortExpression="REMARK">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>--%>
+                <tlk:GridBoundColumn DataField="CAREER" HeaderText="<%$ Translate: Nghề nghiệp %>"
+                    UniqueName="CAREER" Visible="True">
+                    <HeaderStyle Width="60px" HorizontalAlign="Center" />
+                </tlk:GridBoundColumn>
+                <tlk:GridNumericColumn DataField="SALARY_EARN" HeaderText="<%$ Translate: Thu nhập %>"
+                    UniqueName="SALARY_EARN">
+                </tlk:GridNumericColumn>
             </Columns>
         </MasterTableView>
     </tlk:RadGrid>

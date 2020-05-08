@@ -723,7 +723,9 @@ Partial Class ProfileRepository
             objFamilyEditData.BIRTH_DISTRICT_ID = objFamilyEdit.BIRTH_DISTRICT_ID
             objFamilyEditData.BIRTH_WARD_ID = objFamilyEdit.BIRTH_WARD_ID
             objFamilyEditData.GENDER = objFamilyEdit.GENDER
-
+            objFamilyEditData.DIE_DATE = objFamilyEdit.DIE_DATE
+            objFamilyEditData.COMPANY_WORK = objFamilyEdit.COMPANY_WORK
+            objFamilyEditData.SALARY_EARN = objFamilyEdit.SALARY_EARN
             Context.HU_FAMILY_EDIT.AddObject(objFamilyEditData)
             Context.SaveChanges(log)
             gID = objFamilyEditData.ID
@@ -783,7 +785,9 @@ Partial Class ProfileRepository
             objFamilyEditData.BIRTH_DISTRICT_ID = objFamilyEdit.BIRTH_DISTRICT_ID
             objFamilyEditData.BIRTH_WARD_ID = objFamilyEdit.BIRTH_WARD_ID
             objFamilyEditData.GENDER = objFamilyEdit.GENDER
-
+            objFamilyEditData.DIE_DATE = objFamilyEdit.DIE_DATE
+            objFamilyEditData.COMPANY_WORK = objFamilyEdit.COMPANY_WORK
+            objFamilyEditData.SALARY_EARN = objFamilyEdit.SALARY_EARN
             Context.SaveChanges(log)
             gID = objFamilyEditData.ID
             Return True
@@ -860,6 +864,9 @@ Partial Class ProfileRepository
                         .BIRTH_WARD_NAME = w_ks.NAME_VN,
                          .GENDER = p.GENDER,
                          .GENDER_NAME = g.NAME_VN,
+                          .DIE_DATE = p.DIE_DATE,
+                          .SALARY_EARN = p.SALARY_EARN,
+                         .COMPANY_WORK = p.COMPANY_WORK,
                          .STATUS = p.STATUS,
                          .STATUS_NAME = If(p.STATUS = 0, "Chưa gửi duyệt",
                                            If(p.STATUS = 1, "Chờ phê duyệt",
@@ -1214,6 +1221,10 @@ Partial Class ProfileRepository
                         objFamilyData.BIRTH_DISTRICT_ID = item.BIRTH_DISTRICT_ID
                         objFamilyData.BIRTH_WARD_ID = item.BIRTH_WARD_ID
                         objFamilyData.GENDER = item.GENDER
+                        'ACV_US_19ACVUSA-193
+                        objFamilyData.COMPANY_WORK = item.COMPANY_WORK
+                        objFamilyData.SALARY_EARN = item.SALARY_EARN
+                        objFamilyData.DIE_DATE = item.DIE_DATE
                         ' 20190520 CanhNX: Edit cho lưu Nguyên quán, Nghề nghiệp, Chức danh
                         objFamilyData.CAREER = item.CAREER
                         objFamilyData.TITLE_NAME = item.TITLE_NAME
@@ -1260,7 +1271,10 @@ Partial Class ProfileRepository
                         objFamilyData.BIRTH_DISTRICT_ID = item.BIRTH_DISTRICT_ID
                         objFamilyData.BIRTH_WARD_ID = item.BIRTH_WARD_ID
                         objFamilyData.GENDER = item.GENDER
-
+                        'ACV_US_19ACVUSA-193
+                        objFamilyData.COMPANY_WORK = item.COMPANY_WORK
+                        objFamilyData.SALARY_EARN = item.SALARY_EARN
+                        objFamilyData.DIE_DATE = item.DIE_DATE
                         ' 20190520 CanhNX: Edit cho lưu Nguyên quán, Nghề nghiệp, Chức danh
                         objFamilyData.CAREER = item.CAREER
                         objFamilyData.TITLE_NAME = item.TITLE_NAME

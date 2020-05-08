@@ -183,7 +183,7 @@ Public Class ctrlPortalFamily_Edit
             Select Case CurrentState
                 Case CommonMessage.STATE_NORMAL
                     EnableControlAll(False, txtAdress, txtFullName, txtIDNO, txtRemark, txtTax, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID,
-                                     rdBirthDate, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtAD_Village, txtQuyen, txt_MSTPLACE,
+                                     rdBirthDate, txtPhone, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtAD_Village, txtQuyen, txt_MSTPLACE,
                                      chkIsDeduct, cboRelationship, cboNguyenQuan, txtCareer, txtTitle,
                                      chkIs_Owner, chkIs_Pass, txtHouseCertificate_Code, txtHouseCertificate_Num,
                                      cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, txtAdress, txtTempAdress, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
@@ -196,7 +196,7 @@ Public Class ctrlPortalFamily_Edit
                     EnabledGridNotPostback(rgFamilyEdit, True)
                 Case CommonMessage.STATE_NEW
                     EnableControlAll(True, txtAdress, txtFullName, txtIDNO, txtRemark, txtTax, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID,
-                                     rdBirthDate, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtAD_Village, txtQuyen,
+                                     rdBirthDate, txtPhone, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtAD_Village, txtQuyen,
                                      chkIsDeduct, cboRelationship, cboNguyenQuan, txtCareer, txtTitle,
                                      chkIs_Owner, chkIs_Pass, txt_MSTPLACE,
                                      cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, txtAdress, txtTempAdress, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
@@ -209,7 +209,7 @@ Public Class ctrlPortalFamily_Edit
                     EnabledGridNotPostback(rgFamilyEdit, False)
                 Case CommonMessage.STATE_EDIT
                     EnableControlAll(True, txtAdress, txtFullName, txtIDNO, txtRemark, txtTax, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID,
-                                     rdBirthDate, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtAD_Village, txtQuyen,
+                                     rdBirthDate, txtPhone, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtAD_Village, txtQuyen,
                                      chkIsDeduct, cboRelationship, cboNguyenQuan, txtCareer, txtTitle, txt_MSTPLACE,
                                      chkIs_Owner, chkIs_Pass, txtHouseCertificate_Code, txtHouseCertificate_Num,
                                      cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, txtAdress, txtTempAdress, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
@@ -241,7 +241,7 @@ Public Class ctrlPortalFamily_Edit
                     CurrentState = CommonMessage.STATE_NEW
                     ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num,
                                       chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax, txt_MSTPLACE,
-                                      rdBirthDate, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
+                                      rdBirthDate, txtPhone, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
                                       chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan,
                                       cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
                     UpdateControlState()
@@ -275,6 +275,8 @@ Public Class ctrlPortalFamily_Edit
                         If cbTempPROVINCE_ID.SelectedValue <> "" Then
                             obj.TT_PROVINCE_ID = Decimal.Parse(cbTempPROVINCE_ID.SelectedValue)
                         End If
+                     
+
                         If cbTempDISTRICT_ID.SelectedValue <> "" Then
                             obj.TT_DISTRICT_ID = Decimal.Parse(cbTempDISTRICT_ID.SelectedValue)
                         End If
@@ -325,6 +327,11 @@ Public Class ctrlPortalFamily_Edit
                         If cbTempKtWARD_ID.SelectedValue <> "" Then
                             obj.BIRTH_WARD_ID = cbTempKtWARD_ID.SelectedValue
                         End If
+                        If IsNumeric(rnCollecttion.Value) Then
+                            obj.SALARY_EARN = rnCollecttion.Value
+                        End If
+                        obj.COMPANY_WORK = txtCompanyWork.Text
+                        obj.DIE_DATE = rdDieDate.SelectedDate
 
                         Using rep As New ProfileBusinessRepository
                             If hidFamilyID.Value <> "" Then
@@ -422,7 +429,7 @@ Public Class ctrlPortalFamily_Edit
                     Else
                         ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen,
                                       chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax, txtQuyen,
-                                      rdBirthDate, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
+                                      rdBirthDate, txtPhone, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
                                       chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan, txt_MSTPLACE,
                                       cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
                     End If
@@ -512,7 +519,7 @@ Public Class ctrlPortalFamily_Edit
                 End Select
                 ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen,
                                                     chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax, txtQuyen,
-                                                    rdBirthDate, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
+                                                    rdBirthDate, txtPhone, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
                                                     chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan, txt_MSTPLACE,
                                                     cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
                 hidFamilyID.Value = item.GetDataKeyValue("ID")
@@ -540,7 +547,11 @@ Public Class ctrlPortalFamily_Edit
                 If IsNumeric(item.GetDataKeyValue("TT_PROVINCE_ID")) Then
                     cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
                 End If
-               
+                rdDieDate.SelectedDate = item.GetDataKeyValue("DIE_DATE")
+                txtCompanyWork.Text = item.GetDataKeyValue("COMPANY_WORK")
+                If IsNumeric(item.GetDataKeyValue("SALARY_EARN")) Then
+                    rnCollecttion.Value = Decimal.Parse(item.GetDataKeyValue("SALARY_EARN"))
+                End If
                 Using rep As New ProfileRepository
 
                     If cbPROVINCE_ID.SelectedValue <> "" Then
@@ -644,7 +655,7 @@ Public Class ctrlPortalFamily_Edit
                 CurrentState = CommonMessage.STATE_EDIT
                 ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen,
                                     chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax, txtQuyen,
-                                    rdBirthDate, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
+                                    rdBirthDate, txtPhone, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
                                     chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan, txt_MSTPLACE,
                                     cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
                 Dim item = CType(e.Item, GridDataItem)
@@ -672,6 +683,11 @@ Public Class ctrlPortalFamily_Edit
                 End If
                 If IsNumeric(item.GetDataKeyValue("TT_PROVINCE_ID")) Then
                     cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
+                End If
+                rdDieDate.SelectedDate = item.GetDataKeyValue("DIE_DATE")
+                txtCompanyWork.Text = item.GetDataKeyValue("COMPANY_WORK")
+                If IsNumeric(item.GetDataKeyValue("SALARY_EARN")) Then
+                    rnCollecttion.Value = Decimal.Parse(item.GetDataKeyValue("SALARY_EARN"))
                 End If
                 Using rep As New ProfileRepository
                     If cbPROVINCE_ID.SelectedValue <> "" Then
@@ -917,14 +933,14 @@ Public Class ctrlPortalFamily_Edit
             If rgFamilyEdit.SelectedItems.Count = 0 Then
                 ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num,
                                         chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax, txt_MSTPLACE,
-                                        rdBirthDate, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
+                                        rdBirthDate, txtPhone, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
                                         chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen,
                                         cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
                 Exit Sub
             End If
             ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num,
                                       chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax, txt_MSTPLACE,
-                                      rdBirthDate, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
+                                      rdBirthDate, txtPhone, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
                                       chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID, txtQuyen,
                                       cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
 
@@ -953,6 +969,11 @@ Public Class ctrlPortalFamily_Edit
             End If
             If IsNumeric(item.GetDataKeyValue("TT_PROVINCE_ID")) Then
                 cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
+            End If
+            rdDieDate.SelectedDate = item.GetDataKeyValue("DIE_DATE")
+            txtCompanyWork.Text = item.GetDataKeyValue("COMPANY_WORK")
+            If IsNumeric(item.GetDataKeyValue("SALARY_EARN")) Then
+                rnCollecttion.Value = Decimal.Parse(item.GetDataKeyValue("SALARY_EARN"))
             End If
             Using rep As New ProfileRepository
                 If cbPROVINCE_ID.SelectedValue <> "" Then
@@ -1042,14 +1063,14 @@ Public Class ctrlPortalFamily_Edit
             If rgFamily.SelectedItems.Count = 0 Then
                 ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num,
                                       chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID,
-                                      rdBirthDate, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle, txtQuyen,
+                                      rdBirthDate, txtPhone, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle, txtQuyen,
                                       chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan, txt_MSTPLACE,
                                       cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
                 Exit Sub
             End If
             ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num,
                                       chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax, txtQuyen, cboGender, rdIDDate, txtIDPlace, cboNationlity, txtPhone, rdMSTDate, txtBIRTH_CODE, cboNATIONALITYFAMILY, cbTempKtPROVINCE_ID, cbTempKtDISTRICT_ID, cbTempKtWARD_ID,
-                                      rdBirthDate, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
+                                      rdBirthDate, txtPhone, rdDieDate, rnCollecttion, txtCompanyWork, txtAdress1, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
                                       chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan, txt_MSTPLACE,
                                       cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
             CurrentState = CommonMessage.STATE_NORMAL
@@ -1078,6 +1099,11 @@ Public Class ctrlPortalFamily_Edit
             End If
             If IsNumeric(item.GetDataKeyValue("TT_PROVINCE_ID")) Then
                 cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
+            End If
+            rdDieDate.SelectedDate = item.GetDataKeyValue("DIE_DATE")
+            txtCompanyWork.Text = item.GetDataKeyValue("COMPANY_WORK")
+            If IsNumeric(item.GetDataKeyValue("SALARY_EARN")) Then
+                rnCollecttion.Value = Decimal.Parse(item.GetDataKeyValue("SALARY_EARN"))
             End If
             Using rep As New ProfileRepository
                 If cbPROVINCE_ID.SelectedValue <> "" Then
