@@ -173,30 +173,45 @@
                         UniqueName="WDATATYE_NAME" SortExpression="WDATATYE_NAME" HeaderStyle-Width="200px" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại dữ liệu %>" DataField="WDATAMODE_NAME"
                         UniqueName="WDATAMODE_NAME" SortExpression="WDATAMODE_NAME" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mô tả mã công %>" DataField="MANUAL_NAME"
-                        UniqueName="MANUAL_NAME" SortExpression="MANUAL_NAME" HeaderStyle-Width="200px" />
-                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Giờ bắt đầu %>" DataField="HOURS_START"
-                        UniqueName="HOURS_START" DataFormatString="{0:HH:mm}" SortExpression="HOURS_START" />
-                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Giờ kết thúc %>" DataField="HOURS_STOP"
-                        UniqueName="HOURS_STOP" DataFormatString="{0:HH:mm}" SortExpression="HOURS_STOP" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Qua ngày hôm sau %>" DataField="IS_HOURS_STOP_NAME"
-                        UniqueName="IS_HOURS_STOP_NAME" SortExpression="IS_HOURS_STOP_NAME" HeaderStyle-Width="100px" />
-                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Bắt đầu nghỉ giữa ca %>" DataField="START_MID_HOURS"
-                        UniqueName="START_MID_HOURS" DataFormatString="{0:HH:mm}" SortExpression="START_MID_HOURS" />
-                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Kết thúc nghỉ giữa ca %>" DataField="END_MID_HOURS"
-                        UniqueName="END_MID_HOURS" DataFormatString="{0:HH:mm}" SortExpression="END_MID_HOURS" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Qua ngày hôm sau %>" DataField="IS_MID_END_NAME"
-                        UniqueName="IS_MID_END_NAME" SortExpression="IS_MID_END_NAME" HeaderStyle-Width="100px" />
-                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Bắt đầu nhận quyẹt thẻ %>" DataField="HOURS_STAR_CHECKIN"
-                        UniqueName="HOURS_STAR_CHECKIN" DataFormatString="{0:HH:mm}" SortExpression="HOURS_STAR_CHECKIN" />
-                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Kết thúc nhận quyẹt thẻ %>" DataField="HOURS_STAR_CHECKOUT"
-                        UniqueName="HOURS_STAR_CHECKOUT" DataFormatString="{0:HH:mm}" SortExpression="HOURS_STAR_CHECKOUT" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Qua ngày hôm sau %>" DataField="IS_HOURS_CHECKOUT_NAME"
-                        UniqueName="IS_HOURS_CHECKOUT_NAME" SortExpression="IS_HOURS_CHECKOUT_NAME" HeaderStyle-Width="100px" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
-                        UniqueName="ACTFLG" SortExpression="ACTFLG">
-                        <HeaderStyle Width="100px" />
-                    </tlk:GridBoundColumn>
+                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECT_DATE"
+                        UniqueName="EFFECT_DATE" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EFFECT_DATE" />
+                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hết hiệu lực %>" DataField="EXPIRE_DATE"
+                        UniqueName="EXPIRE_DATE" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EXPIRE_DATE" />
+                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Thứ tự hiển thị %>" DataField="WINDEX"
+                        UniqueName="WINDEX" SortExpression="WINDEX" HeaderStyle-Width="50px" />
+
+                     <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Hiển thị %>" DataField="IS_DISPLAY" DataType="System.Boolean"
+                                ItemStyle-VerticalAlign="Middle" UniqueName="IS_DISPLAY" SortExpression="IS_DISPLAY" HeaderStyle-Width="40px"
+                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
+                                AutoPostBackOnFilter="true" />
+
+                  <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Dữ liệu import %>" DataField="IS_DATAFROMEXCEL" DataType="System.Boolean"
+                                ItemStyle-VerticalAlign="Middle" UniqueName="IS_DATAFROMEXCEL" SortExpression="IS_DATAFROMEXCEL" HeaderStyle-Width="40px"
+                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
+                                AutoPostBackOnFilter="true" />
+
+                  <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Hiển thị portal %>" DataField="IS_DISPLAY_PORTAL" DataType="System.Boolean"
+                                ItemStyle-VerticalAlign="Middle" UniqueName="IS_DISPLAY_PORTAL" SortExpression="IS_DISPLAY_PORTAL" HeaderStyle-Width="40px"
+                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
+                                AutoPostBackOnFilter="true" />
+                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Dữ liệu đăng ký nghỉ %>" DataField="IS_LEAVE" DataType="System.Boolean"
+                                ItemStyle-VerticalAlign="Middle" UniqueName="IS_LEAVE" SortExpression="IS_LEAVE" HeaderStyle-Width="40px"
+                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
+                                AutoPostBackOnFilter="true" />
+
+                   <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Nghỉ nguyên tuần %>" DataField="IS_LEAVE_WEEKLY" DataType="System.Boolean"
+                                ItemStyle-VerticalAlign="Middle" UniqueName="IS_LEAVE_WEEKLY" SortExpression="IS_LEAVE_WEEKLY" HeaderStyle-Width="40px"
+                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
+                                AutoPostBackOnFilter="true" />
+                   
+                   <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Nghỉ ngày lễ %>" DataField="IS_LAVE_HOLIDAY" DataType="System.Boolean"
+                                ItemStyle-VerticalAlign="Middle" UniqueName="IS_LAVE_HOLIDAY" SortExpression="IS_LAVE_HOLIDAY" HeaderStyle-Width="40px"
+                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
+                                AutoPostBackOnFilter="true" />
+                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Nghỉ nửa ngày %>" DataField="IS_DAY_HALF" DataType="System.Boolean"
+                                ItemStyle-VerticalAlign="Middle" UniqueName="IS_DAY_HALF" SortExpression="IS_DAY_HALF" HeaderStyle-Width="40px"
+                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
+                                AutoPostBackOnFilter="true" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mô tả %>" DataField="NOTE" UniqueName="NOTE"
                         SortExpression="NOTE" />
                 </Columns>

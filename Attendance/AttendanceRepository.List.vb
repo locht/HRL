@@ -20,7 +20,7 @@ Partial Class AttendanceRepository
                                  Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_SymbolsDTO)
         Using rep As New AttendanceBusinessClient
             Try
-                Return rep.GetAT_Symbols(_filter, Total, PageIndex, PageSize, Sorts)
+                Return rep.GetAT_Symbols(_filter, PageIndex, PageSize, Total, Sorts)
             Catch ex As Exception
                 Throw ex
             End Try
