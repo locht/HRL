@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 05/08/2020 9:42:16 AM
--- Generated from EDMX file: D:\MyProject2020\ACV_NEW\acv_19\ProfileDAL\ProfileContext.edmx
+-- Date Created: 5/8/2020 2:48:09 PM
+-- Generated from EDMX file: D:\acv_19\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -1899,7 +1899,8 @@ CREATE TABLE "dbo"."HU_WORKING_BEFORE_EDIT" (
    "STATUS" VARCHAR2(1) NULL,
    "REASON_UNAPROVE" NVARCHAR2(250) NULL,
    "FK_PKEY" NUMBER(38,0) NULL,
-   "SEND_DATE" DATE NULL
+   "SEND_DATE" DATE NULL,
+   "MAIN_JOB" NCLOB NULL
 );
 
 -- Creating table 'HU_WELFARE_MNG'

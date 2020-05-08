@@ -15568,6 +15568,9 @@ Namespace ProfileBusiness
         Private LEVEL_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MAIN_JOBField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -15749,6 +15752,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.LEVEL_NAMEField, value) <> true) Then
                     Me.LEVEL_NAMEField = value
                     Me.RaisePropertyChanged("LEVEL_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MAIN_JOB() As String
+            Get
+                Return Me.MAIN_JOBField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MAIN_JOBField, value) <> true) Then
+                    Me.MAIN_JOBField = value
+                    Me.RaisePropertyChanged("MAIN_JOB")
                 End If
             End Set
         End Property
@@ -24118,7 +24134,13 @@ Namespace ProfileBusiness
         Private MODIFIED_LOGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NOT_APPROVE_REASONField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SALARYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private STATUSField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TELEPHONEField As String
@@ -24128,6 +24150,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORKField As String
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
@@ -24309,6 +24334,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NOT_APPROVE_REASON() As String
+            Get
+                Return Me.NOT_APPROVE_REASONField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.NOT_APPROVE_REASONField, value) <> true) Then
+                    Me.NOT_APPROVE_REASONField = value
+                    Me.RaisePropertyChanged("NOT_APPROVE_REASON")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property SALARY() As System.Nullable(Of Decimal)
             Get
                 Return Me.SALARYField
@@ -24317,6 +24355,19 @@ Namespace ProfileBusiness
                 If (Me.SALARYField.Equals(value) <> true) Then
                     Me.SALARYField = value
                     Me.RaisePropertyChanged("SALARY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property STATUS() As String
+            Get
+                Return Me.STATUSField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.STATUSField, value) <> true) Then
+                    Me.STATUSField = value
+                    Me.RaisePropertyChanged("STATUS")
                 End If
             End Set
         End Property
@@ -24356,6 +24407,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.TITLE_NAMEField, value) <> true) Then
                     Me.TITLE_NAMEField = value
                     Me.RaisePropertyChanged("TITLE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORK() As String
+            Get
+                Return Me.WORKField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.WORKField, value) <> true) Then
+                    Me.WORKField = value
+                    Me.RaisePropertyChanged("WORK")
                 End If
             End Set
         End Property

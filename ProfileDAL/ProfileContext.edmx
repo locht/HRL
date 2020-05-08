@@ -1858,6 +1858,7 @@
             <Property Name="REASON_UNAPROVE" Type="nvarchar2" Nullable="true" MaxLength="250" />
             <Property Name="FK_PKEY" Type="number" Nullable="true" Precision="38" />
             <Property Name="SEND_DATE" Type="date" Nullable="true" />
+            <Property Name="MAIN_JOB" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="HU_WELFARE_MNG">
             <Key>
@@ -6838,6 +6839,7 @@
           <Property Type="String" Name="REASON_UNAPROVE" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="FK_PKEY" Precision="38" Scale="0" />
           <Property Type="DateTime" Name="SEND_DATE" />
+          <Property Type="String" Name="MAIN_JOB" />
         </EntityType>
         <EntityType Name="HU_WELFARE_MNG">
           <Key>
@@ -10892,6 +10894,7 @@
                     <ScalarProperty Name="REASON_UNAPROVE" ColumnName="REASON_UNAPROVE" />
                     <ScalarProperty Name="FK_PKEY" ColumnName="FK_PKEY" />
                     <ScalarProperty Name="SEND_DATE" ColumnName="SEND_DATE" />
+                    <ScalarProperty Name="MAIN_JOB" ColumnName="MAIN_JOB" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -13447,6 +13450,8 @@
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDUCATION" Width="4" PointX="41" PointY="6.125" Height="7.9416308593750014" IsExpanded="true" />
         <AssociationConnector Association="ProfileModel.FK_HE_HEC">
           <ConnectorPoint PointX="19.25" PointY="6.887499999999994" />
+          <ConnectorPoint PointX="19.666666666666668" PointY="6.8874999999999931" />
+          <ConnectorPoint PointX="19.833333333333332" PointY="6.887499999999994" />
           <ConnectorPoint PointX="37.625" PointY="6.887499999999994" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_FE_HEH">
@@ -13454,8 +13459,12 @@
           <ConnectorPoint PointX="15.375" PointY="2.525" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_HE_HEE">
-          <ConnectorPoint PointX="19.25" PointY="5.512499999999994" />
-          <ConnectorPoint PointX="43" PointY="5.512499999999994" />
+          <ConnectorPoint PointX="19.25" PointY="11.036131684895828" />
+          <ConnectorPoint PointX="19.75" PointY="11.036131684895828" />
+          <ConnectorPoint PointX="19.75" PointY="6.125" />
+          <ConnectorPoint PointX="26.125" PointY="6.125" />
+          <ConnectorPoint PointX="26.125" PointY="5.4999999999999973" />
+          <ConnectorPoint PointX="43" PointY="5.4999999999999973" />
           <ConnectorPoint PointX="43" PointY="6.125" />
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HU_CONTRACT" Width="2.5" PointX="7.125" PointY="3.125" Height="8.9031380208333335" IsExpanded="true" />
@@ -13597,7 +13606,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_FAMILY_EDIT" Width="2.125" PointX="16.625" PointY="16.375" Height="11.403056640625003" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDIT" Width="2.125" PointX="22.875" PointY="16" Height="8.3262337239583353" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_PRO_TRAIN_OUT_COMPANY_EDIT" Width="2.875" PointX="2.375" PointY="31.875" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_WORKING_BEFORE_EDIT" Width="2.125" PointX="23.125" PointY="0.5" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_WORKING_BEFORE_EDIT" Width="2.125" PointX="23.125" PointY="0.5" Height="5.2494108072916656" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_MNG" Width="1.5" PointX="2.75" PointY="20.875" Height="5.0571093750000031" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_TERMINATE_3B" Width="1.5" PointX="20.75" PointY="4.875" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_MERGE_FIELD" Width="1.5" PointX="4.75" PointY="20.875" Height="0.39999999999999147" IsExpanded="false" />

@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("8322b557-5034-4ac1-a8c1-fd82618d72c4")>
+<Assembly: EdmSchemaAttribute("b002de92-86fb-43a0-82de-dd506fdde54a")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -70797,6 +70797,31 @@ Public Partial Class HU_WORKING_BEFORE_EDIT
     End Sub
 
     Private Partial Sub OnSEND_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MAIN_JOB() As Global.System.String
+        Get
+            Return _MAIN_JOB
+        End Get
+        Set
+            OnMAIN_JOBChanging(value)
+            ReportPropertyChanging("MAIN_JOB")
+            _MAIN_JOB = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("MAIN_JOB")
+            OnMAIN_JOBChanged()
+        End Set
+    End Property
+
+    Private _MAIN_JOB As Global.System.String
+    Private Partial Sub OnMAIN_JOBChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnMAIN_JOBChanged()
     End Sub
 
     #End Region

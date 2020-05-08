@@ -16,4 +16,7 @@
     Public Property MODIFIED_DATE As Date
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
+    Public Property WORK As String 'Công việc chính
+    Public Property NOT_APPROVE_REASON As String
+    Public Property STATUS As String
 End Class

@@ -2920,18 +2920,18 @@ Partial Class ProfileRepository
             End Using
 
             Dim query = From p In Context.HU_WORKING
-                    From chosen In Context.SE_CHOSEN_EMP_3B.Where(Function(f) f.EMPLOYEE_ID = p.EMPLOYEE_ID And _
+                        From chosen In Context.SE_CHOSEN_EMP_3B.Where(Function(f) f.EMPLOYEE_ID = p.EMPLOYEE_ID And
                                                                       f.USERNAME = log.Username.ToUpper)
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
-                           From sal_type In Context.PA_SALARY_TYPE.Where(Function(f) p.SAL_TYPE_ID = f.ID).DefaultIfEmpty
+                        From sal_type In Context.PA_SALARY_TYPE.Where(Function(f) p.SAL_TYPE_ID = f.ID).DefaultIfEmpty
                         From sal_group In Context.PA_SALARY_GROUP.Where(Function(f) p.SAL_GROUP_ID = f.ID).DefaultIfEmpty
                         From sal_level In Context.PA_SALARY_LEVEL.Where(Function(f) p.SAL_LEVEL_ID = f.ID).DefaultIfEmpty
                         From sal_rank In Context.PA_SALARY_RANK.Where(Function(f) p.SAL_RANK_ID = f.ID).DefaultIfEmpty
                         From status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS_ID).DefaultIfEmpty
                         From deci_type In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.DECISION_TYPE_ID).DefaultIfEmpty
-                         From taxTable In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TAX_TABLE_ID).DefaultIfEmpty
+                        From taxTable In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TAX_TABLE_ID).DefaultIfEmpty
                         From staffrak In Context.HU_STAFF_RANK.Where(Function(f) f.ID = p.STAFF_RANK_ID).DefaultIfEmpty
                         Where p.IS_WAGE = True And p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
                         Order By p.EFFECT_DATE Descending
@@ -3069,7 +3069,7 @@ Partial Class ProfileRepository
                      From dhkt In Context.HU_COMMEND_LIST.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
                      From cm_obj In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.COMMEND_OBJ).DefaultIfEmpty
                      From httt In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.COMMEND_PAY And f.TYPE_CODE = "COMMEND_PAY" And f.ACTFLG = "A").DefaultIfEmpty
-            Where (ce.HU_EMPLOYEE_ID = _empId And p.STATUS_ID = 447)
+                     Where (ce.HU_EMPLOYEE_ID = _empId And p.STATUS_ID = 447)
                      Order By p.EFFECT_DATE
                      Select New CommendDTO With {
                      .ID = p.ID,
@@ -3153,7 +3153,7 @@ Partial Class ProfileRepository
         Try
             Dim query As List(Of TitleConcurrentDTO)
             query = (From p In Context.HU_TITLE_CONCURRENT
-                   From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                     From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                      Where p.EMPLOYEE_ID = _empId Order By p.EFFECT_DATE Descending
                      Select New TitleConcurrentDTO With {
                       .ID = p.ID,
@@ -3225,7 +3225,7 @@ Partial Class ProfileRepository
                                                     .P_CUR = cls.OUT_CURSOR})
                 If dtData IsNot Nothing Then
                     lst = (From row As DataRow In dtData.Rows
-                       Select New EmployeeAssessmentDTO With {.ID = row("ID").ToString(),
+                           Select New EmployeeAssessmentDTO With {.ID = row("ID").ToString(),
                                                    .EMPLOYEE_ID = row("EMPLOYEE_ID").ToString(),
                                                    .EMPLOYEE_CODE = row("EMPLOYEE_CODE").ToString(),
                                                    .EMPLOYEE_NAME = row("EMPLOYEE_NAME").ToString(),
@@ -3254,15 +3254,15 @@ Partial Class ProfileRepository
     Public Function GetCompetencyEmployee(ByVal _empId As Decimal) As List(Of EmployeeCompetencyDTO)
         Try
             Dim query = From stand In Context.HU_COMPETENCY_STANDARD
-                     From Competency In Context.HU_COMPETENCY.Where(Function(f) f.ID = stand.COMPETENCY_ID)
-                     From Competencygroup In Context.HU_COMPETENCY_GROUP.Where(Function(f) f.ID = Competency.COMPETENCY_GROUP_ID)
-                     From ass In Context.HU_COMPETENCY_ASS.Where(Function(f) stand.TITLE_ID = f.TITLE_ID).DefaultIfEmpty
-                     From p In Context.HU_COMPETENCY_ASSDTL.Where(Function(f) f.COMPETENCY_ASS_ID = ass.ID And
+                        From Competency In Context.HU_COMPETENCY.Where(Function(f) f.ID = stand.COMPETENCY_ID)
+                        From Competencygroup In Context.HU_COMPETENCY_GROUP.Where(Function(f) f.ID = Competency.COMPETENCY_GROUP_ID)
+                        From ass In Context.HU_COMPETENCY_ASS.Where(Function(f) stand.TITLE_ID = f.TITLE_ID).DefaultIfEmpty
+                        From p In Context.HU_COMPETENCY_ASSDTL.Where(Function(f) f.COMPETENCY_ASS_ID = ass.ID And
                                                                       f.COMPETENCY_ID = stand.COMPETENCY_ID).DefaultIfEmpty
-                     From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = ass.EMPLOYEE_ID).DefaultIfEmpty
-                     From period In Context.HU_COMPETENCY_PERIOD.Where(Function(f) f.ID = ass.COMPETENCY_PERIOD_ID).DefaultIfEmpty
-                     Where ass.EMPLOYEE_ID = _empId
-                     Select New EmployeeCompetencyDTO With {
+                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = ass.EMPLOYEE_ID).DefaultIfEmpty
+                        From period In Context.HU_COMPETENCY_PERIOD.Where(Function(f) f.ID = ass.COMPETENCY_PERIOD_ID).DefaultIfEmpty
+                        Where ass.EMPLOYEE_ID = _empId
+                        Select New EmployeeCompetencyDTO With {
                          .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
                          .EMPLOYEE_ID = ass.EMPLOYEE_ID,
                          .EMPLOYEE_NAME = e.FULLNAME_VN,
@@ -3307,19 +3307,19 @@ Partial Class ProfileRepository
     Public Function GetEmployeeTrainForCompany(ByVal _filter As EmployeeTrainForCompanyDTO) As List(Of EmployeeTrainForCompanyDTO)
         Try
             Dim query = From re In Context.TR_REQUEST_EMPLOYEE
-                         From r In Context.TR_REQUEST.Where(Function(f) f.ID = re.TR_REQUEST_ID).DefaultIfEmpty
-                         From c In Context.TR_COURSE.Where(Function(f) f.ID = r.TR_COURSE_ID).DefaultIfEmpty
-                         From ce In Context.TR_CERTIFICATE.Where(Function(f) f.ID = c.TR_CERTIFICATE_ID)
-                         From pr In Context.TR_PROGRAM.Where(Function(f) f.TR_REQUEST_ID = r.ID).DefaultIfEmpty
-                         From prg In Context.TR_PROGRAM_GROUP.Where(Function(f) f.ID = c.TR_PROGRAM_GROUP).DefaultIfEmpty
-                         From tf In Context.OT_OTHER_LIST.Where(Function(f) f.ID = c.TR_TRAIN_FIELD).DefaultIfEmpty
-                         From tfr In Context.OT_OTHER_LIST.Where(Function(f) f.ID = r.TRAIN_FORM_ID).DefaultIfEmpty
-                         From lang In Context.OT_OTHER_LIST.Where(Function(f) f.ID = pr.TR_LANGUAGE_ID).DefaultIfEmpty
-                         From result In Context.TR_PROGRAM_RESULT.Where(Function(f) f.TR_PROGRAM_ID = pr.ID And f.EMPLOYEE_ID = _filter.EMPLOYEE_ID).DefaultIfEmpty
-                         From rank In Context.OT_OTHER_LIST.Where(Function(f) f.ID = result.TR_RANK_ID).DefaultIfEmpty
-                         From pcomit In Context.TR_PROGRAM_COMMIT.Where(Function(f) f.EMPLOYEE_ID = _filter.EMPLOYEE_ID And f.TR_PROGRAM_ID = pr.ID).DefaultIfEmpty
-                         Where re.EMPLOYEE_ID = _filter.EMPLOYEE_ID
-                         Order By re.ID Descending
+                        From r In Context.TR_REQUEST.Where(Function(f) f.ID = re.TR_REQUEST_ID).DefaultIfEmpty
+                        From c In Context.TR_COURSE.Where(Function(f) f.ID = r.TR_COURSE_ID).DefaultIfEmpty
+                        From ce In Context.TR_CERTIFICATE.Where(Function(f) f.ID = c.TR_CERTIFICATE_ID)
+                        From pr In Context.TR_PROGRAM.Where(Function(f) f.TR_REQUEST_ID = r.ID).DefaultIfEmpty
+                        From prg In Context.TR_PROGRAM_GROUP.Where(Function(f) f.ID = c.TR_PROGRAM_GROUP).DefaultIfEmpty
+                        From tf In Context.OT_OTHER_LIST.Where(Function(f) f.ID = c.TR_TRAIN_FIELD).DefaultIfEmpty
+                        From tfr In Context.OT_OTHER_LIST.Where(Function(f) f.ID = r.TRAIN_FORM_ID).DefaultIfEmpty
+                        From lang In Context.OT_OTHER_LIST.Where(Function(f) f.ID = pr.TR_LANGUAGE_ID).DefaultIfEmpty
+                        From result In Context.TR_PROGRAM_RESULT.Where(Function(f) f.TR_PROGRAM_ID = pr.ID And f.EMPLOYEE_ID = _filter.EMPLOYEE_ID).DefaultIfEmpty
+                        From rank In Context.OT_OTHER_LIST.Where(Function(f) f.ID = result.TR_RANK_ID).DefaultIfEmpty
+                        From pcomit In Context.TR_PROGRAM_COMMIT.Where(Function(f) f.EMPLOYEE_ID = _filter.EMPLOYEE_ID And f.TR_PROGRAM_ID = pr.ID).DefaultIfEmpty
+                        Where re.EMPLOYEE_ID = _filter.EMPLOYEE_ID
+                        Order By re.ID Descending
 
             Dim lst = query.Select(Function(p) New EmployeeTrainForCompanyDTO With {
                                          .ID = _filter.EMPLOYEE_ID,
@@ -3387,7 +3387,7 @@ Partial Class ProfileRepository
             Dim query = From p In Context.HU_PRO_TRAIN_OUT_COMPANY
                         From ot In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.FORM_TRAIN_ID).DefaultIfEmpty
                         From ott In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.TYPE_TRAIN_ID).DefaultIfEmpty
-                         From ot1 In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.CERTIFICATE).DefaultIfEmpty
+                        From ot1 In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.CERTIFICATE).DefaultIfEmpty
                         From ot_train In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ot.TYPE_ID And f.CODE = "TRAINING_FORM").DefaultIfEmpty
                         From ot_type In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ott.TYPE_ID And f.CODE = "TRAINING_TYPE").DefaultIfEmpty
                         From ot_level In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.LEVEL_ID And f.TYPE_CODE = "LEARNING_LEVEL").DefaultIfEmpty
@@ -3537,7 +3537,7 @@ Partial Class ProfileRepository
             Dim query As List(Of OtherListDTO)
             query = (From p In Context.OT_OTHER_LIST
                      From r In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = p.TYPE_ID).DefaultIfEmpty
-            Where (r.CODE = "CERTIFICATE_TYPE" And p.ACTFLG = "A")
+                     Where (r.CODE = "CERTIFICATE_TYPE" And p.ACTFLG = "A")
                      Order By p.ID
                      Select New OtherListDTO With {
                      .ID = p.ID,
@@ -3558,16 +3558,16 @@ Partial Class ProfileRepository
         'Dim query As ObjectQuery(Of EmployeeBackgroundDTO)
         Try
             Dim query = (From p In Context.HU_EMPLOYEE_BACKGROUND
-                     From lp In Context.HU_PROVINCE.Where(Function(f) p.LICENSE_PLACE = f.ID).DefaultIfEmpty
-                     From cn In Context.HU_NATION.Where(Function(f) p.CURRENT_NATION_ID = f.ID).DefaultIfEmpty
-                     From cp In Context.HU_PROVINCE.Where(Function(f) p.CURRENTN_PROVINCE_ID = f.ID).DefaultIfEmpty
-                     From cd In Context.HU_DISTRICT.Where(Function(f) p.CURRENT_DISTRICT_ID = f.ID).DefaultIfEmpty
-                     From cw In Context.HU_WARD.Where(Function(f) p.CURRENT_WARD_ID = f.ID).DefaultIfEmpty
-                     From pn In Context.HU_NATION.Where(Function(f) p.PERMANNET_NATION_ID = f.ID).DefaultIfEmpty
-                     From pp In Context.HU_PROVINCE.Where(Function(f) p.PERMANENT_PROVINCE_ID = f.ID).DefaultIfEmpty
-                     From pd In Context.HU_DISTRICT.Where(Function(f) p.PERMANENT_DISTRICT_ID = f.ID).DefaultIfEmpty
-                     From pw In Context.HU_WARD.Where(Function(f) p.PERMANENT_WARD_ID = f.ID).DefaultIfEmpty
-                   Select New EmployeeBackgroundDTO With {
+                         From lp In Context.HU_PROVINCE.Where(Function(f) p.LICENSE_PLACE = f.ID).DefaultIfEmpty
+                         From cn In Context.HU_NATION.Where(Function(f) p.CURRENT_NATION_ID = f.ID).DefaultIfEmpty
+                         From cp In Context.HU_PROVINCE.Where(Function(f) p.CURRENTN_PROVINCE_ID = f.ID).DefaultIfEmpty
+                         From cd In Context.HU_DISTRICT.Where(Function(f) p.CURRENT_DISTRICT_ID = f.ID).DefaultIfEmpty
+                         From cw In Context.HU_WARD.Where(Function(f) p.CURRENT_WARD_ID = f.ID).DefaultIfEmpty
+                         From pn In Context.HU_NATION.Where(Function(f) p.PERMANNET_NATION_ID = f.ID).DefaultIfEmpty
+                         From pp In Context.HU_PROVINCE.Where(Function(f) p.PERMANENT_PROVINCE_ID = f.ID).DefaultIfEmpty
+                         From pd In Context.HU_DISTRICT.Where(Function(f) p.PERMANENT_DISTRICT_ID = f.ID).DefaultIfEmpty
+                         From pw In Context.HU_WARD.Where(Function(f) p.PERMANENT_WARD_ID = f.ID).DefaultIfEmpty
+                         Select New EmployeeBackgroundDTO With {
                     .ID = p.ID,
                     .EMPLOYEE_ID = p.EMPLOYEE_ID,
                     .ID_NO = p.ID_NO,
@@ -3907,7 +3907,7 @@ Partial Class ProfileRepository
         Dim objEmpEdit As EmployeeEditDTO
         Try
             Dim existEdit = (From p In Context.HU_EMPLOYEE_EDIT
-                             Where p.EMPLOYEE_ID = _filter.EMPLOYEE_ID And _
+                             Where p.EMPLOYEE_ID = _filter.EMPLOYEE_ID And
                              p.STATUS <> 2).Any
 
             If existEdit Then
@@ -3925,7 +3925,7 @@ Partial Class ProfileRepository
                               From bank In Context.HU_BANK.Where(Function(f) p.BANK_ID = f.ID).DefaultIfEmpty
                               From bankbranch In Context.HU_BANK_BRANCH.Where(Function(f) p.BANK_BRANCH_ID = f.ID).DefaultIfEmpty
                               Where p.EMPLOYEE_ID = _filter.EMPLOYEE_ID And p.STATUS <> 2
-                             Select New EmployeeEditDTO With {
+                              Select New EmployeeEditDTO With {
                                  .ID = p.ID,
                                  .EMPLOYEE_ID = p.EMPLOYEE_ID,
                                  .ID_DATE = p.ID_DATE,
@@ -4057,21 +4057,21 @@ Partial Class ProfileRepository
 
             Dim query = (From p In Context.HU_EMPLOYEE_EDIT
                          From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
-                              From place_pro In Context.HU_PROVINCE.Where(Function(f) f.ID = p.ID_PLACE).DefaultIfEmpty
-                              From nav_pro In Context.HU_PROVINCE.Where(Function(f) f.ID = p.NAV_PROVINCE).DefaultIfEmpty
-                              From nav_dis In Context.HU_DISTRICT.Where(Function(f) f.ID = p.NAV_DISTRICT).DefaultIfEmpty
-                              From nav_ward In Context.HU_WARD.Where(Function(f) f.ID = p.NAV_WARD).DefaultIfEmpty
-                              From per_pro In Context.HU_PROVINCE.Where(Function(f) f.ID = p.PER_PROVINCE).DefaultIfEmpty
-                              From per_dis In Context.HU_DISTRICT.Where(Function(f) f.ID = p.PER_DISTRICT).DefaultIfEmpty
-                              From per_ward In Context.HU_WARD.Where(Function(f) f.ID = p.PER_WARD).DefaultIfEmpty
-                              From marital In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.MARITAL_STATUS).DefaultIfEmpty
-                              From relation_per In Context.OT_OTHER_LIST.Where(Function(f) p.RELATION_PER_CTR = f.ID And f.TYPE_ID = 48 And f.ACTFLG = "A").DefaultIfEmpty
-                              From bank In Context.HU_BANK.Where(Function(f) p.BANK_ID = f.ID).DefaultIfEmpty
-                              From bankbranch In Context.HU_BANK_BRANCH.Where(Function(f) p.BANK_BRANCH_ID = f.ID).DefaultIfEmpty
-                              From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID _
+                         From place_pro In Context.HU_PROVINCE.Where(Function(f) f.ID = p.ID_PLACE).DefaultIfEmpty
+                         From nav_pro In Context.HU_PROVINCE.Where(Function(f) f.ID = p.NAV_PROVINCE).DefaultIfEmpty
+                         From nav_dis In Context.HU_DISTRICT.Where(Function(f) f.ID = p.NAV_DISTRICT).DefaultIfEmpty
+                         From nav_ward In Context.HU_WARD.Where(Function(f) f.ID = p.NAV_WARD).DefaultIfEmpty
+                         From per_pro In Context.HU_PROVINCE.Where(Function(f) f.ID = p.PER_PROVINCE).DefaultIfEmpty
+                         From per_dis In Context.HU_DISTRICT.Where(Function(f) f.ID = p.PER_DISTRICT).DefaultIfEmpty
+                         From per_ward In Context.HU_WARD.Where(Function(f) f.ID = p.PER_WARD).DefaultIfEmpty
+                         From marital In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.MARITAL_STATUS).DefaultIfEmpty
+                         From relation_per In Context.OT_OTHER_LIST.Where(Function(f) p.RELATION_PER_CTR = f.ID And f.TYPE_ID = 48 And f.ACTFLG = "A").DefaultIfEmpty
+                         From bank In Context.HU_BANK.Where(Function(f) p.BANK_ID = f.ID).DefaultIfEmpty
+                         From bankbranch In Context.HU_BANK_BRANCH.Where(Function(f) p.BANK_BRANCH_ID = f.ID).DefaultIfEmpty
+                         From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID _
                                                                              And f.USERNAME = log.Username.ToUpper)
-                        Where p.STATUS = 1
-                        Select New EmployeeEditDTO With {
+                         Where p.STATUS = 1
+                         Select New EmployeeEditDTO With {
                             .ID = p.ID,
                             .EMPLOYEE_ID = p.EMPLOYEE_ID,
                             .EMPLOYEE_NAME = e.FULLNAME_VN,
@@ -4296,11 +4296,11 @@ Partial Class ProfileRepository
 
 
             Dim query = (From p In Context.HU_PRO_TRAIN_OUT_COMPANY_EDIT
-                        From ot In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.FORM_TRAIN_ID And F.TYPE_ID = 142).DefaultIfEmpty
-                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
-                        From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And f.USERNAME = log.Username.ToUpper)
-                        Where p.STATUS = 1
-                        Select New HU_PRO_TRAIN_OUT_COMPANYDTOEDIT With {
+                         From ot In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.FORM_TRAIN_ID And F.TYPE_ID = 142).DefaultIfEmpty
+                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
+                         From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And f.USERNAME = log.Username.ToUpper)
+                         Where p.STATUS = 1
+                         Select New HU_PRO_TRAIN_OUT_COMPANYDTOEDIT With {
                             .ID = p.ID,
                             .EMPLOYEE_ID = p.EMPLOYEE_ID,
                             .FROM_DATE = p.FROM_DATE,
@@ -4566,7 +4566,7 @@ Partial Class ProfileRepository
         Dim query As ObjectQuery(Of WorkingBeforeDTOEdit)
         Try
             query = (From p In Context.HU_WORKING_BEFORE_EDIT
-                   Select New WorkingBeforeDTOEdit With {
+                     Select New WorkingBeforeDTOEdit With {
                     .ID = p.ID,
                     .EMPLOYEE_ID = p.EMPLOYEE_ID,
                     .COMPANY_NAME = p.COMPANY_NAME,
@@ -4578,6 +4578,7 @@ Partial Class ProfileRepository
                     .TITLE_NAME = p.TITLE_NAME,
                     .LEVEL_NAME = p.LEVEL_NAME,
                     .TER_REASON = p.TER_REASON,
+                    .MAIN_JOB = p.MAIN_JOB,
                     .REASON_UNAPROVE = p.REASON_UNAPROVE,
                     .FK_PKEY = p.FK_PKEY,
                          .STATUS = p.STATUS,
