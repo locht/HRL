@@ -13,7 +13,7 @@
             <tlk:RadPane ID="RadPane3" runat="server" Height="80px" Scrolling="None">
                 <table class="table-form">
                     <tr>
-                     <td class="lb">
+                          <td class="lb">
                             <asp:Label ID="lbFromDate" runat="server" Text="Ngày bắt đầu từ"></asp:Label>
                         </td>
                         <td>
@@ -35,7 +35,7 @@
                                 <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1" />
                             </tlk:RadNumericTextBox>
                         </td>--%>
-                        <%--<td class="lb">
+                       <%-- <td class="lb">
                             <%# Translate("Vị trí tuyển dụng")%>
                         </td>
                         <td>
@@ -75,7 +75,7 @@
                                 SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Vị trí tuyển dụng %>" DataField="TITLE_NAME"
                                 SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
-                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Số lượng cần tuyển %>" DataField="RECRUIT_NUMBER"
+                              <tlk:GridBoundColumn HeaderText="<%$ Translate: Số lượng cần tuyển %>" DataField="RECRUIT_NUMBER"
                                 SortExpression="RECRUIT_NUMBER" UniqueName="RECRUIT_NUMBER" AllowFiltering="false"
                                 HeaderStyle-Width="90px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do tuyển dụng %>" DataField="RECRUIT_REASON_NAME"
@@ -94,6 +94,24 @@
                     </ClientSettings>
                 </tlk:RadGrid>
             </tlk:RadPane>
+             <tlk:RadPane ID="RadPane4" runat="server" Scrolling="None" Height="45px">
+                <table class="table-form">
+                    <tr>
+                        <td class="lb">
+                            <asp:Label ID="lbTemplatePrint" runat="server" Text="Biễu mẫu hỗ trợ"></asp:Label>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox runat="server" Width="400px" ID="cboPrintSupport" AutoPostBack="true">
+                            </tlk:RadComboBox>
+                        </td>
+                        <td>      
+                            <tlk:RadButton ID="btnPrintSupport" runat="server" Text="In phiếu đề xuất tuyển dụng"
+                                OnClientClicking="btnPrintSupportClick" AutoPostBack="true" CausesValidation="false">
+                            </tlk:RadButton>
+                        </td>
+                    </tr>
+                </table>
+        </tlk:RadPane>
         </tlk:RadSplitter>
     </tlk:RadPane>
 </tlk:RadSplitter>
@@ -197,6 +215,19 @@
                 setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                 $find("<%= rgData.ClientID %>").get_masterTableView().rebind();
             }
+        }
+
+         function btnPrintSupportClick(sender, args) {
+            var bCheck = $find('<%= rgData.ClientID %>').get_masterTableView().get_selectedItems().length;
+            if (bCheck == 0) {
+                var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
+                var n = noty({ text: m, dismissQueue: true, type: 'warning' });
+                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+                args.set_cancel(true);
+                return;
+            }
+           
+            enableAjax = false;
         }
 
     </script>

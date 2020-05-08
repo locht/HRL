@@ -437,11 +437,6 @@ Public Class ctrlRC_ProgramScheduleNewEdit
         getCanNotSchedule()
     End Sub
 
-
-
-
-
-
     Private Sub rgCanSchedule_PageIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridPageChangedEventArgs) Handles rgCanSchedule.PageIndexChanged
         'GetCanScheduleSelected()
     End Sub
@@ -457,9 +452,6 @@ Public Class ctrlRC_ProgramScheduleNewEdit
     Private Sub rgCanSchedule_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgCanSchedule.NeedDataSource
         getCanSchedule()
     End Sub
-
-
-
 
     Protected Sub btnFindUsher_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnFindUsher.Click
         Try
@@ -502,9 +494,6 @@ Public Class ctrlRC_ProgramScheduleNewEdit
     Private Sub ctrlFindEmployeePopup_CancelClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.CancelClicked
         isLoadPopup = 0
     End Sub
-
-
-
 
     Private Sub btnDelete_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDelete.Click
         'GetCanScheduleSelected()

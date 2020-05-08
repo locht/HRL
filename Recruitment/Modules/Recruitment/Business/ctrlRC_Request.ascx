@@ -94,6 +94,24 @@
                     </ClientSettings>
                 </tlk:RadGrid>
             </tlk:RadPane>
+             <tlk:RadPane ID="RadPane4" runat="server" Scrolling="None" Height="45px">
+                <table class="table-form">
+                    <tr>
+                        <td class="lb">
+                            <asp:Label ID="lbTemplatePrint" runat="server" Text="Biễu mẫu hỗ trợ"></asp:Label>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox runat="server" Width="400px" ID="cboPrintSupport">
+                            </tlk:RadComboBox>
+                        </td>
+                        <td>      
+                            <tlk:RadButton ID="btnPrintSupport" runat="server" Text="In phiếu đề xuất tuyển dụng"
+                                OnClientClicking="btnPrintSupportClick" AutoPostBack="true" CausesValidation="false">
+                            </tlk:RadButton>
+                        </td>
+                    </tr>
+                </table>
+        </tlk:RadPane>
         </tlk:RadSplitter>
     </tlk:RadPane>
 </tlk:RadSplitter>
@@ -197,6 +215,19 @@
                 setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                 $find("<%= rgData.ClientID %>").get_masterTableView().rebind();
             }
+        }
+
+         function btnPrintSupportClick(sender, args) {
+            var bCheck = $find('<%= rgData.ClientID %>').get_masterTableView().get_selectedItems().length;
+            if (bCheck == 0) {
+                var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
+                var n = noty({ text: m, dismissQueue: true, type: 'warning' });
+                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+                args.set_cancel(true);
+                return;
+            }
+           
+            enableAjax = false;
         }
 
     </script>

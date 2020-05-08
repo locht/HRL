@@ -798,6 +798,16 @@ Public Class RecruitmentStoreProcedure
         End If
         Return dt
     End Function
+
+    'Export Phiếu đề xuất tuyển dụng
+    Public Function EXPORT_REQUEST_RECRUITMENT(ByVal P_ID As Int32) As DataSet
+        Dim dt As New DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT_EXPORT.EXPORT_REQUEST_RECRUITMENT", New List(Of Object)(New Object() {P_ID}))
+        'If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+        '    dt = ds.Tables(0)
+        'End If
+        Return ds
+    End Function
 #End Region
 
 #Region "Plan"

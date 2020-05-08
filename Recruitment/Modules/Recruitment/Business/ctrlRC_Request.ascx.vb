@@ -140,6 +140,19 @@ Public Class ctrlRC_Request
                 FillRadCombobox(cboStatus, dtData, "NAME", "ID")
             End Using
 
+            Dim item1 As New RadComboBoxItem()
+            item1.Text = "Dành cho Chi nhánh: Tuyển bổ sung các vị trí thuộc cấp bậc công nhân"
+            item1.Value = 0
+            cboPrintSupport.Items.Add(item1)
+            Dim item2 As New RadComboBoxItem()
+            item2.Text = "Dành cho Chi nhánh: Tuyển bổ sung các vị trí khác cấp bậc công nhân, tuyển mới tất cả các vị trí"
+            item2.Value = 1
+            cboPrintSupport.Items.Add(item2)
+            Dim item3 As New RadComboBoxItem()
+            item3.Text = "Tổng công ty: Tuyển tất cả các vị trí "
+            item3.Value = 2
+            cboPrintSupport.Items.Add(item3)
+
             ' Load cbo chức danh(Vị trí tuyển dụng)    
             'Dim ds As DataSet = rep.ExecuteToDataSet("PKG_PROFILE.GET_LIST_TITLE")
             'FillRadCombobox(cboRecruitment, ds.Tables(0), "NAME_VN", "ID")
@@ -213,6 +226,10 @@ Public Class ctrlRC_Request
 
                     CurrentState = CommonMessage.STATE_NORMAL
                     rgData.Rebind()
+                Case CommonMessage.STATE_NORMAL
+                    If cboPrintSupport.SelectedItem Is Nothing Then
+                        btnPrintSupport.Enabled = False
+                    End If
             End Select
         Catch ex As Exception
             Throw ex
@@ -398,6 +415,79 @@ Public Class ctrlRC_Request
         End Try
     End Sub
 
+    Protected Sub btnPrintSupportClick_Click(sender As Object, e As EventArgs) Handles btnPrintSupport.Click
+        Try
+            Dim p_ID As Integer
+            p_ID = rgData.SelectedValue
+
+            If cboPrintSupport.SelectedValue = 0 Then
+                Try
+                    Dim tempPath = "~/ReportTemplates//Recruitment//Import//Template_AVNS-BM01A-TDNS.xls"
+                    Dim dsData As DataSet = store.EXPORT_REQUEST_RECRUITMENT(p_ID)
+                    If File.Exists(System.IO.Path.Combine(Server.MapPath(tempPath))) Then
+                        Using xls As New AsposeExcelCommon
+                            Dim bCheck = xls.ExportExcelTemplate(
+                              System.IO.Path.Combine(Server.MapPath(tempPath)), "Dành cho Chi nhánh: Tuyển bổ sung các vị trí thuộc cấp bậc công nhân" & Format(Date.Now, "yyyyMMdd"), dsData, Nothing, Response)
+
+                        End Using
+                        rgData.Rebind()
+
+                    Else
+                        ShowMessage(Translate("Template không tồn tại"), Utilities.NotifyType.Error)
+                        Exit Sub
+                    End If
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End If
+
+            If cboPrintSupport.SelectedValue = 1 Then
+                Try
+                    Dim tempPath = "~/ReportTemplates//Recruitment//Import//Template_AVNS-BM01B-TDNS.xls"
+                    Dim dsData As DataSet = store.EXPORT_REQUEST_RECRUITMENT(p_ID)
+                    If File.Exists(System.IO.Path.Combine(Server.MapPath(tempPath))) Then
+                        Using xls As New AsposeExcelCommon
+                            Dim bCheck = xls.ExportExcelTemplate(
+                              System.IO.Path.Combine(Server.MapPath(tempPath)), "Dành cho Chi nhánh: Tuyển bổ sung các vị trí khác cấp bậc công nhân, tuyển mới tất cả các vị trí" & Format(Date.Now, "yyyyMMdd"), dsData, Nothing, Response)
+
+                        End Using
+                    Else
+                        ShowMessage(Translate("Template không tồn tại"), Utilities.NotifyType.Error)
+                        Exit Sub
+                    End If
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End If
+
+            If cboPrintSupport.SelectedValue = 2 Then
+                Try
+                    Dim tempPath = "~/ReportTemplates//Recruitment//Import//Template_AVNS-BM01C-TDNS.xls"
+                    Dim dsData As DataSet = store.EXPORT_REQUEST_RECRUITMENT(p_ID)
+                    If File.Exists(System.IO.Path.Combine(Server.MapPath(tempPath))) Then
+                        Using xls As New AsposeExcelCommon
+                            Dim bCheck = xls.ExportExcelTemplate(
+                              System.IO.Path.Combine(Server.MapPath(tempPath)), "Tổng công ty: Tuyển tất cả các vị trí " & Format(Date.Now, "yyyyMMdd"), dsData, Nothing, Response)
+
+                        End Using
+                    Else
+                        ShowMessage(Translate("Template không tồn tại"), Utilities.NotifyType.Error)
+                        Exit Sub
+                    End If
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End If
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub cboPrintSupport_SelectedChange(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboPrintSupport.SelectedIndexChanged
+        btnPrintSupport.Enabled = True
+    End Sub
+
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
         Try
             If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
@@ -470,7 +560,7 @@ Public Class ctrlRC_Request
                 rgData.DataSource = New List(Of RequestDTO)
                 Exit Function
             End If
-            Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue), _
+            Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue),
                                                .IS_DISSOLVE = ctrlOrg.IsDissolve}
             If cboStatus.SelectedValue <> "" Then
                 _filter.STATUS_ID = Decimal.Parse(cboStatus.SelectedValue)
@@ -517,7 +607,7 @@ Public Class ctrlRC_Request
             Dim configPath As String = ConfigurationManager.AppSettings("ReportTemplatesFolder")
             Dim filePath As String = AppDomain.CurrentDomain.BaseDirectory & configPath & "\"
             Dim user As String = UserLogHelper.GetUsername
-            Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue), _
+            Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue),
                                              .IS_DISSOLVE = ctrlOrg.IsDissolve}
             Dim dsData As DataSet = rep.GetRecruitmentImport(user, _param)
             dsData.Tables(11).TableName = "Table12"

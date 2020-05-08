@@ -1509,8 +1509,8 @@
     <Content Include="ReportTemplates\Recruitment\Report\AVNS-BM04A-TDNS.xls" />
     <Content Include="ReportTemplates\Recruitment\Report\AVNS-BM04B-TDNS.xls" />
     <Content Include="ReportTemplates\Recruitment\Import\Template_AVNS-BM01A-TDNS.xls" />
-    <Content Include="ReportTemplates\Recruitment\Import\Template_AVNS-BM01B-TDNS.xlsx" />
-    <Content Include="ReportTemplates\Recruitment\Import\Template_AVNS-BM01C-TDNS.xlsx" />
+    <Content Include="ReportTemplates\Recruitment\Import\Template_AVNS-BM01B-TDNS.xls" />
+    <Content Include="ReportTemplates\Recruitment\Import\Template_AVNS-BM01C-TDNS.xls" />
     <None Include="Styles\ImgConfig.jquery.css" />
     <Content Include="Styles\font-awesome.css" />
     <Content Include="Styles\img\icon-tree.png" />
