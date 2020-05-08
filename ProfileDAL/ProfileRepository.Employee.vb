@@ -3734,7 +3734,7 @@ Partial Class ProfileRepository
                     colNames = If(colNames <> String.Empty, colNames + "," + "ID_PLACE_NAME", "ID_PLACE_NAME")
                 End If
                 If (If(empEdit.MARITAL_STATUS.ToString() Is Nothing, "", empEdit.MARITAL_STATUS.ToString()) <> If(empCV.MARITAL_STATUS.ToString() Is Nothing, "", empCV.MARITAL_STATUS.ToString())) Then
-                    colNames = If(colNames <> String.Empty, colNames + "," + "MARITAL_STATUS", "MARITAL_STATUS")
+                    colNames = If(colNames <> String.Empty, colNames + "," + "MARITAL_STATUS_NAME", "MARITAL_STATUS_NAME")
                 End If
                 If (If(empEdit.PER_ADDRESS Is Nothing, "", empEdit.PER_ADDRESS) <> If(empCV.PER_ADDRESS Is Nothing, "", empCV.PER_ADDRESS)) Then
                     colNames = If(colNames <> String.Empty, colNames + "," + "PER_ADDRESS", "PER_ADDRESS")
