@@ -4722,6 +4722,7 @@ Partial Class ProfileRepository
             objWorkingBeforeData.STATUS = 0
             objWorkingBeforeData.REASON_UNAPROVE = objWorkingBefore.REASON_UNAPROVE
             objWorkingBeforeData.FK_PKEY = objWorkingBefore.FK_PKEY
+            objWorkingBeforeData.MAIN_JOB = objWorkingBefore.MAIN_JOB
             Context.HU_WORKING_BEFORE_EDIT.AddObject(objWorkingBeforeData)
             Context.SaveChanges(log)
             gID = objWorkingBeforeData.ID
@@ -4754,6 +4755,7 @@ Partial Class ProfileRepository
             objWorkingBeforeData.MODIFIED_LOG = log.ComputerName
             objWorkingBeforeData.REASON_UNAPROVE = objWorkingBefore.REASON_UNAPROVE
             objWorkingBeforeData.FK_PKEY = objWorkingBefore.FK_PKEY
+            objWorkingBeforeData.MAIN_JOB = objWorkingBefore.MAIN_JOB
             Context.SaveChanges(log)
             gID = objWorkingBeforeData.ID
             Return True

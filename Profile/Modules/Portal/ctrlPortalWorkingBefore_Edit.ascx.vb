@@ -65,7 +65,7 @@ Public Class ctrlPortalWorkingBefore_Edit
             dic.Add("COMPANY_NAME", txtCompanyName)
             dic.Add("TELEPHONE", txtTelephone)
             dic.Add("TITLE_NAME", txtTitleName)
-            dic.Add("LEVEL_NAME", txtLevelName)
+            dic.Add("MAIN_JOB", txtMainJobName)
             dic.Add("SALARY", txtSalary)
             dic.Add("TER_REASON", txtTerReason)
             dic.Add("JOIN_DATE", rdJoinDate)
@@ -77,7 +77,7 @@ Public Class ctrlPortalWorkingBefore_Edit
             dic1.Add("COMPANY_NAME", txtCompanyName)
             dic1.Add("TELEPHONE", txtTelephone)
             dic1.Add("TITLE_NAME", txtTitleName)
-            dic1.Add("LEVEL_NAME", txtLevelName)
+            dic1.Add("MAIN_JOB", txtMainJobName)
             dic1.Add("SALARY", txtSalary)
             dic1.Add("TER_REASON", txtTerReason)
             dic1.Add("JOIN_DATE", rdJoinDate)
@@ -95,21 +95,21 @@ Public Class ctrlPortalWorkingBefore_Edit
         Try
             Select Case CurrentState
                 Case CommonMessage.STATE_NORMAL
-                    EnableControlAll(False, hidWorkingID, txtCompanyName, txtLevelName, txtTitleName,
+                    EnableControlAll(False, hidWorkingID, txtCompanyName, txtMainJobName, txtTitleName,
                                      txtCompanyAddress, txtSalary, txtTelephone, txtTerReason,
                                      rdEndDate, rdJoinDate)
 
                     EnabledGridNotPostback(rgWorkingBefore, True)
                     EnabledGridNotPostback(rgWorkingBeforeEdit, True)
                 Case CommonMessage.STATE_NEW
-                    EnableControlAll(True, hidWorkingID, txtCompanyName, txtLevelName, txtTitleName,
+                    EnableControlAll(True, hidWorkingID, txtCompanyName, txtMainJobName, txtTitleName,
                                     txtCompanyAddress, txtSalary, txtTelephone, txtTerReason,
                                     rdEndDate, rdJoinDate)
 
                     EnabledGridNotPostback(rgWorkingBefore, False)
                     EnabledGridNotPostback(rgWorkingBeforeEdit, False)
                 Case CommonMessage.STATE_EDIT
-                    EnableControlAll(True, hidWorkingID, txtCompanyName, txtLevelName, txtTitleName,
+                    EnableControlAll(True, hidWorkingID, txtCompanyName, txtMainJobName, txtTitleName,
                                     txtCompanyAddress, txtSalary, txtTelephone, txtTerReason,
                                     rdEndDate, rdJoinDate)
 
@@ -134,7 +134,7 @@ Public Class ctrlPortalWorkingBefore_Edit
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     CurrentState = CommonMessage.STATE_NEW
-                    ClearControlValue(hidWorkingID, hidID, txtCompanyName, txtLevelName, txtTitleName,
+                    ClearControlValue(hidWorkingID, hidID, txtCompanyName, txtMainJobName, txtTitleName,
                                    txtCompanyAddress, txtSalary, txtTelephone, txtTerReason,
                                    rdEndDate, rdJoinDate)
                     UpdateControlState()
@@ -148,7 +148,8 @@ Public Class ctrlPortalWorkingBefore_Edit
                         objWorkingBefore.COMPANY_ADDRESS = txtCompanyAddress.Text.Trim()
                         objWorkingBefore.COMPANY_NAME = txtCompanyName.Text.Trim()
                         objWorkingBefore.TITLE_NAME = txtTitleName.Text.Trim()
-                        objWorkingBefore.LEVEL_NAME = txtLevelName.Text.Trim()
+                        'objWorkingBefore.MAIN_JOB = txtMainJobName.Text.Trim()
+                        objWorkingBefore.MAIN_JOB = txtMainJobName.Text.Trim()
                         If txtSalary.Value IsNot Nothing Then
                             objWorkingBefore.SALARY = txtSalary.Value
                         End If
@@ -195,7 +196,7 @@ Public Class ctrlPortalWorkingBefore_Edit
                     End If
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     CurrentState = CommonMessage.STATE_NORMAL
-                    ClearControlValue(hidWorkingID, hidID, txtCompanyName, txtLevelName, txtTitleName,
+                    ClearControlValue(hidWorkingID, hidID, txtCompanyName, txtMainJobName, txtTitleName,
                                   txtCompanyAddress, txtSalary, txtTelephone, txtTerReason,
                                   rdEndDate, rdJoinDate)
                     UpdateControlState()
@@ -283,7 +284,7 @@ Public Class ctrlPortalWorkingBefore_Edit
                 txtCompanyName.Text = item.GetDataKeyValue("COMPANY_NAME")
                 txtTelephone.Text = item.GetDataKeyValue("TELEPHONE")
                 txtTitleName.Text = item.GetDataKeyValue("TITLE_NAME")
-                txtLevelName.Text = item.GetDataKeyValue("LEVEL_NAME")
+                txtMainJobName.Text = item.GetDataKeyValue("MAIN_JOB")
                 txtSalary.Text = item.GetDataKeyValue("SALARY")
                 txtTerReason.Text = item.GetDataKeyValue("TER_REASON")
                 rdJoinDate.SelectedDate = item.GetDataKeyValue("JOIN_DATE")
@@ -310,7 +311,7 @@ Public Class ctrlPortalWorkingBefore_Edit
                 txtCompanyName.Text = item.GetDataKeyValue("COMPANY_NAME")
                 txtTelephone.Text = item.GetDataKeyValue("TELEPHONE")
                 txtTitleName.Text = item.GetDataKeyValue("TITLE_NAME")
-                txtLevelName.Text = item.GetDataKeyValue("LEVEL_NAME")
+                txtMainJobName.Text = item.GetDataKeyValue("MAIN_JOB")
                 txtSalary.Text = item.GetDataKeyValue("SALARY")
                 txtTerReason.Text = item.GetDataKeyValue("TER_REASON")
                 rdJoinDate.SelectedDate = item.GetDataKeyValue("JOIN_DATE")

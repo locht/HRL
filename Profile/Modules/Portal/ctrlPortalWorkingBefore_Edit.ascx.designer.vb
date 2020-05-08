@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class ctrlPortalWorkingBefore_Edit
-
+    
     '''<summary>
     '''hidID control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class ctrlPortalWorkingBefore_Edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidID As Global.System.Web.UI.WebControls.HiddenField
-
+    
     '''<summary>
     '''hidWorkingID control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class ctrlPortalWorkingBefore_Edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidWorkingID As Global.System.Web.UI.WebControls.HiddenField
-
+    
     '''<summary>
     '''tbarMainToolBar control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class ctrlPortalWorkingBefore_Edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbarMainToolBar As Global.Telerik.Web.UI.RadToolBar
-
+    
     '''<summary>
     '''valSum control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class ctrlPortalWorkingBefore_Edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents valSum As Global.System.Web.UI.WebControls.ValidationSummary
-
+    
     '''<summary>
     '''txtCompanyName control.
     '''</summary>
@@ -57,7 +57,16 @@ Partial Public Class ctrlPortalWorkingBefore_Edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtCompanyName As Global.Telerik.Web.UI.RadTextBox
-
+    
+    '''<summary>
+    '''reqCompanyName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqCompanyName As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    
     '''<summary>
     '''txtTelephone control.
     '''</summary>
@@ -66,7 +75,7 @@ Partial Public Class ctrlPortalWorkingBefore_Edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtTelephone As Global.Telerik.Web.UI.RadTextBox
-
+    
     '''<summary>
     '''txtCompanyAddress control.
     '''</summary>
@@ -75,7 +84,7 @@ Partial Public Class ctrlPortalWorkingBefore_Edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtCompanyAddress As Global.Telerik.Web.UI.RadTextBox
-
+    
     '''<summary>
     '''rdJoinDate control.
     '''</summary>
@@ -84,7 +93,7 @@ Partial Public Class ctrlPortalWorkingBefore_Edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdJoinDate As Global.Telerik.Web.UI.RadDatePicker
-
+    
     '''<summary>
     '''rdEndDate control.
     '''</summary>
@@ -93,7 +102,7 @@ Partial Public Class ctrlPortalWorkingBefore_Edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdEndDate As Global.Telerik.Web.UI.RadDatePicker
-
+    
     '''<summary>
     '''compare_JoinDate_EndDate control.
     '''</summary>
@@ -102,7 +111,7 @@ Partial Public Class ctrlPortalWorkingBefore_Edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents compare_JoinDate_EndDate As Global.System.Web.UI.WebControls.CompareValidator
-
+    
     '''<summary>
     '''txtSalary control.
     '''</summary>
@@ -111,7 +120,7 @@ Partial Public Class ctrlPortalWorkingBefore_Edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtSalary As Global.Telerik.Web.UI.RadNumericTextBox
-
+    
     '''<summary>
     '''txtTitleName control.
     '''</summary>
@@ -120,16 +129,16 @@ Partial Public Class ctrlPortalWorkingBefore_Edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtTitleName As Global.Telerik.Web.UI.RadTextBox
-
+    
     '''<summary>
-    '''txtLevelName control.
+    '''txtMainJobName control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtLevelName As Global.Telerik.Web.UI.RadTextBox
-
+    Protected WithEvents txtMainJobName As Global.Telerik.Web.UI.RadTextBox
+    
     '''<summary>
     '''txtTerReason control.
     '''</summary>
@@ -138,7 +147,7 @@ Partial Public Class ctrlPortalWorkingBefore_Edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtTerReason As Global.Telerik.Web.UI.RadTextBox
-
+    
     '''<summary>
     '''rgWorkingBeforeEdit control.
     '''</summary>
@@ -147,7 +156,7 @@ Partial Public Class ctrlPortalWorkingBefore_Edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgWorkingBeforeEdit As Global.Telerik.Web.UI.RadGrid
-
+    
     '''<summary>
     '''rgWorkingBefore control.
     '''</summary>
@@ -156,7 +165,7 @@ Partial Public Class ctrlPortalWorkingBefore_Edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgWorkingBefore As Global.Telerik.Web.UI.RadGrid
-
+    
     '''<summary>
     '''RadCodeBlock1 control.
     '''</summary>
@@ -165,7 +174,7 @@ Partial Public Class ctrlPortalWorkingBefore_Edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadCodeBlock1 As Global.Telerik.Web.UI.RadCodeBlock
-
+    
     '''<summary>
     '''ctrlMessageBox control.
     '''</summary>

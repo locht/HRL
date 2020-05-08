@@ -9,14 +9,14 @@
     <table class="table-form">
         <tr>
             <td class="lb" style="width: 130px">
-                <%# Translate("Tên công ty") %><%--<span class="lbReq">*</span>--%>
+                <%# Translate("Đơn vị công tác") %><span class="lbReq">*</span>
             </td>
             <td>
                 <tlk:RadTextBox runat="server" ID="txtCompanyName">
                 </tlk:RadTextBox>
-                <%--<asp:RequiredFieldValidator ID="reqCompanyName" ControlToValidate="txtCompanyName"
+                <asp:RequiredFieldValidator ID="reqCompanyName" ControlToValidate="txtCompanyName"
                     runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập tên công ty %>" ToolTip="<%$ Translate: Bạn phải nhập tên công ty  %>">
-                </asp:RequiredFieldValidator>--%>
+                </asp:RequiredFieldValidator>
             </td>
             <td class="lb" style="width: 130px">
                 <%# Translate("Số điện thoại")%>
@@ -65,17 +65,17 @@
         </tr>
         <tr>
             <td class="lb">
-                <%# Translate("Chức danh")%>
+                <%# Translate("Vị trí công việc")%>
             </td>
             <td>
                 <tlk:RadTextBox runat="server" ID="txtTitleName">
                 </tlk:RadTextBox>
             </td>
             <td class="lb">
-               <%-- <%# Translate("Cấp bậc")%>--%>
+                <%# Translate("Công việc chính")%>
             </td>
             <td>
-                <tlk:RadTextBox runat="server" ID="txtLevelName" Visible="false">
+                <tlk:RadTextBox runat="server" ID="txtMainJobName" >
                 </tlk:RadTextBox>
             </td>
         </tr>
@@ -90,8 +90,8 @@
         </tr>
     </table>
     <tlk:RadGrid PageSize=50 ID="rgWorkingBeforeEdit" runat="server" Height="250px" Width="99%">
-        <MasterTableView DataKeyNames="ID,COMPANY_NAME,JOIN_DATE,END_DATE,COMPANY_ADDRESS,TELEPHONE,SALARY,TITLE_NAME,LEVEL_NAME,TER_REASON,FK_PKEY,REASON_UNAPROVE,STATUS,REASON_UNAPROVE"
-                         ClientDataKeyNames = "ID,COMPANY_NAME,JOIN_DATE,END_DATE,COMPANY_ADDRESS,TELEPHONE,SALARY,TITLE_NAME,LEVEL_NAME,TER_REASON,FK_PKEY,REASON_UNAPROVE,STATUS,REASON_UNAPROVE"
+        <MasterTableView DataKeyNames="ID,COMPANY_NAME,JOIN_DATE,END_DATE,COMPANY_ADDRESS,MAIN_JOB,TELEPHONE,SALARY,TITLE_NAME,LEVEL_NAME,TER_REASON,FK_PKEY,REASON_UNAPROVE,STATUS,REASON_UNAPROVE"
+                         ClientDataKeyNames = "ID,COMPANY_NAME,JOIN_DATE,END_DATE,MAIN_JOB,COMPANY_ADDRESS,TELEPHONE,SALARY,TITLE_NAME,LEVEL_NAME,TER_REASON,FK_PKEY,REASON_UNAPROVE,STATUS,REASON_UNAPROVE"
             Caption="<%$ Translate: Thông tin chỉnh sửa %>">
             <Columns>
                 <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
@@ -136,8 +136,8 @@
                 CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle Width="20%" HorizontalAlign="Center" />
             </tlk:GridBoundColumn>
-            <tlk:GridBoundColumn HeaderText="Công việc chính" DataField="LEVEL_NAME" UniqueName="LEVEL_NAME"
-                SortExpression="LEVEL_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true"
+            <tlk:GridBoundColumn HeaderText="Công việc chính" DataField="MAIN_JOB" UniqueName="MAIN_JOB"
+                SortExpression="MAIN_JOB" ShowFilterIcon="false" AutoPostBackOnFilter="true"
                 CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle Width="20%" HorizontalAlign="Center" />
             </tlk:GridBoundColumn>
@@ -204,8 +204,8 @@
                 CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle Width="20%" HorizontalAlign="Center" />
             </tlk:GridBoundColumn>
-            <tlk:GridBoundColumn HeaderText="Công việc chính" DataField="LEVEL_NAME" UniqueName="LEVEL_NAME"
-                SortExpression="LEVEL_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true"
+            <tlk:GridBoundColumn HeaderText="Công việc chính" DataField="MAIN_JOB" UniqueName="MAIN_JOB"
+                SortExpression="MAIN_JOB" ShowFilterIcon="false" AutoPostBackOnFilter="true"
                 CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle Width="20%" HorizontalAlign="Center" />
             </tlk:GridBoundColumn>
