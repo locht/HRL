@@ -211,13 +211,26 @@ Public Class ctrlRC_ProgramInterviewResult
             dtData = rep.GetOtherList("RC_SUGGEST_INTERN_FORM", True)
             FillRadCombobox(cboSuggestIntern, dtData, "NAME", "CODE")
         End Using
-        Dim dic As New Dictionary(Of String, Control)
-        dic.Add("EXAM_NAME", lblExamName_Interview)
-        dic.Add("IS_PASS", cbbStatus)
-        dic.Add("COMMENT_INFO", txtComment)
-        dic.Add("ASSESSMENT_INFO", txtAssessment)
-        dic.Add("PV_PERSON", lblProctor)
-        Utilities.OnClientRowSelectedChanged(rgDataInterview, dic)
+        Dim store As New RecruitmentStoreProcedure
+        Try
+            Dim dtData As New DataTable
+            If IsNumeric(Request.Params("PROGRAM_ID")) Then
+                dtData = store.GET_PROGRAM_SCHCEDULE_LIST(Request.Params("PROGRAM_ID"))
+            Else
+                dtData = store.GET_PROGRAM_SCHCEDULE_LIST(0)
+            End If
+            FillDropDownList(cboSchedule, dtData, "EXAMS_NAME", "ID")
+            Dim dic As New Dictionary(Of String, Control)
+            dic.Add("EXAM_NAME", lblExamName_Interview)
+            dic.Add("IS_PASS", cbbStatus)
+            dic.Add("COMMENT_INFO", txtComment)
+            dic.Add("ASSESSMENT_INFO", txtAssessment)
+            dic.Add("PV_PERSON", lblProctor)
+            Utilities.OnClientRowSelectedChanged(rgDataInterview, dic)
+        Catch ex As Exception
+            Throw ex
+        End Try
+        
     End Sub
 
 #End Region
@@ -516,7 +529,12 @@ Public Class ctrlRC_ProgramInterviewResult
     Private Sub btnExport_Click(sender As Object, e As System.EventArgs) Handles btnExport.Click
         Try
             'Template_ExportProgramDeclare()
+            If cboSchedule.SelectedValue = "" Then
+                ShowMessage(Translate("Bạn phải chọn vòng phỏng vấn"), NotifyType.Warning)
+                Exit Sub
+            End If
             HttpContext.Current.Session("PROGRAMID") = hdProgramID.Value
+            HttpContext.Current.Session("SCHEDULEID") = cboSchedule.SelectedValue
             ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_ExportProgramDeclare');", True)
         Catch ex As Exception
 

@@ -68,6 +68,24 @@ Partial Public Class ctrlRC_ProgramInterviewResult
     Protected WithEvents btnImport As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
+    '''Label1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cboSchedule control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboSchedule As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
     '''lbTemplatePrint control.
     '''</summary>
     '''<remarks>

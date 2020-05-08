@@ -1882,11 +1882,12 @@ Public Class Export
             Dim rep As New Recruitment.RecruitmentStoreProcedure
             Try
                 Dim configPath As String = Server.MapPath("ReportTemplates\Recruitment\Import\Template_import_kqtuyendung.xls")
-                Dim dsData As DataSet = rep.GET_DECLARE_PROGRAM(Session("PROGRAMID"))
+                Dim dsData As DataSet = rep.GET_DECLARE_PROGRAM(Session("PROGRAMID"), Session("SCHEDULEID"))
                 dsData.Tables(0).TableName = "Table"
                 ExportTemplate("Recruitment\Import\Template_import_kqtuyendung.xls",
                                       dsData, Nothing, "Template_import_kqtuyendung" & Format(Date.Now, "yyyyMMdd"))
                 Session.Remove("PROGRAMID")
+                Session.Remove("SCHEDULEID")
             Catch ex As Exception
 
             End Try

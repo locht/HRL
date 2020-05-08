@@ -8,26 +8,28 @@
             <legend></legend>
             <tlk:RadButton ID="cmdSendEmail" runat="server" CausesValidation="false" Text="<%$ Translate: Gửi thư cảm ơn %>">
             </tlk:RadButton>
-           
             <tlk:RadButton ID="btnExport" runat="server" CausesValidation="false" Text="<%$ Translate: Xuất file mẫu %>">
             </tlk:RadButton>
             <tlk:RadButton ID="btnImport" runat="server" CausesValidation="false" Text="<%$ Translate: Nhập file mẫu %>">
             </tlk:RadButton>
-             <table class="table-form">
-                    <tr>
-                        <td class="lb">
-                            <asp:Label ID="lbTemplatePrint" runat="server" Text="Biễu mẫu hỗ trợ DS đề nghị thử việc"></asp:Label>
-                        </td>
-                        <td>
-                            <tlk:RadComboBox runat="server" Width="260px" ID="cboSuggestIntern">
-                            </tlk:RadComboBox>
-                        </td>               
-                        <td>
-                         <tlk:RadButton ID="btnSuggestIntern" runat="server" CausesValidation="false" Text="<%$ Translate: DS đề nghị thử việc %>">
-            </tlk:RadButton>
-                        </td>        
-                    </tr>
-                </table>
+            <asp:Label ID="Label1" runat="server" Text="Vòng phỏng vấn"></asp:Label>
+            <tlk:RadComboBox runat="server" ID="cboSchedule">
+            </tlk:RadComboBox>
+            <table class="table-form">
+                <tr>
+                    <td class="lb">
+                        <asp:Label ID="lbTemplatePrint" runat="server" Text="Biễu mẫu hỗ trợ DS đề nghị thử việc"></asp:Label>
+                    </td>
+                    <td>
+                        <tlk:RadComboBox runat="server" Width="260px" ID="cboSuggestIntern">
+                        </tlk:RadComboBox>
+                    </td>
+                    <td>
+                        <tlk:RadButton ID="btnSuggestIntern" runat="server" CausesValidation="false" Text="<%$ Translate: DS đề nghị thử việc %>">
+                        </tlk:RadButton>
+                    </td>
+                </tr>
+            </table>
             <tlk:RadGrid ID="gridCadidate" runat="server" Height="360px" AllowMultiRowEdit="false"
                 OnSelectedIndexChanged="gridCadidate_SelectedIndexChanged" AllowSorting="false">
                 <MasterTableView DataKeyNames="ID" SkinID="GridSingleSelect" ClientDataKeyNames="ID">
@@ -58,8 +60,7 @@
                 </ClientSettings>
                 <HeaderStyle HorizontalAlign="Center" Width="150px" />
             </tlk:RadGrid>
-
-            </fieldset>
+        </fieldset>
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane1" runat="server" MinWidth="200" Width="730px" Scrolling="None">
         <fieldset style="height: 90%">
@@ -171,8 +172,8 @@
            width: 95% !important;
     }
 <</style>
-<Common:ctrlUpload ID="ctrlUpload" runat="server" />
-<Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
+<common:ctrlupload id="ctrlUpload" runat="server" />
+<common:ctrlmessagebox id="ctrlMessageBox" runat="server" />
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
         var enableAjax = true;

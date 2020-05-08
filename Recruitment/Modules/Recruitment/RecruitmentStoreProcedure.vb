@@ -921,10 +921,10 @@ Public Class RecruitmentStoreProcedure
 
 #End Region
 #Region "LAY DS CAP NHAT KÊT QUA"
-    Public Function GET_DECLARE_PROGRAM(ByVal programid As Decimal) As DataSet
+    Public Function GET_DECLARE_PROGRAM(ByVal programid As Decimal, ByVal scheduleID As Decimal) As DataSet
         Try
             Dim ds As New DataSet
-            ds = rep.ExecuteToDataSet("pkg_recruitment_new.GET_DECLARE_PROGRAM", New List(Of Object)(New Object() {programid}))
+            ds = rep.ExecuteToDataSet("pkg_recruitment_new.GET_DECLARE_PROGRAM", New List(Of Object)(New Object() {programid, scheduleID}))
             Return ds
         Catch ex As Exception
             Throw ex
