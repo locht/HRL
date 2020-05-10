@@ -43054,4 +43054,12 @@ Xin cám ơn!
       <string>Quá trình sức khỏe</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLPORTALEMPPROFILE_EDIT</string>
+    </Key>
+    <Value>
+      <string>Chỉnh sửa thông tin cá nhân</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

@@ -125,5 +125,6 @@
     Public Property JOB_FILENAME As String
     Public Property ListAttachFiles As List(Of AttachFilesDTO)
     Public Property PRODUCTION_PROCESS As Decimal?
+    Public Property PRODUCTION_PROCESS_NAME As String
     Public Property unit_rank_id As Decimal?
 End Class

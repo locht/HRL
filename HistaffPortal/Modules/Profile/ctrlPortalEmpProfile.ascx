@@ -709,7 +709,7 @@
             </tlk:RadDatePicker>
         </td>
     </tr>
-    <tr>
+    <tr style="display: none">
         <td class="lb">
             <%# Translate("Điện thoại di động")%>
         </td>
@@ -1351,6 +1351,9 @@
         function onRequestStart(sender, eventArgs) {
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
+        }
+        function rbtClicked(sender, eventArgs) {
+            enableAjax = false;
         }
     </script>
 </tlk:RadCodeBlock>

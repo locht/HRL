@@ -2936,4 +2936,12 @@
       <string>Health Process</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLPORTALEMPPROFILE_EDIT</string>
+    </Key>
+    <Value>
+      <string>Edit Profile</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

@@ -6,6 +6,7 @@ Imports Profile.ProfileBusiness
 Imports Telerik.Web.UI
 Imports WebAppLog
 Imports System.IO
+Imports Ionic.Crc
 
 Public Class ctrlPortalEmpProfile
     Inherits CommonView
@@ -144,7 +145,12 @@ Public Class ctrlPortalEmpProfile
                             txtManager.Text = (From p In dtDirectMng Where p("ID") = cboDirectManager.SelectedValue Select p("TITLE_NAME")).FirstOrDefault
                         End If
                         txtContractNo.Text = EmployeeInfo.CONTRACT_NO
+                        txtUploadFile.Text = EmployeeInfo.JOB_ATTACH_FILE
+                        txtUpload.Text = EmployeeInfo.JOB_FILENAME
 
+                        If EmployeeInfo.PRODUCTION_PROCESS IsNot Nothing Then
+                            txtProductionProcess.Text = EmployeeInfo.PRODUCTION_PROCESS_NAME
+                        End If
                         ''end
 
                         txtDirectManager.Text = EmployeeInfo.DIRECT_MANAGER_NAME
@@ -200,9 +206,9 @@ Public Class ctrlPortalEmpProfile
                             ckCONG_DOAN.Checked = empCV.CONG_DOAN
                             rdNGAY_VAO_DOAN.SelectedDate = empCV.NGAY_VAO_DOAN
                             txtNoiVaoDoan.Text = empCV.NOI_VAO_DOAN
-                            txtCHUC_VU_DOAN.Text = empCV.CHUC_VU_DANG
+                            txtCHUC_VU_DOAN.Text = empCV.CHUC_VU_DOAN
                             ckDANG.Checked = empCV.DANG
-                            rdNGAY_VAO_DANG.SelectedDate = empCV.NGAY_VAO_DANG
+                            rdNGAY_VAO_DANG.SelectedDate = empCV.NGAY_VAO_DANG_DB
                             txtNOI_VAO_DANG.Text = empCV.NOI_VAO_DANG
                             chkDangPhi.Checked = empCV.DANG_PHI
                             rtCHUC_VU_DANG.Text = empCV.CHUC_VU_DANG
@@ -314,7 +320,7 @@ Public Class ctrlPortalEmpProfile
                             txtHang_Thuong_Binh.Text = empCV.HANG_THUONG_BINH_NAME
                             txtGD_Chinh_Sach.Text = empCV.GD_CHINH_SACH_NAME
                             '=========================================================
-                            
+
                             If IsNumeric(empCV.CA) Then
                                 ckCA.Checked = CType(empCV.CA, Boolean)
                             End If
@@ -352,7 +358,7 @@ Public Class ctrlPortalEmpProfile
                             If IsNumeric(empCV.THUONG_BINH) Then
                                 ckThuong_Binh.Checked = CType(empCV.THUONG_BINH, Boolean)
                             End If
-                            
+
                             'rtCHUC_VU_DOAN.Text = empCV.CHUC_VU_DOAN
                             If IsNumeric(empCV.DOAN_PHI) Then
                                 ckDOAN_PHI.Checked = CType(empCV.DOAN_PHI, Boolean)
@@ -410,7 +416,7 @@ Public Class ctrlPortalEmpProfile
                             txtLanguage2.Text = empEdu.LANGUAGE_NAME2
                             txtLangLevel2.Text = empEdu.LANGUAGE_LEVEL_NAME2
                             txtDriverType.Text = empEdu.DRIVER_TYPE_NAME
-                            txtMotoDrivingLicense.Text = empEdu.MOTO_DRIVING_LICENSE
+                            txtMotoDrivingLicense.Text = empEdu.MOTO_DRIVING_LICENSE_NAME
                             txtNote.Text = empEdu.MORE_INFORMATION
                             'txtITMark.Text = empEdu.DIEM_XLTH
                         End If
@@ -476,6 +482,21 @@ Public Class ctrlPortalEmpProfile
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    Private Sub btnDownload_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDownload.Click
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            If txtUpload.Text <> "" Then
+                Dim strPath_Down As String = Server.MapPath("~/ReportTemplates/Profile/EmployeeInfo/" + txtUploadFile.Text)
+                'bCheck = True
+                ZipFiles(strPath_Down, 2)
+            End If
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
@@ -574,6 +595,34 @@ Public Class ctrlPortalEmpProfile
             Next
         End If
 
+    End Sub
+
+    Private Sub ZipFiles(ByVal path As String, ByVal _ID As Decimal)
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+
+        Try
+            Dim crc As New CRC32()
+            'Dim pathZip As String = AppDomain.CurrentDomain.BaseDirectory & "Zip\"
+            'Dim fileNameZip As String = "ThongTinKhenThuong.zip"
+            Dim fileNameZip As String
+
+            fileNameZip = txtUpload.Text.Trim
+
+            Dim file As System.IO.FileInfo = New System.IO.FileInfo(path & fileNameZip)
+            Response.Clear()
+            Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name)
+            Response.AddHeader("Content-Length", file.Length.ToString())
+            'Response.ContentType = "application/octet-stream"
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document "
+            Response.WriteFile(file.FullName)
+            Response.End()
+
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            HttpContext.Current.Trace.Warn(ex.ToString())
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
     End Sub
 #End Region
 

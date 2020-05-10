@@ -160,7 +160,7 @@
             </tlk:RadComboBox>
         </td>
     </tr>
-    <tr>
+    <tr style="display: none">
         <td class="lb">
             <%# Translate("Thôn/Ấp/ Khu phố")%><span class="lbReq">*</span>
         </td>
@@ -281,7 +281,7 @@
             </tlk:RadComboBox>
         </td>
     </tr>
-    <tr>
+    <tr style="display: none">
         <td class="lb">
             <%# Translate("Chi nhánh")%>
         </td>

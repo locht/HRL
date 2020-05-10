@@ -661,6 +661,7 @@ Partial Class ProfileRepository
                                                                         f.TYPE_ID = 6963).DefaultIfEmpty
                     From job_pos In Context.HU_JOB_POSITION.Where(Function(f) f.ID = e.JOB_POSITION).DefaultIfEmpty
                     From obj_ins In Context.OT_OTHER_LIST.Where(Function(f) f.ID = e.OBJECT_INS).DefaultIfEmpty
+                    From prd_prc In Context.OT_OTHER_LIST.Where(Function(f) f.ID = e.PRODUCTION_PROCESS).DefaultIfEmpty
                      From huv_org In Context.HUV_ORGANIZATION.Where(Function(f) f.ID = org.ID).DefaultIfEmpty
                 Where (e.ID = empID)
                      Select New EmployeeDTO With {
@@ -728,6 +729,7 @@ Partial Class ProfileRepository
                          .JOB_ATTACH_FILE = e.JOB_ATTACH_FILE,
                          .JOB_FILENAME = e.JOB_FILENAME,
                          .PRODUCTION_PROCESS = e.PRODUCTION_PROCESS,
+                         .PRODUCTION_PROCESS_NAME = prd_prc.NAME_VN,
                 .ORG_NAME5 = huv_org.ORG_NAME5
                      }).FirstOrDefault
                 WriteExceptionLog(Nothing, "Getmployee1", "iProfile")
@@ -2203,6 +2205,7 @@ Partial Class ProfileRepository
                      From OT In Context.OT_OTHER_LIST.Where(Function(F) F.ID = edu.COMPUTER_MARK).DefaultIfEmpty
                       From OT1 In Context.OT_OTHER_LIST.Where(Function(F) F.ID = edu.COMPUTER_RANK).DefaultIfEmpty
                        From driver In Context.OT_OTHER_LIST.Where(Function(F) F.ID = edu.DRIVER_TYPE).DefaultIfEmpty
+                       From moto In Context.OT_OTHER_LIST.Where(Function(F) F.ID = edu.MOTO_DRIVING_LICENSE).DefaultIfEmpty
                        From compoter In Context.OT_OTHER_LIST.Where(Function(F) F.ID = edu.COMPUTER_CERTIFICATE).DefaultIfEmpty
                      Where edu.EMPLOYEE_ID = sEmployeeID
                      Select New EmployeeEduDTO With {
@@ -2247,6 +2250,7 @@ Partial Class ProfileRepository
                          .DRIVER_TYPE_NAME = driver.NAME_VN,
                          .DRIVER_NO = edu.DRIVER_NO,
                          .MOTO_DRIVING_LICENSE = edu.MOTO_DRIVING_LICENSE,
+                         .MOTO_DRIVING_LICENSE_NAME = moto.NAME_VN,
                          .MORE_INFORMATION = edu.MORE_INFORMATION}).FirstOrDefault
 
             empHealth = (From e In Context.HU_EMPLOYEE_HEALTH

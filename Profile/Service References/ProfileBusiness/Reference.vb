@@ -31943,6 +31943,9 @@ Namespace ProfileBusiness
         Private PRODUCTION_PROCESSField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PRODUCTION_PROCESS_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SAL_BASICField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -33130,6 +33133,19 @@ Namespace ProfileBusiness
                 If (Me.PRODUCTION_PROCESSField.Equals(value) <> true) Then
                     Me.PRODUCTION_PROCESSField = value
                     Me.RaisePropertyChanged("PRODUCTION_PROCESS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PRODUCTION_PROCESS_NAME() As String
+            Get
+                Return Me.PRODUCTION_PROCESS_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.PRODUCTION_PROCESS_NAMEField, value) <> true) Then
+                    Me.PRODUCTION_PROCESS_NAMEField = value
+                    Me.RaisePropertyChanged("PRODUCTION_PROCESS_NAME")
                 End If
             End Set
         End Property
@@ -52169,6 +52185,9 @@ Namespace ProfileBusiness
         Private MOTO_DRIVING_LICENSEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MOTO_DRIVING_LICENSE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private NOTE_TDTH1Field As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -52728,6 +52747,19 @@ Namespace ProfileBusiness
                 If (Me.MOTO_DRIVING_LICENSEField.Equals(value) <> true) Then
                     Me.MOTO_DRIVING_LICENSEField = value
                     Me.RaisePropertyChanged("MOTO_DRIVING_LICENSE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MOTO_DRIVING_LICENSE_NAME() As String
+            Get
+                Return Me.MOTO_DRIVING_LICENSE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MOTO_DRIVING_LICENSE_NAMEField, value) <> true) Then
+                    Me.MOTO_DRIVING_LICENSE_NAMEField = value
+                    Me.RaisePropertyChanged("MOTO_DRIVING_LICENSE_NAME")
                 End If
             End Set
         End Property
