@@ -219,7 +219,7 @@ Public Class ctrlRC_ProgramInterviewResult
             Else
                 dtData = store.GET_PROGRAM_SCHCEDULE_LIST(0)
             End If
-            FillDropDownList(cboSchedule, dtData, "EXAMS_NAME", "ID")
+            FillRadCombobox(cboSchedule, dtData, "EXAMS_NAME", "ID")
             Dim dic As New Dictionary(Of String, Control)
             dic.Add("EXAM_NAME", lblExamName_Interview)
             dic.Add("IS_PASS", cbbStatus)
