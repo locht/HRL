@@ -10,7 +10,7 @@
     </tlk:RadTextBox>
     <asp:HiddenField ID="hdORG_ID" runat="server" />
     <asp:HiddenField ID="hdTITLE_ID" runat="server" />
-</div>
+</div
 <div style="margin-left: 10px; margin-right: 10px;">
     <fieldset style="width: auto; height: auto">
         <legend>
@@ -69,26 +69,45 @@
                     <%# Translate("Sinh thường")%>
                 </td>
                 <td>
-                    <tlk:RadButton ID="cbNormal_Birth" AutoPostBack="false" ToggleType="CheckBox" ButtonType="ToggleButton"
-                        runat="server">
-                    </tlk:RadButton>
+                    <asp:CheckBox ID="cbNormal_Birth1" AutoPostBack="true" runat="server"/>
                 </td>
                 <td class="lb">
                     <%# Translate("Sinh mổ")%>
                 </td>
                 <td>
-                    <tlk:RadButton ID="cbNotNormal_Birth" AutoPostBack="false" ToggleType="CheckBox" ButtonType="ToggleButton"
-                        runat="server">
-                    </tlk:RadButton>
+                    <asp:CheckBox ID="cbNotNormal_Birth1" AutoPostBack="true" runat="server"/>
                 </td>
                 <td class="lb">
+                    <%# Translate("Nghỉ thai sản")%>
+                </td>
+                <td>
+                    <asp:CheckBox ID="cbNghiThaiSan1" AutoPostBack="false" runat="server"/>
+                </td>
+                <%--<td class="lb">
+                    <%# Translate("Sinh thường")%>
+                </td>
+
+                <td>
+                    <tlk:RadButton ID="cbNormal_Birth" ToggleType="CheckBox" ButtonType="ToggleButton"
+                        runat="server" AutoPostBack="true" >
+                    </tlk:RadButton>
+                </td>--%>
+               <%-- <td class="lb">
+                    <%# Translate("Sinh mổ")%>
+                </td>
+                <td>
+                    <tlk:RadButton ID="cbNotNormal_Birth" ToggleType="CheckBox" ButtonType="ToggleButton"
+                        runat="server" AutoPostBack="true">
+                    </tlk:RadButton>
+                </td>--%>
+                <%--<td class="lb">
                     <%# Translate("Nghỉ thai sản")%>
                 </td>
                 <td>
                     <tlk:RadButton ID="cbNghiThaiSan" AutoPostBack="false" ToggleType="CheckBox" ButtonType="ToggleButton"
                         runat="server">
                     </tlk:RadButton>
-                </td>
+                </td>--%>
             </tr>
             <tr style="display: none">
                 <td class="lb">
@@ -165,7 +184,7 @@
                     <%# Translate("Tiền công ty tạm ứng")%>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="txtTamUng" runat="server" SkinID="Money" Width="150px"
+                    <tlk:RadNumericTextBox ID="txtTamUng" runat="server" SkinID="Money" Width="150px" AutoPostBack="true"
                         ShowSpinButtons="true" IncrementSettings-Step="5000">
                     </tlk:RadNumericTextBox>
                 </td>
@@ -173,17 +192,18 @@
                     <%# Translate("Tiền BH thanh toán")%>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="txtInsPay" runat="server" SkinID="Money" Width="150px"
+                    <tlk:RadNumericTextBox ID="txtInsPay" runat="server" SkinID="Money" Width="150px"  AutoPostBack="true"
                         ShowSpinButtons="true" IncrementSettings-Step="5000">
                     </tlk:RadNumericTextBox>
                 </td>
+                <%--ClientEvents-OnValueChanging="cal()"--%>
             </tr>
             <tr>
                  <td class="lb">
                     <%# Translate("Tiền chênh lệch")%>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="txtDiffMoney" runat="server" SkinID="Money" Width="150px"
+                    <tlk:RadNumericTextBox ID="txtDiffMoney" runat="server" SkinID="Money" Width="150px" ReadOnly="true"
                         ShowSpinButtons="true" IncrementSettings-Step="5000">
                     </tlk:RadNumericTextBox>
                 </td>
@@ -251,6 +271,16 @@
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
         var enableAjax = true;
+        function cal() {
+            try {
+                var a = $find("<%=txtTamUng.ClientID%>").get_value();
+                var b = $find("<%=txtInsPay.ClientID%>").get_value();
+                var c = a - b;
+                $find("<%=txtDiffMoney.ClientID%>").set_value(c);
+            }
+            catch (err) { }
+
+        }
         function OnClientButtonClicking(sender, args) {
             var item = args.get_item();
             if (item.get_commandName() == "EXPORT") {

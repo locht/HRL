@@ -135,7 +135,7 @@
                         DataFormatString="{0:dd/MM/yyyy}" FilterControlWidth="99%" ShowFilterIcon="false"
                         CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" UniqueName="To_Date"
                         SortExpression="To_Date" HeaderStyle-Width="100px" />
-                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hưởng chế độ thai sản %>" DataField="FROM_DATE_ENJOY"
+                   <%-- <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hưởng chế độ thai sản %>" DataField="FROM_DATE_ENJOY"
                         DataFormatString="{0:dd/MM/yyyy}" FilterControlWidth="99%" ShowFilterIcon="false"
                         CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" UniqueName="FROM_DATE_ENJOY"
                         SortExpression="FROM_DATE_ENJOY" HeaderStyle-Width="100px" />
@@ -143,10 +143,8 @@
                         DataFormatString="{0:dd/MM/yyyy}" FilterControlWidth="99%" ShowFilterIcon="false"
                         CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" UniqueName="TO_DATE_ENJOY"
                         SortExpression="TO_DATE_ENJOY" HeaderStyle-Width="100px" />
-                    <tlk:GridNumericColumn HeaderText="<%$ Translate: Tiền tạm ứng%>" DataField="Tien_Tam_Ung"
-                        UniqueName="Tien_Tam_Ung" SortExpression="Tien_Tam_Ung" HeaderStyle-Width="100px" DataFormatString="{0:N0}"
-                        FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
-                        AutoPostBackOnFilter="true" />
+                    --%>
+                   
                     <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Nghỉ thai sản %>" DataField="nghi_thai_san"
                         SortExpression="nghi_thai_san" UniqueName="nghi_thai_san" HeaderStyle-Width="100px" AllowSorting="false" ShowFilterIcon="false" AllowFiltering="false">
                         <HeaderStyle HorizontalAlign="Center" />
@@ -168,7 +166,10 @@
                         CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />
 
 
-
+                     <tlk:GridNumericColumn HeaderText="<%$ Translate: Tiền tạm ứng%>" DataField="Tien_Tam_Ung"
+                        UniqueName="Tien_Tam_Ung" SortExpression="Tien_Tam_Ung" HeaderStyle-Width="100px" DataFormatString="{0:N0}"
+                        FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
+                        AutoPostBackOnFilter="true" />
                     <tlk:GridNumericColumn HeaderText="<%$ Translate: Tiền BH thanh toán%>" DataField="INSURANCE_FEE_PAY"
                         UniqueName="INSURANCE_FEE_PAY" SortExpression="INSURANCE_FEE_PAY" HeaderStyle-Width="100px" DataFormatString="{0:N0}"
                         FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"

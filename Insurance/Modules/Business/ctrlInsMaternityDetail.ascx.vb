@@ -189,9 +189,9 @@ Public Class ctrlInsMaternityDetail
         Try
             btnSearchEmp.Enabled = val
             dateNgayDuSinh.Enabled = val
-            cbNghiThaiSan.Enabled = val
-            cbNormal_Birth.Enabled = val
-            cbNotNormal_Birth.Enabled = val
+            cbNghiThaiSan1.Enabled = val
+            cbNormal_Birth1.Enabled = val
+            cbNotNormal_Birth1.Enabled = val
             dateFrom.Enabled = val
             dateTo.Enabled = val
             dateNgaySinh.Enabled = val
@@ -218,9 +218,9 @@ Public Class ctrlInsMaternityDetail
             txtPOSITION.Text = ""
             txtINS_PAY_UNIT.Text = ""
             dateNgayDuSinh.SelectedDate = Nothing
-            cbNghiThaiSan.Checked = True
-            cbNormal_Birth.Checked = True
-            cbNotNormal_Birth.Checked = False
+            cbNghiThaiSan1.Checked = True
+            cbNormal_Birth1.Checked = True
+            cbNotNormal_Birth1.Checked = False
             dateFrom.SelectedDate = Nothing
             dateTo.SelectedDate = Nothing
             'dataFromEnjoy.SelectedDate = Nothing
@@ -248,9 +248,9 @@ Public Class ctrlInsMaternityDetail
                     Dim id As Int32 = store_business.SAVE_INS_MATERNITY_MNG(0,
                                                                             InsCommon.getNumber(txtEMPID.Text),
                                                                             dateNgayDuSinh.SelectedDate,
-                                                                            InsCommon.getNumber(IIf(cbNghiThaiSan.Checked, 1, 0)),
-                                                                            InsCommon.getNumber(IIf(cbNormal_Birth.Checked, 1, 0)),
-                                                                            InsCommon.getNumber(IIf(cbNotNormal_Birth.Checked, 1, 0)),
+                                                                            InsCommon.getNumber(IIf(cbNghiThaiSan1.Checked, 1, 0)),
+                                                                            InsCommon.getNumber(IIf(cbNormal_Birth1.Checked, 1, 0)),
+                                                                            InsCommon.getNumber(IIf(cbNotNormal_Birth1.Checked, 1, 0)),
                                                                             dateFrom.SelectedDate,
                                                                             dateTo.SelectedDate,
                                                                             Nothing, Nothing,
@@ -265,7 +265,7 @@ Public Class ctrlInsMaternityDetail
                                                                             String.Format("{0}-{1}", userlog.ComputerName, userlog.Ip))
 
                     'P_INS_ARISING_TYPE = 3: Cập nhật biến động BH giảm do nghỉ thai sản
-                    If cbNghiThaiSan.Checked = True Then
+                    If cbNghiThaiSan1.Checked = True Then
                         store_business.PRI_INS_ARISING_MATERNITY(id, InsCommon.getNumber(txtEMPID.Text), dateFrom.SelectedDate, 3, userlog.Username)
                         'Dim ed = DateAdd("d", 1, dateTo.SelectedDate)
                         'store_business.INSERT_INC_VOLATILITY(0,
@@ -291,9 +291,9 @@ Public Class ctrlInsMaternityDetail
                     If store_business.SAVE_INS_MATERNITY_MNG(InsCommon.getNumber(txtID.Text),
                                                              InsCommon.getNumber(txtEMPID.Text),
                                                              dateNgayDuSinh.SelectedDate,
-                                                             InsCommon.getNumber(IIf(cbNghiThaiSan.Checked, 1, 0)),
-                                                             InsCommon.getNumber(IIf(cbNormal_Birth.Checked, 1, 0)),
-                                                             InsCommon.getNumber(IIf(cbNotNormal_Birth.Checked, 1, 0)),
+                                                             InsCommon.getNumber(IIf(cbNghiThaiSan1.Checked, 1, 0)),
+                                                             InsCommon.getNumber(IIf(cbNormal_Birth1.Checked, 1, 0)),
+                                                             InsCommon.getNumber(IIf(cbNotNormal_Birth1.Checked, 1, 0)),
                                                              dateFrom.SelectedDate, dateTo.SelectedDate,
                                                              Nothing, Nothing, dateNgaySinh.SelectedDate,
                                                              InsCommon.getNumber(txtSoCon.Text),
@@ -305,7 +305,7 @@ Public Class ctrlInsMaternityDetail
                                                              String.Format("{0}-{1}", userlog.ComputerName, userlog.Ip)) Then
 
                         'P_INS_ARISING_TYPE = 3: Cập nhật biến động BH giảm do nghỉ thai sản
-                        If cbNghiThaiSan.Checked = True Then
+                        If cbNghiThaiSan1.Checked = True Then
                             store_business.PRI_INS_ARISING_MATERNITY(InsCommon.getNumber(txtID.Text), InsCommon.getNumber(txtEMPID.Text), dateFrom.SelectedDate, 3, userlog.Username)
                         End If
 
@@ -363,9 +363,27 @@ Public Class ctrlInsMaternityDetail
                 InsCommon.SetString(txtPOSITION, lstSource.Rows(0)("POSITION_NAME"))
                 InsCommon.SetString(txtINS_PAY_UNIT, lstSource.Rows(0)("INS_PAY_UNIT"))
                 InsCommon.SetDate(dateNgayDuSinh, lstSource.Rows(0)("NGAY_DU_SINH"))
-                InsCommon.SetNumber(cbNghiThaiSan, lstSource.Rows(0)("NGHI_THAI_SAN"))
-                InsCommon.SetNumber(cbNormal_Birth, lstSource.Rows(0)("IS_NORMAL_BIRTH"))
-                InsCommon.SetNumber(cbNotNormal_Birth, lstSource.Rows(0)("IS_NOT_NORMAL_BIRTH"))
+                'InsCommon.SetNumber(cbNghiThaiSan1, lstSource.Rows(0)("NGHI_THAI_SAN"))
+                'InsCommon.SetNumber(cbNormal_Birth1, lstSource.Rows(0)("IS_NORMAL_BIRTH"))
+                Dim q = lstSource.Rows(0)("NGHI_THAI_SAN")
+                ''If lstSource.Rows(0)("NGAY_DU_SINH"))
+
+                If lstSource.Rows(0)("NGHI_THAI_SAN") Is Nothing OrElse CDec(Val(lstSource.Rows(0)("NGHI_THAI_SAN"))) = 0 Then
+                    cbNghiThaiSan1.Checked = False
+                Else
+                    cbNghiThaiSan1.Checked = True
+                End If
+                If lstSource.Rows(0)("IS_NORMAL_BIRTH") Is Nothing OrElse CDec(Val(lstSource.Rows(0)("IS_NORMAL_BIRTH"))) = 0 Then
+                    cbNormal_Birth1.Checked = False
+                Else
+                    cbNormal_Birth1.Checked = True
+                End If
+                If lstSource.Rows(0)("IS_NOT_NORMAL_BIRTH") Is Nothing OrElse CDec(Val(lstSource.Rows(0)("IS_NOT_NORMAL_BIRTH"))) = 0 Then
+                    cbNotNormal_Birth1.Checked = False
+                Else
+                    cbNotNormal_Birth1.Checked = True
+                End If
+                'InsCommon.SetNumber(cbNotNormal_Birth1, lstSource.Rows(0)("IS_NOT_NORMAL_BIRTH"))
                 InsCommon.SetDate(dateFrom, lstSource.Rows(0)("FROM_DATE"))
                 InsCommon.SetDate(dateTo, lstSource.Rows(0)("TO_DATE"))
                 'InsCommon.SetDate(dataFromEnjoy, lstSource.Rows(0)("FROM_DATE_ENJOY"))
@@ -432,7 +450,20 @@ Public Class ctrlInsMaternityDetail
             If lstCommonEmployee.Count <> 0 Then
                 Dim item = lstCommonEmployee(0)
                 'Dim lstSource As DataTable = (New InsuranceBusiness.InsuranceBusinessClient).GetEmpInfo(item.EMPLOYEE_ID, 0)
+                'Dim a1 = Convert.ToInt32(dateFrom.SelectedDate.ToString("yyyy"))
+                'Dim a2 = Convert.ToInt32(dateFrom.SelectedDate.ToString("mm"))
+
                 Dim lstSource As DataTable = store_list.GET_INS_EMPINFO(item.EMPLOYEE_ID, String.Empty)
+                'Dim lstSource1 As DataTable = store_list.GET_TIEN_TAM_UNG(item.EMPLOYEE_ID, a1, a2)
+                'If (Not (lstSource1 Is Nothing) AndAlso lstSource1.Rows.Count > 0) Then
+                '    Dim count = 0
+                '    Dim sum As New Decimal
+                '    For Each item1 In lstSource1.Rows
+                '        sum = sum + item1("new_sal")
+                '        count = count + 1
+                '    Next
+                '    txtTamUng.Text = sum / count
+                'End If
                 If (Not (lstSource Is Nothing) AndAlso lstSource.Rows.Count > 0) Then
                     txtEMPLOYEE_ID.Text = lstSource.Rows(0)("EMPLOYEE_ID")
                     hdORG_ID.Value = lstSource.Rows(0)("ORG_ID").ToString()
@@ -538,6 +569,50 @@ Public Class ctrlInsMaternityDetail
 
         If dateFrom.SelectedDate IsNot Nothing Then
             dateTo.SelectedDate = DateAdd("m", 6, dateFrom.SelectedDate)
+        End If
+        Dim a0 As Date
+        a0 = dateFrom.SelectedDate
+        Dim a1 = a0.Year
+        Dim a2 = a0.Month
+        Dim empid = CDec(Val(txtEMPID.Text))
+        Dim lstSource1 As DataTable = store_list.GET_TIEN_TAM_UNG(empid, a1, a2)
+        If (Not (lstSource1 Is Nothing) AndAlso lstSource1.Rows.Count > 0) Then
+            Dim count = 0
+            Dim sum As New Decimal
+            For Each item1 In lstSource1.Rows
+                sum = sum + item1("new_sal")
+                count = count + 1
+            Next
+            txtTamUng.Text = sum / count
+        End If
+    End Sub
+
+    Private Sub cbNormal_Birth1_CheckedChanged(sender As Object, e As EventArgs) Handles cbNormal_Birth1.CheckedChanged
+        If cbNormal_Birth1.Checked = True Then
+            cbNotNormal_Birth1.Checked = False
+        End If
+    End Sub
+
+    Private Sub cbNotNormal_Birth1_CheckedChanged(sender As Object, e As EventArgs) Handles cbNotNormal_Birth1.CheckedChanged
+        If cbNotNormal_Birth1.Checked = True Then
+            cbNormal_Birth1.Checked = False
+        End If
+    End Sub
+
+    Private Sub txtInsPay_TextChanged(sender As Object, e As EventArgs) Handles txtInsPay.TextChanged
+        If txtTamUng.Text <> 0 Then
+            txtDiffMoney.Text = CDec(Val(txtTamUng.Text)) - CDec(Val(txtInsPay.Text))
+        Else
+            txtDiffMoney.Text = ""
+        End If
+
+    End Sub
+
+    Private Sub txtTamUng_TextChanged(sender As Object, e As EventArgs) Handles txtTamUng.TextChanged
+        If txtTamUng.Text <> 0 And txtInsPay.Text <> 0 Then
+            txtDiffMoney.Text = CDec(Val(txtTamUng.Text)) - CDec(Val(txtInsPay.Text))
+        Else
+            txtDiffMoney.Text = ""
         End If
     End Sub
 End Class

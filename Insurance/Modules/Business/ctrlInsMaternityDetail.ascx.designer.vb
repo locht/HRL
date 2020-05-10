@@ -122,31 +122,31 @@ Partial Public Class ctrlInsMaternityDetail
     Protected WithEvents txtINS_PAY_UNIT As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''cbNormal_Birth control.
+    '''cbNormal_Birth1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cbNormal_Birth As Global.Telerik.Web.UI.RadButton
+    Protected WithEvents cbNormal_Birth1 As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''cbNotNormal_Birth control.
+    '''cbNotNormal_Birth1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cbNotNormal_Birth As Global.Telerik.Web.UI.RadButton
+    Protected WithEvents cbNotNormal_Birth1 As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''cbNghiThaiSan control.
+    '''cbNghiThaiSan1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cbNghiThaiSan As Global.Telerik.Web.UI.RadButton
+    Protected WithEvents cbNghiThaiSan1 As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''dateNgayDuSinh control.

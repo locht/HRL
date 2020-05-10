@@ -660,6 +660,19 @@ Public Class Store_Insurance_List
 
 #Region "Nghiệp vụ"
 
+#Region "quan li thai san"
+    Public Function GET_TIEN_TAM_UNG(ByVal P_EMPLOYEE_ID As Int32,
+                                     ByVal P_YEAR As Int32,
+                                     ByVal P_MONTH As Int32) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_INSURANCE_LIST.GET_TIEN_TAM_UNG", New List(Of Object)(New Object() {P_EMPLOYEE_ID, P_YEAR, P_MONTH}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+#End Region
+
 #Region "Khai báo biến động bảo hiểm"
     'Load danh sách
     Public Function GET_INS_EMPINFO(ByVal P_EMPLOYEE_ID As Int32,
