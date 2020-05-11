@@ -61,7 +61,9 @@ Public Class ctrlInsTotalSalary
                                     ToolbarItem.Calculate,
                                     ToolbarItem.Export,
                                     ToolbarItem.Seperator,
-                                    ToolbarItem.Create)
+                                    ToolbarItem.Create,
+                                    ToolbarItem.Lock,
+                                    ToolbarItem.Unlock)
         CType(Me.MainToolBar.Items(3), RadToolBarButton).Text = Translate("Tổng hợp hàng loạt")
         'tbarOtherLists.Items(3).Text = Translate("Tổng hợp hàng loạt")
         Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
@@ -160,6 +162,7 @@ Public Class ctrlInsTotalSalary
     Protected Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
         'Dim objOrgFunction As New OrganizationDTO
         'Dim gID As Decimal
+        Dim rep1 As New InsuranceRepository
         Dim rep As New InsuranceBusiness.InsuranceBusinessClient
         Try
             Select Case CType(e.Item, RadToolBarButton).CommandName
@@ -190,14 +193,25 @@ Public Class ctrlInsTotalSalary
                         divCal.Visible = True
                         divCalBatch.Visible = False
                     End If
-                    If ddlINS_ORG_ID.SelectedValue = "" Then
+                    If ddlINS_ORG_ID.SelectedValue = 0 Then
                         ShowMessage("Bạn phải chọn đơn vị bảo hiểm?", NotifyType.Warning)
                         Exit Sub
                     End If
-                    If InsCommon.getString(ddlPeriod.Text) = "" Then
-                        ShowMessage("Bạn phải chọn đợt khai báo?", NotifyType.Warning)
+                    If InsCommon.getNumber(txtYear.Value) Is Nothing Then
+                        ShowMessage("Bạn phải nhập năm?", NotifyType.Warning)
                         Exit Sub
                     End If
+                    If InsCommon.getNumber(txtMonth.Value) Is Nothing Then
+                        ShowMessage("Bạn phải nhập tháng?", NotifyType.Warning)
+                        Exit Sub
+                    End If
+
+                    If rep1.CHECK_INS_TOTALSALARY_LOCK(txtYear.Value, txtMonth.Value, ddlINS_ORG_ID.SelectedValue) Then
+                        ShowMessage("Đợt khai báo đã khóa, không thể thực hiện chức năng này.", NotifyType.Warning)
+                        Exit Sub
+                    End If
+
+
                     If IsExistDataCal() Then
                         ctrlMessageBox.MessageText = Translate("Đã có dữ liệu, bạn có thực sự muốn tổng hợp lại quỹ lương không?")
                         ctrlMessageBox.ActionName = CommonMessage.TOOLBARTIEM_CALCULATE
@@ -222,6 +236,34 @@ Public Class ctrlInsTotalSalary
                         End If
                 Case CommonMessage.TOOLBARITEM_EXPORT
                     Call Export()
+                Case CommonMessage.TOOLBARITEM_LOCK
+                    If ddlINS_ORG_ID.SelectedValue = 0 Then
+                        ShowMessage("Bạn phải chọn đơn vị bảo hiểm?", NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    If InsCommon.getNumber(txtYear.Value) Is Nothing Then
+                        ShowMessage("Bạn phải chọn năm?", NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    If InsCommon.getNumber(txtMonth.Value) Is Nothing Then
+                        ShowMessage("Bạn phải chọn tháng?", NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    Call LockData(1)
+                Case CommonMessage.TOOLBARITEM_UNLOCK
+                    If ddlINS_ORG_ID.SelectedValue = 0 Then
+                        ShowMessage("Bạn phải chọn đơn vị bảo hiểm?", NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    If InsCommon.getNumber(txtYear.Value) Is Nothing Then
+                        ShowMessage("Bạn phải chọn năm?", NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    If InsCommon.getNumber(txtMonth.Value) Is Nothing Then
+                        ShowMessage("Bạn phải chọn tháng?", NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    Call LockData(0)
             End Select
             UpdateControlState(CurrentState)
             UpdateToolbarState(CurrentState)
@@ -333,6 +375,7 @@ Public Class ctrlInsTotalSalary
 
     Private Sub LoadData(Optional ByVal isBind As Boolean = False)
         Try
+            Dim rep As New InsuranceRepository
             Dim strOrg As String
             If txtYear.Text.Equals("") Then
                 txtYear.Text = Now.Year
@@ -347,7 +390,7 @@ Public Class ctrlInsTotalSalary
                 strOrg = "," & ddlINS_ORG_ID.SelectedValue
             End If
 
-            
+
 
             Dim lstSource As DataTable = (New InsuranceBusiness.InsuranceBusinessClient).GetInsTotalSalary(Common.Common.GetUsername(), InsCommon.getNumber(txtYear.Text) _
                                         , InsCommon.getNumber(txtMonth.Text) _
@@ -361,13 +404,13 @@ Public Class ctrlInsTotalSalary
 
             Dim lstDataPre As DataTable = (New InsuranceBusiness.InsuranceBusinessClient).GetInsTotalSalary_Summary(Common.Common.GetUsername(), InsCommon.getNumber(txtYear.Text) _
                                         , InsCommon.getNumber(txtMonth.Text) _
-                                        , InsCommon.getNumber(ddlINS_ORG_ID.SelectedValue) _
+                                        , strOrg _
                                          , InsCommon.getString(ddlPeriod.SelectedValue) _
                                          , "1"
                                         )
             Dim lstDataCur As DataTable = (New InsuranceBusiness.InsuranceBusinessClient).GetInsTotalSalary_Summary(Common.Common.GetUsername(), InsCommon.getNumber(txtYear.Text) _
                                       , InsCommon.getNumber(txtMonth.Text) _
-                                      , InsCommon.getNumber(ddlINS_ORG_ID.SelectedValue) _
+                                      , strOrg _
                                       , InsCommon.getString(ddlPeriod.SelectedValue) _
                                        , "0"
                                       )
@@ -460,6 +503,18 @@ Public Class ctrlInsTotalSalary
                 'txtAdjust_2_UI_T.Text = lstDataPre.Rows(0)("Adjust_1_UI_T")
                 'txtAdjust_2_UI_G.Text = lstDataPre.Rows(0)("Adjust_1_UI_G")
             End If
+
+            rtxtSalaryTotal.Value = If(txtSumit_2_SI_G.Value Is Nothing, 0, txtSumit_2_SI_G.Value) + If(txtSumit_2_HI_G.Value Is Nothing, 0, txtSumit_2_HI_G.Value) + _
+                                    If(txtSumit_2_UI_G.Value Is Nothing, 0, txtSumit_2_UI_G.Value) + If(txtSumit_2_BHTNLD_G.Value Is Nothing, 0, txtSumit_2_BHTNLD_G.Value)
+
+            If ddlINS_ORG_ID.SelectedValue <> 0 AndAlso txtYear.Value IsNot Nothing AndAlso txtMonth.Value IsNot Nothing Then
+                rtxtRealFiled.Value = rep.GET_REARL_FILED(ddlINS_ORG_ID.SelectedValue, txtYear.Value, txtMonth.Value)
+                rtxtSalaryCL.Value = If(rtxtRealFiled.Value Is Nothing, 0, rtxtRealFiled.Value) - If(rtxtSalaryTotal.Value Is Nothing, 0, rtxtSalaryTotal.Value)
+            Else
+                rtxtRealFiled.Value = 0
+                rtxtSalaryCL.Value = 0
+            End If
+
         Catch ex As Exception
 
         End Try
@@ -493,6 +548,10 @@ Public Class ctrlInsTotalSalary
         'Call LoadData()
     End Sub
 
+    Private Sub rtxtRealFiled_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rtxtRealFiled.TextChanged
+            rtxtSalaryCL.Value = If(rtxtRealFiled.Value Is Nothing, 0, rtxtRealFiled.Value) - If(rtxtSalaryTotal.Value Is Nothing, 0, rtxtSalaryTotal.Value)
+    End Sub
+
     Private Sub txtYear_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtYear.TextChanged
         Call LoadComboboxPeriod()
         'Call LoadData()
@@ -519,22 +578,54 @@ Public Class ctrlInsTotalSalary
 
     End Sub
 
-    Private Sub btnLock_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnLock.Click
+    Private Sub btnSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSave.Click
+        Dim rep As New InsuranceRepository
+        If ddlINS_ORG_ID.SelectedValue = 0 Then
+            ShowMessage("Bạn phải chọn đơn vị bảo hiểm?", NotifyType.Warning)
+            Exit Sub
+        End If
+        If InsCommon.getNumber(txtYear.Value) Is Nothing Then
+            ShowMessage("Bạn phải nhập năm?", NotifyType.Warning)
+            Exit Sub
+        End If
+        If InsCommon.getNumber(txtMonth.Value) Is Nothing Then
+            ShowMessage("Bạn phải nhập tháng?", NotifyType.Warning)
+            Exit Sub
+        End If
+
+        If InsCommon.getNumber(rtxtRealFiled.Value) Is Nothing Then
+            ShowMessage("Bạn phải nhập Số tiền thực nộp?", NotifyType.Warning)
+            Exit Sub
+        End If
+
+        If rep.INSERT_TOTALSALARY_CAL(ddlINS_ORG_ID.SelectedValue, txtYear.Value, txtMonth.Value, rtxtRealFiled.Value) Then
+            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+        Else
+            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+        End If
+
+    End Sub
+
+    Private Sub btnUnLock_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUnLock.Click
         If ddlINS_ORG_ID.SelectedValue = "" Then
             ShowMessage("Bạn phải chọn đơn vị bảo hiểm?", NotifyType.Warning)
             Exit Sub
         End If
-        If InsCommon.getString(ddlINS_ORG_ID.SelectedValue) = "" Then
-            ShowMessage("Bạn phải chọn đợt khai báo?", NotifyType.Warning)
+        If InsCommon.getNumber(txtYear.Value) = "" Then
+            ShowMessage("Bạn phải chọn năm?", NotifyType.Warning)
             Exit Sub
         End If
-        Call LockData()
+        If InsCommon.getNumber(txtMonth.Value) = "" Then
+            ShowMessage("Bạn phải chọn tháng?", NotifyType.Warning)
+            Exit Sub
+        End If
+        Call LockData(0)
     End Sub
     '----------------------------------------------------------------------
     Private Sub CalData()
         Try
             Dim rep As New InsuranceBusiness.InsuranceBusinessClient
-            If rep.CalInsTotalSalary(Common.Common.GetUserName(), InsCommon.getNumber(txtYear.Text) _
+            If rep.CalInsTotalSalary(Common.Common.GetUsername(), InsCommon.getNumber(txtYear.Text) _
                                        , InsCommon.getNumber(txtMonth.Text) _
                                        , InsCommon.getNumber(ddlINS_ORG_ID.SelectedValue) _
                                        , InsCommon.getString(ddlPeriod.SelectedValue)
@@ -549,10 +640,26 @@ Public Class ctrlInsTotalSalary
         End Try
     End Sub
 
+    Private Sub btnLock_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnLock.Click
+        If ddlINS_ORG_ID.SelectedValue = "" Then
+            ShowMessage("Bạn phải chọn đơn vị bảo hiểm?", NotifyType.Warning)
+            Exit Sub
+        End If
+        If InsCommon.getNumber(txtYear.Value) = "" Then
+            ShowMessage("Bạn phải chọn năm?", NotifyType.Warning)
+            Exit Sub
+        End If
+        If InsCommon.getNumber(txtMonth.Value) = "" Then
+            ShowMessage("Bạn phải chọn tháng?", NotifyType.Warning)
+            Exit Sub
+        End If
+        Call LockData(1)
+    End Sub
+
     Private Sub CalDataBatch()
         Try
             Dim rep As New InsuranceBusiness.InsuranceBusinessClient
-            If rep.CalInsTotalSalaryBatch(Common.Common.GetUserName(), InsCommon.getDate(txtFROMDATE.SelectedDate) _
+            If rep.CalInsTotalSalaryBatch(Common.Common.GetUsername(), InsCommon.getDate(txtFROMDATE.SelectedDate) _
                                                                      , InsCommon.getDate(txtTODATE.SelectedDate) _
                                                                      , InsCommon.getNumber(ddlINS_ORG_ID.SelectedValue)) Then
                 CurrentState = CommonMessage.STATE_NORMAL
@@ -568,13 +675,13 @@ Public Class ctrlInsTotalSalary
         End Try
     End Sub
 
-    Private Sub LockData()
+    Private Sub LockData(ByVal status As Integer)
         Try
             Dim rep As New InsuranceBusiness.InsuranceBusinessClient
-            If rep.LockInsTotalSalary(Common.Common.GetUserName(), InsCommon.getNumber(txtYear.Text) _
+            If rep.LockInsTotalSalary(Common.Common.GetUsername(), InsCommon.getNumber(txtYear.Text) _
                                        , InsCommon.getNumber(txtMonth.Text) _
                                        , InsCommon.getNumber(ddlINS_ORG_ID.SelectedValue) _
-                                       , InsCommon.getString(ddlPeriod.SelectedValue)
+                                       , status
                                        ) Then
                 Refresh("")
             Else
@@ -603,7 +710,7 @@ Public Class ctrlInsTotalSalary
 
             Using xls As New ExcelCommon
 
-                Dim lstSource As DataTable = (New InsuranceBusiness.InsuranceBusinessClient).GetInsTotalSalary(Common.Common.GetUserName(), InsCommon.getNumber(txtYear.Text) _
+                Dim lstSource As DataTable = (New InsuranceBusiness.InsuranceBusinessClient).GetInsTotalSalary(Common.Common.GetUsername(), InsCommon.getNumber(txtYear.Text) _
                                     , InsCommon.getNumber(txtMonth.Text) _
                                     , InsCommon.getNumber(ddlINS_ORG_ID.SelectedValue) _
                                      , InsCommon.getString(ddlPeriod.SelectedValue) _

@@ -2991,6 +2991,46 @@ Partial Public Class InsuranceRepository
 
     End Function
 
+    Public Function CHECK_INS_TOTALSALARY_LOCK(ByVal P_YEAR As Integer, ByVal P_MONTH As Integer, ByVal P_INS_ORG_ID As Integer) As Boolean
+        Using cls As New DataAccess.QueryData
+            Dim dtData As DataTable = cls.ExecuteStore("PKG_INS_BUSINESS.CHECK_INS_TOTALSALARY_LOCK",
+                                           New With {.P_YEAR = P_YEAR,
+                                                     .P_MONTH = P_MONTH,
+                                                     .P_INS_ORG_ID = P_INS_ORG_ID,
+                                                     .P_CUR = cls.OUT_CURSOR})
+            If Integer.Parse(dtData.Rows(0)("ID")) > 0 Then
+                Return True
+            Else
+                Return False
+            End If
+        End Using
+    End Function
+
+    Public Function INSERT_TOTALSALARY_CAL(ByVal P_INS_ORG_ID As Decimal, ByVal P_YEAR As Decimal, ByVal P_MONTH As Decimal, ByVal P_SALARY As Decimal) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_INS_LIST.INSERT_TOTALSALARY_CAL",
+                                 New With {.P_INS_ORG_ID = P_INS_ORG_ID, .P_YEAR = P_YEAR, .P_MONTH = P_MONTH, .P_SALARY = P_SALARY})
+            End Using
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+
+    End Function
+
+    Public Function GET_REARL_FILED(ByVal P_INS_ORG_ID As Decimal, ByVal P_YEAR As Decimal, ByVal P_MONTH As Decimal) As Decimal
+        Using cls As New DataAccess.QueryData
+            Dim dtData As DataTable = cls.ExecuteStore("PKG_INS_LIST.GET_REARL_FILED",
+                                           New With {.P_INS_ORG_ID = P_INS_ORG_ID,
+                                                     .P_YEAR = P_YEAR,
+                                                     .P_MONTH = P_MONTH,
+                                                     .P_CUR = cls.OUT_CURSOR})
+           
+                Return Integer.Parse(dtData.Rows(0)("ID"))
+        End Using
+    End Function
+
 #End Region
 
 End Class

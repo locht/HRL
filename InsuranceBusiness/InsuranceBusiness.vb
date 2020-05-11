@@ -924,7 +924,7 @@ Namespace InsuranceBusiness.ServiceImplementations
         End Function
         Public Function GetInsTotalSalary_Summary(ByVal username As String, ByVal year As Double? _
        , ByVal month As Double? _
-       , ByVal ins_org_id As Double? _
+       , ByVal ins_org_id As String _
        , ByVal period As String _
        , ByVal isPre As String _
        ) As DataTable _
@@ -986,7 +986,7 @@ Namespace InsuranceBusiness.ServiceImplementations
         Public Function LockInsTotalSalary(ByVal username As String, ByVal year As Double? _
                                            , ByVal month As Double? _
                                            , ByVal ins_org_id As Double? _
-                                           , ByVal period As String
+                                           , ByVal status As Integer
                                            ) As Double _
                 Implements ServiceContracts.IInsuranceBusiness.LockInsTotalSalary
             Try
@@ -995,7 +995,8 @@ Namespace InsuranceBusiness.ServiceImplementations
                                                         , .P_YEAR = IIf(year Is Nothing, System.DBNull.Value, year) _
                                                         , .P_MONTH = IIf(month Is Nothing, System.DBNull.Value, month) _
                                                         , .P_INS_ORG_ID = IIf(ins_org_id Is Nothing, System.DBNull.Value, ins_org_id) _
-                                                        , .P_PERIOD = IIf(period Is Nothing, System.DBNull.Value, period)})
+                                                        , .P_STATUS = status _
+                                                        , .P_CUR = OUT_CURSOR})
 
                 Return 1
             Catch ex As Exception

@@ -131,6 +131,15 @@ Partial Public Class ctrlInsTotalSalary
     Protected WithEvents btnLock As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
+    '''btnUnLock control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnUnLock As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
     '''divCalBatch control.
     '''</summary>
     '''<remarks>
@@ -768,6 +777,42 @@ Partial Public Class ctrlInsTotalSalary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtSumit_2_BHTNLD_G As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''rtxtSalaryTotal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rtxtSalaryTotal As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''rtxtRealFiled control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rtxtRealFiled As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''btnSave control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnSave As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''rtxtSalaryCL control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rtxtSalaryCL As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''ctrlMessageBox control.

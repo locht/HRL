@@ -936,6 +936,39 @@ Namespace InsuranceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+
+        Public Function CHECK_INS_TOTALSALARY_LOCK(ByVal P_YEAR As Integer, ByVal P_MONTH As Integer, ByVal P_INS_ORG_ID As Integer) As Boolean _
+         Implements ServiceContracts.IInsuranceBusiness.CHECK_INS_TOTALSALARY_LOCK
+            Using rep As New InsuranceRepository
+                Try
+                    Return rep.CHECK_INS_TOTALSALARY_LOCK(P_YEAR, P_MONTH, P_INS_ORG_ID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function INSERT_TOTALSALARY_CAL(ByVal P_INS_ORG_ID As Decimal, ByVal P_YEAR As Decimal, ByVal P_MONTH As Decimal, ByVal P_SALARY As Decimal) As Boolean _
+         Implements ServiceContracts.IInsuranceBusiness.INSERT_TOTALSALARY_CAL
+            Using rep As New InsuranceRepository
+                Try
+                    Return rep.INSERT_TOTALSALARY_CAL(P_INS_ORG_ID, P_YEAR, P_MONTH, P_SALARY)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function GET_REARL_FILED(ByVal P_INS_ORG_ID As Decimal, ByVal P_YEAR As Decimal, ByVal P_MONTH As Decimal) As Decimal _
+         Implements ServiceContracts.IInsuranceBusiness.GET_REARL_FILED
+            Using rep As New InsuranceRepository
+                Try
+                    Return rep.GET_REARL_FILED(P_INS_ORG_ID, P_YEAR, P_MONTH)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #End Region
 
     End Class

@@ -58,7 +58,9 @@
                             CausesValidation="false" />
                         <tlk:RadButton runat="server" ID="btnExport" Visible="false" Text="<%$ Translate: Xuất dữ liệu %>"
                             CausesValidation="false" />
-                        <tlk:RadButton runat="server" ID="btnLock" Visible="false" Text="<%$ Translate: Khóa %>"
+                       <tlk:RadButton runat="server" ID="btnLock" Visible="false" Text="<%$ Translate: Khóa %>"
+                            CausesValidation="false" />
+                        <tlk:RadButton runat="server" ID="btnUnLock" Visible="false" Text="<%$ Translate: Mở %>"
                             CausesValidation="false" />
                     </td>
                 </tr>
@@ -154,18 +156,18 @@
                         HeaderStyle-Width="110px" DataField="SI_SAL_OLD" UniqueName="SI_SAL_OLD" SortExpression="SI_SAL_OLD" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHXH mới %>" DataFormatString="{0:N0}"
                         HeaderStyle-Width="110px" DataField="SI_SAL" UniqueName="SI_SAL" SortExpression="SI_SAL" />
-                  <%--  <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHYT cũ %>" DataFormatString="{0:N0}"
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHYT cũ %>" DataFormatString="{0:N0}"
                         HeaderStyle-Width="110px" DataField="HI_SAL_OLD" UniqueName="HI_SAL_OLD" SortExpression="HI_SAL_OLD" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHYT mới %>" DataFormatString="{0:N0}"
-                        HeaderStyle-Width="110px" DataField="HI_SAL" UniqueName="HI_SAL" SortExpression="HI_SAL" />--%>
-                   <%-- <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHTN cũ %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="HI_SAL" UniqueName="HI_SAL" SortExpression="HI_SAL" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHTN cũ %>" DataFormatString="{0:N0}"
                         HeaderStyle-Width="110px" DataField="UI_SAL_OLD" UniqueName="UI_SAL_OLD" SortExpression="UI_SAL_OLD" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHTN mới %>" DataFormatString="{0:N0}"
-                        HeaderStyle-Width="110px" DataField="UI_SAL" UniqueName="UI_SAL" SortExpression="UI_SAL" />--%>
-                <%--   <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHTNLD-BNN cũ %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="UI_SAL" UniqueName="UI_SAL" SortExpression="UI_SAL" />
+                   <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHTNLD-BNN cũ %>" DataFormatString="{0:N0}"
                         HeaderStyle-Width="110px" DataField="BHTNLD_SAL_OLD" UniqueName="BHTNLD_SAL_OLD" SortExpression="BHTNLD_SAL_OLD" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức đóng BHTNLD-BNN mới %>" DataFormatString="{0:N0}"
-                        HeaderStyle-Width="110px" DataField="BHTNLD_SAL" UniqueName="BHTNLD_SAL" SortExpression="BHTNLD_SAL" />--%>
+                        HeaderStyle-Width="110px" DataField="BHTNLD_SAL" UniqueName="BHTNLD_SAL" SortExpression="BHTNLD_SAL" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Đợt khai báo %>" DataFormatString="{0:dd/MM/yyyy}"
                         HeaderStyle-Width="110px" DataField="PERIOD" UniqueName="PERIOD" SortExpression="PERIOD" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Điều chỉnh BHXH(NV)  %>" DataFormatString="{0:N0}"
@@ -184,6 +186,10 @@
                         HeaderStyle-Width="110px" DataField="UI_ADJUST_COM" UniqueName="UI_ADJUST_COM" SortExpression="UI_ADJUST_COM" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: ĐĐiều chỉnh BHTNLD-BNN(CTY) %>" DataFormatString="{0:N0}"
                         HeaderStyle-Width="110px" DataField="BHTNLD_BNN_ADJUST_COM" UniqueName="BHTNLD_BNN_ADJUST_COM" SortExpression="BHTNLD_BNN_ADJUST_COM" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Bổ sung BHYT  %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="HI_ADD" UniqueName="HI_ADD" SortExpression="HI_ADD" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Bổ sung BHTN %>" DataFormatString="{0:N0}"
+                        HeaderStyle-Width="110px" DataField="UI_ADD" UniqueName="UI_ADD" SortExpression="UI_ADD" />
                      <tlk:GridBoundColumn HeaderText="<%$ Translate: %BHXH công ty %>" DataFormatString="{0:#,##0.#}%"
                         HeaderStyle-Width="110px" DataField="RATE_SI_COM" UniqueName="RATE_SI_COM" SortExpression="RATE_SI_COM" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: %BHXH nhân viên %>" DataFormatString="{0:#,##0.#}%"
@@ -201,14 +207,10 @@
                      <tlk:GridBoundColumn HeaderText="<%$ Translate: % BHTNLD-BNN nhân viên %>" DataFormatString="{0:#,##0.#}%"
                         HeaderStyle-Width="120px" DataField="RATE_BHTNLD_BNN_EMP" UniqueName="RATE_BHTNLD_BNN_EMP" SortExpression="RATE_BHTNLD_BNN_EMP" />
 
-<%--                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức lương cũ %>" DataFormatString="{0:N0}"
+                    <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Mức lương cũ %>" DataFormatString="{0:N0}"
                         HeaderStyle-Width="110px" DataField="OLD_SAL" UniqueName="OLD_SAL" SortExpression="OLD_SAL" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mức lương mới %>" DataFormatString="{0:N0}"
-                        HeaderStyle-Width="110px" DataField="NEW_SAL" UniqueName="NEW_SAL" SortExpression="NEW_SAL" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Bổ sung BHYT  %>" DataFormatString="{0:N0}"
-                        HeaderStyle-Width="110px" DataField="HI_ADD" UniqueName="HI_ADD" SortExpression="HI_ADD" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Bổ sung BHTN %>" DataFormatString="{0:N0}"
-                        HeaderStyle-Width="110px" DataField="UI_ADD" UniqueName="UI_ADD" SortExpression="UI_ADD" />--%>
+                        HeaderStyle-Width="110px" DataField="NEW_SAL" UniqueName="NEW_SAL" SortExpression="NEW_SAL" />--%>
                 </Columns>
             </MasterTableView>
         </tlk:RadGrid>
@@ -681,6 +683,43 @@
                                 <td>
                                     <tlk:RadNumericTextBox ID="txtSumit_2_BHTNLD_G" MinValue="0" Value="0" ReadOnly="true"
                                         runat="server" Width="115px">
+                                        <NumberFormat GroupSeparator="," DecimalDigits="0" />
+                                    </tlk:RadNumericTextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lb">
+                                    <%# Translate("4. Tổng cộng")%>
+                                </td>
+                                <td>
+                                    <tlk:RadNumericTextBox ID="rtxtSalaryTotal" MinValue="0" Value="0" ReadOnly="true"
+                                        runat="server">
+                                        <NumberFormat GroupSeparator="," DecimalDigits="0" />
+                                    </tlk:RadNumericTextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lb">
+                                    <%# Translate("Số tiền thực nộp")%>
+                                </td>
+                                <td>
+                                    <tlk:RadNumericTextBox ID="rtxtRealFiled" Value="0" AutoPostBack="true"
+                                        runat="server">
+                                        <NumberFormat GroupSeparator="," DecimalDigits="0" />
+                                    </tlk:RadNumericTextBox>
+                                </td>
+                                 <td>
+                                     <tlk:RadButton runat="server" ID="btnSave" Visible="true" Text="<%$ Translate: Lưu %>"
+                                     CausesValidation="false" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lb">
+                                    <%# Translate("Số tiền chênh lệch")%>
+                                </td>
+                                <td>
+                                    <tlk:RadNumericTextBox ID="rtxtSalaryCL" Value="0" ReadOnly="true"
+                                        runat="server">
                                         <NumberFormat GroupSeparator="," DecimalDigits="0" />
                                     </tlk:RadNumericTextBox>
                                 </td>

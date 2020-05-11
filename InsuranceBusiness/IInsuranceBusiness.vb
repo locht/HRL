@@ -750,7 +750,7 @@ Namespace InsuranceBusiness.ServiceContracts
         <OperationContract()>
         Function GetInsTotalSalary_Summary(ByVal username As String, ByVal year As Double? _
                                         , ByVal month As Double? _
-                                        , ByVal ins_org_id As Double? _
+                                        , ByVal ins_org_id As String _
                                         , ByVal period As String _
                                         , ByVal isPre As String _
                                         ) As DataTable
@@ -771,7 +771,7 @@ Namespace InsuranceBusiness.ServiceContracts
         Function LockInsTotalSalary(ByVal username As String, ByVal year As Double? _
     , ByVal month As Double? _
     , ByVal ins_org_id As Double? _
-    , ByVal period As String
+    , ByVal status As Integer
     ) As Double
 
         'Cap nhat thong tin BH
@@ -879,5 +879,13 @@ Namespace InsuranceBusiness.ServiceContracts
         <OperationContract()>
         Function INPORT_INS_INFORMATION(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
 
+        <OperationContract()>
+        Function CHECK_INS_TOTALSALARY_LOCK(ByVal P_YEAR As Integer, ByVal P_MONTH As Integer, ByVal P_INS_ORG_ID As Integer) As Boolean
+
+        <OperationContract()>
+        Function INSERT_TOTALSALARY_CAL(ByVal P_INS_ORG_ID As Decimal, ByVal P_YEAR As Decimal, ByVal P_MONTH As Decimal, ByVal P_SALARY As Decimal) As Boolean
+
+        <OperationContract()>
+        Function GET_REARL_FILED(ByVal P_INS_ORG_ID As Decimal, ByVal P_YEAR As Decimal, ByVal P_MONTH As Decimal) As Decimal
     End Interface
 End Namespace

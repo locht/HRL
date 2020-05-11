@@ -10983,6 +10983,15 @@ Namespace InsuranceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/INPORT_INS_INFORMATION", ReplyAction:="http://tempuri.org/IInsuranceBusiness/INPORT_INS_INFORMATIONResponse")>  _
         Function INPORT_INS_INFORMATION(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/CHECK_INS_TOTALSALARY_LOCK", ReplyAction:="http://tempuri.org/IInsuranceBusiness/CHECK_INS_TOTALSALARY_LOCKResponse")>  _
+        Function CHECK_INS_TOTALSALARY_LOCK(ByVal P_YEAR As Integer, ByVal P_MONTH As Integer, ByVal P_INS_ORG_ID As Integer) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/INSERT_TOTALSALARY_CAL", ReplyAction:="http://tempuri.org/IInsuranceBusiness/INSERT_TOTALSALARY_CALResponse")>  _
+        Function INSERT_TOTALSALARY_CAL(ByVal P_INS_ORG_ID As Decimal, ByVal P_YEAR As Decimal, ByVal P_MONTH As Decimal, ByVal P_SALARY As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GET_REARL_FILED", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GET_REARL_FILEDResponse")>  _
+        Function GET_REARL_FILED(ByVal P_INS_ORG_ID As Decimal, ByVal P_YEAR As Decimal, ByVal P_MONTH As Decimal) As Decimal
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGEById", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGEByIdResponse")>  _
         Function GetINS_CHANGEById(ByVal _id As System.Nullable(Of Decimal)) As InsuranceBusiness.INS_CHANGEDTO
         
@@ -11366,7 +11375,7 @@ Namespace InsuranceBusiness
         Function GetInsTotalSalaryPeriod(ByVal username As String, ByVal year As System.Nullable(Of Double), ByVal month As System.Nullable(Of Double), ByVal ins_org_id As System.Nullable(Of Double), ByVal period As String) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsTotalSalary_Summary", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsTotalSalary_SummaryResponse")>  _
-        Function GetInsTotalSalary_Summary(ByVal username As String, ByVal year As System.Nullable(Of Double), ByVal month As System.Nullable(Of Double), ByVal ins_org_id As System.Nullable(Of Double), ByVal period As String, ByVal isPre As String) As System.Data.DataTable
+        Function GetInsTotalSalary_Summary(ByVal username As String, ByVal year As System.Nullable(Of Double), ByVal month As System.Nullable(Of Double), ByVal ins_org_id As String, ByVal period As String, ByVal isPre As String) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/CalInsTotalSalary", ReplyAction:="http://tempuri.org/IInsuranceBusiness/CalInsTotalSalaryResponse")>  _
         Function CalInsTotalSalary(ByVal username As String, ByVal year As System.Nullable(Of Double), ByVal month As System.Nullable(Of Double), ByVal ins_org_id As System.Nullable(Of Double), ByVal period As String) As Double
@@ -11375,7 +11384,7 @@ Namespace InsuranceBusiness
         Function CalInsTotalSalaryBatch(ByVal username As String, ByVal fromdate As Date, ByVal todate As Date, ByVal ins_org_id As System.Nullable(Of Double)) As Double
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/LockInsTotalSalary", ReplyAction:="http://tempuri.org/IInsuranceBusiness/LockInsTotalSalaryResponse")>  _
-        Function LockInsTotalSalary(ByVal username As String, ByVal year As System.Nullable(Of Double), ByVal month As System.Nullable(Of Double), ByVal ins_org_id As System.Nullable(Of Double), ByVal period As String) As Double
+        Function LockInsTotalSalary(ByVal username As String, ByVal year As System.Nullable(Of Double), ByVal month As System.Nullable(Of Double), ByVal ins_org_id As System.Nullable(Of Double), ByVal status As Integer) As Double
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetListDataImportHelth", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetListDataImportHelthResponse")>  _
         Function GetListDataImportHelth(ByVal id As System.Nullable(Of Double)) As System.Data.DataSet
@@ -11911,6 +11920,18 @@ Namespace InsuranceBusiness
             Return MyBase.Channel.INPORT_INS_INFORMATION(P_DOCXML, P_USER)
         End Function
         
+        Public Function CHECK_INS_TOTALSALARY_LOCK(ByVal P_YEAR As Integer, ByVal P_MONTH As Integer, ByVal P_INS_ORG_ID As Integer) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.CHECK_INS_TOTALSALARY_LOCK
+            Return MyBase.Channel.CHECK_INS_TOTALSALARY_LOCK(P_YEAR, P_MONTH, P_INS_ORG_ID)
+        End Function
+        
+        Public Function INSERT_TOTALSALARY_CAL(ByVal P_INS_ORG_ID As Decimal, ByVal P_YEAR As Decimal, ByVal P_MONTH As Decimal, ByVal P_SALARY As Decimal) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.INSERT_TOTALSALARY_CAL
+            Return MyBase.Channel.INSERT_TOTALSALARY_CAL(P_INS_ORG_ID, P_YEAR, P_MONTH, P_SALARY)
+        End Function
+        
+        Public Function GET_REARL_FILED(ByVal P_INS_ORG_ID As Decimal, ByVal P_YEAR As Decimal, ByVal P_MONTH As Decimal) As Decimal Implements InsuranceBusiness.IInsuranceBusiness.GET_REARL_FILED
+            Return MyBase.Channel.GET_REARL_FILED(P_INS_ORG_ID, P_YEAR, P_MONTH)
+        End Function
+        
         Public Function GetINS_CHANGEById(ByVal _id As System.Nullable(Of Decimal)) As InsuranceBusiness.INS_CHANGEDTO Implements InsuranceBusiness.IInsuranceBusiness.GetINS_CHANGEById
             Return MyBase.Channel.GetINS_CHANGEById(_id)
         End Function
@@ -12370,7 +12391,7 @@ Namespace InsuranceBusiness
             Return MyBase.Channel.GetInsTotalSalaryPeriod(username, year, month, ins_org_id, period)
         End Function
         
-        Public Function GetInsTotalSalary_Summary(ByVal username As String, ByVal year As System.Nullable(Of Double), ByVal month As System.Nullable(Of Double), ByVal ins_org_id As System.Nullable(Of Double), ByVal period As String, ByVal isPre As String) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetInsTotalSalary_Summary
+        Public Function GetInsTotalSalary_Summary(ByVal username As String, ByVal year As System.Nullable(Of Double), ByVal month As System.Nullable(Of Double), ByVal ins_org_id As String, ByVal period As String, ByVal isPre As String) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetInsTotalSalary_Summary
             Return MyBase.Channel.GetInsTotalSalary_Summary(username, year, month, ins_org_id, period, isPre)
         End Function
         
@@ -12382,8 +12403,8 @@ Namespace InsuranceBusiness
             Return MyBase.Channel.CalInsTotalSalaryBatch(username, fromdate, todate, ins_org_id)
         End Function
         
-        Public Function LockInsTotalSalary(ByVal username As String, ByVal year As System.Nullable(Of Double), ByVal month As System.Nullable(Of Double), ByVal ins_org_id As System.Nullable(Of Double), ByVal period As String) As Double Implements InsuranceBusiness.IInsuranceBusiness.LockInsTotalSalary
-            Return MyBase.Channel.LockInsTotalSalary(username, year, month, ins_org_id, period)
+        Public Function LockInsTotalSalary(ByVal username As String, ByVal year As System.Nullable(Of Double), ByVal month As System.Nullable(Of Double), ByVal ins_org_id As System.Nullable(Of Double), ByVal status As Integer) As Double Implements InsuranceBusiness.IInsuranceBusiness.LockInsTotalSalary
+            Return MyBase.Channel.LockInsTotalSalary(username, year, month, ins_org_id, status)
         End Function
         
         Public Function GetListDataImportHelth(ByVal id As System.Nullable(Of Double)) As System.Data.DataSet Implements InsuranceBusiness.IInsuranceBusiness.GetListDataImportHelth
