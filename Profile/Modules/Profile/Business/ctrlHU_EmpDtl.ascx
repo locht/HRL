@@ -46,6 +46,8 @@
                             NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlWorkingBefore&state=Normal", EmployeeID) %>' />
                         <tlk:RadPanelItem Value="ctrlHU_EmpDtlSalary" Text="<%$ Translate:Quá trình lương - phụ cấp%>"
                             NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlSalary&state=Normal", EmployeeID) %>' />
+                        <%-- <tlk:RadPanelItem Value="ctrlHU_EmpDtlSalary" Text="<%$ Translate:Quá trình bảo hiểm%>"
+                            NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlInsurance&state=Normal", EmployeeID) %>' />--%>
                         <tlk:RadPanelItem Value="ctrlHU_EmpDtlBackGround" Text="<%$ Translate:Quản lý thông tin lí lịch cá nhân%>"
                             NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlBackGround&state=Normal", EmployeeID) %>' />
                         <tlk:RadPanelItem Value="ctrlHU_EmpDtlContract" Text="<%$ Translate:Quá trình ký hợp đồng lao động%>"
@@ -64,8 +66,8 @@
                             NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlDiscipline&state=Normal", EmployeeID) %>' />
                         <tlk:RadPanelItem Value="ctrlHU_EmpDtlDiscipline" Text="<%$ Translate:Quá trình sức khỏe%>"
                             NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlHealthMng&state=Normal", EmployeeID) %>' />
-                        <%-- <tlk:RadPanelItem Value="ctrlHU_EmpDtlInsurance" Text="<%$ Translate:Quá trình tham gia bảo hiểm%>"
-                            NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlInsurance&state=Normal", EmployeeID) %>' />--%>
+                         <tlk:RadPanelItem Value="ctrlHU_EmpDtlInsurance" Text="<%$ Translate:Quá trình tham gia bảo hiểm%>"
+                            NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlInsurance&state=Normal", EmployeeID) %>' />
                         <tlk:RadPanelItem Value="ctrlHU_EmpDtlFamily" Text="<%$ Translate:Gia cảnh người thân%>"
                             NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlFamily&state=Normal", EmployeeID) %>' />
                         <tlk:RadPanelItem Value="ctrlHU_EmpDtlDeduct" Text="<%$ Translate:Giảm trừ gia cảnh%>"

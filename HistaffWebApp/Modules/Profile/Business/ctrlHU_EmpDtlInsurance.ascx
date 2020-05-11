@@ -1,8 +1,6 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlHU_EmpDtlInsurance.ascx.vb"
     Inherits="Profile.ctrlHU_EmpDtlInsurance" %>
 <%@ Register Src="../Shared/ctrlEmpBasicInfo.ascx" TagName="ctrlEmpBasicInfo" TagPrefix="Profile" %>
-
-<link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
 <tlk:RadSplitter ID="RadSplitter2" runat="server" Height="100%" Width="100%" Orientation="Horizontal" SkinID="Demo">
     <tlk:RadPane ID="RadPane2" runat="server" Height="40px" Scrolling="None">
         <Profile:ctrlEmpBasicInfo runat="server" ID="ctrlEmpBasicInfo" />
@@ -21,7 +19,7 @@
                         SortExpression="TOTAL_INS" UniqueName="TOTAL_INS" ItemStyle-HorizontalAlign="Right" AutoPostBackOnFilter="true" />
                     <tlk:GridNumericColumn HeaderText="<%$ Translate: Tiền lương đóng BH %>" DataFormatString="{0:n0}"
                         DataField="BAS_SAL" SortExpression="BAS_SAL" UniqueName="BAS_SAL" ItemStyle-HorizontalAlign="Right" AutoPostBackOnFilter="true" />--%>
-                        <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Đợt khai báo %>" DataField="DECLARE_DATE"
+                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Đợt khai báo %>" DataField="DECLARE_DATE"
                             DataFormatString="{0:MM/yyyy}" UniqueName="DECLARE_DATE" SortExpression="DECLARE_DATE"
                             HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo"
                             AutoPostBackOnFilter="true" />
@@ -61,36 +59,41 @@
                             FilterControlWidth="20px" ShowFilterIcon="false" SortExpression="UI_CHK" UniqueName="UI_CHK">
                             <HeaderStyle HorizontalAlign="Center" Width="40px" />
                         </tlk:GridCheckBoxColumn>
+                         <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: BHTNLD - BNN %>" DataField="BHTNLDBNN_CHK" DataType="System.Boolean"
+                            FilterControlWidth="20px" ShowFilterIcon="false" SortExpression="BHTNLDBNN_CHK" UniqueName="BHTNLDBNN_CHK">
+                            <HeaderStyle HorizontalAlign="Center" Width="40px" />
+                        </tlk:GridCheckBoxColumn>
+                          <tlk:GridBoundColumn HeaderText="<%$ Translate: Công việc %>" DataField="TITLE_NAME"
+                            UniqueName="TITLE_NAME" SortExpression="TITLE_NAME" ShowFilterIcon="false"
+                            HeaderStyle-Width="150px" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
+                            FilterControlWidth="100%">
+                            <HeaderStyle HorizontalAlign="Center" />
+                        </tlk:GridBoundColumn>
+                          <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="ORG_NAME"
+                            UniqueName="ORG_NAME" SortExpression="ORG_NAME" ShowFilterIcon="false"
+                            HeaderStyle-Width="150px" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
+                            FilterControlWidth="100%">
+                            <HeaderStyle HorizontalAlign="Center" />
+                        </tlk:GridBoundColumn>
+                          <tlk:GridNumericColumn HeaderText="Truy thu BHXH" DataFormatString="{0:###,##0.##}" DataField="A_SI" UniqueName="A_SI" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
+                                SortExpression="A_SI"/>
+                            <tlk:GridNumericColumn HeaderText="Truy thu BHYT" DataFormatString="{0:###,##0.##}" DataField="A_HI" UniqueName="A_HI" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
+                                SortExpression="A_HI"/>
+                            <tlk:GridNumericColumn HeaderText="Truy thu BHTN" DataFormatString="{0:###,##0.##}" DataField="A_UI" UniqueName="A_UI" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
+                                SortExpression="A_UI"/>
+                            <tlk:GridNumericColumn HeaderText="Truy thu BHTNLĐ – BNN" DataFormatString="{0:###,##0.##}" DataField="A_TNLD_BNN" UniqueName="A_TNLD_BNN" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
+                                SortExpression="A_TNLD_BNN"/>
+                          <tlk:GridNumericColumn HeaderText="Thoái thu BHXH" DataFormatString="{0:###,##0.##}" DataField="R_SI" UniqueName="R_SI" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
+                                SortExpression="R_SI"/>                            
+                            <tlk:GridNumericColumn HeaderText="Thoái thu BHYT" DataFormatString="{0:###,##0.##}" DataField="R_HI" UniqueName="R_HI" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
+                                SortExpression="R_HI"/>                            
+                            <tlk:GridNumericColumn HeaderText="Thoái thu BHTN" DataFormatString="{0:###,##0.##}" DataField="R_UI" UniqueName="R_UI" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
+                                SortExpression="R_UI"/>
+                            <tlk:GridNumericColumn HeaderText="Thoái thu BHTNLĐ – BNN" DataFormatString="{0:###,##0.##}" DataField="R_TNLD_BNN" UniqueName="R_TNLD_BNN" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
+                                SortExpression="R_TNLD_BNN"/>
                 </Columns>
                 <HeaderStyle Width="100px" />
             </MasterTableView>
-            <ClientSettings>
-                <Selecting AllowRowSelect="True" />
-                <ClientEvents OnGridCreated="GridCreated" />
-                <ClientEvents OnCommand="ValidateFilter" />
-            </ClientSettings>
         </tlk:RadGrid>
     </tlk:RadPane>
 </tlk:RadSplitter>
-<tlk:RadScriptBlock ID="scriptBlock" runat="server">
-    <script type="text/javascript">
-
-        function ValidateFilter(sender, eventArgs) {
-            var params = eventArgs.get_commandArgument() + '';
-            if (params.indexOf("|") > 0) {
-                var s = eventArgs.get_commandArgument().split("|");
-                if (s.length > 1) {
-                    var val = s[1];
-                    if (validateHTMLText(val) || validateSQLText(val)) {
-                        eventArgs.set_cancel(true);
-                    }
-                }
-            }
-        }
-
-        function GridCreated(sender, eventArgs) {
-            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_EmpDtl_ctrlHU_EmpDtlInsurance_RadSplitter2');
-        }
-
-    </script>
-</tlk:RadScriptBlock>

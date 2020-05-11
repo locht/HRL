@@ -59,7 +59,38 @@
                             FilterControlWidth="20px" ShowFilterIcon="false" SortExpression="UI_CHK" UniqueName="UI_CHK">
                             <HeaderStyle HorizontalAlign="Center" Width="40px" />
                         </tlk:GridCheckBoxColumn>
-                    </Columns>
+                         <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: BHTNLD - BNN %>" DataField="BHTNLDBNN_CHK" DataType="System.Boolean"
+                            FilterControlWidth="20px" ShowFilterIcon="false" SortExpression="BHTNLDBNN_CHK" UniqueName="BHTNLDBNN_CHK">
+                            <HeaderStyle HorizontalAlign="Center" Width="40px" />
+                        </tlk:GridCheckBoxColumn>
+                          <tlk:GridBoundColumn HeaderText="<%$ Translate: Công việc %>" DataField="TITLE_NAME"
+                            UniqueName="TITLE_NAME" SortExpression="TITLE_NAME" ShowFilterIcon="false"
+                            HeaderStyle-Width="150px" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
+                            FilterControlWidth="100%">
+                            <HeaderStyle HorizontalAlign="Center" />
+                        </tlk:GridBoundColumn>
+                          <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="ORG_NAME"
+                            UniqueName="ORG_NAME" SortExpression="ORG_NAME" ShowFilterIcon="false"
+                            HeaderStyle-Width="150px" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
+                            FilterControlWidth="100%">
+                            <HeaderStyle HorizontalAlign="Center" />
+                        </tlk:GridBoundColumn>
+                          <tlk:GridNumericColumn HeaderText="Truy thu BHXH" DataFormatString="{0:###,##0.##}" DataField="A_SI" UniqueName="A_SI" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
+                                SortExpression="A_SI"/>
+                            <tlk:GridNumericColumn HeaderText="Truy thu BHYT" DataFormatString="{0:###,##0.##}" DataField="A_HI" UniqueName="A_HI" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
+                                SortExpression="A_HI"/>
+                            <tlk:GridNumericColumn HeaderText="Truy thu BHTN" DataFormatString="{0:###,##0.##}" DataField="A_UI" UniqueName="A_UI" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
+                                SortExpression="A_UI"/>
+                            <tlk:GridNumericColumn HeaderText="Truy thu BHTNLĐ – BNN" DataFormatString="{0:###,##0.##}" DataField="A_TNLD_BNN" UniqueName="A_TNLD_BNN" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
+                                SortExpression="A_TNLD_BNN"/>
+                          <tlk:GridNumericColumn HeaderText="Thoái thu BHXH" DataFormatString="{0:###,##0.##}" DataField="R_SI" UniqueName="R_SI" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
+                                SortExpression="R_SI"/>                            
+                            <tlk:GridNumericColumn HeaderText="Thoái thu BHYT" DataFormatString="{0:###,##0.##}" DataField="R_HI" UniqueName="R_HI" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
+                                SortExpression="R_HI"/>                            
+                            <tlk:GridNumericColumn HeaderText="Thoái thu BHTN" DataFormatString="{0:###,##0.##}" DataField="R_UI" UniqueName="R_UI" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
+                                SortExpression="R_UI"/>
+                            <tlk:GridNumericColumn HeaderText="Thoái thu BHTNLĐ – BNN" DataFormatString="{0:###,##0.##}" DataField="R_TNLD_BNN" UniqueName="R_TNLD_BNN" HeaderStyle-Width="100px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" 
+                                SortExpression="R_TNLD_BNN"/>
                 </Columns>
                 <HeaderStyle Width="100px" />
             </MasterTableView>
