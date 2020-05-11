@@ -32,6 +32,16 @@ Namespace AttendanceBusiness.ServiceImplementations
                 Return New List(Of AT_SymbolsDTO)
             End Try
         End Function
+        Public Function ValidateAT_SYMBOLS(ByVal objData As AT_SymbolsDTO) As Boolean Implements ServiceContracts.IAttendanceBusiness.ValidateAT_SYMBOLS
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.ValidateAT_SYMBOLS(objData)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #End Region
         Public Function CHECK_CONTRACT(ByVal employee_id As Decimal) As DataTable _
               Implements ServiceContracts.IAttendanceBusiness.CHECK_CONTRACT

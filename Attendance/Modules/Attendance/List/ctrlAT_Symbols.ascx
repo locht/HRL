@@ -2,7 +2,37 @@
     Inherits="Attendance.ctrlAT_Symbols" %>
 <%@ Import Namespace="Common" %>
 <link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
-
+<style type="text/css">
+    #ctl00_MainContent_ctrlAT_Symbols_rgDanhMuc_ctl00_ctl02_ctl02_FilterCheckBox_IS_DISPLAY
+    {
+        display: none;
+    }
+    #ctl00_MainContent_ctrlAT_Symbols_rgDanhMuc_ctl00_ctl02_ctl02_FilterCheckBox_IS_DATAFROMEXCEL
+    {
+        display: none;
+    }
+     #ctl00_MainContent_ctrlAT_Symbols_rgDanhMuc_ctl00_ctl02_ctl02_FilterCheckBox_IS_DISPLAY_PORTAL
+    {
+        display: none;
+    }
+     #ctl00_MainContent_ctrlAT_Symbols_rgDanhMuc_ctl00_ctl02_ctl02_FilterCheckBox_IS_LEAVE
+    {
+        display: none;
+    }
+     #ctl00_MainContent_ctrlAT_Symbols_rgDanhMuc_ctl00_ctl02_ctl02_FilterCheckBox_IS_LEAVE_WEEKLY
+    {
+        display: none;
+    }
+    #ctl00_MainContent_ctrlAT_Symbols_rgDanhMuc_ctl00_ctl02_ctl02_FilterCheckBox_IS_LAVE_HOLIDAY
+    {
+        display: none;
+    }
+     #ctl00_MainContent_ctrlAT_Symbols_rgDanhMuc_ctl00_ctl02_ctl02_FilterCheckBox_IS_DAY_HALF
+    {
+        display: none;
+    }
+    }
+</style>
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
     <tlk:RadPane ID="RadPane1" runat="server" Height="235px" Scrolling="None">
         <tlk:RadToolBar ID="tbarCostCenters" runat="server" />
@@ -182,36 +212,29 @@
 
                      <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Hiển thị %>" DataField="IS_DISPLAY" DataType="System.Boolean"
                                 ItemStyle-VerticalAlign="Middle" UniqueName="IS_DISPLAY" SortExpression="IS_DISPLAY" HeaderStyle-Width="40px"
-                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
-                                AutoPostBackOnFilter="true" />
+                                FilterControlWidth="99%" ShowFilterIcon="false"/>
 
                   <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Dữ liệu import %>" DataField="IS_DATAFROMEXCEL" DataType="System.Boolean"
                                 ItemStyle-VerticalAlign="Middle" UniqueName="IS_DATAFROMEXCEL" SortExpression="IS_DATAFROMEXCEL" HeaderStyle-Width="40px"
-                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
-                                AutoPostBackOnFilter="true" />
+                                FilterControlWidth="99%" ShowFilterIcon="false"/>
 
                   <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Hiển thị portal %>" DataField="IS_DISPLAY_PORTAL" DataType="System.Boolean"
                                 ItemStyle-VerticalAlign="Middle" UniqueName="IS_DISPLAY_PORTAL" SortExpression="IS_DISPLAY_PORTAL" HeaderStyle-Width="40px"
-                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
-                                AutoPostBackOnFilter="true" />
+                                FilterControlWidth="99%" ShowFilterIcon="false"/>
                     <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Dữ liệu đăng ký nghỉ %>" DataField="IS_LEAVE" DataType="System.Boolean"
                                 ItemStyle-VerticalAlign="Middle" UniqueName="IS_LEAVE" SortExpression="IS_LEAVE" HeaderStyle-Width="40px"
-                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
-                                AutoPostBackOnFilter="true" />
+                                FilterControlWidth="99%" ShowFilterIcon="false"/>
 
                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Nghỉ nguyên tuần %>" DataField="IS_LEAVE_WEEKLY" DataType="System.Boolean"
                                 ItemStyle-VerticalAlign="Middle" UniqueName="IS_LEAVE_WEEKLY" SortExpression="IS_LEAVE_WEEKLY" HeaderStyle-Width="40px"
-                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
-                                AutoPostBackOnFilter="true" />
+                                FilterControlWidth="99%" ShowFilterIcon="false"/>
                    
                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Nghỉ ngày lễ %>" DataField="IS_LAVE_HOLIDAY" DataType="System.Boolean"
                                 ItemStyle-VerticalAlign="Middle" UniqueName="IS_LAVE_HOLIDAY" SortExpression="IS_LAVE_HOLIDAY" HeaderStyle-Width="40px"
-                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
-                                AutoPostBackOnFilter="true" />
+                                FilterControlWidth="99%" ShowFilterIcon="false"/>
                     <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Nghỉ nửa ngày %>" DataField="IS_DAY_HALF" DataType="System.Boolean"
                                 ItemStyle-VerticalAlign="Middle" UniqueName="IS_DAY_HALF" SortExpression="IS_DAY_HALF" HeaderStyle-Width="40px"
-                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
-                                AutoPostBackOnFilter="true" />
+                                FilterControlWidth="99%" ShowFilterIcon="false"/>
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mô tả %>" DataField="NOTE" UniqueName="NOTE"
                         SortExpression="NOTE" />
                 </Columns>

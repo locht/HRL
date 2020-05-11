@@ -16,6 +16,8 @@ Namespace AttendanceBusiness.ServiceContracts
                                  Optional ByVal PageSize As Integer = Integer.MaxValue,
                                  Optional ByRef Total As Integer = 0,
                                  Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_SymbolsDTO)
+        <OperationContract()>
+        Function ValidateAT_SYMBOLS(ByVal objData As AT_SymbolsDTO) As Boolean
 #End Region
 #Region "LeaveSheet"
         <OperationContract()>

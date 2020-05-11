@@ -86,6 +86,10 @@ Partial Public Class AttendanceRepository
             If isInsert Then
                 Context.AT_SYMBOLS.AddObject(obj)
             End If
+            Using cls As New DataAccess.QueryData
+                Dim obj_Add_Cols = New With {.P_TABLE = "AT_DATA_ALL", .P_COL = objData.WCODE.Trim.ToUpper, .P_TYPE_COL_ID = objData.WDATATYEID, .P_OUT = cls.OUT_NUMBER}
+                Dim store = cls.ExecuteStore("PKG_ATTENDANCE_LIST.ADD_COLS_TABLE", obj_Add_Cols)
+            End Using
             gid = obj.ID
             Context.SaveChanges(log)
             Return True
@@ -155,6 +159,38 @@ Partial Public Class AttendanceRepository
             Return New List(Of AT_SymbolsDTO)
         End Try
 
+    End Function
+    Public Function ValidateAT_SYMBOLS(ByVal _validate As AT_SymbolsDTO)
+        Dim query
+        Try
+            If _validate.WCODE <> Nothing Then
+                If _validate.ID <> 0 Then
+                    query = (From p In Context.AT_SYMBOLS
+                             Where p.WCODE.ToUpper = _validate.WCODE.ToUpper _
+                             And p.ID <> _validate.ID).FirstOrDefault
+                Else
+                    query = (From p In Context.AT_SYMBOLS
+                             Where p.WCODE.ToUpper = _validate.WCODE.ToUpper).FirstOrDefault
+                End If
+                Return (query Is Nothing)
+            Else
+                If _validate.STATUS <> 0 And _validate.ID <> 0 Then
+                    query = (From p In Context.AT_SYMBOLS
+                             Where p.STATUS = _validate.STATUS _
+                             And p.ID = _validate.ID).FirstOrDefault
+                    Return (Not query Is Nothing)
+                End If
+                If _validate.ID <> 0 And _validate.STATUS = 0 Then
+                    query = (From p In Context.AT_SYMBOLS
+                             Where p.ID = _validate.ID).FirstOrDefault
+                    Return (query Is Nothing)
+                End If
+            End If
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
     End Function
 #End Region
     Dim nvalue_id As Decimal?

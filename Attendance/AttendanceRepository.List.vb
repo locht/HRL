@@ -26,6 +26,17 @@ Partial Class AttendanceRepository
             End Try
         End Using
     End Function
+    Public Function ValidateAT_SYMBOLS(ByVal obj As AT_SymbolsDTO) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.ValidateAT_SYMBOLS(obj)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
 #End Region
     Public Function CHECK_CONTRACT(ByVal employee_id As Decimal) As DataTable
         Using rep As New AttendanceBusinessClient

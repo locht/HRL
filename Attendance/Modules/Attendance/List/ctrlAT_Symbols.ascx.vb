@@ -114,9 +114,9 @@ Public Class ctrlAT_Symbols
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create,
                                        ToolbarItem.Edit,
                                        ToolbarItem.Save, ToolbarItem.Cancel,
-                                        ToolbarItem.Delete,
                                        ToolbarItem.Active, ToolbarItem.Deactive,
                                         ToolbarItem.Export)
+            'ToolbarItem.Delete,
 
             CType(MainToolBar.Items(2), RadToolBarButton).CausesValidation = True
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
@@ -220,7 +220,6 @@ Public Class ctrlAT_Symbols
         Dim rep As New AttendanceRepository
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
-
         Try
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
@@ -298,10 +297,10 @@ Public Class ctrlAT_Symbols
                     ckIS_LEAVE_WEEKLY.Enabled = False
                     EnabledGridNotPostback(rgDanhMuc, True)
                 Case CommonMessage.STATE_EDIT
-                    rtWCODE.Enabled = True
+                    rtWCODE.Enabled = False
                     rtWNAME.Enabled = True
                     rcWDATAMODEID.Enabled = True
-                    rcWDATATYEID.Enabled = True
+                    rcWDATATYEID.Enabled = False
                     rcWGROUPID.Enabled = True
                     txtNote.Enabled = True
                     rnWINDEX.Enabled = True
@@ -317,35 +316,26 @@ Public Class ctrlAT_Symbols
                     ckIS_LEAVE_WEEKLY.Enabled = True
                     EnabledGridNotPostback(rgDanhMuc, False)
                 Case CommonMessage.STATE_DEACTIVE
-                    Dim lstDeletes As New List(Of Decimal)
-                    For idx = 0 To rgDanhMuc.SelectedItems.Count - 1
-                        Dim item As GridDataItem = rgDanhMuc.SelectedItems(idx)
-                        lstDeletes.Add(item.GetDataKeyValue("ID"))
-                    Next
-                    If rep.ActiveAT_SHIFT(lstDeletes, "I") Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                    If ChangeStatus(0) Then
                         CurrentState = CommonMessage.STATE_NORMAL
-                        rgDanhMuc.Rebind()
-                        ClearControlValue(rtWCODE, rtWNAME, rcWDATAMODEID, rcWDATATYEID, rcWGROUPID, txtNote)
+                        CreateDataFilter()
+                        Refresh("InsertView")
+                        UpdateControlState()
+                        ClearControlValue(rtWCODE, rtWNAME, txtNote, rdEFFECT_DATE, rdEXPIRE_DATE, rnWINDEX, rcWDATATYEID, rcWDATAMODEID, ckIS_DISPLAY, ckIS_DATAFROMEXCEL, ckIS_DISPLAY_PORTAL, ckIS_LEAVE, ckIS_LEAVE_WEEKLY, ckIS_LAVE_HOLIDAY, ckIS_DAY_HALF)
                     Else
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
                     End If
 
-                Case CommonMessage.STATE_ACTIVE
-                    Dim lstDeletes As New List(Of Decimal)
-                    For idx = 0 To rgDanhMuc.SelectedItems.Count - 1
-                        Dim item As GridDataItem = rgDanhMuc.SelectedItems(idx)
-                        lstDeletes.Add(item.GetDataKeyValue("ID"))
-                    Next
-                    If rep.ActiveAT_SHIFT(lstDeletes, "A") Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                Case CommonMessage.STATE_ACTIVE                    
+                    If ChangeStatus(-1) Then
                         CurrentState = CommonMessage.STATE_NORMAL
-                        rgDanhMuc.Rebind()
-                        ClearControlValue(rtWCODE, rtWNAME, rcWDATAMODEID, rcWDATATYEID, rcWGROUPID, txtNote)
+                        CreateDataFilter()
+                        Refresh("InsertView")
+                        UpdateControlState()
+                        ClearControlValue(rtWCODE, rtWNAME, txtNote, rdEFFECT_DATE, rdEXPIRE_DATE, rnWINDEX, rcWDATATYEID, rcWDATAMODEID, ckIS_DISPLAY, ckIS_DATAFROMEXCEL, ckIS_DISPLAY_PORTAL, ckIS_LEAVE, ckIS_LEAVE_WEEKLY, ckIS_LAVE_HOLIDAY, ckIS_DAY_HALF)
                     Else
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
                     End If
-
                 Case CommonMessage.STATE_DELETE
                     Dim lstDeletes As New List(Of Decimal)
                     For idx = 0 To rgDanhMuc.SelectedItems.Count - 1
@@ -370,7 +360,58 @@ Public Class ctrlAT_Symbols
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-
+    Public Function ChangeStatus(ByVal P_Status As Decimal) As Boolean
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim objsYMBOLS As New AT_SymbolsDTO
+            Dim gID As Decimal
+            Dim Err As Decimal = 0
+            Dim rep As New AttendanceRepository
+            For idx = 0 To rgDanhMuc.SelectedItems.Count - 1
+                Dim item As GridDataItem = rgDanhMuc.SelectedItems(idx)
+                objsYMBOLS.ID = item.GetDataKeyValue("ID")
+                objsYMBOLS.STATUS = P_Status
+                objsYMBOLS.WCODE = item.GetDataKeyValue("WCODE").ToString.ToUpper.Trim
+                objsYMBOLS.WNAME = item.GetDataKeyValue("WNAME").ToString.ToUpper.Trim
+                If IsNumeric(item.GetDataKeyValue("WGROUPID")) Then
+                    objsYMBOLS.WGROUPID = item.GetDataKeyValue("WGROUPID")
+                End If
+                If IsNumeric(item.GetDataKeyValue("WINDEX")) Then
+                    objsYMBOLS.WINDEX = item.GetDataKeyValue("WINDEX")
+                End If
+                If IsNumeric(item.GetDataKeyValue("WDATATYEID")) Then
+                    objsYMBOLS.WDATATYEID = item.GetDataKeyValue("WDATATYEID")
+                End If
+                If IsNumeric(item.GetDataKeyValue("WDATAMODEID")) Then
+                    objsYMBOLS.WDATAMODEID = item.GetDataKeyValue("WDATAMODEID")
+                End If
+                If IsDate(item.GetDataKeyValue("EFFECT_DATE")) Then
+                    objsYMBOLS.EFFECT_DATE = item.GetDataKeyValue("EFFECT_DATE")
+                End If
+                If IsDate(item.GetDataKeyValue("EXPIRE_DATE")) Then
+                    objsYMBOLS.EXPIRE_DATE = item.GetDataKeyValue("EXPIRE_DATE")
+                End If
+                objsYMBOLS.IS_DISPLAY = If(item.GetDataKeyValue("IS_DISPLAY") = -1, True, False)
+                objsYMBOLS.IS_DATAFROMEXCEL = If(item.GetDataKeyValue("IS_DATAFROMEXCEL") = -1, True, False)
+                objsYMBOLS.IS_DISPLAY_PORTAL = If(item.GetDataKeyValue("IS_DISPLAY_PORTAL") = -1, True, False)
+                objsYMBOLS.IS_LEAVE = If(item.GetDataKeyValue("IS_LEAVE") = -1, True, False)
+                objsYMBOLS.IS_LEAVE_WEEKLY = If(item.GetDataKeyValue("IS_LEAVE_WEEKLY") = -1, True, False)
+                objsYMBOLS.IS_LAVE_HOLIDAY = If(item.GetDataKeyValue("IS_LAVE_HOLIDAY") = -1, True, False)
+                objsYMBOLS.IS_DAY_HALF = If(item.GetDataKeyValue("IS_DAY_HALF") = -1, True, False)
+                objsYMBOLS.NOTE = If(IsDBNull(item.GetDataKeyValue("NOTE")), "", item.GetDataKeyValue("NOTE"))
+                If Not rep.SaveAT_Symnols(objsYMBOLS, objsYMBOLS.ID) Then
+                    Err += 1
+                End If
+            Next
+            If Err <= 0 Then
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Function
     ''' <lastupdate>14/08/2017</lastupdate>
     ''' <summary>
     ''' Get data va bind lên form, tren grid
@@ -387,12 +428,18 @@ Public Class ctrlAT_Symbols
             dic.Add("WGROUPID", rcWGROUPID)
             dic.Add("WDATATYEID", rcWDATATYEID)
             dic.Add("WDATAMODEID", rcWDATAMODEID)
+            dic.Add("WINDEX", rnWINDEX)
+            dic.Add("IS_DISPLAY", ckIS_DISPLAY)
+            dic.Add("IS_DATAFROMEXCEL", ckIS_DATAFROMEXCEL)
+            dic.Add("IS_DISPLAY_PORTAL", ckIS_DISPLAY_PORTAL)
+            dic.Add("IS_LEAVE", ckIS_LEAVE)
+            dic.Add("IS_LEAVE_WEEKLY", ckIS_LEAVE_WEEKLY)
+            dic.Add("IS_LAVE_HOLIDAY", ckIS_LAVE_HOLIDAY)
+            dic.Add("IS_DAY_HALF", ckIS_DAY_HALF)
+            dic.Add("NOTE", txtNote)
             dic.Add("EFFECT_DATE", rdEFFECT_DATE)
             dic.Add("EXPIRE_DATE", rdEXPIRE_DATE)
-            dic.Add("WINDEX", rnWINDEX)
-            dic.Add("IS_DATAFROMEXCEL", ckIS_DATAFROMEXCEL)
-            dic.Add("NOTE", txtNote)
-            Utilities.OnClientRowSelectedChanged(rgDanhMuc, dic)
+            Utilities.OnClientRowSelectedChanged(rgDanhMuc, dic)         
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
@@ -518,7 +565,7 @@ Public Class ctrlAT_Symbols
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
                         objsYMBOLS.STATUS = -1
-                        objsYMBOLS.WCODE = rtWCODE.Text.Trim
+                        objsYMBOLS.WCODE = rtWCODE.Text.Trim.ToUpper
                         objsYMBOLS.WNAME = rtWNAME.Text.Trim
                         If IsNumeric(rcWGROUPID.SelectedValue) Then
                             objsYMBOLS.WGROUPID = rcWGROUPID.SelectedValue
@@ -557,7 +604,6 @@ Public Class ctrlAT_Symbols
                                     ClearControlValue(rtWCODE, rtWNAME, txtNote, rdEFFECT_DATE, rdEXPIRE_DATE, rnWINDEX, rcWDATATYEID, rcWDATAMODEID, ckIS_DISPLAY, ckIS_DATAFROMEXCEL, ckIS_DISPLAY_PORTAL, ckIS_LEAVE, ckIS_LEAVE_WEEKLY, ckIS_LAVE_HOLIDAY, ckIS_DAY_HALF)
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
-
                                 End If
                             Case CommonMessage.STATE_EDIT
                                 objsYMBOLS.ID = rgDanhMuc.SelectedValue
@@ -662,18 +708,18 @@ Public Class ctrlAT_Symbols
     ''' <remarks></remarks>
     Private Sub cvaWCODE_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvaWCODE.ServerValidate
         Dim rep As New AttendanceRepository
-        Dim _validate As New AT_SHIFTDTO
+        Dim _validate As New AT_SymbolsDTO
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
 
         Try
             If CurrentState = CommonMessage.STATE_EDIT Then
                 _validate.ID = rgDanhMuc.SelectedValue
-                _validate.CODE = rtWCODE.Text.Trim
-                args.IsValid = rep.ValidateAT_SHIFT(_validate)
+                _validate.WCODE = rtWCODE.Text.Trim
+                args.IsValid = rep.ValidateAT_SYMBOLS(_validate)
             Else
-                _validate.CODE = rtWCODE.Text.Trim
-                args.IsValid = rep.ValidateAT_SHIFT(_validate)
+                _validate.WCODE = rtWCODE.Text.Trim
+                args.IsValid = rep.ValidateAT_SYMBOLS(_validate)
             End If
 
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
