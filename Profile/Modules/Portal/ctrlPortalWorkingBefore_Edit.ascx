@@ -204,8 +204,8 @@
                 CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle Width="20%" HorizontalAlign="Center" />
             </tlk:GridBoundColumn>
-            <tlk:GridBoundColumn HeaderText="Công việc chính" DataField="MAIN_JOB" UniqueName="MAIN_JOB"
-                SortExpression="MAIN_JOB" ShowFilterIcon="false" AutoPostBackOnFilter="true"
+            <tlk:GridBoundColumn HeaderText="Công việc chính" DataField="LEVEL_NAME" UniqueName="LEVEL_NAME"
+                SortExpression="LEVEL_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true"
                 CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle Width="20%" HorizontalAlign="Center" />
             </tlk:GridBoundColumn>

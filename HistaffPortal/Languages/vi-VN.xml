@@ -88,6 +88,14 @@
       <string>Submit</string>
     </Value>
   </Item>
+  <!--<Item>
+    <Key>
+      <string>ctrlPortalWorkingBefore_Edit</string>
+    </Key>
+    <Value>
+      <string>Quá trình công tác</string>
+    </Value>
+  </Item>-->
   <Item>
     <Key>
       <string>ALLOW_SPECIAL5</string>
@@ -42920,7 +42928,7 @@ Xin cám ơn!
   </Item>
   <Item>
     <Key>
-      <string>CTRLPORTALWORKINGBEFORE</string>
+      <string>CTRLPORTALWORKINGBEFORE_EDIT</string>      
     </Key>
     <Value>
       <string>Quá trình công tác trước đây</string>
