@@ -1755,6 +1755,7 @@
             <Property Name="COST" Type="number" Nullable="true" Precision="38" />
             <Property Name="SCHOOL_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="MAJOR_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MARK_EDU_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="RC_PLAN_YEAR">
             <Key>
@@ -3942,6 +3943,7 @@
           <Property Type="Decimal" Name="COST" />
           <Property Type="Decimal" Name="SCHOOL_ID" />
           <Property Type="Decimal" Name="MAJOR_ID" />
+          <Property Type="Decimal" Name="MARK_EDU_ID" />
         </EntityType>
         <EntityType Name="RC_PLAN_YEAR">
           <Key>
@@ -5706,6 +5708,7 @@
                     <ScalarProperty Name="COST" ColumnName="COST" />
                     <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
                     <ScalarProperty Name="MAJOR_ID" ColumnName="MAJOR_ID" />
+                    <ScalarProperty Name="MARK_EDU_ID" ColumnName="MARK_EDU_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -5801,7 +5804,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="RecruitmentContext" ZoomLevel="79" >
+      <Diagram Name="RecruitmentContext" ZoomLevel="75" >
         <EntityTypeShape EntityType="RecruitmentModel.RC_COST_CENTER" Width="1.5" PointX="1" PointY="25.5" IsExpanded="false" Height="0.4" />
         <EntityTypeShape EntityType="RecruitmentModel.SE_CHOSEN_ORG" Width="1.5" PointX="2.75" PointY="0.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_FAMILY" Width="1.5" PointX="3.875" PointY="32.625" Height="0.4" IsExpanded="false" />
@@ -5964,7 +5967,7 @@
         <EntityTypeShape EntityType="RecruitmentModel.SE_USER_REPORT" Width="1.5" PointX="0.75" PointY="3.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_WARD" Width="1.5" PointX="8.375" PointY="4.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_ORGANIZATION_V" Width="2.625" PointX="3.375" PointY="4" Height="7.1724251302083246" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_TRAINNING" Width="3.625" PointX="10.375" PointY="2.75" Height="7.1724251302083335" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_CANDIDATE_TRAINNING" Width="3.625" PointX="10.375" PointY="2.75" Height="7.3647265625" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_PLAN_YEAR" Width="1.5" PointX="20.375" PointY="8.75" Height="5.8263151041666674" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_RECRUITMENT_INSTEAD" Width="3.625" PointX="36.625" PointY="3.375" Height="2.7494921874999996" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_RECRUITMENT_COST" Width="2.125" PointX="10.375" PointY="10.75" Height="4.6725065104166674" />

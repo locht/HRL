@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("16cc2cbb-6c7a-45e0-92e8-ba81777af2db")>
+<Assembly: EdmSchemaAttribute("6a73967e-b570-4f11-8ad3-86a6663648d4")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH1), True)>
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_HE_HEC", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_CV", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_CV), True)>
@@ -26909,6 +26909,31 @@ Public Partial Class RC_CANDIDATE_TRAINNING
     End Sub
 
     Private Partial Sub OnMAJOR_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MARK_EDU_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _MARK_EDU_ID
+        End Get
+        Set
+            OnMARK_EDU_IDChanging(value)
+            ReportPropertyChanging("MARK_EDU_ID")
+            _MARK_EDU_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MARK_EDU_ID")
+            OnMARK_EDU_IDChanged()
+        End Set
+    End Property
+
+    Private _MARK_EDU_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMARK_EDU_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnMARK_EDU_IDChanged()
     End Sub
 
     #End Region
