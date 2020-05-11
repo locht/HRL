@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("a4801b80-41ae-4081-8e47-4f56e2b9bc15")>
+<Assembly: EdmSchemaAttribute("16cc2cbb-6c7a-45e0-92e8-ba81777af2db")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH1), True)>
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_HE_HEC", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_CV", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_CV), True)>
@@ -26859,6 +26859,56 @@ Public Partial Class RC_CANDIDATE_TRAINNING
     End Sub
 
     Private Partial Sub OnCOSTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SCHOOL_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _SCHOOL_ID
+        End Get
+        Set
+            OnSCHOOL_IDChanging(value)
+            ReportPropertyChanging("SCHOOL_ID")
+            _SCHOOL_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("SCHOOL_ID")
+            OnSCHOOL_IDChanged()
+        End Set
+    End Property
+
+    Private _SCHOOL_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSCHOOL_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSCHOOL_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MAJOR_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _MAJOR_ID
+        End Get
+        Set
+            OnMAJOR_IDChanging(value)
+            ReportPropertyChanging("MAJOR_ID")
+            _MAJOR_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MAJOR_ID")
+            OnMAJOR_IDChanged()
+        End Set
+    End Property
+
+    Private _MAJOR_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMAJOR_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnMAJOR_IDChanged()
     End Sub
 
     #End Region
