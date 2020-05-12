@@ -1768,6 +1768,16 @@ Public Class ctrlRC_CanDtlProfile
         End Try
     End Sub
 
+    Private Sub cboContactAddProvince_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboContactAddProvince.SelectedIndexChanged
+        Try
+            If cboContactAddProvince.SelectedValue <> "" Then
+                GetDistrictByProvinceID(cboContractAddDictrict, cboContactAddProvince.SelectedValue, cboContractAddDictrict.SelectedValue)
+            End If
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
     Private Sub cboPerDictrict_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboPerDictrict.SelectedIndexChanged
         Try
             Dim dtData As DataTable
