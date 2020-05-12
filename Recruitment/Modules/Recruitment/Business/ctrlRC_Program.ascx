@@ -91,8 +91,8 @@
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Số lượng yêu cầu %>" DataField="REQUEST_NUMBER"
                                 SortExpression="REQUEST_NUMBER" UniqueName="REQUEST_NUMBER" AllowFiltering="false"
                                 HeaderStyle-Width="90px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do tuyển dụng %>" DataField="RECRUIT_REASON"
-                                SortExpression="RECRUIT_REASON" UniqueName="RECRUIT_REASON" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do tuyển dụng %>" DataField="RECRUIT_REASON_NAME"
+                                SortExpression="RECRUIT_REASON_NAME" UniqueName="RECRUIT_REASON_NAME" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Hồ sơ đã nhận %>" DataField="CANDIDATE_COUNT"
                                 SortExpression="CANDIDATE_COUNT" UniqueName="CANDIDATE_COUNT" AllowFiltering="false"
                                 HeaderStyle-Width="90px" />
