@@ -4,7 +4,7 @@ Imports Common
 Imports Profile.ProfileBusiness
 Imports Telerik.Web.UI
 
-Public Class ctrlPortalEmpHealth
+Public Class ctrlPortalEmpInsurance
     Inherits CommonView
     Protected WithEvents ViewItem As ViewBase
 
@@ -43,7 +43,7 @@ Public Class ctrlPortalEmpHealth
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Refresh()
-            rgHealth.SetFilter()
+            rgIns.SetFilter()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -51,27 +51,27 @@ Public Class ctrlPortalEmpHealth
     End Sub
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
-        Dim rep As New ProfileStoreProcedure
+        Dim rep As New ProfileBusinessRepository
         Try
             'SetValueObjectByRadGrid(rgHealth, New ContractDTO)
 
-            If Not IsPostBack Then
-                GridList = rep.GET_HEALTH_BY_ID(EmployeeID)
-                CurrentState = CommonMessage.STATE_NORMAL
-            Else
-                If Message = CommonMessage.ACTION_SAVED Then
-                    GridList = rep.GET_HEALTH_BY_ID(EmployeeID)
-                End If
-            End If
+            'If Not IsPostBack Then
+            '    GridList = rep.GetInsuranceProccess(EmployeeID)
+            '    CurrentState = CommonMessage.STATE_NORMAL
+            'Else
+            '    If Message = CommonMessage.ACTION_SAVED Then
+            '        GridList = rep.GetInsuranceProccess(EmployeeID)
+            '    End If
+            'End If
 
-            'Đưa dữ liệu vào Grid
-            If Me.GridList IsNot Nothing Then
-                rgHealth.DataSource = Me.GridList
-                rgHealth.DataBind()
-            Else
-                rgHealth.DataSource = New DataTable
-                rgHealth.DataBind()
-            End If
+            ''Đưa dữ liệu vào Grid
+            'If Me.GridList IsNot Nothing Then
+            '    rgIns.DataSource = Me.GridList
+            '    rgIns.DataBind()
+            'Else
+            '    rgIns.DataSource = New DataTable
+            '    rgIns.DataBind()
+            'End If
 
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -81,14 +81,14 @@ Public Class ctrlPortalEmpHealth
 
 #Region "Event"
 
-    Private Sub rgHealth_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgHealth.NeedDataSource
+    Private Sub rgIns_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgIns.NeedDataSource
         Try
-            If IsPostBack Then Exit Sub
-            SetValueObjectByRadGrid(rgHealth, New ContractDTO)
+            'If IsPostBack Then Exit Sub
+            SetValueObjectByRadGrid(rgIns, New Object)
 
-            Dim rep As New ProfileStoreProcedure
-            GridList = rep.GET_HEALTH_BY_ID(EmployeeID)
-            rgHealth.DataSource = GridList
+            Dim rep As New ProfileBusinessRepository
+            GridList = rep.GetInsuranceProccess(EmployeeID)
+            rgIns.DataSource = GridList
 
         Catch ex As Exception
             Me.DisplayException(Me.ViewName, Me.ID, ex)
