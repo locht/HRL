@@ -550,6 +550,24 @@ Public Class ctrlPA_Period
         End Try
     End Sub
 
+    Private Sub rgData_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles rgData.SelectedIndexChanged
+        Dim lstObject As New List(Of AT_ORG_PERIOD)
+        Dim lstId As New List(Of Decimal)
+        Try
+            For Each LINE As GridDataItem In rgData.SelectedItems
+                Using rep As New PayrollRepository
+                    lstObject = rep.GetListOrgPeriod(Decimal.Parse(LINE.GetDataKeyValue("ID")))
+                    For Each item In lstObject
+                        lstId.Add(item.ORG_ID)
+                    Next
+                    ctrlOrg.CheckedValueKeys = lstId
+                End Using
+            Next
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
     ''' <lastupdate>
     ''' 23/08/2017 09:00
     ''' </lastupdate>

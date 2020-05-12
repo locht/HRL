@@ -777,6 +777,7 @@ Partial Public Class PayrollRepository
     Public Function InsertPeriod(ByVal objPeriod As ATPeriodDTO, ByVal objOrgPeriod As List(Of AT_ORG_PERIOD), ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         Dim iCount As Integer = 0
         Dim objPeriodData As New AT_PERIOD
+        Dim objOrgPeriodData As New AT_ORG_PERIOD
 
         Try
             objPeriodData.ID = Utilities.GetNextSequence(Context, Context.AT_PERIOD.EntitySet.Name)
@@ -789,30 +790,30 @@ Partial Public Class PayrollRepository
             objPeriodData.BONUS_DATE = objPeriod.BONUS_DATE
             objPeriodData.REMARK = objPeriod.REMARK
             objPeriodData.ACTFLG = objPeriod.ACTFLG
-            Using cls As New DataAccess.NonQueryData
-                cls.ExecuteStore("PKG_PA_SETTING.ADD_ORG_PERIOD",
-                                           New With {.P_PERIOD_ID = objPeriodData.ID,
-                                                     .P_STATUSCOLEX = 1,
-                                                     .P_STATUSPAROX = 1,
-                                                     .P_CREATED_BY = log.Username,
-                                                     .P_CREATED_DATE = Date.Now,
-                                                     .P_CREATED_LOG = log.Ip & "-" & log.ComputerName
-                                               })
-            End Using
+            'Using cls As New DataAccess.NonQueryData
+            '    cls.ExecuteStore("PKG_PA_SETTING.ADD_ORG_PERIOD",
+            '                               New With {.P_PERIOD_ID = objPeriodData.ID,
+            '                                         .P_STATUSCOLEX = 1,
+            '                                         .P_STATUSPAROX = 1,
+            '                                         .P_CREATED_BY = log.Username,
+            '                                         .P_CREATED_DATE = Date.Now,
+            '                                         .P_CREATED_LOG = log.Ip & "-" & log.ComputerName
+            '                                   })
+            'End Using
             Context.AT_PERIOD.AddObject(objPeriodData)
             Context.SaveChanges(log)
-            'If objPeriodData.ID > 0 Then
-            '    For Each obj As AT_ORG_PERIOD In objOrgPeriod
-            '        objOrgPeriodData = New AT_ORG_PERIOD
-            '        objOrgPeriodData.ID = Utilities.GetNextSequence(Context, Context.AT_ORG_PERIOD.EntitySet.Name)
-            '        objOrgPeriodData.ORG_ID = obj.ORG_ID
-            '        objOrgPeriodData.PERIOD_ID = obj.ID
-            '        objOrgPeriodData.STATUSCOLEX = 1
-            '        objOrgPeriodData.STATUSPAROX = 1
-            '        Context.AT_ORG_PERIOD.AddObject(objOrgPeriodData)
-            '        Context.SaveChanges(log)
-            '    Next
-            'End If
+            If objPeriodData.ID > 0 Then
+                For Each obj As AT_ORG_PERIOD In objOrgPeriod
+                    objOrgPeriodData = New AT_ORG_PERIOD
+                    objOrgPeriodData.ID = Utilities.GetNextSequence(Context, Context.AT_ORG_PERIOD.EntitySet.Name)
+                    objOrgPeriodData.ORG_ID = obj.ORG_ID
+                    objOrgPeriodData.PERIOD_ID = obj.ID
+                    objOrgPeriodData.STATUSCOLEX = 1
+                    objOrgPeriodData.STATUSPAROX = 1
+                    Context.AT_ORG_PERIOD.AddObject(objOrgPeriodData)
+                    Context.SaveChanges(log)
+                Next
+            End If
             gID = objPeriodData.ID
             Return True
         Catch ex As Exception
@@ -866,7 +867,7 @@ Partial Public Class PayrollRepository
 
     Public Function ModifyPeriod(ByVal objPeriod As ATPeriodDTO, ByVal objOrgPeriod As List(Of AT_ORG_PERIOD), ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         Dim objPeriodData As New AT_PERIOD With {.ID = objPeriod.ID}
-        'Dim objOrgPeriodData As AT_ORG_PERIOD
+        Dim objOrgPeriodData As AT_ORG_PERIOD
         Try
             Context.AT_PERIOD.Attach(objPeriodData)
             objPeriodData.YEAR = objPeriod.YEAR
@@ -878,37 +879,37 @@ Partial Public Class PayrollRepository
             objPeriodData.BONUS_DATE = objPeriod.BONUS_DATE
             objPeriodData.REMARK = objPeriod.REMARK
             'objPeriodData.ACTFLG = objPeriod.ACTFLG
-            Using cls As New DataAccess.NonQueryData
-                cls.ExecuteStore("PKG_PA_SETTING.ADD_ORG_PERIOD",
-                                           New With {.P_PERIOD_ID = objPeriodData.ID,
-                                                     .P_STATUSCOLEX = 1,
-                                                     .P_STATUSPAROX = 1,
-                                                     .P_CREATED_BY = log.Username,
-                                                     .P_CREATED_DATE = Date.Now,
-                                                     .P_CREATED_LOG = log.Ip & "-" & log.ComputerName
-                                               })
-            End Using
-            'If objPeriodData.ID > 0 Then
-            '    Dim objDelete As List(Of AT_ORG_PERIOD) = (From p In Context.AT_ORG_PERIOD Where p.PERIOD_ID = objPeriodData.ID).ToList
-            '    For Each obj As AT_ORG_PERIOD In objDelete
-            '        Context.AT_ORG_PERIOD.DeleteObject(obj)
-            '    Next
-            '    Context.SaveChanges(log)
-            '    Dim i = 1
-            '    For Each ObjIns As AT_ORG_PERIOD In objOrgPeriod
-            '        objOrgPeriodData = New AT_ORG_PERIOD
-            '        objOrgPeriodData.ID = Utilities.GetNextSequence(Context, Context.AT_ORG_PERIOD.EntitySet.Name)
-            '        objOrgPeriodData.ORG_ID = ObjIns.ORG_ID
-            '        objOrgPeriodData.STATUSCOLEX = 1
-            '        objOrgPeriodData.STATUSPAROX = 1
-            '        objOrgPeriodData.PERIOD_ID = objPeriodData.ID
-            '        Context.AT_ORG_PERIOD.AddObject(objOrgPeriodData)
-            '        If i = objOrgPeriod.Count OrElse i Mod 40 = 0 Then
-            '            Context.SaveChanges(log)
-            '        End If
-            '        i += 1
-            '    Next
-            'End If
+            'Using cls As New DataAccess.NonQueryData
+            '    cls.ExecuteStore("PKG_PA_SETTING.ADD_ORG_PERIOD",
+            '                               New With {.P_PERIOD_ID = objPeriodData.ID,
+            '                                         .P_STATUSCOLEX = 1,
+            '                                         .P_STATUSPAROX = 1,
+            '                                         .P_CREATED_BY = log.Username,
+            '                                         .P_CREATED_DATE = Date.Now,
+            '                                         .P_CREATED_LOG = log.Ip & "-" & log.ComputerName
+            '                                   })
+            'End Using
+            If objPeriodData.ID > 0 Then
+                Dim objDelete As List(Of AT_ORG_PERIOD) = (From p In Context.AT_ORG_PERIOD Where p.PERIOD_ID = objPeriodData.ID).ToList
+                For Each obj As AT_ORG_PERIOD In objDelete
+                    Context.AT_ORG_PERIOD.DeleteObject(obj)
+                Next
+                Context.SaveChanges(log)
+                Dim i = 1
+                For Each ObjIns As AT_ORG_PERIOD In objOrgPeriod
+                    objOrgPeriodData = New AT_ORG_PERIOD
+                    objOrgPeriodData.ID = Utilities.GetNextSequence(Context, Context.AT_ORG_PERIOD.EntitySet.Name)
+                    objOrgPeriodData.ORG_ID = ObjIns.ORG_ID
+                    objOrgPeriodData.STATUSCOLEX = 1
+                    objOrgPeriodData.STATUSPAROX = 1
+                    objOrgPeriodData.PERIOD_ID = objPeriodData.ID
+                    Context.AT_ORG_PERIOD.AddObject(objOrgPeriodData)
+                    If i = objOrgPeriod.Count OrElse i Mod 40 = 0 Then
+                        Context.SaveChanges(log)
+                    End If
+                    i += 1
+                Next
+            End If
             Context.SaveChanges(log)
             gID = objPeriodData.ID
             Return True
@@ -3528,5 +3529,17 @@ Partial Public Class PayrollRepository
         End Try
     End Function
 #End Region
+
+    Public Function GetListOrgPeriod(ByVal id As Decimal) As List(Of AT_ORG_PERIOD)
+        Try
+            Dim DS = (From p In Context.AT_ORG_PERIOD
+                  Where p.PERIOD_ID = id).ToList
+
+            Return DS
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+            Throw ex
+        End Try
+    End Function
 End Class
 

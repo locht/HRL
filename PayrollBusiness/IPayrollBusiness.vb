@@ -887,6 +887,8 @@ Namespace PayrollBusiness.ServiceContracts
         <OperationContract()>
         Function SaveImportTNCN(ByVal SalaryGroup As Decimal, ByVal Period As Decimal, ByVal TaxId As Decimal, ByVal dtData As DataTable, ByVal lstColVal As List(Of String), ByVal log As UserLog, ByRef RecordSussces As Integer) As Boolean
 
+        <OperationContract()>
+        Function GetListOrgPeriod(ByVal id As Decimal) As List(Of AT_ORG_PERIOD)
     End Interface
 End Namespace
 
