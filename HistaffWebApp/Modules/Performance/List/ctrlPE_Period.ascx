@@ -54,9 +54,9 @@
                 <td>
                     <tlk:RadComboBox runat="server" ID="cboTypeAss" CausesValidation="false">
                     </tlk:RadComboBox>
-                    <asp:RequiredFieldValidator ID="reqTypeAss" ControlToValidate="cboTypeAss" runat="server"
+                 <%--   <asp:RequiredFieldValidator ID="reqTypeAss" ControlToValidate="cboTypeAss" runat="server"
                         ErrorMessage="<%$ Translate: Bạn phải chọn Kiểu đánh giá %>" ToolTip="<%$ Translate: Bạn phải chọn Kiểu đánh giá %>">
-                    </asp:RequiredFieldValidator>
+                    </asp:RequiredFieldValidator>--%>
                 </td>
                 <td class="lb">
                     <%# Translate("Ngày bắt đầu")%>

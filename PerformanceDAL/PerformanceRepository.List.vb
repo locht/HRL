@@ -425,7 +425,7 @@ Partial Class PerformanceRepository
 
         Try
             Dim query = (From p In Context.PE_PERIOD
-                    From s In Context.OT_OTHER_LIST.Where(Function(s) s.ID = p.TYPE_ASS)
+                    From s In Context.OT_OTHER_LIST.Where(Function(s) s.ID = p.TYPE_ASS).DefaultIfEmpty
                         Select New PeriodDTO With {
                             .ID = p.ID,
                             .CODE = p.CODE,

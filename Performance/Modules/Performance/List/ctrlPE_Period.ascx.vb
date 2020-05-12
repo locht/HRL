@@ -283,7 +283,9 @@ Public Class ctrlPE_Period
                         objPeriod.REMARK = txtRemark.Text.Trim
                         objPeriod.START_DATE = rdStartDate.SelectedDate
                         objPeriod.END_DATE = rdEndDate.SelectedDate
-                        objPeriod.TYPE_ASS = cboTypeAss.SelectedValue
+                        If cboTypeAss.SelectedValue <> "" Then
+                            objPeriod.TYPE_ASS = cboTypeAss.SelectedValue
+                        End If
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 objPeriod.ACTFLG = "A"
