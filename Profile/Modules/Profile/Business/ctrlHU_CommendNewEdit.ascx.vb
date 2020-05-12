@@ -198,6 +198,15 @@ Public Class ctrlHU_CommendNewEdit
     ''' <remarks></remarks>
     Dim IDSelect As Decimal?
 
+    Property List_Cm_Obj As List(Of OtherListDTO)
+        Get
+            Return ViewState(Me.ID & "_List_Cm_Obj")
+        End Get
+        Set(value As List(Of OtherListDTO))
+            ViewState(Me.ID & "_List_Cm_Obj") = value
+        End Set
+    End Property
+
 #End Region
 
 #Region "Page"
@@ -638,12 +647,23 @@ Public Class ctrlHU_CommendNewEdit
                             End If
                             o.ORG_ID = If(Not IsNumeric(row("ORG_ID")), Decimal.Parse(row("ORG_ID")), Nothing)
                             o.TITLE_ID = If(row("TITLE_ID") <> "", Decimal.Parse(row("TITLE_ID")), Nothing)
-                            o.RATIO = If(Not IsDBNull(row("RATIO")), Decimal.Parse(row("RATIO")), Nothing)
+
                             If Not IsDBNull(row("RATIO")) Then
+                                o.RATIO = Decimal.Parse(row("RATIO"))
+                            End If
+
+                            Dim cmObj = (From p In List_Cm_Obj Where p.ID = cboCommendObj.SelectedValue).FirstOrDefault
+
+                            If cmObj.CODE = 1 Then
                                 o.MONEY = If(IsNumeric(objCommend.MONEY), objCommend.MONEY, 0) / 100 * CDec(o.RATIO)
                             Else
                                 o.MONEY = If(Not IsDBNull(row("MONEY")), Decimal.Parse(row("MONEY")), 0)
                             End If
+                            'If Not IsDBNull(row("RATIO")) Then
+                            '    o.MONEY = If(IsNumeric(objCommend.MONEY), objCommend.MONEY, 0) / 100 * CDec(o.RATIO)
+                            'Else
+                            '    o.MONEY = If(Not IsDBNull(row("MONEY")), Decimal.Parse(row("MONEY")), 0)
+                            'End If
 
                             If cboCommendObj.SelectedValue <> 389 Then
                                 objCommend.MONEY = o.MONEY
@@ -2408,7 +2428,7 @@ Public Class ctrlHU_CommendNewEdit
             FillRadCombobox(cboStatus, dtData, "NAME", "ID", True)
             FillDropDownList(cboCommendObj, ListComboData.LIST_COMMEND_OBJ, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
             FillDropDownList(cboCommendType, ListComboData.LIST_COMMEND_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
-
+            List_Cm_Obj = ListComboData.LIST_COMMEND_OBJ
             cboStatus.SelectedIndex = 0
             cboCommendObj.SelectedIndex = 0
             ' txtDecisionNo.ReadOnly = True

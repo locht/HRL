@@ -1347,6 +1347,7 @@ Public Class ProfileRepository
                      Order By p.NAME_VN
                     Select New OtherListDTO With {
                         .ID = p.ID,
+                        .CODE = p.CODE,
                         .NAME_VN = p.NAME_VN,
                          .NAME_EN = p.NAME_EN}).ToList
             _combolistDTO.LIST_COMMEND_TYPE = query
