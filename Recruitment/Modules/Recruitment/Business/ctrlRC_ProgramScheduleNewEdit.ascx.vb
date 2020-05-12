@@ -93,6 +93,8 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                 dt.Columns.Add("SCHEDULE_DATE", GetType(String))
                 dt.Columns.Add("SCHEDULE_BY", GetType(String))
                 dt.Columns.Add("EXAM_NAME", GetType(String))
+                dt.Columns.Add("FROM_MONTH", GetType(Date?))
+                dt.Columns.Add("TO_MONTH", GetType(Date?))
                 ViewState(Me.ID & "_dtData") = dt
             End If
             Return ViewState(Me.ID & "_dtCan")
@@ -193,11 +195,19 @@ Public Class ctrlRC_ProgramScheduleNewEdit
 
                     If hidID.Value <> "" And Decimal.Parse(hidID.Value) > 0 Then
 
-
                         Dim tab As DataTable
                         tab = store.GET_PRO_SCHEDULE_BYID(Decimal.Parse(hidID.Value))
                         If tab.Rows.Count > 0 Then
                             rdScheduleDate.SelectedDate = tab.Rows(0)("SCHEDULE_DATE").ToString()
+
+                            If Not IsDBNull(tab.Rows(0)("FROM_MONTH")) Then
+                                rtpFromMonth.SelectedDate = tab.Rows(0)("FROM_MONTH").ToString()
+                            End If
+
+                            If Not IsDBNull(tab.Rows(0)("TO_MONTH")) Then
+                                rtpToMonth.SelectedDate = tab.Rows(0)("TO_MONTH").ToString()
+                            End If
+
                             txtExamsPlace.Text = tab.Rows(0)("EXAMS_PLACE").ToString()
                             txtNote.Text = tab.Rows(0)("NOTE").ToString()
                             FULLNAME = tab.Rows(0)("FULLNAME").ToString()
@@ -367,11 +377,11 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                         End If
                         If hidID.Value <> Nothing And Decimal.Parse(hidID.Value) > 0 Then
                             IsSaveCompleted = store.UPDATE_PRO_SCHEDULE(Decimal.Parse(hidID.Value), obj.EMPLOYEE_ID, obj.SCHEDULE_DATE, obj.EXAMS_PLACE, obj.NOTE, String.Empty,
-                                                             String.Empty)
+                                                             String.Empty, rtpFromMonth.SelectedDate, rtpToMonth.SelectedDate)
 
                         Else
                             IsSaveCompleted = store.ADDNEW_PRO_SCHEDULE(obj.RC_PROGRAM_ID, obj.EMPLOYEE_ID, obj.SCHEDULE_DATE, obj.EXAMS_PLACE, obj.NOTE, String.Empty,
-                                                            String.Empty)
+                                                            String.Empty, rtpFromMonth.SelectedDate, rtpToMonth.SelectedDate)
 
                             If IsSaveCompleted Then
                                 'update Pro_Shedule_Can
@@ -740,6 +750,15 @@ Public Class ctrlRC_ProgramScheduleNewEdit
                     newRow1("SCHEDULE_DATE") = Nothing
                     newRow1("SCHEDULE_BY") = Nothing
                     newRow1("EXAM_NAME") = Nothing
+
+                    'If rtpFromMonth.SelectedDate IsNot Nothing Then
+                    '    newRow1("FROM_MONTH") = rtpFromMonth.SelectedDate
+                    'End If
+
+                    'If rtpToMonth.SelectedDate IsNot Nothing Then
+                    '    newRow1("TO_MONTH") = rtpToMonth.SelectedDate
+                    'End If
+
                     dtCan.Rows.Add(newRow1)
                     'insert candidate --> program schedule candidate
                     'Dim idCandidate As Int32 = Int32.Parse(item.GetDataKeyValue("ID").ToString())
