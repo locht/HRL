@@ -709,22 +709,6 @@
             </tlk:RadDatePicker>
         </td>
     </tr>
-    <tr style="display: none"> 
-        <td class="lb">
-            <%# Translate("Điện thoại di động")%>
-        </td>
-        <td>
-            <tlk:RadTextBox runat="server" ID="txtMobilePhone">
-            </tlk:RadTextBox>
-        </td>
-        <td class="lb">
-            <%# Translate("Điện thoại cố định")%>
-        </td>
-        <td>
-            <tlk:RadTextBox runat="server" ID="txtHomePhone">
-            </tlk:RadTextBox>
-        </td>
-    </tr>
     <tr style="display: none">
         <td class="lb3">
             <asp:Label runat="server" ID="Label5" Text="Địa chỉ liên lạc"></asp:Label>
@@ -734,7 +718,7 @@
             </tlk:RadTextBox>
         </td>
     </tr>
-    <tr>
+    <tr style="display: none">
         <td class="lb">
             <asp:Label runat="server" ID="lbContactPersonPhone" Text="Điện thoại cố định"></asp:Label>
         </td>
@@ -751,7 +735,24 @@
         </td>
     </tr>
     <tr>
-        <td></td>
+        <td class="lb">
+            <%# Translate("Điện thoại cố định")%>
+        </td>
+        <td>
+            <tlk:RadTextBox runat="server" ID="txtHomePhone">
+            </tlk:RadTextBox>
+        </td>
+        <td class="lb">
+            <%# Translate("Điện thoại di động")%>
+        </td>
+        <td>
+            <tlk:RadTextBox runat="server" ID="txtMobilePhone">
+            </tlk:RadTextBox>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        </td>
         <td class="control3">
             <asp:CheckBox ID="ckCONG_DOAN" Text="Cán bộ đoàn" runat="server" />
         </td>
@@ -785,7 +786,8 @@
         </td>
     </tr>
     <tr>
-        <td></td>
+        <td>
+        </td>
         <td class="control3">
             <asp:CheckBox ID="ckDANG" Text="Cán bộ Đảng" runat="server" />
         </td>

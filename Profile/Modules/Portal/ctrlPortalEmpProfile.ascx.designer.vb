@@ -1112,24 +1112,6 @@ Partial Public Class ctrlPortalEmpProfile
     Protected WithEvents rdWeddingDay As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
-    '''txtMobilePhone control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtMobilePhone As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
-    '''txtHomePhone control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtHomePhone As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
     '''Label5 control.
     '''</summary>
     '''<remarks>
@@ -1182,6 +1164,24 @@ Partial Public Class ctrlPortalEmpProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtPerMobilePhone As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''txtHomePhone control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtHomePhone As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''txtMobilePhone control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtMobilePhone As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''ckCONG_DOAN control.
