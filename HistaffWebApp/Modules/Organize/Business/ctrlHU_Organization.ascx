@@ -335,14 +335,20 @@
                     </tlk:RadButton>
                     <asp:HiddenField ID="hidHR_ID" runat="server" />
                 </td>
+               <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
                 <td class="lb">
-                    <%# Translate("Giấy ủy quyền")%>
+                  <%# Translate("Giấy ủy quyền")%>
                 </td>
-                <td>
-                    <tlk:radtextbox id="txtAUTHOR_LETTER" runat="server" skinid="Textbox50">
-                    </tlk:radtextbox>
+                <td colspan="3">
+                    <tlk:RadTextBox ID="txtAUTHOR_LETTER" runat="server" SkinID="Textbox9999" Width="100%">
+                    </tlk:RadTextBox>
                 </td>
             </tr>
+
             <tr>
                 <td class="lb">
                     <%# Translate("Tỉnh/thành nơi ký hợp đồng")%>
