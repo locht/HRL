@@ -184,7 +184,7 @@ Public Class ctrlPE_Period
         Try
             Using rep As New PerformanceRepository
                 'Hình thức đào tạo
-                Dim dtData = rep.GetOtherList("TYPE_ASS", True)
+                Dim dtData = rep.GetOtherList("FORM_ASS", True)
                 FillRadCombobox(cboTypeAss, dtData, "NAME", "ID")
             End Using
             Dim dic As New Dictionary(Of String, Control)
@@ -211,7 +211,7 @@ Public Class ctrlPE_Period
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     CurrentState = CommonMessage.STATE_NEW
-                    ClearControlValue(txtCode, txtName, rdEndDate, rdStartDate, txtRemark)
+                    ClearControlValue(txtCode, txtName, rdEndDate, rdStartDate, txtRemark, cboTypeAss, nmrYear)
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_EDIT
                     If rgMain.SelectedItems.Count = 0 Then
