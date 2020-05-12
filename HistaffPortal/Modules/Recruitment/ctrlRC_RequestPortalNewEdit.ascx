@@ -342,8 +342,49 @@
                     </tlk:RadTextBox>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <tlk:RadButton runat="server" ID="btnChonNhanVien" Text="Chọn Nhân Viên"  CausesValidation="false" />
+                </td>
+                <td>
+                    <tlk:RadButton  runat="server" ID="btnXoaDanhSach" Text="Xóa Khỏi Danh Sách" CausesValidation="false" />
+                </td>
+            </tr>
         </table>
-    
+        <br />
+        <tlk:RadGrid PageSize="50" ID="rdRecInsteadTable" runat="server" Height="250px" Width="99%">
+            <MasterTableView DataKeyNames="EMPLOYEE_ID, EMPLOYEE_NAME, ORG_NAME, TITLE_NAME, TER_LAST_DATE" 
+                ClientDataKeyNames="EMPLOYEE_ID, EMPLOYEE_NAME, ORG_NAME, TITLE_NAME, TER_LAST_DATE">
+                <Columns>
+                    <tlk:GridCheckBoxColumn DataField="EMPLOYEE_ID"></tlk:GridCheckBoxColumn>
+                    <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_ID" SortExpression="EMPLOYEE_ID"
+                        UniqueName="EMPLOYEE_ID" ShowFilterIcon="false" AutoPostBackOnFilter="true" 
+                        CurrentFilterFunction="Contains" FilterControlWidth="100%">
+                        <HeaderStyle Width="20%" HorizontalAlign="Center" />
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn HeaderText="Họ tên NV" DataField="EMPLOYEE_NAME" SortExpression="EMPLOYEE_NAME"
+                        UniqueName="EMPLOYEE_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true" 
+                        CurrentFilterFunction="Contains" FilterControlWidth="100%">
+                        <HeaderStyle Width="20%" HorizontalAlign="Center" />
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn HeaderText="Đơn vị" DataField="ORG_NAME" SortExpression="ORG_NAME"
+                        UniqueName="ORG_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true" 
+                        CurrentFilterFunction="Contains" FilterControlWidth="100%">
+                        <HeaderStyle Width="20%" HorizontalAlign="Center" />
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME" SortExpression="TITLE_NAME"
+                        UniqueName="TITLE_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true" 
+                        CurrentFilterFunction="Contains" FilterControlWidth="100%">
+                        <HeaderStyle Width="20%" HorizontalAlign="Center" />
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn HeaderText="Ngày nghỉ việc" DataField="TER_LAST_DATE" SortExpression="TER_LAST_DATE"
+                        UniqueName="TER_LAST_DATE" ShowFilterIcon="false" AutoPostBackOnFilter="true" 
+                        CurrentFilterFunction="Contains" FilterControlWidth="100%">
+                        <HeaderStyle Width="20%" HorizontalAlign="Center" />
+                    </tlk:GridBoundColumn>
+                </Columns>
+            </MasterTableView>
+        </tlk:RadGrid>
 <asp:PlaceHolder ID="phFindEmployee" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="phFindOrg" runat="server"></asp:PlaceHolder>
 <Common:ctrlUpload ID="ctrlUpload1" runat="server" />

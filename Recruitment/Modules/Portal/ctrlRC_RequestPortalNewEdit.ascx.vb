@@ -269,7 +269,7 @@ Public Class ctrlRC_RequestPortalNewEdit
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
                         Dim obj As New RequestDTO
-                        Dim lstEmp As New List(Of RequestEmpDTO)
+                        Dim lstEmp As New List(Of RecruitmentInsteadDTO)
                         obj.ORG_ID = hidOrgID.Value
                         obj.IS_IN_PLAN = chkIsInPlan.Checked
                         If obj.IS_IN_PLAN Then
@@ -324,11 +324,14 @@ Public Class ctrlRC_RequestPortalNewEdit
                         If cboRecruitReason.SelectedValue <> "" Then
                             obj.RECRUIT_REASON_ID = cboRecruitReason.SelectedValue
                         End If
-                        'For Each item As RadListBoxItem In lstEmployee.Items
-                        '    Dim emp As New RequestEmpDTO
-                        '    emp.EMPLOYEE_ID = item.Value
-                        '    lstEmp.Add(emp)
-                        'Next
+
+                        Dim emp As RecruitmentInsteadDTO = Nothing
+                        For Each item As RadListBoxItem In lstEmployee.Items
+                            emp = New RecruitmentInsteadDTO
+                            emp.EMPLOYEE_ID = item.Value
+                            lstEmp.Add(emp)
+                        Next
+
                         obj.REMARK = txtRemark.Text
                         obj.LANGUAGE = cboLanguage.SelectedValue
                         obj.LANGUAGELEVEL = cboLanguageLevel.SelectedValue
@@ -341,7 +344,7 @@ Public Class ctrlRC_RequestPortalNewEdit
                         obj.MAINTASK = txtMainTask.Text
 
                         obj.DESCRIPTIONATTACHFILE = hddFile.Value
-                        'obj.lstEmp = lstEmp
+                        obj.lstEmp = lstEmp
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 If rep.InsertRequest(obj, gID) Then

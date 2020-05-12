@@ -473,6 +473,33 @@ Partial Public Class ctrlRC_RequestPortalNewEdit
     Protected WithEvents txtRemark As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''btnChonNhanVien control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnChonNhanVien As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''btnXoaDanhSach control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnXoaDanhSach As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''rdRecInsteadTable control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdRecInsteadTable As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
     '''phFindEmployee control.
     '''</summary>
     '''<remarks>

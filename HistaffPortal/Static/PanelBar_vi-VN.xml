@@ -22,4 +22,5 @@
   <Item Text="Quản trị hệ thống" Expanded="True" Value="Common">
     <Item Value="Common;ctrlLanguageManagementPortal;NoPer;NoEdit" Text="Quản lý ngôn ngữ" ImageUrl="~/Static/Images/RibbonBar/user.png" />
   </Item>
+  <Item Text="Tuyển dụng" Value="Recruitment;ctrlRC_RequestPortalNewEdit"></Item>
 </PanelBar>

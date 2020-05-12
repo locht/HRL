@@ -885,7 +885,7 @@ Partial Class RecruitmentRepository
             Dim obj = query
             'Dim lstEmp = (From p In Context.RC_REQUEST_EMP
             '               From emp In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
-            '               Where p.RC_REQUEST_ID = obj.ID
+            '               Where p.RC_REQUEST_ID = _filter.ID
             '               Select New RequestEmpDTO With {
             '                   .EMPLOYEE_ID = p.EMPLOYEE_ID,
             '                   .EMPLOYEE_CODE = emp.EMPLOYEE_CODE,

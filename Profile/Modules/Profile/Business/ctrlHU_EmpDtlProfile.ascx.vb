@@ -1040,6 +1040,7 @@ Public Class ctrlHU_EmpDtlProfile
                     rtIdTitleConcurrent.Visible = False
                     'RadPane4.Visible = False
                     EmpCode = r.CreateNewEMPLOYEECode()
+
                     'txtTimeID.Text = EmpCode.EMPLOYEE_CODE
                     'txtEmpCODE.Text = EmpCode.EMPLOYEE_CODE
                     EnableControlAll(True, txtOrgName2, btnFindOrg, btnPresenter,
@@ -2393,7 +2394,6 @@ Public Class ctrlHU_EmpDtlProfile
             End If
             'them moi cac truong tại đây
 
-            'EmpCode = r.CreateNewEMPLOYEECode()
             If txtEmpCODE.Text <> "" Then
                 EmployeeInfo.ITIME_ID = Integer.Parse(txtEmpCODE.Text)
             End If
