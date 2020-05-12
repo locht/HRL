@@ -88,7 +88,7 @@ Public Class ctrlHU_EmployeeMng
             If Not IsPostBack Then
                 ViewConfig(LeftPane)
                 ViewConfig(RadPane1)
-                ViewConfig(RadPane4)
+                'ViewConfig(RadPane4)
                 GirdConfig(rgEmployeeList)
             End If
             'rgEmployeeList.SetFilter()
@@ -491,141 +491,141 @@ Public Class ctrlHU_EmployeeMng
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub btnPrintSupport_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnPrintSupport.Click
+    'Private Sub btnPrintSupport_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnPrintSupport.Click
 
-        Dim validate As New Profile.ProfileBusiness.OtherListDTO
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            If cboPrintSupport.SelectedValue = "" Then
-                ShowMessage(Translate("Bạn chưa chọn biểu mẫu"), NotifyType.Warning)
-                Exit Sub
-            End If
-            Using rep As New ProfileRepository
-                validate.ID = cboPrintSupport.SelectedValue
-                validate.ACTFLG = "A"
-                validate.CODE = "PROFILE_SUPPORT"
-                If Not rep.ValidateOtherList(validate) Then
-                    ShowMessage(Translate("Biểu mẫu không tồn tại hoặc đã ngừng áp dụng."), NotifyType.Warning)
-                    ClearControlValue(cboPrintSupport)
-                    GetDataCombo()
-                    Exit Sub
-                End If
-            End Using
-            Dim dtData As DataTable
-            Dim folderName As String = ""
-            Dim filePath As String = ""
-            Dim extension As String = ""
-            Dim iError As Integer = 0
-            Dim strId As String = ""
-            For Each item As GridDataItem In rgEmployeeList.SelectedItems
-                strId = strId & item.GetDataKeyValue("ID") & ","
-            Next
-            strId = strId.Substring(0, strId.Length - 1) 'Loai bỏ kí tự , cuối cùng
-            ' Kiểm tra + lấy thông tin trong database
-            Using rep As New ProfileRepository
-                dtData = rep.GetHU_MultyDataDynamic(strId,
-                                               ProfileCommon.HU_TEMPLATE_TYPE.PROFILE_SUPPORT_ID,
-                                               folderName)
-                If dtData.Rows.Count = 0 Then
-                    ShowMessage(Translate("Dữ liệu không tồn tại"), NotifyType.Warning)
-                    Exit Sub
-                End If
-                If folderName = "" Then
-                    ShowMessage(Translate("Thư mục không tồn tại"), NotifyType.Warning)
-                    Exit Sub
-                End If
-            End Using
+    '    Dim validate As New Profile.ProfileBusiness.OtherListDTO
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        Dim startTime As DateTime = DateTime.UtcNow
+    '        If cboPrintSupport.SelectedValue = "" Then
+    '            ShowMessage(Translate("Bạn chưa chọn biểu mẫu"), NotifyType.Warning)
+    '            Exit Sub
+    '        End If
+    '        Using rep As New ProfileRepository
+    '            validate.ID = cboPrintSupport.SelectedValue
+    '            validate.ACTFLG = "A"
+    '            validate.CODE = "PROFILE_SUPPORT"
+    '            If Not rep.ValidateOtherList(validate) Then
+    '                ShowMessage(Translate("Biểu mẫu không tồn tại hoặc đã ngừng áp dụng."), NotifyType.Warning)
+    '                ClearControlValue(cboPrintSupport)
+    '                GetDataCombo()
+    '                Exit Sub
+    '            End If
+    '        End Using
+    '        Dim dtData As DataTable
+    '        Dim folderName As String = ""
+    '        Dim filePath As String = ""
+    '        Dim extension As String = ""
+    '        Dim iError As Integer = 0
+    '        Dim strId As String = ""
+    '        For Each item As GridDataItem In rgEmployeeList.SelectedItems
+    '            strId = strId & item.GetDataKeyValue("ID") & ","
+    '        Next
+    '        strId = strId.Substring(0, strId.Length - 1) 'Loai bỏ kí tự , cuối cùng
+    '        ' Kiểm tra + lấy thông tin trong database
+    '        Using rep As New ProfileRepository
+    '            dtData = rep.GetHU_MultyDataDynamic(strId,
+    '                                           ProfileCommon.HU_TEMPLATE_TYPE.PROFILE_SUPPORT_ID,
+    '                                           folderName)
+    '            If dtData.Rows.Count = 0 Then
+    '                ShowMessage(Translate("Dữ liệu không tồn tại"), NotifyType.Warning)
+    '                Exit Sub
+    '            End If
+    '            If folderName = "" Then
+    '                ShowMessage(Translate("Thư mục không tồn tại"), NotifyType.Warning)
+    '                Exit Sub
+    '            End If
+    '        End Using
 
-            If dtData.Columns.Contains("EMPLOYEE_NAME_EN") Then
-                For i As Int32 = 0 To dtData.Rows.Count - 1
-                    dtData.Rows(i)("EMPLOYEE_NAME_EN") = Utilities.RemoveUnicode(dtData.Rows(i)("EMPLOYEE_NAME_EN").ToString)
-                Next
-            End If
+    '        If dtData.Columns.Contains("EMPLOYEE_NAME_EN") Then
+    '            For i As Int32 = 0 To dtData.Rows.Count - 1
+    '                dtData.Rows(i)("EMPLOYEE_NAME_EN") = Utilities.RemoveUnicode(dtData.Rows(i)("EMPLOYEE_NAME_EN").ToString)
+    '            Next
+    '        End If
 
-            ' Kiểm tra file theo thông tin trong database
-            If Not Utilities.GetTemplateLinkFile(cboPrintSupport.SelectedValue,
-                                                 folderName,
-                                                 filePath,
-                                                 extension,
-                                                 iError) Then
-                Select Case iError
-                    Case 1
-                        ShowMessage("Biểu mẫu không tồn tại", NotifyType.Warning)
-                        Exit Sub
-                End Select
-            End If
-            ' Export file mẫu
-            If cboPrintSupport.SelectedValue <> 6549 Then
-                If rgEmployeeList.SelectedItems.Count = 1 Then
-                    Dim item As GridDataItem = rgEmployeeList.SelectedItems(0)
-                    Using word As New WordCommon
-                        word.ExportMailMerge(filePath,
-                                             item.GetDataKeyValue("EMPLOYEE_CODE") & "_" & cboPrintSupport.Text & "_" & Format(Date.Now, "yyyyMMddHHmmss"),
-                                             dtData,
-                                             Response)
-                    End Using
-                Else
-                    Dim lstFile As List(Of String) = Utilities.SaveMultyFile(dtData, filePath, cboPrintSupport.Text)
-                    Using zip As New ZipFile
-                        zip.AlternateEncodingUsage = ZipOption.AsNecessary
-                        zip.AddDirectoryByName("Files")
-                        For i As Integer = 0 To lstFile.Count - 1
-                            Dim file As System.IO.FileInfo = New System.IO.FileInfo(lstFile(i))
-                            If file.Exists Then
-                                zip.AddFile(file.FullName, "Files")
-                            End If
-                        Next
-                        Response.Clear()
+    '        ' Kiểm tra file theo thông tin trong database
+    '        If Not Utilities.GetTemplateLinkFile(cboPrintSupport.SelectedValue,
+    '                                             folderName,
+    '                                             filePath,
+    '                                             extension,
+    '                                             iError) Then
+    '            Select Case iError
+    '                Case 1
+    '                    ShowMessage("Biểu mẫu không tồn tại", NotifyType.Warning)
+    '                    Exit Sub
+    '            End Select
+    '        End If
+    '        ' Export file mẫu
+    '        If cboPrintSupport.SelectedValue <> 6549 Then
+    '            If rgEmployeeList.SelectedItems.Count = 1 Then
+    '                Dim item As GridDataItem = rgEmployeeList.SelectedItems(0)
+    '                Using word As New WordCommon
+    '                    word.ExportMailMerge(filePath,
+    '                                         item.GetDataKeyValue("EMPLOYEE_CODE") & "_" & cboPrintSupport.Text & "_" & Format(Date.Now, "yyyyMMddHHmmss"),
+    '                                         dtData,
+    '                                         Response)
+    '                End Using
+    '            Else
+    '                Dim lstFile As List(Of String) = Utilities.SaveMultyFile(dtData, filePath, cboPrintSupport.Text)
+    '                Using zip As New ZipFile
+    '                    zip.AlternateEncodingUsage = ZipOption.AsNecessary
+    '                    zip.AddDirectoryByName("Files")
+    '                    For i As Integer = 0 To lstFile.Count - 1
+    '                        Dim file As System.IO.FileInfo = New System.IO.FileInfo(lstFile(i))
+    '                        If file.Exists Then
+    '                            zip.AddFile(file.FullName, "Files")
+    '                        End If
+    '                    Next
+    '                    Response.Clear()
 
-                        Dim zipName As String = [String].Format("{0}_{1}.zip", cboPrintSupport.Text, DateTime.Now.ToString("yyyy-MMM-dd-HHmmss"))
-                        Response.ContentType = "application/zip"
-                        Response.AddHeader("content-disposition", "attachment; filename=" + zipName)
-                        zip.Save(Response.OutputStream)
-                        Response.Flush()
-                        Response.SuppressContent = True
-                        HttpContext.Current.ApplicationInstance.CompleteRequest()
-                    End Using
-                    For i As Integer = 0 To lstFile.Count - 1
-                        'Delete files
-                        Dim file As System.IO.FileInfo = New System.IO.FileInfo(lstFile(i))
-                        If file.Exists Then
-                            file.Delete()
-                        End If
-                    Next
-                End If
-            Else
-                Dim dsData As New DataSet
+    '                    Dim zipName As String = [String].Format("{0}_{1}.zip", cboPrintSupport.Text, DateTime.Now.ToString("yyyy-MMM-dd-HHmmss"))
+    '                    Response.ContentType = "application/zip"
+    '                    Response.AddHeader("content-disposition", "attachment; filename=" + zipName)
+    '                    zip.Save(Response.OutputStream)
+    '                    Response.Flush()
+    '                    Response.SuppressContent = True
+    '                    HttpContext.Current.ApplicationInstance.CompleteRequest()
+    '                End Using
+    '                For i As Integer = 0 To lstFile.Count - 1
+    '                    'Delete files
+    '                    Dim file As System.IO.FileInfo = New System.IO.FileInfo(lstFile(i))
+    '                    If file.Exists Then
+    '                        file.Delete()
+    '                    End If
+    '                Next
+    '            End If
+    '        Else
+    '            Dim dsData As New DataSet
 
-                Dim dtTable As New DataTable
+    '            Dim dtTable As New DataTable
 
-                Dim column1 As DataColumn = New DataColumn("DATE_NOW")
-                column1.DataType = System.Type.GetType("System.String")
+    '            Dim column1 As DataColumn = New DataColumn("DATE_NOW")
+    '            column1.DataType = System.Type.GetType("System.String")
 
-                dtTable.Columns.Add(column1)
-                Dim row As DataRow
-                row = dtTable.NewRow()
-                row("DATE_NOW") = Date.Now.ToString("dd MMM yyyy", CultureInfo.CreateSpecificCulture("en-US"))
-                dtTable.Rows.Add(row)
+    '            dtTable.Columns.Add(column1)
+    '            Dim row As DataRow
+    '            row = dtTable.NewRow()
+    '            row("DATE_NOW") = Date.Now.ToString("dd MMM yyyy", CultureInfo.CreateSpecificCulture("en-US"))
+    '            dtTable.Rows.Add(row)
 
-                dtTable.TableName = "TABLE"
-                dsData.Tables.Add(dtTable)
-                dtData.TableName = "TABLE1"
-                dsData.Tables.Add(dtData)
-                Using word As New WordCommon
-                    word.ExportMailMerge(filePath,
-                                         cboPrintSupport.Text & "_" & Format(Date.Now, "yyyyMMddHHmmss"),
-                                         dsData,
-                                         Response)
-                End Using
-            End If
+    '            dtTable.TableName = "TABLE"
+    '            dsData.Tables.Add(dtTable)
+    '            dtData.TableName = "TABLE1"
+    '            dsData.Tables.Add(dtData)
+    '            Using word As New WordCommon
+    '                word.ExportMailMerge(filePath,
+    '                                     cboPrintSupport.Text & "_" & Format(Date.Now, "yyyyMMddHHmmss"),
+    '                                     dsData,
+    '                                     Response)
+    '            End Using
+    '        End If
 
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
 
 #End Region
 
@@ -826,10 +826,10 @@ Public Class ctrlHU_EmployeeMng
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Try
-            Using rep As New ProfileRepository
-                dtData = rep.GetOtherList("PROFILE_SUPPORT")
-                FillRadCombobox(cboPrintSupport, dtData, "NAME", "ID")
-            End Using
+            'Using rep As New ProfileRepository
+            '    dtData = rep.GetOtherList("PROFILE_SUPPORT")
+            '    FillRadCombobox(cboPrintSupport, dtData, "NAME", "ID")
+            'End Using
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex

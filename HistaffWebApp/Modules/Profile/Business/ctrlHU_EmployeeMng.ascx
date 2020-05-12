@@ -112,9 +112,9 @@
                     <%--<HeaderStyle Width="120px" />--%>                    
                 </tlk:RadGrid>
             </tlk:RadPane>
-            <tlk:RadPane ID="RadPane4" runat="server" Scrolling="None" Height="45px">
+            <%--<tlk:RadPane ID="RadPane4" runat="server" Scrolling="None" Height="45px">
                 <table class="table-form">
-                    <tr>
+                    <tr style="display:none">
                         <td class="lb">
                             <asp:Label ID="lbTemplatePrint" runat="server" Text="Biễu mẫu hỗ trợ"></asp:Label>
                         </td>
@@ -129,7 +129,7 @@
                         </td>
                     </tr>
                 </table>
-        </tlk:RadPane>
+        </tlk:RadPane>--%>
         </tlk:RadSplitter>
     </tlk:RadPane>
 </tlk:RadSplitter>
