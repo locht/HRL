@@ -32666,6 +32666,9 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/Update_ObjectEandC", ReplyAction:="http://tempuri.org/IAttendanceBusiness/Update_ObjectEandCResponse")>  _
         Function Update_ObjectEandC(ByVal list As System.Collections.Generic.List(Of AttendanceBusiness.AT_ObjectEmpployeeCompensatoryDTO), ByVal objEdit As AttendanceBusiness.AT_ObjectEmpployeeCompensatoryDTO, ByVal code_func As String) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetOrgShiftList", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetOrgShiftListResponse")>  _
+        Function GetOrgShiftList(ByVal _param As AttendanceBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ValidateOtRegistration", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ValidateOtRegistrationResponse"),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Date))),  _
@@ -34350,6 +34353,10 @@ Namespace AttendanceBusiness
         
         Public Function Update_ObjectEandC(ByVal list As System.Collections.Generic.List(Of AttendanceBusiness.AT_ObjectEmpployeeCompensatoryDTO), ByVal objEdit As AttendanceBusiness.AT_ObjectEmpployeeCompensatoryDTO, ByVal code_func As String) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.Update_ObjectEandC
             Return MyBase.Channel.Update_ObjectEandC(list, objEdit, code_func)
+        End Function
+        
+        Public Function GetOrgShiftList(ByVal _param As AttendanceBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GetOrgShiftList
+            Return MyBase.Channel.GetOrgShiftList(_param, log)
         End Function
         
         Public Function ValidateOtRegistration(ByVal _validate As AttendanceBusiness.AT_OT_REGISTRATIONDTO) As Object Implements AttendanceBusiness.IAttendanceBusiness.ValidateOtRegistration

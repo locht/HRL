@@ -202,6 +202,7 @@
     <Content Include="Modules\Attendance\List\ctrlRitual_Hose.ascx" />
     <Content Include="Modules\Attendance\Report\ctrlAT_ReportList.ascx" />
     <Content Include="Modules\Attendance\Setting\crtlSetUpExchange.ascx" />
+    <Content Include="Modules\Attendance\Setting\ctrlAT_OrgShift.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlSetUpCodeAttEmp.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlSwipeMachineStatus.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlSetUpTimeEmp.ascx" />
@@ -729,6 +730,13 @@
     </Compile>
     <Compile Include="Modules\Attendance\Setting\crtlSetUpExchange.ascx.vb">
       <DependentUpon>crtlSetUpExchange.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlAT_OrgShift.ascx.designer.vb">
+      <DependentUpon>ctrlAT_OrgShift.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlAT_OrgShift.ascx.vb">
+      <DependentUpon>ctrlAT_OrgShift.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Attendance\Setting\ctrlSetUpCodeAttEmp.ascx.designer.vb">

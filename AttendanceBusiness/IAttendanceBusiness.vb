@@ -1291,6 +1291,8 @@ Namespace AttendanceBusiness.ServiceContracts
         Function Update_ObjectEandC(ByVal list As List(Of AT_ObjectEmpployeeCompensatoryDTO),
                                        ByVal objEdit As AT_ObjectEmpployeeCompensatoryDTO,
                                         ByVal code_func As String) As Boolean
+        <OperationContract()>
+        Function GetOrgShiftList(ByVal _param As ParamDTO, Optional ByVal log As UserLog = Nothing) As DataTable
 #End Region
     End Interface
 End Namespace

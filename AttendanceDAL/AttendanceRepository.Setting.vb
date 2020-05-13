@@ -181,4 +181,23 @@ Partial Public Class AttendanceRepository
             Throw ex
         End Try
     End Function
+
+
+    Public Function GetOrgShiftList(ByVal _param As ParamDTO, Optional ByVal log As UserLog = Nothing) As DataTable
+        Try
+
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_ATTENDANCE_LIST.AT_ORGSHIFT_LIST",
+                                           New With {.P_USERNAME = log.Username.ToUpper,
+                                                     .P_ORG_ID = _param.ORG_ID,
+                                                     .P_ISDISSOLVE = _param.IS_DISSOLVE,
+                                                     .P_OUT = cls.OUT_CURSOR})
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
 End Class

@@ -188,6 +188,7 @@
     <Content Include="Modules\Attendance\Report\ctrlAT_ReportList.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlAT_OBJECT_EMP_CSL.ascx" />
     <Content Include="Modules\Attendance\Setting\crtlSetUpExchange.ascx" />
+    <Content Include="Modules\Attendance\Setting\ctrlAT_OrgShift.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlSetUpCodeAttEmp.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlATTimeManual.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlAT_PROJECT_EMP.ascx" />

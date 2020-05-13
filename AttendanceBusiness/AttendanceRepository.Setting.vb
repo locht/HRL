@@ -22,6 +22,16 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function GetOrgShiftList(ByVal _param As ParamDTO, Optional ByVal log As UserLog = Nothing) As DataTable _
+        Implements ServiceContracts.IAttendanceBusiness.GetOrgShiftList
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.GetOrgShiftList(_param, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
         Public Function Update_ObjectEandC(ByVal list As List(Of AT_ObjectEmpployeeCompensatoryDTO),
                                        ByVal objEdit As AT_ObjectEmpployeeCompensatoryDTO,
                                         ByVal code_func As String) As Boolean _
