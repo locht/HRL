@@ -1328,6 +1328,181 @@ Namespace InsuranceBusiness
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="PARAMDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/InsuranceDAL"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class PARAMDTO
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ENDDATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FROMDATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_DISSOLVEField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_FULLField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PERIOD_IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PLACE_ENTRYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private P_EXPORT_TYPEField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private STATUSField As System.Nullable(Of Decimal)
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ENDDATE() As System.Nullable(Of Date)
+            Get
+                Return Me.ENDDATEField
+            End Get
+            Set
+                If (Me.ENDDATEField.Equals(value) <> true) Then
+                    Me.ENDDATEField = value
+                    Me.RaisePropertyChanged("ENDDATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FROMDATE() As System.Nullable(Of Date)
+            Get
+                Return Me.FROMDATEField
+            End Get
+            Set
+                If (Me.FROMDATEField.Equals(value) <> true) Then
+                    Me.FROMDATEField = value
+                    Me.RaisePropertyChanged("FROMDATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_DISSOLVE() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_DISSOLVEField
+            End Get
+            Set
+                If (Me.IS_DISSOLVEField.Equals(value) <> true) Then
+                    Me.IS_DISSOLVEField = value
+                    Me.RaisePropertyChanged("IS_DISSOLVE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_FULL() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_FULLField
+            End Get
+            Set
+                If (Me.IS_FULLField.Equals(value) <> true) Then
+                    Me.IS_FULLField = value
+                    Me.RaisePropertyChanged("IS_FULL")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_ID() As Decimal
+            Get
+                Return Me.ORG_IDField
+            End Get
+            Set
+                If (Me.ORG_IDField.Equals(value) <> true) Then
+                    Me.ORG_IDField = value
+                    Me.RaisePropertyChanged("ORG_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PERIOD_ID() As Decimal
+            Get
+                Return Me.PERIOD_IDField
+            End Get
+            Set
+                If (Me.PERIOD_IDField.Equals(value) <> true) Then
+                    Me.PERIOD_IDField = value
+                    Me.RaisePropertyChanged("PERIOD_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PLACE_ENTRY() As String
+            Get
+                Return Me.PLACE_ENTRYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.PLACE_ENTRYField, value) <> true) Then
+                    Me.PLACE_ENTRYField = value
+                    Me.RaisePropertyChanged("PLACE_ENTRY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property P_EXPORT_TYPE() As Decimal
+            Get
+                Return Me.P_EXPORT_TYPEField
+            End Get
+            Set
+                If (Me.P_EXPORT_TYPEField.Equals(value) <> true) Then
+                    Me.P_EXPORT_TYPEField = value
+                    Me.RaisePropertyChanged("P_EXPORT_TYPE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property STATUS() As System.Nullable(Of Decimal)
+            Get
+                Return Me.STATUSField
+            End Get
+            Set
+                If (Me.STATUSField.Equals(value) <> true) Then
+                    Me.STATUSField = value
+                    Me.RaisePropertyChanged("STATUS")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
      System.Runtime.Serialization.DataContractAttribute(Name:="INS_SUN_CARE_DTO", [Namespace]:="http://schemas.datacontract.org/2004/07/InsuranceDAL"),  _
      System.SerializableAttribute()>  _
     Partial Public Class INS_SUN_CARE_DTO
@@ -4363,181 +4538,6 @@ Namespace InsuranceBusiness
                 If (Me.WORK_STATUSField.Equals(value) <> true) Then
                     Me.WORK_STATUSField = value
                     Me.RaisePropertyChanged("WORK_STATUS")
-                End If
-            End Set
-        End Property
-        
-        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-        
-        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
-            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
-            If (Not (propertyChanged) Is Nothing) Then
-                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
-            End If
-        End Sub
-    End Class
-    
-    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
-     System.Runtime.Serialization.DataContractAttribute(Name:="PARAMDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/InsuranceDAL"),  _
-     System.SerializableAttribute()>  _
-    Partial Public Class PARAMDTO
-        Inherits Object
-        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
-        
-        <System.NonSerializedAttribute()>  _
-        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ENDDATEField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private FROMDATEField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IS_DISSOLVEField As System.Nullable(Of Boolean)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IS_FULLField As System.Nullable(Of Boolean)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ORG_IDField As Decimal
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private PERIOD_IDField As Decimal
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private PLACE_ENTRYField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private P_EXPORT_TYPEField As Decimal
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private STATUSField As System.Nullable(Of Decimal)
-        
-        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
-        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
-            Get
-                Return Me.extensionDataField
-            End Get
-            Set
-                Me.extensionDataField = value
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ENDDATE() As System.Nullable(Of Date)
-            Get
-                Return Me.ENDDATEField
-            End Get
-            Set
-                If (Me.ENDDATEField.Equals(value) <> true) Then
-                    Me.ENDDATEField = value
-                    Me.RaisePropertyChanged("ENDDATE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property FROMDATE() As System.Nullable(Of Date)
-            Get
-                Return Me.FROMDATEField
-            End Get
-            Set
-                If (Me.FROMDATEField.Equals(value) <> true) Then
-                    Me.FROMDATEField = value
-                    Me.RaisePropertyChanged("FROMDATE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IS_DISSOLVE() As System.Nullable(Of Boolean)
-            Get
-                Return Me.IS_DISSOLVEField
-            End Get
-            Set
-                If (Me.IS_DISSOLVEField.Equals(value) <> true) Then
-                    Me.IS_DISSOLVEField = value
-                    Me.RaisePropertyChanged("IS_DISSOLVE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IS_FULL() As System.Nullable(Of Boolean)
-            Get
-                Return Me.IS_FULLField
-            End Get
-            Set
-                If (Me.IS_FULLField.Equals(value) <> true) Then
-                    Me.IS_FULLField = value
-                    Me.RaisePropertyChanged("IS_FULL")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ORG_ID() As Decimal
-            Get
-                Return Me.ORG_IDField
-            End Get
-            Set
-                If (Me.ORG_IDField.Equals(value) <> true) Then
-                    Me.ORG_IDField = value
-                    Me.RaisePropertyChanged("ORG_ID")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property PERIOD_ID() As Decimal
-            Get
-                Return Me.PERIOD_IDField
-            End Get
-            Set
-                If (Me.PERIOD_IDField.Equals(value) <> true) Then
-                    Me.PERIOD_IDField = value
-                    Me.RaisePropertyChanged("PERIOD_ID")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property PLACE_ENTRY() As String
-            Get
-                Return Me.PLACE_ENTRYField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.PLACE_ENTRYField, value) <> true) Then
-                    Me.PLACE_ENTRYField = value
-                    Me.RaisePropertyChanged("PLACE_ENTRY")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property P_EXPORT_TYPE() As Decimal
-            Get
-                Return Me.P_EXPORT_TYPEField
-            End Get
-            Set
-                If (Me.P_EXPORT_TYPEField.Equals(value) <> true) Then
-                    Me.P_EXPORT_TYPEField = value
-                    Me.RaisePropertyChanged("P_EXPORT_TYPE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property STATUS() As System.Nullable(Of Decimal)
-            Get
-                Return Me.STATUSField
-            End Get
-            Set
-                If (Me.STATUSField.Equals(value) <> true) Then
-                    Me.STATUSField = value
-                    Me.RaisePropertyChanged("STATUS")
                 End If
             End Set
         End Property
@@ -10935,6 +10935,9 @@ Namespace InsuranceBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="InsuranceBusiness.IInsuranceBusiness")>  _
     Public Interface IInsuranceBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsHealthImport", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsHealthImportResponse")>  _
+        Function UpdateInsHealthImport(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As System.Nullable(Of Double), ByVal insurance_id As System.Nullable(Of Double), ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date)) As Double
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsHealthImport", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsHealthImportResponse")>  _
         Function DeleteInsHealthImport(ByVal username As String, ByVal id As System.Nullable(Of Double)) As Double
         
@@ -10991,6 +10994,9 @@ Namespace InsuranceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GET_REARL_FILED", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GET_REARL_FILEDResponse")>  _
         Function GET_REARL_FILED(ByVal P_INS_ORG_ID As Decimal, ByVal P_YEAR As Decimal, ByVal P_MONTH As Decimal) As Decimal
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGE", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGEResponse")>  _
+        Function GetINS_CHANGE(ByVal _filter As InsuranceBusiness.INS_CHANGEDTO, ByVal _param As InsuranceBusiness.PARAMDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGEDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGEById", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGEByIdResponse")>  _
         Function GetINS_CHANGEById(ByVal _id As System.Nullable(Of Decimal)) As InsuranceBusiness.INS_CHANGEDTO
@@ -11395,9 +11401,6 @@ Namespace InsuranceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsHealthImportCheckOrg", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsHealthImportCheckOrgResponse")>  _
         Function GetInsHealthImportCheckOrg(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As String, ByVal insurance_id As System.Nullable(Of Double), ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date)) As System.Data.DataTable
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsHealthImport", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsHealthImportResponse")>  _
-        Function UpdateInsHealthImport(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As System.Nullable(Of Double), ByVal insurance_id As System.Nullable(Of Double), ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date)) As Double
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetComboboxData", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetComboboxDataResponse")>  _
         Function GetComboboxData(ByRef cbxData As InsuranceBusiness.ComboBoxDataDTO) As Boolean
         
@@ -11446,6 +11449,9 @@ Namespace InsuranceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_WHEREHEALTH", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_WHEREHEALTHResponse")>  _
         Function GetINS_WHEREHEALTH(ByVal _filter As InsuranceBusiness.INS_WHEREHEALTHDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of InsuranceBusiness.INS_WHEREHEALTHDTO)
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetWhereHealthToPopupFind_WHID", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetWhereHealthToPopupFind_WHIDResponse")>  _
+        Function GetWhereHealthToPopupFind_WHID(ByVal _WHId As System.Collections.Generic.List(Of Decimal)) As System.Collections.Generic.List(Of InsuranceBusiness.INS_WHEREHEALTHDTO)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_WHEREEXPORT", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_WHEREEXPORTResponse")>  _
         Function GetINS_WHEREEXPORT() As System.Collections.Generic.List(Of InsuranceBusiness.INS_WHEREHEALTHDTO)
         
@@ -11492,6 +11498,7 @@ Namespace InsuranceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_ACCIDENT_RISKDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_ACCIDENT_RISKDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_CHANGEDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.PARAMDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGEDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_SUN_CARE_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_SUN_CARE_DTO))),  _
@@ -11500,7 +11507,6 @@ Namespace InsuranceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_REMIGE_MANAGER_DTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_INFORMATIONDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_GROUP_SUN_CAREDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.PARAMDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_GROUP_SUN_CAREDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.Se_ReportDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.Se_ReportDTO))),  _
@@ -11552,6 +11558,7 @@ Namespace InsuranceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_ACCIDENT_RISKDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_ACCIDENT_RISKDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_CHANGEDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.PARAMDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGEDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_SUN_CARE_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_SUN_CARE_DTO))),  _
@@ -11560,7 +11567,6 @@ Namespace InsuranceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_REMIGE_MANAGER_DTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_INFORMATIONDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_GROUP_SUN_CAREDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.PARAMDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_GROUP_SUN_CAREDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.Se_ReportDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.Se_ReportDTO))),  _
@@ -11612,6 +11618,7 @@ Namespace InsuranceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_ACCIDENT_RISKDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_ACCIDENT_RISKDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_CHANGEDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.PARAMDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGEDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_SUN_CARE_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_SUN_CARE_DTO))),  _
@@ -11620,7 +11627,6 @@ Namespace InsuranceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_REMIGE_MANAGER_DTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_INFORMATIONDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_GROUP_SUN_CAREDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.PARAMDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_GROUP_SUN_CAREDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.Se_ReportDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.Se_ReportDTO))),  _
@@ -11820,9 +11826,6 @@ Namespace InsuranceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetAllowanceTotalByDate", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetAllowanceTotalByDateResponse")>  _
         Function GetAllowanceTotalByDate(ByVal employeeID As Decimal) As System.Nullable(Of Decimal)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGE", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGEResponse")>  _
-        Function GetINS_CHANGE(ByVal _filter As InsuranceBusiness.INS_CHANGEDTO, ByVal _param As InsuranceBusiness.PARAMDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGEDTO)
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -11855,6 +11858,10 @@ Namespace InsuranceBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function UpdateInsHealthImport(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As System.Nullable(Of Double), ByVal insurance_id As System.Nullable(Of Double), ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date)) As Double Implements InsuranceBusiness.IInsuranceBusiness.UpdateInsHealthImport
+            Return MyBase.Channel.UpdateInsHealthImport(username, id, employee_id, ins_org_id, insurance_id, effective_from_date, effective_to_date)
+        End Function
         
         Public Function DeleteInsHealthImport(ByVal username As String, ByVal id As System.Nullable(Of Double)) As Double Implements InsuranceBusiness.IInsuranceBusiness.DeleteInsHealthImport
             Return MyBase.Channel.DeleteInsHealthImport(username, id)
@@ -11930,6 +11937,10 @@ Namespace InsuranceBusiness
         
         Public Function GET_REARL_FILED(ByVal P_INS_ORG_ID As Decimal, ByVal P_YEAR As Decimal, ByVal P_MONTH As Decimal) As Decimal Implements InsuranceBusiness.IInsuranceBusiness.GET_REARL_FILED
             Return MyBase.Channel.GET_REARL_FILED(P_INS_ORG_ID, P_YEAR, P_MONTH)
+        End Function
+        
+        Public Function GetINS_CHANGE(ByVal _filter As InsuranceBusiness.INS_CHANGEDTO, ByVal _param As InsuranceBusiness.PARAMDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGEDTO) Implements InsuranceBusiness.IInsuranceBusiness.GetINS_CHANGE
+            Return MyBase.Channel.GetINS_CHANGE(_filter, _param, Total, PageIndex, PageSize, Sorts, log)
         End Function
         
         Public Function GetINS_CHANGEById(ByVal _id As System.Nullable(Of Decimal)) As InsuranceBusiness.INS_CHANGEDTO Implements InsuranceBusiness.IInsuranceBusiness.GetINS_CHANGEById
@@ -12419,10 +12430,6 @@ Namespace InsuranceBusiness
             Return MyBase.Channel.GetInsHealthImportCheckOrg(username, id, employee_id, ins_org_id, insurance_id, effective_from_date, effective_to_date)
         End Function
         
-        Public Function UpdateInsHealthImport(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As System.Nullable(Of Double), ByVal insurance_id As System.Nullable(Of Double), ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date)) As Double Implements InsuranceBusiness.IInsuranceBusiness.UpdateInsHealthImport
-            Return MyBase.Channel.UpdateInsHealthImport(username, id, employee_id, ins_org_id, insurance_id, effective_from_date, effective_to_date)
-        End Function
-        
         Public Function GetComboboxData(ByRef cbxData As InsuranceBusiness.ComboBoxDataDTO) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.GetComboboxData
             Return MyBase.Channel.GetComboboxData(cbxData)
         End Function
@@ -12485,6 +12492,10 @@ Namespace InsuranceBusiness
         
         Public Function GetINS_WHEREHEALTH(ByVal _filter As InsuranceBusiness.INS_WHEREHEALTHDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of InsuranceBusiness.INS_WHEREHEALTHDTO) Implements InsuranceBusiness.IInsuranceBusiness.GetINS_WHEREHEALTH
             Return MyBase.Channel.GetINS_WHEREHEALTH(_filter, PageIndex, PageSize, Total, Sorts)
+        End Function
+        
+        Public Function GetWhereHealthToPopupFind_WHID(ByVal _WHId As System.Collections.Generic.List(Of Decimal)) As System.Collections.Generic.List(Of InsuranceBusiness.INS_WHEREHEALTHDTO) Implements InsuranceBusiness.IInsuranceBusiness.GetWhereHealthToPopupFind_WHID
+            Return MyBase.Channel.GetWhereHealthToPopupFind_WHID(_WHId)
         End Function
         
         Public Function GetINS_WHEREEXPORT() As System.Collections.Generic.List(Of InsuranceBusiness.INS_WHEREHEALTHDTO) Implements InsuranceBusiness.IInsuranceBusiness.GetINS_WHEREEXPORT
@@ -12757,10 +12768,6 @@ Namespace InsuranceBusiness
         
         Public Function GetAllowanceTotalByDate(ByVal employeeID As Decimal) As System.Nullable(Of Decimal) Implements InsuranceBusiness.IInsuranceBusiness.GetAllowanceTotalByDate
             Return MyBase.Channel.GetAllowanceTotalByDate(employeeID)
-        End Function
-        
-        Public Function GetINS_CHANGE(ByVal _filter As InsuranceBusiness.INS_CHANGEDTO, ByVal _param As InsuranceBusiness.PARAMDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGEDTO) Implements InsuranceBusiness.IInsuranceBusiness.GetINS_CHANGE
-            Return MyBase.Channel.GetINS_CHANGE(_filter, _param, Total, PageIndex, PageSize, Sorts, log)
         End Function
     End Class
 End Namespace

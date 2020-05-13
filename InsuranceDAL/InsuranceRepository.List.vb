@@ -500,6 +500,28 @@ Partial Public Class InsuranceRepository
         End Try
     End Function
 
+    Public Function GetWhereHealthToPopupFind_WHID(ByVal _WHId As List(Of Decimal)) As List(Of INS_WHEREHEALTHDTO)
+        Try
+            Dim query = From p In Context.INS_WHEREHEALTH
+                        From t In Context.HU_PROVINCE.Where(Function(F) F.ID = p.ID_PROVINCE).DefaultIfEmpty
+                        From n In Context.HU_DISTRICT.Where(Function(D) D.ID = p.ID_DISTRICT).DefaultIfEmpty
+                        Order By p.CODE
+                        Where (_WHId.Contains(p.ID))
+            Dim lst = query.Select(Function(p) New INS_WHEREHEALTHDTO With {
+                                       .ID = p.p.ID,
+                                       .CODE = p.p.CODE,
+                                       .NAME_VN = p.p.NAME_VN,
+                                       .ADDRESS = p.p.ADDRESS,
+                                       .ID_PROVINCE = p.p.ID_PROVINCE,
+                                       .PROVINCE_NAME = p.t.NAME_VN,
+                                       .ID_DISTRICT = p.p.ID_DISTRICT,
+                                       .DISTRICT_NAME = p.n.NAME_VN})
+            Return lst.ToList
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function GetINS_WHEREEXPORT() As List(Of INS_WHEREHEALTHDTO)
         Try
 
@@ -1420,7 +1442,7 @@ Partial Public Class InsuranceRepository
 
 #Region "Validate Combobox"
     Public Function ValidateCombobox(ByVal cbxData As ComboBoxDataDTO) As Boolean
-        Try          
+        Try
             'Danh mục loại hợp đồng
             If cbxData.GET_CONTRACTTYPE Then
                 Dim ID As Decimal = cbxData.LIST_CONTRACTTYPE(0).ID
@@ -1492,7 +1514,7 @@ Partial Public Class InsuranceRepository
                          Select New HU_TitleDTO With {
                              .ID = p.ID,
                              .NAME_VN = p.NAME_VN}).ToList
-                If List.Count = 0 Then
+                If list.Count = 0 Then
                     Return False
                 End If
             End If
@@ -1571,7 +1593,7 @@ Partial Public Class InsuranceRepository
                              .code = p.CODE,
                              .name_en = p.NAME_EN,
                              .name_vn = p.NAME_VN}).ToList
-                If List.Count = 0 Then
+                If list.Count = 0 Then
                     Return False
                 End If
             End If
@@ -1587,7 +1609,7 @@ Partial Public Class InsuranceRepository
                              .name_en = p.NAME_EN,
                              .name_vn = p.NAME_VN,
                              .province_id = p.PROVINCE_ID}).ToList
-                If List.Count = 0 Then
+                If list.Count = 0 Then
                     Return False
                 End If
             End If
@@ -1614,7 +1636,7 @@ Partial Public Class InsuranceRepository
                              .ID = p.ID,
                              .NAME_EN = p.NAME_EN,
                              .NAME_VN = p.NAME_VN}).ToList
-                If List.Count = 0 Then
+                If list.Count = 0 Then
                     Return False
                 End If
             End If

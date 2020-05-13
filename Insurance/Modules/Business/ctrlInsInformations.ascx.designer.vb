@@ -14,6 +14,15 @@ Option Explicit On
 Partial Public Class ctrlInsInformations
 
     '''<summary>
+    '''hidWhereHealth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hidWhereHealth As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
     '''RadSplitter1 control.
     '''</summary>
     '''<remarks>
@@ -464,6 +473,33 @@ Partial Public Class ctrlInsInformations
     Protected WithEvents ddlHEALTH_AREA_INS_ID As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''btnwhereHealth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnwhereHealth As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''txtWHCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtWHCode As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''txtWHName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtWHName As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''txtHEALTH_RECEIVE_DATE control.
     '''</summary>
     '''<remarks>
@@ -552,6 +588,15 @@ Partial Public Class ctrlInsInformations
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents FindEmployee As Global.System.Web.UI.WebControls.PlaceHolder
+
+    '''<summary>
+    '''FindWhereHealth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents FindWhereHealth As Global.System.Web.UI.WebControls.PlaceHolder
 
     '''<summary>
     '''ctrlMessageBox control.

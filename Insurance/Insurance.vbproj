@@ -447,6 +447,20 @@
       <DependentUpon>ctrlINS_ReportList.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Modules\Shared\ctrlFindTreatmentPopup.ascx.designer.vb">
+      <DependentUpon>ctrlFindTreatmentPopup.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Shared\ctrlFindTreatmentPopup.ascx.vb">
+      <DependentUpon>ctrlFindTreatmentPopup.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Shared\ctrlFindTreatmentPopupDialog.ascx.designer.vb">
+      <DependentUpon>ctrlFindTreatmentPopupDialog.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Shared\ctrlFindTreatmentPopupDialog.ascx.vb">
+      <DependentUpon>ctrlFindTreatmentPopupDialog.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -541,6 +555,8 @@
     <None Include="Service References\InsuranceBusiness\Insurance.InsuranceBusiness.EmployeeDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <Content Include="Modules\Shared\ctrlFindTreatmentPopup.ascx" />
+    <Content Include="Modules\Shared\ctrlFindTreatmentPopupDialog.ascx" />
     <Content Include="Service References\InsuranceBusiness\Insurance.InsuranceBusiness.INS_ACCIDENT_RISKDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
