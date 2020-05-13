@@ -3067,12 +3067,12 @@ Partial Class ProfileRepository
                      From emp In Context.HU_EMPLOYEE.Where(Function(f) f.ID = ce.HU_EMPLOYEE_ID).DefaultIfEmpty
                      From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = emp.ORG_ID).DefaultIfEmpty
                      From org_v In Context.HUV_ORGANIZATION.Where(Function(f) f.ID = ce.ORG_ID).DefaultIfEmpty
-                     From lv In Context.HU_COMMEND_LEVEL.Where(Function(f) f.ID = p.COMMEND_LEVEL).DefaultIfEmpty
                      From t In Context.HU_COMMEND_LIST.Where(Function(f) f.ID = p.COMMEND_TYPE).DefaultIfEmpty
                      From title In Context.HU_TITLE.Where(Function(f) f.ID = ce.TITLE_ID).DefaultIfEmpty
                      From dhkt In Context.HU_COMMEND_LIST.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
                      From cm_obj In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.COMMEND_OBJ).DefaultIfEmpty
                      From httt In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.COMMEND_PAY And f.TYPE_CODE = "COMMEND_PAY" And f.ACTFLG = "A").DefaultIfEmpty
+                     From cap In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.COMMEND_LEVEL And f.TYPE_CODE = "COMMEND_LEVEL" And f.ACTFLG = "A").DefaultIfEmpty
                      Where (ce.HU_EMPLOYEE_ID = _empId And p.STATUS_ID = 447)
                      Order By p.EFFECT_DATE
                      Select New CommendDTO With {
@@ -3088,8 +3088,8 @@ Partial Class ProfileRepository
                      .SIGNER_TITLE = p.SIGNER_TITLE,
                      .TITLE_NAME = title.NAME_VN,
                      .COMMEND_LEVEL = p.COMMEND_LEVEL,
-                     .COMMEND_LEVEL_NAME = lv.NAME,
-                     .ORG_NAME = org_v.NAME_VN,
+                     .COMMEND_LEVEL_NAME = cap.NAME_VN,
+                     .ORG_NAME = o.NAME_VN,
                      .COMMEND_TYPE = p.COMMEND_TYPE,
                      .COMMEND_TYPE_NAME = t.NAME,
                      .REMARK = p.REMARK,
