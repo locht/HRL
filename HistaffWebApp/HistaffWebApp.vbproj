@@ -1496,6 +1496,8 @@
     <Content Include="ReportTemplates\Payroll\Import\Allowance.xls" />
     <Content Include="ReportTemplates\Payroll\Business\TEMP_IMPORT_SALARY_BONUS.xlsx" />
     <Content Include="ReportTemplates\Profile\Import\IMPORT_KhenThuong.xls" />
+    <Content Include="ReportTemplates\Performance\KPI\ACV_DANHGIAKPI_error.xls" />
+    <Content Include="ReportTemplates\Performance\KPI\DANHGIAKPI.xls" />
     <None Include="ReportTemplates\Recruitment\Import\Candidate_Error.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -135,6 +135,8 @@ Public Class Export
                         Export_Determine()
                     Case "Template_Allowance"
                         Template_Allowance()
+                    Case "ACV_DANHGIAKPI_error"
+                        ACV_DANHGIAKPI_error()
                 End Select
             Catch ex As Exception
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "javascriptfunction", "goBack()", True)
@@ -2025,6 +2027,19 @@ Public Class Export
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    Private Sub ACV_DANHGIAKPI_error()
+        Try
+            Dim dtData As New DataTable
+            dtData = Session("KHDT_ERROR")
+            ExportTemplate("Performance/KPI/ACV_DANHGIAKPI_error.xls",
+                                    dtData, Nothing, "Template_ERROR_" & Format(Date.Now, "yyyyMMdd"))
+            Session.Remove("KHDT_ERROR")
+        Catch ex As Exception
+
+        End Try
+       
     End Sub
 
 

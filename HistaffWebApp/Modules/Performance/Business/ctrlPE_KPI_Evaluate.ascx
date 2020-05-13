@@ -24,7 +24,7 @@
                             <%# Translate("Kỳ đánh giá")%>
                         </td>
                         <td>
-                            <tlk:RadComboBox runat="server" ID="cboPeriodEvaluate">
+                            <tlk:RadComboBox runat="server" ID="cboPeriodEvaluate" AutoPostBack="true">
                             </tlk:RadComboBox>
                         </td>
                     </tr>
@@ -107,7 +107,7 @@
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnGridCreated="GridCreated" />
                         <ClientEvents OnCommand="ValidateFilter" />
-                        <Scrolling AllowScroll="true" UseStaticHeaders="true"  />
+                        <Scrolling AllowScroll="true" UseStaticHeaders="true" />
                     </ClientSettings>
                 </tlk:RadGrid>
             </tlk:RadPane>

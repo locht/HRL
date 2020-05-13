@@ -170,7 +170,7 @@ Class ctrlPE_KPI_Evaluate
             Dim startTime As DateTime = DateTime.UtcNow
             rgEmployeeList.CurrentPageIndex = 0
             rgEmployeeList.Rebind()
-            EnableOngrid()
+            ' EnableOngrid()
             ' _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             ' _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -231,8 +231,8 @@ Class ctrlPE_KPI_Evaluate
                     CurrentState = CommonMessage.STATE_NORMAL
                     'isRight = 1
                     rgEmployeeList.Rebind()
-                    EnableOngrid()
-
+                    '   EnableOngrid()
+                    '
                     'EnabledGrid(rgEmployeeList, False)
                     '   rgEmployeeList.Rebind()
             End Select
@@ -317,8 +317,8 @@ Class ctrlPE_KPI_Evaluate
         Try
             Using rep As New PerformanceBusinessClient
 
-                'dtData = rep.GetlistYear()
-                'FillRadCombobox(cboYear, dtData, "YEAR", "ID")
+                dtData = rep.GetlistYear()
+                FillRadCombobox(cboYear, dtData, "YEAR", "ID")
             End Using
             ' _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -457,13 +457,13 @@ Class ctrlPE_KPI_Evaluate
 
             Using REP As New PerformanceRepository
                 Dim dsData As New DataSet
-                'dsData = REP.GetLstExportMBO(cboPeriodEvaluate.SelectedValue, ctrlOrganization.CurrentValue)
-                'dsData.Tables(0).TableName = "Table"
-                'dsData.Tables(1).TableName = "Table1"
-                'dsData.Tables(2).TableName = "Table2"
-                'REP.Dispose()
-                ExportTemplate("Performance\MBO\Import_TonghopMBO.xlsx",
-                                   dsData, Nothing, "Import_TonghopMBO" & Format(Date.Now, "yyyyMMdd"))
+                dsData = REP.GetExportKPI(cboPeriodEvaluate.SelectedValue)
+                dsData.Tables(0).TableName = "Table"
+                dsData.Tables(1).TableName = "Table1"
+                dsData.Tables(2).TableName = "Table2"
+                REP.Dispose()
+                ExportTemplate("Performance\KPI\DANHGIAKPI.xls",
+                                   dsData, Nothing, "DANHGIAKPI" & Format(Date.Now, "yyyyMMdd"))
 
             End Using
         Catch ex As Exception
@@ -533,7 +533,7 @@ Class ctrlPE_KPI_Evaluate
             If dtLogs.Rows.Count > 0 Then
                 ShowMessage(Translate("Đã có lỗi xảy ra,Xin kiểm tra lại"), NotifyType.Warning)
                 HttpContext.Current.Session("KHDT_ERROR") = dtLogs
-                ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('VNM_Kehoachdt_error');", True)
+                ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('ACV_DANHGIAKPI_error');", True)
                 Exit Sub
                 'ExportTemplate("Training/QLKH/VNM_Kehoachdt_error.xls",
                 '                      dtLogs.DataSet, Nothing, "Template_ERROR_" & Format(Date.Now, "yyyyMMdd"))
@@ -556,20 +556,48 @@ Class ctrlPE_KPI_Evaluate
     Private Sub TableMapping(ByVal dtTemp As System.Data.DataTable)
         ' lấy dữ liệu thô từ excel vào và tinh chỉnh dữ liệu
         dtTemp.Columns(0).ColumnName = "STT"
-        dtTemp.Columns(1).ColumnName = "EVALUATE_NAME"
-        dtTemp.Columns(2).ColumnName = "EMPLOYEE_CODE"
-        dtTemp.Columns(3).ColumnName = "EVALUATE_ID"
-        dtTemp.Columns(4).ColumnName = "FULLNAME_VN"
-        dtTemp.Columns(5).ColumnName = "MARK_MBO"
-        dtTemp.Columns(6).ColumnName = "MARK_MBO_EDIT"
+        dtTemp.Columns(1).ColumnName = "EMPLOYEE_CODE"
+        dtTemp.Columns(2).ColumnName = "FULLNAME"
+        dtTemp.Columns(3).ColumnName = "ORG_NAME"
+        dtTemp.Columns(4).ColumnName = "ORG_NAME2"
+        dtTemp.Columns(5).ColumnName = "TITLE_NAME"
+        dtTemp.Columns(6).ColumnName = "SALARY_LEVEL"
+        dtTemp.Columns(7).ColumnName = "SALARY_LEVEL_ID"
+        dtTemp.Columns(8).ColumnName = "JOIN_DATE"
+        dtTemp.Columns(9).ColumnName = "END_DATE"
+        dtTemp.Columns(10).ColumnName = "FINANCE_TT"
+        dtTemp.Columns(11).ColumnName = "FINANCE_TTX"
+        dtTemp.Columns(12).ColumnName = "CUSTOMER_TT"
+        dtTemp.Columns(13).ColumnName = "CUSTOMER_TTX"
+        dtTemp.Columns(14).ColumnName = "PROCESS_TT"
+        dtTemp.Columns(15).ColumnName = "PROCESS_TTX"
+        dtTemp.Columns(16).ColumnName = "LEARN_TT"
+        dtTemp.Columns(17).ColumnName = "LEARN_TTX"
+        dtTemp.Columns(18).ColumnName = "SUM_TT"
+        dtTemp.Columns(19).ColumnName = "SUM_TTX"
+        dtTemp.Columns(20).ColumnName = "SUM_RATE_KPI"
+        dtTemp.Columns(21).ColumnName = "CLASSFICATION"
+        dtTemp.Columns(22).ColumnName = "CLASSFICATION_ID"
+        dtTemp.Columns(23).ColumnName = "COMMENTS"
+        dtTemp.Columns(24).ColumnName = "REMARK"
         'XOA DONG TIEU DE VA HEADER
         dtTemp.Rows(0).Delete()
-        dtTemp.Rows(1).Delete()
-        'dtTemp.Rows(2).Delete()
-        'dtTemp.Rows(3).Delete()
-        'dtTemp.Rows(4).Delete()
-        'dtTemp.Rows(5).Delete()
+        dtTemp.Rows(0).Delete()
+        dtTemp.Rows(0).Delete()
+        dtTemp.Rows(0).Delete()
+        dtTemp.Rows(0).Delete()
+        dtTemp.Rows(0).Delete()
+        dtTemp.Rows(0).Delete()
+        dtTemp.Rows(0).Delete()
+        dtTemp.Rows(0).Delete()
 
+        dtTemp.Rows(1).Delete()
+        dtTemp.Rows(2).Delete()
+        dtTemp.Rows(3).Delete()
+        dtTemp.Rows(4).Delete()
+        dtTemp.Rows(5).Delete()
+        dtTemp.Rows(6).Delete()
+        dtTemp.Rows(7).Delete()
         ' add Log
         Dim _error As Boolean = True
         Dim count As Integer
@@ -594,14 +622,34 @@ Class ctrlPE_KPI_Evaluate
             If rows.RowState = DataRowState.Deleted OrElse rows.RowState = DataRowState.Detached Then Continue For
             newRow = dtLogs.NewRow
             newRow("STT") = count + 1
-            If IsDBNull(rows("MARK_MBO")) Then
-                newRow("DISCIPTION") = newRow("DISCIPTION") + "ĐIỂM MBO GỐC - Phải nhập ĐIỂM MBO GỐC"
+            If IsDBNull(rows("STT")) Then
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "STT - Phải nhập STT"
                 _error = False
             End If
-            'If IsDBNull(rows("MARK_MBO_EDIT")) Then
-            '    newRow("DISCIPTION") = newRow("DISCIPTION") + "ĐIỂM MBO ĐIỀU CHỈNH - Phải nhập ĐIỂM MBO ĐIỀU CHỈNH"
-            '    _error = False
-            'End If
+            If IsDBNull(rows("EMPLOYEE_CODE")) Then
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "MÃ NV - Phải nhập MÃ NV"
+                _error = False
+            End If
+            If IsDBNull(rows("SALARY_LEVEL")) Then
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "NGẠCH - Phải nhập NGẠCH"
+                _error = False
+            End If
+            If IsDBNull(rows("SUM_TT")) Or rows("SUM_TT") = 0.0 Then
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Tỷ trọng - Phải nhập Tỷ trọng"
+                _error = False
+            End If
+            If IsDBNull(rows("SUM_TTX")) Or rows("SUM_TTX") = 0.0 Then
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Tỷ trọng x Điểm - Phải nhập Tỷ trọng x Điểm"
+                _error = False
+            End If
+            If IsDBNull(rows("SUM_RATE_KPI")) Or rows("SUM_RATE_KPI") = 0.0 Then
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Tỷ lệ đạt KPI tương ứngKPI  - Phải nhập Tỷ lệ đạt KPI tương ứngKPI "
+                _error = False
+            End If
+            If IsDBNull(rows("CLASSFICATION")) Then
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Xếp loại  - Phải nhập Xếp loại"
+                _error = False
+            End If
             If _error = False Then
                 dtLogs.Rows.Add(newRow)
                 _error = True
@@ -614,38 +662,59 @@ Class ctrlPE_KPI_Evaluate
     Private Sub cboYear_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboYear.SelectedIndexChanged
         Try
             Using rep As New PerformanceBusinessClient
-                Dim dtData As New DataTable
-                'dtData = rep.GetPeriodList(0, 0)
-                Dim dtData1 = dtData.AsEnumerable().Where(Function(f) f.Field(Of Decimal)("NAM") = cboYear.Text).CopyToDataTable()
-                FillRadCombobox(cboPeriodEvaluate, dtData1, "NAME", "ID")
+                If cboYear.Text <> "" Then
+                    Dim dtData As New DataTable
+                    dtData = rep.GetLstPeriod(Decimal.Parse(cboYear.Text))
+                    FillRadCombobox(cboPeriodEvaluate, dtData, "NAME", "ID")
+                Else
+                    ClearControlValue(cboPeriodEvaluate, rdFrom, rdTo)
+                End If
             End Using
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-    Private Sub EnableOngrid()
+
+    'Private Sub EnableOngrid()
+    '    Try
+    '        For Each item As GridDataItem In rgEmployeeList.MasterTableView.Items
+    '            Dim txtmark_offical As RadNumericTextBox = DirectCast(item("MARK_MBO_OFFICAL").FindControl("rnMBOGoc"), RadNumericTextBox)
+    '            txtmark_offical.Enabled = False
+    '            Dim txtmark_dc As RadNumericTextBox = DirectCast(item("MARK_MBO_EDIT").FindControl("nnMBODC"), RadNumericTextBox)
+    '            txtmark_dc.Enabled = False
+    '            Dim txtATTACH_FILE As LinkButton = DirectCast(item("UPLOAD_FILE").FindControl("lbtnUpload"), LinkButton)
+    '            txtATTACH_FILE.Enabled = True
+    '            Dim txtupload As RadButton = DirectCast(item("ID").FindControl("btnUpload"), RadButton)
+    '            txtupload.Enabled = False
+    '        Next
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
+    'Private Sub rgEmployeeList_ItemDataBound(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridItemEventArgs) Handles rgEmployeeList.ItemDataBound
+    '    If isRight = 0 Then
+    '        If rgEmployeeList.Items.Count = 0 Then
+    '            Exit Sub
+    '        End If
+    '        EnableOngrid()
+    '    End If
+    'End Sub
+
+    Private Sub cboPeriodEvaluate_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboPeriodEvaluate.SelectedIndexChanged
         Try
-            For Each item As GridDataItem In rgEmployeeList.MasterTableView.Items
-                Dim txtmark_offical As RadNumericTextBox = DirectCast(item("MARK_MBO_OFFICAL").FindControl("rnMBOGoc"), RadNumericTextBox)
-                txtmark_offical.Enabled = False
-                Dim txtmark_dc As RadNumericTextBox = DirectCast(item("MARK_MBO_EDIT").FindControl("nnMBODC"), RadNumericTextBox)
-                txtmark_dc.Enabled = False
-                Dim txtATTACH_FILE As LinkButton = DirectCast(item("UPLOAD_FILE").FindControl("lbtnUpload"), LinkButton)
-                txtATTACH_FILE.Enabled = True
-                Dim txtupload As RadButton = DirectCast(item("ID").FindControl("btnUpload"), RadButton)
-                txtupload.Enabled = False
-            Next
+            Using rep As New PerformanceBusinessClient
+                If cboPeriodEvaluate.SelectedValue <> "" Then
+                    Dim dtData As PeriodDTO
+                    dtData = rep.GetPeriodDate(cboPeriodEvaluate.SelectedValue)
+                    rdFrom.SelectedDate = dtData.START_DATE
+                    rdTo.SelectedDate = dtData.END_DATE
+                Else
+                    ClearControlValue(rdFrom, rdTo)
+                End If
+            End Using
         Catch ex As Exception
-            Throw ex
+
         End Try
-    End Sub
-    Private Sub rgEmployeeList_ItemDataBound(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridItemEventArgs) Handles rgEmployeeList.ItemDataBound
-        If isRight = 0 Then
-            If rgEmployeeList.Items.Count = 0 Then
-                Exit Sub
-            End If
-            EnableOngrid()
-        End If
     End Sub
 End Class

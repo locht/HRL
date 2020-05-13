@@ -365,5 +365,15 @@ Namespace PerformanceBusiness.ServiceContracts
         <OperationContract()>
         Function PRINT_PE_ASSESS(ByVal empID As Decimal, ByVal period As Decimal, ByVal obj As Decimal) As DataSet
 
+#Region "danh gia kpis"
+        <OperationContract()>
+        Function GetlistYear() As DataTable
+        <OperationContract()>
+        Function GetLstPeriod(ByVal year As Decimal) As DataTable
+        <OperationContract()>
+        Function GetPeriodDate(ByVal id As Decimal) As PeriodDTO
+        <OperationContract()>
+        Function GetExportKPI(ByVal id As Decimal) As DataSet
+#End Region
     End Interface
 End Namespace

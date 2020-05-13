@@ -867,5 +867,57 @@ Partial Class PerformanceRepository
             Throw ex
         End Try
     End Function
+#Region "danh gia kpis"
+    Public Function GetExportKPI(ByVal id As Decimal) As DataSet
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dsdata As DataSet = cls.ExecuteStore("PKG_PERFORMANCE_BUSINESS.GETEXPORTKPI",
+                                                         New With {.ID = id,
+                                                                   .P_CUR = cls.OUT_CURSOR,
+                                                                   .P_CUR1 = cls.OUT_CURSOR,
+                                                                   .P_CUR2 = cls.OUT_CURSOR}, False)
+                Return dsdata
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function GetlistYear() As DataTable
+        Dim dtData As New DataTable
+        Try
+            dtData = (From p In Context.PE_PERIOD
+                      Where p.ACTFLG = "A"
+                      Group p By p.YEAR Into Group
+                      Select New With {.Year = YEAR, .ID = YEAR}).ToList.ToTable()
+            Return dtData
+        Catch ex As Exception
 
+        End Try
+    End Function
+    Public Function GetLstPeriod(ByVal year As Decimal) As DataTable
+        Dim dt As New DataTable
+        Try
+            dt = (From p In Context.PE_PERIOD
+                  Where p.ACTFLG = "A"
+                  Where p.YEAR = year Select p.ID, p.NAME).ToList.ToTable()
+
+            Return dt
+        Catch ex As Exception
+
+        End Try
+    End Function
+    Public Function GetPeriodDate(ByVal id As Decimal) As PeriodDTO
+        Try
+            Dim obj = From p In Context.PE_PERIOD
+                      Where p.ID = id And p.ACTFLG = "A"
+                      Select New PeriodDTO With {.START_DATE = p.START_DATE,
+                                                 .END_DATE = p.END_DATE}
+
+
+            Return obj.FirstOrDefault
+        Catch ex As Exception
+
+        End Try
+    End Function
+#End Region
 End Class

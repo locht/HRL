@@ -394,4 +394,43 @@ Partial Class PerformanceRepository
             End Try
         End Using
     End Function
+#Region "danh gia kpis"
+    Public Function GetExportKPI(ByVal id As Decimal) As DataSet
+        Using rep As New PerformanceBusinessClient
+            Try
+                Return rep.GetExportKPI(id)
+            Catch ex As Exception
+
+            End Try
+        End Using
+    End Function
+    Public Function GetlistYear() As DataTable
+        Using rep As New PerformanceBusinessClient
+            Try
+                Return rep.GetlistYear()
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function GetLstPeriod(ByVal year As Decimal) As DataTable
+        Using rep As New PerformanceBusinessClient
+            Try
+                Return rep.GetLstPeriod(year)
+            Catch ex As Exception
+
+            End Try
+        End Using
+
+    End Function
+    Public Function GetPeriod(ByVal id As Decimal) As PeriodDTO
+        Using rep As New PerformanceBusinessClient
+            Try
+                Return rep.GetPeriodDate(id)
+            Catch ex As Exception
+
+            End Try
+        End Using
+    End Function
+#End Region
 End Class

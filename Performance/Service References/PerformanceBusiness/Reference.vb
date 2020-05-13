@@ -5468,6 +5468,18 @@ Namespace PerformanceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPerformanceBusiness/PRINT_PE_ASSESS", ReplyAction:="http://tempuri.org/IPerformanceBusiness/PRINT_PE_ASSESSResponse")>  _
         Function PRINT_PE_ASSESS(ByVal empID As Decimal, ByVal period As Decimal, ByVal obj As Decimal) As System.Data.DataSet
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPerformanceBusiness/GetlistYear", ReplyAction:="http://tempuri.org/IPerformanceBusiness/GetlistYearResponse")>  _
+        Function GetlistYear() As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPerformanceBusiness/GetLstPeriod", ReplyAction:="http://tempuri.org/IPerformanceBusiness/GetLstPeriodResponse")>  _
+        Function GetLstPeriod(ByVal year As Decimal) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPerformanceBusiness/GetPeriodDate", ReplyAction:="http://tempuri.org/IPerformanceBusiness/GetPeriodDateResponse")>  _
+        Function GetPeriodDate(ByVal id As Decimal) As PerformanceBusiness.PeriodDTO
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPerformanceBusiness/GetExportKPI", ReplyAction:="http://tempuri.org/IPerformanceBusiness/GetExportKPIResponse")>  _
+        Function GetExportKPI(ByVal id As Decimal) As System.Data.DataSet
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -5811,6 +5823,22 @@ Namespace PerformanceBusiness
         
         Public Function PRINT_PE_ASSESS(ByVal empID As Decimal, ByVal period As Decimal, ByVal obj As Decimal) As System.Data.DataSet Implements PerformanceBusiness.IPerformanceBusiness.PRINT_PE_ASSESS
             Return MyBase.Channel.PRINT_PE_ASSESS(empID, period, obj)
+        End Function
+        
+        Public Function GetlistYear() As System.Data.DataTable Implements PerformanceBusiness.IPerformanceBusiness.GetlistYear
+            Return MyBase.Channel.GetlistYear
+        End Function
+        
+        Public Function GetLstPeriod(ByVal year As Decimal) As System.Data.DataTable Implements PerformanceBusiness.IPerformanceBusiness.GetLstPeriod
+            Return MyBase.Channel.GetLstPeriod(year)
+        End Function
+        
+        Public Function GetPeriodDate(ByVal id As Decimal) As PerformanceBusiness.PeriodDTO Implements PerformanceBusiness.IPerformanceBusiness.GetPeriodDate
+            Return MyBase.Channel.GetPeriodDate(id)
+        End Function
+        
+        Public Function GetExportKPI(ByVal id As Decimal) As System.Data.DataSet Implements PerformanceBusiness.IPerformanceBusiness.GetExportKPI
+            Return MyBase.Channel.GetExportKPI(id)
         End Function
     End Class
 End Namespace

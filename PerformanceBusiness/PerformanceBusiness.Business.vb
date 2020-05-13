@@ -366,5 +366,41 @@ Implements ServiceContracts.IPerformanceBusiness.GetKPIAssessEmp
                 End Try
             End Using
         End Function
+#Region "danh gia kpis"
+        Public Function GetExportKPI(ByVal id As Decimal) As DataSet Implements ServiceContracts.IPerformanceBusiness.GetExportKPI
+            Using rep As New PerformanceRepository
+                Return rep.GetExportKPI(id)
+            End Using
+        End Function
+        Public Function GetlistYear() As DataTable Implements ServiceContracts.IPerformanceBusiness.GetlistYear
+            Using rep As New PerformanceRepository
+                Try
+                    Return rep.GetlistYear()
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GetLstPeriod(ByVal year As Decimal) As DataTable Implements ServiceContracts.IPerformanceBusiness.GetLstPeriod
+            Using rep As New PerformanceRepository
+                Try
+                    Return rep.GetLstPeriod(year)
+                Catch ex As Exception
+
+                End Try
+            End Using
+
+        End Function
+        Public Function GetPeriodDate(ByVal id As Decimal) As PeriodDTO Implements ServiceContracts.IPerformanceBusiness.GetPeriodDate
+            Using rep As New PerformanceRepository
+                Try
+                    Return rep.GetPeriodDate(id)
+                Catch ex As Exception
+
+                End Try
+            End Using
+        End Function
+#End Region
     End Class
+
 End Namespace

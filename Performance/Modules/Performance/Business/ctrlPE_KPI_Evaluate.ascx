@@ -24,7 +24,7 @@
                             <%# Translate("Kỳ đánh giá")%>
                         </td>
                         <td>
-                            <tlk:RadComboBox runat="server" ID="cboPeriodEvaluate">
+                            <tlk:RadComboBox runat="server" ID="cboPeriodEvaluate" AutoPostBack="true">
                             </tlk:RadComboBox>
                         </td>
                     </tr>
@@ -54,14 +54,13 @@
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
                 <tlk:RadGrid PageSize="50" ID="rgEmployeeList" runat="server" AllowPaging="True"
                     Height="100%" AllowSorting="True" AllowMultiRowSelection="true">
-                    <MasterTableView DataKeyNames="ID"
-                        ClientDataKeyNames="ID">
+                    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderText="CheckBox" HeaderStyle-HorizontalAlign="center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="id" Visible="false" />
-                             <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="" SortExpression="" UniqueName=""
+                            <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="" SortExpression="" UniqueName=""
                                 ReadOnly="true" HeaderStyle-Width="100px" />
                             <tlk:GridBoundColumn HeaderText="Tên nhân viên" DataField="" SortExpression="" UniqueName=""
                                 ReadOnly="true" HeaderStyle-Width="100px" />
@@ -108,7 +107,7 @@
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnGridCreated="GridCreated" />
                         <ClientEvents OnCommand="ValidateFilter" />
-                        <Scrolling AllowScroll="true" UseStaticHeaders="true"  />
+                        <Scrolling AllowScroll="true" UseStaticHeaders="true" />
                     </ClientSettings>
                 </tlk:RadGrid>
             </tlk:RadPane>
