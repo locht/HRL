@@ -73,6 +73,22 @@
                                 </asp:RequiredFieldValidator>
                             </td>
                             <td class="lb">
+                                <%# Translate("Từ giờ")%>
+                            </td>
+                             <td>
+                                    <tlk:RadTimePicker ID="rtpFromMonth" runat="server">
+                                    </tlk:RadTimePicker>
+                             </td>
+                            <td class="lb">
+                                <%# Translate("Đến giờ")%>
+                            </td>
+                             <td>
+                                    <tlk:RadTimePicker ID="rtpToMonth" runat="server">
+                                    </tlk:RadTimePicker>
+                             </td>
+                        </tr>
+                        <tr>
+                            <td class="lb">
                                 <%# Translate("Người phỏng vấn")%>
                             </td>
                             <td>
@@ -186,7 +202,7 @@
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane3" runat="server" Scrolling="None">
                 <tlk:RadGrid ID="rgCanSchedule" runat="server" Height="100%" AllowSorting="false">
-                    <MasterTableView DataKeyNames="ID,FULLNAME_VN,CANDIDATE_CODE,CANDIDATE_CODE,BIRTH_DATE,BIRTH_PROVINCE_NAME,PER_EMAIL,ID_NO,SCHEDULE_DATE,SCHEDULE_BY,EXAM_NAME" 
+                    <MasterTableView DataKeyNames="ID,FULLNAME_VN,CANDIDATE_CODE,CANDIDATE_CODE,BIRTH_DATE,BIRTH_PROVINCE_NAME,PER_EMAIL,ID_NO,SCHEDULE_DATE,SCHEDULE_BY,EXAM_NAME,FROM_MONTH,TO_MONTH" 
                     Caption="<%$ Translate: Danh sách ứng viên đã đặt lịch %>">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
@@ -206,6 +222,10 @@
                                 SortExpression="ID_NO" HeaderStyle-Width="90px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày phỏng vấn %>" DataField="SCHEDULE_DATE" UniqueName="SCHEDULE_DATE"
                                 SortExpression="SCHEDULE_DATE" HeaderStyle-Width="90px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Từ giờ %>" DataField="FROM_MONTH" UniqueName="FROM_MONTH"
+                                SortExpression="FROM_MONTH" HeaderStyle-Width="90px" DataFormatString="{0:HH:mm}" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đến giờ %>" DataField="TO_MONTH" UniqueName="TO_MONTH"
+                                SortExpression="TO_MONTH" HeaderStyle-Width="90px" DataFormatString="{0:HH:mm}" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Người phỏng vấn %>" DataField="SCHEDULE_BY" UniqueName="SCHEDULE_BY"
                                 SortExpression="SCHEDULE_BY" HeaderStyle-Width="90px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Vòng phỏng vấn %>" DataField="EXAM_NAME" UniqueName="EXAM_NAME"

@@ -149,6 +149,24 @@ Partial Public Class ctrlRC_ProgramScheduleNewEdit
     Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''rtpFromMonth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rtpFromMonth As Global.Telerik.Web.UI.RadTimePicker
+
+    '''<summary>
+    '''rtpToMonth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rtpToMonth As Global.Telerik.Web.UI.RadTimePicker
+
+    '''<summary>
     '''cboUsher control.
     '''</summary>
     '''<remarks>

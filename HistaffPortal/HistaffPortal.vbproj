@@ -129,6 +129,7 @@
     <Content Include="Modules\Profile\ctrlPortalEmpDtlTrainingEvaluate.ascx" />
     <Content Include="Modules\Profile\ctrlPortalConcurrently.ascx" />
     <Content Include="Modules\Profile\ctrlPortalEmpHealth.ascx" />
+    <Content Include="Modules\Profile\ctrlPortalEmpInsurance.ascx" />
     <Content Include="Modules\Profile\ctrlPortalTrainingOutCompany.ascx" />
     <Content Include="Modules\Profile\ctrlPortalWorkingBefore.ascx" />
     <Content Include="Modules\Recruitment\ctrlRC_RequestPortalNewEdit.ascx" />

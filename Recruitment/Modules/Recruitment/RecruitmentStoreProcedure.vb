@@ -650,11 +650,13 @@ Public Class RecruitmentStoreProcedure
                                  ByVal EXAMS_PLACE As String,
                                  ByVal NOTE As String,
                                  ByVal CREATE_BY As String,
-                                 ByVal LOG As String) As Int32
+                                 ByVal LOG As String,
+                                 ByVal fromDate As Date?,
+                                 ByVal toDate As Date?) As Int32
         Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.ADDNEW_PRO_SCHEDULE", _
                                                    New List(Of Object)(New Object() {
                                                     RC_PROGRAM_ID, EMPLOYEE_ID, SCHEDULE_DATE, EXAMS_PLACE, NOTE,
-                                                    CREATE_BY, LOG, OUT_NUMBER
+                                                    CREATE_BY, LOG, fromDate, toDate, OUT_NUMBER
                                                    }))
         Return Int32.Parse(obj(0).ToString())
     End Function
@@ -666,11 +668,13 @@ Public Class RecruitmentStoreProcedure
                                  ByVal EXAMS_PLACE As String,
                                  ByVal NOTE As String,
                                  ByVal MODIFY_BY As String,
-                                 ByVal LOG As String) As Int32
+                                 ByVal LOG As String,
+                                 ByVal fromDate As Date?,
+                                 ByVal toDate As Date?) As Int32
         Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.UPDATE_PRO_SCHEDULE", _
                                                      New List(Of Object)(New Object() {
                                                      ID, EMPLOYEE_ID, SCHEDULE_DATE, EXAMS_PLACE, NOTE,
-                                                     MODIFY_BY, LOG, OUT_NUMBER
+                                                     MODIFY_BY, LOG, fromDate, toDate, OUT_NUMBER
                                                    }))
         Return Int32.Parse(obj(0).ToString())
     End Function

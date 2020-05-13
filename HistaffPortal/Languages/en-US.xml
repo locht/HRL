@@ -2944,4 +2944,12 @@
       <string>Edit Profile</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLPORTALEMPINSURANCE</string>
+    </Key>
+    <Value>
+      <string>Insurance Process</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

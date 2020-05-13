@@ -49,14 +49,14 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Kiểu đánh giá")%>
+                    <%# Translate("Hình thức đánh giá")%>
                 </td>
                 <td>
                     <tlk:RadComboBox runat="server" ID="cboTypeAss" CausesValidation="false">
                     </tlk:RadComboBox>
-                    <asp:RequiredFieldValidator ID="reqTypeAss" ControlToValidate="cboTypeAss" runat="server"
+                 <%--   <asp:RequiredFieldValidator ID="reqTypeAss" ControlToValidate="cboTypeAss" runat="server"
                         ErrorMessage="<%$ Translate: Bạn phải chọn Kiểu đánh giá %>" ToolTip="<%$ Translate: Bạn phải chọn Kiểu đánh giá %>">
-                    </asp:RequiredFieldValidator>
+                    </asp:RequiredFieldValidator>--%>
                 </td>
                 <td class="lb">
                     <%# Translate("Ngày bắt đầu")%>
@@ -113,7 +113,7 @@
                         UniqueName="CODE" SortExpression="CODE" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên kỳ đánh giá %>" DataField="NAME"
                         UniqueName="NAME" SortExpression="NAME" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Kiểu đánh giá %>" DataField="TYPE_ASS_NAME"
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Hình thức đánh giá %>" DataField="TYPE_ASS_NAME"
                         SortExpression="TYPE_ASS_NAME" UniqueName="TYPE_ASS_NAME" />
                     <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày bắt đầu %>" DataField="START_DATE"
                         UniqueName="START_DATE" SortExpression="START_DATE" />

@@ -194,42 +194,6 @@ Partial Public Class ctrlHU_EmployeeMng
     Protected WithEvents rgEmployeeList As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
-    '''RadPane4 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RadPane4 As Global.Telerik.Web.UI.RadPane
-
-    '''<summary>
-    '''lbTemplatePrint control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbTemplatePrint As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''cboPrintSupport control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboPrintSupport As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
-    '''btnPrintSupport control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnPrintSupport As Global.Telerik.Web.UI.RadButton
-
-    '''<summary>
     '''RadWindowManager1 control.
     '''</summary>
     '''<remarks>

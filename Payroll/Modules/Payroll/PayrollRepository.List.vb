@@ -1725,4 +1725,15 @@ Partial Public Class PayrollRepository
         Return Nothing
     End Function
 #End Region
+
+    Public Function GetListOrgPeriod(ByVal id As Decimal) As List(Of AT_ORG_PERIOD)
+        Using rep As New PayrollBusinessClient
+            Try
+                Return rep.GetListOrgPeriod(id)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
 End Class

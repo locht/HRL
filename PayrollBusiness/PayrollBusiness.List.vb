@@ -1179,6 +1179,15 @@ Namespace PayrollBusiness.ServiceImplementations
         End Function
 #End Region
 
+        Public Function GetListOrgPeriod(ByVal id As Decimal) As List(Of AT_ORG_PERIOD) Implements ServiceContracts.IPayrollBusiness.GetListOrgPeriod
+            Try
+                Return PayrollRepositoryStatic.Instance.GetListOrgPeriod(id)
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Function
+
     End Class
 End Namespace
 
