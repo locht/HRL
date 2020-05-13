@@ -226,6 +226,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessObjects\MessageDTO.vb" />
+    <Compile Include="Modules\PerformaceStoreProcedure.vb" />
     <Compile Include="Modules\Performance\Business\ctrlPE_DirectViewKPIEmp.ascx.designer.vb">
       <DependentUpon>ctrlPE_DirectViewKPIEmp.ascx</DependentUpon>
     </Compile>

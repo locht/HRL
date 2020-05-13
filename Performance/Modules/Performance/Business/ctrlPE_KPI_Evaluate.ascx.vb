@@ -542,13 +542,13 @@ Class ctrlPE_KPI_Evaluate
             Dim DocXml As String = String.Empty
             ds.Tables(0).WriteXml(sw, False)
             DocXml = sw.ToString
-            'Dim callst As New PerformaceStoreProcedure
-            'If callst.Import_MBO(LogHelper.GetUserLog.Username.ToUpper, DocXml) Then
-            '    ShowMessage(Translate("Import thành công"), NotifyType.Success)
-            '    rgEmployeeList.Rebind()
-            'Else
-            '    ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
-            'End If
+            Dim callst As New PerformaceStoreProcedure
+            If callst.Import_KPI(LogHelper.GetUserLog.Username.ToUpper, DocXml) Then
+                ShowMessage(Translate("Import thành công"), NotifyType.Success)
+                rgEmployeeList.Rebind()
+            Else
+                ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
+            End If
         Catch ex As Exception
             ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
         End Try
@@ -580,6 +580,7 @@ Class ctrlPE_KPI_Evaluate
         dtTemp.Columns(22).ColumnName = "CLASSFICATION_ID"
         dtTemp.Columns(23).ColumnName = "COMMENTS"
         dtTemp.Columns(24).ColumnName = "REMARK"
+        dtTemp.Columns(25).ColumnName = "KPI_ID"
         'XOA DONG TIEU DE VA HEADER
         dtTemp.Rows(0).Delete()
         dtTemp.Rows(0).Delete()
@@ -634,7 +635,7 @@ Class ctrlPE_KPI_Evaluate
                 newRow("DISCIPTION") = newRow("DISCIPTION") + "NGẠCH - Phải nhập NGẠCH"
                 _error = False
             End If
-            If IsDBNull(rows("SUM_TT")) Or rows("SUM_TT") = 0.0 Then
+            If IsDBNull(rows("SUM_TT")) Then
                 newRow("DISCIPTION") = newRow("DISCIPTION") + "Tỷ trọng - Phải nhập Tỷ trọng"
                 _error = False
             End If
@@ -650,6 +651,7 @@ Class ctrlPE_KPI_Evaluate
                 newRow("DISCIPTION") = newRow("DISCIPTION") + "Xếp loại  - Phải nhập Xếp loại"
                 _error = False
             End If
+            rows("KPI_ID") = cboPeriodEvaluate.SelectedValue
             If _error = False Then
                 dtLogs.Rows.Add(newRow)
                 _error = True

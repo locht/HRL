@@ -868,6 +868,7 @@ Partial Class PerformanceRepository
         End Try
     End Function
 #Region "danh gia kpis"
+
     Public Function GetExportKPI(ByVal id As Decimal) As DataSet
         Try
             Using cls As New DataAccess.QueryData
