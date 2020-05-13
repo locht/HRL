@@ -807,7 +807,7 @@ Partial Public Class PayrollRepository
                     objOrgPeriodData = New AT_ORG_PERIOD
                     objOrgPeriodData.ID = Utilities.GetNextSequence(Context, Context.AT_ORG_PERIOD.EntitySet.Name)
                     objOrgPeriodData.ORG_ID = obj.ORG_ID
-                    objOrgPeriodData.PERIOD_ID = obj.ID
+                    objOrgPeriodData.PERIOD_ID = objPeriodData.ID
                     objOrgPeriodData.STATUSCOLEX = 1
                     objOrgPeriodData.STATUSPAROX = 1
                     Context.AT_ORG_PERIOD.AddObject(objOrgPeriodData)
