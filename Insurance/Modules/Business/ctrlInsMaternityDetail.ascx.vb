@@ -365,7 +365,7 @@ Public Class ctrlInsMaternityDetail
                 InsCommon.SetDate(dateNgayDuSinh, lstSource.Rows(0)("NGAY_DU_SINH"))
                 'InsCommon.SetNumber(cbNghiThaiSan1, lstSource.Rows(0)("NGHI_THAI_SAN"))
                 'InsCommon.SetNumber(cbNormal_Birth1, lstSource.Rows(0)("IS_NORMAL_BIRTH"))
-                Dim q = lstSource.Rows(0)("NGHI_THAI_SAN")
+                Dim q = lstSource.Rows(0)("IS_NORMAL_BIRTH").ToString
                 ''If lstSource.Rows(0)("NGAY_DU_SINH"))
 
                 If lstSource.Rows(0)("NGHI_THAI_SAN") Is Nothing OrElse CDec(Val(lstSource.Rows(0)("NGHI_THAI_SAN"))) = 0 Then
@@ -373,12 +373,13 @@ Public Class ctrlInsMaternityDetail
                 Else
                     cbNghiThaiSan1.Checked = True
                 End If
-                If lstSource.Rows(0)("IS_NORMAL_BIRTH") Is Nothing OrElse CDec(Val(lstSource.Rows(0)("IS_NORMAL_BIRTH"))) = 0 Then
+
+                If lstSource.Rows(0)("IS_NORMAL_BIRTH").ToString = "" OrElse CDec(Val(lstSource.Rows(0)("IS_NORMAL_BIRTH"))) = 0 Then
                     cbNormal_Birth1.Checked = False
                 Else
                     cbNormal_Birth1.Checked = True
                 End If
-                If lstSource.Rows(0)("IS_NOT_NORMAL_BIRTH") Is Nothing OrElse CDec(Val(lstSource.Rows(0)("IS_NOT_NORMAL_BIRTH"))) = 0 Then
+                If lstSource.Rows(0)("IS_NOT_NORMAL_BIRTH").ToString = "" OrElse CDec(Val(lstSource.Rows(0)("IS_NOT_NORMAL_BIRTH"))) = 0 Then
                     cbNotNormal_Birth1.Checked = False
                 Else
                     cbNotNormal_Birth1.Checked = True

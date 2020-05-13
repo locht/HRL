@@ -6,6 +6,7 @@ Imports Telerik.Web.UI
 Imports Aspose.Cells
 Imports System.IO
 Imports System.Globalization
+Imports HistaffFrameworkPublic
 
 Public Class ctrlRC_ImportCV
     Inherits Common.CommonView
@@ -13,6 +14,8 @@ Public Class ctrlRC_ImportCV
     Public Overrides Property MustAuthorize As Boolean = False
     Public WithEvents AjaxManager As RadAjaxManager
     Public Property AjaxManagerId As String
+    'Public Property lst As New List(Of CandidateImportDTO)
+    Public Property dtip As New CandidateImportDTO
 #Region "Property"
     Property checkOut As Decimal
         Get
@@ -20,6 +23,14 @@ Public Class ctrlRC_ImportCV
         End Get
         Set(ByVal value As Decimal)
             ViewState(Me.ID & "_checkOut") = value
+        End Set
+    End Property
+    Property count As Decimal
+        Get
+            Return ViewState(Me.ID & "_count")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_count") = value
         End Set
     End Property
     Property IsLoad As Boolean
@@ -38,6 +49,22 @@ Public Class ctrlRC_ImportCV
             ViewState(Me.ID & "_lst") = value
         End Set
     End Property
+    'Private Property dtip As CandidateImportDTO
+    '    Get
+    '        Return ViewState(Me.ID & "_dtip")
+    '    End Get
+    '    Set(ByVal value As CandidateImportDTO)
+    '        ViewState(Me.ID & "_dtip") = value
+    '    End Set
+    'End Property
+    'Private Property lst As List(Of CandidateImportDTO)
+    '    Get
+    '        Return ViewState(Me.ID & "_lst")
+    '    End Get
+    '    Set(ByVal value As List(Of CandidateImportDTO))
+    '        ViewState(Me.ID & "_lst") = value
+    '    End Set
+    'End Property
     Private Property lstct As List(Of CandidateBeforeWTDTO)
         Get
             Return ViewState(Me.ID & "_lstct")
@@ -317,6 +344,9 @@ Public Class ctrlRC_ImportCV
                 Case CommonMessage.TOOLBARITEM_IMPORT
                     ctrlUpload.isMultiple = AsyncUpload.MultipleFileSelection.Automatic
                     ctrlUpload.Show()
+                Case CommonMessage.TOOLBARITEM_NEXT
+                    ctrlUpload1.isMultiple = AsyncUpload.MultipleFileSelection.Automatic
+                    ctrlUpload1.Show()
                 Case CommonMessage.TOOLBARITEM_EXPORT
                     GetInformationLists()
                     'If rgData.SelectedItems.Count = 0 Then
@@ -366,7 +396,7 @@ Public Class ctrlRC_ImportCV
         Dim dsDB As New DataSet
         Dim dtTonGiao, dtMoiQH, dtQuocGia, dtTinh, dtHuyen, dtXa, dtChuyenNganh,
             dtChuyenMon, dtHonNhan, dtDanToc, dtLogo, dtGender, dtSchool, dtTDVH,
-            dtNgoaiNgu, dtBangCapNgoaiNgu, dtChungChiTinHoc, dtTrinhDoTinHoc, dtXepLoaiHocVan As New DataTable
+            dtNgoaiNgu, dtBangCapNgoaiNgu, dtChungChiTinHoc, dtTrinhDoTinHoc, dtXepLoaiHocVan, dtLoaiSucKhoe As New DataTable
         Try
             dsDB = repStore.GET_ALL_LIST(1)
             If dsDB.Tables.Count > 0 Then
@@ -456,11 +486,15 @@ Public Class ctrlRC_ImportCV
                 If dsDB.Tables(18) IsNot Nothing AndAlso dsDB.Tables(18).Rows.Count > 0 Then
                     dtXepLoaiHocVan = dsDB.Tables(18)
                 End If
+                'loai suc khoe
+                If dsDB.Tables(19) IsNot Nothing AndAlso dsDB.Tables(19).Rows.Count > 0 Then
+                    dtLoaiSucKhoe = dsDB.Tables(19)
+                End If
 
                 ExportTemplate("Recruitment\Import\Import_CV_mau.xls",
                                dtTonGiao, dtMoiQH, dtQuocGia, dtTinh, dtHuyen, dtXa,
                                dtChuyenNganh, dtChuyenMon, dtHonNhan, dtDanToc, dtLogo, dtGender, dtSchool, dtTDVH,
-                               dtNgoaiNgu, dtBangCapNgoaiNgu, dtChungChiTinHoc, dtTrinhDoTinHoc, dtXepLoaiHocVan,
+                               dtNgoaiNgu, dtBangCapNgoaiNgu, dtChungChiTinHoc, dtTrinhDoTinHoc, dtXepLoaiHocVan, dtLoaiSucKhoe,
                                "Import_CV_mau")
             End If
 
@@ -488,6 +522,7 @@ Public Class ctrlRC_ImportCV
                                                     ByVal dt17 As DataTable,
                                                     ByVal dt18 As DataTable,
                                                     ByVal dt19 As DataTable,
+                                                    ByVal dt20 As DataTable,
                                                     ByVal filename As String) As Boolean
 
         Dim filePath As String
@@ -589,6 +624,10 @@ Public Class ctrlRC_ImportCV
                 dt19.TableName = "TableXepLoaiHocVan"
                 designer.SetDataSource(dt19)
             End If
+            If dt20 IsNot Nothing Then
+                dt20.TableName = "TableLoaiSucKhoe"
+                designer.SetDataSource(dt20)
+            End If
 
             designer.Process()
             designer.Workbook.CalculateFormula()
@@ -659,6 +698,14 @@ Public Class ctrlRC_ImportCV
                 Next
 
             Next
+            If lst IsNot Nothing Then
+                If rep.ImportCandidateCV1(lst) Then
+                    Dim msgt As String = "Import thành công " & count & " ứng viên"
+                    ShowMessage(Translate(msgt), NotifyType.Success)
+                Else
+                    ShowMessage(Translate("Không có ứng viên nào được import vui lòng kiểm tra lại toàn bộ file import của ứng viên."), NotifyType.Warning)
+                End If
+            End If
             If rep.ImportCandidateCV(lst_new) Then
                 Dim msgt As String = "Import thành công " & lst_new.Count & " ứng viên"
                 'If msg.Length > 0 Then
@@ -730,6 +777,7 @@ Public Class ctrlRC_ImportCV
                 '//Instantiate LoadOptions specified by the LoadFormat.
                 workbook = New Aspose.Cells.Workbook(fileName)
                 worksheet = workbook.Worksheets(0)
+                'worksheet.get
                 If workbook.Worksheets.GetSheetByCodeName("Data") Is Nothing Then
                     ShowMessage("File mẫu không đúng định dạng", NotifyType.Warning)
                     Exit Sub
@@ -1013,6 +1061,7 @@ Public Class ctrlRC_ImportCV
                 can.S_ERROR = dr("ERROR").ToString
                 can.FIRST_NAME_VN = dr("FIRST_NAME").ToString
                 can.LAST_NAME_VN = dr("LAST_NAME").ToString
+                'Dim xx = dr("IS_CMND").ToString
                 If dr("IS_CMND").ToString <> "" Then
                     can.IS_CMND = Decimal.Parse(dr("IS_CMND"))
                 End If
@@ -1075,5 +1124,736 @@ Public Class ctrlRC_ImportCV
         End Try
     End Function
 #End Region
+
+    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+        Dim fileName As String
+        Dim workbook As Aspose.Cells.Workbook
+        Dim worksheet0 As Aspose.Cells.Worksheet
+        Dim worksheet As Aspose.Cells.Worksheet
+        Dim worksheet1 As Aspose.Cells.Worksheet
+        Dim worksheet2 As Aspose.Cells.Worksheet
+        Dim worksheet3 As Aspose.Cells.Worksheet
+        Dim worksheet4 As Aspose.Cells.Drawing.PictureCollection
+        Dim dsDataPrepare As New DataSet
+        Dim dsDataPreparect As New DataSet
+        Dim dsDataPreparedt As New DataSet
+        Dim dsDataPreparefm As New DataSet
+        Dim dsDataPreparerf As New DataSet
+        Dim dtFile As New DataTable
+        dtFile.Columns.Add("ID", GetType(Decimal))
+        dtFile.Columns.Add("FILENAME")
+        Try
+            Dim tempPath As String = "Excel"
+            Dim savepath = Context.Server.MapPath(tempPath)
+            Dim i As Integer = 0
+            For Each file As UploadedFile In ctrlUpload1.UploadedFiles
+                fileName = System.IO.Path.Combine(savepath, Guid.NewGuid().ToString() & ".xls")
+                file.SaveAs(fileName, True)
+                '//Instantiate LoadOptions specified by the LoadFormat.
+                workbook = New Aspose.Cells.Workbook(fileName)
+                worksheet0 = workbook.Worksheets("ACV_CV")
+                'Dim a = worksheet0.Hyperlinks
+                worksheet4 = worksheet0.Pictures
+
+                worksheet = workbook.Worksheets("DATA")
+                worksheet1 = workbook.Worksheets("DAOTAO")
+                worksheet2 = workbook.Worksheets("KINHNGHIEMLAMVIEC")
+                worksheet3 = workbook.Worksheets("NHANTHAN")
+                If worksheet Is Nothing Then
+                    ShowMessage("File mẫu không đúng định dạng", NotifyType.Warning)
+                    Exit Sub
+                End If
+
+                'Using ep As New ExcelPackage
+                '    dsDataPrepare = ep.ReadExcelToDataSet(fileName, False)
+                'End Using
+                i = i + 1
+                Dim r As DataRow
+                r = dtFile.NewRow
+                r("ID") = i
+                r("FILENAME") = ctrlUpload1.UploadedFiles.Item(i - 1).FileName
+                dtFile.Rows.Add(r)
+                'dsDataPrepare.Tables.Add(worksheet0.Cells.ExportDataTableAsString(0, 0, worksheet0.Cells.MaxRow + 1, worksheet0.Cells.MaxColumn + 1, True))
+                dsDataPrepare.Tables.Add(worksheet.Cells.ExportDataTableAsString(0, 0, worksheet.Cells.MaxRow + 1, worksheet.Cells.MaxColumn + 1, True))
+                dsDataPrepare.Tables.Add(worksheet1.Cells.ExportDataTableAsString(0, 0, worksheet1.Cells.MaxRow + 1, worksheet1.Cells.MaxColumn + 1, True))
+                dsDataPrepare.Tables.Add(worksheet2.Cells.ExportDataTableAsString(0, 0, worksheet2.Cells.MaxRow + 1, worksheet2.Cells.MaxColumn + 1, True))
+                dsDataPrepare.Tables.Add(worksheet3.Cells.ExportDataTableAsString(0, 0, worksheet3.Cells.MaxRow + 1, worksheet3.Cells.MaxColumn + 1, True))
+                'dsDataPrepare.Tables.Add(worksheet4.Cells.ExportDataTableAsString(0, 0, worksheet4.Cells.MaxRow + 1, worksheet4.Cells.MaxColumn + 1, True))
+                'dsDataPrepare.Tables.Add(worksheet4.Item)
+                If System.IO.File.Exists(fileName) Then System.IO.File.Delete(fileName)
+                ImportData1(dsDataPrepare, dtFile)
+                count = count + 1
+            Next
+            'ImportData(dsDataPrepare, dtFile)
+        Catch ex As Exception
+            ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
+        End Try
+    End Sub
+
+    Public Sub ImportData1(ByVal dsDataPrepare As DataSet, ByVal dtFile As DataTable)
+        Try
+            Dim dtData As New DataTable
+            Dim dtDataTraning As New DataTable
+            Dim dtDataExp As New DataTable
+            Dim dtDataFamily As New DataTable
+            lstSave = New List(Of Decimal)
+            lst = New List(Of CandidateImportDTO)
+            lstct = New List(Of CandidateBeforeWTDTO)
+            lstdt = New List(Of TrainSingerDTO)
+            lstfm = New List(Of CandidateFamilyDTO)
+            lstrf = New List(Of CandidateReferenceDTO)
+
+            dtError = New DataTable
+            dtError1 = New DataTable
+            dtError2 = New DataTable
+            dtError3 = New DataTable
+            If dsDataPrepare.Tables.Count = 0 Then
+                ShowMessage(Translate("Vui lòng chọn file để import."), NotifyType.Warning)
+                Exit Sub
+            End If
+
+            Dim msg As String = ""
+
+            dtData = dsDataPrepare.Tables(0).Clone
+            dtData.Columns.Add("ERROR")
+            dtData.Columns.Add("FILE_NAME")
+
+            dtDataTraning = dsDataPrepare.Tables(1).Clone
+            dtDataTraning.Columns.Add("ERROR")
+            dtDataTraning.Columns.Add("FILE_NAME")
+
+            dtDataExp = dsDataPrepare.Tables(2).Clone
+            dtDataExp.Columns.Add("ERROR")
+            dtDataExp.Columns.Add("FILE_NAME")
+
+            dtDataFamily = dsDataPrepare.Tables(3).Clone
+            dtDataFamily.Columns.Add("ERROR")
+            dtDataFamily.Columns.Add("FILE_NAME")
+
+            For Each row In dsDataPrepare.Tables(0).Rows
+                Dim isRow = ImportValidate.TrimRow(row)
+                If isRow Then
+                    dtData.ImportRow(row)
+                End If
+            Next
+            For Each row In dsDataPrepare.Tables(1).Rows
+                Dim isRow = ImportValidate.TrimRow(row)
+                If isRow Then
+                    dtDataTraning.ImportRow(row)
+                End If
+            Next
+            For Each row In dsDataPrepare.Tables(2).Rows
+                Dim isRow = ImportValidate.TrimRow(row)
+                If isRow Then
+                    dtDataExp.ImportRow(row)
+                End If
+            Next
+            For Each row In dsDataPrepare.Tables(3).Rows
+                Dim isRow = ImportValidate.TrimRow(row)
+                If isRow Then
+                    dtDataFamily.ImportRow(row)
+                End If
+            Next
+            dtError = dtData.Clone
+            dtError.TableName = "DATA"
+            dtError.Columns.Add("STT", GetType(String))
+
+            dtError1 = dtDataTraning.Clone
+            dtError1.TableName = "DATA"
+            dtError1.Columns.Add("STT", GetType(String))
+
+            dtError2 = dtDataExp.Clone
+            dtError2.TableName = "DATA"
+            dtError2.Columns.Add("STT", GetType(String))
+
+            dtError3 = dtDataFamily.Clone
+            dtError3.TableName = "DATA"
+            dtError3.Columns.Add("STT", GetType(String))
+
+
+            Dim iRow As Integer = 5
+            Dim IsError As Boolean = False
+            Dim Is_Er_IDNO As Boolean = False
+            Dim sError As String = ""
+
+
+            TableMapping1(dtData, dtFile)
+            TableMapping2(dtDataTraning, dtFile)
+            TableMapping3(dtDataExp, dtFile)
+            TableMapping4(dtDataFamily, dtFile)
+            If checkOut = 1 Then
+                Exit Sub
+            End If
+            CreateCanImportCV1(dtData, dtDataTraning, dtDataExp, dtDataFamily)
+            'End If
+            Dim userlog = LogHelper.GetUserLog
+
+            If lst IsNot Nothing AndAlso lst.Count > 0 Then
+                rgData.Rebind()
+                Using rep As New RecruitmentRepository
+
+                End Using
+            Else
+                ShowMessage(Translate("Không có ứng viên nào được import vui lòng kiểm tra lại toàn bộ file import của ứng viên."), NotifyType.Warning)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub TableMapping1(ByVal dtTemp As System.Data.DataTable, ByVal dtFile As System.Data.DataTable)
+        Try
+
+            ' lấy dữ liệu thô từ excel vào và tinh chỉnh dữ liệu
+            dtTemp.Columns(0).ColumnName = "FIRST_NAME_VN"
+            dtTemp.Columns(1).ColumnName = "LAST_NAME_VN"
+            dtTemp.Columns(2).ColumnName = "BIRTH_DATE"
+            dtTemp.Columns(3).ColumnName = "BIRTH_PROVINCE_NAME"
+            dtTemp.Columns(4).ColumnName = "BIRTH_PROVINCE"
+            dtTemp.Columns(5).ColumnName = "GENDER_NAME"
+            dtTemp.Columns(6).ColumnName = "GENDER"
+            dtTemp.Columns(7).ColumnName = "NATIVE_NAME"
+            dtTemp.Columns(8).ColumnName = "NATIVE"
+            dtTemp.Columns(9).ColumnName = "RELIGION_NAME"
+            dtTemp.Columns(10).ColumnName = "RELIGION"
+
+            dtTemp.Columns(11).ColumnName = "NATIONALITY_NAME"
+            dtTemp.Columns(12).ColumnName = "NATIONALITY_ID"
+            dtTemp.Columns(13).ColumnName = "ID_NO"
+            dtTemp.Columns(14).ColumnName = "ID_DATE"
+            dtTemp.Columns(15).ColumnName = "ID_PLACE_NAME"
+            dtTemp.Columns(16).ColumnName = "ID_PLACE"
+            dtTemp.Columns(17).ColumnName = "PER_ADDRESS"
+            dtTemp.Columns(18).ColumnName = "PER_PROVINCE"
+            dtTemp.Columns(19).ColumnName = "PER_PROVINCE_ID"
+            dtTemp.Columns(20).ColumnName = "PER_DISTRICT"
+            dtTemp.Columns(21).ColumnName = "PER_DISTRICT_ID"
+            dtTemp.Columns(22).ColumnName = "CONTACT_ADDRESS_TEMP"
+            dtTemp.Columns(23).ColumnName = "CONTACT_PROVINCE_TEMP"
+            dtTemp.Columns(24).ColumnName = "CONTACT_PROVINCE_TEMP_ID"
+
+            dtTemp.Columns(25).ColumnName = "CONTACT_DISTRICT"
+            dtTemp.Columns(26).ColumnName = "CONTACT_DISTRICT_ID"
+            dtTemp.Columns(27).ColumnName = "CONTACT_MOBILE"
+            dtTemp.Columns(28).ColumnName = "CONTACT_PHONE"
+            dtTemp.Columns(29).ColumnName = "PER_EMAIL"
+            dtTemp.Columns(30).ColumnName = "MARITAL_STATUS"
+            dtTemp.Columns(31).ColumnName = "MARITAL_STATUS_ID"
+            dtTemp.Columns(32).ColumnName = "CONTACT_PERSON"
+            dtTemp.Columns(33).ColumnName = "RELATIONS_CONTACT"
+            dtTemp.Columns(34).ColumnName = "RELATIONS_CONTACT_ID"
+            dtTemp.Columns(35).ColumnName = "CONTACT_PERSON_ADDRESS"
+            dtTemp.Columns(36).ColumnName = "CONTACT_PERSON_PHONE"
+
+            'dtTemp.Columns(37).ColumnName = "ACADEMY_NAME"
+            'dtTemp.Columns(38).ColumnName = "ACADEMY"
+
+            dtTemp.Columns(37).ColumnName = "ENGLISH"
+            dtTemp.Columns(38).ColumnName = "ENGLISH_ID"
+            dtTemp.Columns(39).ColumnName = "ENGLISH_LEVEL"
+            dtTemp.Columns(40).ColumnName = "ENGLISH_LEVEL_ID"
+            dtTemp.Columns(41).ColumnName = "ENGLISH_MARK"
+            dtTemp.Columns(42).ColumnName = "ENGLISH1"
+            dtTemp.Columns(43).ColumnName = "ENGLISH1_ID"
+            dtTemp.Columns(44).ColumnName = "ENGLISH_LEVEL1"
+            dtTemp.Columns(45).ColumnName = "ENGLISH_LEVEL1_ID"
+            dtTemp.Columns(46).ColumnName = "ENGLISH_MARK1"
+            dtTemp.Columns(47).ColumnName = "ENGLISH2"
+            dtTemp.Columns(48).ColumnName = "ENGLISH2_ID"
+            dtTemp.Columns(49).ColumnName = "ENGLISH_LEVEL2"
+            dtTemp.Columns(50).ColumnName = "ENGLISH_LEVEL2_ID"
+            dtTemp.Columns(51).ColumnName = "ENGLISH_MARK2"
+            dtTemp.Columns(52).ColumnName = "IT_CERTIFICATE"
+            dtTemp.Columns(53).ColumnName = "IT_CERTIFICATE_ID"
+            dtTemp.Columns(54).ColumnName = "IT_LEVEL"
+            dtTemp.Columns(55).ColumnName = "IT_LEVEL_ID"
+            dtTemp.Columns(56).ColumnName = "IT_MARK"
+            dtTemp.Columns(57).ColumnName = "IT_CERTIFICATE1"
+            dtTemp.Columns(58).ColumnName = "IT_CERTIFICATE1_ID"
+            dtTemp.Columns(59).ColumnName = "IT_LEVEL1"
+            dtTemp.Columns(60).ColumnName = "IT_LEVEL1_ID"
+            dtTemp.Columns(61).ColumnName = "IT_MARK1"
+            dtTemp.Columns(62).ColumnName = "IT_CERTIFICATE2"
+            dtTemp.Columns(63).ColumnName = "IT_CERTIFICATE2_ID"
+            dtTemp.Columns(64).ColumnName = "IT_LEVEL2"
+            dtTemp.Columns(65).ColumnName = "IT_LEVEL2_ID"
+            dtTemp.Columns(66).ColumnName = "IT_MARK2"
+            dtTemp.Columns(67).ColumnName = "WORK_LOCATION"
+            dtTemp.Columns(68).ColumnName = "PROBATIONARY_SALARY"
+            dtTemp.Columns(69).ColumnName = "DATE_START"
+            dtTemp.Columns(70).ColumnName = "LOAI_SUC_KHOE"
+            dtTemp.Columns(71).ColumnName = "LOAI_SUC_KHOE_ID"
+            dtTemp.Columns(72).ColumnName = "CHIEU_CAO"
+            dtTemp.Columns(73).ColumnName = "CAN_NANG"
+            dtTemp.Columns(74).ColumnName = "FULL_NAME_VN"
+
+            'XOA DONG TIEU DE VA HEADER
+            dtTemp.Rows(0).Delete()
+            dtTemp.Rows(0).Delete()
+            dtTemp.Rows(0).Delete()
+            ' add Log
+            Dim _error As Boolean = True
+            Dim count As Integer
+            Dim newRow As DataRow
+            Dim dsEMP As DataTable
+            'XOA NHUNG DONG DU LIEU NULL STT
+            'Dim rowDel As DataRow
+            'For i As Integer = 0 To dtTemp.Rows.Count - 1
+            '    If dtTemp.Rows(i).RowState = DataRowState.Deleted OrElse dtTemp.Rows(i).RowState = DataRowState.Detached Then Continue For
+            '    rowDel = dtTemp.Rows(i)
+            '    If rowDel("STT").ToString.Trim = "" Then
+            '        dtTemp.Rows(i).Delete()
+            '    Else
+            '        checkOut = 0
+            '    End If
+            'Next
+            Dim sError As String = ""
+            Dim iFile As Integer = 1
+            Dim sFile_Name As String = ""
+            For Each rF As DataRow In dtFile.Rows
+                If rF("ID") = iFile Then
+                    sFile_Name = rF("FILENAME").ToString
+                    Exit For
+                End If
+            Next
+            Dim Is_Er_IDNO As Boolean = False
+            For Each rows As DataRow In dtTemp.Rows
+                If rows.RowState = DataRowState.Deleted OrElse rows.RowState = DataRowState.Detached Then Continue For
+                newRow = dtError.NewRow
+                newRow("STT") = count + 1
+
+                'nếu ngày sinh k đúng định dạng thì k check ứng viên đã làm việc hay thuộc blacklist vì sai dl đầu vào
+                Dim rep As New RecruitmentRepository
+                'If IsDBNull(rows("STT")) Then
+                '    checkOut = 1
+                '    ShowMessage(Translate("Phải nhập số thứ tự,Xin kiểm tra lại"), NotifyType.Warning)
+                '    Exit Sub
+                'End If
+                If rows("BIRTH_DATE").ToString = "" OrElse CheckDate(rows("BIRTH_DATE")) = False Then
+                    rows("ERROR") = rows("ERROR") + "Ngày sinh không đúng định dạng,"
+                    rows("FILE_NAME") = sFile_Name
+                Else
+                    If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULL_NAME_VN"), rows("BIRTH_DATE"), "NO_ID") Then
+                        rows("ERROR") = rows("ERROR") + "Ứng viên đang tồn tại trong một chương trình tuyển dụng khác,"
+                    End If
+                    If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULL_NAME_VN"), rows("BIRTH_DATE"), "BLACK_LIST") Then
+                        rows("ERROR") = rows("ERROR") + "Ứng viên đang thuộc Blacklist,"
+                    End If
+                    If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULL_NAME_VN"), rows("BIRTH_DATE"), "WORKING") Then
+                        rows("ERROR") = rows("ERROR") + "Ứng viên đang làm việc tại ACV,"
+                    End If
+                    If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULL_NAME_VN"), rows("BIRTH_DATE"), "TERMINATE") Then
+                        rows("ERROR") = rows("ERROR") + "Ứng viên đã nghỉ việc ACV,"
+                    End If
+                End If
+                If rows("ID_DATE").ToString = "" OrElse CheckDate(rows("ID_DATE")) = False Then
+                    rows("ERROR") = rows("ERROR") + "Ngày cấp CMND không đúng định dạng,"
+                    rows("FILE_NAME") = sFile_Name
+                End If
+
+                If IsDBNull(rows("FIRST_NAME_VN")) Or rows("FIRST_NAME_VN").ToString = "" Then
+                    rows("ERROR") = rows("ERROR") + "Chưa nhập Họ và tên lót,"
+                    rows("FILE_NAME") = sFile_Name
+                End If
+                If IsDBNull(rows("LAST_NAME_VN")) Or rows("LAST_NAME_VN").ToString = "" Then
+                    rows("ERROR") = rows("ERROR") + "Chưa nhập tên,"
+                    rows("FILE_NAME") = sFile_Name
+                End If
+                'If IsDBNull(rows("FULL_NAME_VN")) Or rows("FULL_NAME_VN").ToString = "" Then
+                '    rows("ERROR") = rows("ERROR") + "Chưa nhập tên ứng viên,"
+                '    rows("FILE_NAME") = sFile_Name
+                'End If
+                If IsDBNull(rows("GENDER")) Or rows("GENDER").ToString = "" Then
+                    rows("ERROR") = rows("ERROR") + "Chưa nhập giới tính,"
+                    rows("FILE_NAME") = sFile_Name
+                End If
+                'If IsDBNull(rows("POSITION_APPLY")) Or rows("POSITION_APPLY").ToString = "" Then
+                '    rows("ERROR") = rows("ERROR") + "Chưa nhập vị trí ứng tuyển,"
+                '    rows("FILE_NAME") = sFile_Name
+                'End If
+
+                If IsDBNull(rows("ID_PLACE_NAME")) Or rows("ID_PLACE_NAME").ToString = "" Then
+                    rows("ERROR") = rows("ERROR") + "Chưa nhập nơi cấp cmnd,"
+                    rows("FILE_NAME") = sFile_Name
+                End If
+                count += 1
+            Next
+            dtTemp.AcceptChanges()
+
+        Catch ex As Exception
+            checkOut = 1
+            ShowMessage(Translate("Phải nhập số thứ tự,Xin kiểm tra lại"), NotifyType.Warning)
+            Exit Sub
+        End Try
+    End Sub
+    Private Sub CreateCanImportCV1(ByVal dtData As DataTable,
+                                   ByVal dtDataTraning As DataTable,
+                                   ByVal dtDataExp As DataTable,
+                                   ByVal dtDatafamily As DataTable)
+
+        Try
+            Dim candidateid As Decimal = lst.Count + 1
+            'Dim dtip As New CandidateImportDTO
+            'Dim lst As New List(Of CandidateImportDTO)
+            Dim can As New CandidateDTO
+            Dim can_cv As CandidateCVDTO
+            Dim can_edu As New CandidateEduDTO
+            Dim can_experince As New CandidateBeforeWTDTO
+            Dim can_family As New CandidateFamilyDTO
+            Dim can_health As New CandidateHealthDTO
+            Dim can_expect As New CandidateExpectDTO
+            Dim can_training As New CandidateTrainingDTO
+            Dim canimport As New CandidateImportDTO
+
+
+            Dim dr = dtData.Rows(0)
+
+            'Candidate
+            can.ID = candidateid
+            can.ORG_ID = org_id
+            can.TITLE_ID = title_id
+            can.ORG_NAME = org_name
+            can.RC_PROGRAM_ID = program_id
+            can.TITLE_NAME = title_name
+            can.FIRST_NAME_VN = dr("FIRST_NAME_VN").ToString
+            can.LAST_NAME_VN = dr("LAST_NAME_VN").ToString
+            can.FULLNAME_VN = dr("FIRST_NAME_VN").ToString & dr("LAST_NAME_VN").ToString
+
+
+
+            'candidateCv
+            can_cv = New CandidateCVDTO
+            can_cv.CANDIDATE_ID = candidateid
+            can_cv.BIRTH_DATE = ToDate(dr("BIRTH_DATE").ToString)
+            can_cv.BIRTH_PROVINCE = CDec(Val(dr("BIRTH_PROVINCE")))
+            can_cv.GENDER = dr("GENDER").ToString
+            If dr("NATIVE").ToString <> "" Then
+                can_cv.NATIVE = CDec(Val(dr("NATIVE"))) ' dan toc
+            End If
+            If dr("RELIGION").ToString <> "" Then
+                can_cv.RELIGION = CDec(Val(dr("RELIGION"))) ' ton giao
+            End If
+            If dr("NATIONALITY_ID").ToString <> "" Then
+                can_cv.NATIONALITY_ID = CDec(Val(dr("NATIONALITY_ID")))
+            End If
+
+            can_cv.ID_NO = dr("ID_NO").ToString
+            can_cv.ID_DATE = ToDate(dr("ID_DATE").ToString)
+            can_cv.ID_PLACE = dr("ID_PLACE").ToString
+            can_cv.PER_ADDRESS = dr("PER_ADDRESS")
+            can_cv.PER_PROVINCE = CDec(Val(dr("PER_PROVINCE_ID")))
+            can_cv.PER_DISTRICT_ID = CDec(Val(dr("PER_DISTRICT_ID")))
+            can_cv.CONTACT_ADDRESS_TEMP = dr("CONTACT_ADDRESS_TEMP").ToString
+            can_cv.CONTACT_PROVINCE_TEMP = CDec(Val(dr("CONTACT_PROVINCE_TEMP_ID")))
+            can_cv.CONTACT_DISTRICT_TEMP = CDec(Val(dr("CONTACT_DISTRICT_ID")))
+            can_cv.MOBILE_PHONE = dr("CONTACT_MOBILE").ToString
+            can_cv.CONTACT_PHONE = dr("CONTACT_PHONE").ToString    'edit'
+            can_cv.PER_EMAIL = dr("PER_EMAIL")
+            can_cv.MARITAL_STATUS = dr("MARITAL_STATUS_ID").ToString
+            can_cv.URGENT_PER_NAME = dr("CONTACT_PERSON").ToString
+            can_cv.URGENT_PER_RELATION = dr("RELATIONS_CONTACT_ID")
+            can_cv.URGENT_ADDRESS = dr("CONTACT_PERSON_ADDRESS")
+            can_cv.URGENT_PER_SDT = dr("CONTACT_PERSON_PHONE")
+
+            'candidate_edu
+            can_edu.CANDIDATE_ID = candidateid
+            can_edu.ENGLISH = dr("ENGLISH_ID").ToString
+            can_edu.ENGLISH_LEVEL = dr("ENGLISH_LEVEL_ID").ToString
+            can_edu.ENGLISH_MARK = dr("ENGLISH_MARK").ToString
+
+            can_edu.ENGLISH1 = dr("ENGLISH1_ID").ToString
+            can_edu.ENGLISH_LEVEL2 = dr("ENGLISH_LEVEL1_ID").ToString
+            can_edu.ENGLISH_MARK1 = dr("ENGLISH_MARK1").ToString
+
+            can_edu.ENGLISH2 = dr("ENGLISH2_ID").ToString
+            can_edu.ENGLISH_LEVEL2 = dr("ENGLISH_LEVEL2_ID").ToString
+            can_edu.ENGLISH_MARK2 = dr("ENGLISH_MARK2").ToString
+
+            can_edu.IT_CERTIFICATE = dr("IT_CERTIFICATE_ID").ToString
+            can_edu.IT_LEVEL = dr("IT_LEVEL_ID").ToString
+            can_edu.IT_MARK = dr("IT_MARK").ToString
+
+            can_edu.IT_CERTIFICATE1 = dr("IT_CERTIFICATE1_ID").ToString
+            can_edu.IT_LEVEL1 = dr("IT_LEVEL1_ID").ToString
+            can_edu.IT_MARK1 = dr("IT_MARK1").ToString
+
+            can_edu.IT_CERTIFICATE2 = dr("IT_CERTIFICATE2_ID").ToString
+            can_edu.IT_LEVEL2 = dr("IT_LEVEL2_ID").ToString
+            can_edu.IT_MARK2 = dr("IT_MARK2").ToString
+
+            'candidate expect
+            can_expect.CANDIDATE_ID = candidateid
+            can_expect.WORK_LOCATION = dr("WORK_LOCATION").ToString
+            can_expect.PROBATIONARY_SALARY = CDec(Val(dr("PROBATIONARY_SALARY")))
+            can_expect.DATE_START = ToDate(dr("DATE_START"))
+            'can_expect.
+
+
+            'candidate health
+            can_health.CANDIDATE_ID = candidateid
+            can_health.LOAI_SUC_KHOE = dr("LOAI_SUC_KHOE_ID").ToString
+            can_health.CHIEU_CAO = dr("CHIEU_CAO").ToString
+            can_health.CAN_NANG = dr("CAN_NANG").ToString
+
+
+            'If dr("DT_ID").ToString <> "" Then
+            'can_cv.NATIVE = dr("DT_ID").ToString
+            'End If
+            dtip.can = can
+            dtip.can_cv = can_cv
+            dtip.can_edu = can_edu
+            dtip.can_health = can_health
+            dtip.can_expect = can_expect
+            'canimport.can = can
+            'canimport.can_cv = can_cv
+            'canimport.can_edu = can_edu
+            'canimport.can_health = can_health
+            'canimport.can_expect = can_expect
+            'lst.Add(canimport)
+
+            'dao tao
+            Dim can_training_lst As New List(Of CandidateTrainingDTO)
+            For Each dr1 In dtDataTraning.Rows
+                can_training.CANDIDATE_ID = candidateid
+                can_training.SCHOOL_ID = CDec(Val(dr1("SCHOOL_ID")))
+                can_training.MAJOR_ID = CDec(Val(dr1("MAJOR_ID")))
+                can_training.FROM_DATE = ToDate(dr1("FROMDATE"))
+                can_training.TO_DATE = ToDate(dr1("TODATE"))
+                can_training.MARK_EDU_ID = CDec(Val(dr1("MARK_EDU_ID")))
+                can_training_lst.Add(can_training)
+                'canimport.can_training = can_training_lst
+                'lst.Add(canimport)
+            Next
+            dtip.can_training = can_training_lst
+
+
+            'kinh nghiem lam viec
+            Dim can_experince_lst As New List(Of CandidateBeforeWTDTO)
+            For Each dr2 In dtDataExp.Rows
+                can_experince.CANDIDATE_ID = candidateid
+                can_experince.FROMDATE = ToDate(dr2("FROMDATE"))
+                can_experince.TODATE = ToDate(dr2("TODATE"))
+                can_experince.ORG_NAME = dr2("ORG_NAME").ToString
+                can_experince.ORG_ADDRESS = dr2("ORG_ADDRESS").ToString
+                can_experince.TITLE_NAME = dr2("TITLE_NAME")
+                can_experince.SALARY = CDec(Val(dr2("LAST_SALARY")))
+                can_experince.WORK = dr2("WORK").ToString
+                can_experince.DIRECT_MANAGER = dr2("DIRECT_MANAGER").ToString
+                can_experince.DIRECT_PHONE = dr2("DIRECT_PHONE").ToString 'db chua co
+                can_experince.REASON_LEAVE = dr2("REASON_LEAVE").ToString
+
+                can_experince_lst.Add(can_experince)
+                'canimport.can_exp = can_experince_lst
+                'lst.Add(canimport)
+            Next
+            dtip.can_exp = can_experince_lst
+
+            'nhan than
+            Dim can_family_lst As New List(Of CandidateFamilyDTO)
+            For Each dr3 In dtDatafamily.Rows
+                can_family.CANDIDATE_ID = candidateid
+                can_family.RELATION_ID = CDec(Val(dr3("RELATION_ID")))
+                can_family.FULLNAME = dr3("FULLNAME").ToString
+                can_family.BIRTH_YEAR = CDec(Val(dr3("BIRTH_YEAR")))
+                can_family.JOB = dr3("JOB").ToString
+                can_family.ADDRESS = dr3("ADDRESS").ToString
+                can_family_lst.Add(can_family)
+                'canimport.can_family = can_family_lst
+                'lst.Add(canimport)
+            Next
+            dtip.can_family = can_family_lst
+
+            lst.Add(dtip)
+            'Dim candidateid As Decimal = lst.Count + 1
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TableMapping2(ByVal dtTemp As System.Data.DataTable, ByVal dtFile As System.Data.DataTable)
+        Try
+
+            ' lấy dữ liệu thô từ excel vào và tinh chỉnh dữ liệu
+            dtTemp.Columns(0).ColumnName = "SCHOOL_NAME"
+            dtTemp.Columns(1).ColumnName = "SCHOOL_ID"
+            dtTemp.Columns(2).ColumnName = "MAJOR_NAME"
+            dtTemp.Columns(3).ColumnName = "MAJOR_ID"
+            dtTemp.Columns(4).ColumnName = "FROMDATE"
+            dtTemp.Columns(5).ColumnName = "TODATE"
+            dtTemp.Columns(6).ColumnName = "MARK_EDU_NAME"
+            dtTemp.Columns(7).ColumnName = "MARK_EDU_ID"
+            'XOA DONG TIEU DE VA HEADER
+            dtTemp.Rows(0).Delete()
+            dtTemp.Rows(0).Delete()
+            dtTemp.Rows(0).Delete()
+            ' add Log
+            Dim _error As Boolean = True
+            Dim count As Integer
+            Dim newRow As DataRow
+            Dim dsEMP As DataTable
+            'XOA NHUNG DONG DU LIEU NULL STT
+            'Dim rowDel As DataRow
+            'For i As Integer = 0 To dtTemp.Rows.Count - 1
+            '    If dtTemp.Rows(i).RowState = DataRowState.Deleted OrElse dtTemp.Rows(i).RowState = DataRowState.Detached Then Continue For
+            '    rowDel = dtTemp.Rows(i)
+            '    If rowDel("STT").ToString.Trim = "" Then
+            '        dtTemp.Rows(i).Delete()
+            '    Else
+            '        checkOut = 0
+            '    End If
+            'Next
+            Dim sError As String = ""
+            Dim iFile As Integer = 1
+            Dim sFile_Name As String = ""
+            For Each rF As DataRow In dtFile.Rows
+                If rF("ID") = iFile Then
+                    sFile_Name = rF("FILENAME").ToString
+                    Exit For
+                End If
+            Next
+            Dim Is_Er_IDNO As Boolean = False
+            For Each rows As DataRow In dtTemp.Rows
+                If rows.RowState = DataRowState.Deleted OrElse rows.RowState = DataRowState.Detached Then Continue For
+                newRow = dtError.NewRow
+                newRow("STT") = count + 1
+                Dim rep As New RecruitmentRepository
+
+                count += 1
+                If rows("FROMDATE").ToString = "" OrElse CheckDate(rows("FROMDATE")) = False Then
+                    rows("ERROR") = rows("ERROR") + "Thời gian bắt đầu không đúng định dạng,"
+                    rows("FILE_NAME") = sFile_Name
+                End If
+                If rows("TODATE").ToString = "" OrElse CheckDate(rows("TODATE")) = False Then
+                    rows("ERROR") = rows("ERROR") + "Thời gian kết thúc không đúng định dạng,"
+                    rows("FILE_NAME") = sFile_Name
+                End If
+            Next
+            dtTemp.AcceptChanges()
+
+        Catch ex As Exception
+            checkOut = 1
+            'ShowMessage(Translate("Phải nhập số thứ tự,Xin kiểm tra lại"), NotifyType.Warning)
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub TableMapping3(ByVal dtTemp As System.Data.DataTable, ByVal dtFile As System.Data.DataTable)
+        Try
+
+            ' lấy dữ liệu thô từ excel vào và tinh chỉnh dữ liệu
+            dtTemp.Columns(0).ColumnName = "FROMDATE"
+            dtTemp.Columns(1).ColumnName = "TODATE"
+            dtTemp.Columns(2).ColumnName = "ORG_NAME"
+            dtTemp.Columns(3).ColumnName = "ORG_ADDRESS"
+
+            dtTemp.Columns(4).ColumnName = "TITLE_NAME"
+            dtTemp.Columns(5).ColumnName = "LAST_SALARY"
+            dtTemp.Columns(6).ColumnName = "WORK"
+            dtTemp.Columns(7).ColumnName = "DIRECT_MANAGER"
+            dtTemp.Columns(8).ColumnName = "DIRECT_PHONE"
+            dtTemp.Columns(9).ColumnName = "REASON_LEAVE"
+            'XOA DONG TIEU DE VA HEADER
+            dtTemp.Rows(0).Delete()
+            dtTemp.Rows(0).Delete()
+            dtTemp.Rows(0).Delete()
+            ' add Log
+            Dim _error As Boolean = True
+            Dim count As Integer
+            Dim newRow As DataRow
+            Dim dsEMP As DataTable
+            'XOA NHUNG DONG DU LIEU NULL STT
+            'Dim rowDel As DataRow
+            'For i As Integer = 0 To dtTemp.Rows.Count - 1
+            '    If dtTemp.Rows(i).RowState = DataRowState.Deleted OrElse dtTemp.Rows(i).RowState = DataRowState.Detached Then Continue For
+            '    rowDel = dtTemp.Rows(i)
+            '    If rowDel("STT").ToString.Trim = "" Then
+            '        dtTemp.Rows(i).Delete()
+            '    Else
+            '        checkOut = 0
+            '    End If
+            'Next
+            Dim sError As String = ""
+            Dim iFile As Integer = 1
+            Dim sFile_Name As String = ""
+            For Each rF As DataRow In dtFile.Rows
+                If rF("ID") = iFile Then
+                    sFile_Name = rF("FILENAME").ToString
+                    Exit For
+                End If
+            Next
+            Dim Is_Er_IDNO As Boolean = False
+            For Each rows As DataRow In dtTemp.Rows
+                If rows.RowState = DataRowState.Deleted OrElse rows.RowState = DataRowState.Detached Then Continue For
+                newRow = dtError.NewRow
+                newRow("STT") = count + 1
+                Dim rep As New RecruitmentRepository
+
+                count += 1
+            Next
+            dtTemp.AcceptChanges()
+
+        Catch ex As Exception
+            checkOut = 1
+            'ShowMessage(Translate("Phải nhập số thứ tự,Xin kiểm tra lại"), NotifyType.Warning)
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub TableMapping4(ByVal dtTemp As System.Data.DataTable, ByVal dtFile As System.Data.DataTable)
+        Try
+
+            ' lấy dữ liệu thô từ excel vào và tinh chỉnh dữ liệu
+            dtTemp.Columns(0).ColumnName = "RELATION_NAME"
+            dtTemp.Columns(1).ColumnName = "RELATION_ID"
+            dtTemp.Columns(2).ColumnName = "FULLNAME"
+            dtTemp.Columns(3).ColumnName = "BIRTH_YEAR"
+            dtTemp.Columns(4).ColumnName = "JOB"
+            dtTemp.Columns(5).ColumnName = "ADDRESS"
+            'XOA DONG TIEU DE VA HEADER
+            dtTemp.Rows(0).Delete()
+            dtTemp.Rows(0).Delete()
+            dtTemp.Rows(0).Delete()
+            ' add Log
+            Dim _error As Boolean = True
+            Dim count As Integer
+            Dim newRow As DataRow
+            Dim dsEMP As DataTable
+            'XOA NHUNG DONG DU LIEU NULL STT
+            'Dim rowDel As DataRow
+            'For i As Integer = 0 To dtTemp.Rows.Count - 1
+            '    If dtTemp.Rows(i).RowState = DataRowState.Deleted OrElse dtTemp.Rows(i).RowState = DataRowState.Detached Then Continue For
+            '    rowDel = dtTemp.Rows(i)
+            '    If rowDel("STT").ToString.Trim = "" Then
+            '        dtTemp.Rows(i).Delete()
+            '    Else
+            '        checkOut = 0
+            '    End If
+            'Next
+            Dim sError As String = ""
+            Dim iFile As Integer = 1
+            Dim sFile_Name As String = ""
+            For Each rF As DataRow In dtFile.Rows
+                If rF("ID") = iFile Then
+                    sFile_Name = rF("FILENAME").ToString
+                    Exit For
+                End If
+            Next
+            Dim Is_Er_IDNO As Boolean = False
+            For Each rows As DataRow In dtTemp.Rows
+                If rows.RowState = DataRowState.Deleted OrElse rows.RowState = DataRowState.Detached Then Continue For
+                newRow = dtError.NewRow
+                newRow("STT") = count + 1
+                Dim rep As New RecruitmentRepository
+
+                count += 1
+            Next
+            dtTemp.AcceptChanges()
+
+        Catch ex As Exception
+            checkOut = 1
+            'ShowMessage(Translate("Phải nhập số thứ tự,Xin kiểm tra lại"), NotifyType.Warning)
+            Exit Sub
+        End Try
+    End Sub
 
 End Class

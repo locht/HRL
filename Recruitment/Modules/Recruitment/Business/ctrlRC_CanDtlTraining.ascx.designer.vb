@@ -158,49 +158,22 @@ Partial Public Class ctrlRC_CanDtlTraining
     Protected WithEvents cvalToiThang As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
-    '''lbTrainingSchool control.
+    '''cboTruongHoc control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbTrainingSchool As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents cboTruongHoc As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''txtTrainingSchool control.
+    '''cboChuyenNganh control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtTrainingSchool As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
-    '''RequiredFieldValidator2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''lbChuyenNganh control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbChuyenNganh As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtChuyenNganh control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtChuyenNganh As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents cboChuyenNganh As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''Label1 control.
@@ -329,22 +302,22 @@ Partial Public Class ctrlRC_CanDtlTraining
     Protected WithEvents txtCertificateCode As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''lbKetQua control.
+    '''Label3 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbKetQua As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtKetQua control.
+    '''cboXepLoai control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtKetQua As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents cboXepLoai As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''chkTerminate control.

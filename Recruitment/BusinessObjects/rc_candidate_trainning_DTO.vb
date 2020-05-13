@@ -29,4 +29,8 @@
     Public Property CERTIFICATE_CODE As String
     Public Property TYPE_TRAIN_NAME As String
     Public Property COST As Decimal?
+
+    Public Property SCHOOL_ID As Decimal?
+    Public Property MAJOR_ID As Decimal?
+    Public Property MARK_EDU_ID As Decimal?
 End Class

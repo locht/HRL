@@ -100,7 +100,7 @@ Public Class ctrlRC_CanDtlTraining
 #Region "Page"
 
     Private Property ListComboData As ComboBoxDataDTO
-
+    
     Public Overrides Sub ViewLoad(ByVal e As System.EventArgs)
         Try
             'ctrlEmpBasicInfo.SetProperty("EmployeeInfo", EmployeeInfo)
@@ -213,15 +213,15 @@ Public Class ctrlRC_CanDtlTraining
                 Case CommonMessage.STATE_NEW
 
                     EnabledGridNotPostback(rgEmployeeTrain, False)
-                    EnableControlAll(True, rdToiThang, cboRemark, rdTuThang, rntGraduateYear, txtRemark, cboTrainingForm, txtChuyenNganh, txtKetQua, txtTrainingSchool, txtTrainingType, rdReceiveDegree, chkTerminate, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
+                    EnableControlAll(True, rdToiThang, cboRemark, rdTuThang, rntGraduateYear, txtRemark, cboTrainingForm, cboChuyenNganh, cboXepLoai, cboTruongHoc, txtTrainingType, rdReceiveDegree, chkTerminate, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
                     EnabledGrid(rgEmployeeTrain, False)
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgEmployeeTrain, True)
-                    EnableControlAll(False, rdTuThang, cboRemark, rdToiThang, rntGraduateYear, txtRemark, cboTrainingForm, txtChuyenNganh, txtKetQua, txtTrainingSchool, txtTrainingType, rdReceiveDegree, chkTerminate, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
+                    EnableControlAll(False, rdTuThang, cboRemark, rdToiThang, rntGraduateYear, txtRemark, cboTrainingForm, cboChuyenNganh, cboXepLoai, cboTruongHoc, txtTrainingType, rdReceiveDegree, chkTerminate, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
                     EnabledGrid(rgEmployeeTrain, True)
                 Case CommonMessage.STATE_EDIT
                     EnabledGridNotPostback(rgEmployeeTrain, False)
-                    EnableControlAll(True, rdTuThang, rdToiThang, rntGraduateYear, txtRemark, cboTrainingForm, cboRemark, txtChuyenNganh, txtKetQua, txtTrainingSchool, txtTrainingType, rdReceiveDegree, chkTerminate, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
+                    EnableControlAll(True, rdTuThang, rdToiThang, rntGraduateYear, txtRemark, cboTrainingForm, cboRemark, cboChuyenNganh, cboXepLoai, cboTruongHoc, txtTrainingType, rdReceiveDegree, chkTerminate, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
                     EnabledGrid(rgEmployeeTrain, False)
                     If cboRemark.SelectedValue <> "" Then
                     End If
@@ -257,10 +257,10 @@ Public Class ctrlRC_CanDtlTraining
         dic.Add("FROM_DATE", rdTuThang)
         dic.Add("TO_DATE", rdToiThang)
         dic.Add("YEAR_GRA", rntGraduateYear)
-        dic.Add("NAME_SHOOLS", txtTrainingSchool)
+        'dic.Add("NAME_SHOOLS", cboTruongHoc)
         dic.Add("FORM_TRAIN_ID", cboTrainingForm)
-        dic.Add("SPECIALIZED_TRAIN", txtChuyenNganh)
-        dic.Add("RESULT_TRAIN", txtKetQua)
+        'dic.Add("SPECIALIZED_TRAIN", cboChuyenNganh)
+        dic.Add("RESULT_TRAIN", cboXepLoai)
         dic.Add("CERTIFICATE", cboRemark)
         dic.Add("UPLOAD_FILE", txtUploadFile)
         dic.Add("FILE_NAME", txtRemark)
@@ -277,8 +277,19 @@ Public Class ctrlRC_CanDtlTraining
         Utilities.OnClientRowSelectedChanged(rgEmployeeTrain, dic)
         Try
             Dim rep As New RecruitmentStoreProcedure
+            Dim rep1 As New RecruitmentRepository
             Dim cb_data As New List(Of OtherListDTO)
             cb_data = rep.GetComboList("GET_LEVEL_TRAIN")
+            'Trường học
+            Dim dtData
+            dtData = rep1.GetOtherList("HU_GRADUATE_SCHOOL", True)
+            FillRadCombobox(cboTruongHoc, dtData, "NAME", "ID")
+            'Chuyên ngành
+            dtData = rep1.GetOtherList("MAJOR", True)
+            FillRadCombobox(cboChuyenNganh, dtData, "NAME", "ID")
+            'Xếp loại
+            dtData = rep1.GetOtherList("MARK_EDU", True)
+            FillRadCombobox(cboXepLoai, dtData, "NAME", "ID")
             If cb_data.Count > 0 Then
                 FillDropDownList(cboLevelId, cb_data, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboLevelId.SelectedValue)
             End If
@@ -305,8 +316,8 @@ Public Class ctrlRC_CanDtlTraining
         Try
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
-                    ClearControlValue(rdToiThang, rdTuThang, cboTrainingForm, txtTrainingType, rntGraduateYear, txtRemark, txtTrainingSchool,
-                                    cboRemark, txtChuyenNganh, txtKetQua, rdReceiveDegree, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote, rntxtCost)
+                    ClearControlValue(rdToiThang, rdTuThang, cboTrainingForm, txtTrainingType, rntGraduateYear, txtRemark, cboTruongHoc,
+                                    cboRemark, cboChuyenNganh, cboXepLoai, rdReceiveDegree, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote, rntxtCost)
                     rdTuThang.SelectedDate = Nothing
                     rdToiThang.SelectedDate = Nothing
                     chkTerminate.Checked = False
@@ -377,7 +388,11 @@ Public Class ctrlRC_CanDtlTraining
                         objTrain.CANDIDATE_ID = CandidateInfo.ID
                         objTrain.FROM_DATE = rdTuThang.SelectedDate
                         objTrain.TO_DATE = rdToiThang.SelectedDate
-                        objTrain.NAME_SHOOLS = txtTrainingSchool.Text.Trim
+                        objTrain.NAME_SHOOLS = cboTruongHoc.Text.Trim
+                        objTrain.SCHOOL_ID = CDec(Val(cboTruongHoc.SelectedValue))
+                        objTrain.MAJOR_ID = CDec(Val(cboChuyenNganh.SelectedValue))
+                        objTrain.MARK_EDU_ID = CDec(Val(cboXepLoai.SelectedValue))
+
                         If cboTrainingForm.SelectedValue = "" Then
                             objTrain.FORM_TRAIN_ID = Nothing
                         Else
@@ -391,8 +406,8 @@ Public Class ctrlRC_CanDtlTraining
                         End If
                         objTrain.RECEIVE_DEGREE_DATE = rdReceiveDegree.SelectedDate
                         objTrain.YEAR_GRA = rntGraduateYear.Value
-                        objTrain.SPECIALIZED_TRAIN = txtChuyenNganh.Text.Trim
-                        objTrain.RESULT_TRAIN = txtKetQua.Text.Trim
+                        objTrain.SPECIALIZED_TRAIN = cboChuyenNganh.Text.Trim
+                        objTrain.RESULT_TRAIN = cboXepLoai.Text.Trim
                         objTrain.FILE_NAME = txtRemark.Text.Trim
                         objTrain.IS_RENEWED = chkTerminate.Checked
                         objTrain.COST = rntxtCost.Value
@@ -445,8 +460,8 @@ Public Class ctrlRC_CanDtlTraining
 
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     CurrentState = CommonMessage.STATE_NORMAL
-                    ClearControlValue(rdToiThang, rdTuThang, cboTrainingForm, txtTrainingType, rntGraduateYear, txtRemark, txtTrainingSchool,
-                                    cboRemark, txtChuyenNganh, txtKetQua, rdReceiveDegree, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
+                    ClearControlValue(rdToiThang, rdTuThang, cboTrainingForm, txtTrainingType, rntGraduateYear, txtRemark, cboTruongHoc,
+                                    cboRemark, cboChuyenNganh, cboXepLoai, rdReceiveDegree, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
                     Refresh("Cancel")
             End Select
 
@@ -613,15 +628,33 @@ Public Class ctrlRC_CanDtlTraining
             rdTuThang.SelectedDate = r("FROM_DATE")
             rdToiThang.SelectedDate = r.Field(Of Date?)("TO_DATE") 'dataItem.GetDataKeyValue("TO_DATE")
             rntGraduateYear.Value = r.Field(Of Decimal?)("YEAR_GRA")
-            txtTrainingSchool.Text = r.Field(Of String)("NAME_SHOOLS")
+            'cboTruongHoc.Text = r.Field(Of String)("NAME_SHOOLS")
             If r.Field(Of Decimal?)("FORM_TRAIN_ID") IsNot Nothing Then
                 cboTrainingForm.SelectedValue = r.Field(Of Decimal?)("FORM_TRAIN_ID")
+                cboTrainingForm.Text = r.Field(Of String)("FORM_TRAIN_NAME")
             End If
-            txtChuyenNganh.Text = r.Field(Of String)("SPECIALIZED_TRAIN")
+
+
+            If r.Field(Of Decimal?)("SCHOOL_ID") IsNot Nothing Then
+                cboTruongHoc.SelectedValue = r.Field(Of Decimal?)("SCHOOL_ID")
+                cboTruongHoc.Text = r.Field(Of String)("SCHOOL_NAME")
+            End If
+            If r.Field(Of Decimal?)("MAJOR_ID") IsNot Nothing Then
+                cboChuyenNganh.SelectedValue = r.Field(Of Decimal?)("MAJOR_ID")
+                cboChuyenNganh.Text = r.Field(Of String)("MAJOR_NAME")
+            End If
+            If r.Field(Of Decimal?)("MARK_EDU_ID") IsNot Nothing Then
+                cboXepLoai.SelectedValue = r.Field(Of Decimal?)("MARK_EDU_ID")
+                cboXepLoai.Text = r.Field(Of String)("MARK_EDU_NAME")
+            End If
+
+
+            'cboChuyenNganh.Text = r.Field(Of String)("SPECIALIZED_TRAIN")
             txtTrainingType.Text = r.Field(Of String)("TYPE_TRAIN_NAME")
-            txtKetQua.Text = r.Field(Of String)("RESULT_TRAIN")
+            'cboXepLoai.Text = r.Field(Of String)("RESULT_TRAIN")
             If r.Field(Of Decimal?)("CERTIFICATE_ID") IsNot Nothing Then
                 cboRemark.SelectedValue = r.Field(Of Decimal?)("CERTIFICATE_ID")
+                cboRemark.Text = r.Field(Of String)("CERTIFICATE")
             End If
 
             cboRemark.Text = r.Field(Of String)("CERTIFICATE")
@@ -636,6 +669,7 @@ Public Class ctrlRC_CanDtlTraining
             chkTerminate.Checked = r.Field(Of Decimal?)("IS_RENEWED")
             If r.Field(Of Decimal?)("LEVEL_ID") IsNot Nothing Then
                 cboLevelId.SelectedValue = r.Field(Of Decimal?)("LEVEL_ID")
+                cboLevelId.Text = r.Field(Of String)("LEVEL_NAME")
             End If
 
             rtxtPointLevel.Text = r.Field(Of String)("POINT_LEVEL") 'dataItem.GetDataKeyValue("POINT_LEVEL")

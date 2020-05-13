@@ -19,4 +19,5 @@
     Public Property ORG_ADDRESS As String
     Public Property DIRECT_MANAGER As String
     Public Property REASON_LEAVE As String
+    Public Property DIRECT_PHONE As String
 End Class

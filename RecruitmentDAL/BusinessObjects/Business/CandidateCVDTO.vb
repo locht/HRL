@@ -114,6 +114,7 @@
     Public Property CONTACT_PER As String
     Public Property CONTACT_REL_ADDRESS As String
     Public Property CONTACT_PER_PHONE As String
+    Public Property RELATIONS_CONTACT_ID As Decimal?
     'Liện lạc
     Public Property CON_ADDRESS As String
     Public Property CON_COUNTRY As Decimal?

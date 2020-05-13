@@ -4,7 +4,7 @@
     TagPrefix="Recruitment" %>
 <asp:HiddenField ID="hidCandidateCode" runat="server" />
 <asp:HiddenField ID="hidSelectedtrainID" runat="server" />
-<Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
+<common:ctrlmessagebox id="ctrlMessageBox" runat="server" />
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Orientation="Horizontal" Scrolling="None">
     <tlk:RadPane ID="RadPane2" runat="server" Height="50px" Scrolling="None">
         <Recruitment:ctrlRC_CanBasicInfo runat="server" ID="ctrlRC_CanBasicInfo" />
@@ -42,6 +42,20 @@
             </tr>
             <tr>
                 <td class="lb">
+                    <%# Translate("Trường học")%>
+                </td>
+                <td>
+                    <tlk:RadComboBox runat="server" ID="cboTruongHoc">
+                    </tlk:RadComboBox>
+                </td>
+                <td class="lb">
+                    <%# Translate("Chuyên ngành")%>
+                </td>
+                <td>
+                    <tlk:RadComboBox runat="server" ID="cboChuyenNganh">
+                    </tlk:RadComboBox>
+                </td>
+                <%--<td class="lb">
                     <asp:Label runat="server" ID="lbTrainingSchool" Text="Tên trường"></asp:Label>
                 </td>
                 <td>
@@ -56,7 +70,7 @@
                 <td>
                     <tlk:RadTextBox ID="txtChuyenNganh" SkinID="Textbox250" runat="server">
                     </tlk:RadTextBox>
-                </td>
+                </td>--%>
             </tr>
             <tr>
                 <td class="lb">
@@ -104,7 +118,7 @@
                     <asp:Label runat="server" ID="lbBangCap" Text="Loại chứng chỉ"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboRemark" runat="server" Width="160px" >
+                    <tlk:RadComboBox ID="cboRemark" runat="server" Width="160px">
                     </tlk:RadComboBox>
                 </td>
                 <td class="lb">
@@ -117,14 +131,20 @@
             </tr>
             <tr>
                 <td class="lb">
+                    <asp:Label runat="server" ID="Label3" Text="Bằng cấp đạt được"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox runat="server" ID="cboXepLoai">
+                    </tlk:RadComboBox>
+                </td>
+                <%--<td class="lb">
                     <asp:Label runat="server" ID="lbKetQua" Text="Xếp loại tốt nghiệp"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtKetQua" SkinID="Textbox250" runat="server">
                     </tlk:RadTextBox>
-                </td>
-                <td>
-                </td>
+                </td>--%>
+                <td></td>
                 <td>
                     <asp:CheckBox ID="chkTerminate" runat="server" Text="Cần gia hạn" />
                 </td>
@@ -285,7 +305,7 @@
         </tlk:RadGrid>
     </tlk:RadPane>
 </tlk:RadSplitter>
-<Common:ctrlUpload ID="ctrlUpload1" runat="server" />
+<common:ctrlupload id="ctrlUpload1" runat="server" />
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
         var enableAjax = true;

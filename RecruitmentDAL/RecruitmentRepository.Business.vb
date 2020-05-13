@@ -5390,5 +5390,188 @@ Partial Class RecruitmentRepository
         End Try
 
     End Function
+
+    Public Function ImportCandidateCV1(ByVal lstdtip As List(Of CandidateImportDTO)) As Boolean
+        Try
+            InsertCandidateImport1(lstdtip, 0, "", Nothing)
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function InsertCandidateImport1(ByVal lstdtip As List(Of CandidateImportDTO),
+                                         ByRef gID As Decimal,
+                                         ByRef _strEmpCode As String,
+                                         ByVal _imageBinary As Byte()) As Boolean
+
+        Try
+            Dim objEmp As New CandidateDTO
+            Dim objEmpCV As New CandidateCVDTO
+            Dim objEmpEdu As New CandidateEduDTO
+            Dim objEmpHealth As New CandidateHealthDTO
+            Dim objEmpExp As New List(Of CandidateBeforeWTDTO)
+            Dim objEmpTraning As New List(Of CandidateTrainingDTO)
+            Dim objEmpFamily As New List(Of CandidateFamilyDTO)
+            Dim objEmpExpect As New CandidateExpectDTO
+
+            'Sinh mã ứng viên động
+            Dim checkEMP As Integer = 0
+            Dim empCodeDB As Decimal = 0
+            Dim EMPCODE As String
+
+            Using query As New DataAccess.NonQueryData
+                Dim temp = query.ExecuteSQLScalar("select Candidate_CODE from RC_Candidate order by Candidate_CODE DESC", New Object)
+                If temp IsNot Nothing Then
+                    empCodeDB = Decimal.Parse(temp)
+                End If
+            End Using
+
+            For Each item0 As CandidateImportDTO In lstdtip
+                objEmp = item0.can
+                objEmpCV = item0.can_cv
+                objEmpEdu = item0.can_edu
+                objEmpHealth = item0.can_health
+                objEmpExp = item0.can_exp
+                objEmpTraning = item0.can_training
+                objEmpFamily = item0.can_family
+                objEmpExpect = item0.can_expect
+
+                empCodeDB += 1
+                EMPCODE = String.Format("{0}", Format(empCodeDB, "000000"))
+
+                '-------candidate----------
+                Dim objCandidate As New RC_CANDIDATE
+                Dim fileID As Decimal = Utilities.GetNextSequence(Context, Context.RC_CANDIDATE.EntitySet.Name)
+                _strEmpCode = EMPCODE
+                objCandidate.ID = fileID
+                objCandidate.CANDIDATE_CODE = _strEmpCode
+                objCandidate.ORG_ID = objEmp.ORG_ID
+                objCandidate.TITLE_ID = objEmp.TITLE_ID
+                objCandidate.RC_PROGRAM_ID = objEmp.RC_PROGRAM_ID
+                objCandidate.FIRST_NAME_VN = objEmp.FIRST_NAME_VN
+                objCandidate.LAST_NAME_VN = objEmp.LAST_NAME_VN
+                objCandidate.FULLNAME_VN = objEmp.FULLNAME_VN
+                Context.RC_CANDIDATE.AddObject(objCandidate)
+
+                '--------------candide_CV--------------
+                Dim objCandidate_Cv As New RC_CANDIDATE_CV
+                objCandidate_Cv.CANDIDATE_ID = fileID
+                objCandidate_Cv.BIRTH_DATE = objEmpCV.BIRTH_DATE
+                objCandidate_Cv.BIRTH_PROVINCE = objEmpCV.BIRTH_PROVINCE
+                objCandidate_Cv.GENDER = objEmpCV.GENDER
+                objCandidate_Cv.NATIVE = objEmpCV.NATIVE
+                objCandidate_Cv.RELIGION = objEmpCV.RELIGION
+                objCandidate_Cv.NATIONALITY_ID = objEmpCV.NATIONALITY_ID
+                objCandidate_Cv.ID_NO = objEmpCV.ID_NO
+                objCandidate_Cv.ID_DATE = objEmpCV.ID_DATE
+                objCandidate_Cv.ID_PLACE = objEmpCV.ID_PLACE
+                objCandidate_Cv.PER_ADDRESS = objEmpCV.PER_ADDRESS
+                objCandidate_Cv.PER_PROVINCE = objEmpCV.PER_PROVINCE
+                objCandidate_Cv.PER_DISTRICT = objEmpCV.PER_DISTRICT_ID
+                objCandidate_Cv.CONTACT_ADDRESS_TEMP = objEmpCV.CONTACT_ADDRESS_TEMP
+                objCandidate_Cv.CONTACT_PROVINCE_TEMP = objEmpCV.CONTACT_PROVINCE_TEMP
+                objCandidate_Cv.CONTACT_DISTRICT_TEMP = objEmpCV.CONTACT_DISTRICT_TEMP
+                objCandidate_Cv.MOBILE_PHONE = objEmpCV.MOBILE_PHONE
+                objCandidate_Cv.CONTACT_MOBILE = objEmpCV.CONTACT_PHONE
+                objCandidate_Cv.PER_EMAIL = objEmpCV.PER_EMAIL
+                objCandidate_Cv.MARITAL_STATUS = objEmpCV.MARITAL_STATUS
+                objCandidate_Cv.URGENT_PER_NAME = objEmpCV.URGENT_PER_NAME
+                objCandidate_Cv.URGENT_ADDRESS = objEmpCV.URGENT_ADDRESS
+                objCandidate_Cv.URGENT_PER_SDT = objEmpCV.URGENT_PER_SDT
+
+                Context.RC_CANDIDATE_CV.AddObject(objCandidate_Cv)
+
+                '--------------------CANDIDATE EDU------------
+                Dim objCandidate_Edu As New RC_CANDIDATE_EDUCATION
+                objCandidate_Edu.CANDIDATE_ID = fileID
+                objCandidate_Edu.ENGLISH = objEmpEdu.ENGLISH
+                objCandidate_Edu.ENGLISH_LEVEL = objEmpEdu.ENGLISH_LEVEL
+                objCandidate_Edu.ENGLISH_MARK = objEmpEdu.ENGLISH_MARK
+                objCandidate_Edu.ENGLISH1 = objEmpEdu.ENGLISH1
+                objCandidate_Edu.ENGLISH_LEVEL1 = objEmpEdu.ENGLISH_LEVEL1
+                objCandidate_Edu.ENGLISH_MARK1 = objEmpEdu.ENGLISH_MARK1
+                objCandidate_Edu.ENGLISH2 = objEmpEdu.ENGLISH2
+                objCandidate_Edu.ENGLISH_LEVEL2 = objEmpEdu.ENGLISH_LEVEL2
+                objCandidate_Edu.ENGLISH_MARK2 = objEmpEdu.ENGLISH_MARK2
+                objCandidate_Edu.IT_CERTIFICATE = objEmpEdu.IT_CERTIFICATE
+                objCandidate_Edu.IT_LEVEL = objEmpEdu.IT_LEVEL
+                objCandidate_Edu.IT_MARK = objEmpEdu.IT_MARK
+                objCandidate_Edu.IT_CERTIFICATE1 = objEmpEdu.IT_CERTIFICATE1
+                objCandidate_Edu.IT_LEVEL1 = objEmpEdu.IT_LEVEL1
+                objCandidate_Edu.IT_MARK1 = objEmpEdu.IT_MARK1
+                objCandidate_Edu.IT_CERTIFICATE2 = objEmpEdu.IT_CERTIFICATE2
+                objCandidate_Edu.IT_LEVEL2 = objEmpEdu.IT_LEVEL2
+                objCandidate_Edu.IT_MARK2 = objEmpEdu.IT_MARK2
+
+                Context.RC_CANDIDATE_EDUCATION.AddObject(objCandidate_Edu)
+
+                '-------------------candidate expect--------------
+                Dim objCandidate_expect As New RC_CANDIDATE_EXPECT
+                objCandidate_expect.CANDIDATE_ID = fileID
+                objCandidate_expect.WORK_LOCATION = objEmpExpect.WORK_LOCATION
+                objCandidate_expect.PROBATIONARY_SALARY = objEmpExpect.PROBATIONARY_SALARY
+                objCandidate_expect.DATE_START = objEmpExpect.DATE_START
+
+                Context.RC_CANDIDATE_EXPECT.AddObject(objCandidate_expect)
+
+                '--------------------candidate health----------------------
+                Dim objCandidate_health As New RC_CANDIDATE_HEALTH
+                objCandidate_health.CANDIDATE_ID = fileID
+                objCandidate_health.LOAI_SUC_KHOE = objEmpHealth.LOAI_SUC_KHOE
+                objCandidate_health.CHIEU_CAO = objEmpHealth.CHIEU_CAO
+                objCandidate_health.CAN_NANG = objEmpHealth.CAN_NANG
+
+                '---------------------candidate Training---------------------
+                Dim objCan_Train As New RC_CANDIDATE_TRAINNING
+                For Each item1 In objEmpTraning
+                    objCan_Train.CANDIDATE_ID = fileID
+                    objCan_Train.SCHOOL_ID = item1.SCHOOL_ID
+                    objCan_Train.MAJOR_ID = item1.MAJOR_ID
+                    objCan_Train.FROM_DATE = item1.FROM_DATE
+                    objCan_Train.TO_DATE = item1.TO_DATE
+                    objCan_Train.MARK_EDU_ID = item1.MARK_EDU_ID
+                    Context.RC_CANDIDATE_TRAINNING.AddObject(objCan_Train)
+                Next
+
+                '------------------candidate experince'''''''''''''''''''''
+                Dim objCan_Exp As New RC_CANDIDATE_BEFOREWT
+                For Each item2 In objEmpExp
+                    objCan_Exp.ID = Utilities.GetNextSequence(Context, Context.RC_CANDIDATE_BEFOREWT.EntitySet.Name)
+                    objCan_Exp.CANDIDATE_ID = fileID
+                    objCan_Exp.FROMDATE = item2.FROMDATE
+                    objCan_Exp.TODATE = item2.TODATE
+                    objCan_Exp.ORG_NAME = item2.ORG_NAME
+                    objCan_Exp.ORG_ADDRESS = item2.ORG_ADDRESS
+                    objCan_Exp.TITLE_NAME = item2.TITLE_NAME
+                    objCan_Exp.SALARY = item2.SALARY
+                    objCan_Exp.WORK = item2.WORK
+                    objCan_Exp.DIRECT_MANAGER = item2.DIRECT_MANAGER
+                    objCan_Exp.ORG_PHONE = item2.DIRECT_PHONE
+                    objCan_Exp.REASON_LEAVE = item2.REASON_LEAVE
+                    Context.RC_CANDIDATE_BEFOREWT.AddObject(objCan_Exp)
+                Next
+
+                '-------------------candidate family-----------------
+                Dim objCan_family As New RC_CANDIDATE_FAMILY
+                For Each item3 In objEmpFamily
+                    objCan_family.ID = Utilities.GetNextSequence(Context, Context.RC_CANDIDATE_FAMILY.EntitySet.Name)
+                    objCan_family.CANDIDATE_ID = fileID
+                    objCan_family.RELATION_ID = item3.RELATION_ID
+                    objCan_family.FULLNAME = item3.FULLNAME
+                    objCan_family.BIRTH_YEAR = item3.BIRTH_YEAR
+                    objCan_family.JOB = item3.JOB
+                    objCan_family.ADDRESS = item3.ADDRESS
+                    Context.RC_CANDIDATE_FAMILY.AddObject(objCan_family)
+                Next
+            Next
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
+
 End Class
 

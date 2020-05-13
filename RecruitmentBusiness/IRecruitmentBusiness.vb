@@ -726,5 +726,8 @@ Namespace RecruitmentBusiness.ServiceContracts
 #End Region
         <OperationContract()>
         Function ImportCandidateCV(ByVal lst As List(Of CandidateImportDTO)) As Boolean
+
+        <OperationContract()>
+        Function ImportCandidateCV1(ByVal lst As List(Of CandidateImportDTO)) As Boolean
     End Interface
 End Namespace

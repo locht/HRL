@@ -48,6 +48,7 @@
     </Windows>
 </tlk:RadWindowManager>
 <Common:ctrlUpload ID="ctrlUpload" runat="server" />
+<Common:ctrlUpload ID="ctrlUpload1" runat="server" />
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
 

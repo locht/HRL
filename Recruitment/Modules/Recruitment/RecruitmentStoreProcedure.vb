@@ -870,7 +870,7 @@ Public Class RecruitmentStoreProcedure
                                                    r.EFFECTIVE_DATE_TO, r.CANDIDATE_ID, r.FROM_DATE, r.TO_DATE,
                                                    r.UPLOAD_FILE, r.FILE_NAME, r.TYPE_TRAIN_ID, r.RECEIVE_DEGREE_DATE,
                                                    r.IS_RENEWED, r.LEVEL_ID, r.POINT_LEVEL, r.CONTENT_LEVEL, r.NOTE, r.CERTIFICATE_CODE,
-                                                   r.TYPE_TRAIN_NAME, r.COST, OUT_NUMBER}))
+                                                   r.TYPE_TRAIN_NAME, r.COST, r.SCHOOL_ID, r.MAJOR_ID, r.MARK_EDU_ID, OUT_NUMBER}))
         Return Int32.Parse(obj(0).ToString())
     End Function
 
@@ -882,7 +882,7 @@ Public Class RecruitmentStoreProcedure
                                                    r.EFFECTIVE_DATE_TO, r.CANDIDATE_ID, r.FROM_DATE, r.TO_DATE,
                                                    r.UPLOAD_FILE, r.FILE_NAME, r.TYPE_TRAIN_ID, r.RECEIVE_DEGREE_DATE,
                                                    r.IS_RENEWED, r.LEVEL_ID, r.POINT_LEVEL, r.CONTENT_LEVEL, r.NOTE, r.CERTIFICATE_CODE,
-                                                   r.TYPE_TRAIN_NAME, r.COST, OUT_NUMBER}))
+                                                   r.TYPE_TRAIN_NAME, r.COST, r.SCHOOL_ID, r.MAJOR_ID, r.MARK_EDU_ID, OUT_NUMBER}))
         Return Int32.Parse(obj(0).ToString())
     End Function
     Public Function delete_rc_candidate_trainning(ByVal ls_id As List(Of Decimal), ByRef num_row As Decimal) As Boolean
