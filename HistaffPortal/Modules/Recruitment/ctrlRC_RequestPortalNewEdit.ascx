@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlRC_RequestPortalNewEdit.ascx.vb"
     Inherits="Recruitment.ctrlRC_RequestPortalNewEdit" %>
+<%@ Import Namespace="Common" %>
 <asp:HiddenField ID="hidID" runat="server" />
 <asp:HiddenField ID="hidOrgID" runat="server" />
 <style type="text/css">
@@ -22,8 +23,18 @@
         width: 100% !important;
     }
 </style>
+<tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
+<tlk:RadPane ID="RadPane1" runat="server" Height="30px" Scrolling="None">
 <tlk:RadToolBar ID="tbarMain" runat="server" OnClientButtonClicking="clientButtonClicking" />
+</tlk:RadPane>
+<tlk:RadPane ID="RadPane2" runat="server" Height="200px">
 <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />
+    <tlk:RadMultiPage ID="mitiple" runat="server" Width="100%" ScrollBars="None">
+        <tlk:RadPageView ID="rpvID" runat="server" Selected="true">
+            <fieldset>
+                <legend>
+                        <%# Translate("Thông tin chung")%>
+                    </legend>
         <table class="table-form">
             <tr>
                 <td class="lb">
@@ -80,7 +91,7 @@
                     <%# Translate("Lý do tuyển dụng")%><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboRecruitReason" runat="server">
+                    <tlk:RadComboBox ID="cboRecruitReason" runat="server" >
                     </tlk:RadComboBox>
                     <asp:CustomValidator ID="cusRecruitReason" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Lý do tuyển dụng%>"
                         ToolTip="<%$ Translate: Bạn phải chọn Lý do tuyển dụng %>" ClientValidationFunction="cusRecruitReason">
@@ -137,6 +148,13 @@
                     </tlk:RadListBox>
                 </td>
             </tr>
+            </table>
+            </fieldset>
+            <fieldset>
+                    <legend>
+                        <%# Translate("Chi tiết yêu cầu tuyển dụng")%>
+                    </legend>
+                    <table class="table-form">
             <tr>
                 <td class="lb">
                     <%# Translate("Trình độ học vấn")%>
@@ -342,61 +360,68 @@
                     </tlk:RadTextBox>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <tlk:RadButton runat="server" ID="btnChonNhanVien" Text="Chọn Nhân Viên"  CausesValidation="false" />
-                </td>
-                <td>
-                    <tlk:RadButton  runat="server" ID="btnXoaDanhSach" Text="Xóa Khỏi Danh Sách" CausesValidation="false" />
-                </td>
-            </tr>
         </table>
-        <br />
-        <tlk:RadGrid PageSize="50" ID="rdRecInsteadTable" runat="server" Height="250px" Width="99%">
-            <MasterTableView DataKeyNames="EMPLOYEE_ID, EMPLOYEE_NAME, ORG_NAME, TITLE_NAME, TER_LAST_DATE" 
-                ClientDataKeyNames="EMPLOYEE_ID, EMPLOYEE_NAME, ORG_NAME, TITLE_NAME, TER_LAST_DATE">
+        </fieldset> 
+        </tlk:RadPageView>
+    </tlk:RadMultiPage>
+</tlk:RadPane>
+ <tlk:RadPane ID="RadPane3" runat="server" Scrolling="None" Enabled="true" Height="200px">
+        <tlk:RadGrid ID="rdgDanhSachNhanVien" AllowPaging="true" AllowMultiRowEdit="true" runat="server"
+            PageSize="50" Height="100%">
+            <GroupingSettings CaseSensitive="false" />
+            <GroupingSettings CaseSensitive="false" />
+            <MasterTableView EditMode="InPlace" AllowPaging="true" AllowCustomPaging="true" DataKeyNames="EMPLOYEE_CODE,EMPLOYEE_ID,EMPLOYEE_NAME,ORG_NAME,TITLE_NAME"
+                ClientDataKeyNames="EMPLOYEE_CODE,EMPLOYEE_ID,EMPLOYEE_NAME,ORG_NAME,TITLE_NAME"
+                CommandItemDisplay="Top">
+                <CommandItemStyle Height="25px" />
+                <CommandItemTemplate>
+                    <div style="padding: 2px 0 0 0">
+                        <div style="float: left">
+                            <tlk:RadButton Width="150px" ID="btnEmployee" runat="server" Text="Chọn tất cả nhân viên"
+                                CausesValidation="false" CommandName="FindEmployee" TabIndex="3">
+                            </tlk:RadButton>
+                        </div>
+                        <div style="float: right">
+                            <tlk:RadButton Width="100px" ID="btnDeleteEmp" runat="server" Text="Xóa" CausesValidation="false"
+                                CommandName="DeleteEmployee" TabIndex="3">
+                            </tlk:RadButton>
+                        </div>
+                    </div>
+                </CommandItemTemplate>
                 <Columns>
-                    <tlk:GridCheckBoxColumn DataField="EMPLOYEE_ID"></tlk:GridCheckBoxColumn>
-                    <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_ID" SortExpression="EMPLOYEE_ID"
-                        UniqueName="EMPLOYEE_ID" ShowFilterIcon="false" AutoPostBackOnFilter="true" 
-                        CurrentFilterFunction="Contains" FilterControlWidth="100%">
-                        <HeaderStyle Width="20%" HorizontalAlign="Center" />
-                    </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn HeaderText="Họ tên NV" DataField="EMPLOYEE_NAME" SortExpression="EMPLOYEE_NAME"
-                        UniqueName="EMPLOYEE_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true" 
-                        CurrentFilterFunction="Contains" FilterControlWidth="100%">
-                        <HeaderStyle Width="20%" HorizontalAlign="Center" />
-                    </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn HeaderText="Đơn vị" DataField="ORG_NAME" SortExpression="ORG_NAME"
-                        UniqueName="ORG_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true" 
-                        CurrentFilterFunction="Contains" FilterControlWidth="100%">
-                        <HeaderStyle Width="20%" HorizontalAlign="Center" />
-                    </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME" SortExpression="TITLE_NAME"
-                        UniqueName="TITLE_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true" 
-                        CurrentFilterFunction="Contains" FilterControlWidth="100%">
-                        <HeaderStyle Width="20%" HorizontalAlign="Center" />
-                    </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn HeaderText="Ngày nghỉ việc" DataField="TER_LAST_DATE" SortExpression="TER_LAST_DATE"
-                        UniqueName="TER_LAST_DATE" ShowFilterIcon="false" AutoPostBackOnFilter="true" 
-                        CurrentFilterFunction="Contains" FilterControlWidth="100%">
-                        <HeaderStyle Width="20%" HorizontalAlign="Center" />
-                    </tlk:GridBoundColumn>
+                    <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                        HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
+                    </tlk:GridClientSelectColumn>
+                    <tlk:GridBoundColumn HeaderText="ID" DataField="EMPLOYEE_ID" UniqueName="EMPLOYEE_ID"
+                        ReadOnly="true" SortExpression="EMPLOYEE_ID" Visible="false" />
+                    <tlk:GridBoundColumn HeaderText="MSNV" DataField="EMPLOYEE_CODE" ReadOnly="true"
+                        UniqueName="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE" />
+                    <tlk:GridBoundColumn HeaderText="Họ tên nhân viên" DataField="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME"
+                        ReadOnly="true" SortExpression="EMPLOYEE_NAME" />
+                    <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME"
+                        UniqueName="ORG_NAME" ReadOnly="true" SortExpression="ORG_NAME" />
+                    <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME"
+                        UniqueName="TITLE_NAME" ReadOnly="true" SortExpression="TITLE_NAME" />
+                    <tlk:GridDateTimeColumn HeaderText="Ngày nghỉ việc" DataField="TER_LAST_DATE" ItemStyle-HorizontalAlign="Center"
+                        SortExpression="TER_LAST_DATE" UniqueName="TER_LAST_DATE" DataFormatString="{0:dd/MM/yyyy}" />
                 </Columns>
             </MasterTableView>
+            <HeaderStyle HorizontalAlign="Center" />
+            <ClientSettings>
+                <Selecting AllowRowSelect="True" />
+            </ClientSettings>
         </tlk:RadGrid>
+    </tlk:RadPane>
+</tlk:RadSplitter>
 <asp:PlaceHolder ID="phFindEmployee" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="phFindOrg" runat="server"></asp:PlaceHolder>
 <Common:ctrlUpload ID="ctrlUpload1" runat="server" />
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
 
+        var enableAjax = true;
         function cusTitle(oSrc, args) {
             var cbo = $find("<%# cboTitle.ClientID %>");
-            args.IsValid = (cbo.get_value().length != 0);
-        }
-        function cusContractType(oSrc, args) {
-            var cbo = $find("<%# cboContractType.ClientID %>");
             args.IsValid = (cbo.get_value().length != 0);
         }
         function cusRecruitReason(oSrc, args) {
@@ -422,17 +447,16 @@
         }
 
         function OnValueChanged(sender, args) {
-            var iMale = $find('<%=rntxtMaleNumber.ClientID%>').get_value();
-            if (!iMale) {
-                iMale = 0;
-            }
-            var iFemale = $find('<%=rntxtFemaleNumber.ClientID%>').get_value();
-            if (!iFemale) {
-                iFemale = 0;
-            }
-            var sumNumber = $find('<%=rntxtRecruitNumber.ClientID%>');
-            sumNumber.set_value(iMale + iFemale);
 
+        }
+
+        function onRequestStart(sender, eventArgs) {
+            eventArgs.set_enableAjax(enableAjax);
+            enableAjax = true;
+        }
+
+        function rbtClicked(sender, eventArgs) {
+            enableAjax = false;
         }
     </script>
 </tlk:RadCodeBlock>

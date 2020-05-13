@@ -32,6 +32,24 @@ Partial Public Class ctrlRC_RequestPortalNewEdit
     Protected WithEvents hidOrgID As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
+    '''RadSplitter3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadSplitter3 As Global.Telerik.Web.UI.RadSplitter
+
+    '''<summary>
+    '''RadPane1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
+
+    '''<summary>
     '''tbarMain control.
     '''</summary>
     '''<remarks>
@@ -41,6 +59,15 @@ Partial Public Class ctrlRC_RequestPortalNewEdit
     Protected WithEvents tbarMain As Global.Telerik.Web.UI.RadToolBar
 
     '''<summary>
+    '''RadPane2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadPane2 As Global.Telerik.Web.UI.RadPane
+
+    '''<summary>
     '''valSum control.
     '''</summary>
     '''<remarks>
@@ -48,6 +75,24 @@ Partial Public Class ctrlRC_RequestPortalNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents valSum As Global.System.Web.UI.WebControls.ValidationSummary
+
+    '''<summary>
+    '''mitiple control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents mitiple As Global.Telerik.Web.UI.RadMultiPage
+
+    '''<summary>
+    '''rpvID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rpvID As Global.Telerik.Web.UI.RadPageView
 
     '''<summary>
     '''txtOrgName control.
@@ -473,31 +518,22 @@ Partial Public Class ctrlRC_RequestPortalNewEdit
     Protected WithEvents txtRemark As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''btnChonNhanVien control.
+    '''RadPane3 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnChonNhanVien As Global.Telerik.Web.UI.RadButton
+    Protected WithEvents RadPane3 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
-    '''btnXoaDanhSach control.
+    '''rdgDanhSachNhanVien control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnXoaDanhSach As Global.Telerik.Web.UI.RadButton
-
-    '''<summary>
-    '''rdRecInsteadTable control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rdRecInsteadTable As Global.Telerik.Web.UI.RadGrid
+    Protected WithEvents rdgDanhSachNhanVien As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
     '''phFindEmployee control.

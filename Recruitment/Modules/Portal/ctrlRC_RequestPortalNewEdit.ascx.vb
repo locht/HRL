@@ -40,8 +40,38 @@ Public Class ctrlRC_RequestPortalNewEdit
             ViewState(Me.ID & "_STATUSCODE") = value
         End Set
     End Property
-
-
+    Private Property dtbImport As DataTable
+        Get
+            Return PageViewState(Me.ID & "_dtbImport")
+        End Get
+        Set(ByVal value As DataTable)
+            PageViewState(Me.ID & "_dtbImport") = value
+        End Set
+    End Property
+    Property _Id As Integer
+        Get
+            Return ViewState(Me.ID & "_Id")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_Id") = value
+        End Set
+    End Property
+    Property Employee_Request As List(Of RecruitmentInsteadDTO)
+        Get
+            Return ViewState(Me.ID & "_Employee_Request")
+        End Get
+        Set(value As List(Of RecruitmentInsteadDTO))
+            ViewState(Me.ID & "_Employee_Request") = value
+        End Set
+    End Property
+    Property checkDelete As Integer
+        Get
+            Return ViewState(Me.ID & "_checkDelete")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_checkDelete") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
@@ -76,6 +106,8 @@ Public Class ctrlRC_RequestPortalNewEdit
             Me.MainToolBar = tbarMain
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Save, ToolbarItem.Cancel)
             CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
+            Me.MainToolBar.OnClientButtonClicking = "clientButtonClicking"
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -248,7 +280,6 @@ Public Class ctrlRC_RequestPortalNewEdit
 
                     Me.MainToolBar = tbarMain
             End Select
-
         Catch ex As Exception
             Throw ex
         End Try
@@ -407,6 +438,37 @@ Public Class ctrlRC_RequestPortalNewEdit
                 item.Text = itm.EMPLOYEE_CODE & " - " & itm.FULLNAME_VN
                 lstEmployee.Items.Add(item)
             Next
+            If lstCommonEmployee.Count <> 0 Then
+                If Employee_Request Is Nothing Then
+                    Employee_Request = New List(Of RecruitmentInsteadDTO)
+                End If
+                For Each emp As CommonBusiness.EmployeePopupFindDTO In lstCommonEmployee
+                    Dim employee As New RecruitmentInsteadDTO
+                    employee.EMPLOYEE_ID = emp.ID
+                    employee.EMPLOYEE_CODE = emp.EMPLOYEE_CODE
+                    employee.EMPLOYEE_ID = emp.EMPLOYEE_ID
+                    employee.EMPLOYEE_NAME = emp.FULLNAME_VN
+                    employee.ORG_NAME = emp.ORG_NAME
+                    employee.TITLE_NAME = emp.TITLE_NAME
+                    employee.TER_LAST_DATE = emp.TER_LAST_DATE
+
+                    Dim checkEmployeeCode As RecruitmentInsteadDTO = Employee_Request.Find(Function(p) p.EMPLOYEE_CODE = emp.EMPLOYEE_CODE)
+                    If (Not checkEmployeeCode Is Nothing) Then
+                        Continue For
+                    End If
+                    Employee_Request.Add(employee)
+                Next
+
+                rdgDanhSachNhanVien.DataSource = Employee_Request
+                rdgDanhSachNhanVien.Rebind()
+
+                For Each i As GridItem In rdgDanhSachNhanVien.Items
+                    i.Edit = True
+                Next
+                rdgDanhSachNhanVien.Rebind()
+            End If
+
+
             isLoadPopup = 0
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -456,6 +518,7 @@ Public Class ctrlRC_RequestPortalNewEdit
                 Case 1
                     ctrlFindEmployeePopup = Me.Register("ctrlFindEmployeePopup", "Common", "ctrlFindEmployeePopup")
                     ctrlFindEmployeePopup.MustHaveContract = False
+                    ctrlFindEmployeePopup.IsHideTerminate = False
                     phFindEmployee.Controls.Add(ctrlFindEmployeePopup)
                     ctrlFindEmployeePopup.MultiSelect = True
                 Case 2
@@ -823,5 +886,60 @@ Public Class ctrlRC_RequestPortalNewEdit
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
+    End Sub
+
+    Private Sub cboRecruitReason_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboRecruitReason.SelectedIndexChanged
+        If cboRecruitReason.SelectedValue = 4053 Then
+            RadPane3.Enabled = True
+        Else
+            RadPane3.Enabled = False
+        End If
+    End Sub
+
+    Private Sub rdgDanhSachNhanVien_ItemCommand(sender As Object, e As Telerik.Web.UI.GridCommandEventArgs) Handles rdgDanhSachNhanVien.ItemCommand
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Select Case e.CommandName
+                Case "FindEmployee"
+                    isLoadPopup = 1
+                    UpdateControlState()
+                    ctrlFindEmployeePopup.Show()
+                Case "DeleteEmployee"
+                    For Each i As GridDataItem In rdgDanhSachNhanVien.SelectedItems
+                        Dim s = (From q In Employee_Request Where
+                                 q.EMPLOYEE_ID = i.GetDataKeyValue("EMPLOYEE_ID")).FirstOrDefault
+                        Employee_Request.Remove(s)
+                    Next
+                    '_result = False
+                    checkDelete = 1
+                    dtbImport = Employee_Request.ToTable()
+                    rdgDanhSachNhanVien.DataSource = dtbImport
+                    rdgDanhSachNhanVien_NeedDataSource(Nothing, Nothing)
+                    rdgDanhSachNhanVien.Rebind()
+            End Select
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub rdgDanhSachNhanVien_NeedDataSource(sender As Object, e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rdgDanhSachNhanVien.NeedDataSource
+        Using _context As New RecruitmentRepository
+            Try
+                If Request.Params("ID") IsNot Nothing Then
+                    _Id = Integer.Parse(Request.Params("ID"))
+                    CurrentState = CommonMessage.STATE_EDIT
+                Else
+                    CurrentState = CommonMessage.STATE_NEW
+                    If Not IsPostBack Then
+                        Employee_Request = New List(Of RecruitmentInsteadDTO)
+                    End If
+                End If
+
+                rdgDanhSachNhanVien.DataSource = Employee_Request
+            Catch ex As Exception
+
+            End Try
+        End Using
     End Sub
 End Class
