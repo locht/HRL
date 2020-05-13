@@ -87,6 +87,9 @@ Namespace ProfileBusiness.ServiceContracts
         Function GetOtherList(ByVal sType As String, ByVal sLang As String, ByVal isBlank As Boolean) As DataTable
 
         <OperationContract()>
+        Function GetOtherListAll(ByVal sType As String, ByVal sLang As String, ByVal isBlank As Boolean) As DataTable
+
+        <OperationContract()>
         Function HU_PAPER_LIST(ByVal P_EMP_ID As Decimal, ByVal sLang As String) As DataTable
 
         <OperationContract()>

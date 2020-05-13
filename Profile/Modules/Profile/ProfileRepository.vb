@@ -70,6 +70,15 @@ Partial Public Class ProfileRepository
         Return Nothing
     End Function
 
+    Public Function GetOtherListAll(ByVal sType As String, Optional ByVal isBlank As Boolean = False) As DataTable
+        Using rep As New ProfileBusinessClient
+
+            Return rep.GetOtherListAll(sType, Common.Common.SystemLanguage.Name, isBlank)
+        End Using
+
+        Return Nothing
+    End Function
+
     Public Function HU_PAPER_LIST(ByVal P_EMP_ID As Decimal) As DataTable
         'Dim dtData As DataTable
 

@@ -148,23 +148,24 @@ Public Class ctrlAT_OBJECT_EMP_CSL
             Using rep As New ProfileRepository
                 Dim dtData As New DataTable
 
-                dtData = rep.GetOtherList("EMPLOYEE_OBJECT", True)
+                dtData = rep.GetOtherListAll("EMPLOYEE_OBJECT", True)
                 FillRadCombobox(cbo_OBJ_EMP_Search, dtData, "NAME", "ID", False)
-                dtData = rep.GetOtherList("COMPENSATORY_OBJECT", True)
+                cbo_OBJ_EMP_Search.SelectedValue = 0
+                dtData = rep.GetOtherListAll("COMPENSATORY_OBJECT", True)
                 FillRadCombobox(cbo_OBJ_CSL_Search, dtData, "NAME", "ID", False)
-
+                cbo_OBJ_CSL_Search.SelectedValue = 0
                 dtData = rep.GetOtherList("COMPENSATORY_OBJECT", True)
                 FillRadCombobox(cbo_OBJ_CSL_updateAll, dtData, "NAME", "ID", False)
                 dtData = rep.GetOtherList("EMPLOYEE_OBJECT", True)
                 FillRadCombobox(cbo_OBJ_EMP_updateAll, dtData, "NAME", "ID", False)
 
-                dtData = rep.GetOtherList("WORK_STATUS", True)
+                dtData = rep.GetOtherListAll("WORK_STATUS", True)
                 Dim dr2 As DataRow = dtData.NewRow
                 dr2("NAME") = "Chưa thiết lập trạng thái"
                 dr2("ID") = 9999
                 dtData.Rows.Add(dr2)
                 FillRadCombobox(cboStatus, dtData, "NAME", "ID", False)
-
+                cboStatus.SelectedValue = 0
             End Using
 
             _myLog.WriteLog(_myLog._info, _classPath, method,
@@ -332,17 +333,17 @@ Public Class ctrlAT_OBJECT_EMP_CSL
             If txtEMPLOYEEID_SEARCH.Text <> "" Then
                 _filter.EMPLOYEE_CODE_NAME = txtEMPLOYEEID_SEARCH.Text
             End If
-            If cbo_OBJ_EMP_Search.SelectedValue <> "" Then
+            If cbo_OBJ_EMP_Search.SelectedValue <> "0" Then
                 _filter.OBJ_EMP_ID = cbo_OBJ_EMP_Search.SelectedValue
             Else
                 _filter.OBJ_EMP_ID = Nothing
             End If
-            If cbo_OBJ_CSL_Search.SelectedValue <> "" Then
+            If cbo_OBJ_CSL_Search.SelectedValue <> "0" Then
                 _filter.OBJ_CSL_ID = cbo_OBJ_CSL_Search.SelectedValue
             Else
                 _filter.OBJ_CSL_ID = Nothing
             End If
-            If cboStatus.SelectedValue <> "" Then
+            If cboStatus.SelectedValue <> "0" Then
                 _filter.WORK_STATUS = cboStatus.SelectedValue
             End If
             If chkSTATUS.Checked Then
