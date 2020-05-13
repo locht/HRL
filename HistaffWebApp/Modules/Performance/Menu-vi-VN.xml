@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Menu>
   <Group>
+    <Item Text="Nghiệp vụ" PostBack="False">
+      <Group>
+        <Item  Value="ctrlPE_KPI_Evaluate"  Text="Import đánh giá KPIs" PostBack="True" NavigateUrl="Default.aspx?mid=Performance&amp;fid=ctrlPE_KPI_Evaluate&amp;group=Business" CheckPermission="true"/>
+      </Group>
+    </Item>
     <Item Text="Báo cáo" PostBack="False">
       <Group>
         <Item  Value="ctrlPE_DirectViewKPIEmp"  Text="CBNS xem KPI của nhân viên" PostBack="True" NavigateUrl="Default.aspx?mid=Performance&amp;fid=ctrlPE_DirectViewKPIEmp&amp;group=Business" CheckPermission="true"/>
@@ -25,6 +30,6 @@
         <Item Value="ctrlOtherList" Text="Tham số hệ thống" PostBack="True" NavigateUrl="Default.aspx?mid=Performance&amp;fid=ctrlOtherList&amp;group=List" CheckPermission="true"/>
       </Group>
     </Item>
-    
+
   </Group>
 </Menu>

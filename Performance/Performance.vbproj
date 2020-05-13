@@ -193,6 +193,7 @@
     <Content Include="Modules\Common\ctrlToolBar.ascx" />
     <Content Include="Modules\Common\ctrlUpload.ascx" />
     <Content Include="Modules\Performance\Business\ctrlPE_DirectViewKPIEmp.ascx" />
+    <Content Include="Modules\Performance\Business\ctrlPE_KPI_Evaluate.ascx" />
     <Content Include="Modules\Performance\Dashboard\ctrlDashboardSixCell.ascx" />
     <Content Include="Modules\Performance\Dashboard\ctrlPE_ViewRatingSeniority.ascx" />
     <Content Include="Modules\Performance\Dashboard\ctrlDashboard.ascx" />
@@ -230,6 +231,13 @@
     </Compile>
     <Compile Include="Modules\Performance\Business\ctrlPE_DirectViewKPIEmp.ascx.vb">
       <DependentUpon>ctrlPE_DirectViewKPIEmp.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Performance\Business\ctrlPE_KPI_Evaluate.ascx.designer.vb">
+      <DependentUpon>ctrlPE_KPI_Evaluate.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Performance\Business\ctrlPE_KPI_Evaluate.ascx.vb">
+      <DependentUpon>ctrlPE_KPI_Evaluate.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Performance\Dashboard\ctrlDashboardSixCell.ascx.designer.vb">
@@ -462,6 +470,10 @@
     <ProjectReference Include="..\Framework\Framework.UI.vbproj">
       <Project>{514CC57F-03AA-4D18-9BF2-3F7B66F6AD9B}</Project>
       <Name>Framework.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HistaffFrameworkPublic\HistaffFrameworkPublic.vbproj">
+      <Project>{5D0CFFD8-3EF0-4584-818F-3F165BD8DE0C}</Project>
+      <Name>HistaffFrameworkPublic</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

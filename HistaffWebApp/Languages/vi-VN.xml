@@ -45358,4 +45358,12 @@ Xin cám ơn!
       <string>Quản lý thưởng</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLPE_KPI_EVALUATE</string>
+    </Key>
+    <Value>
+      <string>Đánh giá KPIs</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
