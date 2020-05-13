@@ -316,6 +316,13 @@ Public Class ctrlRC_RequestPortalNewEdit
                             If txtCurrentNumber.Value IsNot Nothing Then
                                 _tuyen += txtCurrentNumber.Value
                             End If
+
+                            If cboRecruitReason.SelectedValue = "4053" Then
+                                If rdgDanhSachNhanVien.Items.Count = 0 Then
+                                    ShowMessage("Bạn phải chọn nhân viên", NotifyType.Error)
+                                    Exit Sub
+                                End If
+                            End If
                             If txtPayrollLimit.Value IsNot Nothing Then
                                 If _tuyen > txtPayrollLimit.Value Then
                                     ShowMessage("Bạn không được phép tuyển vượt định biên", NotifyType.Warning)
@@ -333,6 +340,7 @@ Public Class ctrlRC_RequestPortalNewEdit
                             obj.CONTRACT_TYPE_ID = cboContractType.SelectedValue
                         End If
                         obj.RECRUIT_REASON = txtRecruitReason.Text
+
                         If cboLearningLevel.SelectedValue <> "" Then
                             obj.LEARNING_LEVEL_ID = cboLearningLevel.SelectedValue
                         End If
@@ -387,15 +395,15 @@ Public Class ctrlRC_RequestPortalNewEdit
                         End Select
                     End If
                 Case CommonMessage.TOOLBARITEM_EXPORT
-                    Dim hfr As New HistaffFrameworkRepository
-                    Dim tempPath As String = "ReportTemplates/Recruitment/Report/"
-                    Dim obj = hfr.ExecuteToDataSet("PKG_RECRUITMENT.EXPORT_RECRUITMENT_NEEDS", New List(Of Object)({hidID.Value, If(txtPayrollLimit.Text = "", Nothing, txtPayrollLimit.Text), If(txtCurrentNumber.Text = "", Nothing, txtCurrentNumber.Text), rntxtRecruitNumber.Text}))
-                    ExportWordMailMerge(System.IO.Path.Combine(Server.MapPath(tempPath), "BM01_TT_Nhu_cau_TD.doc"),
-                                        "TT_Nhu_cau_TD_" + DateTime.Now.ToString("HHmmssddMMyyyy") + ".doc",
-                                        obj.Tables(0), Response)
+                        Dim hfr As New HistaffFrameworkRepository
+                        Dim tempPath As String = "ReportTemplates/Recruitment/Report/"
+                        Dim obj = hfr.ExecuteToDataSet("PKG_RECRUITMENT.EXPORT_RECRUITMENT_NEEDS", New List(Of Object)({hidID.Value, If(txtPayrollLimit.Text = "", Nothing, txtPayrollLimit.Text), If(txtCurrentNumber.Text = "", Nothing, txtCurrentNumber.Text), rntxtRecruitNumber.Text}))
+                        ExportWordMailMerge(System.IO.Path.Combine(Server.MapPath(tempPath), "BM01_TT_Nhu_cau_TD.doc"),
+                                            "TT_Nhu_cau_TD_" + DateTime.Now.ToString("HHmmssddMMyyyy") + ".doc",
+                                            obj.Tables(0), Response)
                 Case CommonMessage.TOOLBARITEM_CANCEL
-                    ''POPUPTOLINK_CANCEL
-                    Response.Redirect("/Default.aspx?mid=Recruitment&fid=ctrlRC_RequestPortalNewEdit")
+                        ''POPUPTOLINK_CANCEL
+                        Response.Redirect("/Default.aspx?mid=Recruitment&fid=ctrlRC_RequestPortalNewEdit")
             End Select
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
