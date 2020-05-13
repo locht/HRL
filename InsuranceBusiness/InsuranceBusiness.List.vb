@@ -89,6 +89,18 @@ Namespace InsuranceBusiness.ServiceImplementations
             End Using
         End Function
 
+        Public Function GetWhereHealthToPopupFind_WHID(ByVal _WHId As List(Of Decimal)) As List(Of INS_WHEREHEALTHDTO) Implements ServiceContracts.IInsuranceBusiness.GetWhereHealthToPopupFind_WHID
+            Using rep As New InsuranceRepository
+                Try
+
+                    Return rep.GetWhereHealthToPopupFind_WHID(_WHId)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
         Public Function GetINS_WHEREEXPORT() As List(Of INS_WHEREHEALTHDTO) _
                                    Implements ServiceContracts.IInsuranceBusiness.GetINS_WHEREEXPORT
             Using rep As New InsuranceRepository

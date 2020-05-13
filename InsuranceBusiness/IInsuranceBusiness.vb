@@ -79,6 +79,10 @@ Namespace InsuranceBusiness.ServiceContracts
                                     Optional ByVal PageSize As Integer = Integer.MaxValue,
                                     Optional ByRef Total As Integer = 0,
                                     Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of INS_WHEREHEALTHDTO)
+
+        <OperationContract()>
+        Function GetWhereHealthToPopupFind_WHID(ByVal _WHId As List(Of Decimal)) As List(Of INS_WHEREHEALTHDTO)
+
         <OperationContract()>
         Function GetINS_WHEREEXPORT() As List(Of INS_WHEREHEALTHDTO)
 

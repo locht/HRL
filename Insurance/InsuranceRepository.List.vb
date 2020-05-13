@@ -23,6 +23,18 @@ Partial Class InsuranceRepository
         End Using
         Return Nothing
     End Function
+
+    Public Function GetWhereHealthToPopupFind_WHID(ByVal _WHId As List(Of Decimal)) As List(Of INS_WHEREHEALTHDTO)
+        Using rep As New InsuranceBusinessClient
+            Try
+                Return rep.GetWhereHealthToPopupFind_WHID(_WHId)
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Using
+    End Function
+
     Public Function GetINS_WHEREEXPORT() As List(Of INS_WHEREHEALTHDTO)
         Dim lstDMVS As List(Of INS_WHEREHEALTHDTO)
 

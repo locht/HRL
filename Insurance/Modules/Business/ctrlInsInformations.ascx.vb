@@ -8,6 +8,7 @@ Public Class ctrlInsInformations
     Inherits Common.CommonView
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
     Protected WithEvents ctrlOrgSULPPopup As ctrlFindOrgPopup
+    Protected WithEvents ctrlWhereHealthPopup As ctrlFindTreatmentPopup
     Public Property popup As RadWindow
     Public Property popupId As String
     Public Property isLoadPopup As Integer
@@ -117,7 +118,7 @@ Public Class ctrlInsInformations
                     CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = False
                     CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = False
                     btnSearchEmp.Enabled = False
-
+                    btnwhereHealth.Enabled = False
                     txtDateIssue.Enabled = False
                     txtDoB.Enabled = False
                     'txtSENIORITY_INSURANCE.Enabled = False
@@ -162,7 +163,7 @@ Public Class ctrlInsInformations
                     CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = True
                     CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = True
                     btnSearchEmp.Enabled = True
-
+                    btnwhereHealth.Enabled = True
                     txtDateIssue.Enabled = False
                     txtDoB.Enabled = False
 
@@ -556,6 +557,11 @@ Public Class ctrlInsInformations
         isLoadPopup = 0
     End Sub
 
+
+    Private Sub ctrlWhereHealthPopup_CancelClicked(sender As Object, e As System.EventArgs) Handles ctrlWhereHealthPopup.CancelClicked
+        isLoadPopup = 0
+    End Sub
+
     Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
         Dim lstCommonEmployee As New List(Of Common.CommonBusiness.EmployeePopupFindDTO)
         Dim rep As New InsuranceRepository
@@ -594,12 +600,42 @@ Public Class ctrlInsInformations
         End Try
     End Sub
 
+
+    Private Sub ctrlWhereHealthPopup_TreatmentSelected(sender As Object, e As System.EventArgs) Handles ctrlWhereHealthPopup.TreatmentSelected
+        Dim lstWhereHealth As New List(Of INS_WHEREHEALTHDTO)
+        Dim rep As New InsuranceRepository
+        Try
+            Dim a As Object = ctrlWhereHealthPopup.SelectedTreatment
+            lstWhereHealth = CType(ctrlWhereHealthPopup.SelectedTreatment, List(Of INS_WHEREHEALTHDTO))
+            If lstWhereHealth.Count <> 0 Then
+                Dim item = lstWhereHealth(0)
+                txtWHCode.Text = item.CODE
+                txtWHName.Text = item.NAME_VN
+                hidWhereHealth.Value = item.ID
+            End If
+            isLoadPopup = 0
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
     Private Sub btnSearchEmp_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSearchEmp.Click
         Try
             isLoadPopup = 1
 
             ShowPopupEmployee()
             ctrlFindEmployeePopup.Show()
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+    Private Sub btnwhereHealth_Click(sender As Object, e As System.EventArgs) Handles btnwhereHealth.Click
+        Try
+            isLoadPopup = 5
+
+            ShowPopupWhereHealth()
+            ctrlWhereHealthPopup.Show()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -617,6 +653,23 @@ Public Class ctrlInsInformations
                 ctrlFindEmployeePopup.MustHaveContract = False
                 ctrlFindEmployeePopup.MultiSelect = False
                 FindEmployee.Controls.Add(ctrlFindEmployeePopup)
+            End If
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+    Private Sub ShowPopupWhereHealth()
+        Try
+            If FindWhereHealth.Controls.Contains(ctrlWhereHealthPopup) Then
+                FindWhereHealth.Controls.Remove(ctrlWhereHealthPopup)
+            End If
+
+            If isLoadPopup = 5 Then
+                ctrlWhereHealthPopup = Me.Register("ctrlFindTreatmentPopup", "Insurance", "ctrlFindTreatmentPopup", "Shared")
+                'ctrlFindEmployeePopup.MustHaveTerminate = True
+                ctrlWhereHealthPopup.LoadAllOrganization = True
+                FindWhereHealth.Controls.Add(ctrlWhereHealthPopup)
             End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
