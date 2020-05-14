@@ -906,10 +906,11 @@ Partial Class PerformanceRepository
                              .WORK_STATUS = p.p.WORK_STATUS,
                              .SALARY_LEVEL_ID = p.mbo.SALARYLEVEL_ID,
                              .SALARY_LEVEL = p.sal_level.NAME,
-                             .JOIN_DATE = p.mbo.JOIN_DATE,
-                             .END_DATE = p.mbo.END_DATE,
+                             .KPI_EVALUATE = p.mbo.KPI_ID,
                              .FINANCE_TT = p.mbo.FINANCE_TT,
                              .FINANCE_TTX = p.mbo.FINANCE_TTX,
+                             .JOIN_DATE = p.mbo.JOIN_DATE,
+                             .END_DATE = p.mbo.END_DATE,
                              .CUSTOMER_TT = p.mbo.CUSTOMER_TT,
                              .CUSTOMER_TTX = p.mbo.CUSTOMER_TTX,
                              .PROCESS_TT = p.mbo.PROCESS_TT,
@@ -922,8 +923,7 @@ Partial Class PerformanceRepository
                              .CLASSFICATION_ID = p.mbo.CLASSFICATION,
                              .CLASSFICATION = p.ot.NAME_VN,
                              .COMMENTS = p.mbo.COMMENTS,
-                             .REMARK = p.mbo.REMARK,
-                             .KPI_EVALUATE = p.mbo.KPI_ID
+                             .REMARK = p.mbo.REMARK
                          })
 
             Dim dateNow = Date.Now.Date

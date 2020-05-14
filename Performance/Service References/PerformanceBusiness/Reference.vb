@@ -5315,7 +5315,7 @@ Namespace PerformanceBusiness
         Private SUM_RATE_KPIField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private SUM_TTField As System.Nullable(Of Decimal)
+        Private SUM_TTField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SUM_TTXField As System.Nullable(Of Decimal)
@@ -5655,12 +5655,12 @@ Namespace PerformanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property SUM_TT() As System.Nullable(Of Decimal)
+        Public Property SUM_TT() As String
             Get
                 Return Me.SUM_TTField
             End Get
             Set
-                If (Me.SUM_TTField.Equals(value) <> true) Then
+                If (Object.ReferenceEquals(Me.SUM_TTField, value) <> true) Then
                     Me.SUM_TTField = value
                     Me.RaisePropertyChanged("SUM_TT")
                 End If

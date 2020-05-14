@@ -16,7 +16,7 @@
     Public Property PROCESS_TTX As Decimal?
     Public Property LEARN_TT As Decimal?
     Public Property LEARN_TTX As Decimal?
-    Public Property SUM_TT As Decimal?
+    Public Property SUM_TT As String
     Public Property SUM_TTX As Decimal?
     Public Property SUM_RATE_KPI As Decimal?
     Public Property CLASSFICATION As String
