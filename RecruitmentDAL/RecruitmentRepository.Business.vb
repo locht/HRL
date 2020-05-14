@@ -5472,13 +5472,13 @@ Partial Class RecruitmentRepository
                 objCandidate_Cv.CONTACT_ADDRESS_TEMP = objEmpCV.CONTACT_ADDRESS_TEMP
                 objCandidate_Cv.CONTACT_PROVINCE_TEMP = objEmpCV.CONTACT_PROVINCE_TEMP
                 objCandidate_Cv.CONTACT_DISTRICT_TEMP = objEmpCV.CONTACT_DISTRICT_TEMP
-                objCandidate_Cv.MOBILE_PHONE = objEmpCV.MOBILE_PHONE
-                objCandidate_Cv.CONTACT_MOBILE = objEmpCV.CONTACT_PHONE
+                objCandidate_Cv.CONTACT_PHONE = objEmpCV.CONTACT_PHONE
+                objCandidate_Cv.CONTACT_MOBILE = objEmpCV.MOBILE_PHONE
                 objCandidate_Cv.PER_EMAIL = objEmpCV.PER_EMAIL
                 objCandidate_Cv.MARITAL_STATUS = objEmpCV.MARITAL_STATUS
-                objCandidate_Cv.URGENT_PER_NAME = objEmpCV.URGENT_PER_NAME
-                objCandidate_Cv.URGENT_ADDRESS = objEmpCV.URGENT_ADDRESS
-                objCandidate_Cv.URGENT_PER_SDT = objEmpCV.URGENT_PER_SDT
+                objCandidate_Cv.CONTACT_PERSON = objEmpCV.URGENT_PER_NAME
+                objCandidate_Cv.CONTACT_PERSON_ADDRESS = objEmpCV.URGENT_ADDRESS
+                objCandidate_Cv.CONTACT_PERSON_PHONE = objEmpCV.URGENT_PER_SDT
 
                 Context.RC_CANDIDATE_CV.AddObject(objCandidate_Cv)
 
@@ -5523,8 +5523,11 @@ Partial Class RecruitmentRepository
                 objCandidate_health.CAN_NANG = objEmpHealth.CAN_NANG
 
                 '---------------------candidate Training---------------------
-                Dim objCan_Train As New RC_CANDIDATE_TRAINNING
+                
                 For Each item1 In objEmpTraning
+                    Dim objCan_Train As New RC_CANDIDATE_TRAINNING
+                    Dim id As Decimal = Utilities.GetNextSequence(Context, Context.RC_CANDIDATE_TRAINNING.EntitySet.Name)
+                    objCan_Train.ID = id
                     objCan_Train.CANDIDATE_ID = fileID
                     objCan_Train.SCHOOL_ID = item1.SCHOOL_ID
                     objCan_Train.MAJOR_ID = item1.MAJOR_ID
@@ -5535,9 +5538,10 @@ Partial Class RecruitmentRepository
                 Next
 
                 '------------------candidate experince'''''''''''''''''''''
-                Dim objCan_Exp As New RC_CANDIDATE_BEFOREWT
                 For Each item2 In objEmpExp
-                    objCan_Exp.ID = Utilities.GetNextSequence(Context, Context.RC_CANDIDATE_BEFOREWT.EntitySet.Name)
+                    Dim objCan_Exp As New RC_CANDIDATE_BEFOREWT
+                    Dim id As Decimal = Utilities.GetNextSequence(Context, Context.RC_CANDIDATE_BEFOREWT.EntitySet.Name)
+                    objCan_Exp.ID = id
                     objCan_Exp.CANDIDATE_ID = fileID
                     objCan_Exp.FROMDATE = item2.FROMDATE
                     objCan_Exp.TODATE = item2.TODATE
@@ -5553,9 +5557,10 @@ Partial Class RecruitmentRepository
                 Next
 
                 '-------------------candidate family-----------------
-                Dim objCan_family As New RC_CANDIDATE_FAMILY
                 For Each item3 In objEmpFamily
-                    objCan_family.ID = Utilities.GetNextSequence(Context, Context.RC_CANDIDATE_FAMILY.EntitySet.Name)
+                    Dim objCan_family As New RC_CANDIDATE_FAMILY
+                    Dim id As Decimal = Utilities.GetNextSequence(Context, Context.RC_CANDIDATE_FAMILY.EntitySet.Name)
+                    objCan_family.ID = id
                     objCan_family.CANDIDATE_ID = fileID
                     objCan_family.RELATION_ID = item3.RELATION_ID
                     objCan_family.FULLNAME = item3.FULLNAME

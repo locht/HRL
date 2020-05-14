@@ -14,8 +14,9 @@ Public Class ctrlRC_ImportCV
     Public Overrides Property MustAuthorize As Boolean = False
     Public WithEvents AjaxManager As RadAjaxManager
     Public Property AjaxManagerId As String
-    'Public Property lst As New List(Of CandidateImportDTO)
+    Public Property lst1 As New List(Of CandidateImportDTO)
     Public Property dtip As New CandidateImportDTO
+    Public Property iFile As New Integer
 #Region "Property"
     Property checkOut As Decimal
         Get
@@ -49,6 +50,7 @@ Public Class ctrlRC_ImportCV
             ViewState(Me.ID & "_lst") = value
         End Set
     End Property
+   
     'Private Property dtip As CandidateImportDTO
     '    Get
     '        Return ViewState(Me.ID & "_dtip")
@@ -131,10 +133,10 @@ Public Class ctrlRC_ImportCV
     End Property
     Private Property lstSave As List(Of Decimal)
         Get
-            Return ViewState(Me.ID & "_lstSave")
+            Return ViewState(Me.ID & "_")
         End Get
         Set(ByVal value As List(Of Decimal))
-            ViewState(Me.ID & "_lstSave") = value
+            ViewState(Me.ID & "_") = value
         End Set
     End Property
     Private Property org_id As Decimal
@@ -300,6 +302,9 @@ Public Class ctrlRC_ImportCV
                             '    lstSave.Clear()
                             '    Exit Sub
                             'End If
+                            If lstSave.Count > 0 Then
+                                lstSave.Clear()
+                            End If
                             lstSave.Add(Decimal.Parse(item.GetDataKeyValue("ID")))
                         Next
                         SAVEIMPORT()
@@ -686,47 +691,89 @@ Public Class ctrlRC_ImportCV
         Try
             Dim userlog = LogHelper.GetUserLog
             Dim lst_new As New List(Of CandidateImportDTO)
-            For Each i In lstSave
-                For Each item In lst
-                    If item.can.ID = i Then
-                        Dim obj_new As New CandidateImportDTO
-                        obj_new.can = item.can
-                        obj_new.can_cv = item.can_cv
-                        obj_new.can_edu = item.can_edu
-                        lst_new.Add(obj_new)
-                    End If
-                Next
-
-            Next
-            If lst IsNot Nothing Then
-                If rep.ImportCandidateCV1(lst) Then
-                    Dim msgt As String = "Import thành công " & count & " ứng viên"
-                    ShowMessage(Translate(msgt), NotifyType.Success)
-                Else
-                    ShowMessage(Translate("Không có ứng viên nào được import vui lòng kiểm tra lại toàn bộ file import của ứng viên."), NotifyType.Warning)
-                End If
-            End If
-            If rep.ImportCandidateCV(lst_new) Then
-                Dim msgt As String = "Import thành công " & lst_new.Count & " ứng viên"
-                'If msg.Length > 0 Then
-                '    msgt &= ". Danh sách ứng viên không được import " & msg.Substring(msg.Length - 1, 1).ToString & ". Vui lòng kiểm tra lại file import của những ứng viên này."
-                'End If
-                ShowMessage(Translate(msgt), NotifyType.Success)
-                Dim lstDel As New List(Of CandidateImportDTO)
-                For Each item In lst
-                    lstDel.Add(item)
-                Next
-                For Each item In lst_new
-                    For Each it In lstDel
-                        If item.can.ID = it.can.ID Then
-                            lst.Remove(it)
-                        End If
+            'Dim lst_new1 As New List(Of CandidateImportDTO)
+            'If lst.Count > 0 Then
+            '    iFile = -1
+            'End If
+            'If lst1.Count > 0 Then
+            '    iFile = -2
+            'End If
+            Select Case checkOut
+                Case -2
+                    For Each i In lstSave
+                        For Each item In lst
+                            If item.can.ID = i Then
+                                Dim obj_new As New CandidateImportDTO
+                                obj_new.can = item.can
+                                obj_new.can_cv = item.can_cv
+                                obj_new.can_edu = item.can_edu
+                                obj_new.can_exp = item.can_exp
+                                obj_new.can_expect = item.can_expect
+                                obj_new.can_family = item.can_family
+                                obj_new.can_health = item.can_health
+                                obj_new.can_training = item.can_training
+                                lst_new.Add(obj_new)
+                            End If
+                        Next
                     Next
-                Next
-                rgData.Rebind()
-            Else
-                ShowMessage(Translate("Không có ứng viên nào được import vui lòng kiểm tra lại toàn bộ file import của ứng viên."), NotifyType.Warning)
-            End If
+
+                    If rep.ImportCandidateCV1(lst_new) Then
+                        Dim msgt As String = "Import thành công " & lst_new.Count & " ứng viên"
+                        'If msg.Length > 0 Then
+                        '    msgt &= ". Danh sách ứng viên không được import " & msg.Substring(msg.Length - 1, 1).ToString & ". Vui lòng kiểm tra lại file import của những ứng viên này."
+                        'End If
+                        ShowMessage(Translate(msgt), NotifyType.Success)
+                        Dim lstDel As New List(Of CandidateImportDTO)
+                        For Each item In lst
+                            lstDel.Add(item)
+                        Next
+                        For Each item In lst_new
+                            For Each it In lstDel
+                                If item.can.ID = it.can.ID Then
+                                    lst.Remove(it)
+                                End If
+                            Next
+                        Next
+                        rgData.Rebind()
+                    Else
+                        ShowMessage(Translate("Không có ứng viên nào được import vui lòng kiểm tra lại toàn bộ file import của ứng viên."), NotifyType.Warning)
+                    End If
+                Case -1
+                    For Each i In lstSave
+                        For Each item In lst1
+                            If item.can.ID = i Then
+                                Dim obj_new As New CandidateImportDTO
+                                obj_new.can = item.can
+                                obj_new.can_cv = item.can_cv
+                                obj_new.can_edu = item.can_edu
+                                lst_new.Add(obj_new)
+                            End If
+                        Next
+                    Next
+
+                    If rep.ImportCandidateCV(lst_new) Then
+                        Dim msgt As String = "Import thành công " & lst_new.Count & " ứng viên"
+                        'If msg.Length > 0 Then
+                        '    msgt &= ". Danh sách ứng viên không được import " & msg.Substring(msg.Length - 1, 1).ToString & ". Vui lòng kiểm tra lại file import của những ứng viên này."
+                        'End If
+                        ShowMessage(Translate(msgt), NotifyType.Success)
+                        Dim lstDel As New List(Of CandidateImportDTO)
+                        For Each item In lst
+                            lstDel.Add(item)
+                        Next
+                        For Each item In lst_new
+                            For Each it In lstDel
+                                If item.can.ID = it.can.ID Then
+                                    lst.Remove(it)
+                                End If
+                            Next
+                        Next
+                        rgData.Rebind()
+                    Else
+                        ShowMessage(Translate("Không có ứng viên nào được import vui lòng kiểm tra lại toàn bộ file import của ứng viên."), NotifyType.Warning)
+                    End If
+            End Select
+            
         Catch ex As Exception
 
         End Try
@@ -742,13 +789,23 @@ Public Class ctrlRC_ImportCV
             Dim MaximumRows As Integer
             Dim Sorts As String = rgData.MasterTableView.SortExpressions.GetSortString()
             Dim lstData As New List(Of CandidateDTO)
+
             If lst IsNot Nothing AndAlso lst.Count > 0 Then
                 For Each obj As CandidateImportDTO In lst
                     lstData.Add(obj.can)
                 Next
+                checkOut = -1
+            End If
+            If lst1 IsNot Nothing AndAlso lst1.Count > 0 Then
+                For Each obj As CandidateImportDTO In lst1
+                    lstData.Add(obj.can)
+                Next
+                checkOut = -2
             End If
             rgData.VirtualItemCount = MaximumRows
             rgData.DataSource = lstData
+            lst = lst1
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -1140,8 +1197,11 @@ Public Class ctrlRC_ImportCV
         Dim dsDataPreparefm As New DataSet
         Dim dsDataPreparerf As New DataSet
         Dim dtFile As New DataTable
+        Dim dtFile1 As New DataTable
         dtFile.Columns.Add("ID", GetType(Decimal))
         dtFile.Columns.Add("FILENAME")
+        dtFile1.Columns.Add("ID", GetType(Decimal))
+        dtFile1.Columns.Add("FILENAME")
         Try
             Dim tempPath As String = "Excel"
             Dim savepath = Context.Server.MapPath(tempPath)
@@ -1152,9 +1212,7 @@ Public Class ctrlRC_ImportCV
                 '//Instantiate LoadOptions specified by the LoadFormat.
                 workbook = New Aspose.Cells.Workbook(fileName)
                 worksheet0 = workbook.Worksheets("ACV_CV")
-                'Dim a = worksheet0.Hyperlinks
                 worksheet4 = worksheet0.Pictures
-
                 worksheet = workbook.Worksheets("DATA")
                 worksheet1 = workbook.Worksheets("DAOTAO")
                 worksheet2 = workbook.Worksheets("KINHNGHIEMLAMVIEC")
@@ -1173,6 +1231,7 @@ Public Class ctrlRC_ImportCV
                 r("ID") = i
                 r("FILENAME") = ctrlUpload1.UploadedFiles.Item(i - 1).FileName
                 dtFile.Rows.Add(r)
+                'dtFile1.Rows.Add(r)
                 'dsDataPrepare.Tables.Add(worksheet0.Cells.ExportDataTableAsString(0, 0, worksheet0.Cells.MaxRow + 1, worksheet0.Cells.MaxColumn + 1, True))
                 dsDataPrepare.Tables.Add(worksheet.Cells.ExportDataTableAsString(0, 0, worksheet.Cells.MaxRow + 1, worksheet.Cells.MaxColumn + 1, True))
                 dsDataPrepare.Tables.Add(worksheet1.Cells.ExportDataTableAsString(0, 0, worksheet1.Cells.MaxRow + 1, worksheet1.Cells.MaxColumn + 1, True))
@@ -1183,7 +1242,20 @@ Public Class ctrlRC_ImportCV
                 If System.IO.File.Exists(fileName) Then System.IO.File.Delete(fileName)
                 ImportData1(dsDataPrepare, dtFile)
                 count = count + 1
+
+                dsDataPrepare.Tables.Clear()
+                dtFile.Clear()
+                fileName = ""
+                iFile = iFile + 1
             Next
+            If lst1 IsNot Nothing AndAlso lst1.Count > 0 Then
+                rgData.Rebind()
+                Using rep As New RecruitmentRepository
+
+                End Using
+            Else
+                ShowMessage(Translate("Không có ứng viên nào được import vui lòng kiểm tra lại toàn bộ file import của ứng viên."), NotifyType.Warning)
+            End If
             'ImportData(dsDataPrepare, dtFile)
         Catch ex As Exception
             ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
@@ -1288,14 +1360,14 @@ Public Class ctrlRC_ImportCV
             'End If
             Dim userlog = LogHelper.GetUserLog
 
-            If lst IsNot Nothing AndAlso lst.Count > 0 Then
-                rgData.Rebind()
-                Using rep As New RecruitmentRepository
+            'If lst IsNot Nothing AndAlso lst.Count > 0 Then
+            '    rgData.Rebind()
+            '    Using rep As New RecruitmentRepository
 
-                End Using
-            Else
-                ShowMessage(Translate("Không có ứng viên nào được import vui lòng kiểm tra lại toàn bộ file import của ứng viên."), NotifyType.Warning)
-            End If
+            '    End Using
+            'Else
+            '    ShowMessage(Translate("Không có ứng viên nào được import vui lòng kiểm tra lại toàn bộ file import của ứng viên."), NotifyType.Warning)
+            'End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -1407,9 +1479,11 @@ Public Class ctrlRC_ImportCV
             '    End If
             'Next
             Dim sError As String = ""
-            Dim iFile As Integer = 1
+            'Dim iFile As Integer = 1
+            iFile = 1
             Dim sFile_Name As String = ""
             For Each rF As DataRow In dtFile.Rows
+                Dim x = rF("ID")
                 If rF("ID") = iFile Then
                     sFile_Name = rF("FILENAME").ToString
                     Exit For
@@ -1475,13 +1549,19 @@ Public Class ctrlRC_ImportCV
                     rows("ERROR") = rows("ERROR") + "Chưa nhập nơi cấp cmnd,"
                     rows("FILE_NAME") = sFile_Name
                 End If
+                'PER_PROVINCE_ID
+                If IsDBNull(rows("PER_PROVINCE")) Or rows("PER_PROVINCE").ToString = "" Then
+                    rows("ERROR") = rows("ERROR") + "Chưa nhập tỉnh thường trú,"
+                    rows("FILE_NAME") = sFile_Name
+                End If
                 count += 1
             Next
             dtTemp.AcceptChanges()
 
         Catch ex As Exception
             checkOut = 1
-            ShowMessage(Translate("Phải nhập số thứ tự,Xin kiểm tra lại"), NotifyType.Warning)
+            'ShowMessage(Translate("Phải nhập số thứ tự,Xin kiểm tra lại"), NotifyType.Warning)
+            ShowMessage(Translate("tb map 1"), NotifyType.Warning)
             Exit Sub
         End Try
     End Sub
@@ -1491,8 +1571,8 @@ Public Class ctrlRC_ImportCV
                                    ByVal dtDatafamily As DataTable)
 
         Try
-            Dim candidateid As Decimal = lst.Count + 1
-            'Dim dtip As New CandidateImportDTO
+            'Dim candidateid As Decimal = lst.Count + 1
+            Dim dtip1 As New CandidateImportDTO
             'Dim lst As New List(Of CandidateImportDTO)
             Dim can As New CandidateDTO
             Dim can_cv As CandidateCVDTO
@@ -1503,7 +1583,7 @@ Public Class ctrlRC_ImportCV
             Dim can_expect As New CandidateExpectDTO
             Dim can_training As New CandidateTrainingDTO
             Dim canimport As New CandidateImportDTO
-
+            Dim candidateid As Decimal = lst1.Count + 1
 
             Dim dr = dtData.Rows(0)
 
@@ -1516,13 +1596,16 @@ Public Class ctrlRC_ImportCV
             can.TITLE_NAME = title_name
             can.FIRST_NAME_VN = dr("FIRST_NAME_VN").ToString
             can.LAST_NAME_VN = dr("LAST_NAME_VN").ToString
-            can.FULLNAME_VN = dr("FIRST_NAME_VN").ToString & dr("LAST_NAME_VN").ToString
+            can.FULLNAME_VN = dr("FIRST_NAME_VN").ToString & " " & dr("LAST_NAME_VN").ToString
+            can.ID_NO = dr("ID_NO").ToString
+            can.FILE_NAME = dr("FILE_NAME").ToString
+            can.S_ERROR = dr("ERROR").ToString
 
 
 
             'candidateCv
             can_cv = New CandidateCVDTO
-            can_cv.CANDIDATE_ID = candidateid
+            'can_cv.CANDIDATE_ID = candidateid
             can_cv.BIRTH_DATE = ToDate(dr("BIRTH_DATE").ToString)
             can_cv.BIRTH_PROVINCE = CDec(Val(dr("BIRTH_PROVINCE")))
             can_cv.GENDER = dr("GENDER").ToString
@@ -1539,7 +1622,7 @@ Public Class ctrlRC_ImportCV
             can_cv.ID_NO = dr("ID_NO").ToString
             can_cv.ID_DATE = ToDate(dr("ID_DATE").ToString)
             can_cv.ID_PLACE = dr("ID_PLACE").ToString
-            can_cv.PER_ADDRESS = dr("PER_ADDRESS")
+            can_cv.PER_ADDRESS = dr("PER_ADDRESS").ToString
             can_cv.PER_PROVINCE = CDec(Val(dr("PER_PROVINCE_ID")))
             can_cv.PER_DISTRICT_ID = CDec(Val(dr("PER_DISTRICT_ID")))
             can_cv.CONTACT_ADDRESS_TEMP = dr("CONTACT_ADDRESS_TEMP").ToString
@@ -1547,15 +1630,15 @@ Public Class ctrlRC_ImportCV
             can_cv.CONTACT_DISTRICT_TEMP = CDec(Val(dr("CONTACT_DISTRICT_ID")))
             can_cv.MOBILE_PHONE = dr("CONTACT_MOBILE").ToString
             can_cv.CONTACT_PHONE = dr("CONTACT_PHONE").ToString    'edit'
-            can_cv.PER_EMAIL = dr("PER_EMAIL")
+            can_cv.PER_EMAIL = dr("PER_EMAIL").ToString
             can_cv.MARITAL_STATUS = dr("MARITAL_STATUS_ID").ToString
             can_cv.URGENT_PER_NAME = dr("CONTACT_PERSON").ToString
-            can_cv.URGENT_PER_RELATION = dr("RELATIONS_CONTACT_ID")
-            can_cv.URGENT_ADDRESS = dr("CONTACT_PERSON_ADDRESS")
-            can_cv.URGENT_PER_SDT = dr("CONTACT_PERSON_PHONE")
+            can_cv.URGENT_PER_RELATION = CDec(Val(dr("RELATIONS_CONTACT_ID")))
+            can_cv.URGENT_ADDRESS = dr("CONTACT_PERSON_ADDRESS").ToString
+            can_cv.URGENT_PER_SDT = dr("CONTACT_PERSON_PHONE").ToString
 
             'candidate_edu
-            can_edu.CANDIDATE_ID = candidateid
+            'can_edu.CANDIDATE_ID = candidateid
             can_edu.ENGLISH = dr("ENGLISH_ID").ToString
             can_edu.ENGLISH_LEVEL = dr("ENGLISH_LEVEL_ID").ToString
             can_edu.ENGLISH_MARK = dr("ENGLISH_MARK").ToString
@@ -1581,7 +1664,7 @@ Public Class ctrlRC_ImportCV
             can_edu.IT_MARK2 = dr("IT_MARK2").ToString
 
             'candidate expect
-            can_expect.CANDIDATE_ID = candidateid
+            'can_expect.CANDIDATE_ID = candidateid
             can_expect.WORK_LOCATION = dr("WORK_LOCATION").ToString
             can_expect.PROBATIONARY_SALARY = CDec(Val(dr("PROBATIONARY_SALARY")))
             can_expect.DATE_START = ToDate(dr("DATE_START"))
@@ -1589,7 +1672,7 @@ Public Class ctrlRC_ImportCV
 
 
             'candidate health
-            can_health.CANDIDATE_ID = candidateid
+            'can_health.CANDIDATE_ID = candidateid
             can_health.LOAI_SUC_KHOE = dr("LOAI_SUC_KHOE_ID").ToString
             can_health.CHIEU_CAO = dr("CHIEU_CAO").ToString
             can_health.CAN_NANG = dr("CAN_NANG").ToString
@@ -1598,11 +1681,11 @@ Public Class ctrlRC_ImportCV
             'If dr("DT_ID").ToString <> "" Then
             'can_cv.NATIVE = dr("DT_ID").ToString
             'End If
-            dtip.can = can
-            dtip.can_cv = can_cv
-            dtip.can_edu = can_edu
-            dtip.can_health = can_health
-            dtip.can_expect = can_expect
+            dtip1.can = can
+            dtip1.can_cv = can_cv
+            dtip1.can_edu = can_edu
+            dtip1.can_health = can_health
+            dtip1.can_expect = can_expect
             'canimport.can = can
             'canimport.can_cv = can_cv
             'canimport.can_edu = can_edu
@@ -1613,23 +1696,24 @@ Public Class ctrlRC_ImportCV
             'dao tao
             Dim can_training_lst As New List(Of CandidateTrainingDTO)
             For Each dr1 In dtDataTraning.Rows
-                can_training.CANDIDATE_ID = candidateid
+                'can_training.CANDIDATE_ID = candidateid
                 can_training.SCHOOL_ID = CDec(Val(dr1("SCHOOL_ID")))
                 can_training.MAJOR_ID = CDec(Val(dr1("MAJOR_ID")))
                 can_training.FROM_DATE = ToDate(dr1("FROMDATE"))
                 can_training.TO_DATE = ToDate(dr1("TODATE"))
                 can_training.MARK_EDU_ID = CDec(Val(dr1("MARK_EDU_ID")))
                 can_training_lst.Add(can_training)
+                can_training = New CandidateTrainingDTO
                 'canimport.can_training = can_training_lst
                 'lst.Add(canimport)
             Next
-            dtip.can_training = can_training_lst
+            dtip1.can_training = can_training_lst
 
 
             'kinh nghiem lam viec
             Dim can_experince_lst As New List(Of CandidateBeforeWTDTO)
             For Each dr2 In dtDataExp.Rows
-                can_experince.CANDIDATE_ID = candidateid
+                'can_experince.CANDIDATE_ID = candidateid
                 can_experince.FROMDATE = ToDate(dr2("FROMDATE"))
                 can_experince.TODATE = ToDate(dr2("TODATE"))
                 can_experince.ORG_NAME = dr2("ORG_NAME").ToString
@@ -1640,29 +1724,31 @@ Public Class ctrlRC_ImportCV
                 can_experince.DIRECT_MANAGER = dr2("DIRECT_MANAGER").ToString
                 can_experince.DIRECT_PHONE = dr2("DIRECT_PHONE").ToString 'db chua co
                 can_experince.REASON_LEAVE = dr2("REASON_LEAVE").ToString
-
                 can_experince_lst.Add(can_experince)
+                can_experince = New CandidateBeforeWTDTO
                 'canimport.can_exp = can_experince_lst
                 'lst.Add(canimport)
             Next
-            dtip.can_exp = can_experince_lst
+            dtip1.can_exp = can_experince_lst
 
             'nhan than
             Dim can_family_lst As New List(Of CandidateFamilyDTO)
             For Each dr3 In dtDatafamily.Rows
-                can_family.CANDIDATE_ID = candidateid
+                'can_family.CANDIDATE_ID = candidateid
                 can_family.RELATION_ID = CDec(Val(dr3("RELATION_ID")))
                 can_family.FULLNAME = dr3("FULLNAME").ToString
                 can_family.BIRTH_YEAR = CDec(Val(dr3("BIRTH_YEAR")))
                 can_family.JOB = dr3("JOB").ToString
                 can_family.ADDRESS = dr3("ADDRESS").ToString
                 can_family_lst.Add(can_family)
+
                 'canimport.can_family = can_family_lst
                 'lst.Add(canimport)
             Next
-            dtip.can_family = can_family_lst
+            dtip1.can_family = can_family_lst
 
-            lst.Add(dtip)
+            'lst.Add(dtip1)
+            lst1.Add(dtip1)
             'Dim candidateid As Decimal = lst.Count + 1
 
         Catch ex As Exception
@@ -1703,7 +1789,8 @@ Public Class ctrlRC_ImportCV
             '    End If
             'Next
             Dim sError As String = ""
-            Dim iFile As Integer = 1
+            'Dim iFile As Integer = 1
+            iFile = 1
             Dim sFile_Name As String = ""
             For Each rF As DataRow In dtFile.Rows
                 If rF("ID") = iFile Then
@@ -1719,20 +1806,20 @@ Public Class ctrlRC_ImportCV
                 Dim rep As New RecruitmentRepository
 
                 count += 1
-                If rows("FROMDATE").ToString = "" OrElse CheckDate(rows("FROMDATE")) = False Then
-                    rows("ERROR") = rows("ERROR") + "Thời gian bắt đầu không đúng định dạng,"
-                    rows("FILE_NAME") = sFile_Name
-                End If
-                If rows("TODATE").ToString = "" OrElse CheckDate(rows("TODATE")) = False Then
-                    rows("ERROR") = rows("ERROR") + "Thời gian kết thúc không đúng định dạng,"
-                    rows("FILE_NAME") = sFile_Name
-                End If
+                'If rows("FROMDATE").ToString = "" OrElse CheckDate(rows("FROMDATE")) = False Then
+                '    rows("ERROR") = rows("ERROR") + "Thời gian bắt đầu không đúng định dạng,"
+                '    rows("FILE_NAME") = sFile_Name
+                'End If
+                'If rows("TODATE").ToString = "" OrElse CheckDate(rows("TODATE")) = False Then
+                '    rows("ERROR") = rows("ERROR") + "Thời gian kết thúc không đúng định dạng,"
+                '    rows("FILE_NAME") = sFile_Name
+                'End If
             Next
             dtTemp.AcceptChanges()
 
         Catch ex As Exception
             checkOut = 1
-            'ShowMessage(Translate("Phải nhập số thứ tự,Xin kiểm tra lại"), NotifyType.Warning)
+            ShowMessage(Translate("tb map 2"), NotifyType.Warning)
             Exit Sub
         End Try
     End Sub
@@ -1773,7 +1860,8 @@ Public Class ctrlRC_ImportCV
             '    End If
             'Next
             Dim sError As String = ""
-            Dim iFile As Integer = 1
+            'Dim iFile As Integer = 1
+            iFile = 1
             Dim sFile_Name As String = ""
             For Each rF As DataRow In dtFile.Rows
                 If rF("ID") = iFile Then
@@ -1795,6 +1883,7 @@ Public Class ctrlRC_ImportCV
         Catch ex As Exception
             checkOut = 1
             'ShowMessage(Translate("Phải nhập số thứ tự,Xin kiểm tra lại"), NotifyType.Warning)
+            ShowMessage(Translate("tb map 2"), NotifyType.Warning)
             Exit Sub
         End Try
     End Sub
@@ -1830,7 +1919,8 @@ Public Class ctrlRC_ImportCV
             '    End If
             'Next
             Dim sError As String = ""
-            Dim iFile As Integer = 1
+            'Dim iFile As Integer = 1
+            iFile = 1
             Dim sFile_Name As String = ""
             For Each rF As DataRow In dtFile.Rows
                 If rF("ID") = iFile Then
@@ -1852,6 +1942,7 @@ Public Class ctrlRC_ImportCV
         Catch ex As Exception
             checkOut = 1
             'ShowMessage(Translate("Phải nhập số thứ tự,Xin kiểm tra lại"), NotifyType.Warning)
+            ShowMessage(Translate("tb map 2"), NotifyType.Warning)
             Exit Sub
         End Try
     End Sub

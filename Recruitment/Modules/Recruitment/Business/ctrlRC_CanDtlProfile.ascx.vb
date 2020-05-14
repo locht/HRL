@@ -466,7 +466,7 @@ Public Class ctrlRC_CanDtlProfile
                             cboChungchi.SelectedValue = EmpEducation.IT_LEVEL
                         End If
                         If EmpEducation.IT_MARK IsNot Nothing Then
-                            rnDegreeDiemSoXepLoai1.Text = EmpEducation.IT_MARK
+                            rnDegreeDiemSoXepLoai11.Text = EmpEducation.IT_MARK
                         End If
 
                         If EmpEducation.IT_CERTIFICATE1 IsNot Nothing Then
@@ -496,7 +496,7 @@ Public Class ctrlRC_CanDtlProfile
                             cboTDNNTrinhDo1.SelectedValue = EmpEducation.ENGLISH_LEVEL
                         End If
                         If EmpEducation.ENGLISH_MARK IsNot Nothing Then
-                            rnTDNNDiem1.Text = EmpEducation.ENGLISH_MARK
+                            rnTDNNDiem11.Text = EmpEducation.ENGLISH_MARK
                         End If
 
                         If EmpEducation.ENGLISH1 IsNot Nothing Then
@@ -531,131 +531,131 @@ Public Class ctrlRC_CanDtlProfile
                         If EmpOtherInfo.NGAY_VAO_DOAN IsNot Nothing Then
                             rdNgayVaoDoan.SelectedDate = EmpOtherInfo.NGAY_VAO_DOAN
                         End If
-                            txtChucVuDoan.Text = EmpOtherInfo.CHUC_VU_DOAN
+                        txtChucVuDoan.Text = EmpOtherInfo.CHUC_VU_DOAN
 
-                            If EmpOtherInfo.NGAY_NHAN_CV_DOAN IsNot Nothing Then
-                                rdNgayNhanChucVuDoan.SelectedDate = EmpOtherInfo.NGAY_NHAN_CV_DOAN
-                            End If
-                            txtNoiVaoDoan.Text = EmpOtherInfo.NOI_VAO_DOAN
-                            chkDoanPhi.Checked = If(EmpOtherInfo.DOAN_PHI Is Nothing, False, EmpOtherInfo.DOAN_PHI)
-
-                            'DANG VIEN
-                            chkDangVien.Checked = If(EmpOtherInfo.IS_DANGVIEN Is Nothing, False, EmpOtherInfo.IS_DANGVIEN)
-                            If EmpOtherInfo.NGAY_VAO_DANG IsNot Nothing Then
-                                rdNgayVaoDang.SelectedDate = EmpOtherInfo.NGAY_VAO_DANG
-                            End If
-                            If EmpOtherInfo.CHUC_VU_DANG IsNot Nothing Then
-                                txtChucVuDang.Text = EmpOtherInfo.CHUC_VU_DANG
-                            End If
-                            If EmpOtherInfo.NGAY_NHAN_CV_DANG IsNot Nothing Then
-                                rdNgayNhanChucVuDang.SelectedDate = EmpOtherInfo.NGAY_NHAN_CV_DANG
-                            End If
-                            If EmpOtherInfo.DANG_KIEMNHIEM IsNot Nothing Then
-                                cboDangKiemNhiem.SelectedValue = EmpOtherInfo.DANG_KIEMNHIEM
-                            End If
-                            txtNoiVaoDang.Text = EmpOtherInfo.NOI_VAO_DANG
-                            chkDangPhi.Checked = If(EmpOtherInfo.DANG_PHI Is Nothing, False, EmpOtherInfo.DANG_PHI)
-                            txtCapUyHienTai.Text = EmpOtherInfo.CAPUY_HIENTAI
-                            txtCapUyKiemNhiem.Text = EmpOtherInfo.CAPUY_KIEMNHIEM
-                            If EmpOtherInfo.DANG_KIEMNHIEM IsNot Nothing Then
-                                cboDangKiemNhiem.SelectedValue = EmpOtherInfo.DANG_KIEMNHIEM
-                            End If
-
-                            ' CONG DOAN PHI
-                            chkCongDoanPhi.Checked = If(EmpOtherInfo.IS_CONGDOANPHI Is Nothing, False, EmpOtherInfo.IS_CONGDOANPHI)
-                            If EmpOtherInfo.CDP_NGAYVAO IsNot Nothing Then
-                                rdNgayVaoCongDoan.SelectedDate = EmpOtherInfo.CDP_NGAYVAO
-                            End If
-                            txtNoiVaoCongDoan.Text = EmpOtherInfo.CDP_NOIVAO
-
-                            'CUU CHIEN BINH
-                            chkCuuChienBinh.Checked = If(EmpOtherInfo.IS_CCB Is Nothing, False, EmpOtherInfo.IS_CCB)
-                            If EmpOtherInfo.CCB_NGAYVAO IsNot Nothing Then
-                                rdNgayVaoHoiCuuChienBinh.SelectedDate = EmpOtherInfo.CCB_NGAYVAO
-                            End If
-                            If EmpOtherInfo.CCB_CHUCVU IsNot Nothing Then
-                                cboChucVuCuuChienBinh.SelectedValue = EmpOtherInfo.CCB_CHUCVU
-                            End If
-                            txtNoiVaoHoiCuuChienBinh.Text = EmpOtherInfo.CCB_NOIVAO
-                            If EmpOtherInfo.CCB_NGAYNHAPNGU IsNot Nothing Then
-                                rdNgayNhapNgu.SelectedDate = EmpOtherInfo.CCB_NGAYNHAPNGU
-                            End If
-                            If EmpOtherInfo.CCB_NGAYXUATNGU IsNot Nothing Then
-                                rdNgayXuatNgu.SelectedDate = EmpOtherInfo.CCB_NGAYXUATNGU
-                            End If
-                            txtQuanHamChucVuCaoNhat.Text = EmpOtherInfo.CCB_QUANHAM
-                            txtTPGiaDinh.Text = EmpOtherInfo.TPGD
-                            txtDanhHieuDuocPhong.Text = EmpOtherInfo.DANHHIEU
-                            txtCareer.Text = EmpOtherInfo.CAREER
-                            txtSoTruongCongTac.Text = EmpOtherInfo.SOTRUONGCONGTAC
-                            txtCongTacLauNhat.Text = EmpOtherInfo.CONGTAC_LAUNHAT
-                            If EmpOtherInfo.LYLUANCHINHTRI IsNot Nothing Then
-                                cboLyLuanChinhTri.SelectedValue = EmpOtherInfo.LYLUANCHINHTRI
-                            End If
-                            If EmpOtherInfo.QUANLYNHANUOC IsNot Nothing Then
-                                cboQuanLyNhaNuoc.SelectedValue = EmpOtherInfo.QUANLYNHANUOC
-                            End If
-                            If EmpOtherInfo.THUONGBINH IsNot Nothing Then
-                                cboThuongBinh.SelectedValue = EmpOtherInfo.THUONGBINH
-                            End If
-                            If EmpOtherInfo.GDCS IsNot Nothing Then
-                                cboGDChinhSach.SelectedValue = EmpOtherInfo.GDCS
-                            End If
-
-                            'THONG TIN TAI KHOAN
-                            txtTKNguoiThuHuong.Text = EmpOtherInfo.ACCOUNT_NAME
-                            txtTKTKChuyenKhoan.Text = If(EmpOtherInfo.ACCOUNT_NUMBER Is Nothing, "", EmpOtherInfo.ACCOUNT_NUMBER)
-                            cboTKNganHang.SelectedValue = EmpOtherInfo.BANK
-                            cboTKChiNhanhNganHang.SelectedValue = EmpOtherInfo.BANK_BRANCH
-                            cboTKChiNhanhNganHang.Text = EmpOtherInfo.BANK_BRANCH_Name
-                            other_cbxThanhToanQuaNH.Checked = If(EmpOtherInfo.IS_PAYMENT_VIA_BANK Is Nothing, False, EmpOtherInfo.IS_PAYMENT_VIA_BANK)
-                            If EmpOtherInfo.ACCOUNT_EFFECT_DATE IsNot Nothing Then
-                                rdpTKNgayHieuLuc.SelectedDate = EmpOtherInfo.ACCOUNT_EFFECT_DATE
-                            End If
+                        If EmpOtherInfo.NGAY_NHAN_CV_DOAN IsNot Nothing Then
+                            rdNgayNhanChucVuDoan.SelectedDate = EmpOtherInfo.NGAY_NHAN_CV_DOAN
                         End If
-                        'Candidate Health
-                        Dim EmpHealthInfo = rep.GetCandidateHealthInfo(CandidateInfo.ID)
-                        If EmpHealthInfo IsNot Nothing Then
-                            txtChieuCao.Text = EmpHealthInfo.CHIEU_CAO
-                            txtCanNang.Text = EmpHealthInfo.CAN_NANG
-                            txtNhomMau.Text = EmpHealthInfo.NHOM_MAU
-                            txtHuyetAp.Text = EmpHealthInfo.HUYET_AP
-                            txtMatTrai.Text = EmpHealthInfo.MAT_TRAI
-                            txtMatPhai.Text = EmpHealthInfo.MAT_PHAI
-                            If IsNumeric(EmpHealthInfo.LOAI_SUC_KHOE) Then
-                                cboLoaiSucKhoe.SelectedValue = EmpHealthInfo.LOAI_SUC_KHOE
-                            End If
-                            txtTaiMuiHong.Text = EmpHealthInfo.TAI_MUI_HONG
-                            txtRangHamMat.Text = EmpHealthInfo.RANG_HAM_MAT
-                            txtTim.Text = EmpHealthInfo.TIM
-                            txtPhoiNguc.Text = EmpHealthInfo.PHOI_NGUC
-                            txtVienGanB.Text = EmpHealthInfo.VIEM_GAN_B
-                            txtDaHoaLieu.Text = EmpHealthInfo.DA_HOA_LIEU
-                            txtGhiChuSK.Text = EmpHealthInfo.GHI_CHU_SUC_KHOE
+                        txtNoiVaoDoan.Text = EmpOtherInfo.NOI_VAO_DOAN
+                        chkDoanPhi.Checked = If(EmpOtherInfo.DOAN_PHI Is Nothing, False, EmpOtherInfo.DOAN_PHI)
 
+                        'DANG VIEN
+                        chkDangVien.Checked = If(EmpOtherInfo.IS_DANGVIEN Is Nothing, False, EmpOtherInfo.IS_DANGVIEN)
+                        If EmpOtherInfo.NGAY_VAO_DANG IsNot Nothing Then
+                            rdNgayVaoDang.SelectedDate = EmpOtherInfo.NGAY_VAO_DANG
                         End If
-                        'Candidate Nguyện vọng
-                        Dim EmpExpectInfo = rep.GetCandidateExpectInfo(CandidateInfo.ID)
-                        If EmpExpectInfo IsNot Nothing Then
-                            If IsNumeric(EmpExpectInfo.TIME_START) Then
-                                cboExpectThoiGianLamViec.SelectedValue = EmpExpectInfo.TIME_START
-                            End If
-                            If IsNumeric(EmpExpectInfo.PROBATIONARY_SALARY) Then
-                                txtExpectMucLuongThuViec.Text = EmpExpectInfo.PROBATIONARY_SALARY
-                            End If
-                            If IsNumeric(EmpExpectInfo.OFFICIAL_SALARY) Then
-                                txtExpectMucLuongChinhThuc.Text = EmpExpectInfo.OFFICIAL_SALARY
-                            End If
-                            If IsDate(EmpExpectInfo.DATE_START) Then
-                                txtExpectNgayBatDau.SelectedDate = EmpExpectInfo.DATE_START
-                            End If
-                            txtExpectDeNghiKhac.Text = EmpExpectInfo.OTHER_REQUEST
-                            txtWORK_LOCATION.Text = EmpExpectInfo.WORK_LOCATION
+                        If EmpOtherInfo.CHUC_VU_DANG IsNot Nothing Then
+                            txtChucVuDang.Text = EmpOtherInfo.CHUC_VU_DANG
                         End If
-                    Else
-                        'mac dinh load lên 12/12 nên set cứng ở đây,sau này thay đổi id thi set lại chỗ này,trình độ văn hóa
-                        cboTrinhDoVanHoa.SelectedValue = 503
+                        If EmpOtherInfo.NGAY_NHAN_CV_DANG IsNot Nothing Then
+                            rdNgayNhanChucVuDang.SelectedDate = EmpOtherInfo.NGAY_NHAN_CV_DANG
+                        End If
+                        If EmpOtherInfo.DANG_KIEMNHIEM IsNot Nothing Then
+                            cboDangKiemNhiem.SelectedValue = EmpOtherInfo.DANG_KIEMNHIEM
+                        End If
+                        txtNoiVaoDang.Text = EmpOtherInfo.NOI_VAO_DANG
+                        chkDangPhi.Checked = If(EmpOtherInfo.DANG_PHI Is Nothing, False, EmpOtherInfo.DANG_PHI)
+                        txtCapUyHienTai.Text = EmpOtherInfo.CAPUY_HIENTAI
+                        txtCapUyKiemNhiem.Text = EmpOtherInfo.CAPUY_KIEMNHIEM
+                        If EmpOtherInfo.DANG_KIEMNHIEM IsNot Nothing Then
+                            cboDangKiemNhiem.SelectedValue = EmpOtherInfo.DANG_KIEMNHIEM
+                        End If
+
+                        ' CONG DOAN PHI
+                        chkCongDoanPhi.Checked = If(EmpOtherInfo.IS_CONGDOANPHI Is Nothing, False, EmpOtherInfo.IS_CONGDOANPHI)
+                        If EmpOtherInfo.CDP_NGAYVAO IsNot Nothing Then
+                            rdNgayVaoCongDoan.SelectedDate = EmpOtherInfo.CDP_NGAYVAO
+                        End If
+                        txtNoiVaoCongDoan.Text = EmpOtherInfo.CDP_NOIVAO
+
+                        'CUU CHIEN BINH
+                        chkCuuChienBinh.Checked = If(EmpOtherInfo.IS_CCB Is Nothing, False, EmpOtherInfo.IS_CCB)
+                        If EmpOtherInfo.CCB_NGAYVAO IsNot Nothing Then
+                            rdNgayVaoHoiCuuChienBinh.SelectedDate = EmpOtherInfo.CCB_NGAYVAO
+                        End If
+                        If EmpOtherInfo.CCB_CHUCVU IsNot Nothing Then
+                            cboChucVuCuuChienBinh.SelectedValue = EmpOtherInfo.CCB_CHUCVU
+                        End If
+                        txtNoiVaoHoiCuuChienBinh.Text = EmpOtherInfo.CCB_NOIVAO
+                        If EmpOtherInfo.CCB_NGAYNHAPNGU IsNot Nothing Then
+                            rdNgayNhapNgu.SelectedDate = EmpOtherInfo.CCB_NGAYNHAPNGU
+                        End If
+                        If EmpOtherInfo.CCB_NGAYXUATNGU IsNot Nothing Then
+                            rdNgayXuatNgu.SelectedDate = EmpOtherInfo.CCB_NGAYXUATNGU
+                        End If
+                        txtQuanHamChucVuCaoNhat.Text = EmpOtherInfo.CCB_QUANHAM
+                        txtTPGiaDinh.Text = EmpOtherInfo.TPGD
+                        txtDanhHieuDuocPhong.Text = EmpOtherInfo.DANHHIEU
+                        txtCareer.Text = EmpOtherInfo.CAREER
+                        txtSoTruongCongTac.Text = EmpOtherInfo.SOTRUONGCONGTAC
+                        txtCongTacLauNhat.Text = EmpOtherInfo.CONGTAC_LAUNHAT
+                        If EmpOtherInfo.LYLUANCHINHTRI IsNot Nothing Then
+                            cboLyLuanChinhTri.SelectedValue = EmpOtherInfo.LYLUANCHINHTRI
+                        End If
+                        If EmpOtherInfo.QUANLYNHANUOC IsNot Nothing Then
+                            cboQuanLyNhaNuoc.SelectedValue = EmpOtherInfo.QUANLYNHANUOC
+                        End If
+                        If EmpOtherInfo.THUONGBINH IsNot Nothing Then
+                            cboThuongBinh.SelectedValue = EmpOtherInfo.THUONGBINH
+                        End If
+                        If EmpOtherInfo.GDCS IsNot Nothing Then
+                            cboGDChinhSach.SelectedValue = EmpOtherInfo.GDCS
+                        End If
+
+                        'THONG TIN TAI KHOAN
+                        txtTKNguoiThuHuong.Text = EmpOtherInfo.ACCOUNT_NAME
+                        txtTKTKChuyenKhoan.Text = If(EmpOtherInfo.ACCOUNT_NUMBER Is Nothing, "", EmpOtherInfo.ACCOUNT_NUMBER)
+                        cboTKNganHang.SelectedValue = EmpOtherInfo.BANK
+                        cboTKChiNhanhNganHang.SelectedValue = EmpOtherInfo.BANK_BRANCH
+                        cboTKChiNhanhNganHang.Text = EmpOtherInfo.BANK_BRANCH_Name
+                        other_cbxThanhToanQuaNH.Checked = If(EmpOtherInfo.IS_PAYMENT_VIA_BANK Is Nothing, False, EmpOtherInfo.IS_PAYMENT_VIA_BANK)
+                        If EmpOtherInfo.ACCOUNT_EFFECT_DATE IsNot Nothing Then
+                            rdpTKNgayHieuLuc.SelectedDate = EmpOtherInfo.ACCOUNT_EFFECT_DATE
+                        End If
                     End If
+                    'Candidate Health
+                    Dim EmpHealthInfo = rep.GetCandidateHealthInfo(CandidateInfo.ID)
+                    If EmpHealthInfo IsNot Nothing Then
+                        txtChieuCao.Text = EmpHealthInfo.CHIEU_CAO
+                        txtCanNang.Text = EmpHealthInfo.CAN_NANG
+                        txtNhomMau.Text = EmpHealthInfo.NHOM_MAU
+                        txtHuyetAp.Text = EmpHealthInfo.HUYET_AP
+                        txtMatTrai.Text = EmpHealthInfo.MAT_TRAI
+                        txtMatPhai.Text = EmpHealthInfo.MAT_PHAI
+                        If IsNumeric(EmpHealthInfo.LOAI_SUC_KHOE) Then
+                            cboLoaiSucKhoe.SelectedValue = EmpHealthInfo.LOAI_SUC_KHOE
+                        End If
+                        txtTaiMuiHong.Text = EmpHealthInfo.TAI_MUI_HONG
+                        txtRangHamMat.Text = EmpHealthInfo.RANG_HAM_MAT
+                        txtTim.Text = EmpHealthInfo.TIM
+                        txtPhoiNguc.Text = EmpHealthInfo.PHOI_NGUC
+                        txtVienGanB.Text = EmpHealthInfo.VIEM_GAN_B
+                        txtDaHoaLieu.Text = EmpHealthInfo.DA_HOA_LIEU
+                        txtGhiChuSK.Text = EmpHealthInfo.GHI_CHU_SUC_KHOE
+
+                    End If
+                    'Candidate Nguyện vọng
+                    Dim EmpExpectInfo = rep.GetCandidateExpectInfo(CandidateInfo.ID)
+                    If EmpExpectInfo IsNot Nothing Then
+                        If IsNumeric(EmpExpectInfo.TIME_START) Then
+                            cboExpectThoiGianLamViec.SelectedValue = EmpExpectInfo.TIME_START
+                        End If
+                        If IsNumeric(EmpExpectInfo.PROBATIONARY_SALARY) Then
+                            txtExpectMucLuongThuViec.Text = EmpExpectInfo.PROBATIONARY_SALARY
+                        End If
+                        If IsNumeric(EmpExpectInfo.OFFICIAL_SALARY) Then
+                            txtExpectMucLuongChinhThuc.Text = EmpExpectInfo.OFFICIAL_SALARY
+                        End If
+                        If IsDate(EmpExpectInfo.DATE_START) Then
+                            txtExpectNgayBatDau.SelectedDate = EmpExpectInfo.DATE_START
+                        End If
+                        txtExpectDeNghiKhac.Text = EmpExpectInfo.OTHER_REQUEST
+                        txtWORK_LOCATION.Text = EmpExpectInfo.WORK_LOCATION
+                    End If
+                Else
+                    'mac dinh load lên 12/12 nên set cứng ở đây,sau này thay đổi id thi set lại chỗ này,trình độ văn hóa
+                    cboTrinhDoVanHoa.SelectedValue = 503
+                End If
             End Using
             isLoad = True
         Else
@@ -1077,7 +1077,7 @@ Public Class ctrlRC_CanDtlProfile
                         CurrentState = CommonMessage.STATE_NORMAL
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
                     End If
-                    
+
                     Exit Sub
                 Else
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
@@ -1565,7 +1565,7 @@ Public Class ctrlRC_CanDtlProfile
             If cboChungchi.SelectedValue IsNot Nothing Then
                 EmpEducation.IT_LEVEL = cboChungchi.SelectedValue
             End If
-            EmpEducation.IT_MARK = rnDegreeDiemSoXepLoai1.Text
+            EmpEducation.IT_MARK = rnDegreeDiemSoXepLoai11.Text
             '' it 2
             If cboDegreeTrinhDo2.SelectedValue IsNot Nothing Then
                 EmpEducation.IT_CERTIFICATE1 = cboDegreeTrinhDo2.SelectedValue
@@ -1591,7 +1591,7 @@ Public Class ctrlRC_CanDtlProfile
             If cboTDNNTrinhDo1.SelectedValue <> "" Then
                 EmpEducation.ENGLISH_LEVEL = cboTDNNTrinhDo1.SelectedValue
             End If
-            EmpEducation.ENGLISH_MARK = rnTDNNDiem1.Text
+            EmpEducation.ENGLISH_MARK = rnTDNNDiem11.Text
 
             ''NN2
             If cboNgoaiNgu2.SelectedValue <> "" Then
