@@ -206,8 +206,8 @@
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
         }
-        function rgDataRadGridDeSelecting() { }
-        function rgDataOnClientRowSelected() { }
-        function rgDataRadGridSelecting() { }
+        //function rgDataRadGridDeSelecting() { }
+        //function rgDataOnClientRowSelected() { }
+        //function rgDataRadGridSelecting() { }
     </script>
 </tlk:RadCodeBlock>

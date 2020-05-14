@@ -140,13 +140,7 @@ Public Class ctrlPA_Period
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             Dim dic As New Dictionary(Of String, Control)
-            dic.Add("YEAR", nmrYear)
-            dic.Add("PERIOD_NAME", txtPeriodName)
-            dic.Add("PERIOD_STANDARD", txtPeriodStanDard)
-            dic.Add("REMARK", txtRemark)
-            dic.Add("START_DATE", dpStartDate)
-            dic.Add("END_DATE", dpEndDate)
-            dic.Add("BONUS_DATE", dpBonusDate)
+            
             Utilities.OnClientRowSelectedChanged(rgData, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                             CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -554,6 +548,17 @@ Public Class ctrlPA_Period
         Dim lstObject As New List(Of AT_ORG_PERIOD)
         Dim lstId As New List(Of Decimal)
         Try
+            Dim item1 = CType(rgData.SelectedItems(0), GridDataItem)
+            Dim ID = item1.GetDataKeyValue("ID").ToString
+            Dim At_Period = (From p In vPeriod Where p.ID = Decimal.Parse(ID)).SingleOrDefault
+            nmrYear.Value = At_Period.YEAR
+            txtPeriodName.Text = At_Period.PERIOD_NAME
+            txtPeriodStanDard.Value = At_Period.PERIOD_STANDARD
+            txtRemark.Text = At_Period.REMARK
+            dpStartDate.SelectedDate = At_Period.START_DATE
+            dpEndDate.SelectedDate = At_Period.END_DATE
+            dpBonusDate.SelectedDate = At_Period.BONUS_DATE
+
             For Each LINE As GridDataItem In rgData.SelectedItems
                 Using rep As New PayrollRepository
                     lstObject = rep.GetListOrgPeriod(Decimal.Parse(LINE.GetDataKeyValue("ID")))
