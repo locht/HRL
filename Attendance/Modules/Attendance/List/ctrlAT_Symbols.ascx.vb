@@ -188,21 +188,20 @@ Public Class ctrlAT_Symbols
             SetValueObjectByRadGrid(rgDanhMuc, obj)
             Dim Sorts As String = rgDanhMuc.MasterTableView.SortExpressions.GetSortString()
 
-            If Not isFull Then
+            If isFull Then
                 If Sorts IsNot Nothing Then
-                    Me.AT_Symbols = rep.GetAT_Symbols(obj, rgDanhMuc.CurrentPageIndex, rgDanhMuc.PageSize, MaximumRows, "CREATED_DATE desc")
+                    Return rep.GetAT_Symbols(obj, 0, Integer.MaxValue, 0, Sorts).ToTable()
+                Else
+                    Return rep.GetAT_Symbols(obj).ToTable()
+                End If
+            Else
+                If Sorts IsNot Nothing Then
+                    Me.AT_Symbols = rep.GetAT_Symbols(obj, rgDanhMuc.CurrentPageIndex, rgDanhMuc.PageSize, MaximumRows, Sorts)
                 Else
                     Me.AT_Symbols = rep.GetAT_Symbols(obj, rgDanhMuc.CurrentPageIndex, rgDanhMuc.PageSize, MaximumRows)
                 End If
                 rgDanhMuc.VirtualItemCount = MaximumRows
                 rgDanhMuc.DataSource = Me.AT_Symbols
-            Else
-                If Sorts IsNot Nothing Then
-                    Return rep.GetAT_Symbols(obj, 0, Integer.MaxValue, 0, Sorts).ToTable
-                Else
-                    Return rep.GetAT_Symbols(obj).ToTable
-                End If
-                'Return rep.GetAT_SHIFT(obj).ToTable
             End If
 
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -251,8 +250,8 @@ Public Class ctrlAT_Symbols
                     ckIS_DISPLAY.Enabled = True
                     ckIS_DISPLAY_PORTAL.Checked = False
                     ckIS_DISPLAY_PORTAL.Enabled = True
-                    ckIS_LAVE_HOLIDAY.Checked = False
-                    ckIS_LAVE_HOLIDAY.Enabled = True
+                    ckIS_LEAVE_HOLIDAY.Checked = False
+                    ckIS_LEAVE_HOLIDAY.Enabled = True
                     ckIS_LEAVE.Checked = False
                     ckIS_LEAVE.Enabled = True
                     ckIS_LEAVE_WEEKLY.Checked = False
@@ -289,8 +288,8 @@ Public Class ctrlAT_Symbols
                     ckIS_DISPLAY.Enabled = False
                     ckIS_DISPLAY_PORTAL.Checked = False
                     ckIS_DISPLAY_PORTAL.Enabled = False
-                    ckIS_LAVE_HOLIDAY.Checked = False
-                    ckIS_LAVE_HOLIDAY.Enabled = False
+                    ckIS_LEAVE_HOLIDAY.Checked = False
+                    ckIS_LEAVE_HOLIDAY.Enabled = False
                     ckIS_LEAVE.Checked = False
                     ckIS_LEAVE.Enabled = False
                     ckIS_LEAVE_WEEKLY.Checked = False
@@ -311,7 +310,7 @@ Public Class ctrlAT_Symbols
                     ckIS_DAY_HALF.Enabled = True
                     ckIS_DISPLAY.Enabled = True
                     ckIS_DISPLAY_PORTAL.Enabled = True
-                    ckIS_LAVE_HOLIDAY.Enabled = True
+                    ckIS_LEAVE_HOLIDAY.Enabled = True
                     ckIS_LEAVE.Enabled = True
                     ckIS_LEAVE_WEEKLY.Enabled = True
                     EnabledGridNotPostback(rgDanhMuc, False)
@@ -321,18 +320,18 @@ Public Class ctrlAT_Symbols
                         CreateDataFilter()
                         Refresh("InsertView")
                         UpdateControlState()
-                        ClearControlValue(rtWCODE, rtWNAME, txtNote, rdEFFECT_DATE, rdEXPIRE_DATE, rnWINDEX, rcWDATATYEID, rcWDATAMODEID, ckIS_DISPLAY, ckIS_DATAFROMEXCEL, ckIS_DISPLAY_PORTAL, ckIS_LEAVE, ckIS_LEAVE_WEEKLY, ckIS_LAVE_HOLIDAY, ckIS_DAY_HALF)
+                        ClearControlValue(rtWCODE, rtWNAME, txtNote, rdEFFECT_DATE, rdEXPIRE_DATE, rnWINDEX, rcWDATATYEID, rcWDATAMODEID, ckIS_DISPLAY, ckIS_DATAFROMEXCEL, ckIS_DISPLAY_PORTAL, ckIS_LEAVE, ckIS_LEAVE_WEEKLY, ckIS_LEAVE_HOLIDAY, ckIS_DAY_HALF)
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
                     End If
 
-                Case CommonMessage.STATE_ACTIVE                    
+                Case CommonMessage.STATE_ACTIVE
                     If ChangeStatus(-1) Then
                         CurrentState = CommonMessage.STATE_NORMAL
                         CreateDataFilter()
                         Refresh("InsertView")
                         UpdateControlState()
-                        ClearControlValue(rtWCODE, rtWNAME, txtNote, rdEFFECT_DATE, rdEXPIRE_DATE, rnWINDEX, rcWDATATYEID, rcWDATAMODEID, ckIS_DISPLAY, ckIS_DATAFROMEXCEL, ckIS_DISPLAY_PORTAL, ckIS_LEAVE, ckIS_LEAVE_WEEKLY, ckIS_LAVE_HOLIDAY, ckIS_DAY_HALF)
+                        ClearControlValue(rtWCODE, rtWNAME, txtNote, rdEFFECT_DATE, rdEXPIRE_DATE, rnWINDEX, rcWDATATYEID, rcWDATAMODEID, ckIS_DISPLAY, ckIS_DATAFROMEXCEL, ckIS_DISPLAY_PORTAL, ckIS_LEAVE, ckIS_LEAVE_WEEKLY, ckIS_LEAVE_HOLIDAY, ckIS_DAY_HALF)
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
                     End If
@@ -396,7 +395,7 @@ Public Class ctrlAT_Symbols
                 objsYMBOLS.IS_DISPLAY_PORTAL = If(item.GetDataKeyValue("IS_DISPLAY_PORTAL") = -1, True, False)
                 objsYMBOLS.IS_LEAVE = If(item.GetDataKeyValue("IS_LEAVE") = -1, True, False)
                 objsYMBOLS.IS_LEAVE_WEEKLY = If(item.GetDataKeyValue("IS_LEAVE_WEEKLY") = -1, True, False)
-                objsYMBOLS.IS_LAVE_HOLIDAY = If(item.GetDataKeyValue("IS_LAVE_HOLIDAY") = -1, True, False)
+                objsYMBOLS.IS_LEAVE_HOLIDAY = If(item.GetDataKeyValue("IS_LEAVE_HOLIDAY") = -1, True, False)
                 objsYMBOLS.IS_DAY_HALF = If(item.GetDataKeyValue("IS_DAY_HALF") = -1, True, False)
                 objsYMBOLS.NOTE = If(IsDBNull(item.GetDataKeyValue("NOTE")), "", item.GetDataKeyValue("NOTE"))
                 If Not rep.SaveAT_Symnols(objsYMBOLS, objsYMBOLS.ID) Then
@@ -434,12 +433,12 @@ Public Class ctrlAT_Symbols
             dic.Add("IS_DISPLAY_PORTAL", ckIS_DISPLAY_PORTAL)
             dic.Add("IS_LEAVE", ckIS_LEAVE)
             dic.Add("IS_LEAVE_WEEKLY", ckIS_LEAVE_WEEKLY)
-            dic.Add("IS_LAVE_HOLIDAY", ckIS_LAVE_HOLIDAY)
+            dic.Add("IS_LEAVE_HOLIDAY", ckIS_LEAVE_HOLIDAY)
             dic.Add("IS_DAY_HALF", ckIS_DAY_HALF)
             dic.Add("NOTE", txtNote)
             dic.Add("EFFECT_DATE", rdEFFECT_DATE)
             dic.Add("EXPIRE_DATE", rdEXPIRE_DATE)
-            Utilities.OnClientRowSelectedChanged(rgDanhMuc, dic)         
+            Utilities.OnClientRowSelectedChanged(rgDanhMuc, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
@@ -590,7 +589,7 @@ Public Class ctrlAT_Symbols
                         objsYMBOLS.IS_DISPLAY_PORTAL = ckIS_DISPLAY_PORTAL.Checked
                         objsYMBOLS.IS_LEAVE = ckIS_LEAVE.Checked
                         objsYMBOLS.IS_LEAVE_WEEKLY = ckIS_LEAVE_WEEKLY.Checked
-                        objsYMBOLS.IS_LAVE_HOLIDAY = ckIS_LAVE_HOLIDAY.Checked
+                        objsYMBOLS.IS_LEAVE_HOLIDAY = ckIS_LEAVE_HOLIDAY.Checked
                         objsYMBOLS.IS_DAY_HALF = ckIS_DAY_HALF.Checked
                         objsYMBOLS.NOTE = txtNote.Text.Trim
                         Select Case CurrentState
@@ -601,7 +600,7 @@ Public Class ctrlAT_Symbols
                                     IDSelect = gID
                                     Refresh("InsertView")
                                     UpdateControlState()
-                                    ClearControlValue(rtWCODE, rtWNAME, txtNote, rdEFFECT_DATE, rdEXPIRE_DATE, rnWINDEX, rcWDATATYEID, rcWDATAMODEID, ckIS_DISPLAY, ckIS_DATAFROMEXCEL, ckIS_DISPLAY_PORTAL, ckIS_LEAVE, ckIS_LEAVE_WEEKLY, ckIS_LAVE_HOLIDAY, ckIS_DAY_HALF)
+                                    ClearControlValue(rtWCODE, rtWNAME, txtNote, rdEFFECT_DATE, rdEXPIRE_DATE, rnWINDEX, rcWDATATYEID, rcWDATAMODEID, ckIS_DISPLAY, ckIS_DATAFROMEXCEL, ckIS_DISPLAY_PORTAL, ckIS_LEAVE, ckIS_LEAVE_WEEKLY, ckIS_LEAVE_HOLIDAY, ckIS_DAY_HALF)
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
@@ -613,7 +612,7 @@ Public Class ctrlAT_Symbols
                                     IDSelect = objsYMBOLS.ID
                                     Refresh("UpdateView")
                                     UpdateControlState()
-                                    ClearControlValue(rtWCODE, rtWNAME, txtNote, rdEFFECT_DATE, rdEXPIRE_DATE, rnWINDEX, rcWDATATYEID, rcWDATAMODEID, ckIS_DISPLAY, ckIS_DATAFROMEXCEL, ckIS_DISPLAY_PORTAL, ckIS_LEAVE, ckIS_LEAVE_WEEKLY, ckIS_LAVE_HOLIDAY, ckIS_DAY_HALF)
+                                    ClearControlValue(rtWCODE, rtWNAME, txtNote, rdEFFECT_DATE, rdEXPIRE_DATE, rnWINDEX, rcWDATATYEID, rcWDATAMODEID, ckIS_DISPLAY, ckIS_DATAFROMEXCEL, ckIS_DISPLAY_PORTAL, ckIS_LEAVE, ckIS_LEAVE_WEEKLY, ckIS_LEAVE_HOLIDAY, ckIS_DAY_HALF)
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
@@ -630,7 +629,7 @@ Public Class ctrlAT_Symbols
                         Dim dtDatas As DataTable
                         dtDatas = CreateDataFilter(True)
                         If dtDatas.Rows.Count > 0 Then
-                            rgDanhMuc.ExportExcel(Server, Response, dtDatas, "CaLamViec")
+                            rgDanhMuc.ExportExcel(Server, Response, dtDatas, "Ky_Hieu_Cong")
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
                         End If

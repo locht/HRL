@@ -10,7 +10,7 @@
     Public Property WDATAMODE_NAME As String
     Public Property EFFECT_DATE As DateTime?
     Public Property EXPIRE_DATE As DateTime?
-    Public Property WINDEX As Int16?
+    Public Property WINDEX As Decimal?
     Public Property NOTE As String
     Public Property STATUS As Int16?
     Public Property IS_DISPLAY As Boolean?
@@ -19,7 +19,7 @@
     Public Property IS_LEAVE As Boolean?
     'Public Property SYMBOL_FUN_ID     NUMBER,
     Public Property IS_LEAVE_WEEKLY As Boolean?
-    Public Property IS_LAVE_HOLIDAY As Boolean?
+    Public Property IS_LEAVE_HOLIDAY As Boolean?
     Public Property IS_DAY_HALF As Boolean?
     Public Property CREATED_BY As String
     Public Property CREATED_DATE As DateTime?

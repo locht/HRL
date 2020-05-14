@@ -221,13 +221,13 @@ Partial Public Class ctrlAT_Symbols
     Protected WithEvents ckIS_LEAVE_WEEKLY As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''ckIS_LAVE_HOLIDAY control.
+    '''ckIS_LEAVE_HOLIDAY control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ckIS_LAVE_HOLIDAY As Global.System.Web.UI.WebControls.CheckBox
+    Protected WithEvents ckIS_LEAVE_HOLIDAY As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''ckIS_DAY_HALF control.

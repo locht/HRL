@@ -86,12 +86,12 @@ Partial Public Class AttendanceRepository
             If isInsert Then
                 Context.AT_SYMBOLS.AddObject(obj)
             End If
+            gid = obj.ID
+            Context.SaveChanges(log)
             Using cls As New DataAccess.QueryData
                 Dim obj_Add_Cols = New With {.P_TABLE = "AT_DATA_ALL", .P_COL = objData.WCODE.Trim.ToUpper, .P_TYPE_COL_ID = objData.WDATATYEID, .P_OUT = cls.OUT_NUMBER}
                 Dim store = cls.ExecuteStore("PKG_ATTENDANCE_LIST.ADD_COLS_TABLE", obj_Add_Cols)
             End Using
-            gid = obj.ID
-            Context.SaveChanges(log)
             Return True
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "SaveAT_Symnols")
@@ -131,7 +131,7 @@ Partial Public Class AttendanceRepository
                                         .IS_DISPLAY_PORTAL = p.p.IS_DISPLAY_PORTAL,
                                         .IS_LEAVE = p.p.IS_LEAVE,
                                         .IS_LEAVE_WEEKLY = p.p.IS_LEAVE_WEEKLY,
-                                        .IS_LAVE_HOLIDAY = p.p.IS_LEAVE_HOLIDAY,
+                                        .IS_LEAVE_HOLIDAY = p.p.IS_LEAVE_HOLIDAY,
                                         .IS_DAY_HALF = p.p.IS_DAY_HALF,
                                         .CREATED_BY = p.p.CREATED_BY,
                                         .CREATED_DATE = p.p.CREATED_DATE,
@@ -146,9 +146,28 @@ Partial Public Class AttendanceRepository
             If Not String.IsNullOrEmpty(_filter.WNAME) Then
                 lst = lst.Where(Function(f) f.WNAME.ToLower().Contains(_filter.WNAME.ToLower()))
             End If
+            If Not String.IsNullOrEmpty(_filter.WGROUP_NAME) Then
+                lst = lst.Where(Function(f) f.WGROUP_NAME.ToLower().Contains(_filter.WGROUP_NAME.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.WDATATYE_NAME) Then
+                lst = lst.Where(Function(f) f.WDATATYE_NAME.ToLower().Contains(_filter.WDATATYE_NAME.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.WDATAMODE_NAME) Then
+                lst = lst.Where(Function(f) f.WDATAMODE_NAME.ToLower().Contains(_filter.WDATAMODE_NAME.ToLower()))
+            End If
+            If _filter.EFFECT_DATE IsNot Nothing Then
+                lst = lst.Where(Function(f) f.EFFECT_DATE = _filter.EFFECT_DATE)
+            End If
+            If _filter.EXPIRE_DATE IsNot Nothing Then
+                lst = lst.Where(Function(f) f.EXPIRE_DATE = _filter.EXPIRE_DATE)
+            End If
+            If _filter.WINDEX IsNot Nothing Then
+                lst = lst.Where(Function(f) f.WINDEX = _filter.WINDEX)
+            End If
             If Not String.IsNullOrEmpty(_filter.NOTE) Then
                 lst = lst.Where(Function(f) f.NOTE.ToLower().Contains(_filter.NOTE.ToLower()))
             End If
+
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
             lst = lst.Skip(PageIndex * PageSize).Take(PageSize)

@@ -23605,10 +23605,10 @@ Namespace AttendanceBusiness
         Private IS_DISPLAY_PORTALField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IS_LAVE_HOLIDAYField As System.Nullable(Of Boolean)
+        Private IS_LEAVEField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IS_LEAVEField As System.Nullable(Of Boolean)
+        Private IS_LEAVE_HOLIDAYField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_LEAVE_WEEKLYField As System.Nullable(Of Boolean)
@@ -23650,7 +23650,7 @@ Namespace AttendanceBusiness
         Private WGROUP_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private WINDEXField As System.Nullable(Of Short)
+        Private WINDEXField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private WNAMEField As String
@@ -23796,19 +23796,6 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IS_LAVE_HOLIDAY() As System.Nullable(Of Boolean)
-            Get
-                Return Me.IS_LAVE_HOLIDAYField
-            End Get
-            Set
-                If (Me.IS_LAVE_HOLIDAYField.Equals(value) <> true) Then
-                    Me.IS_LAVE_HOLIDAYField = value
-                    Me.RaisePropertyChanged("IS_LAVE_HOLIDAY")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property IS_LEAVE() As System.Nullable(Of Boolean)
             Get
                 Return Me.IS_LEAVEField
@@ -23817,6 +23804,19 @@ Namespace AttendanceBusiness
                 If (Me.IS_LEAVEField.Equals(value) <> true) Then
                     Me.IS_LEAVEField = value
                     Me.RaisePropertyChanged("IS_LEAVE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_LEAVE_HOLIDAY() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_LEAVE_HOLIDAYField
+            End Get
+            Set
+                If (Me.IS_LEAVE_HOLIDAYField.Equals(value) <> true) Then
+                    Me.IS_LEAVE_HOLIDAYField = value
+                    Me.RaisePropertyChanged("IS_LEAVE_HOLIDAY")
                 End If
             End Set
         End Property
@@ -23991,7 +23991,7 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property WINDEX() As System.Nullable(Of Short)
+        Public Property WINDEX() As System.Nullable(Of Decimal)
             Get
                 Return Me.WINDEXField
             End Get

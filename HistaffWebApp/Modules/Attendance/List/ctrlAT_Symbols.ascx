@@ -23,7 +23,7 @@
     {
         display: none;
     }
-    #ctl00_MainContent_ctrlAT_Symbols_rgDanhMuc_ctl00_ctl02_ctl02_FilterCheckBox_IS_LAVE_HOLIDAY
+    #ctl00_MainContent_ctrlAT_Symbols_rgDanhMuc_ctl00_ctl02_ctl02_FilterCheckBox_IS_LEAVE_HOLIDAY
     {
         display: none;
     }
@@ -150,19 +150,19 @@
                     <asp:CheckBox ID="ckIS_LEAVE_WEEKLY" runat="server" />
                 </td>
                 <td>
-                    <%# Translate("Nghỉ hàng tuần")%>
+                    <%# Translate("Được đăng ký cho ngày Nghỉ hàng tuần")%>
                 </td>
                 <td class="lb">
-                    <asp:CheckBox ID="ckIS_LAVE_HOLIDAY" runat="server" />
+                    <asp:CheckBox ID="ckIS_LEAVE_HOLIDAY" runat="server" />
                 </td>
                 <td>
-                    <%# Translate("Nghỉ lễ")%>
+                    <%# Translate("Được đăng ký cho ngày lễ")%>
                 </td>
                 <td class="lb">
                     <asp:CheckBox ID="ckIS_DAY_HALF" runat="server" />
                 </td>
                 <td>
-                    <%# Translate("Nghỉ nửa ngày")%>
+                    <%# Translate("Được đăng ký Nghỉ nửa ngày")%>
                 </td>
                 <td colspan="2">
                 </td>
@@ -184,7 +184,7 @@
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,WCODE,WNAME,WGROUPID, WGROUP_NAME, WDATATYEID, WDATATYE_NAME, WDATAMODEID, WDATAMODE_NAME, EFFECT_DATE, EXPIRE_DATE, WINDEX, NOTE, STATUS, IS_DISPLAY, IS_DATAFROMEXCEL, IS_DISPLAY_PORTAL, IS_LEAVE, IS_LEAVE_WEEKLY, IS_LAVE_HOLIDAY, IS_DAY_HALF, CREATED_BY, CREATED_DATE, CREATED_LOG, MODIFIED_BY, MODIFIED_DATE, MODIFIED_LOG">
+            <MasterTableView DataKeyNames="ID,WCODE,WNAME,WGROUPID, WGROUP_NAME, WDATATYEID, WDATATYE_NAME, WDATAMODEID, WDATAMODE_NAME, EFFECT_DATE, EXPIRE_DATE, WINDEX, NOTE, STATUS, IS_DISPLAY, IS_DATAFROMEXCEL, IS_DISPLAY_PORTAL, IS_LEAVE, IS_LEAVE_WEEKLY, IS_LEAVE_HOLIDAY, IS_DAY_HALF" ClientDataKeyNames="ID,WCODE,WNAME,WGROUPID, WGROUP_NAME, WDATATYEID, WDATATYE_NAME, WDATAMODEID, WDATAMODE_NAME, EFFECT_DATE, EXPIRE_DATE, WINDEX, NOTE, STATUS, IS_DISPLAY, IS_DATAFROMEXCEL, IS_DISPLAY_PORTAL, IS_LEAVE, IS_LEAVE_WEEKLY, IS_LEAVE_HOLIDAY, IS_DAY_HALF">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -207,34 +207,31 @@
                         UniqueName="EFFECT_DATE" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EFFECT_DATE" />
                     <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hết hiệu lực %>" DataField="EXPIRE_DATE"
                         UniqueName="EXPIRE_DATE" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EXPIRE_DATE" />
-                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Thứ tự hiển thị %>" DataField="WINDEX"
+                     <tlk:GridNumericColumn  HeaderText="<%$ Translate: Thứ tự hiển thị %>" DataField="WINDEX"
                         UniqueName="WINDEX" SortExpression="WINDEX" HeaderStyle-Width="50px" />
 
-                     <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Hiển thị %>" DataField="IS_DISPLAY" DataType="System.Boolean"
+                     <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Hiển thị %>" DataField="IS_DISPLAY" 
                                 ItemStyle-VerticalAlign="Middle" UniqueName="IS_DISPLAY" SortExpression="IS_DISPLAY" HeaderStyle-Width="40px"
-                                FilterControlWidth="99%" ShowFilterIcon="false"/>
-
-                  <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Dữ liệu import %>" DataField="IS_DATAFROMEXCEL" DataType="System.Boolean"
+                                FilterControlWidth="99%" ShowFilterIcon="false"></tlk:GridCheckBoxColumn>
+                  <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Dữ liệu import %>" DataField="IS_DATAFROMEXCEL"
                                 ItemStyle-VerticalAlign="Middle" UniqueName="IS_DATAFROMEXCEL" SortExpression="IS_DATAFROMEXCEL" HeaderStyle-Width="40px"
-                                FilterControlWidth="99%" ShowFilterIcon="false"/>
-
-                  <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Hiển thị portal %>" DataField="IS_DISPLAY_PORTAL" DataType="System.Boolean"
+                                FilterControlWidth="99%" ShowFilterIcon="false"></tlk:GridCheckBoxColumn>
+                  <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Hiển thị portal %>" DataField="IS_DISPLAY_PORTAL"
                                 ItemStyle-VerticalAlign="Middle" UniqueName="IS_DISPLAY_PORTAL" SortExpression="IS_DISPLAY_PORTAL" HeaderStyle-Width="40px"
-                                FilterControlWidth="99%" ShowFilterIcon="false"/>
-                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Dữ liệu đăng ký nghỉ %>" DataField="IS_LEAVE" DataType="System.Boolean"
+                                FilterControlWidth="99%" ShowFilterIcon="false"></tlk:GridCheckBoxColumn>
+                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Dữ liệu đăng ký nghỉ %>" DataField="IS_LEAVE"
                                 ItemStyle-VerticalAlign="Middle" UniqueName="IS_LEAVE" SortExpression="IS_LEAVE" HeaderStyle-Width="40px"
-                                FilterControlWidth="99%" ShowFilterIcon="false"/>
-
-                   <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Nghỉ nguyên tuần %>" DataField="IS_LEAVE_WEEKLY" DataType="System.Boolean"
+                                FilterControlWidth="99%" ShowFilterIcon="false"></tlk:GridCheckBoxColumn>
+                   <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Được đăng ký cho ngày Nghỉ hàng tuần %>" DataField="IS_LEAVE_WEEKLY"
                                 ItemStyle-VerticalAlign="Middle" UniqueName="IS_LEAVE_WEEKLY" SortExpression="IS_LEAVE_WEEKLY" HeaderStyle-Width="40px"
-                                FilterControlWidth="99%" ShowFilterIcon="false"/>
-                   
-                   <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Nghỉ ngày lễ %>" DataField="IS_LAVE_HOLIDAY" DataType="System.Boolean"
-                                ItemStyle-VerticalAlign="Middle" UniqueName="IS_LAVE_HOLIDAY" SortExpression="IS_LAVE_HOLIDAY" HeaderStyle-Width="40px"
-                                FilterControlWidth="99%" ShowFilterIcon="false"/>
-                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Nghỉ nửa ngày %>" DataField="IS_DAY_HALF" DataType="System.Boolean"
+                                FilterControlWidth="99%" ShowFilterIcon="false"></tlk:GridCheckBoxColumn>
+                   <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Được đăng ký cho Ngày lễ %>" DataField="IS_LEAVE_HOLIDAY"
+                                ItemStyle-VerticalAlign="Middle" UniqueName="IS_LEAVE_HOLIDAY" SortExpression="IS_LEAVE_HOLIDAY" HeaderStyle-Width="40px"
+                                FilterControlWidth="99%" ShowFilterIcon="false"></tlk:GridCheckBoxColumn>
+                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Được đăng ký cho Nghỉ nửa ngày %>" DataField="IS_DAY_HALF"
                                 ItemStyle-VerticalAlign="Middle" UniqueName="IS_DAY_HALF" SortExpression="IS_DAY_HALF" HeaderStyle-Width="40px"
-                                FilterControlWidth="99%" ShowFilterIcon="false"/>
+                                FilterControlWidth="99%" ShowFilterIcon="false"></tlk:GridCheckBoxColumn>
+
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mô tả %>" DataField="NOTE" UniqueName="NOTE"
                         SortExpression="NOTE" />
                 </Columns>
