@@ -12,9 +12,11 @@
     Public Property TYPE_TRAIN_ID As Decimal?
     Public Property TYPE_TRAIN_NAME As String
     Public Property SPECIALIZED_TRAIN As String
-    Public Property RESULT_TRAIN As String
+    Public Property RESULT_TRAIN As String 'Không dùng Xếp loại kiểu text vì chuyển qua combobox
+    Public Property RESULT_TRAIN_ID As Decimal?
+    Public Property RESULT_TRAIN_NAME As String
     Public Property CERTIFICATE As String
-    Public Property CERTIFICATE_ID As String
+    Public Property CERTIFICATE_ID As Decimal?
     Public Property EFFECTIVE_DATE_FROM As Date?
     Public Property EFFECTIVE_DATE_TO As Date?
     Public Property CREATED_DATE As Date?

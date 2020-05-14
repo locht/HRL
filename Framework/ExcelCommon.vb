@@ -514,7 +514,7 @@ Public Class ExcelCommon
                 style.HorizontalAlignment = TextAlignmentType.Center
             Case StyleType.Stt
                 style.HorizontalAlignment = TextAlignmentType.Center
-            Case StyleType.Body
+            Case StyleType.Body            
             Case StyleType.None
                 style.Borders(BorderType.TopBorder).LineStyle = CellBorderType.None
                 style.Borders(BorderType.BottomBorder).LineStyle = CellBorderType.None
@@ -555,6 +555,14 @@ Public Class ExcelCommon
                             ExportExcelNoTemplate_SetStyle(style, StyleType.Stt)
                             If dtData.Rows(iRow)(iCol) IsNot DBNull.Value Then
                                 value = Double.Parse(dtData.Rows(iRow)(iCol))
+                            End If
+                            cell.PutValue(value)
+                            cell.SetStyle(style)
+                        ElseIf dtData.Columns(iCol).ColumnName.Trim.ToLower.Contains("YEAR".Trim.ToLower) Then
+                            Dim value As Integer? = Nothing
+                            ExportExcelNoTemplate_SetStyle(style, StyleType.Stt)
+                            If dtData.Rows(iRow)(iCol) IsNot DBNull.Value Then
+                                value = Integer.Parse(dtData.Rows(iRow)(iCol))
                             End If
                             cell.PutValue(value)
                             cell.SetStyle(style)

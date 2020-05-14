@@ -21,7 +21,7 @@ Public Class Global_asax
         'Chạy Timer Schedule background cho Profile
         Dim objProfileBgProcess As New ProfileBusinessBackgroundProcess
         If IsNumeric(ConfigurationManager.AppSettings("HUBGPROCESSINTERVAL")) Then
-            objProfileBgProcess.Interval = Convert.ToInt32(ConfigurationManager.AppSettings("HUBGPROCESSINTERVAL")) * 1000
+            objProfileBgProcess.Interval = Convert.ToInt32(ConfigurationManager.AppSettings("HUBGPROCESSINTERVAL")) * 1000        
         End If
         objProfileBgProcess.Start()
 

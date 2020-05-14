@@ -31048,7 +31048,7 @@ Namespace ProfileBusiness
         Private CERTIFICATE_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private CERTIFICATE_IDField As String
+        Private CERTIFICATE_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CONTENT_LEVELField As String
@@ -31132,6 +31132,12 @@ Namespace ProfileBusiness
         Private RESULT_TRAINField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RESULT_TRAIN_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RESULT_TRAIN_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SPECIALIZED_TRAINField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -31189,12 +31195,12 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property CERTIFICATE_ID() As String
+        Public Property CERTIFICATE_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.CERTIFICATE_IDField
             End Get
             Set
-                If (Object.ReferenceEquals(Me.CERTIFICATE_IDField, value) <> true) Then
+                If (Me.CERTIFICATE_IDField.Equals(value) <> true) Then
                     Me.CERTIFICATE_IDField = value
                     Me.RaisePropertyChanged("CERTIFICATE_ID")
                 End If
@@ -31548,6 +31554,32 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.RESULT_TRAINField, value) <> true) Then
                     Me.RESULT_TRAINField = value
                     Me.RaisePropertyChanged("RESULT_TRAIN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RESULT_TRAIN_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.RESULT_TRAIN_IDField
+            End Get
+            Set
+                If (Me.RESULT_TRAIN_IDField.Equals(value) <> true) Then
+                    Me.RESULT_TRAIN_IDField = value
+                    Me.RaisePropertyChanged("RESULT_TRAIN_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RESULT_TRAIN_NAME() As String
+            Get
+                Return Me.RESULT_TRAIN_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.RESULT_TRAIN_NAMEField, value) <> true) Then
+                    Me.RESULT_TRAIN_NAMEField = value
+                    Me.RaisePropertyChanged("RESULT_TRAIN_NAME")
                 End If
             End Set
         End Property

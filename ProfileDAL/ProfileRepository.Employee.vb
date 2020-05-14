@@ -3392,9 +3392,12 @@ Partial Class ProfileRepository
                         From ot In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.FORM_TRAIN_ID).DefaultIfEmpty
                         From ott In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.TYPE_TRAIN_ID).DefaultIfEmpty
                         From ot1 In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.CERTIFICATE).DefaultIfEmpty
+                        From ot_m In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.RESULT_TRAIN_ID).DefaultIfEmpty
+                        From ot_level In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.LEVEL_ID And f.TYPE_CODE = "LEARNING_LEVEL").DefaultIfEmpty
                         From ot_train In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ot.TYPE_ID And f.CODE = "TRAINING_FORM").DefaultIfEmpty
                         From ot_type In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ott.TYPE_ID And f.CODE = "TRAINING_TYPE").DefaultIfEmpty
-                        From ot_level In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.LEVEL_ID And f.TYPE_CODE = "LEARNING_LEVEL").DefaultIfEmpty
+                        From ot_cer In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ot1.TYPE_ID And f.CODE = "CERTIFICATE_TYPE").DefaultIfEmpty
+                        From ot_mark_edu In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ot_m.TYPE_ID And f.CODE = "MARK_EDU").DefaultIfEmpty
             If Not String.IsNullOrEmpty(_filter.EMPLOYEE_ID) Then
                 query = query.Where(Function(f) f.p.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
             End If
@@ -3412,6 +3415,8 @@ Partial Class ProfileRepository
                                        .FILE_NAME = p.p.FILE_NAME,
                                        .SPECIALIZED_TRAIN = p.p.SPECIALIZED_TRAIN,
                                        .RESULT_TRAIN = p.p.RESULT_TRAIN,
+                                       .RESULT_TRAIN_ID = p.p.RESULT_TRAIN_ID,
+                                       .RESULT_TRAIN_NAME = p.ot_m.NAME_VN,
                                        .CERTIFICATE = p.ot1.NAME_VN,
                                        .CERTIFICATE_ID = p.p.CERTIFICATE,
                                        .EFFECTIVE_DATE_FROM = p.p.EFFECTIVE_DATE_FROM,
@@ -3432,6 +3437,37 @@ Partial Class ProfileRepository
                                        .NOTE = p.p.NOTE,
                                        .CERTIFICATE_CODE = p.p.CERTIFICATE_CODE,
                                        .TYPE_TRAIN_NAME = p.p.TYPE_TRAIN_NAME})
+
+            If _filter.FROM_DATE IsNot Nothing Then
+                lst = lst.Where(Function(p) p.FROM_DATE = _filter.FROM_DATE)
+            End If
+            If _filter.TO_DATE IsNot Nothing Then
+                lst = lst.Where(Function(p) p.TO_DATE = _filter.TO_DATE)
+            End If
+            If _filter.NAME_SHOOLS <> "" Then
+                lst = lst.Where(Function(p) p.NAME_SHOOLS.Trim.ToLower.Contains(_filter.NAME_SHOOLS.Trim.ToLower))
+            End If
+            If _filter.SPECIALIZED_TRAIN <> "" Then
+                lst = lst.Where(Function(p) p.SPECIALIZED_TRAIN.Trim.ToLower.Contains(_filter.SPECIALIZED_TRAIN.Trim.ToLower))
+            End If
+            If _filter.LEVEL_NAME <> "" Then
+                lst = lst.Where(Function(p) p.LEVEL_NAME.Trim.ToLower.Contains(_filter.LEVEL_NAME.Trim.ToLower))
+            End If
+            If _filter.CERTIFICATE <> "" Then
+                lst = lst.Where(Function(p) p.CERTIFICATE.Trim.ToLower.Contains(_filter.CERTIFICATE.Trim.ToLower))
+            End If
+            If _filter.RESULT_TRAIN_NAME <> "" Then
+                lst = lst.Where(Function(p) p.RESULT_TRAIN_NAME.Trim.ToLower.Contains(_filter.RESULT_TRAIN_NAME.Trim.ToLower))
+            End If
+            If _filter.YEAR_GRA IsNot Nothing Then
+                lst = lst.Where(Function(p) p.YEAR_GRA = _filter.YEAR_GRA)
+            End If
+            If _filter.CONTENT_LEVEL <> "" Then
+                lst = lst.Where(Function(p) p.CONTENT_LEVEL.Trim.ToLower.Contains(_filter.CONTENT_LEVEL.Trim.ToLower))
+            End If
+            If _filter.FORM_TRAIN_NAME <> "" Then
+                lst = lst.Where(Function(p) p.FORM_TRAIN_NAME.Trim.ToLower.Contains(_filter.FORM_TRAIN_NAME.Trim.ToLower))
+            End If
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
             lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
@@ -3458,7 +3494,7 @@ Partial Class ProfileRepository
             objTitleData.FORM_TRAIN_ID = objTitle.FORM_TRAIN_ID
             objTitleData.SPECIALIZED_TRAIN = objTitle.SPECIALIZED_TRAIN
             objTitleData.RESULT_TRAIN = objTitle.RESULT_TRAIN
-            objTitleData.CERTIFICATE = objTitle.CERTIFICATE
+            objTitleData.CERTIFICATE = objTitle.CERTIFICATE_ID
             objTitleData.EFFECTIVE_DATE_FROM = objTitle.EFFECTIVE_DATE_FROM
             objTitleData.EFFECTIVE_DATE_TO = objTitle.EFFECTIVE_DATE_TO
             objTitleData.EMPLOYEE_ID = objTitle.EMPLOYEE_ID
@@ -3470,6 +3506,7 @@ Partial Class ProfileRepository
             objTitleData.NOTE = objTitle.NOTE
             objTitleData.CERTIFICATE_CODE = objTitle.CERTIFICATE_CODE
             objTitleData.TYPE_TRAIN_NAME = objTitle.TYPE_TRAIN_NAME
+            objTitleData.RESULT_TRAIN_ID = objTitle.RESULT_TRAIN_ID
 
             Context.HU_PRO_TRAIN_OUT_COMPANY.AddObject(objTitleData)
             Context.SaveChanges(log)
@@ -3497,7 +3534,7 @@ Partial Class ProfileRepository
             objTitleData.FORM_TRAIN_ID = objTitle.FORM_TRAIN_ID
             objTitleData.SPECIALIZED_TRAIN = objTitle.SPECIALIZED_TRAIN
             objTitleData.RESULT_TRAIN = objTitle.RESULT_TRAIN
-            objTitleData.CERTIFICATE = objTitle.CERTIFICATE
+            objTitleData.CERTIFICATE = objTitle.CERTIFICATE_ID
             objTitleData.EFFECTIVE_DATE_FROM = objTitle.EFFECTIVE_DATE_FROM
             objTitleData.EFFECTIVE_DATE_TO = objTitle.EFFECTIVE_DATE_TO
             objTitleData.EMPLOYEE_ID = objTitle.EMPLOYEE_ID
@@ -3510,6 +3547,7 @@ Partial Class ProfileRepository
             objTitleData.NOTE = objTitle.NOTE
             objTitleData.CERTIFICATE_CODE = objTitle.CERTIFICATE_CODE
             objTitleData.TYPE_TRAIN_NAME = objTitle.TYPE_TRAIN_NAME
+            objTitleData.RESULT_TRAIN_ID = objTitle.RESULT_TRAIN_ID
             Context.SaveChanges(log)
             gID = objTitleData.ID
             Return True

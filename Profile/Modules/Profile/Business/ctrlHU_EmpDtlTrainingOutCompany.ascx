@@ -14,24 +14,24 @@
         <table class="table-form">
             <tr>
                 <td class="lb" style="width: 130px">
-                    <asp:Label runat="server" ID="lbTuThang" Text="Từ tháng"></asp:Label>
+                    <asp:Label runat="server" ID="lbTuNgay" Text="Từ ngày"></asp:Label>
+                    <span class="lbReq">*</span>
                 </td>
-                <td>
-                    <tlk:RadMonthYearPicker ID="rdTuThang" runat="server" DateInput-DisplayDateFormat="MM/yyyy"
-                        DateInput-DateFormat="dd/MM/yyyy">
-                    </tlk:RadMonthYearPicker>
-                    <asp:RequiredFieldValidator ID="rqTuThang" ControlToValidate="rdTuThang" runat="server"
-                        ErrorMessage="Bạn phải nhập từ tháng." ToolTip="Bạn phải nhập từ tháng."> </asp:RequiredFieldValidator>
+                <td>                    
+                     <tlk:RadDatePicker ID="rdTuNgay" runat="server">
+                    </tlk:RadDatePicker>
+                    <asp:RequiredFieldValidator ID="rqTuNgay" ControlToValidate="rdTuNgay" runat="server"
+                        ErrorMessage="Bạn phải nhập từ ngày." ToolTip="Bạn phải nhập từ ngày."> </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb" style="width: 200px">
-                    <asp:Label runat="server" ID="lbToiThang" Text="Đến tháng"></asp:Label>
+                    <asp:Label runat="server" ID="lbToiNgay" Text="Đến ngày"></asp:Label>
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadMonthYearPicker ID="rdToiThang" runat="server" DateInput-DisplayDateFormat="MM/yyyy"
-                        DateInput-DateFormat="dd/MM/yyyy" >
-                    </tlk:RadMonthYearPicker>
-                    <asp:CustomValidator ID="cvalToiThang" runat="server" ErrorMessage="Từ tháng không đươc lớn hơn tới tháng."
-                        ToolTip="Từ tháng không đươc lớn hơn tới tháng.">
+                <tlk:RadDatePicker ID="rdToiNgay" runat="server">
+                    </tlk:RadDatePicker>
+                    <asp:CustomValidator ID="cvalToiNgay" runat="server" ErrorMessage="Từ ngày không được lớn hơn tới ngày."
+                        ToolTip="Từ ngày không được lớn hơn tới ngày.">
                     </asp:CustomValidator>
                     <%--<asp:RequiredFieldValidator ID="rqToiThang" ControlToValidate="rdToiThang" runat="server"
                         ErrorMessage="<%$ Translate: Bạn phải nhập tới tháng. %>" ToolTip="<%$ Translate: Bạn phải nhập tới tháng. %>"> </asp:RequiredFieldValidator>--%>
@@ -40,6 +40,7 @@
             <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbTrainingSchool" Text="Tên trường"></asp:Label>
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtTrainingSchool" runat="server">
@@ -48,7 +49,7 @@
                         runat="server" ErrorMessage="Bạn phải nhập tên trường." ToolTip="Bạn phải nhập tên trường."> </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbChuyenNganh" Text="Chuyên ngành"></asp:Label>
+                    <asp:Label runat="server" ID="lbChuyenNganh" Text="Ngành học"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtChuyenNganh" SkinID="Textbox250" runat="server">
@@ -64,104 +65,29 @@
                     </tlk:RadComboBox>
                 </td>
                 <td class="lb">
+                    <asp:Label runat="server" ID="lbBangCap" Text="Bằng cấp/Chứng chỉ"></asp:Label>
+                </td>
+                <td>
+                     <tlk:RadComboBox ID="cboRemark" runat="server" Width="160px" CausesValidation="false">
+                     </tlk:RadComboBox>
+                </td>
+               <%-- <td class="lb">
                     <asp:Label runat="server" ID="Label2" Text="Điểm số"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="rtxtPointLevel" runat="server">
                     </tlk:RadTextBox>
-                </td>
+                </td>--%>
             </tr>
             <tr>
-                 <td class="lb">
-                    <asp:Label runat="server" ID="Label4" Text="Nội dung đào tạo"></asp:Label>
-                </td>
-                <td colspan="3">
-                    <tlk:RadTextBox ID="rtxtContentLevel" runat="server" Width="100%">
-                    </tlk:RadTextBox>
-                </td>
-            </tr>
-
-            <tr>
-                 <td class="lb">
-                    <asp:Label runat="server" ID="lbTrainingType" Text="Loại hình đào tạo"></asp:Label>
+              <td class="lb">
+                    <asp:Label runat="server" ID="lbKetQua" Text="Xếp loại"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtTrainingType" runat="server">
-                    </tlk:RadTextBox>
-                </td>
-                <td class="lb">
-                    <asp:Label runat="server" ID="lbTrainingForm" Text="Hình thức đào tạo"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cboTrainingForm" runat="server">
+                    <tlk:RadComboBox ID="cboKetQua" runat="server">
                     </tlk:RadComboBox>
                 </td>
-            </tr>
-
-            <tr>
-                <td class="lb">
-                    <asp:Label runat="server" ID="lbBangCap" Text="Loại chứng chỉ"></asp:Label>
-                </td>
-                <td>
-                     <tlk:RadComboBox ID="cboRemark" runat="server" Width="160px" AutoPostBack="true" CausesValidation="false">
-                     </tlk:RadComboBox>
-                </td>
-                <td class="lb">
-                    <asp:Label runat="server" ID="Label5" Text="Mã số chứng chỉ"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadTextBox ID="txtCertificateCode" runat="server">
-                    </tlk:RadTextBox>
-                </td>
-            </tr>
-            <tr>
-                <td class="lb">
-                    <asp:Label runat="server"  ID="lbFrom" Text="Hiệu lực chứng chỉ từ"></asp:Label>
-                </td>
-                <td >
-                    <tlk:RadDatePicker ID="rdFrom" AutoPostBack="true" runat="server" Enabled="false">
-                    </tlk:RadDatePicker>
-                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="rdFrom" 
-                        runat="server" ErrorMessage="Bạn phải nhập ngày hiệu lực chứng chỉ." ToolTip="Bạn phải nhập ngày hiệu lực chứng chỉ."> </asp:RequiredFieldValidator>
-                </td>
-                 <%-- <td> 
-                    <tlk:RadDatePicker ID="rdStartDate" runat="server" AutoPostBack="True">
-                    </tlk:RadDatePicker>
-                    <asp:RequiredFieldValidator ID="reqStartDate" ControlToValidate="rdStartDate" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn phải nhập ngày hiệu lực chứng chỉ. %>" ToolTip="<%$ Translate: Bạn phải nhập ngày hiệu lực chứng chỉ. %>"> </asp:RequiredFieldValidator>
-                   <asp:CustomValidator ID="CompareStartDate" runat="server" ErrorMessage="<%$ Translate: Ngày bắt đầu phải lớn hơn ngày kết thúc gần nhất %>"
-                        ToolTip="<%$ Translate: Ngày bắt đầu phải lớn hơn ngày kết thúc gần nhất %>">
-                    </asp:CustomValidator>
-                </td>--%>
-                <td class="lb">
-                    <asp:Label runat="server" ID="lbTo" Text="Hiệu lực chứng chỉ đến"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadDatePicker ID="rdTo" AutoPostBack="true" runat="server" Enabled="false">
-                    </tlk:RadDatePicker>
-                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="rdTo" 
-                        runat="server" ErrorMessage="Bạn phải nhập ngày hết hiệu lực chứng chỉ." ToolTip="Bạn phải nhập ngày hết hiệu lực chứng chỉ."> </asp:RequiredFieldValidator>
-                    <asp:CompareValidator ID="CompareValidator1" runat="server" ToolTip="Ngày hiệu lực chứng chỉ phải nhỏ hơn ngày hết hiệu lực chứng chỉ"
-                        ErrorMessage="Ngày hiệu lực chứng chỉ phải nhỏ hơn ngày hết hiệu lực chứng chỉ"
-                        Type="Date" Operator="GreaterThan" ControlToCompare="rdFrom" ControlToValidate="rdTo"></asp:CompareValidator>
-                </td>
-            </tr>
-            <tr>
-                <td class="lb">
-                    <asp:Label runat="server" ID="lbKetQua" Text="Xếp loại tốt nghiệp"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadTextBox ID="txtKetQua" SkinID="Textbox250" runat="server">
-                    </tlk:RadTextBox>
-                </td>
-                <td >
-                    <asp:Label runat="server" ID="Label3" Text="Cần gia hạn"></asp:Label>
-                </td>
-                 <td >
-                    <asp:CheckBox ID="chkTerminate" runat="server" />
-                 </td>
-            </tr>
-            <tr>
+                
                 <td class="lb">
                     <asp:Label runat="server" ID="lbGraduateYear" Text="Năm tốt nghiệp"></asp:Label>                  
                 </td>
@@ -177,10 +103,36 @@
                 </tlk:RadNumericTextBox>
 
 
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rntGraduateYear"
+                  <%--  <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rntGraduateYear"
                         runat="server" ErrorMessage="Bạn phải nhập năm tốt nghiệp."
-                        ToolTip="Bạn phải nhập năm tốt nghiệp."> </asp:RequiredFieldValidator>
+                        ToolTip="Bạn phải nhập năm tốt nghiệp."> </asp:RequiredFieldValidator>--%>
                 </td>
+            </tr>
+
+            <tr>
+                <%-- <td class="lb">
+                    <asp:Label runat="server" ID="lbTrainingType" Text="Loại hình đào tạo"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="txtTrainingType" runat="server">
+                    </tlk:RadTextBox>
+                </td>--%>
+                 <td class="lb">
+                    <asp:Label runat="server" ID="Label4" Text="Nội dung đào tạo"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="rtxtContentLevel" runat="server" Width="100%">
+                    </tlk:RadTextBox>
+                </td>
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbTrainingForm" Text="Hình thức đào tạo"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboTrainingForm" runat="server">
+                    </tlk:RadComboBox>
+                </td>
+            </tr>
+             <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbRemark" Text="Đính kèm tập tin"></asp:Label>
                 </td>
@@ -188,18 +140,67 @@
                     <tlk:RadTextBox ID="txtRemark" ReadOnly="true" runat="server">
                     </tlk:RadTextBox>
                 </td>
-                <td colspan="3">
+                <td colspan="2">
                     <tlk:RadButton runat="server" ID="btnUploadFile" SkinID="ButtonView" CausesValidation="false"
                         TabIndex="3" />
                     <tlk:RadTextBox ID="txtUploadFile" runat="server" Visible="false">
                     </tlk:RadTextBox>
-                </td>
-                <td>
                     <tlk:RadButton runat="server" ID="btnDownload" Text="Tải xuống"
                         CausesValidation="false" OnClientClicked="rbtClicked" TabIndex="3" EnableViewState="false">
                     </tlk:RadButton>
                 </td>
             </tr>
+        <%--    <tr>
+                <td class="lb">
+                    <asp:Label runat="server" ID="Label5" Text="Mã số chứng chỉ"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="txtCertificateCode" runat="server">
+                    </tlk:RadTextBox>
+                </td>
+            </tr>--%>
+            <%--<tr>
+                <td class="lb">
+                    <asp:Label runat="server"  ID="lbFrom" Text="Hiệu lực chứng chỉ từ"></asp:Label>
+                </td>
+                <td >
+                    <tlk:RadDatePicker ID="rdFrom" runat="server" Enabled="false">
+                    </tlk:RadDatePicker>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="rdFrom" 
+                        runat="server" ErrorMessage="Bạn phải nhập ngày hiệu lực chứng chỉ." ToolTip="Bạn phải nhập ngày hiệu lực chứng chỉ."> </asp:RequiredFieldValidator>
+                </td>
+                  <td> 
+                    <tlk:RadDatePicker ID="rdStartDate" runat="server">
+                    </tlk:RadDatePicker>
+                    <asp:RequiredFieldValidator ID="reqStartDate" ControlToValidate="rdStartDate" runat="server"
+                        ErrorMessage="<%$ Translate: Bạn phải nhập ngày hiệu lực chứng chỉ. %>" ToolTip="<%$ Translate: Bạn phải nhập ngày hiệu lực chứng chỉ. %>"> </asp:RequiredFieldValidator>
+                   <asp:CustomValidator ID="CompareStartDate" runat="server" ErrorMessage="<%$ Translate: Ngày bắt đầu phải lớn hơn ngày kết thúc gần nhất %>"
+                        ToolTip="<%$ Translate: Ngày bắt đầu phải lớn hơn ngày kết thúc gần nhất %>">
+                    </asp:CustomValidator>
+                </td>
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbTo" Text="Hiệu lực chứng chỉ đến"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadDatePicker ID="rdTo" runat="server" Enabled="false">
+                    </tlk:RadDatePicker>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="rdTo" 
+                        runat="server" ErrorMessage="Bạn phải nhập ngày hết hiệu lực chứng chỉ." ToolTip="Bạn phải nhập ngày hết hiệu lực chứng chỉ."> </asp:RequiredFieldValidator>
+                    <asp:CompareValidator ID="CompareValidator1" runat="server" ToolTip="Ngày hiệu lực chứng chỉ phải nhỏ hơn ngày hết hiệu lực chứng chỉ"
+                        ErrorMessage="Ngày hiệu lực chứng chỉ phải nhỏ hơn ngày hết hiệu lực chứng chỉ"
+                        Type="Date" Operator="GreaterThan" ControlToCompare="rdFrom" ControlToValidate="rdTo"></asp:CompareValidator>
+                </td>
+            </tr>--%>
+          <%--  <tr>
+              
+                <td >
+                    <asp:Label runat="server" ID="Label3" Text="Cần gia hạn"></asp:Label>
+                </td>
+                 <td >
+                    <asp:CheckBox ID="chkTerminate" runat="server" />
+                 </td>
+            </tr>--%>
+         <%--  
             <tr>                
                 <td class="lb">
                     <asp:Label runat="server" ID="Label6" Text="Ghi chú"></asp:Label>
@@ -209,7 +210,8 @@
                     </tlk:RadTextBox>
 
                 </td>
-            </tr>
+            </tr>--%>
+
             <tr style="display:none">                
                 <td class="lb">
                     <asp:Label runat="server" ID="lbReceiveDegree" Text="Ngày nhận bằng"></asp:Label>
@@ -231,8 +233,8 @@
     <tlk:RadPane runat="server" ID="RadPane4" Scrolling="None">
         <tlk:RadGrid PageSize="50" ID="rgEmployeeTrain" runat="server" AllowMultiRowSelection="true" Height="100%"
             AllowFilteringByColumn="true">
-            <MasterTableView DataKeyNames="ID, FROM_DATE,TO_DATE, YEAR_GRA, NAME_SHOOLS, FORM_TRAIN_ID, SPECIALIZED_TRAIN, TYPE_TRAIN_ID, RESULT_TRAIN, CERTIFICATE, RECEIVE_DEGREE_DATE, EFFECTIVE_DATE_FROM, EFFECTIVE_DATE_TO,UPLOAD_FILE,FILE_NAME,IS_RENEWED,CERTIFICATE_ID,TYPE_TRAIN_NAME,LEVEL_ID,POINT_LEVEL,CONTENT_LEVEL,NOTE,CERTIFICATE_CODE,TYPE_TRAIN_NAME" 
-            ClientDataKeyNames="ID, FROM_DATE,TO_DATE, YEAR_GRA, NAME_SHOOLS, FORM_TRAIN_ID, SPECIALIZED_TRAIN, TYPE_TRAIN_ID, RESULT_TRAIN, CERTIFICATE, RECEIVE_DEGREE_DATE, EFFECTIVE_DATE_FROM, EFFECTIVE_DATE_TO,UPLOAD_FILE,FILE_NAME,IS_RENEWED,CERTIFICATE_ID,TYPE_TRAIN_NAME,LEVEL_ID,POINT_LEVEL,CONTENT_LEVEL,NOTE,CERTIFICATE_CODE,TYPE_TRAIN_NAME">
+            <MasterTableView DataKeyNames="ID, FROM_DATE,TO_DATE, YEAR_GRA, NAME_SHOOLS, FORM_TRAIN_ID, SPECIALIZED_TRAIN, TYPE_TRAIN_ID, RESULT_TRAIN, CERTIFICATE, RECEIVE_DEGREE_DATE, EFFECTIVE_DATE_FROM, EFFECTIVE_DATE_TO,UPLOAD_FILE,FILE_NAME,IS_RENEWED,CERTIFICATE_ID,TYPE_TRAIN_NAME,LEVEL_ID,POINT_LEVEL,CONTENT_LEVEL,NOTE,CERTIFICATE_CODE,TYPE_TRAIN_NAME,LEVEL_NAME,RESULT_TRAIN_ID,RESULT_TRAIN_NAME" 
+            ClientDataKeyNames="ID, FROM_DATE,TO_DATE, YEAR_GRA, NAME_SHOOLS, FORM_TRAIN_ID, SPECIALIZED_TRAIN, TYPE_TRAIN_ID, RESULT_TRAIN, CERTIFICATE, RECEIVE_DEGREE_DATE, EFFECTIVE_DATE_FROM, EFFECTIVE_DATE_TO,UPLOAD_FILE,FILE_NAME,IS_RENEWED,CERTIFICATE_ID,TYPE_TRAIN_NAME,LEVEL_ID,POINT_LEVEL,CONTENT_LEVEL,NOTE,CERTIFICATE_CODE,TYPE_TRAIN_NAME,LEVEL_NAME,RESULT_TRAIN_ID,RESULT_TRAIN_NAME">
                 <NoRecordsTemplate>
                     Không có bản ghi nào
                 </NoRecordsTemplate>
@@ -240,41 +242,65 @@
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
-                    <tlk:GridBoundColumn DataField="ID" HeaderText="ID" UniqueName="ID" Display="false"></tlk:GridBoundColumn>
-                    <tlk:GridDateTimeColumn DataField="FROM_DATE" HeaderText="Từ tháng"
-                        UniqueName="FROM_DATE" ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="EqualTo"
-                        Visible="true" DataFormatString="{0:MM/yyyy}">
+                     <tlk:GridBoundColumn DataField="ID" Visible="false" />    
+                    <tlk:GridDateTimeColumn DataField="FROM_DATE" HeaderText="Từ ngày"
+                        UniqueName="FROM_DATE" ShowFilterIcon="false" CurrentFilterFunction="EqualTo"
+                        Visible="true" DataFormatString="{0:dd/MM/yyyy}">
                         <HeaderStyle Width="120px" />
                         <ItemStyle Width="120px" />
                     </tlk:GridDateTimeColumn>
-                    <tlk:GridDateTimeColumn DataField="TO_DATE" HeaderText="Tới tháng"
-                        UniqueName="TO_DATE" ShowFilterIcon="false" AutoPostBackOnFilter="true" DataFormatString="{0:MM/yyyy}"
+                    <tlk:GridDateTimeColumn DataField="TO_DATE" HeaderText="Tới ngày"
+                        UniqueName="TO_DATE" ShowFilterIcon="false" DataFormatString="{0:dd/MM/yyyy}"
                         CurrentFilterFunction="EqualTo" Visible="true">
                         <HeaderStyle Width="120px" />
                         <ItemStyle Width="120px" />
                     </tlk:GridDateTimeColumn>
                     <tlk:GridBoundColumn DataField="NAME_SHOOLS" HeaderText="Tên trường"
-                        UniqueName="NAME_SHOOLS" ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
+                        UniqueName="NAME_SHOOLS" ShowFilterIcon="false" CurrentFilterFunction="Contains"
                         Visible="true">
                     </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn DataField="SPECIALIZED_TRAIN" HeaderText="Chuyên ngành"
-                        UniqueName="SPECIALIZED_TRAIN" ShowFilterIcon="false" AutoPostBackOnFilter="true"
+                    <tlk:GridBoundColumn DataField="SPECIALIZED_TRAIN" HeaderText="Ngành học"
+                        UniqueName="SPECIALIZED_TRAIN" ShowFilterIcon="false"
                         CurrentFilterFunction="Contains">
                     </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn DataField="TYPE_TRAIN_NAME" HeaderText="Loại hình đào tạo"
-                        UniqueName="TYPE_TRAIN_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true"
+                    <tlk:GridBoundColumn DataField="LEVEL_NAME" HeaderText="Trình độ"
+                        UniqueName="LEVEL_NAME" ShowFilterIcon="false"
                         CurrentFilterFunction="Contains">
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn DataField="CERTIFICATE" HeaderText="Bằng cấp/Chứng chỉ"
+                        UniqueName="CERTIFICATE" ShowFilterIcon="false"
+                        CurrentFilterFunction="Contains">
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn DataField="RESULT_TRAIN_NAME" HeaderText="Xếp loại"
+                        UniqueName="RESULT_TRAIN_NAME" ShowFilterIcon="false"
+                        CurrentFilterFunction="Contains" Visible="true">
+                    </tlk:GridBoundColumn> 
+                    <tlk:GridBoundColumn DataField="YEAR_GRA" HeaderText="Năm tốt nghiệp"
+                        UniqueName="YEAR_GRA" ShowFilterIcon="false" Visible="true">
+                    </tlk:GridBoundColumn>
+                     <tlk:GridBoundColumn DataField="CONTENT_LEVEL" HeaderText="Nội dung đào tạo"
+                        UniqueName="CONTENT_LEVEL" ShowFilterIcon="false"
+                        CurrentFilterFunction="Contains" Visible="true">
                     </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn DataField="FORM_TRAIN_NAME" HeaderText="Hình thức đào tạo"
-                        UniqueName="FORM_TRAIN_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true"
+                        UniqueName="FORM_TRAIN_NAME" ShowFilterIcon="false"
                         CurrentFilterFunction="Contains">
                     </tlk:GridBoundColumn>
+                   <%-- 
                     <tlk:GridBoundColumn DataField="CERTIFICATE_CODE" HeaderText="Mã chứng chỉ"
-                        UniqueName="CERTIFICATE_CODE" ShowFilterIcon="false" AutoPostBackOnFilter="true"
+                        UniqueName="CERTIFICATE_CODE" ShowFilterIcon="false"
                         CurrentFilterFunction="Contains">
                     </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn DataField="CERTIFICATE" HeaderText="Loại chứng chỉ"
-                        UniqueName="CERTIFICATE" ShowFilterIcon="false" AutoPostBackOnFilter="true"
+                        UniqueName="CERTIFICATE" ShowFilterIcon="false"
+                        CurrentFilterFunction="Contains">
+                    </tlk:GridBoundColumn>
+                     <tlk:GridBoundColumn DataField="RENEWED_NAME" HeaderText="Cần gia hạn"
+                        UniqueName="RENEWED_NAME" ShowFilterIcon="false"
+                        CurrentFilterFunction="Contains">
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn DataField="TYPE_TRAIN_NAME" HeaderText="Loại hình đào tạo"
+                        UniqueName="TYPE_TRAIN_NAME" ShowFilterIcon="false"
                         CurrentFilterFunction="Contains">
                     </tlk:GridBoundColumn>
                     <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECTIVE_DATE_FROM"
@@ -285,21 +311,8 @@
                         ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EFFECTIVE_DATE_TO"
                         UniqueName="EFFECTIVE_DATE_TO">
                     </tlk:GridDateTimeColumn>
-                     <tlk:GridBoundColumn DataField="RENEWED_NAME" HeaderText="Cần gia hạn"
-                        UniqueName="RENEWED_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true"
-                        CurrentFilterFunction="Contains">
-                    </tlk:GridBoundColumn>
-                    <tlk:GridNumericColumn DataField="YEAR_GRA" HeaderText="Năm tốt nghiệp"
-                        UniqueName="YEAR_GRA" ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="EqualTo"
-                        Visible="true">
-                    </tlk:GridNumericColumn>
-
-                   <%-- <tlk:GridBoundColumn DataField="RESULT_TRAIN" HeaderText="Kết quả"
-                        UniqueName="RESULT_TRAIN" ShowFilterIcon="false" AutoPostBackOnFilter="true"
-                        CurrentFilterFunction="Contains" Visible="true">
-                    </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn DataField="CERTIFICATE" HeaderText="Bằng cấp"
-                        UniqueName="CERTIFICATE" ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
+                        UniqueName="CERTIFICATE" ShowFilterIcon="false" CurrentFilterFunction="Contains"
                         Visible="true">
                     </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn DataField="RECEIVE_DEGREE_DATE" HeaderText="Ngày nhận bằng"
@@ -307,9 +320,9 @@
                         UniqueName="RECEIVE_DEGREE_DATE">
                     </tlk:GridBoundColumn>
                       <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="UPLOAD_FILE"
-                        UniqueName="UPLOAD_FILE" SortExpression="UPLOAD_FILE" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" Visible="false"></tlk:GridBoundColumn>
+                        UniqueName="UPLOAD_FILE" SortExpression="UPLOAD_FILE" CurrentFilterFunction="Contains" Visible="false"></tlk:GridBoundColumn>
                          <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="FILE_NAME"
-                        UniqueName="FILE_NAME" SortExpression="FILE_NAME" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" Visible="false"></tlk:GridBoundColumn>--%>
+                        UniqueName="FILE_NAME" SortExpression="FILE_NAME" CurrentFilterFunction="Contains" Visible="false"></tlk:GridBoundColumn>--%>
                 </Columns>
                 <HeaderStyle Width="100px" />
             </MasterTableView>
@@ -325,7 +338,11 @@
             var item = args.get_item();
             if (item.get_commandName() == "EXPORT") {
                 enableAjax = false;
-            } else if (item.get_commandName() == "SAVE") {
+            }
+            else if (item.get_commandName() == "EXPORT_EXCEL") {
+                enableAjax = false;
+            }
+            else if (item.get_commandName() == "SAVE") {
                 // Nếu nhấn nút SAVE thì resize
                 ResizeSplitter();
             } else {

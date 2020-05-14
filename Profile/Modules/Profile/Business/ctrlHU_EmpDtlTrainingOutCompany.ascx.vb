@@ -104,7 +104,6 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
         Try
             rgEmployeeTrain.SetFilter()
             rgEmployeeTrain.AllowCustomPaging = True
-            rgEmployeeTrain.ClientSettings.EnablePostBackOnRowClick = True
             InitControl()
             'If Not IsPostBack Then
             '    ViewConfig(RadPane1)
@@ -127,6 +126,10 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
             CType(MainToolBar.Items(2), RadToolBarButton).CausesValidation = True
             CType(Me.MainToolBar.Items(2), RadToolBarButton).Enabled = False
             CType(Me.MainToolBar.Items(3), RadToolBarButton).Enabled = False
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("EXPORT_EXCEL",
+                                                                  ToolbarIcons.Export,
+                                                                  ToolbarAuthorize.Export,
+                                                                  "Xuất Excel"))
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
 
@@ -169,8 +172,8 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                         rgEmployeeTrain.Rebind()
                         'SelectedItemDataGridByKey(rgEmployeeTrain, IDSelect, )
                     Case "Cancel"
-                        rdToiThang.SelectedDate = Nothing
-                        rdTuThang.SelectedDate = Nothing
+                        rdToiNgay.SelectedDate = Nothing
+                        rdTuNgay.SelectedDate = Nothing
                         txtRemindLink.Text = ""
                         FileOldName = ""
                         rgEmployeeTrain.MasterTableView.ClearSelectedItems()
@@ -182,45 +185,67 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
         End Try
     End Sub
 
-    Protected Sub CreateDataFilter()
-
-        Dim obj As New HU_PRO_TRAIN_OUT_COMPANYDTO
+    Private Function CreateDataFilter(Optional ByVal isFull As Boolean = False) As DataTable
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim ListTrainOutCom As List(Of HU_PRO_TRAIN_OUT_COMPANYDTO)
+        Dim MaximumRows As Integer
+        Dim Sorts As String
+        Dim _filter As New HU_PRO_TRAIN_OUT_COMPANYDTO
+        Dim startTime As DateTime = DateTime.UtcNow
         Try
-            SetValueObjectByRadGrid(rgEmployeeTrain, obj)
-            Dim rep As New ProfileBusinessRepository
-            Dim objEmployeeTrain As New HU_PRO_TRAIN_OUT_COMPANYDTO
-            objEmployeeTrain.EMPLOYEE_ID = If(EmployeeInfo Is Nothing, Nothing, EmployeeInfo.ID)
-            Me.EmployeeTrain = rep.GetProcessTraining(objEmployeeTrain)
-            rep.Dispose()
-            rgEmployeeTrain.DataSource = Me.EmployeeTrain
+            Using rep As New ProfileBusinessRepository
+                SetValueObjectByRadGrid(rgEmployeeTrain, _filter)
+                Sorts = rgEmployeeTrain.MasterTableView.SortExpressions.GetSortString()
+                _filter.EMPLOYEE_ID = If(EmployeeInfo Is Nothing, Nothing, EmployeeInfo.ID)
+                If isFull Then
+                    If Sorts IsNot Nothing Then
+                        Return rep.GetProcessTraining(_filter, Sorts).ToTable()
+                    Else
+                        Return rep.GetProcessTraining(_filter).ToTable()
+                    End If
+                Else
+                    If Sorts IsNot Nothing Then
+                        ListTrainOutCom = rep.GetProcessTraining(_filter, rgEmployeeTrain.CurrentPageIndex, rgEmployeeTrain.PageSize, MaximumRows, Sorts)
+                    Else
+                        ListTrainOutCom = rep.GetProcessTraining(_filter, rgEmployeeTrain.CurrentPageIndex, rgEmployeeTrain.PageSize, MaximumRows)
+                    End If
+
+                    rgEmployeeTrain.VirtualItemCount = MaximumRows
+                    rgEmployeeTrain.DataSource = ListTrainOutCom
+                End If
+                rep.Dispose()
+            End Using
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
-            Throw ex
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
-    End Sub
+    End Function
 
     Public Overrides Sub UpdateControlState()
 
         Try
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
-
                     EnabledGridNotPostback(rgEmployeeTrain, False)
-                    EnableControlAll(True, rdToiThang, cboRemark, rdTuThang, rntGraduateYear, txtRemark, cboTrainingForm, txtChuyenNganh, txtKetQua, txtTrainingSchool, txtTrainingType, rdReceiveDegree, chkTerminate, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
-                    EnabledGrid(rgEmployeeTrain, False)
+                    EnableControlAll(True, rdToiNgay, rdTuNgay, rntGraduateYear, cboTrainingForm, txtChuyenNganh, txtTrainingSchool, rdReceiveDegree, cboLevelId, rtxtContentLevel, cboKetQua, cboRemark)
+                    ', txtCertificateCode, txtNote, txtTrainingType, chkTerminate, rtxtPointLevel, txtKetQua
+                    EnabledGrid(rgEmployeeTrain, False, False)
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgEmployeeTrain, True)
-                    EnableControlAll(False, rdTuThang, cboRemark, rdToiThang, rntGraduateYear, rdFrom, rdTo, txtRemark, cboTrainingForm, txtChuyenNganh, txtKetQua, txtTrainingSchool, txtTrainingType, rdReceiveDegree, chkTerminate, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
-                    EnabledGrid(rgEmployeeTrain, True)
+                    EnableControlAll(False, rdTuNgay, rdToiNgay, rntGraduateYear, cboTrainingForm, txtChuyenNganh, txtTrainingSchool, rdReceiveDegree, cboLevelId, rtxtContentLevel, cboKetQua, cboRemark)
+                    ', txtCertificateCode, txtNote, rdFrom, rdTo, txtTrainingType, chkTerminate, rtxtPointLevel,txtKetQua,
+                    EnabledGrid(rgEmployeeTrain, True, False)
                 Case CommonMessage.STATE_EDIT
                     EnabledGridNotPostback(rgEmployeeTrain, False)
-                    EnableControlAll(True, rdTuThang, rdToiThang, rntGraduateYear, txtRemark, cboTrainingForm, cboRemark, txtChuyenNganh, txtKetQua, txtTrainingSchool, txtTrainingType, rdReceiveDegree, chkTerminate, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
-                    EnabledGrid(rgEmployeeTrain, False)
-                    If cboRemark.SelectedValue = 7086 Then
-                        EnableControlAll(True, rdFrom, rdTo)
-                        RequiredFieldValidator3.Visible = True
-                        CompareValidator1.Visible = True
-                        RequiredFieldValidator4.Visible = True
-                    End If
+                    EnableControlAll(True, rdTuNgay, rdToiNgay, rntGraduateYear, cboTrainingForm, txtChuyenNganh, txtTrainingSchool, rdReceiveDegree, cboLevelId, rtxtContentLevel, cboKetQua, cboRemark)
+                    ', txtCertificateCode, txtNote, rtxtPointLevel, chkTerminate, txtTrainingType, txtKetQua
+                    EnabledGrid(rgEmployeeTrain, False, False)
+                    'If cboRemark.SelectedValue = 7086 Then
+                    '    EnableControlAll(True, rdFrom, rdTo)
+                    '    RequiredFieldValidator3.Visible = True
+                    '    CompareValidator1.Visible = True
+                    '    RequiredFieldValidator4.Visible = True
+                    'End If
                 Case CommonMessage.STATE_DELETE
                     Dim rep As New ProfileBusinessRepository
                     Dim lstDeletes As New List(Of Decimal)
@@ -247,30 +272,6 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
     End Sub
 
     Public Overrides Sub BindData()
-        Dim dic As New Dictionary(Of String, Control)
-        dic.Add("FROM_DATE", rdTuThang)
-        dic.Add("TO_DATE", rdToiThang)
-        dic.Add("YEAR_GRA", rntGraduateYear)
-        dic.Add("NAME_SHOOLS", txtTrainingSchool)
-        dic.Add("FORM_TRAIN_ID", cboTrainingForm)
-        dic.Add("SPECIALIZED_TRAIN", txtChuyenNganh)
-        dic.Add("RESULT_TRAIN", txtKetQua)
-        dic.Add("CERTIFICATE", cboRemark)
-        dic.Add("EFFECTIVE_DATE_FROM", rdFrom)
-        dic.Add("EFFECTIVE_DATE_TO", rdTo)
-        dic.Add("UPLOAD_FILE", txtUploadFile)
-        dic.Add("FILE_NAME", txtRemark)
-        dic.Add("TYPE_TRAIN_NAME", txtTrainingType)
-        dic.Add("RECEIVE_DEGREE_DATE", rdReceiveDegree)
-        dic.Add("IS_RENEWED", chkTerminate)
-        dic.Add("POINT_LEVEL", rtxtPointLevel)
-        dic.Add("CONTENT_LEVEL", rtxtContentLevel)
-        'dic.Add("RECEIVE_DEGREE_DATE", rdReceiveDegree)
-        dic.Add("NOTE", txtNote)
-        dic.Add("CERTIFICATE_CODE", txtCertificateCode)
-        dic.Add("LEVEL_ID", cboLevelId)
-
-        Utilities.OnClientRowSelectedChanged(rgEmployeeTrain, dic)
         Try
             Dim rep As New ProfileRepository
             Dim comboBoxDataDTO As New ComboBoxDataDTO
@@ -287,7 +288,33 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                 FillDropDownList(cboTrainingForm, comboBoxDataDTO.LIST_TRAINING_FORM, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboTrainingForm.SelectedValue)
                 FillDropDownList(cboRemark, comboBoxDataDTO.LIST_CERTIFICATE_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboRemark.SelectedValue)
                 FillDropDownList(cboLevelId, comboBoxDataDTO.LIST_LEVEL_TRAIN, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboLevelId.SelectedValue)
+                FillDropDownList(cboKetQua, comboBoxDataDTO.LIST_MARK_EDU, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboKetQua.SelectedValue)
             End If
+
+            Dim dic As New Dictionary(Of String, Control)
+            dic.Add("FROM_DATE", rdTuNgay)
+            dic.Add("TO_DATE", rdToiNgay)
+            dic.Add("YEAR_GRA", rntGraduateYear)
+            dic.Add("NAME_SHOOLS", txtTrainingSchool)
+            dic.Add("FORM_TRAIN_ID", cboTrainingForm)
+            dic.Add("SPECIALIZED_TRAIN", txtChuyenNganh)
+            dic.Add("RESULT_TRAIN_ID", cboKetQua)
+            dic.Add("CERTIFICATE_ID", cboRemark)
+            dic.Add("CONTENT_LEVEL", rtxtContentLevel)
+            dic.Add("LEVEL_ID", cboLevelId)
+            dic.Add("FILE_NAME", txtRemark)
+            dic.Add("UPLOAD_FILE", txtUploadFile)
+            'dic.Add("RESULT_TRAIN", txtKetQua)
+            'dic.Add("EFFECTIVE_DATE_FROM", rdFrom)
+            'dic.Add("EFFECTIVE_DATE_TO", rdTo)
+            'dic.Add("TYPE_TRAIN_NAME", txtTrainingType)
+            'dic.Add("RECEIVE_DEGREE_DATE", rdReceiveDegree)
+            'dic.Add("IS_RENEWED", chkTerminate)
+            'dic.Add("POINT_LEVEL", rtxtPointLevel)
+            'dic.Add("RECEIVE_DEGREE_DATE", rdReceiveDegree)
+            'dic.Add("NOTE", txtNote)
+            'dic.Add("CERTIFICATE_CODE", txtCertificateCode)
+            Utilities.OnClientRowSelectedChanged(rgEmployeeTrain, dic)
             rep.Dispose()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -304,9 +331,10 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
         Try
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
-                    ClearControlValue(rdToiThang, rdTuThang, cboTrainingForm, txtTrainingType, rntGraduateYear, txtRemark, txtTrainingSchool,
-                                    cboRemark, txtChuyenNganh, txtKetQua, rdFrom, rdTo, rdReceiveDegree, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
-                    chkTerminate.Checked = False
+                    ClearControlValue(rdToiNgay, rdTuNgay, cboTrainingForm, rntGraduateYear, txtTrainingSchool,
+                                    txtChuyenNganh, rdReceiveDegree, cboLevelId, rtxtContentLevel, cboKetQua, cboRemark, txtRemark)
+                    ', txtTrainingType, rdFrom, rdTo, rtxtPointLevel, txtCertificateCode, txtNote, txtKetQua
+                    'chkTerminate.Checked = False
                     checkCRUD = 1
                     If EmployeeInfo.WORK_STATUS Is Nothing Or
                         (EmployeeInfo.WORK_STATUS IsNot Nothing AndAlso
@@ -362,16 +390,24 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                         CurrentState = CommonMessage.STATE_NORMAL
                         Exit Sub
                     End If
-                Case CommonMessage.TOOLBARITEM_EXPORT
-                    Utilities.GridExportExcel(rgEmployeeTrain, "EmployeeTrain")
+                Case "EXPORT_EXCEL"
+                    Dim dtData As DataTable
+                    Using xls As New ExcelCommon
+                        dtData = CreateDataFilter(True)
+                        If dtData.Rows.Count > 0 Then
+                            rgEmployeeTrain.ExportExcel(Server, Response, dtData, "List_TrainOut_Company")
+                        Else
+                            ShowMessage(Translate(MESSAGE_WARNING_EXPORT_EMPTY), Utilities.NotifyType.Warning)
+                        End If
+                    End Using
                 Case CommonMessage.TOOLBARITEM_SAVE
                     checkCRUD = 3
                     If Page.IsValid Then
                         Dim rep As New ProfileBusinessRepository
                         'EnableControlAll(False, rdFrom, rdTo)
                         objTrain.EMPLOYEE_ID = EmployeeInfo.ID
-                        objTrain.FROM_DATE = rdTuThang.SelectedDate
-                        objTrain.TO_DATE = rdToiThang.SelectedDate
+                        objTrain.FROM_DATE = rdTuNgay.SelectedDate
+                        objTrain.TO_DATE = rdToiNgay.SelectedDate
                         objTrain.NAME_SHOOLS = txtTrainingSchool.Text.Trim
                         If cboTrainingForm.SelectedValue = "" Then
                             objTrain.FORM_TRAIN_ID = Nothing
@@ -380,18 +416,23 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                         End If
                        
                         If cboRemark.SelectedValue = "" Then
-                            objTrain.CERTIFICATE = Nothing
+                            objTrain.CERTIFICATE_ID = Nothing
                         Else
-                            objTrain.CERTIFICATE = cboRemark.SelectedValue
+                            objTrain.CERTIFICATE_ID = cboRemark.SelectedValue
                         End If
                         objTrain.RECEIVE_DEGREE_DATE = rdReceiveDegree.SelectedDate
                         objTrain.YEAR_GRA = rntGraduateYear.Value
                         objTrain.SPECIALIZED_TRAIN = txtChuyenNganh.Text.Trim
-                        objTrain.RESULT_TRAIN = txtKetQua.Text.Trim
-                        objTrain.EFFECTIVE_DATE_FROM = rdFrom.SelectedDate
-                        objTrain.EFFECTIVE_DATE_TO = rdTo.SelectedDate
+                        If cboKetQua.SelectedValue = "" Then
+                            objTrain.RESULT_TRAIN_ID = Nothing
+                        Else
+                            objTrain.RESULT_TRAIN_ID = cboKetQua.SelectedValue
+                        End If
+                        'objTrain.RESULT_TRAIN = txtKetQua.Text.Trim
+                        'objTrain.EFFECTIVE_DATE_FROM = rdFrom.SelectedDate
+                        'objTrain.EFFECTIVE_DATE_TO = rdTo.SelectedDate
                         objTrain.FILE_NAME = txtRemark.Text.Trim
-                        objTrain.IS_RENEWED = chkTerminate.Checked
+                        'objTrain.IS_RENEWED = chkTerminate.Checked
 
                         If cboLevelId.SelectedValue = "" Then
                             objTrain.LEVEL_ID = Nothing
@@ -399,14 +440,14 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                             objTrain.LEVEL_ID = cboLevelId.SelectedValue
                         End If
 
-                        objTrain.POINT_LEVEL = rtxtPointLevel.Text
+                        'objTrain.POINT_LEVEL = rtxtPointLevel.Text
                         objTrain.CONTENT_LEVEL = rtxtContentLevel.Text
-                        objTrain.NOTE = txtNote.Text
-                        objTrain.CERTIFICATE_CODE = txtCertificateCode.Text
-                        objTrain.TYPE_TRAIN_NAME = txtTrainingType.Text
+                        'objTrain.NOTE = txtNote.Text
+                        'objTrain.CERTIFICATE_CODE = txtCertificateCode.Text
+                        'objTrain.TYPE_TRAIN_NAME = txtTrainingType.Text
 
-                        If Down_File = Nothing Then
-                            objTrain.UPLOAD_FILE = If(txtRemindLink.Text Is Nothing, "", txtRemindLink.Text)
+                        If IsDBNull(Down_File) Then
+                            objTrain.UPLOAD_FILE = txtUploadFile.Text.Trim
                         Else
                             objTrain.UPLOAD_FILE = If(Down_File Is Nothing, "", Down_File.ToString)
                         End If
@@ -417,6 +458,8 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                                     IDSelect = gID
                                     Refresh("InsertView")
                                     checkClickUpload = 1
+                                    ClearControlValue(rdToiNgay, rdTuNgay, cboTrainingForm, rntGraduateYear, txtTrainingSchool,
+                                     txtChuyenNganh, rdReceiveDegree, cboLevelId, rtxtContentLevel, cboKetQua, cboRemark, txtRemark, txtUploadFile)
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
@@ -445,6 +488,8 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     IDSelect = objTrain.ID
                                     Refresh("UpdateView")
+                                    ClearControlValue(rdToiNgay, rdTuNgay, cboTrainingForm, rntGraduateYear, txtTrainingSchool,
+                                     txtChuyenNganh, rdReceiveDegree, cboLevelId, rtxtContentLevel, cboKetQua, cboRemark, txtRemark, txtUploadFile)
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
@@ -457,8 +502,9 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
 
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     CurrentState = CommonMessage.STATE_NORMAL
-                    ClearControlValue(rdToiThang, rdTuThang, cboTrainingForm, txtTrainingType, rntGraduateYear, txtRemark, txtTrainingSchool,
-                                    cboRemark, txtChuyenNganh, txtKetQua, rdFrom, rdTo, rdReceiveDegree, cboLevelId, rtxtPointLevel, rtxtContentLevel, txtCertificateCode, txtNote)
+                    ClearControlValue(rdToiNgay, rdTuNgay, cboTrainingForm, rntGraduateYear, txtTrainingSchool,
+                                     txtChuyenNganh, rdReceiveDegree, cboLevelId, rtxtContentLevel, cboKetQua, cboRemark, txtRemark)
+                    ', txtTrainingType, rdFrom, rdTo, rtxtPointLevel, txtCertificateCode, txtNote,txtKetQua,
                     Refresh("Cancel")
             End Select
 
@@ -558,7 +604,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                     Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
                     Dim str_Filename = Guid.NewGuid.ToString() + "\"
                     If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
-                        
+
                         System.IO.Directory.CreateDirectory(strPath + str_Filename)
                         strPath = strPath + str_Filename
                         fileName = System.IO.Path.Combine(strPath, file.FileName)
@@ -567,7 +613,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                         'End If
                         Down_File = str_Filename
                     Else
-                        ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif"), NotifyType.Warning)
+                        ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,doc,docx,png,jpg,pdf"), NotifyType.Warning)
                         Exit Sub
                     End If
                 Next
@@ -602,10 +648,10 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
 #End Region
 
 #Region "Custom"
-    Private Sub cvalToiThang_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalToiThang.ServerValidate
+    Private Sub cvalToiNgay_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalToiNgay.ServerValidate
         Try
-            If rdToiThang.SelectedDate IsNot Nothing Then
-                If rdTuThang.SelectedDate > rdToiThang.SelectedDate Then
+            If rdToiNgay.SelectedDate IsNot Nothing Then
+                If rdTuNgay.SelectedDate > rdToiNgay.SelectedDate Then
                     args.IsValid = False
                 End If
             End If
@@ -615,61 +661,61 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
     End Sub
 #End Region
 
-    Protected Sub rgData_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles rgEmployeeTrain.SelectedIndexChanged
-        Dim dataItem = CType(rgEmployeeTrain.SelectedItems(0), GridDataItem)
-        If dataItem IsNot Nothing Then
-            rdTuThang.SelectedDate = dataItem.GetDataKeyValue("FROM_DATE")
-            rdToiThang.SelectedDate = dataItem.GetDataKeyValue("TO_DATE")
-            rntGraduateYear.Value = Double.Parse(dataItem.GetDataKeyValue("YEAR_GRA"))
-            txtTrainingSchool.Text = dataItem.GetDataKeyValue("NAME_SHOOLS")
-            cboTrainingForm.SelectedValue = dataItem.GetDataKeyValue("FORM_TRAIN_ID")
-            txtChuyenNganh.Text = dataItem.GetDataKeyValue("SPECIALIZED_TRAIN")
-            txtTrainingType.Text = dataItem.GetDataKeyValue("TYPE_TRAIN_NAME")
-            txtKetQua.Text = dataItem.GetDataKeyValue("RESULT_TRAIN")
-            cboRemark.SelectedValue = dataItem.GetDataKeyValue("CERTIFICATE_ID")
-            cboRemark.Text = dataItem.GetDataKeyValue("CERTIFICATE")
-            rdReceiveDegree.SelectedDate = dataItem.GetDataKeyValue("RECEIVE_DEGREE_DATE")
-            rdFrom.SelectedDate = dataItem.GetDataKeyValue("EFFECTIVE_DATE_FROM")
-            rdTo.SelectedDate = dataItem.GetDataKeyValue("EFFECTIVE_DATE_TO")
-            txtRemindLink.Text = dataItem.GetDataKeyValue("UPLOAD_FILE")
-            txtRemark.Text = dataItem.GetDataKeyValue("FILE_NAME")
-            chkTerminate.Checked = dataItem.GetDataKeyValue("IS_RENEWED")
-            cboLevelId.SelectedValue = dataItem.GetDataKeyValue("LEVEL_ID")
-            rtxtPointLevel.Text = dataItem.GetDataKeyValue("POINT_LEVEL")
-            rtxtContentLevel.Text = dataItem.GetDataKeyValue("CONTENT_LEVEL")
-            txtNote.Text = dataItem.GetDataKeyValue("NOTE")
-            txtCertificateCode.Text = dataItem.GetDataKeyValue("CERTIFICATE_CODE")
-            EnableControlAll(False, rdFrom, rdTo)
-        End If
-    End Sub
+    'Protected Sub rgData_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles rgEmployeeTrain.SelectedIndexChanged
+    '    Dim dataItem = CType(rgEmployeeTrain.SelectedItems(0), GridDataItem)
+    '    If dataItem IsNot Nothing Then
+    '        rdTuNgay.SelectedDate = dataItem.GetDataKeyValue("FROM_DATE")
+    '        rdToiNgay.SelectedDate = dataItem.GetDataKeyValue("TO_DATE")
+    '        rntGraduateYear.Value = Double.Parse(dataItem.GetDataKeyValue("YEAR_GRA"))
+    '        txtTrainingSchool.Text = dataItem.GetDataKeyValue("NAME_SHOOLS")
+    '        cboTrainingForm.SelectedValue = dataItem.GetDataKeyValue("FORM_TRAIN_ID")
+    '        txtChuyenNganh.Text = dataItem.GetDataKeyValue("SPECIALIZED_TRAIN")
+    '        'txtTrainringType.Text = dataItem.GetDataKeyValue("TYPE_TRAIN_NAME")
+    '        txtKetQua.Text = dataItem.GetDataKeyValue("RESULT_TRAIN")
+    '        'cboRemark.SelectedValue = dataItem.GetDataKeyValue("CERTIFICATE_ID")
+    '        'cboRemark.Text = dataItem.GetDataKeyValue("CERTIFICATE")
+    '        rdReceiveDegree.SelectedDate = dataItem.GetDataKeyValue("RECEIVE_DEGREE_DATE")
+    '        'rdFrom.SelectedDate = dataItem.GetDataKeyValue("EFFECTIVE_DATE_FROM")
+    '        'rdTo.SelectedDate = dataItem.GetDataKeyValue("EFFECTIVE_DATE_TO")
+    '        txtRemindLink.Text = dataItem.GetDataKeyValue("UPLOAD_FILE")
+    '        'txtRemark.Text = dataItem.GetDataKeyValue("FILE_NAME")
+    '        'chkTerminate.Checked = dataItem.GetDataKeyValue("IS_RENEWED")
+    '        cboLevelId.SelectedValue = dataItem.GetDataKeyValue("LEVEL_ID")
+    '        'rtxtPointLevel.Text = dataItem.GetDataKeyValue("POINT_LEVEL")
+    '        rtxtContentLevel.Text = dataItem.GetDataKeyValue("CONTENT_LEVEL")
+    '        'txtNote.Text = dataItem.GetDataKeyValue("NOTE")
+    '        'txtCertificateCode.Text = dataItem.GetDataKeyValue("CERTIFICATE_CODE")
+    '        'EnableControlAll(False, rdFrom, rdTo)
+    '    End If
+    'End Sub
    
-    Protected Sub cboRemark_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboRemark.SelectedIndexChanged
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        rdFrom.SelectedDate = Nothing
-        rdTo.SelectedDate = Nothing
-        Try
-            If cboRemark.SelectedItem.Text = "Chứng chỉ" Then
-                EnableControlAll(True, rdFrom, rdTo)
-                RequiredFieldValidator3.Visible = True
-                CompareValidator1.Visible = True
-                RequiredFieldValidator4.Visible = True
-            Else
-                EnableControlAll(False, rdFrom, rdTo)
-                RequiredFieldValidator3.Visible = False
-                CompareValidator1.Visible = False
-                RequiredFieldValidator4.Visible = False
-                rdFrom.ClearValue()
-                rdTo.ClearValue()
-            End If
+    'Protected Sub cboRemark_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboRemark.SelectedIndexChanged
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    rdFrom.SelectedDate = Nothing
+    '    rdTo.SelectedDate = Nothing
+    '    Try
+    '        If cboRemark.SelectedItem.Text = "Chứng chỉ" Then
+    '            EnableControlAll(True, rdFrom, rdTo)
+    '            RequiredFieldValidator3.Visible = True
+    '            CompareValidator1.Visible = True
+    '            RequiredFieldValidator4.Visible = True
+    '        Else
+    '            EnableControlAll(False, rdFrom, rdTo)
+    '            RequiredFieldValidator3.Visible = False
+    '            CompareValidator1.Visible = False
+    '            RequiredFieldValidator4.Visible = False
+    '            rdFrom.ClearValue()
+    '            rdTo.ClearValue()
+    '        End If
 
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
 
-    Private Sub rdFrom_SelectedDateChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdFrom.SelectedDateChanged
-        cboRemark.SelectedValue = 7086
-    End Sub
+    'Private Sub rdFrom_SelectedDateChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdFrom.SelectedDateChanged
+    '    cboRemark.SelectedValue = 7086
+    'End Sub
 End Class

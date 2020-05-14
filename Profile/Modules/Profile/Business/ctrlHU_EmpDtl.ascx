@@ -54,9 +54,9 @@
                             NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlContract&state=Normal", EmployeeID) %>' />
                         <tlk:RadPanelItem Value="ctrlHU_EmpDtlAppendix" Text="<%$ Translate:Quá trình ký phụ lục hợp đồng %>"
                             NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlAppendix&state=Normal", EmployeeID) %>' />
-                        <%-- <tlk:RadPanelItem Value="ctrlHU_EmpDtlTraining" Text="<%$ Translate:Quá trình đào tạo trong công ty%>"
-                            NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlTraining&state=Normal", EmployeeID) %>' />--%>
-                        <tlk:RadPanelItem Value="ctrlHU_EmpDtlTrainingOutCompany" Text="<%$ Translate:Quản lý bằng cấp/chứng chỉ%>"
+                         <tlk:RadPanelItem Value="ctrlHU_EmpDtlTraining" Text="<%$ Translate:Quá trình đào tạo trong công ty%>"
+                            NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlTraining&state=Normal", EmployeeID) %>' />
+                        <tlk:RadPanelItem Value="ctrlHU_EmpDtlTrainingOutCompany" Text="<%$ Translate:Quá trình đào tạo ngoài công ty%>"
                             NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlTrainingOutCompany&state=Normal", EmployeeID) %>' />
                         <tlk:RadPanelItem Value="ctrlHU_EmpDtlCommend" Text="<%$ Translate:Quá trình khen thưởng%>"
                             NavigateUrl='<%# String.Format("/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&Place=ctrlHU_EmpDtlCommend&state=Normal", EmployeeID) %>' />
