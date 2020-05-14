@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("4005851a-1dcb-4c3c-98ea-fbba65ba7b37")>
+<Assembly: EdmSchemaAttribute("e534c4bf-db17-475f-92ca-d0181f30918b")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -2309,6 +2309,34 @@ Public Partial Class ProfileContext
 
     Private _PA_SALARY_LEVEL_GROUP As ObjectSet(Of PA_SALARY_LEVEL_GROUP)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property HU_FOLDERS() As ObjectSet(Of HU_FOLDERS)
+        Get
+            If (_HU_FOLDERS Is Nothing) Then
+                _HU_FOLDERS = MyBase.CreateObjectSet(Of HU_FOLDERS)("HU_FOLDERS")
+            End If
+            Return _HU_FOLDERS
+        End Get
+    End Property
+
+    Private _HU_FOLDERS As ObjectSet(Of HU_FOLDERS)
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property HU_USERFILES() As ObjectSet(Of HU_USERFILES)
+        Get
+            If (_HU_USERFILES Is Nothing) Then
+                _HU_USERFILES = MyBase.CreateObjectSet(Of HU_USERFILES)("HU_USERFILES")
+            End If
+            Return _HU_USERFILES
+        End Get
+    End Property
+
+    Private _HU_USERFILES As ObjectSet(Of HU_USERFILES)
+
     #End Region
 
     #Region "AddTo Methods"
@@ -3417,6 +3445,20 @@ Public Partial Class ProfileContext
     ''' </summary>
     Public Sub AddToPA_SALARY_LEVEL_GROUP(ByVal pA_SALARY_LEVEL_GROUP As PA_SALARY_LEVEL_GROUP)
         MyBase.AddObject("PA_SALARY_LEVEL_GROUP", pA_SALARY_LEVEL_GROUP)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the HU_FOLDERS EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToHU_FOLDERS(ByVal hU_FOLDERS As HU_FOLDERS)
+        MyBase.AddObject("HU_FOLDERS", hU_FOLDERS)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the HU_USERFILES EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToHU_USERFILES(ByVal hU_USERFILES As HU_USERFILES)
+        MyBase.AddObject("HU_USERFILES", hU_USERFILES)
     End Sub
 
     #End Region
@@ -42211,6 +42253,136 @@ End Class
 ''' <summary>
 ''' No Metadata Documentation available.
 ''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="ProfileModel", Name:="HU_FOLDERS")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class HU_FOLDERS
+    Inherits EntityObject
+    #Region "Factory Method"
+
+    ''' <summary>
+    ''' Create a new HU_FOLDERS object.
+    ''' </summary>
+    ''' <param name="id">Initial value of the ID property.</param>
+    Public Shared Function CreateHU_FOLDERS(id As Global.System.Decimal) As HU_FOLDERS
+        Dim hU_FOLDERS as HU_FOLDERS = New HU_FOLDERS
+        hU_FOLDERS.ID = id
+        Return hU_FOLDERS
+    End Function
+
+    #End Region
+
+    #Region "Primitive Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property ID() As Global.System.Decimal
+        Get
+            Return _ID
+        End Get
+        Set
+            If (_ID <> Value) Then
+                OnIDChanging(value)
+                ReportPropertyChanging("ID")
+                _ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ID")
+                OnIDChanged()
+            End If
+        End Set
+    End Property
+
+    Private _ID As Global.System.Decimal
+    Private Partial Sub OnIDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnIDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NAME() As Global.System.String
+        Get
+            Return _NAME
+        End Get
+        Set
+            OnNAMEChanging(value)
+            ReportPropertyChanging("NAME")
+            _NAME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("NAME")
+            OnNAMEChanged()
+        End Set
+    End Property
+
+    Private _NAME As Global.System.String
+    Private Partial Sub OnNAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnNAMEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property LINK() As Global.System.String
+        Get
+            Return _LINK
+        End Get
+        Set
+            OnLINKChanging(value)
+            ReportPropertyChanging("LINK")
+            _LINK = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("LINK")
+            OnLINKChanged()
+        End Set
+    End Property
+
+    Private _LINK As Global.System.String
+    Private Partial Sub OnLINKChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnLINKChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property PARENT_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _PARENT_ID
+        End Get
+        Set
+            OnPARENT_IDChanging(value)
+            ReportPropertyChanging("PARENT_ID")
+            _PARENT_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("PARENT_ID")
+            OnPARENT_IDChanged()
+        End Set
+    End Property
+
+    Private _PARENT_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnPARENT_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnPARENT_IDChanged()
+    End Sub
+
+    #End Region
+
+End Class
+
+''' <summary>
+''' No Metadata Documentation available.
+''' </summary>
 <EdmEntityTypeAttribute(NamespaceName:="ProfileModel", Name:="HU_HEALTH_MNG")>
 <Serializable()>
 <DataContractAttribute(IsReference:=True)>
@@ -65522,6 +65694,236 @@ Public Partial Class HU_UNIFORM_SIZE
     End Sub
 
     Private Partial Sub OnOTHERChanged()
+    End Sub
+
+    #End Region
+
+End Class
+
+''' <summary>
+''' No Metadata Documentation available.
+''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="ProfileModel", Name:="HU_USERFILES")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class HU_USERFILES
+    Inherits EntityObject
+    #Region "Factory Method"
+
+    ''' <summary>
+    ''' Create a new HU_USERFILES object.
+    ''' </summary>
+    ''' <param name="id">Initial value of the ID property.</param>
+    Public Shared Function CreateHU_USERFILES(id As Global.System.Decimal) As HU_USERFILES
+        Dim hU_USERFILES as HU_USERFILES = New HU_USERFILES
+        hU_USERFILES.ID = id
+        Return hU_USERFILES
+    End Function
+
+    #End Region
+
+    #Region "Primitive Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property ID() As Global.System.Decimal
+        Get
+            Return _ID
+        End Get
+        Set
+            If (_ID <> Value) Then
+                OnIDChanging(value)
+                ReportPropertyChanging("ID")
+                _ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ID")
+                OnIDChanged()
+            End If
+        End Set
+    End Property
+
+    Private _ID As Global.System.Decimal
+    Private Partial Sub OnIDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnIDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NAME() As Global.System.String
+        Get
+            Return _NAME
+        End Get
+        Set
+            OnNAMEChanging(value)
+            ReportPropertyChanging("NAME")
+            _NAME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("NAME")
+            OnNAMEChanged()
+        End Set
+    End Property
+
+    Private _NAME As Global.System.String
+    Private Partial Sub OnNAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnNAMEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property LINK() As Global.System.String
+        Get
+            Return _LINK
+        End Get
+        Set
+            OnLINKChanging(value)
+            ReportPropertyChanging("LINK")
+            _LINK = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("LINK")
+            OnLINKChanged()
+        End Set
+    End Property
+
+    Private _LINK As Global.System.String
+    Private Partial Sub OnLINKChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnLINKChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property DESCRIPTION() As Global.System.String
+        Get
+            Return _DESCRIPTION
+        End Get
+        Set
+            OnDESCRIPTIONChanging(value)
+            ReportPropertyChanging("DESCRIPTION")
+            _DESCRIPTION = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("DESCRIPTION")
+            OnDESCRIPTIONChanged()
+        End Set
+    End Property
+
+    Private _DESCRIPTION As Global.System.String
+    Private Partial Sub OnDESCRIPTIONChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnDESCRIPTIONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CREATED_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _CREATED_DATE
+        End Get
+        Set
+            OnCREATED_DATEChanging(value)
+            ReportPropertyChanging("CREATED_DATE")
+            _CREATED_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("CREATED_DATE")
+            OnCREATED_DATEChanged()
+        End Set
+    End Property
+
+    Private _CREATED_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnCREATED_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnCREATED_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CREATED_BY() As Global.System.String
+        Get
+            Return _CREATED_BY
+        End Get
+        Set
+            OnCREATED_BYChanging(value)
+            ReportPropertyChanging("CREATED_BY")
+            _CREATED_BY = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CREATED_BY")
+            OnCREATED_BYChanged()
+        End Set
+    End Property
+
+    Private _CREATED_BY As Global.System.String
+    Private Partial Sub OnCREATED_BYChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCREATED_BYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CREATED_LOG() As Global.System.String
+        Get
+            Return _CREATED_LOG
+        End Get
+        Set
+            OnCREATED_LOGChanging(value)
+            ReportPropertyChanging("CREATED_LOG")
+            _CREATED_LOG = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CREATED_LOG")
+            OnCREATED_LOGChanged()
+        End Set
+    End Property
+
+    Private _CREATED_LOG As Global.System.String
+    Private Partial Sub OnCREATED_LOGChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCREATED_LOGChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FOLDER_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _FOLDER_ID
+        End Get
+        Set
+            OnFOLDER_IDChanging(value)
+            ReportPropertyChanging("FOLDER_ID")
+            _FOLDER_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("FOLDER_ID")
+            OnFOLDER_IDChanged()
+        End Set
+    End Property
+
+    Private _FOLDER_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnFOLDER_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnFOLDER_IDChanged()
     End Sub
 
     #End Region
