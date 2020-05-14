@@ -109,7 +109,7 @@
                                 SortExpression="SUM_RATE_KPI" UniqueName="SUM_RATE_KPI" ReadOnly="true" HeaderStyle-Width="100px"
                                 DataFormatString="{0:P2}" />
                             <tlk:GridBoundColumn HeaderText="Xếp loại" DataField="CLASSFICATION" SortExpression="CLASSFICATION"
-                                UniqueName="CLASSFICATION" ReadOnly="true" />
+                                UniqueName="CLASSFICATION" HeaderStyle-Width="100px" />
                             <tlk:GridBoundColumn HeaderText="Nhận xét" DataField="COMMENTS" SortExpression="COMMENTS"
                                 UniqueName="COMMENTS" ReadOnly="true" HeaderStyle-Width="100px" />
                             <tlk:GridBoundColumn HeaderText="Ghi chú" DataField="REMARK" SortExpression="REMARK"

@@ -213,15 +213,16 @@ Class ctrlPE_KPI_Evaluate
                     ctrlMessageBox.Show()
 
                 Case CommonMessage.TOOLBARITEM_EXPORT
-                    Dim dtData As DataTable
-                    Using xls As New ExcelCommon
-                        dtData = CreateDataFilter(True)
-                        If dtData.Rows.Count > 0 Then
-                            rgEmployeeList.ExportExcel(Server, Response, dtData, "ResultMBO")
-                        Else
-                            ShowMessage(Translate(MESSAGE_WARNING_EXPORT_EMPTY), Utilities.NotifyType.Warning)
-                        End If
-                    End Using
+                    'Dim dtData As DataTable
+                    'Using xls As New ExcelCommon
+                    '    dtData = CreateDataFilter(True)
+                    '    If dtData.Rows.Count > 0 Then
+                    '        rgEmployeeList.ExportExcel(Server, Response, dtData, "ResultMBO")
+                    '    Else
+                    '        ShowMessage(Translate(MESSAGE_WARNING_EXPORT_EMPTY), Utilities.NotifyType.Warning)
+                    '    End If
+                    'End Using
+                    exportKPI()
                 Case CommonMessage.TOOLBARITEM_NEXT
                     '  ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_ImportMBO');", True)
                     Template_ImportMBO()
@@ -639,7 +640,11 @@ Class ctrlPE_KPI_Evaluate
                 newRow("DISCIPTION") = newRow("DISCIPTION") + "NGẠCH - Phải nhập NGẠCH"
                 _error = False
             End If
-            If IsDBNull(rows("SUM_TT")) Then
+            If (rows("SUM_TT")).ToString <> "" Then
+                If IsNumeric(rows("SUM_TT")) Then
+                    rows("SUM_TT") = (Decimal.Parse(rows("SUM_TT")) * 100).ToString + "%"
+                End If
+            Else
                 newRow("DISCIPTION") = newRow("DISCIPTION") + "Tỷ trọng - Phải nhập Tỷ trọng"
                 _error = False
             End If
@@ -682,31 +687,6 @@ Class ctrlPE_KPI_Evaluate
     End Sub
 
 
-    'Private Sub EnableOngrid()
-    '    Try
-    '        For Each item As GridDataItem In rgEmployeeList.MasterTableView.Items
-    '            Dim txtmark_offical As RadNumericTextBox = DirectCast(item("MARK_MBO_OFFICAL").FindControl("rnMBOGoc"), RadNumericTextBox)
-    '            txtmark_offical.Enabled = False
-    '            Dim txtmark_dc As RadNumericTextBox = DirectCast(item("MARK_MBO_EDIT").FindControl("nnMBODC"), RadNumericTextBox)
-    '            txtmark_dc.Enabled = False
-    '            Dim txtATTACH_FILE As LinkButton = DirectCast(item("UPLOAD_FILE").FindControl("lbtnUpload"), LinkButton)
-    '            txtATTACH_FILE.Enabled = True
-    '            Dim txtupload As RadButton = DirectCast(item("ID").FindControl("btnUpload"), RadButton)
-    '            txtupload.Enabled = False
-    '        Next
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
-    'Private Sub rgEmployeeList_ItemDataBound(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridItemEventArgs) Handles rgEmployeeList.ItemDataBound
-    '    If isRight = 0 Then
-    '        If rgEmployeeList.Items.Count = 0 Then
-    '            Exit Sub
-    '        End If
-    '        EnableOngrid()
-    '    End If
-    'End Sub
-
     Private Sub cboPeriodEvaluate_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboPeriodEvaluate.SelectedIndexChanged
         Try
             Using rep As New PerformanceBusinessClient
@@ -723,4 +703,24 @@ Class ctrlPE_KPI_Evaluate
 
         End Try
     End Sub
+
+    Private Sub exportKPI()
+        Try
+            Dim dtData As DataTable
+            Dim dtds As New DataSet
+            dtData = CreateDataFilter(True)
+            dtds.Tables.Add(dtData)
+            dtds.Tables(0).TableName = "Table"
+            If dtData.Rows.Count > 0 Then
+                ExportTemplate("Performance\KPI\export.xls",
+                                 dtds, Nothing, "export" & Format(Date.Now, "yyyyMMdd"))
+            Else
+                ShowMessage(Translate(MESSAGE_WARNING_EXPORT_EMPTY), Utilities.NotifyType.Warning)
+            End If
+           
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
 End Class
