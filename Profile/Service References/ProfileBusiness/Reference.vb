@@ -15579,6 +15579,18 @@ Namespace ProfileBusiness
         Private RESULT_TRAINField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RESULT_TRAIN_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RESULT_TRAIN_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SCHOOLS_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SCHOOLS_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SCOREField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -15586,6 +15598,12 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SPECIALIZED_TRAINField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SPECIALIZED_TRAIN_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SPECIALIZED_TRAIN_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private STATUSField As String
@@ -16025,6 +16043,58 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RESULT_TRAIN_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.RESULT_TRAIN_IDField
+            End Get
+            Set
+                If (Me.RESULT_TRAIN_IDField.Equals(value) <> true) Then
+                    Me.RESULT_TRAIN_IDField = value
+                    Me.RaisePropertyChanged("RESULT_TRAIN_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RESULT_TRAIN_NAME() As String
+            Get
+                Return Me.RESULT_TRAIN_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.RESULT_TRAIN_NAMEField, value) <> true) Then
+                    Me.RESULT_TRAIN_NAMEField = value
+                    Me.RaisePropertyChanged("RESULT_TRAIN_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SCHOOLS_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SCHOOLS_IDField
+            End Get
+            Set
+                If (Me.SCHOOLS_IDField.Equals(value) <> true) Then
+                    Me.SCHOOLS_IDField = value
+                    Me.RaisePropertyChanged("SCHOOLS_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SCHOOLS_NAME() As String
+            Get
+                Return Me.SCHOOLS_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SCHOOLS_NAMEField, value) <> true) Then
+                    Me.SCHOOLS_NAMEField = value
+                    Me.RaisePropertyChanged("SCHOOLS_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property SCORE() As System.Nullable(Of Decimal)
             Get
                 Return Me.SCOREField
@@ -16059,6 +16129,32 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.SPECIALIZED_TRAINField, value) <> true) Then
                     Me.SPECIALIZED_TRAINField = value
                     Me.RaisePropertyChanged("SPECIALIZED_TRAIN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SPECIALIZED_TRAIN_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SPECIALIZED_TRAIN_IDField
+            End Get
+            Set
+                If (Me.SPECIALIZED_TRAIN_IDField.Equals(value) <> true) Then
+                    Me.SPECIALIZED_TRAIN_IDField = value
+                    Me.RaisePropertyChanged("SPECIALIZED_TRAIN_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SPECIALIZED_TRAIN_NAME() As String
+            Get
+                Return Me.SPECIALIZED_TRAIN_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SPECIALIZED_TRAIN_NAMEField, value) <> true) Then
+                    Me.SPECIALIZED_TRAIN_NAMEField = value
+                    Me.RaisePropertyChanged("SPECIALIZED_TRAIN_NAME")
                 End If
             End Set
         End Property

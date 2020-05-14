@@ -4448,10 +4448,10 @@ Partial Class ProfileRepository
             objTitleData.FROM_DATE = objTitle.FROM_DATE
             objTitleData.TO_DATE = objTitle.TO_DATE
             objTitleData.YEAR_GRA = objTitle.YEAR_GRA
-            objTitleData.NAME_SHOOLS = objTitle.NAME_SHOOLS
+            objTitleData.SCHOOLS_ID = objTitle.SCHOOLS_ID
             objTitleData.FORM_TRAIN_ID = objTitle.FORM_TRAIN_ID
-            objTitleData.SPECIALIZED_TRAIN = objTitle.SPECIALIZED_TRAIN
-            objTitleData.RESULT_TRAIN = objTitle.RESULT_TRAIN
+            objTitleData.SPECIALIZED_TRAIN_ID = objTitle.SPECIALIZED_TRAIN_ID
+            objTitleData.RESULT_TRAIN_ID = objTitle.RESULT_TRAIN_ID
             objTitleData.CERTIFICATE = objTitle.CERTIFICATE
             objTitleData.EFFECTIVE_DATE_FROM = objTitle.EFFECTIVE_DATE_FROM
             objTitleData.EFFECTIVE_DATE_TO = objTitle.EFFECTIVE_DATE_TO
@@ -4479,10 +4479,10 @@ Partial Class ProfileRepository
             objTitleData.FROM_DATE = objTitle.FROM_DATE
             objTitleData.TO_DATE = objTitle.TO_DATE
             objTitleData.YEAR_GRA = objTitle.YEAR_GRA
-            objTitleData.NAME_SHOOLS = objTitle.NAME_SHOOLS
+            objTitleData.SCHOOLS_ID = objTitle.SCHOOLS_ID
             objTitleData.FORM_TRAIN_ID = objTitle.FORM_TRAIN_ID
-            objTitleData.SPECIALIZED_TRAIN = objTitle.SPECIALIZED_TRAIN
-            objTitleData.RESULT_TRAIN = objTitle.RESULT_TRAIN
+            objTitleData.SPECIALIZED_TRAIN_ID = objTitle.SPECIALIZED_TRAIN_ID
+            objTitleData.RESULT_TRAIN_ID = objTitle.RESULT_TRAIN_ID
             objTitleData.CERTIFICATE = objTitle.CERTIFICATE
             objTitleData.EFFECTIVE_DATE_FROM = objTitle.EFFECTIVE_DATE_FROM
             objTitleData.EFFECTIVE_DATE_TO = objTitle.EFFECTIVE_DATE_TO

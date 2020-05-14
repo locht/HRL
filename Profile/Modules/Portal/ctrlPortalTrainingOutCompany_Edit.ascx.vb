@@ -65,39 +65,46 @@ Public Class ctrlPortalTrainingOutCompany_Edit
                 comboBoxDataDTO = New ComboBoxDataDTO
             End If
             comboBoxDataDTO.GET_TRAINING_FORM = True
-            comboBoxDataDTO.GET_LEARNING_LEVEL = True
+            comboBoxDataDTO.GET_LEVEL_TRAIN = True
             comboBoxDataDTO.GET_MAJOR = True
             comboBoxDataDTO.GET_MARK_EDU = True
+            comboBoxDataDTO.GET_CERTIFICATE_TYPE = True
+            comboBoxDataDTO.GET_GRADUATE_SCHOOL = True
             rep.GetComboList(comboBoxDataDTO)
             If comboBoxDataDTO IsNot Nothing Then
                 FillDropDownList(cboTrainingForm, comboBoxDataDTO.LIST_TRAINING_FORM, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboTrainingForm.SelectedValue)
+                FillDropDownList(cboRemark, comboBoxDataDTO.LIST_CERTIFICATE_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboRemark.SelectedValue)
+                FillDropDownList(cboLevelId, comboBoxDataDTO.LIST_LEVEL_TRAIN, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboLevelId.SelectedValue)
+                FillDropDownList(cboKetQua, comboBoxDataDTO.LIST_MARK_EDU, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboKetQua.SelectedValue)
+                FillDropDownList(cboChuyenNganh, comboBoxDataDTO.LIST_MAJOR, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboChuyenNganh.SelectedValue)
+                FillDropDownList(cboTrainingSchool, comboBoxDataDTO.LIST_GRADUATE_SCHOOL, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboTrainingSchool.SelectedValue)
             End If
             ' FK_PKEY
             Dim dic As New Dictionary(Of String, Control)
-            dic.Add("FROM_DATE", rdTuThang)
-            dic.Add("TO_DATE", rdToiThang)
+            dic.Add("FROM_DATE", rdTuNgay)
+            dic.Add("TO_DATE", rdToiNgay)
             dic.Add("YEAR_GRA", rntGraduateYear)
-            dic.Add("NAME_SHOOLS", txtTrainingSchool)
+            dic.Add("SCHOOLS_ID", cboTrainingSchool)
             dic.Add("FORM_TRAIN_ID", cboTrainingForm)
-            dic.Add("SPECIALIZED_TRAIN", txtChuyenNganh)
-            dic.Add("RESULT_TRAIN", txtKetQua)
-            dic.Add("CERTIFICATE", txtBangCap)
-            dic.Add("EFFECTIVE_DATE_FROM", rdFrom)
-            dic.Add("EFFECTIVE_DATE_TO", rdTo)
+            dic.Add("SPECIALIZED_TRAIN_ID", cboChuyenNganh)
+            dic.Add("RESULT_TRAIN_ID", cboKetQua)
+            dic.Add("CERTIFICATE_ID", cboRemark)
+            'dic.Add("EFFECTIVE_DATE_FROM", rdFrom)
+            'dic.Add("EFFECTIVE_DATE_TO", rdTo)
             dic.Add("ID", hidProcessTrainID)
             Utilities.OnClientRowSelectedChanged(rgTrainingOutCompany, dic)
 
             Dim dic1 As New Dictionary(Of String, Control)
-            dic1.Add("FROM_DATE", rdTuThang)
-            dic1.Add("TO_DATE", rdToiThang)
+            dic1.Add("FROM_DATE", rdTuNgay)
+            dic1.Add("TO_DATE", rdToiNgay)
             dic1.Add("YEAR_GRA", rntGraduateYear)
-            dic1.Add("NAME_SHOOLS", txtTrainingSchool)
+            dic1.Add("SCHOOLS_ID", cboTrainingSchool)
             dic1.Add("FORM_TRAIN_ID", cboTrainingForm)
-            dic1.Add("SPECIALIZED_TRAIN", txtChuyenNganh)
-            dic1.Add("RESULT_TRAIN", txtKetQua)
-            dic1.Add("CERTIFICATE", txtBangCap)
-            dic1.Add("EFFECTIVE_DATE_FROM", rdFrom)
-            dic1.Add("EFFECTIVE_DATE_TO", rdTo)
+            dic1.Add("SPECIALIZED_TRAIN_ID", cboChuyenNganh)
+            dic1.Add("RESULT_TRAIN_ID", cboKetQua)
+            dic1.Add("CERTIFICATE_ID", cboRemark)
+            'dic1.Add("EFFECTIVE_DATE_FROM", rdFrom)
+            'dic1.Add("EFFECTIVE_DATE_TO", rdTo)
             dic1.Add("ID", hidID)
             dic1.Add("FK_PKEY", hidProcessTrainID)
             Utilities.OnClientRowSelectedChanged(rgTrainingOutCompanyEdit, dic1)
@@ -111,18 +118,18 @@ Public Class ctrlPortalTrainingOutCompany_Edit
         Try
             Select Case CurrentState
                 Case CommonMessage.STATE_NORMAL
-                    EnableControlAll(False, rdToiThang, rdTuThang, rntGraduateYear, cboTrainingForm, txtBangCap, txtChuyenNganh, txtKetQua, txtTrainingSchool, rdFrom, rdTo)
+                    EnableControlAll(False, rdToiNgay, rdTuNgay, rntGraduateYear, cboTrainingForm, cboRemark, cboChuyenNganh, cboKetQua, cboTrainingSchool)
 
                     EnabledGridNotPostback(rgTrainingOutCompany, True)
                     EnabledGridNotPostback(rgTrainingOutCompanyEdit, True)
 
                 Case CommonMessage.STATE_NEW
-                    EnableControlAll(True, rdToiThang, rdTuThang, rntGraduateYear, cboTrainingForm, txtBangCap, txtChuyenNganh, txtKetQua, txtTrainingSchool, rdFrom, rdTo)
+                    EnableControlAll(True, rdToiNgay, rdTuNgay, rntGraduateYear, cboTrainingForm, cboRemark, cboChuyenNganh, cboKetQua, cboTrainingSchool)
 
                     EnabledGridNotPostback(rgTrainingOutCompany, False)
                     EnabledGridNotPostback(rgTrainingOutCompanyEdit, False)
                 Case CommonMessage.STATE_EDIT
-                    EnableControlAll(True, rdToiThang, rdTuThang, rntGraduateYear, cboTrainingForm, txtBangCap, txtChuyenNganh, txtKetQua, txtTrainingSchool, rdFrom, rdTo)
+                    EnableControlAll(True, rdToiNgay, rdTuNgay, rntGraduateYear, cboTrainingForm, cboRemark, cboChuyenNganh, cboKetQua, cboTrainingSchool)
 
                     EnabledGridNotPostback(rgTrainingOutCompany, False)
                     EnabledGridNotPostback(rgTrainingOutCompanyEdit, False)
@@ -144,9 +151,9 @@ Public Class ctrlPortalTrainingOutCompany_Edit
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     CurrentState = CommonMessage.STATE_NEW
-                    ClearControlValue(rdTuThang, rdToiThang, rntGraduateYear, cboTrainingForm, txtBangCap, txtChuyenNganh, txtKetQua, txtTrainingSchool, rdFrom, rdTo, hidProcessTrainID, hidID)
-                    rdTuThang.SelectedDate = Nothing
-                    rdToiThang.SelectedDate = Nothing
+                    ClearControlValue(rdTuNgay, rdToiNgay, rntGraduateYear, cboTrainingForm, cboRemark, cboChuyenNganh, cboKetQua, cboTrainingSchool, hidProcessTrainID, hidID)
+                    rdTuNgay.SelectedDate = Nothing
+                    rdToiNgay.SelectedDate = Nothing
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
@@ -154,20 +161,34 @@ Public Class ctrlPortalTrainingOutCompany_Edit
 
                         Dim objTrain As New HU_PRO_TRAIN_OUT_COMPANYDTOEDIT
                         objTrain.EMPLOYEE_ID = EmployeeID
-                        objTrain.FROM_DATE = rdTuThang.SelectedDate
-                        objTrain.TO_DATE = rdToiThang.SelectedDate
-                        objTrain.NAME_SHOOLS = txtTrainingSchool.Text
+                        objTrain.FROM_DATE = rdTuNgay.SelectedDate
+                        objTrain.TO_DATE = rdToiNgay.SelectedDate
+                        If cboTrainingSchool.SelectedValue = "" Then
+                            objTrain.SCHOOLS_ID = Nothing
+                        Else
+                            objTrain.SCHOOLS_ID = cboTrainingSchool.SelectedValue
+                        End If
                         If cboTrainingForm.SelectedValue = "" Then
                             objTrain.FORM_TRAIN_ID = Nothing
                         Else
                             objTrain.FORM_TRAIN_ID = cboTrainingForm.SelectedValue
                         End If
                         objTrain.YEAR_GRA = rntGraduateYear.Value
-                        objTrain.SPECIALIZED_TRAIN = txtChuyenNganh.Text
-                        objTrain.RESULT_TRAIN = txtKetQua.Text
-                        objTrain.CERTIFICATE = txtBangCap.Text
-                        objTrain.EFFECTIVE_DATE_FROM = rdFrom.SelectedDate
-                        objTrain.EFFECTIVE_DATE_TO = rdTo.SelectedDate
+                        If cboChuyenNganh.SelectedValue = "" Then
+                            objTrain.SPECIALIZED_TRAIN_ID = Nothing
+                        Else
+                            objTrain.SPECIALIZED_TRAIN_ID = cboChuyenNganh.SelectedValue
+                        End If
+                        If cboKetQua.SelectedValue = "" Then
+                            objTrain.RESULT_TRAIN_ID = Nothing
+                        Else
+                            objTrain.RESULT_TRAIN_ID = cboKetQua.SelectedValue
+                        End If
+                        If cboRemark.SelectedValue = "" Then
+                            objTrain.CERTIFICATE_ID = Nothing
+                        Else
+                            objTrain.CERTIFICATE_ID = cboRemark.SelectedValue
+                        End If
 
                         Using rep As New ProfileBusinessRepository
                             If hidProcessTrainID.Value <> "" Then
@@ -207,9 +228,9 @@ Public Class ctrlPortalTrainingOutCompany_Edit
                     End If
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     CurrentState = CommonMessage.STATE_NORMAL
-                    ClearControlValue(rdTuThang, rdToiThang, rntGraduateYear, cboTrainingForm, txtBangCap, txtChuyenNganh, txtKetQua, txtTrainingSchool, rdFrom, rdTo, hidProcessTrainID, hidID)
-                    rdTuThang.SelectedDate = Nothing
-                    rdToiThang.SelectedDate = Nothing
+                    ClearControlValue(rdTuNgay, rdToiNgay, rntGraduateYear, cboTrainingForm, cboRemark, cboChuyenNganh, cboKetQua, cboTrainingSchool, hidProcessTrainID, hidID)
+                    rdTuNgay.SelectedDate = Nothing
+                    rdToiNgay.SelectedDate = Nothing
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_SUBMIT
                     If rgTrainingOutCompanyEdit.SelectedItems.Count = 0 Then
@@ -293,16 +314,14 @@ Public Class ctrlPortalTrainingOutCompany_Edit
                 End Select
                 hidProcessTrainID.Value = item.GetDataKeyValue("ID")
 
-                rdTuThang.SelectedDate = item.GetDataKeyValue("FROM_DATE")
-                rdToiThang.SelectedDate = item.GetDataKeyValue("FROM_DATE")
+                rdTuNgay.SelectedDate = item.GetDataKeyValue("FROM_DATE")
+                rdToiNgay.SelectedDate = item.GetDataKeyValue("FROM_DATE")
                 rntGraduateYear.Text = item.GetDataKeyValue("YEAR_GRA")
-                txtTrainingSchool.Text = item.GetDataKeyValue("NAME_SHOOLS")
+                cboTrainingSchool.SelectedValue = item.GetDataKeyValue("SCHOOLS_ID")
                 cboTrainingForm.SelectedValue = item.GetDataKeyValue("FORM_TRAIN_ID")
-                txtChuyenNganh.Text = item.GetDataKeyValue("SPECIALIZED_TRAIN")
-                txtKetQua.Text = item.GetDataKeyValue("RESULT_TRAIN")
-                txtBangCap.Text = item.GetDataKeyValue("CERTIFICATE")
-                rdFrom.SelectedDate = item.GetDataKeyValue("EFFECTIVE_DATE_FROM")
-                rdTo.SelectedDate = item.GetDataKeyValue("EFFECTIVE_DATE_TO")
+                cboChuyenNganh.SelectedValue = item.GetDataKeyValue("SPECIALIZED_TRAIN_ID")
+                cboKetQua.SelectedValue = item.GetDataKeyValue("RESULT_TRAIN_ID")
+                cboRemark.SelectedValue = item.GetDataKeyValue("CERTIFICATE_ID")
 
                 If item.GetDataKeyValue("FK_PKEY") IsNot Nothing Then
                     hidProcessTrainID.Value = item.GetDataKeyValue("FK_PKEY")
@@ -322,16 +341,14 @@ Public Class ctrlPortalTrainingOutCompany_Edit
                 CurrentState = CommonMessage.STATE_EDIT
                 Dim item = CType(e.Item, GridDataItem)
                 hidProcessTrainID.Value = item.GetDataKeyValue("ID")
-                rdTuThang.SelectedDate = item.GetDataKeyValue("FROM_DATE")
-                rdToiThang.SelectedDate = item.GetDataKeyValue("FROM_DATE")
+                rdTuNgay.SelectedDate = item.GetDataKeyValue("FROM_DATE")
+                rdToiNgay.SelectedDate = item.GetDataKeyValue("FROM_DATE")
                 rntGraduateYear.Text = item.GetDataKeyValue("YEAR_GRA")
-                txtTrainingSchool.Text = item.GetDataKeyValue("NAME_SHOOLS")
+                cboTrainingSchool.SelectedValue = item.GetDataKeyValue("SCHOOLS_ID")
                 cboTrainingForm.SelectedValue = item.GetDataKeyValue("FORM_TRAIN_ID")
-                txtChuyenNganh.Text = item.GetDataKeyValue("SPECIALIZED_TRAIN")
-                txtKetQua.Text = item.GetDataKeyValue("RESULT_TRAIN")
-                txtBangCap.Text = item.GetDataKeyValue("CERTIFICATE")
-                rdFrom.SelectedDate = item.GetDataKeyValue("EFFECTIVE_DATE_FROM")
-                rdTo.SelectedDate = item.GetDataKeyValue("EFFECTIVE_DATE_TO")
+                cboChuyenNganh.Text = item.GetDataKeyValue("SPECIALIZED_TRAIN_ID")
+                cboKetQua.SelectedValue = item.GetDataKeyValue("RESULT_TRAIN_ID")
+                cboRemark.SelectedValue = item.GetDataKeyValue("CERTIFICATE_ID")
                 hidProcessTrainID.Value = item.GetDataKeyValue("ID")
                 hidID.Value = ""
 
@@ -368,10 +385,10 @@ Public Class ctrlPortalTrainingOutCompany_Edit
 #End Region
 
 #Region "Custom"
-    Private Sub cvalToiThang_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalToiThang.ServerValidate
+    Private Sub cvalToiNgay_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalToiNgay.ServerValidate
         Try
-            If rdToiThang.SelectedDate IsNot Nothing Then
-                If rdTuThang.SelectedDate > rdToiThang.SelectedDate Then
+            If rdToiNgay.SelectedDate IsNot Nothing Then
+                If rdTuNgay.SelectedDate > rdToiNgay.SelectedDate Then
                     args.IsValid = False
                 End If
             End If

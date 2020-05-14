@@ -8,110 +8,124 @@
 <div style="overflow: auto">
     <table class="table-form">
         <tr>
-            <td class="lb" style="width: 200px">
-                <%# Translate("Từ tháng")%>
-                <%--<span class="lbReq">*</span>--%>
-            </td>
-            <td>
-                <tlk:RadMonthYearPicker ID="rdTuThang" runat="server" DateInput-DisplayDateFormat="MM/yyyy"
-                    DateInput-DateFormat="dd/MM/yyyy">
-                    <DateInput Enabled="false">
-                    </DateInput>
-                </tlk:RadMonthYearPicker>
-                <%--<asp:RequiredFieldValidator ID="rqTuThang" ControlToValidate="rdTuThang" runat="server"
-                    ErrorMessage="<%$ Translate: Bạn phải nhập từ tháng. %>" ToolTip="<%$ Translate: Bạn phải nhập từ tháng. %>"> </asp:RequiredFieldValidator>--%>
-            </td>
-            <td class="lb" style="width: 200px">
-                <%# Translate("Đến tháng")%>
-            </td>
-            <td>
-                <tlk:RadMonthYearPicker ID="rdToiThang" runat="server" DateInput-DisplayDateFormat="MM/yyyy"
-                    DateInput-DateFormat="dd/MM/yyyy">
-                    <DateInput Enabled="false">
-                    </DateInput>
-                </tlk:RadMonthYearPicker>
-                <asp:CustomValidator ID="cvalToiThang" runat="server" ErrorMessage="<%$ Translate: Từ tháng không đươc lớn hơn tới tháng. %>"
-                    ToolTip="<%$ Translate: Từ tháng không đươc lớn hơn tới tháng. %>">
-                </asp:CustomValidator>
-                <%--<asp:RequiredFieldValidator ID="rqToiThang" ControlToValidate="rdToiThang" runat="server"
+                <td class="lb" style="width: 130px">
+                    <asp:Label runat="server" ID="lbTuNgay" Text="Từ ngày"></asp:Label>
+                    <span class="lbReq">*</span>
+                </td>
+                <td>                    
+                     <tlk:RadDatePicker ID="rdTuNgay" runat="server">
+                    </tlk:RadDatePicker>
+                    <asp:RequiredFieldValidator ID="rqTuNgay" ControlToValidate="rdTuNgay" runat="server"
+                        ErrorMessage="Bạn phải nhập từ ngày." ToolTip="Bạn phải nhập từ ngày."> </asp:RequiredFieldValidator>
+                </td>
+                <td class="lb" style="width: 200px">
+                    <asp:Label runat="server" ID="lbToiNgay" Text="Đến ngày"></asp:Label>
+                    <span class="lbReq">*</span>
+                </td>
+                <td>
+                <tlk:RadDatePicker ID="rdToiNgay" runat="server">
+                    </tlk:RadDatePicker>
+                    <asp:CustomValidator ID="cvalToiNgay" runat="server" ErrorMessage="Từ ngày không được lớn hơn tới ngày."
+                        ToolTip="Từ ngày không được lớn hơn tới ngày.">
+                    </asp:CustomValidator>
+                    <%--<asp:RequiredFieldValidator ID="rqToiThang" ControlToValidate="rdToiThang" runat="server"
                         ErrorMessage="<%$ Translate: Bạn phải nhập tới tháng. %>" ToolTip="<%$ Translate: Bạn phải nhập tới tháng. %>"> </asp:RequiredFieldValidator>--%>
-            </td>
-        </tr>
+                </td>
+            </tr>
         <tr>
-            <td class="lb">
-                <%# Translate("Năm tốt nghiệp")%>
-                <%--<span class="lbReq">*</span>--%>
-            </td>
-            <td>
-                <tlk:RadNumericTextBox runat="server" ID="rntGraduateYear" NumberFormat-DecimalDigits="0"
-                    NumberFormat-GroupSizes="4" MinValue="1990" MaxValue="9999">
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbTrainingSchool" Text="Tên trường"></asp:Label>
+                    <span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboTrainingSchool" runat="server" Width="160px" CausesValidation="false">
+                     </tlk:RadComboBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="cboTrainingSchool"
+                        runat="server" ErrorMessage="Bạn phải nhập tên trường." ToolTip="Bạn phải nhập tên trường."> </asp:RequiredFieldValidator>
+                </td>
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbChuyenNganh" Text="Ngành học"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboChuyenNganh" runat="server" Width="160px" CausesValidation="false">
+                     </tlk:RadComboBox>
+                </td>
+            </tr>
+            <tr>
+                <td class="lb">
+                    <asp:Label runat="server" ID="Label1" Text="Trình độ"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboLevelId" runat="server">
+                    </tlk:RadComboBox>
+                </td>
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbBangCap" Text="Bằng cấp/Chứng chỉ"></asp:Label>
+                </td>
+                <td>
+                     <tlk:RadComboBox ID="cboRemark" runat="server" Width="160px" CausesValidation="false">
+                     </tlk:RadComboBox>
+                </td>
+               <%-- <td class="lb">
+                    <asp:Label runat="server" ID="Label2" Text="Điểm số"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="rtxtPointLevel" runat="server">
+                    </tlk:RadTextBox>
+                </td>--%>
+            </tr>       
+        <tr>
+              <td class="lb">
+                    <asp:Label runat="server" ID="lbKetQua" Text="Xếp loại"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboKetQua" runat="server">
+                    </tlk:RadComboBox>
+                </td>
+                
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbGraduateYear" Text="Năm tốt nghiệp"></asp:Label>                  
+                </td>
+                <td>
+                    <%--<tlk:RadNumericTextBox runat="server" ID="rntGraduateYear1" NumberFormat-DecimalDigits="0"
+                        NumberFormat-GroupSizes="4" MinValue="1990" MaxValue="9999">
+                    </tlk:RadNumericTextBox>--%>
+
+                     <tlk:RadNumericTextBox ID="rntGraduateYear" runat="server" NumberFormat-DecimalDigits="1"
+                    NumberFormat-GroupSeparator="" ShowSpinButtons="true" MaxLength="4" MinValue="1900"
+                    MaxValue="9999" SkinID="Number" CausesValidation="false">
+                    <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1" />
                 </tlk:RadNumericTextBox>
-                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rntGraduateYear"
-                    runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập năm tốt nghiệp. %>"
-                    ToolTip="<%$ Translate: Bạn phải nhập năm tốt nghiệp. %>"> </asp:RequiredFieldValidator>--%>
-            </td>
-            <td class="lb">
-                <%# Translate("Tên trường")%>
-                <%--<span class="lbReq">*</span>--%>
-            </td>
-            <td colspan="3">
-                <tlk:RadTextBox ID="txtTrainingSchool" runat="server" MaxLength="255">
-                </tlk:RadTextBox>
-                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtTrainingSchool"
-                    runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập tên trường. %>" ToolTip="<%$ Translate: Bạn phải nhập tên trường. %>"> </asp:RequiredFieldValidator>--%>
-            </td>
-        </tr>
-        <tr>
-            <td class="lb">
-                <%# Translate("Hình thức đào tạo")%>
-            </td>
-            <td>
-                <tlk:RadComboBox ID="cboTrainingForm" runat="server">
-                </tlk:RadComboBox>
-            </td>
-            <td class="lb">
-                <%# Translate("Chuyên ngành")%>
-            </td>
-            <td>
-                <tlk:RadTextBox ID="txtChuyenNganh" SkinID="Textbox250" runat="server" MaxLength="255">
-                </tlk:RadTextBox>
-            </td>
-        </tr>
-        <tr>
-            <td class="lb">
-                <%# Translate("Kết quả đào tạo")%>
-            </td>
-            <td>
-                <tlk:RadTextBox ID="txtKetQua" SkinID="Textbox250" runat="server" MaxLength="255">
-                </tlk:RadTextBox>
-            </td>
-            <td class="lb">
-                <%# Translate("Bằng cấp/Chứng chỉ")%>
-            </td>
-            <td>
-                <tlk:RadTextBox ID="txtBangCap" SkinID="Textbox250" runat="server" MaxLength="255">
-                </tlk:RadTextBox>
-            </td>
-        </tr>
-        <tr>
-            <td class="lb">
-                <%# Translate("Ngày hiệu lực chứng chỉ")%>
-            </td>
-            <td>
-                <tlk:RadDatePicker ID="rdFrom" runat="server">
-                </tlk:RadDatePicker>
-            </td>
-            <td class="lb">
-                <%# Translate("Ngày hết hiệu lực chứng chỉ")%>
-            </td>
-            <td>
-                <tlk:RadDatePicker ID="rdTo" runat="server">
-                </tlk:RadDatePicker>
-                <asp:CompareValidator ID="CompareValidator1" runat="server" ToolTip="<%$ Translate: Ngày hiệu lực chứng chỉ phải nhỏ hơn ngày hết hiệu lực chứng chỉ %>"
-                    ErrorMessage="<%$ Translate: Ngày hiệu lực chứng chỉ phải nhỏ hơn ngày hết hiệu lực chứng chỉ %>"
-                    Type="Date" Operator="GreaterThan" ControlToCompare="rdFrom" ControlToValidate="rdTo"></asp:CompareValidator>
-            </td>
-        </tr>
+
+
+                  <%--  <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rntGraduateYear"
+                        runat="server" ErrorMessage="Bạn phải nhập năm tốt nghiệp."
+                        ToolTip="Bạn phải nhập năm tốt nghiệp."> </asp:RequiredFieldValidator>--%>
+                </td>
+            </tr>
+            <tr>
+                <%-- <td class="lb">
+                    <asp:Label runat="server" ID="lbTrainingType" Text="Loại hình đào tạo"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="txtTrainingType" runat="server">
+                    </tlk:RadTextBox>
+                </td>--%>
+                 <td class="lb">
+                    <asp:Label runat="server" ID="Label4" Text="Nội dung đào tạo"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="rtxtContentLevel" runat="server" Width="100%">
+                    </tlk:RadTextBox>
+                </td>
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbTrainingForm" Text="Hình thức đào tạo"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboTrainingForm" runat="server">
+                    </tlk:RadComboBox>
+                </td>
+            </tr>
     </table>
     <tlk:RadGrid PageSize=50 ID="rgTrainingOutCompanyEdit" runat="server" Height="250px" Width="99%">
         <MasterTableView DataKeyNames="ID,EMPLOYEE_ID,FROM_DATE,TO_DATE,YEAR_GRA,NAME_SHOOLS,FORM_TRAIN_ID,SPECIALIZED_TRAIN,RESULT_TRAIN,CERTIFICATE,

@@ -283,7 +283,6 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
             comboBoxDataDTO.GET_MAJOR = True
             comboBoxDataDTO.GET_MARK_EDU = True
             comboBoxDataDTO.GET_CERTIFICATE_TYPE = True
-            comboBoxDataDTO.GET_MAJOR = True
             comboBoxDataDTO.GET_GRADUATE_SCHOOL = True
             rep.GetComboList(comboBoxDataDTO)
             If comboBoxDataDTO IsNot Nothing Then
