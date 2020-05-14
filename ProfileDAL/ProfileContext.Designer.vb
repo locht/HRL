@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("c28ac9b1-cf94-4ba1-9033-c01183e9407c")>
+<Assembly: EdmSchemaAttribute("ff882d22-2ead-40c3-9cba-6e003a70b17c")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -54989,6 +54989,81 @@ Public Partial Class HU_PRO_TRAIN_OUT_COMPANY_EDIT
     End Sub
 
     Private Partial Sub OnTYPE_TRAIN_NAMEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property RESULT_TRAIN_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _RESULT_TRAIN_ID
+        End Get
+        Set
+            OnRESULT_TRAIN_IDChanging(value)
+            ReportPropertyChanging("RESULT_TRAIN_ID")
+            _RESULT_TRAIN_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("RESULT_TRAIN_ID")
+            OnRESULT_TRAIN_IDChanged()
+        End Set
+    End Property
+
+    Private _RESULT_TRAIN_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnRESULT_TRAIN_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnRESULT_TRAIN_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SCHOOLS_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _SCHOOLS_ID
+        End Get
+        Set
+            OnSCHOOLS_IDChanging(value)
+            ReportPropertyChanging("SCHOOLS_ID")
+            _SCHOOLS_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("SCHOOLS_ID")
+            OnSCHOOLS_IDChanged()
+        End Set
+    End Property
+
+    Private _SCHOOLS_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSCHOOLS_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSCHOOLS_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SPECIALIZED_TRAIN_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _SPECIALIZED_TRAIN_ID
+        End Get
+        Set
+            OnSPECIALIZED_TRAIN_IDChanging(value)
+            ReportPropertyChanging("SPECIALIZED_TRAIN_ID")
+            _SPECIALIZED_TRAIN_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("SPECIALIZED_TRAIN_ID")
+            OnSPECIALIZED_TRAIN_IDChanged()
+        End Set
+    End Property
+
+    Private _SPECIALIZED_TRAIN_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSPECIALIZED_TRAIN_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSPECIALIZED_TRAIN_IDChanged()
     End Sub
 
     #End Region

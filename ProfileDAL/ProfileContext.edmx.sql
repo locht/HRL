@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 14/5/2020 4:59:30 PM
+-- Date Created: 14/5/2020 10:33:25 PM
 -- Generated from EDMX file: G:\Cty TVC\Source\acv_19\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -1879,7 +1879,10 @@ CREATE TABLE "dbo"."HU_PRO_TRAIN_OUT_COMPANY_EDIT" (
    "CONTENT_TRAIN" NCLOB NULL,
    "CODE_CERTIFICATE" NCLOB NULL,
    "REMARK" NCLOB NULL,
-   "TYPE_TRAIN_NAME" NCLOB NULL
+   "TYPE_TRAIN_NAME" NCLOB NULL,
+   "RESULT_TRAIN_ID" NUMBER(38,0) NULL,
+   "SCHOOLS_ID" NUMBER(38,0) NULL,
+   "SPECIALIZED_TRAIN_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_WORKING_BEFORE_EDIT'

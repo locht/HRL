@@ -1835,6 +1835,9 @@
             <Property Name="CODE_CERTIFICATE" Type="nclob" Nullable="true" />
             <Property Name="REMARK" Type="nclob" Nullable="true" />
             <Property Name="TYPE_TRAIN_NAME" Type="nclob" Nullable="true" />
+            <Property Name="RESULT_TRAIN_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SCHOOLS_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SPECIALIZED_TRAIN_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_WORKING_BEFORE_EDIT">
             <Key>
@@ -6841,6 +6844,9 @@
           <Property Type="String" Name="CODE_CERTIFICATE" />
           <Property Type="String" Name="REMARK" />
           <Property Type="String" Name="TYPE_TRAIN_NAME" />
+          <Property Type="Decimal" Name="RESULT_TRAIN_ID" />
+          <Property Type="Decimal" Name="SCHOOLS_ID" />
+          <Property Type="Decimal" Name="SPECIALIZED_TRAIN_ID" />
         </EntityType>
         <EntityType Name="HU_WORKING_BEFORE_EDIT">
           <Key>
@@ -10918,6 +10924,9 @@
                     <ScalarProperty Name="CODE_CERTIFICATE" ColumnName="CODE_CERTIFICATE" />
                     <ScalarProperty Name="REMARK" ColumnName="REMARK" />
                     <ScalarProperty Name="TYPE_TRAIN_NAME" ColumnName="TYPE_TRAIN_NAME" />
+                    <ScalarProperty Name="RESULT_TRAIN_ID" ColumnName="RESULT_TRAIN_ID" />
+                    <ScalarProperty Name="SCHOOLS_ID" ColumnName="SCHOOLS_ID" />
+                    <ScalarProperty Name="SPECIALIZED_TRAIN_ID" ColumnName="SPECIALIZED_TRAIN_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -13680,7 +13689,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_ASSET_MNG" Width="1.5" PointX="15.625" PointY="25" Height="5.8263151041666674" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_FAMILY_EDIT" Width="2.125" PointX="16.625" PointY="16.375" Height="11.403056640625003" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDIT" Width="2.125" PointX="26.125" PointY="16.125" Height="8.3262337239583353" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProfileModel.HU_PRO_TRAIN_OUT_COMPANY_EDIT" Width="2.875" PointX="2.375" PointY="31.875" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_PRO_TRAIN_OUT_COMPANY_EDIT" Width="2.875" PointX="2.375" PointY="31.875" Height="7.3647265625000031" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_WORKING_BEFORE_EDIT" Width="2.125" PointX="23.125" PointY="0.5" Height="5.2494108072916656" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_MNG" Width="1.5" PointX="2.75" PointY="20.875" Height="5.0571093750000031" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_TERMINATE_3B" Width="1.5" PointX="20.75" PointY="4.875" Height="0.39999999999999147" IsExpanded="false" />
