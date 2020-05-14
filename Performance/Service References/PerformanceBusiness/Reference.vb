@@ -5980,6 +5980,9 @@ Namespace PerformanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPerformanceBusiness/PRINT_PE_ASSESS", ReplyAction:="http://tempuri.org/IPerformanceBusiness/PRINT_PE_ASSESSResponse")>  _
         Function PRINT_PE_ASSESS(ByVal empID As Decimal, ByVal period As Decimal, ByVal obj As Decimal) As System.Data.DataSet
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPerformanceBusiness/CheckEmployee_Exits", ReplyAction:="http://tempuri.org/IPerformanceBusiness/CheckEmployee_ExitsResponse")>  _
+        Function CheckEmployee_Exits(ByVal empCode As String) As Integer
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPerformanceBusiness/GetListEmployeePaging", ReplyAction:="http://tempuri.org/IPerformanceBusiness/GetListEmployeePagingResponse")>  _
         Function GetListEmployeePaging(ByVal _filter As PerformanceBusiness.KPI_EVALUATEDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As PerformanceBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of PerformanceBusiness.KPI_EVALUATEDTO)
         
@@ -6337,6 +6340,10 @@ Namespace PerformanceBusiness
         
         Public Function PRINT_PE_ASSESS(ByVal empID As Decimal, ByVal period As Decimal, ByVal obj As Decimal) As System.Data.DataSet Implements PerformanceBusiness.IPerformanceBusiness.PRINT_PE_ASSESS
             Return MyBase.Channel.PRINT_PE_ASSESS(empID, period, obj)
+        End Function
+        
+        Public Function CheckEmployee_Exits(ByVal empCode As String) As Integer Implements PerformanceBusiness.IPerformanceBusiness.CheckEmployee_Exits
+            Return MyBase.Channel.CheckEmployee_Exits(empCode)
         End Function
         
         Public Function GetListEmployeePaging(ByVal _filter As PerformanceBusiness.KPI_EVALUATEDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As PerformanceBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of PerformanceBusiness.KPI_EVALUATEDTO) Implements PerformanceBusiness.IPerformanceBusiness.GetListEmployeePaging

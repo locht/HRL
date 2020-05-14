@@ -609,6 +609,7 @@ Class ctrlPE_KPI_Evaluate
         Dim count As Integer
         Dim newRow As DataRow
         Dim dsEMP As DataTable
+        Dim rep As New PerformanceBusinessClient
         If dtLogs Is Nothing Then
             dtLogs = New DataTable("data")
             dtLogs.Columns.Add("STT", GetType(Integer))
@@ -635,11 +636,18 @@ Class ctrlPE_KPI_Evaluate
             If IsDBNull(rows("EMPLOYEE_CODE")) Then
                 newRow("DISCIPTION") = newRow("DISCIPTION") + "MÃ NV - Phải nhập MÃ NV"
                 _error = False
+            Else
+                Dim empId = rep.CheckEmployee_Exits(rows("EMPLOYEE_CODE"))
+                If empId = 0 Then
+                    newRow("DISCIPTION") = "Mã nhân viên - Không tồn tại,"
+                    _error = False
+                End If
             End If
             If IsDBNull(rows("SALARY_LEVEL")) Then
                 newRow("DISCIPTION") = newRow("DISCIPTION") + "NGẠCH - Phải nhập NGẠCH"
                 _error = False
             End If
+           
             If (rows("SUM_TT")).ToString <> "" Then
                 If IsNumeric(rows("SUM_TT")) Then
                     rows("SUM_TT") = (Decimal.Parse(rows("SUM_TT")) * 100).ToString + "%"

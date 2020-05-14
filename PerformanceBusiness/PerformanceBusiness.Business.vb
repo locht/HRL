@@ -367,6 +367,16 @@ Implements ServiceContracts.IPerformanceBusiness.GetKPIAssessEmp
             End Using
         End Function
 #Region "danh gia kpis"
+        Public Function CheckEmployee_Exits(ByVal empCode As String) As Integer _
+           Implements ServiceContracts.IPerformanceBusiness.CheckEmployee_Exits
+            Using rep As New PerformanceRepository
+                Try
+                    Return rep.CheckEmployee_Exits(empCode)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
         Public Function GetListEmployeePaging(ByVal _filter As KPI_EVALUATEDTO,
                                          ByVal PageIndex As Integer,
                                          ByVal PageSize As Integer,

@@ -553,6 +553,8 @@
             <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
             <Property Name="KPI_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TITLE_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="PA_SALARY_LEVEL">
             <Key>
@@ -1324,6 +1326,8 @@
           <Property Type="DateTime" Name="MODIFIED_DATE" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="1023" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="KPI_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID" />
+          <Property Type="Decimal" Name="TITLE_ID" />
         </EntityType>
         <EntityType Name="PA_SALARY_LEVEL">
           <Key>
@@ -1867,6 +1871,8 @@
                     <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
                     <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
                     <ScalarProperty Name="KPI_ID" ColumnName="KPI_ID" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                    <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -1968,7 +1974,7 @@
         <EntityTypeShape EntityType="PerformanceModel.PE_EMPLOYEE_ASSESSMENT" Width="1.5" PointX="0.75" PointY="11.75" Height="3.1340950520833282" />
         <EntityTypeShape EntityType="PerformanceModel.PE_CRITERIA_OBJECT_GROUP" Width="1.5" PointX="3.375" PointY="10.75" Height="3.5186979166666674" />
         <EntityTypeShape EntityType="PerformanceModel.PE_PERIOD" Width="1.5" PointX="0.75" PointY="6.75" Height="3.9033007812500102" />
-        <EntityTypeShape EntityType="PerformanceModel.PE_KPI_EVALUATE" Width="1.5" PointX="5.5" PointY="10.75" Height="6.0186165364583282" />
+        <EntityTypeShape EntityType="PerformanceModel.PE_KPI_EVALUATE" Width="1.5" PointX="5.5" PointY="10.75" Height="6.4032194010416674" />
         <EntityTypeShape EntityType="PerformanceModel.PA_SALARY_LEVEL" Width="1.5" PointX="12.75" PointY="6.75" Height="4.2879036458333282" />
       </Diagram>
     </edmx:Diagrams>

@@ -29,4 +29,6 @@
     Public Property IS_TER As Boolean
     Public Property ORG_ID As Decimal
     Public Property KPI_EVALUATE As Decimal?
+    Public Property TITLE_ID As Decimal
+
 End Class

@@ -395,6 +395,17 @@ Partial Class PerformanceRepository
         End Using
     End Function
 #Region "danh gia kpis"
+    Public Function CheckEmployee_Exits(ByVal empCode As String) As Integer
+        Using rep As New PerformanceBusinessClient
+            Try
+                Return rep.CheckEmployee_Exits(empCode)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
     Public Function GetListEmployeePaging(ByVal _filter As KPI_EVALUATEDTO,
                                          ByVal PageIndex As Integer,
                                          ByVal PageSize As Integer,

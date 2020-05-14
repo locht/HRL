@@ -868,6 +868,24 @@ Partial Class PerformanceRepository
         End Try
     End Function
 #Region "danh gia kpis"
+    Public Function CheckEmployee_Exits(ByVal empCode As String) As Integer
+        Dim objEmp As HU_EMPLOYEE
+        Dim result As Integer
+        Try
+            Dim query = (From p In Context.HU_EMPLOYEE Where p.EMPLOYEE_CODE = empCode.Trim())
+            Dim lst = query.Select(Function(f) New EmployeeDTO With
+                                              {.ID = f.ID})
+            If lst.Count > 0 Then
+                result = 1
+            Else
+                result = 0
+            End If
+            Return result
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
     Public Function GetListEmployeePaging(ByVal _filter As KPI_EVALUATEDTO,
                                           ByVal PageIndex As Integer,
                                           ByVal PageSize As Integer,
@@ -891,9 +909,9 @@ Partial Class PerformanceRepository
                         From period In Context.PE_PERIOD.Where(Function(f) f.ID = mbo.KPI_ID).DefaultIfEmpty
                         From sal_level In Context.PA_SALARY_LEVEL.Where(Function(f) f.ID = mbo.SALARYLEVEL_ID).DefaultIfEmpty
                         From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = mbo.CLASSFICATION).DefaultIfEmpty
-                        From org In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID).DefaultIfEmpty
-                        From title In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
-                        From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
+                        From org In Context.HU_ORGANIZATION.Where(Function(f) mbo.ORG_ID = f.ID).DefaultIfEmpty
+                        From title In Context.HU_TITLE.Where(Function(f) mbo.TITLE_ID = f.ID).DefaultIfEmpty
+                        From k In Context.SE_CHOSEN_ORG.Where(Function(f) mbo.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
                         Order By p.EMPLOYEE_CODE()
 
             Dim lst = query.Select(Function(p) New KPI_EVALUATEDTO With {
@@ -994,7 +1012,7 @@ Partial Class PerformanceRepository
             If _filter.REMARK IsNot Nothing Then
                 lst = lst.Where(Function(p) p.REMARK.ToUpper.Contains(_filter.REMARK.ToUpper))
             End If
-           
+
 
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
@@ -1040,7 +1058,7 @@ Partial Class PerformanceRepository
         Dim dt As New DataTable
         Try
             dt = (From p In Context.PE_PERIOD
-                  Where p.ACTFLG = "A"
+                  Where p.ACTFLG = "A" And p.TYPE_ASS = 7941
                   Where p.YEAR = year Select p.ID, p.NAME).ToList.ToTable()
 
             Return dt

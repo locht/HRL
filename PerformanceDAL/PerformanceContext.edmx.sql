@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 05/14/2020 8:54:07 AM
+-- Date Created: 05/14/2020 4:31:32 PM
 -- Generated from EDMX file: D:\MyProject2020\ACV_NEW\acv_19\PerformanceDAL\PerformanceContext.edmx
 -- --------------------------------------------------
 
@@ -9,67 +9,67 @@
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- ALTER TABLE "dbo"."HU_EMPLOYEE_CV" DROP CONSTRAINT "FK_HE_HEC" CASCADE;
+-- ALTER TABLE "PerformanceModelStoreContainer"."HU_EMPLOYEE_CV" DROP CONSTRAINT "FK_HE_HEC" CASCADE;
 
--- ALTER TABLE "dbo"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HE_HT" CASCADE;
+-- ALTER TABLE "PerformanceModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HE_HT" CASCADE;
 
--- ALTER TABLE "dbo"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HU_ORG_HU_EMP" CASCADE;
+-- ALTER TABLE "PerformanceModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HU_ORG_HU_EMP" CASCADE;
 
--- ALTER TABLE "dbo"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HUEMD_HUEM" CASCADE;
+-- ALTER TABLE "PerformanceModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HUEMD_HUEM" CASCADE;
 
--- ALTER TABLE "dbo"."HU_ORG_TITLE" DROP CONSTRAINT "FK_HUOG_HUOT" CASCADE;
+-- ALTER TABLE "PerformanceModelStoreContainer"."HU_ORG_TITLE" DROP CONSTRAINT "FK_HUOG_HUOT" CASCADE;
 
--- ALTER TABLE "dbo"."HU_ORG_TITLE" DROP CONSTRAINT "FK_HUTL_HUOT" CASCADE;
+-- ALTER TABLE "PerformanceModelStoreContainer"."HU_ORG_TITLE" DROP CONSTRAINT "FK_HUTL_HUOT" CASCADE;
 
--- ALTER TABLE "dbo"."HU_ORGANIZATION" DROP CONSTRAINT "FK_HU_ORG_HU_ORG" CASCADE;
+-- ALTER TABLE "PerformanceModelStoreContainer"."HU_ORGANIZATION" DROP CONSTRAINT "FK_HU_ORG_HU_ORG" CASCADE;
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "dbo"."PE_CRITERIA";
+-- DROP TABLE "PerformanceModelStoreContainer"."PE_CRITERIA";
 
--- DROP TABLE "dbo"."PE_OBJECT_GROUP";
+-- DROP TABLE "PerformanceModelStoreContainer"."PE_OBJECT_GROUP";
 
--- DROP TABLE "dbo"."PE_OBJECT_GROUP_PERIOD";
+-- DROP TABLE "PerformanceModelStoreContainer"."PE_OBJECT_GROUP_PERIOD";
 
--- DROP TABLE "dbo"."HU_EMPLOYEE";
+-- DROP TABLE "PerformanceModelStoreContainer"."HU_EMPLOYEE";
 
--- DROP TABLE "dbo"."HU_EMPLOYEE_CV";
+-- DROP TABLE "PerformanceModelStoreContainer"."HU_EMPLOYEE_CV";
 
--- DROP TABLE "dbo"."HU_ORG_TITLE";
+-- DROP TABLE "PerformanceModelStoreContainer"."HU_ORG_TITLE";
 
--- DROP TABLE "dbo"."HU_ORGANIZATION";
+-- DROP TABLE "PerformanceModelStoreContainer"."HU_ORGANIZATION";
 
--- DROP TABLE "dbo"."HU_TITLE";
+-- DROP TABLE "PerformanceModelStoreContainer"."HU_TITLE";
 
--- DROP TABLE "dbo"."SE_CHOSEN_ORG";
+-- DROP TABLE "PerformanceModelStoreContainer"."SE_CHOSEN_ORG";
 
--- DROP TABLE "dbo"."HU_STAFF_RANK";
+-- DROP TABLE "PerformanceModelStoreContainer"."HU_STAFF_RANK";
 
--- DROP TABLE "dbo"."HUV_ORGANIZATION";
+-- DROP TABLE "PerformanceModelStoreContainer"."HUV_ORGANIZATION";
 
--- DROP TABLE "dbo"."PE_PERSONAL";
+-- DROP TABLE "PerformanceModelStoreContainer"."PE_PERSONAL";
 
--- DROP TABLE "dbo"."PE_EMPLOYEE_ASSESSMENT_DTL";
+-- DROP TABLE "PerformanceModelStoreContainer"."PE_EMPLOYEE_ASSESSMENT_DTL";
 
--- DROP TABLE "dbo"."PE_ORGANIZATION";
+-- DROP TABLE "PerformanceModelStoreContainer"."PE_ORGANIZATION";
 
--- DROP TABLE "dbo"."PE_CLASSIFICATION";
+-- DROP TABLE "PerformanceModelStoreContainer"."PE_CLASSIFICATION";
 
--- DROP TABLE "dbo"."OT_OTHER_LIST";
+-- DROP TABLE "PerformanceModelStoreContainer"."OT_OTHER_LIST";
 
--- DROP TABLE "dbo"."PE_ASSESSMENT";
+-- DROP TABLE "PerformanceModelStoreContainer"."PE_ASSESSMENT";
 
--- DROP TABLE "dbo"."PE_EMPLOYEE_ASSESSMENT";
+-- DROP TABLE "PerformanceModelStoreContainer"."PE_EMPLOYEE_ASSESSMENT";
 
--- DROP TABLE "dbo"."PE_CRITERIA_OBJECT_GROUP";
+-- DROP TABLE "PerformanceModelStoreContainer"."PE_CRITERIA_OBJECT_GROUP";
 
--- DROP TABLE "dbo"."PE_PERIOD";
+-- DROP TABLE "PerformanceModelStoreContainer"."PE_PERIOD";
 
--- DROP TABLE "dbo"."PE_KPI_EVALUATE";
+-- DROP TABLE "PerformanceModelStoreContainer"."PE_KPI_EVALUATE";
 
--- DROP TABLE "dbo"."PA_SALARY_LEVEL";
+-- DROP TABLE "PerformanceModelStoreContainer"."PA_SALARY_LEVEL";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -547,7 +547,9 @@ CREATE TABLE "dbo"."PE_KPI_EVALUATE" (
    "MODIFIED_BY" NVARCHAR2(50) NULL,
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_LOG" NVARCHAR2(1023) NULL,
-   "KPI_ID" NUMBER(38,0) NULL
+   "KPI_ID" NUMBER(38,0) NULL,
+   "ORG_ID" NUMBER(38,0) NULL,
+   "TITLE_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'PA_SALARY_LEVEL'
