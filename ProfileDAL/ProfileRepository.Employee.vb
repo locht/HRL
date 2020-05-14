@@ -3393,11 +3393,15 @@ Partial Class ProfileRepository
                         From ott In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.TYPE_TRAIN_ID).DefaultIfEmpty
                         From ot1 In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.CERTIFICATE).DefaultIfEmpty
                         From ot_m In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.RESULT_TRAIN_ID).DefaultIfEmpty
+                        From ot_sc In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.SCHOOLS_ID).DefaultIfEmpty
+                        From ot_sp In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.SPECIALIZED_TRAIN_ID).DefaultIfEmpty
                         From ot_level In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.LEVEL_ID And f.TYPE_CODE = "LEARNING_LEVEL").DefaultIfEmpty
                         From ot_train In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ot.TYPE_ID And f.CODE = "TRAINING_FORM").DefaultIfEmpty
                         From ot_type In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ott.TYPE_ID And f.CODE = "TRAINING_TYPE").DefaultIfEmpty
                         From ot_cer In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ot1.TYPE_ID And f.CODE = "CERTIFICATE_TYPE").DefaultIfEmpty
                         From ot_mark_edu In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ot_m.TYPE_ID And f.CODE = "MARK_EDU").DefaultIfEmpty
+                        From ot_school In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ot_sc.TYPE_ID And f.CODE = "HU_GRADUATE_SCHOOL").DefaultIfEmpty
+                        From ot_major In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ot_sp.TYPE_ID And f.CODE = "MAJOR").DefaultIfEmpty
             If Not String.IsNullOrEmpty(_filter.EMPLOYEE_ID) Then
                 query = query.Where(Function(f) f.p.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
             End If
@@ -3408,13 +3412,14 @@ Partial Class ProfileRepository
                                        .FROM_DATE = p.p.FROM_DATE,
                                        .TO_DATE = p.p.TO_DATE,
                                        .YEAR_GRA = p.p.YEAR_GRA,
-                                       .NAME_SHOOLS = p.p.NAME_SHOOLS,
+                                       .SCHOOLS_ID = p.p.SCHOOLS_ID,
+                                       .SCHOOLS_NAME = p.ot_sc.NAME_VN,
                                        .FORM_TRAIN_ID = p.p.FORM_TRAIN_ID,
                                        .FORM_TRAIN_NAME = p.ot.NAME_VN,
                                        .UPLOAD_FILE = p.p.UPLOAD_FILE,
                                        .FILE_NAME = p.p.FILE_NAME,
-                                       .SPECIALIZED_TRAIN = p.p.SPECIALIZED_TRAIN,
-                                       .RESULT_TRAIN = p.p.RESULT_TRAIN,
+                                       .SPECIALIZED_TRAIN_ID = p.p.SPECIALIZED_TRAIN_ID,
+                                       .SPECIALIZED_TRAIN_NAME = p.ot_sp.NAME_VN,
                                        .RESULT_TRAIN_ID = p.p.RESULT_TRAIN_ID,
                                        .RESULT_TRAIN_NAME = p.ot_m.NAME_VN,
                                        .CERTIFICATE = p.ot1.NAME_VN,
@@ -3444,11 +3449,11 @@ Partial Class ProfileRepository
             If _filter.TO_DATE IsNot Nothing Then
                 lst = lst.Where(Function(p) p.TO_DATE = _filter.TO_DATE)
             End If
-            If _filter.NAME_SHOOLS <> "" Then
-                lst = lst.Where(Function(p) p.NAME_SHOOLS.Trim.ToLower.Contains(_filter.NAME_SHOOLS.Trim.ToLower))
+            If _filter.SCHOOLS_NAME <> "" Then
+                lst = lst.Where(Function(p) p.SCHOOLS_NAME.Trim.ToLower.Contains(_filter.SCHOOLS_NAME.Trim.ToLower))
             End If
-            If _filter.SPECIALIZED_TRAIN <> "" Then
-                lst = lst.Where(Function(p) p.SPECIALIZED_TRAIN.Trim.ToLower.Contains(_filter.SPECIALIZED_TRAIN.Trim.ToLower))
+            If _filter.SPECIALIZED_TRAIN_NAME <> "" Then
+                lst = lst.Where(Function(p) p.SPECIALIZED_TRAIN_NAME.Trim.ToLower.Contains(_filter.SPECIALIZED_TRAIN_NAME.Trim.ToLower))
             End If
             If _filter.LEVEL_NAME <> "" Then
                 lst = lst.Where(Function(p) p.LEVEL_NAME.Trim.ToLower.Contains(_filter.LEVEL_NAME.Trim.ToLower))
@@ -3488,12 +3493,11 @@ Partial Class ProfileRepository
             objTitleData.FROM_DATE = objTitle.FROM_DATE
             objTitleData.TO_DATE = objTitle.TO_DATE
             objTitleData.YEAR_GRA = objTitle.YEAR_GRA
-            objTitleData.NAME_SHOOLS = objTitle.NAME_SHOOLS
+            objTitleData.SCHOOLS_ID = objTitle.SCHOOLS_ID
             objTitleData.UPLOAD_FILE = objTitle.UPLOAD_FILE
             objTitleData.FILE_NAME = objTitle.FILE_NAME
             objTitleData.FORM_TRAIN_ID = objTitle.FORM_TRAIN_ID
-            objTitleData.SPECIALIZED_TRAIN = objTitle.SPECIALIZED_TRAIN
-            objTitleData.RESULT_TRAIN = objTitle.RESULT_TRAIN
+            objTitleData.SPECIALIZED_TRAIN_ID = objTitle.SPECIALIZED_TRAIN_ID
             objTitleData.CERTIFICATE = objTitle.CERTIFICATE_ID
             objTitleData.EFFECTIVE_DATE_FROM = objTitle.EFFECTIVE_DATE_FROM
             objTitleData.EFFECTIVE_DATE_TO = objTitle.EFFECTIVE_DATE_TO
@@ -3530,10 +3534,9 @@ Partial Class ProfileRepository
             objTitleData.UPLOAD_FILE = objTitle.UPLOAD_FILE
             objTitleData.FILE_NAME = objTitle.FILE_NAME
             objTitleData.YEAR_GRA = objTitle.YEAR_GRA
-            objTitleData.NAME_SHOOLS = objTitle.NAME_SHOOLS
+            objTitleData.SCHOOLS_ID = objTitle.SCHOOLS_ID
             objTitleData.FORM_TRAIN_ID = objTitle.FORM_TRAIN_ID
-            objTitleData.SPECIALIZED_TRAIN = objTitle.SPECIALIZED_TRAIN
-            objTitleData.RESULT_TRAIN = objTitle.RESULT_TRAIN
+            objTitleData.SPECIALIZED_TRAIN_ID = objTitle.SPECIALIZED_TRAIN_ID
             objTitleData.CERTIFICATE = objTitle.CERTIFICATE_ID
             objTitleData.EFFECTIVE_DATE_FROM = objTitle.EFFECTIVE_DATE_FROM
             objTitleData.EFFECTIVE_DATE_TO = objTitle.EFFECTIVE_DATE_TO
@@ -4566,9 +4569,9 @@ Partial Class ProfileRepository
                         objProcessTrainData.FROM_DATE = item.FROM_DATE
                         objProcessTrainData.TO_DATE = item.TO_DATE
                         objProcessTrainData.YEAR_GRA = item.YEAR_GRA
-                        objProcessTrainData.NAME_SHOOLS = item.NAME_SHOOLS
+                        'objProcessTrainData.NAME_SHOOLS = item.NAME_SHOOLS - Đã chuyển sang combobox
                         objProcessTrainData.FORM_TRAIN_ID = item.FORM_TRAIN_ID
-                        objProcessTrainData.SPECIALIZED_TRAIN = item.SPECIALIZED_TRAIN
+                        'objProcessTrainData.SPECIALIZED_TRAIN = item.SPECIALIZED_TRAIN - Đã chuyển sang combobox
                         objProcessTrainData.RESULT_TRAIN = item.RESULT_TRAIN
                         objProcessTrainData.CERTIFICATE = item.CERTIFICATE
                         objProcessTrainData.EFFECTIVE_DATE_FROM = item.EFFECTIVE_DATE_FROM
@@ -4580,9 +4583,9 @@ Partial Class ProfileRepository
                         objProcessTrainData.FROM_DATE = item.FROM_DATE
                         objProcessTrainData.TO_DATE = item.TO_DATE
                         objProcessTrainData.YEAR_GRA = item.YEAR_GRA
-                        objProcessTrainData.NAME_SHOOLS = item.NAME_SHOOLS
+                        'objProcessTrainData.NAME_SHOOLS = item.NAME_SHOOLS - Đã chuyển sang combobox
                         objProcessTrainData.FORM_TRAIN_ID = item.FORM_TRAIN_ID
-                        objProcessTrainData.SPECIALIZED_TRAIN = item.SPECIALIZED_TRAIN
+                        'objProcessTrainData.SPECIALIZED_TRAIN = item.SPECIALIZED_TRAIN - Đã chuyển sang combobox
                         objProcessTrainData.RESULT_TRAIN = item.RESULT_TRAIN
                         objProcessTrainData.CERTIFICATE = item.CERTIFICATE
                         objProcessTrainData.EFFECTIVE_DATE_FROM = item.EFFECTIVE_DATE_FROM

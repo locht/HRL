@@ -8,11 +8,12 @@
     Public Property FROM_MONTH_YEAR As String
     Public Property TO_MONTH_YEAR As String
     Public Property YEAR_GRA As Decimal?
-    Public Property NAME_SHOOLS As String
+    Public Property SCHOOLS_ID As Decimal?
+    Public Property SCHOOLS_NAME As String
     Public Property TYPE_TRAIN_ID As Decimal?
     Public Property TYPE_TRAIN_NAME As String
-    Public Property SPECIALIZED_TRAIN As String
-    Public Property RESULT_TRAIN As String 'Không dùng Xếp loại kiểu text vì chuyển qua combobox
+    Public Property SPECIALIZED_TRAIN_ID As Decimal?
+    Public Property SPECIALIZED_TRAIN_NAME As String
     Public Property RESULT_TRAIN_ID As Decimal?
     Public Property RESULT_TRAIN_NAME As String
     Public Property CERTIFICATE As String

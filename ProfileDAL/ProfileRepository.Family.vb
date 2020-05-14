@@ -1309,9 +1309,9 @@ Partial Class ProfileRepository
                         objFamilyData = (From p In Context.HU_PRO_TRAIN_OUT_COMPANY Where p.ID = item.FK_PKEY).FirstOrDefault
                         objFamilyData.EMPLOYEE_ID = item.EMPLOYEE_ID
                         objFamilyData.YEAR_GRA = item.YEAR_GRA
-                        objFamilyData.NAME_SHOOLS = item.NAME_SHOOLS
+                        'objFamilyData.NAME_SHOOLS = item.NAME_SHOOLS - Đã chuyển sang combobox 
                         objFamilyData.FORM_TRAIN_ID = item.FORM_TRAIN_ID
-                        objFamilyData.SPECIALIZED_TRAIN = item.SPECIALIZED_TRAIN
+                        'objFamilyData.SPECIALIZED_TRAIN = item.SPECIALIZED_TRAIN - Đã chuyển sang combobox 
                         objFamilyData.RESULT_TRAIN = item.RESULT_TRAIN
                         objFamilyData.CERTIFICATE = item.CERTIFICATE
                         objFamilyData.EFFECTIVE_DATE_FROM = item.EFFECTIVE_DATE_FROM
@@ -1334,9 +1334,9 @@ Partial Class ProfileRepository
                         objFamilyData.ID = Utilities.GetNextSequence(Context, Context.HU_PRO_TRAIN_OUT_COMPANY.EntitySet.Name)
                         objFamilyData.EMPLOYEE_ID = item.EMPLOYEE_ID
                         objFamilyData.YEAR_GRA = item.YEAR_GRA
-                        objFamilyData.NAME_SHOOLS = item.NAME_SHOOLS
+                        'objFamilyData.NAME_SHOOLS = item.NAME_SHOOLS - Đã chuyển sang combobox 
                         objFamilyData.FORM_TRAIN_ID = item.FORM_TRAIN_ID
-                        objFamilyData.SPECIALIZED_TRAIN = item.SPECIALIZED_TRAIN
+                        ' objFamilyData.SPECIALIZED_TRAIN = item.SPECIALIZED_TRAIN - Đã chuyển sang combobox 
                         objFamilyData.RESULT_TRAIN = item.RESULT_TRAIN
                         objFamilyData.CERTIFICATE = item.CERTIFICATE
                         objFamilyData.EFFECTIVE_DATE_FROM = item.EFFECTIVE_DATE_FROM

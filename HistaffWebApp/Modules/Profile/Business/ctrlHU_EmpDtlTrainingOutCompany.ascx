@@ -43,17 +43,17 @@
                     <span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtTrainingSchool" runat="server">
-                    </tlk:RadTextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtTrainingSchool"
+                    <tlk:RadComboBox ID="cboTrainingSchool" runat="server" Width="160px" CausesValidation="false">
+                     </tlk:RadComboBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="cboTrainingSchool"
                         runat="server" ErrorMessage="Bạn phải nhập tên trường." ToolTip="Bạn phải nhập tên trường."> </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbChuyenNganh" Text="Ngành học"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtChuyenNganh" SkinID="Textbox250" runat="server">
-                    </tlk:RadTextBox>
+                    <tlk:RadComboBox ID="cboChuyenNganh" runat="server" Width="160px" CausesValidation="false">
+                     </tlk:RadComboBox>
                 </td>
             </tr>
             <tr>
@@ -233,8 +233,8 @@
     <tlk:RadPane runat="server" ID="RadPane4" Scrolling="None">
         <tlk:RadGrid PageSize="50" ID="rgEmployeeTrain" runat="server" AllowMultiRowSelection="true" Height="100%"
             AllowFilteringByColumn="true">
-            <MasterTableView DataKeyNames="ID, FROM_DATE,TO_DATE, YEAR_GRA, NAME_SHOOLS, FORM_TRAIN_ID, SPECIALIZED_TRAIN, TYPE_TRAIN_ID, RESULT_TRAIN, CERTIFICATE, RECEIVE_DEGREE_DATE, EFFECTIVE_DATE_FROM, EFFECTIVE_DATE_TO,UPLOAD_FILE,FILE_NAME,IS_RENEWED,CERTIFICATE_ID,TYPE_TRAIN_NAME,LEVEL_ID,POINT_LEVEL,CONTENT_LEVEL,NOTE,CERTIFICATE_CODE,TYPE_TRAIN_NAME,LEVEL_NAME,RESULT_TRAIN_ID,RESULT_TRAIN_NAME" 
-            ClientDataKeyNames="ID, FROM_DATE,TO_DATE, YEAR_GRA, NAME_SHOOLS, FORM_TRAIN_ID, SPECIALIZED_TRAIN, TYPE_TRAIN_ID, RESULT_TRAIN, CERTIFICATE, RECEIVE_DEGREE_DATE, EFFECTIVE_DATE_FROM, EFFECTIVE_DATE_TO,UPLOAD_FILE,FILE_NAME,IS_RENEWED,CERTIFICATE_ID,TYPE_TRAIN_NAME,LEVEL_ID,POINT_LEVEL,CONTENT_LEVEL,NOTE,CERTIFICATE_CODE,TYPE_TRAIN_NAME,LEVEL_NAME,RESULT_TRAIN_ID,RESULT_TRAIN_NAME">
+            <MasterTableView DataKeyNames="ID, FROM_DATE,TO_DATE, YEAR_GRA, SCHOOLS_ID,SCHOOLS_NAME, FORM_TRAIN_ID, SPECIALIZED_TRAIN_ID,SPECIALIZED_TRAIN_NAME, TYPE_TRAIN_ID, CERTIFICATE, RECEIVE_DEGREE_DATE, EFFECTIVE_DATE_FROM, EFFECTIVE_DATE_TO,UPLOAD_FILE,FILE_NAME,IS_RENEWED,CERTIFICATE_ID,TYPE_TRAIN_NAME,LEVEL_ID,POINT_LEVEL,CONTENT_LEVEL,NOTE,CERTIFICATE_CODE,TYPE_TRAIN_NAME,LEVEL_NAME,RESULT_TRAIN_ID,RESULT_TRAIN_NAME" 
+            ClientDataKeyNames="ID, FROM_DATE,TO_DATE, YEAR_GRA, SCHOOLS_ID,SCHOOLS_NAME, FORM_TRAIN_ID,SPECIALIZED_TRAIN_ID, SPECIALIZED_TRAIN_NAME, TYPE_TRAIN_ID, CERTIFICATE, RECEIVE_DEGREE_DATE, EFFECTIVE_DATE_FROM, EFFECTIVE_DATE_TO,UPLOAD_FILE,FILE_NAME,IS_RENEWED,CERTIFICATE_ID,TYPE_TRAIN_NAME,LEVEL_ID,POINT_LEVEL,CONTENT_LEVEL,NOTE,CERTIFICATE_CODE,TYPE_TRAIN_NAME,LEVEL_NAME,RESULT_TRAIN_ID,RESULT_TRAIN_NAME">
                 <NoRecordsTemplate>
                     Không có bản ghi nào
                 </NoRecordsTemplate>
@@ -255,12 +255,12 @@
                         <HeaderStyle Width="120px" />
                         <ItemStyle Width="120px" />
                     </tlk:GridDateTimeColumn>
-                    <tlk:GridBoundColumn DataField="NAME_SHOOLS" HeaderText="Tên trường"
-                        UniqueName="NAME_SHOOLS" ShowFilterIcon="false" CurrentFilterFunction="Contains"
+                    <tlk:GridBoundColumn DataField="SCHOOLS_NAME" HeaderText="Tên trường"
+                        UniqueName="SCHOOLS_NAME" ShowFilterIcon="false" CurrentFilterFunction="Contains"
                         Visible="true">
                     </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn DataField="SPECIALIZED_TRAIN" HeaderText="Ngành học"
-                        UniqueName="SPECIALIZED_TRAIN" ShowFilterIcon="false"
+                    <tlk:GridBoundColumn DataField="SPECIALIZED_TRAIN_NAME" HeaderText="Ngành học"
+                        UniqueName="SPECIALIZED_TRAIN_NAME" ShowFilterIcon="false"
                         CurrentFilterFunction="Contains">
                     </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn DataField="LEVEL_NAME" HeaderText="Trình độ"

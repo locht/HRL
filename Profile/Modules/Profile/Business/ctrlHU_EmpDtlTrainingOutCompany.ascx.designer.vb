@@ -149,13 +149,13 @@ Partial Public Class ctrlHU_EmpDtlTrainingOutCompany
     Protected WithEvents lbTrainingSchool As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtTrainingSchool control.
+    '''cboTrainingSchool control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtTrainingSchool As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents cboTrainingSchool As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''RequiredFieldValidator2 control.
@@ -176,13 +176,13 @@ Partial Public Class ctrlHU_EmpDtlTrainingOutCompany
     Protected WithEvents lbChuyenNganh As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtChuyenNganh control.
+    '''cboChuyenNganh control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtChuyenNganh As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents cboChuyenNganh As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''Label1 control.
