@@ -666,7 +666,11 @@ Public Class ctrlRC_CanDtlTraining
 
             txtRemindLink.Text = r.Field(Of String)("UPLOAD_FILE") 'dataItem.GetDataKeyValue("UPLOAD_FILE")
             txtRemark.Text = r.Field(Of String)("FILE_NAME") 'dataItem.GetDataKeyValue("FILE_NAME")
-            chkTerminate.Checked = r.Field(Of Decimal?)("IS_RENEWED")
+
+            If r.Field(Of Decimal?)("IS_RENEWED") IsNot Nothing Then
+                chkTerminate.Checked = r.Field(Of Decimal?)("IS_RENEWED")
+            End If
+
             If r.Field(Of Decimal?)("LEVEL_ID") IsNot Nothing Then
                 cboLevelId.SelectedValue = r.Field(Of Decimal?)("LEVEL_ID")
                 cboLevelId.Text = r.Field(Of String)("LEVEL_NAME")

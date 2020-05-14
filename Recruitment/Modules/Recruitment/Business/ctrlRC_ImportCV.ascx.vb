@@ -1741,7 +1741,7 @@ Public Class ctrlRC_ImportCV
                 can_family.JOB = dr3("JOB").ToString
                 can_family.ADDRESS = dr3("ADDRESS").ToString
                 can_family_lst.Add(can_family)
-
+                can_family = New CandidateFamilyDTO
                 'canimport.can_family = can_family_lst
                 'lst.Add(canimport)
             Next

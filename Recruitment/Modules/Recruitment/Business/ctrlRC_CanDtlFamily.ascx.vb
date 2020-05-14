@@ -387,8 +387,13 @@ Public Class ctrlRC_CanDtlFamily
             End If
 
             'Set Checkboxes
-            cbIsMLG.Checked = HttpUtility.HtmlDecode(item("IS_MLG").Text).Trim()
-            cbIsDied.Checked = HttpUtility.HtmlDecode(item("IS_DIED").Text).Trim()
+            If HttpUtility.HtmlDecode(item("IS_MLG").Text).Trim() <> "" Then
+                cbIsMLG.Checked = HttpUtility.HtmlDecode(item("IS_MLG").Text).Trim()
+            End If
+            If HttpUtility.HtmlDecode(item("IS_DIED").Text).Trim() <> "" Then
+                cbIsDied.Checked = HttpUtility.HtmlDecode(item("IS_DIED").Text).Trim()
+            End If
+
 
             txtREMARK.Text = HttpUtility.HtmlDecode(item("REMARK").Text).Trim()
 
