@@ -100,6 +100,7 @@
         }
 
         function OnClientClose(oWnd, args) {
+            debugger;
             oWnd = $find('<%=popupId %>');
             oWnd.remove_close(OnClientClose);
             var arg = args.get_argument();

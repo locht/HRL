@@ -14,7 +14,7 @@
             }
             if (arg) {
                 var ajaxManager = $find("<%= AjaxManagerId %>");
-                ajaxManager.ajaxRequest("PopupPostback:" + arg.ID);
+                ajaxManager.ajaxRequest("<%= ClientID %>_PopupPostback:" + arg.ID);
             }
         }
 

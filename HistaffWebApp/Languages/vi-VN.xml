@@ -45374,4 +45374,12 @@ Xin cám ơn!
       <string>Đánh giá KPIs</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLFINDTREATMENTPOPUPDIALOG</string>
+    </Key>
+    <Value>
+      <string>Chọn nơi khám chữa bệnh</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

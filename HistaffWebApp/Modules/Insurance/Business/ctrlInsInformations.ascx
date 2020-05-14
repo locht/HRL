@@ -2,6 +2,12 @@
     Inherits="Insurance.ctrlInsInformations" %>
 <%@ Register Src="~/Modules/Common/ctrlMessageBox.ascx" TagName="ctrlMessageBox"
     TagPrefix="Common" %>
+<style>
+    #ctrlInsInformations_btnwhereHealth
+    {
+        margin-top:-2px;
+    }
+</style>
 <asp:HiddenField ID="hidWhereHealth" runat="server" />
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Scrolling="None">
     <tlk:RadPane ID="RadPane1" runat="server" Scrolling="Both" Width="100%">
@@ -363,15 +369,13 @@
                                 <tlk:RadComboBox ID="ddlHEALTH_AREA_INS_ID" runat="server" TabIndex="23">
                                 </tlk:RadComboBox>
                             </td>
-                            <td>
-                                <tlk:RadButton EnableEmbeddedSkins="false" runat="server" ID="btnwhereHealth" SkinID="ButtonView"
+                            <td colspan="6">
+                                <tlk:RadButton EnableEmbeddedSkins="false" CssClass="tvc_ins_whereHealth" runat="server" ID="btnwhereHealth" SkinID="ButtonView"
                                     TabIndex="5" CausesValidation="false">
                                 </tlk:RadButton>
-                                <tlk:RadTextBox ID="txtWHCode" ReadOnly="true" runat="server">
+                                <tlk:RadTextBox ID="txtWHCode" ReadOnly="true" Width="15%" runat="server">
                                 </tlk:RadTextBox>
-                            </td>
-                            <td>
-                                <tlk:RadTextBox ID="txtWHName" ReadOnly="true" runat="server">
+                                <tlk:RadTextBox ID="txtWHName" ReadOnly="true" runat="server" Width="75%">
                                 </tlk:RadTextBox>
                             </td>
                         </tr>

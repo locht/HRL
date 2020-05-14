@@ -96,6 +96,7 @@ Public Class ctrlInsInformations
     Public Overrides Sub ViewLoad(ByVal e As System.EventArgs)
         Try
             ShowPopupEmployee()
+            ShowPopupWhereHealth()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -321,7 +322,7 @@ Public Class ctrlInsInformations
                                                     , InsCommon.getNumber(ddlHEALTH_STATUS.SelectedValue) _
                                                     , txtHEALTH_EFFECT_FROM_DATE.SelectedDate _
                                                     , txtHEALTH_EFFECT_TO_DATE.SelectedDate _
-                                                    , InsCommon.getNumber(ddlHEALTH_AREA_INS_ID.SelectedValue) _
+                                                    , hidWhereHealth.Value _
                                                     , txtHEALTH_RECEIVE_DATE.SelectedDate _
                                                     , Nothing _
                                                     , txtHEALTH_RETURN_DATE.SelectedDate _
@@ -376,7 +377,7 @@ Public Class ctrlInsInformations
                                                     , InsCommon.getNumber(ddlHEALTH_STATUS.SelectedValue) _
                                                     , txtHEALTH_EFFECT_FROM_DATE.SelectedDate _
                                                     , txtHEALTH_EFFECT_TO_DATE.SelectedDate _
-                                                    , InsCommon.getNumber(ddlHEALTH_AREA_INS_ID.SelectedValue) _
+                                                    , hidWhereHealth.Value _
                                                     , txtHEALTH_RECEIVE_DATE.SelectedDate _
                                                     , Nothing _
                                                     , txtHEALTH_RETURN_DATE.SelectedDate _
@@ -422,8 +423,8 @@ Public Class ctrlInsInformations
             dtData = rep.GetOtherList("STATUS_CARD", Common.Common.SystemLanguage.Name, False) 'Trang thai thẻ
             FillRadCombobox(ddlHEALTH_STATUS, dtData, "NAME", "ID", False)
 
-            dtData = rep.GetInsListWhereHealth()
-            FillRadCombobox(ddlHEALTH_AREA_INS_ID, dtData, "NAME_VN", "ID", False)
+            'dtData = rep.GetInsListWhereHealth()
+            'FillRadCombobox(ddlHEALTH_AREA_INS_ID, dtData, "NAME_VN", "ID", False)
 
             dtData = rep.GetOtherList("PLACE_BHYT", Common.Common.SystemLanguage.Name, False) 'Trang thai thẻ
             FillRadCombobox(cboPlaceBHYT, dtData, "NAME", "ID", False)
@@ -521,7 +522,10 @@ Public Class ctrlInsInformations
                 InsCommon.SetNumber(ddlHEALTH_STATUS, lstSource.Rows(0)("HEALTH_STATUS"))
                 InsCommon.SetDate(txtHEALTH_EFFECT_FROM_DATE, lstSource.Rows(0)("HEALTH_EFFECT_FROM_DATE"))
                 InsCommon.SetDate(txtHEALTH_EFFECT_TO_DATE, lstSource.Rows(0)("HEALTH_EFFECT_TO_DATE"))
-                InsCommon.SetNumber(ddlHEALTH_AREA_INS_ID, lstSource.Rows(0)("HEALTH_AREA_INS_ID"))
+                'InsCommon.SetNumber(hidWhereHealth, lstSource.Rows(0)("HEALTH_AREA_INS_ID"))
+                hidWhereHealth.Value = CDec(lstSource.Rows(0)("HEALTH_AREA_INS_ID"))
+                InsCommon.SetString(txtWHCode, lstSource.Rows(0)("HEALTH_CODE"))
+                InsCommon.SetString(txtWHName, lstSource.Rows(0)("HEALTH_AREA_NM"))
                 InsCommon.SetDate(txtHEALTH_RECEIVE_DATE, lstSource.Rows(0)("HEALTH_RECEIVE_DATE"))
                 InsCommon.SetDate(txtHEALTH_RETURN_DATE, lstSource.Rows(0)("HEALTH_RETURN_DATE"))
                 InsCommon.SetDate(txtUNEMP_FROM_MONTH, lstSource.Rows(0)("UNEMP_FROM_MONTH"))

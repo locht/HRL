@@ -18937,4 +18937,12 @@
       <string>DETERMINE</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLFINDTREATMENTPOPUPDIALOG</string>
+    </Key>
+    <Value>
+      <string>Chose TreatMent</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
