@@ -975,9 +975,8 @@
                                 <%# Translate("Điểm số/Xếp loại 1")%>
                             </td>
                             <td>
-                                <tlk:RadNumericTextBox ID="rnDegreeDiemSoXepLoai1" runat="server" MinValue="0" AutoPostBack="false"
-                                    SkinID="Decimal">
-                                </tlk:RadNumericTextBox>
+                                <tlk:RadTextBox ID="rnDegreeDiemSoXepLoai11" runat="server">
+                                </tlk:RadTextBox>
                             </td>
                         </tr>
                         <tr >
@@ -999,9 +998,8 @@
                                 <%# Translate("Điểm số/Xếp loại 2")%>
                             </td>
                             <td>
-                                <tlk:RadNumericTextBox ID="rnDegreeDiemSoXepLoai2" runat="server" MinValue="0" AutoPostBack="false"
-                                    SkinID="Decimal">
-                                </tlk:RadNumericTextBox>
+                                <tlk:RadTextBox ID="rnDegreeDiemSoXepLoai2" runat="server" >
+                                </tlk:RadTextBox>
                             </td>
                         </tr>
                         <tr >
@@ -1024,9 +1022,8 @@
                                 <%# Translate("Điểm số/Xếp loại 3")%>
                             </td>
                             <td>
-                                <tlk:RadNumericTextBox ID="rnDegreeDiemSoXepLoai3" runat="server" MinValue="0" AutoPostBack="false"
-                                    SkinID="Decimal">
-                                </tlk:RadNumericTextBox>
+                                <tlk:RadTextBox ID="rnDegreeDiemSoXepLoai3" runat="server">
+                                </tlk:RadTextBox>
                             </td>
                         </tr>
                     </table>
@@ -1062,9 +1059,8 @@
                                 <%# Translate("Điểm số/Xếp loại 1")%>
                             </td>
                             <td>
-                                <tlk:RadNumericTextBox ID="rnTDNNDiem1" runat="server" MinValue="0" AutoPostBack="false"
-                                    SkinID="Decimal">
-                                </tlk:RadNumericTextBox>
+                                <tlk:RadTextBox ID="rnTDNNDiem11" runat="server">
+                                </tlk:RadTextBox>
                             </td>
                         </tr>
                         <tr>
@@ -1086,9 +1082,8 @@
                                 <%# Translate("Điểm số/Xếp loại 2")%>
                             </td>
                             <td>
-                                <tlk:RadNumericTextBox ID="rnTDNNDiem2" runat="server" MinValue="0" AutoPostBack="false"
-                                    SkinID="Decimal">
-                                </tlk:RadNumericTextBox>
+                                <tlk:RadTextBox ID="rnTDNNDiem2" runat="server">
+                                </tlk:RadTextBox>
                             </td>
                         </tr>
                         <tr>
@@ -1110,9 +1105,8 @@
                                 <%# Translate("Điểm số/Xếp loại 3")%>
                             </td>
                             <td>
-                                <tlk:RadNumericTextBox ID="rnTDNNDiem3" runat="server" MinValue="0" AutoPostBack="false"
-                                    SkinID="Decimal">
-                                </tlk:RadNumericTextBox>
+                                <tlk:RadTextBox ID="rnTDNNDiem3" runat="server">
+                                </tlk:RadTextBox>
                             </td>
                         </tr>
                         <tr style="display:none">
