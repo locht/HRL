@@ -367,6 +367,20 @@ Implements ServiceContracts.IPerformanceBusiness.GetKPIAssessEmp
             End Using
         End Function
 #Region "danh gia kpis"
+        Public Function GetListEmployeePaging(ByVal _filter As KPI_EVALUATEDTO,
+                                         ByVal PageIndex As Integer,
+                                         ByVal PageSize As Integer,
+                                         ByRef Total As Integer, ByVal _param As ParamDTO,
+                                         Optional ByVal Sorts As String = "EMPLOYEE_CODE desc",
+                                         Optional ByVal log As UserLog = Nothing) As List(Of KPI_EVALUATEDTO) Implements ServiceContracts.IPerformanceBusiness.GetListEmployeePaging
+            Using rep As New PerformanceRepository
+                Try
+                    Return rep.GetListEmployeePaging(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
+                Catch ex As Exception
+
+                End Try
+            End Using
+        End Function
         Public Function GetExportKPI(ByVal id As Decimal) As DataSet Implements ServiceContracts.IPerformanceBusiness.GetExportKPI
             Using rep As New PerformanceRepository
                 Return rep.GetExportKPI(id)

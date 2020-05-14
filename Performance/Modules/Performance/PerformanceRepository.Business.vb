@@ -395,6 +395,31 @@ Partial Class PerformanceRepository
         End Using
     End Function
 #Region "danh gia kpis"
+    Public Function GetListEmployeePaging(ByVal _filter As KPI_EVALUATEDTO,
+                                         ByVal PageIndex As Integer,
+                                         ByVal PageSize As Integer,
+                                         ByRef Total As Integer, ByVal _param As ParamDTO,
+                                         Optional ByVal Sorts As String = "EMPLOYEE_CODE desc") As List(Of KPI_EVALUATEDTO)
+        Using rep As New PerformanceBusinessClient
+            Try
+                Return rep.GetListEmployeePaging(_filter, PageIndex, PageSize, Total, _param, Sorts, Log)
+            Catch ex As Exception
+
+            End Try
+        End Using
+    End Function
+    Public Function GetListEmployeePaging(ByVal _filter As KPI_EVALUATEDTO,
+                                ByVal _param As ParamDTO,
+                               Optional ByVal Sorts As String = "EMPLOYEE_CODE desc") As List(Of KPI_EVALUATEDTO)
+        Using rep As New PerformanceBusinessClient
+            Try
+                Return rep.GetListEmployeePaging(_filter, 0, Integer.MaxValue, 0, _param, Sorts, Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
     Public Function GetExportKPI(ByVal id As Decimal) As DataSet
         Using rep As New PerformanceBusinessClient
             Try

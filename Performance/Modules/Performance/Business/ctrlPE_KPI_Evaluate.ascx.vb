@@ -41,11 +41,11 @@ Class ctrlPE_KPI_Evaluate
             ViewState(Me.ID & "_isRight") = value
         End Set
     End Property
-    Property EmployeeList As List(Of EmployeeDTO)
+    Property EmployeeList As List(Of KPI_EVALUATEDTO)
         Get
             Return ViewState(Me.ID & "_EmployeeList")
         End Get
-        Set(ByVal value As List(Of EmployeeDTO))
+        Set(ByVal value As List(Of KPI_EVALUATEDTO))
             ViewState(Me.ID & "_EmployeeList") = value
         End Set
     End Property
@@ -187,7 +187,7 @@ Class ctrlPE_KPI_Evaluate
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             '  Dim objdata As PE_EVALUATE_PERIODDTO
-            Dim objEmployee As New EmployeeDTO
+            Dim objEmployee As New KPI_EVALUATEDTO
             Dim rep As New PerformanceBusinessClient
             Dim startTime As DateTime = DateTime.UtcNow
             Select Case CType(e.Item, RadToolBarButton).CommandName
@@ -226,6 +226,10 @@ Class ctrlPE_KPI_Evaluate
                     '  ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_ImportMBO');", True)
                     Template_ImportMBO()
                 Case CommonMessage.TOOLBARITEM_IMPORT
+                    If cboPeriodEvaluate.SelectedValue = "" Then
+                        ShowMessage(Translate("Vui lòng chọn kỳ đánh giá để import"), NotifyType.Warning)
+                        Exit Sub
+                    End If
                     ctrlUpload1.Show()
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     CurrentState = CommonMessage.STATE_NORMAL
@@ -249,7 +253,7 @@ Class ctrlPE_KPI_Evaluate
         Try
             If Not IsPostBack Then
                 rgEmployeeList.VirtualItemCount = 0
-                rgEmployeeList.DataSource = New List(Of EmployeeDTO)
+                rgEmployeeList.DataSource = New List(Of KPI_EVALUATEDTO)
             Else
                 CreateDataFilter()
             End If
@@ -264,7 +268,7 @@ Class ctrlPE_KPI_Evaluate
 
         Dim MaximumRows As Integer
         Dim Sorts As String
-        Dim _filter As New EmployeeDTO
+        Dim _filter As New KPI_EVALUATEDTO
         Dim startTime As DateTime = DateTime.UtcNow
         Try
             Using rep As New PerformanceRepository
@@ -272,35 +276,35 @@ Class ctrlPE_KPI_Evaluate
                 If ctrlOrganization.CurrentValue IsNot Nothing Then
                     _filter.ORG_ID = Decimal.Parse(ctrlOrganization.CurrentValue)
                 Else
-                    rgEmployeeList.DataSource = New List(Of EmployeeDTO)
+                    rgEmployeeList.DataSource = New List(Of KPI_EVALUATEDTO)
                     Exit Function
                 End If
-                'If cboPeriodEvaluate.SelectedValue <> "" Then
-                '    _filter.EVALUATE_PERIOD_ID = cboPeriodEvaluate.SelectedValue
-                'End If
+                If cboPeriodEvaluate.SelectedValue <> "" Then
+                    _filter.KPI_EVALUATE = cboPeriodEvaluate.SelectedValue
+                End If
 
                 Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrganization.CurrentValue),
                                                 .IS_DISSOLVE = ctrlOrganization.IsDissolve}
 
                 SetValueObjectByRadGrid(rgEmployeeList, _filter)
-
+                _filter.IS_TER = chkTerminate.Checked
                 Sorts = rgEmployeeList.MasterTableView.SortExpressions.GetSortString()
-                'If isFull Then
-                '    If Sorts IsNot Nothing Then
-                '        Return rep.GetListEmployeePaging(_filter, _param, Sorts).ToTable()
-                '    Else
-                '        Return rep.GetListEmployeePaging(_filter, _param).ToTable()
-                '    End If
-                'Else
-                '    If Sorts IsNot Nothing Then
-                '        EmployeeList = rep.GetListEmployeePaging(_filter, rgEmployeeList.CurrentPageIndex, rgEmployeeList.PageSize, MaximumRows, _param, Sorts)
-                '    Else
-                '        EmployeeList = rep.GetListEmployeePaging(_filter, rgEmployeeList.CurrentPageIndex, rgEmployeeList.PageSize, MaximumRows, _param)
-                '    End If
+                If isFull Then
+                    If Sorts IsNot Nothing Then
+                        Return rep.GetListEmployeePaging(_filter, _param, Sorts).ToTable()
+                    Else
+                        Return rep.GetListEmployeePaging(_filter, _param).ToTable()
+                    End If
+                Else
+                    If Sorts IsNot Nothing Then
+                        EmployeeList = rep.GetListEmployeePaging(_filter, rgEmployeeList.CurrentPageIndex, rgEmployeeList.PageSize, MaximumRows, _param, Sorts)
+                    Else
+                        EmployeeList = rep.GetListEmployeePaging(_filter, rgEmployeeList.CurrentPageIndex, rgEmployeeList.PageSize, MaximumRows, _param)
+                    End If
 
-                '    rgEmployeeList.VirtualItemCount = MaximumRows
-                '    rgEmployeeList.DataSource = EmployeeList
-                'End If
+                    rgEmployeeList.VirtualItemCount = MaximumRows
+                    rgEmployeeList.DataSource = EmployeeList
+                End If
 
 
             End Using

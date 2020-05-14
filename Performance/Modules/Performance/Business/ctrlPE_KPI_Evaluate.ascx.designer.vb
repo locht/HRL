@@ -113,6 +113,15 @@ Partial Public Class ctrlPE_KPI_Evaluate
     Protected WithEvents cboPeriodEvaluate As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''chkTerminate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkTerminate As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
     '''rdFrom control.
     '''</summary>
     '''<remarks>

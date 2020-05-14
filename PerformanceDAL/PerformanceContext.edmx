@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="PerformanceModel.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="11.2" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+    <Schema Namespace="PerformanceModel.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="12.2" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
         <EntityContainer Name="PerformanceModelStoreContainer">
             <EntitySet Name="PE_CRITERIA" EntityType="PerformanceModel.Store.PE_CRITERIA" store:Type="Tables"  />
             <EntitySet Name="PE_OBJECT_GROUP" EntityType="PerformanceModel.Store.PE_OBJECT_GROUP" store:Type="Tables"  />
@@ -26,6 +26,8 @@
             <EntitySet Name="PE_EMPLOYEE_ASSESSMENT" EntityType="PerformanceModel.Store.PE_EMPLOYEE_ASSESSMENT" store:Type="Tables"  />
             <EntitySet Name="PE_CRITERIA_OBJECT_GROUP" EntityType="PerformanceModel.Store.PE_CRITERIA_OBJECT_GROUP" store:Type="Tables"  />
             <EntitySet Name="PE_PERIOD" EntityType="PerformanceModel.Store.PE_PERIOD" store:Type="Tables"  />
+            <EntitySet Name="PE_KPI_EVALUATE" EntityType="PerformanceModel.Store.PE_KPI_EVALUATE" store:Type="Tables"  />
+            <EntitySet Name="PA_SALARY_LEVEL" EntityType="PerformanceModel.Store.PA_SALARY_LEVEL" store:Type="Tables"  />
             <AssociationSet Name="FK_HE_HEC" Association="PerformanceModel.Store.FK_HE_HEC">
                 <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
                 <End Role="HU_EMPLOYEE_CV" EntitySet="HU_EMPLOYEE_CV" />
@@ -521,6 +523,59 @@
             <Property Name="TYPE_ASS" Type="number" Nullable="true" Precision="38" />
             <Property Name="YEAR" Type="number" Nullable="true" Precision="38" />
         </EntityType>
+        <EntityType Name="PE_KPI_EVALUATE">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SALARYLEVEL_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="JOIN_DATE" Type="date" Nullable="true" />
+            <Property Name="END_DATE" Type="date" Nullable="true" />
+            <Property Name="FINANCE_TT" Type="number" Nullable="true" Precision="38" Scale="2" />
+            <Property Name="FINANCE_TTX" Type="number" Nullable="true" Precision="38" Scale="2" />
+            <Property Name="CUSTOMER_TT" Type="number" Nullable="true" Precision="38" Scale="2" />
+            <Property Name="CUSTOMER_TTX" Type="number" Nullable="true" Precision="38" Scale="2" />
+            <Property Name="PROCESS_TT" Type="number" Nullable="true" Precision="38" Scale="2" />
+            <Property Name="PROCESS_TTX" Type="number" Nullable="true" Precision="38" Scale="2" />
+            <Property Name="LEARN_TT" Type="number" Nullable="true" Precision="38" Scale="2" />
+            <Property Name="LEARN_TTX" Type="number" Nullable="true" Precision="38" Scale="2" />
+            <Property Name="SUM_TT" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="SUM_TTX" Type="number" Nullable="true" Precision="38" Scale="2" />
+            <Property Name="SUM_RATE_KPI" Type="number" Nullable="true" Precision="38" Scale="2" />
+            <Property Name="CLASSFICATION" Type="number" Nullable="true" Precision="38" />
+            <Property Name="COMMENTS" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="KPI_ID" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
+        <EntityType Name="PA_SALARY_LEVEL">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="SAL_GROUP_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="false" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="false" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="false" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="false" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="false" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="false" MaxLength="255" />
+            <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+            <Property Name="ORDERS" Type="number" Nullable="true" Precision="38" />
+            <Property Name="OTHER_USE" Type="nvarchar2" Nullable="true" MaxLength="100" />
+            <Property Name="GRADE_GROUP" Type="number" Nullable="false" Precision="38" />
+            <Property Name="SAL_FR" Type="number" Nullable="false" Precision="38" />
+            <Property Name="SAL_TO" Type="number" Nullable="false" Precision="38" />
+        </EntityType>
     <Association Name="FK_HE_HEC">
         <End Role="HU_EMPLOYEE" Type="PerformanceModel.Store.HU_EMPLOYEE" Multiplicity="1">
         </End>
@@ -672,6 +727,8 @@
           <EntitySet Name="PE_EMPLOYEE_ASSESSMENT" EntityType="PerformanceModel.PE_EMPLOYEE_ASSESSMENT" />
           <EntitySet Name="PE_CRITERIA_OBJECT_GROUP" EntityType="PerformanceModel.PE_CRITERIA_OBJECT_GROUP" />
           <EntitySet Name="PE_PERIOD" EntityType="PerformanceModel.PE_PERIOD" />
+          <EntitySet Name="PE_KPI_EVALUATE" EntityType="PerformanceModel.PE_KPI_EVALUATE" />
+          <EntitySet Name="PA_SALARY_LEVEL" EntityType="PerformanceModel.PA_SALARY_LEVEL" />
         </EntityContainer>
         <EntityType Name="PE_CRITERIA">
           <Key>
@@ -1237,6 +1294,59 @@
           <Property Type="Decimal" Name="TYPE_ASS" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="YEAR" Precision="38" Scale="0" />
         </EntityType>
+        <EntityType Name="PE_KPI_EVALUATE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="SALARYLEVEL_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="JOIN_DATE" />
+          <Property Type="DateTime" Name="END_DATE" />
+          <Property Type="Decimal" Name="FINANCE_TT" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="FINANCE_TTX" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="CUSTOMER_TT" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="CUSTOMER_TTX" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="PROCESS_TT" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="PROCESS_TTX" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="LEARN_TT" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="LEARN_TTX" Precision="38" Scale="2" />
+          <Property Type="String" Name="SUM_TT" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="SUM_TTX" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="SUM_RATE_KPI" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="CLASSFICATION" Precision="38" Scale="0" />
+          <Property Type="String" Name="COMMENTS" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="KPI_ID" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="PA_SALARY_LEVEL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="SAL_GROUP_ID" Precision="38" Scale="0" />
+          <Property Type="String" Name="CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+          <Property Type="String" Name="CREATED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+          <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="ORDERS" Precision="38" Scale="0" />
+          <Property Type="String" Name="OTHER_USE" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="GRADE_GROUP" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="SAL_FR" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="SAL_TO" Nullable="false" Precision="38" Scale="0" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1728,6 +1838,61 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="PE_KPI_EVALUATE">
+            <EntityTypeMapping TypeName="IsTypeOf(PerformanceModel.PE_KPI_EVALUATE)">
+                <MappingFragment StoreEntitySet="PE_KPI_EVALUATE">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                    <ScalarProperty Name="SALARYLEVEL_ID" ColumnName="SALARYLEVEL_ID" />
+                    <ScalarProperty Name="JOIN_DATE" ColumnName="JOIN_DATE" />
+                    <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
+                    <ScalarProperty Name="FINANCE_TT" ColumnName="FINANCE_TT" />
+                    <ScalarProperty Name="FINANCE_TTX" ColumnName="FINANCE_TTX" />
+                    <ScalarProperty Name="CUSTOMER_TT" ColumnName="CUSTOMER_TT" />
+                    <ScalarProperty Name="CUSTOMER_TTX" ColumnName="CUSTOMER_TTX" />
+                    <ScalarProperty Name="PROCESS_TT" ColumnName="PROCESS_TT" />
+                    <ScalarProperty Name="PROCESS_TTX" ColumnName="PROCESS_TTX" />
+                    <ScalarProperty Name="LEARN_TT" ColumnName="LEARN_TT" />
+                    <ScalarProperty Name="LEARN_TTX" ColumnName="LEARN_TTX" />
+                    <ScalarProperty Name="SUM_TT" ColumnName="SUM_TT" />
+                    <ScalarProperty Name="SUM_TTX" ColumnName="SUM_TTX" />
+                    <ScalarProperty Name="SUM_RATE_KPI" ColumnName="SUM_RATE_KPI" />
+                    <ScalarProperty Name="CLASSFICATION" ColumnName="CLASSFICATION" />
+                    <ScalarProperty Name="COMMENTS" ColumnName="COMMENTS" />
+                    <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="KPI_ID" ColumnName="KPI_ID" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
+        <EntitySetMapping Name="PA_SALARY_LEVEL">
+            <EntityTypeMapping TypeName="IsTypeOf(PerformanceModel.PA_SALARY_LEVEL)">
+                <MappingFragment StoreEntitySet="PA_SALARY_LEVEL">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="SAL_GROUP_ID" ColumnName="SAL_GROUP_ID" />
+                    <ScalarProperty Name="CODE" ColumnName="CODE" />
+                    <ScalarProperty Name="NAME" ColumnName="NAME" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+                    <ScalarProperty Name="ORDERS" ColumnName="ORDERS" />
+                    <ScalarProperty Name="OTHER_USE" ColumnName="OTHER_USE" />
+                    <ScalarProperty Name="GRADE_GROUP" ColumnName="GRADE_GROUP" />
+                    <ScalarProperty Name="SAL_FR" ColumnName="SAL_FR" />
+                    <ScalarProperty Name="SAL_TO" ColumnName="SAL_TO" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
     </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -1803,6 +1968,8 @@
         <EntityTypeShape EntityType="PerformanceModel.PE_EMPLOYEE_ASSESSMENT" Width="1.5" PointX="0.75" PointY="11.75" Height="3.1340950520833282" />
         <EntityTypeShape EntityType="PerformanceModel.PE_CRITERIA_OBJECT_GROUP" Width="1.5" PointX="3.375" PointY="10.75" Height="3.5186979166666674" />
         <EntityTypeShape EntityType="PerformanceModel.PE_PERIOD" Width="1.5" PointX="0.75" PointY="6.75" Height="3.9033007812500102" />
+        <EntityTypeShape EntityType="PerformanceModel.PE_KPI_EVALUATE" Width="1.5" PointX="5.5" PointY="10.75" Height="6.0186165364583282" />
+        <EntityTypeShape EntityType="PerformanceModel.PA_SALARY_LEVEL" Width="1.5" PointX="12.75" PointY="6.75" Height="4.2879036458333282" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

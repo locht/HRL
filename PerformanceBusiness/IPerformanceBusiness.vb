@@ -367,6 +367,13 @@ Namespace PerformanceBusiness.ServiceContracts
 
 #Region "danh gia kpis"
         <OperationContract()>
+        Function GetListEmployeePaging(ByVal _filter As KPI_EVALUATEDTO,
+                                         ByVal PageIndex As Integer,
+                                         ByVal PageSize As Integer,
+                                         ByRef Total As Integer, ByVal _param As ParamDTO,
+                                         Optional ByVal Sorts As String = "EMPLOYEE_CODE desc",
+                                         Optional ByVal log As UserLog = Nothing) As List(Of KPI_EVALUATEDTO)
+        <OperationContract()>
         Function GetlistYear() As DataTable
         <OperationContract()>
         Function GetLstPeriod(ByVal year As Decimal) As DataTable
