@@ -322,7 +322,7 @@ Public Class ctrlInsInformations
                                                     , InsCommon.getNumber(ddlHEALTH_STATUS.SelectedValue) _
                                                     , txtHEALTH_EFFECT_FROM_DATE.SelectedDate _
                                                     , txtHEALTH_EFFECT_TO_DATE.SelectedDate _
-                                                    , hidWhereHealth.Value _
+                                                    , If(IsNumeric(hidWhereHealth.Value), hidWhereHealth.Value, Nothing) _
                                                     , txtHEALTH_RECEIVE_DATE.SelectedDate _
                                                     , Nothing _
                                                     , txtHEALTH_RETURN_DATE.SelectedDate _
@@ -377,7 +377,7 @@ Public Class ctrlInsInformations
                                                     , InsCommon.getNumber(ddlHEALTH_STATUS.SelectedValue) _
                                                     , txtHEALTH_EFFECT_FROM_DATE.SelectedDate _
                                                     , txtHEALTH_EFFECT_TO_DATE.SelectedDate _
-                                                    , hidWhereHealth.Value _
+                                                    , If(IsNumeric(hidWhereHealth.Value), hidWhereHealth.Value, Nothing) _
                                                     , txtHEALTH_RECEIVE_DATE.SelectedDate _
                                                     , Nothing _
                                                     , txtHEALTH_RETURN_DATE.SelectedDate _
@@ -523,7 +523,7 @@ Public Class ctrlInsInformations
                 InsCommon.SetDate(txtHEALTH_EFFECT_FROM_DATE, lstSource.Rows(0)("HEALTH_EFFECT_FROM_DATE"))
                 InsCommon.SetDate(txtHEALTH_EFFECT_TO_DATE, lstSource.Rows(0)("HEALTH_EFFECT_TO_DATE"))
                 'InsCommon.SetNumber(hidWhereHealth, lstSource.Rows(0)("HEALTH_AREA_INS_ID"))
-                hidWhereHealth.Value = CDec(lstSource.Rows(0)("HEALTH_AREA_INS_ID"))
+                hidWhereHealth.Value = If(Not IsDBNull(lstSource.Rows(0)("HEALTH_AREA_INS_ID")), CDec(lstSource.Rows(0)("HEALTH_AREA_INS_ID")), Nothing)
                 InsCommon.SetString(txtWHCode, lstSource.Rows(0)("HEALTH_CODE"))
                 InsCommon.SetString(txtWHName, lstSource.Rows(0)("HEALTH_AREA_NM"))
                 InsCommon.SetDate(txtHEALTH_RECEIVE_DATE, lstSource.Rows(0)("HEALTH_RECEIVE_DATE"))
