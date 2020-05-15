@@ -5324,6 +5324,9 @@ Namespace PerformanceBusiness
         Private TER_EFFECT_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TITLE_IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -5694,6 +5697,19 @@ Namespace PerformanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TITLE_ID() As Decimal
+            Get
+                Return Me.TITLE_IDField
+            End Get
+            Set
+                If (Me.TITLE_IDField.Equals(value) <> true) Then
+                    Me.TITLE_IDField = value
+                    Me.RaisePropertyChanged("TITLE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property TITLE_NAME() As String
             Get
                 Return Me.TITLE_NAMEField
@@ -5745,6 +5761,9 @@ Namespace PerformanceBusiness
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="PerformanceBusiness.IPerformanceBusiness")>  _
     Public Interface IPerformanceBusiness
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPerformanceBusiness/GetExportKPI", ReplyAction:="http://tempuri.org/IPerformanceBusiness/GetExportKPIResponse")>  _
+        Function GetExportKPI(ByVal id As Decimal) As System.Data.DataSet
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPerformanceBusiness/TestService", ReplyAction:="http://tempuri.org/IPerformanceBusiness/TestServiceResponse")>  _
         Function TestService(ByVal str As String) As String
@@ -5980,6 +5999,12 @@ Namespace PerformanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPerformanceBusiness/PRINT_PE_ASSESS", ReplyAction:="http://tempuri.org/IPerformanceBusiness/PRINT_PE_ASSESSResponse")>  _
         Function PRINT_PE_ASSESS(ByVal empID As Decimal, ByVal period As Decimal, ByVal obj As Decimal) As System.Data.DataSet
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPerformanceBusiness/GetListEmployeePaging1", ReplyAction:="http://tempuri.org/IPerformanceBusiness/GetListEmployeePaging1Response")>  _
+        Function GetListEmployeePaging1(ByVal _filter As PerformanceBusiness.KPI_EVALUATEDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As PerformanceBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of PerformanceBusiness.KPI_EVALUATEDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPerformanceBusiness/GetLstPeriod1", ReplyAction:="http://tempuri.org/IPerformanceBusiness/GetLstPeriod1Response")>  _
+        Function GetLstPeriod1(ByVal year As Decimal) As System.Data.DataTable
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPerformanceBusiness/CheckEmployee_Exits", ReplyAction:="http://tempuri.org/IPerformanceBusiness/CheckEmployee_ExitsResponse")>  _
         Function CheckEmployee_Exits(ByVal empCode As String) As Integer
         
@@ -5994,9 +6019,6 @@ Namespace PerformanceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPerformanceBusiness/GetPeriodDate", ReplyAction:="http://tempuri.org/IPerformanceBusiness/GetPeriodDateResponse")>  _
         Function GetPeriodDate(ByVal id As Decimal) As PerformanceBusiness.PeriodDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IPerformanceBusiness/GetExportKPI", ReplyAction:="http://tempuri.org/IPerformanceBusiness/GetExportKPIResponse")>  _
-        Function GetExportKPI(ByVal id As Decimal) As System.Data.DataSet
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -6029,6 +6051,10 @@ Namespace PerformanceBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function GetExportKPI(ByVal id As Decimal) As System.Data.DataSet Implements PerformanceBusiness.IPerformanceBusiness.GetExportKPI
+            Return MyBase.Channel.GetExportKPI(id)
+        End Function
         
         Public Function TestService(ByVal str As String) As String Implements PerformanceBusiness.IPerformanceBusiness.TestService
             Return MyBase.Channel.TestService(str)
@@ -6342,6 +6368,14 @@ Namespace PerformanceBusiness
             Return MyBase.Channel.PRINT_PE_ASSESS(empID, period, obj)
         End Function
         
+        Public Function GetListEmployeePaging1(ByVal _filter As PerformanceBusiness.KPI_EVALUATEDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As PerformanceBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of PerformanceBusiness.KPI_EVALUATEDTO) Implements PerformanceBusiness.IPerformanceBusiness.GetListEmployeePaging1
+            Return MyBase.Channel.GetListEmployeePaging1(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
+        End Function
+        
+        Public Function GetLstPeriod1(ByVal year As Decimal) As System.Data.DataTable Implements PerformanceBusiness.IPerformanceBusiness.GetLstPeriod1
+            Return MyBase.Channel.GetLstPeriod1(year)
+        End Function
+        
         Public Function CheckEmployee_Exits(ByVal empCode As String) As Integer Implements PerformanceBusiness.IPerformanceBusiness.CheckEmployee_Exits
             Return MyBase.Channel.CheckEmployee_Exits(empCode)
         End Function
@@ -6360,10 +6394,6 @@ Namespace PerformanceBusiness
         
         Public Function GetPeriodDate(ByVal id As Decimal) As PerformanceBusiness.PeriodDTO Implements PerformanceBusiness.IPerformanceBusiness.GetPeriodDate
             Return MyBase.Channel.GetPeriodDate(id)
-        End Function
-        
-        Public Function GetExportKPI(ByVal id As Decimal) As System.Data.DataSet Implements PerformanceBusiness.IPerformanceBusiness.GetExportKPI
-            Return MyBase.Channel.GetExportKPI(id)
         End Function
     End Class
 End Namespace

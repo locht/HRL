@@ -364,7 +364,17 @@ Namespace PerformanceBusiness.ServiceContracts
 
         <OperationContract()>
         Function PRINT_PE_ASSESS(ByVal empID As Decimal, ByVal period As Decimal, ByVal obj As Decimal) As DataSet
-
+#Region "xem ket qua tong hop"
+        <OperationContract()>
+        Function GetListEmployeePaging1(ByVal _filter As KPI_EVALUATEDTO,
+                                        ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer, ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "EMPLOYEE_CODE desc",
+                                        Optional ByVal log As UserLog = Nothing) As List(Of KPI_EVALUATEDTO)
+        <OperationContract()>
+        Function GetLstPeriod1(ByVal year As Decimal) As DataTable
+#End Region
 #Region "danh gia kpis"
         <OperationContract()>
         Function CheckEmployee_Exits(ByVal empCode As String) As Integer
