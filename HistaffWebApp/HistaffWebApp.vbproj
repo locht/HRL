@@ -457,6 +457,7 @@
     <Content Include="Modules\Payroll\Setting\ctrlPA_SetUpBonus.ascx" />
     <Content Include="Modules\Payroll\Setting\ctrlPA_IncentiveRank.ascx" />
     <Content Include="Modules\Payroll\Setting\ctrlPA_PaymentsList.ascx" />
+    <Content Include="Modules\Performance\Business\ctrlPE_Result_Evaluate.ascx" />
     <Content Include="Modules\Performance\Business\ctrlPE_KPI_Evaluate.ascx" />
     <Content Include="Modules\Performance\Dashboard\ctrlDashboard.ascx" />
     <Content Include="Modules\Performance\Dashboard\ctrlDashboardSixCell.ascx" />
