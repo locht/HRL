@@ -950,5 +950,27 @@ Partial Class InsuranceRepository
             End Try
         End Using
     End Function
+
+    Public Function CHECK_INS_LOCK(ByVal P_EMPLOYEE_ID As Decimal, ByVal P_DATE As Date) As Decimal
+        Using rep As New InsuranceBusinessClient
+            Try
+                Return rep.CHECK_INS_LOCK(P_EMPLOYEE_ID, P_DATE)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function CHECK_INS_LOCK1(ByVal P_INS_ORG_ID As Decimal, ByVal P_DATE As Date) As Decimal
+        Using rep As New InsuranceBusinessClient
+            Try
+                Return rep.CHECK_INS_LOCK1(P_INS_ORG_ID, P_DATE)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
 #End Region
 End Class

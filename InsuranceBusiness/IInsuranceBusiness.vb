@@ -891,5 +891,12 @@ Namespace InsuranceBusiness.ServiceContracts
 
         <OperationContract()>
         Function GET_REARL_FILED(ByVal P_INS_ORG_ID As Decimal, ByVal P_YEAR As Decimal, ByVal P_MONTH As Decimal) As Decimal
+
+        <OperationContract()>
+        Function CHECK_INS_LOCK(ByVal P_EMPLOYEE_ID As Decimal, ByVal P_DATE As Date) As Decimal
+
+        <OperationContract()>
+        Function CHECK_INS_LOCK1(ByVal P_INS_ORG_ID As Decimal, ByVal P_DATE As Date) As Decimal
+
     End Interface
 End Namespace

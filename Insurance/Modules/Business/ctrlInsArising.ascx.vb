@@ -356,6 +356,14 @@ Public Class ctrlInsArising
 
             Dim isFail As Integer = 0
             Dim isResult As Integer = 0
+            For i As Integer = 0 To rgGridData.SelectedItems.Count - 1
+                Dim item As GridDataItem = rgGridData.SelectedItems(i)
+                Dim empid As Integer = Integer.Parse(item("EMPID").Text)
+                If rep.CHECK_INS_LOCK(empid, txtMONTH.SelectedDate) > 0 Then
+                    ShowMessage(Translate("Tháng khai báo cơ quan BH đã khóa, Vui lòng kiểm tra lại."), NotifyType.Warning)
+                    Exit Sub
+                End If
+            Next
 
             For i As Integer = 0 To rgGridData.SelectedItems.Count - 1
                 Dim item As GridDataItem = rgGridData.SelectedItems(i)
