@@ -100,6 +100,7 @@
             <EntitySet Name="AT_SYMBOL_FUNC" EntityType="AttendanceModel.Store.AT_SYMBOL_FUNC" store:Type="Tables"  />
             <EntitySet Name="SE_USER_ORG_ACCESS1Set" EntityType="AttendanceModel.Store.SE_USER_ORG_ACCESS1Set" store:Type="Tables"  />
             <EntitySet Name="AT_SYMBOLS" EntityType="AttendanceModel.Store.AT_SYMBOLS" store:Type="Tables"  />
+            <EntitySet Name="AT_ORG_SHIFTSet" EntityType="AttendanceModel.Store.AT_ORG_SHIFTSet" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="AttendanceModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_OOLT_OOL" Association="AttendanceModel.Store.FK_OOLT_OOL">
                 <End Role="OT_OTHER_LIST_TYPE" EntitySet="OT_OTHER_LIST_TYPE" />
@@ -2549,6 +2550,20 @@
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="IS_LEAVE_HOLIDAY" Type="number" Nullable="true" Precision="5" />
         </EntityType>
+        <EntityType Name="AT_ORG_SHIFTSet">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SHIFT_CODE" Type="nclob" Nullable="true" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -2868,6 +2883,7 @@
           <EntitySet Name="AT_SYMBOL_FUNC" EntityType="AttendanceModel.AT_SYMBOL_FUNC" />
           <EntitySet Name="SE_USER_ORG_ACCESS1Set" EntityType="AttendanceModel.SE_USER_ORG_ACCESS1" />
           <EntitySet Name="AT_SYMBOLS" EntityType="AttendanceModel.AT_SYMBOLS" />
+          <EntitySet Name="AT_ORG_SHIFTSet" EntityType="AttendanceModel.AT_ORG_SHIFT" />
           </EntityContainer>
         <EntityType Name="OT_OTHER_LIST">
           <Key>
@@ -5418,6 +5434,20 @@
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Int16" Name="IS_LEAVE_HOLIDAY" />
         </EntityType>
+        <EntityType Name="AT_ORG_SHIFT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Decimal" Name="ORG_ID" />
+          <Property Type="String" Name="SHIFT_CODE" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -7913,6 +7943,21 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="AT_ORG_SHIFTSet">
+            <EntityTypeMapping TypeName="AttendanceModel.AT_ORG_SHIFT">
+                <MappingFragment StoreEntitySet="AT_ORG_SHIFTSet">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                    <ScalarProperty Name="SHIFT_CODE" ColumnName="SHIFT_CODE" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="AttendanceModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -8090,6 +8135,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_SYMBOL_FUNC" Width="1.5" PointX="9.375" PointY="25.75" Height="1.5956835937499818" />
         <EntityTypeShape EntityType="AttendanceModel.SE_USER_ORG_ACCESS1" Width="1.5" PointX="15.375" PointY="26.75" Height="1.7879850260417243" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SYMBOLS" Width="1.5" PointX="23.375" PointY="24.75" Height="6.0186165364583353" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_ORG_SHIFT" Width="1.5" PointX="8.5" PointY="13.375" Height="1.5956835937499996" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
