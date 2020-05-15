@@ -44,6 +44,8 @@
             <EntitySet Name="SE_GROUP_ORG_ACCESS" EntityType="CommonModel.Store.SE_GROUP_ORG_ACCESS" store:Type="Tables"  />
             <EntitySet Name="SE_GROUP_ORG_FUN_ACCESS" EntityType="CommonModel.Store.SE_GROUP_ORG_FUN_ACCESS" store:Type="Tables"  />
             <EntitySet Name="HU_PROVINCE" EntityType="CommonModel.Store.HU_PROVINCE" store:Type="Tables"  />
+            <EntitySet Name="HU_FOLDERS" EntityType="CommonModel.Store.HU_FOLDERS" store:Type="Tables"  />
+            <EntitySet Name="HU_USERFILES" EntityType="CommonModel.Store.HU_USERFILES" store:Type="Tables"  />
             <EntitySet Name="SE_GRP_SE_USR" EntityType="CommonModel.Store.SE_GRP_SE_USR" store:Type="Tables"  />
             <EntitySet Name="SE_GROUP_REPORT" EntityType="CommonModel.Store.SE_GROUP_REPORT" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="CommonModel.Store.SE_USER_REPORT" store:Type="Tables"  />
@@ -824,6 +826,28 @@
             <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
         </EntityType>
+        <EntityType Name="HU_FOLDERS">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="LINK" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="PARENT_ID" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
+        <EntityType Name="HU_USERFILES">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="LINK" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="DESCRIPTION" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="FOLDER_ID" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
         <EntityType Name="SE_GRP_SE_USR">
             <Key>
                 <PropertyRef Name="SE_GROUPS_ID" />
@@ -1155,6 +1179,8 @@
           <EntitySet Name="SE_GROUP_ORG_ACCESS" EntityType="CommonModel.SE_GROUP_ORG_ACCESS" />
           <EntitySet Name="SE_GROUP_ORG_FUN_ACCESS" EntityType="CommonModel.SE_GROUP_ORG_FUN_ACCESS" />
           <EntitySet Name="HU_PROVINCE" EntityType="CommonModel.HU_PROVINCE" />
+          <EntitySet Name="HU_FOLDERS" EntityType="CommonModel.HU_FOLDERS" />
+          <EntitySet Name="HU_USERFILES" EntityType="CommonModel.HU_USERFILES" />
           </EntityContainer>
         <EntityType Name="SE_GROUP">
           <Key>
@@ -2030,6 +2056,28 @@
           <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="HU_FOLDERS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LINK" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="PARENT_ID" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="HU_USERFILES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LINK" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DESCRIPTION" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="FOLDER_ID" Precision="38" Scale="0" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2784,6 +2832,30 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HU_FOLDERS">
+            <EntityTypeMapping TypeName="IsTypeOf(CommonModel.HU_FOLDERS)">
+                <MappingFragment StoreEntitySet="HU_FOLDERS">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="NAME" ColumnName="NAME" />
+                    <ScalarProperty Name="LINK" ColumnName="LINK" />
+                    <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
+        <EntitySetMapping Name="HU_USERFILES">
+            <EntityTypeMapping TypeName="IsTypeOf(CommonModel.HU_USERFILES)">
+                <MappingFragment StoreEntitySet="HU_USERFILES">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="NAME" ColumnName="NAME" />
+                    <ScalarProperty Name="LINK" ColumnName="LINK" />
+                    <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="FOLDER_ID" ColumnName="FOLDER_ID" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_GRP_SE_USR" TypeName="CommonModel.SE_GRP_SE_USR" StoreEntitySet="SE_GRP_SE_USR">
             <EndProperty Name="SE_GROUP">
                 <ScalarProperty Name="ID" ColumnName="SE_GROUPS_ID" />
@@ -2971,6 +3043,8 @@
         <EntityTypeShape EntityType="CommonModel.SE_GROUP_ORG_ACCESS" Width="1.5" PointX="3.375" PointY="6.75" Height="1.5956835937500102" />
         <EntityTypeShape EntityType="CommonModel.SE_GROUP_ORG_FUN_ACCESS" Width="1.5" PointX="14.375" PointY="0.75" Height="1.5956835937499818" />
         <EntityTypeShape EntityType="CommonModel.HU_PROVINCE" Width="1.5" PointX="9.375" PointY="14.75" Height="3.3263964843750102" />
+        <EntityTypeShape EntityType="CommonModel.HU_FOLDERS" Width="1.5" PointX="11.375" PointY="14.75" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="CommonModel.HU_USERFILES" Width="1.5" PointX="3.375" PointY="17.75" Height="2.5571907552083246" />
         </Diagram>
     </Diagrams>
   </Designer>

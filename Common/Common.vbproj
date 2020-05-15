@@ -139,6 +139,7 @@
     <Content Include="Modules\Common\ApproveProcess\ctrlApproveSetupOrg.ascx" />
     <Content Include="Modules\Common\ApproveProcess\ctrlApproveTemplate.ascx" />
     <Content Include="Modules\Common\ApproveProcess\ctrlApproveTemplateAddEdit.ascx" />
+    <Content Include="Modules\Common\ctrlFolders.ascx" />
     <Content Include="Modules\Common\ctrlLanguageManagementPortal.ascx" />
     <Content Include="Modules\Common\ctrlCommon_Reject.ascx" />
     <Content Include="Modules\Common\ctrlFindEmployeeSignPopupDialog.ascx" />
@@ -244,6 +245,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\CommonBusiness\Common.CommonBusiness.EmployeePopupFindListDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CommonBusiness\Common.CommonBusiness.FoldersDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\CommonBusiness\Common.CommonBusiness.FunctionDTO.datasource">
@@ -411,6 +415,13 @@
     <Compile Include="Modules\Common\CommonRepository.Secure.vb" />
     <Compile Include="Modules\Common\CommonRepository.ApproveProcess.vb" />
     <Compile Include="Modules\Common\CommonWorkflow.vb" />
+    <Compile Include="Modules\Common\ctrlFolders.ascx.designer.vb">
+      <DependentUpon>ctrlFolders.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Common\ctrlFolders.ascx.vb">
+      <DependentUpon>ctrlFolders.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Modules\Common\ctrlLanguageManagementPortal.ascx.designer.vb">
       <DependentUpon>ctrlLanguageManagementPortal.ascx</DependentUpon>
     </Compile>

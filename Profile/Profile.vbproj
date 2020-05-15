@@ -155,6 +155,7 @@
     <Content Include="Modules\Competency\Report\ctrlHU_Competency_RadarReport.ascx" />
     <Content Include="Modules\Competency\Report\ctrlHU_Competency_RadarReportGaps.ascx" />
     <Content Include="Modules\Competency\Setting\ctrlHU_CompetencyCourse.ascx" />
+    <Content Include="Modules\Portal\ctrlPortalEmpFileMng.ascx" />
     <Content Include="Modules\Portal\ctrlPortalEmpInsurance.ascx" />
     <Content Include="Modules\Portal\ctrlPortalEmpHealth.ascx" />
     <Content Include="Modules\Portal\ctrlPortalContractAppendix.ascx" />
@@ -765,6 +766,13 @@
     </Compile>
     <Compile Include="Modules\Competency\Setting\ctrlHU_CompetencyCourse.ascx.vb">
       <DependentUpon>ctrlHU_CompetencyCourse.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlPortalEmpFileMng.ascx.designer.vb">
+      <DependentUpon>ctrlPortalEmpFileMng.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlPortalEmpFileMng.ascx.vb">
+      <DependentUpon>ctrlPortalEmpFileMng.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Portal\ctrlPortalEmpInsurance.ascx.designer.vb">
@@ -1575,7 +1583,7 @@
     </Compile>
     <Compile Include="Modules\Profile\List\ctrlHU_Signer.ascx.vb">
       <DependentUpon>ctrlHU_Signer.ascx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Profile\ProfileBusinessRepository.Contract.vb" />
     <Compile Include="Modules\Profile\ProfileBusinessRepository.Commend.vb" />

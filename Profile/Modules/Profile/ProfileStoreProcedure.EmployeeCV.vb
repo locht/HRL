@@ -166,4 +166,8 @@ Partial Class ProfileStoreProcedure
             End If
         Next
     End Sub
+
+#Region "Quản lý file"
+
+#End Region
 End Class

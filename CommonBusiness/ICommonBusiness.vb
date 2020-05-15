@@ -1039,5 +1039,13 @@ Namespace CommonBusiness.ServiceContracts
         Function GetConfigViewAndFillData(ByVal keyView As String, ByRef viewcontrol As se_view_config_control_DTO, ByRef girdcollum As se_view_config_girdColumm_DTO)
 #End Region
 
+
+#Region "quan ly file"
+        <OperationContract()>
+        Function GetFoldersAll() As List(Of FoldersDTO)
+
+        <OperationContract()>
+        Function GetFoldersStructureInfo(ByVal _folderId As Decimal) As List(Of FoldersDTO)
+#End Region
     End Interface
 End Namespace

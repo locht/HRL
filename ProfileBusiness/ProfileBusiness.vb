@@ -1087,6 +1087,33 @@ Implements ServiceContracts.IProfileBusiness.GetHU_DataDynamicContractAppendix
                 End Try
             End Using
         End Function
+
+#Region "quan ly file"
+
+        Public Function GetFoldersAll() As List(Of FoldersDTO) Implements ServiceContracts.IProfileBusiness.GetFoldersAll
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.GetFoldersAll()
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function GetFoldersStructureInfo(ByVal _folderId As Decimal) As List(Of FoldersDTO) Implements ServiceContracts.IProfileBusiness.GetFoldersStructureInfo
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.GetFoldersStructureInfo(_folderId)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+
+#End Region
     End Class
 
 

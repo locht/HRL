@@ -1058,5 +1058,31 @@ Namespace CommonBusiness.ServiceImplementations
             End Using
         End Function
 #End Region
+#Region "quan ly file"
+
+        Public Function GetFoldersAll() As List(Of FoldersDTO) Implements ServiceContracts.ICommonBusiness.GetFoldersAll
+            Using rep As New CommonRepository
+                Try
+                    Dim lst = rep.GetFoldersAll()
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function GetFoldersStructureInfo(ByVal _folderId As Decimal) As List(Of FoldersDTO) Implements ServiceContracts.ICommonBusiness.GetFoldersStructureInfo
+            Using rep As New CommonRepository
+                Try
+                    Dim lst = rep.GetFoldersStructureInfo(_folderId)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+
+#End Region
     End Class
 End Namespace

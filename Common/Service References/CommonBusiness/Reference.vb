@@ -1409,6 +1409,117 @@ Namespace CommonBusiness
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="FoldersDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/CommonDAL"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class FoldersDTO
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LINKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PARENT_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PARENT_NAMEField As String
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID() As Decimal
+            Get
+                Return Me.IDField
+            End Get
+            Set
+                If (Me.IDField.Equals(value) <> true) Then
+                    Me.IDField = value
+                    Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LINK() As String
+            Get
+                Return Me.LINKField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LINKField, value) <> true) Then
+                    Me.LINKField = value
+                    Me.RaisePropertyChanged("LINK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NAME() As String
+            Get
+                Return Me.NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.NAMEField, value) <> true) Then
+                    Me.NAMEField = value
+                    Me.RaisePropertyChanged("NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PARENT_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PARENT_IDField
+            End Get
+            Set
+                If (Me.PARENT_IDField.Equals(value) <> true) Then
+                    Me.PARENT_IDField = value
+                    Me.RaisePropertyChanged("PARENT_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PARENT_NAME() As String
+            Get
+                Return Me.PARENT_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.PARENT_NAMEField, value) <> true) Then
+                    Me.PARENT_NAMEField = value
+                    Me.RaisePropertyChanged("PARENT_NAME")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
      System.Runtime.Serialization.DataContractAttribute(Name:="ComboBoxDataDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/CommonDAL"),  _
      System.SerializableAttribute()>  _
     Partial Public Class ComboBoxDataDTO
@@ -8876,6 +8987,8 @@ Namespace CommonBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_control_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_girdColumm_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.FoldersDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.FoldersDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ComboBoxDataDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.OtherListDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.OtherListDTO)),  _
@@ -8942,6 +9055,12 @@ Namespace CommonBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.TitleDTO)))>  _
         Function GetConfigViewAndFillData(ByVal keyView As String, ByRef viewcontrol As CommonBusiness.se_view_config_control_DTO, ByRef girdcollum As CommonBusiness.se_view_config_girdColumm_DTO) As Object
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetFoldersAll", ReplyAction:="http://tempuri.org/ICommonBusiness/GetFoldersAllResponse")>  _
+        Function GetFoldersAll() As System.Collections.Generic.List(Of CommonBusiness.FoldersDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetFoldersStructureInfo", ReplyAction:="http://tempuri.org/ICommonBusiness/GetFoldersStructureInfoResponse")>  _
+        Function GetFoldersStructureInfo(ByVal _folderId As Decimal) As System.Collections.Generic.List(Of CommonBusiness.FoldersDTO)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/DeleteActionLogs", ReplyAction:="http://tempuri.org/ICommonBusiness/DeleteActionLogsResponse")>  _
         Function DeleteActionLogs(ByVal lstDeleteIds As System.Collections.Generic.List(Of Decimal)) As Integer
         
@@ -8995,6 +9114,8 @@ Namespace CommonBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_control_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_girdColumm_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.FoldersDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.FoldersDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ComboBoxDataDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.OtherListDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.OtherListDTO)),  _
@@ -9306,6 +9427,8 @@ Namespace CommonBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_control_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_girdColumm_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.FoldersDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.FoldersDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ComboBoxDataDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.OtherListDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.OtherListDTO)),  _
@@ -9578,6 +9701,8 @@ Namespace CommonBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_control_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_girdColumm_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.FoldersDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.FoldersDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ComboBoxDataDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.OtherListDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.OtherListDTO)),  _
@@ -9738,6 +9863,14 @@ Namespace CommonBusiness
         
         Public Function GetConfigViewAndFillData(ByVal keyView As String, ByRef viewcontrol As CommonBusiness.se_view_config_control_DTO, ByRef girdcollum As CommonBusiness.se_view_config_girdColumm_DTO) As Object Implements CommonBusiness.ICommonBusiness.GetConfigViewAndFillData
             Return MyBase.Channel.GetConfigViewAndFillData(keyView, viewcontrol, girdcollum)
+        End Function
+        
+        Public Function GetFoldersAll() As System.Collections.Generic.List(Of CommonBusiness.FoldersDTO) Implements CommonBusiness.ICommonBusiness.GetFoldersAll
+            Return MyBase.Channel.GetFoldersAll
+        End Function
+        
+        Public Function GetFoldersStructureInfo(ByVal _folderId As Decimal) As System.Collections.Generic.List(Of CommonBusiness.FoldersDTO) Implements CommonBusiness.ICommonBusiness.GetFoldersStructureInfo
+            Return MyBase.Channel.GetFoldersStructureInfo(_folderId)
         End Function
         
         Public Function DeleteActionLogs(ByVal lstDeleteIds As System.Collections.Generic.List(Of Decimal)) As Integer Implements CommonBusiness.ICommonBusiness.DeleteActionLogs
