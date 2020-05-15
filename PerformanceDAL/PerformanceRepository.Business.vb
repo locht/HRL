@@ -888,6 +888,7 @@ Partial Class PerformanceRepository
 
             Dim query = From mbo In Context.PE_KPI_EVALUATE
                         From p In Context.HU_EMPLOYEE.Where(Function(f) f.ID = mbo.EMPLOYEE_ID)
+                        From abc In Context.PE_EVALUATE_PERIOD.Where(Function(f) f.EMPLOYEE_ID = p.ID)
                         From period In Context.PE_PERIOD.Where(Function(f) f.ID = mbo.KPI_ID).DefaultIfEmpty
                         From sal_level In Context.PA_SALARY_LEVEL.Where(Function(f) f.ID = mbo.SALARYLEVEL_ID).DefaultIfEmpty
                         From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = mbo.CLASSFICATION).DefaultIfEmpty

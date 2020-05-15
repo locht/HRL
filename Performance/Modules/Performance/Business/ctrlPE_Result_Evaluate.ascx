@@ -27,9 +27,6 @@
                             <tlk:RadComboBox runat="server" ID="cboPeriodEvaluate" AutoPostBack="true">
                             </tlk:RadComboBox>
                         </td>
-                        <td colspan="2">
-                            <asp:CheckBox ID="chkTerminate" runat="server" Text="Liệt kê cả nhân viên nghỉ việc" />
-                        </td>
                     </tr>
                     <tr>
                         <td class="lb">

@@ -28,6 +28,7 @@
             <EntitySet Name="PE_PERIOD" EntityType="PerformanceModel.Store.PE_PERIOD" store:Type="Tables"  />
             <EntitySet Name="PE_KPI_EVALUATE" EntityType="PerformanceModel.Store.PE_KPI_EVALUATE" store:Type="Tables"  />
             <EntitySet Name="PA_SALARY_LEVEL" EntityType="PerformanceModel.Store.PA_SALARY_LEVEL" store:Type="Tables"  />
+            <EntitySet Name="PE_EVALUATE_PERIOD" EntityType="PerformanceModel.Store.PE_EVALUATE_PERIOD" store:Type="Tables"  />
             <AssociationSet Name="FK_HE_HEC" Association="PerformanceModel.Store.FK_HE_HEC">
                 <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
                 <End Role="HU_EMPLOYEE_CV" EntitySet="HU_EMPLOYEE_CV" />
@@ -578,6 +579,30 @@
             <Property Name="SAL_FR" Type="number" Nullable="false" Precision="38" />
             <Property Name="SAL_TO" Type="number" Nullable="false" Precision="38" />
         </EntityType>
+        <EntityType Name="PE_EVALUATE_PERIOD">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PERIOD_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TITLE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SAL_LEVEL_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="RESPONSIBILITY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="COOPERATION" Type="number" Nullable="true" Precision="38" />
+            <Property Name="DILIGENCE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TOTAL" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CLASSIFICATION" Type="number" Nullable="true" Precision="38" />
+            <Property Name="NOTE" Type="nvarchar2" Nullable="true" MaxLength="1000" />
+            <Property Name="COMMENT1" Type="nvarchar2" Nullable="true" MaxLength="1000" />
+        </EntityType>
     <Association Name="FK_HE_HEC">
         <End Role="HU_EMPLOYEE" Type="PerformanceModel.Store.HU_EMPLOYEE" Multiplicity="1">
         </End>
@@ -731,6 +756,7 @@
           <EntitySet Name="PE_PERIOD" EntityType="PerformanceModel.PE_PERIOD" />
           <EntitySet Name="PE_KPI_EVALUATE" EntityType="PerformanceModel.PE_KPI_EVALUATE" />
           <EntitySet Name="PA_SALARY_LEVEL" EntityType="PerformanceModel.PA_SALARY_LEVEL" />
+          <EntitySet Name="PE_EVALUATE_PERIOD" EntityType="PerformanceModel.PE_EVALUATE_PERIOD" />
         </EntityContainer>
         <EntityType Name="PE_CRITERIA">
           <Key>
@@ -1351,6 +1377,30 @@
           <Property Type="Decimal" Name="SAL_FR" Nullable="false" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="SAL_TO" Nullable="false" Precision="38" Scale="0" />
         </EntityType>
+        <EntityType Name="PE_EVALUATE_PERIOD">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PERIOD_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TITLE_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="SAL_LEVEL_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="RESPONSIBILITY" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="COOPERATION" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="DILIGENCE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TOTAL" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CLASSIFICATION" Precision="38" Scale="0" />
+          <Property Type="String" Name="NOTE" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="COMMENT1" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1899,6 +1949,31 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="PE_EVALUATE_PERIOD">
+            <EntityTypeMapping TypeName="IsTypeOf(PerformanceModel.PE_EVALUATE_PERIOD)">
+                <MappingFragment StoreEntitySet="PE_EVALUATE_PERIOD">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                    <ScalarProperty Name="PERIOD_ID" ColumnName="PERIOD_ID" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                    <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+                    <ScalarProperty Name="SAL_LEVEL_ID" ColumnName="SAL_LEVEL_ID" />
+                    <ScalarProperty Name="RESPONSIBILITY" ColumnName="RESPONSIBILITY" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="COOPERATION" ColumnName="COOPERATION" />
+                    <ScalarProperty Name="DILIGENCE" ColumnName="DILIGENCE" />
+                    <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+                    <ScalarProperty Name="CLASSIFICATION" ColumnName="CLASSIFICATION" />
+                    <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                    <ScalarProperty Name="COMMENT1" ColumnName="COMMENT1" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
     </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -1976,6 +2051,7 @@
         <EntityTypeShape EntityType="PerformanceModel.PE_PERIOD" Width="1.5" PointX="0.75" PointY="6.75" Height="3.9033007812500102" />
         <EntityTypeShape EntityType="PerformanceModel.PE_KPI_EVALUATE" Width="1.5" PointX="5.5" PointY="10.75" Height="6.4032194010416674" />
         <EntityTypeShape EntityType="PerformanceModel.PA_SALARY_LEVEL" Width="1.5" PointX="12.75" PointY="6.75" Height="4.2879036458333282" />
+        <EntityTypeShape EntityType="PerformanceModel.PE_EVALUATE_PERIOD" Width="1.5" PointX="12.75" PointY="12.75" Height="4.6725065104166674" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

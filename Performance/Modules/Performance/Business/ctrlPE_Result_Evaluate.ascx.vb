@@ -275,7 +275,6 @@ Class ctrlPE_Result_Evaluate
                                                 .IS_DISSOLVE = ctrlOrganization.IsDissolve}
 
                 SetValueObjectByRadGrid(rgEmployeeList, _filter)
-                _filter.IS_TER = chkTerminate.Checked
                 Sorts = rgEmployeeList.MasterTableView.SortExpressions.GetSortString()
                 If isFull Then
                     If Sorts IsNot Nothing Then
