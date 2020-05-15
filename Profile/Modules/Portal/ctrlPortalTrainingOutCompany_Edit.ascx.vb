@@ -223,8 +223,7 @@ Public Class ctrlPortalTrainingOutCompany_Edit
 
                             If isInsert Then
                                 rep.InsertProcessTrainingEdit(objTrain, 0)
-                            Else
-                                objTrain.ID = hidID.Value
+                            Else                               
                                 rep.ModifyProcessTrainingEdit(objTrain, 0)
                             End If
 
@@ -324,7 +323,7 @@ Public Class ctrlPortalTrainingOutCompany_Edit
                 hidProcessTrainID.Value = item.GetDataKeyValue("ID")
 
                 rdTuNgay.SelectedDate = item.GetDataKeyValue("FROM_DATE")
-                rdToiNgay.SelectedDate = item.GetDataKeyValue("FROM_DATE")
+                rdToiNgay.SelectedDate = item.GetDataKeyValue("TO_DATE")
                 rntGraduateYear.Text = item.GetDataKeyValue("YEAR_GRA")
                 cboTrainingSchool.SelectedValue = item.GetDataKeyValue("SCHOOLS_ID")
                 cboTrainingForm.SelectedValue = item.GetDataKeyValue("FORM_TRAIN_ID")
@@ -352,7 +351,7 @@ Public Class ctrlPortalTrainingOutCompany_Edit
                 Dim item = CType(e.Item, GridDataItem)
                 hidProcessTrainID.Value = item.GetDataKeyValue("ID")
                 rdTuNgay.SelectedDate = item.GetDataKeyValue("FROM_DATE")
-                rdToiNgay.SelectedDate = item.GetDataKeyValue("FROM_DATE")
+                rdToiNgay.SelectedDate = item.GetDataKeyValue("TO_DATE")
                 rntGraduateYear.Text = item.GetDataKeyValue("YEAR_GRA")
                 cboTrainingSchool.SelectedValue = item.GetDataKeyValue("SCHOOLS_ID")
                 cboTrainingForm.SelectedValue = item.GetDataKeyValue("FORM_TRAIN_ID")
