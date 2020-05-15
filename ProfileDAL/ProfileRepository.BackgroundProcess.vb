@@ -12,7 +12,7 @@ Partial Class ProfileRepository
 #Region "Service Auto Update Employee Information"
     Public Function CheckAndUpdateEmployeeInformation() As Boolean
         UpdateWorking()
-        UpdateTerminate()
+        'UpdateTerminate()
         UpdateContract()
         Return True
     End Function
