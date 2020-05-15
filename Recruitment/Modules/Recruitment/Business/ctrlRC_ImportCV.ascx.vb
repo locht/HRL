@@ -18,6 +18,30 @@ Public Class ctrlRC_ImportCV
     Public Property dtip As New CandidateImportDTO
     Public Property iFile As New Integer
 #Region "Property"
+    Property ImageFile As Telerik.Web.UI.UploadedFile
+        Get
+            Return PageViewState(Me.ID & "_ImageFile")
+        End Get
+        Set(ByVal value As Telerik.Web.UI.UploadedFile)
+            PageViewState(Me.ID & "_ImageFile") = value
+        End Set
+    End Property
+    Property Binary As Byte()
+        Get
+            Return ViewState(Me.ID & "_Binary")
+        End Get
+        Set(ByVal value As Byte())
+            ViewState(Me.ID & "_Binary") = value
+        End Set
+    End Property
+    Property ImageExtend As String
+        Get
+            Return ViewState(Me.ID & "_ImageExtend")
+        End Get
+        Set(ByVal value As String)
+            ViewState(Me.ID & "_ImageExtend") = value
+        End Set
+    End Property
     Property checkOut As Decimal
         Get
             Return ViewState(Me.ID & "_checkOut")
@@ -50,7 +74,7 @@ Public Class ctrlRC_ImportCV
             ViewState(Me.ID & "_lst") = value
         End Set
     End Property
-   
+
     'Private Property dtip As CandidateImportDTO
     '    Get
     '        Return ViewState(Me.ID & "_dtip")
@@ -773,7 +797,7 @@ Public Class ctrlRC_ImportCV
                         ShowMessage(Translate("Không có ứng viên nào được import vui lòng kiểm tra lại toàn bộ file import của ứng viên."), NotifyType.Warning)
                     End If
             End Select
-            
+
         Catch ex As Exception
 
         End Try
@@ -1202,6 +1226,8 @@ Public Class ctrlRC_ImportCV
         dtFile.Columns.Add("FILENAME")
         dtFile1.Columns.Add("ID", GetType(Decimal))
         dtFile1.Columns.Add("FILENAME")
+        Dim image_name As String = String.Empty
+        'Dim _binaryImage As Byte()
         Try
             Dim tempPath As String = "Excel"
             Dim savepath = Context.Server.MapPath(tempPath)
@@ -1213,6 +1239,36 @@ Public Class ctrlRC_ImportCV
                 workbook = New Aspose.Cells.Workbook(fileName)
                 worksheet0 = workbook.Worksheets("ACV_CV")
                 worksheet4 = worksheet0.Pictures
+
+                Dim bi As Byte()
+                Dim a = worksheet4.Item(1)
+
+                Dim avatar = worksheet4.Item(1)
+                If avatar IsNot Nothing Then
+                    binary = avatar.Data 'lay binary cua hinh import
+                    ImageExtend = avatar.ImageFormat.ToString 'lay phan mo rong cua hinh improt
+                Else
+                    Binary = Nothing
+                    ImageExtend = Nothing
+                End If
+
+                'Lấy ảnh của nhân viên
+                'If a IsNot Nothing Then
+                '    image_name = "D:\ACV\acv_19\HistaffServiceHost\CandidateImage\Mahesh2.jpeg"
+                '    bi = a.Data
+                '    rbiCandidateImage.DataValue = bi
+                '    Dim ext = a.ImageFormat
+                '    Dim fileDirectory = ""
+                '    fileDirectory = AppDomain.CurrentDomain.BaseDirectory & "CandidateImage"
+                '    If System.IO.File.Exists(image_name) Then
+                '        System.IO.File.Delete(image_name)
+                '    End If
+                '    Dim f As FileStream = System.IO.File.Create(image_name)
+                '    f.Write(bi, 0, bi.Length)
+                'Else
+                '    'EmpCV.IMAGE = ""
+                'End If
+
                 worksheet = workbook.Worksheets("DATA")
                 worksheet1 = workbook.Worksheets("DAOTAO")
                 worksheet2 = workbook.Worksheets("KINHNGHIEMLAMVIEC")
@@ -1605,6 +1661,9 @@ Public Class ctrlRC_ImportCV
 
             'candidateCv
             can_cv = New CandidateCVDTO
+            can_cv.IMAGE_BINARY = Binary
+            can_cv.EXTEND_IMAGE = ImageExtend
+
             'can_cv.CANDIDATE_ID = candidateid
             can_cv.BIRTH_DATE = ToDate(dr("BIRTH_DATE").ToString)
             can_cv.BIRTH_PROVINCE = CDec(Val(dr("BIRTH_PROVINCE")))
@@ -1746,7 +1805,7 @@ Public Class ctrlRC_ImportCV
                 'lst.Add(canimport)
             Next
             dtip1.can_family = can_family_lst
-
+            'dtip1.im
             'lst.Add(dtip1)
             lst1.Add(dtip1)
             'Dim candidateid As Decimal = lst.Count + 1

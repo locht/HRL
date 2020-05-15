@@ -5399,6 +5399,10 @@ Partial Class RecruitmentRepository
             Throw ex
         End Try
     End Function
+    Public Function GetRC_Code() As String
+
+        Return ""
+    End Function
 
     Public Function InsertCandidateImport1(ByVal lstdtip As List(Of CandidateImportDTO),
                                          ByRef gID As Decimal,
@@ -5450,13 +5454,15 @@ Partial Class RecruitmentRepository
                 objCandidate.TITLE_ID = objEmp.TITLE_ID
                 objCandidate.RC_PROGRAM_ID = objEmp.RC_PROGRAM_ID
                 objCandidate.FIRST_NAME_VN = objEmp.FIRST_NAME_VN
-                objCandidate.LAST_NAME_VN = objEmp.LAST_NAME_VN
+                objCandidate.LAST_NAME_VN = objEmp.LAST_NAME_VN 
                 objCandidate.FULLNAME_VN = objEmp.FULLNAME_VN
+                objCandidate.STATUS_ID = "DUDK"
                 Context.RC_CANDIDATE.AddObject(objCandidate)
 
                 '--------------candide_CV--------------
                 Dim objCandidate_Cv As New RC_CANDIDATE_CV
                 objCandidate_Cv.CANDIDATE_ID = fileID
+                objCandidate_Cv.IMAGE = _strEmpCode & objEmpCV.EXTEND_IMAGE
                 objCandidate_Cv.BIRTH_DATE = objEmpCV.BIRTH_DATE
                 objCandidate_Cv.BIRTH_PROVINCE = objEmpCV.BIRTH_PROVINCE
                 objCandidate_Cv.GENDER = objEmpCV.GENDER
@@ -5569,6 +5575,19 @@ Partial Class RecruitmentRepository
                     objCan_family.ADDRESS = item3.ADDRESS
                     Context.RC_CANDIDATE_FAMILY.AddObject(objCan_family)
                 Next
+
+
+                '--------------------insert avatar to folder-----------------
+                'Lấy ảnh của nhân viên
+                If objEmpCV.IMAGE_BINARY IsNot Nothing Then
+                    Dim fileDirectory = ""
+                    fileDirectory = AppDomain.CurrentDomain.BaseDirectory & "CandidateImage"
+                    'If System.IO.File.Exists(fileDirectory + "\" + _strEmpCode + objEmpCV.EXTEND_IMAGE) Then
+                    '    System.IO.File.Delete(image_name)
+                    'End If
+                    Dim f As FileStream = System.IO.File.Create(fileDirectory + "\" + _strEmpCode + "." + objEmpCV.EXTEND_IMAGE)
+                    f.Write(objEmpCV.IMAGE_BINARY, 0, objEmpCV.IMAGE_BINARY.Length)
+                End If
             Next
             Context.SaveChanges()
             Return True

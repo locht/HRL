@@ -9026,960 +9026,992 @@ Namespace RecruitmentBusiness
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EDUCATION_MAJORSField As String
         
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
+        Private EXTEND_IMAGEField As String
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private FINDER_ADDRESSField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private FINDER_NAMEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private FINDER_SDTField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private FULLNAME_VNField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private GENDERField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private GENDER_NAMEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private HOSPITAL_ADDRESSField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private ID_DATEField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private ID_DATE_EXPIRATIONField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private ID_NOField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private ID_PLACEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private ID_PLACE_NAMEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private IMAGEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
+        Private IMAGE_BINARYField() As Byte
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private INSURANCE_DATEField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private IS_RESIDENTField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private LABOUR_DATEField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private LABOUR_DATE_EXPIRATIONField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private LABOUR_NUMBERField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private LABOUR_PLACEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private MARITAL_STATUSField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private MARITAL_STATUS_NAMEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private MOBILE_PHONEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private MODIFIED_BYField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private MODIFIED_DATEField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private MODIFIED_LOGField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private MODIFY_TYPEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private NATIONALITY_IDField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private NATIONALITY_NAMEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private NATIVEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private NATIVE_NAMEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private NAV_ADDRESSField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private NAV_DOMICILEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private NAV_NATION_IDField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private NAV_NATION_NAMEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private NAV_PROVINCEField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private PASSPORT_DATEField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private PASSPORT_DATE_EXPIRATIONField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private PASSPORT_IDField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private PASSPORT_PLACE_IDField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private PASSPORT_PLACE_NAMEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private PERTAXCODEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private PER_ADDRESSField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private PER_DISTRICTField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private PER_DISTRICT_IDField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private PER_EMAILField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private PER_NATIONField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private PER_NATION_IDField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private PER_PROVINCEField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private PER_TAX_DATEField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private PER_TAX_PLACEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private PER_WARDField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private PER_WARD_NAMEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private PIT_CODEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private RELATIONS_CONTACT_IDField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private RELIGIONField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private RELIGION_NAMEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private STRANGERField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private TEMP_RESIDENCE_CARDField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private TEMP_RESIDENCE_CARD_ENDField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private TEMP_RESIDENCE_CARD_STARTField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private URGENT_ADDRESSField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private URGENT_PER_NAMEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private URGENT_PER_RELATIONField As Decimal
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private URGENT_PER_SDTField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private VISA_DATEField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private VISA_DATE_EXPIRATIONField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private VISA_NUMBERField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private VISA_PLACEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private VNAIRLINES_DATEField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private VNAIRLINES_DATE_EXPIRATIONField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private VNAIRLINES_NUMBERField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private VNAIRLINES_PLACEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private WEAKNESSField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private WORK_EMAIlField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private WORK_FORTEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private WORK_PERMITField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private WORK_PERMIT_ENDField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+
+        <System.Runtime.Serialization.OptionalFieldAttribute()> _
         Private WORK_PERMIT_STARTField As System.Nullable(Of Date)
-        
-        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+
+        <Global.System.ComponentModel.BrowsableAttribute(False)> _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
             Get
                 Return Me.extensionDataField
             End Get
-            Set
+            Set(value As System.Runtime.Serialization.ExtensionDataObject)
                 Me.extensionDataField = value
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property BHXH_NO() As String
             Get
                 Return Me.BHXH_NOField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.BHXH_NOField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.BHXH_NOField, value) <> True) Then
                     Me.BHXH_NOField = value
                     Me.RaisePropertyChanged("BHXH_NO")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property BIRTH_ADDRESS() As String
             Get
                 Return Me.BIRTH_ADDRESSField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.BIRTH_ADDRESSField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.BIRTH_ADDRESSField, value) <> True) Then
                     Me.BIRTH_ADDRESSField = value
                     Me.RaisePropertyChanged("BIRTH_ADDRESS")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property BIRTH_DATE() As System.Nullable(Of Date)
             Get
                 Return Me.BIRTH_DATEField
             End Get
-            Set
-                If (Me.BIRTH_DATEField.Equals(value) <> true) Then
+            Set(value As System.Nullable(Of Date))
+                If (Me.BIRTH_DATEField.Equals(value) <> True) Then
                     Me.BIRTH_DATEField = value
                     Me.RaisePropertyChanged("BIRTH_DATE")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property BIRTH_NATION_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.BIRTH_NATION_IDField
             End Get
-            Set
-                If (Me.BIRTH_NATION_IDField.Equals(value) <> true) Then
+            Set(value As System.Nullable(Of Decimal))
+                If (Me.BIRTH_NATION_IDField.Equals(value) <> True) Then
                     Me.BIRTH_NATION_IDField = value
                     Me.RaisePropertyChanged("BIRTH_NATION_ID")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property BIRTH_NATION_NAME() As String
             Get
                 Return Me.BIRTH_NATION_NAMEField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.BIRTH_NATION_NAMEField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.BIRTH_NATION_NAMEField, value) <> True) Then
                     Me.BIRTH_NATION_NAMEField = value
                     Me.RaisePropertyChanged("BIRTH_NATION_NAME")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property BIRTH_PROVINCE() As System.Nullable(Of Decimal)
             Get
                 Return Me.BIRTH_PROVINCEField
             End Get
-            Set
-                If (Me.BIRTH_PROVINCEField.Equals(value) <> true) Then
+            Set(value As System.Nullable(Of Decimal))
+                If (Me.BIRTH_PROVINCEField.Equals(value) <> True) Then
                     Me.BIRTH_PROVINCEField = value
                     Me.RaisePropertyChanged("BIRTH_PROVINCE")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CANDIDATE_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.CANDIDATE_IDField
             End Get
-            Set
-                If (Me.CANDIDATE_IDField.Equals(value) <> true) Then
+            Set(value As System.Nullable(Of Decimal))
+                If (Me.CANDIDATE_IDField.Equals(value) <> True) Then
                     Me.CANDIDATE_IDField = value
                     Me.RaisePropertyChanged("CANDIDATE_ID")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CONTACT_ADDRESS() As String
             Get
                 Return Me.CONTACT_ADDRESSField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.CONTACT_ADDRESSField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.CONTACT_ADDRESSField, value) <> True) Then
                     Me.CONTACT_ADDRESSField = value
                     Me.RaisePropertyChanged("CONTACT_ADDRESS")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CONTACT_ADDRESS_NOW() As String
             Get
                 Return Me.CONTACT_ADDRESS_NOWField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.CONTACT_ADDRESS_NOWField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.CONTACT_ADDRESS_NOWField, value) <> True) Then
                     Me.CONTACT_ADDRESS_NOWField = value
                     Me.RaisePropertyChanged("CONTACT_ADDRESS_NOW")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CONTACT_ADDRESS_TEMP() As String
             Get
                 Return Me.CONTACT_ADDRESS_TEMPField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.CONTACT_ADDRESS_TEMPField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.CONTACT_ADDRESS_TEMPField, value) <> True) Then
                     Me.CONTACT_ADDRESS_TEMPField = value
                     Me.RaisePropertyChanged("CONTACT_ADDRESS_TEMP")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CONTACT_DISTRICT() As String
             Get
                 Return Me.CONTACT_DISTRICTField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.CONTACT_DISTRICTField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.CONTACT_DISTRICTField, value) <> True) Then
                     Me.CONTACT_DISTRICTField = value
                     Me.RaisePropertyChanged("CONTACT_DISTRICT")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CONTACT_DISTRICT_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.CONTACT_DISTRICT_IDField
             End Get
-            Set
-                If (Me.CONTACT_DISTRICT_IDField.Equals(value) <> true) Then
+            Set(value As System.Nullable(Of Decimal))
+                If (Me.CONTACT_DISTRICT_IDField.Equals(value) <> True) Then
                     Me.CONTACT_DISTRICT_IDField = value
                     Me.RaisePropertyChanged("CONTACT_DISTRICT_ID")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CONTACT_DISTRICT_TEMP() As System.Nullable(Of Decimal)
             Get
                 Return Me.CONTACT_DISTRICT_TEMPField
             End Get
-            Set
-                If (Me.CONTACT_DISTRICT_TEMPField.Equals(value) <> true) Then
+            Set(value As System.Nullable(Of Decimal))
+                If (Me.CONTACT_DISTRICT_TEMPField.Equals(value) <> True) Then
                     Me.CONTACT_DISTRICT_TEMPField = value
                     Me.RaisePropertyChanged("CONTACT_DISTRICT_TEMP")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CONTACT_MOBILE() As String
             Get
                 Return Me.CONTACT_MOBILEField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.CONTACT_MOBILEField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.CONTACT_MOBILEField, value) <> True) Then
                     Me.CONTACT_MOBILEField = value
                     Me.RaisePropertyChanged("CONTACT_MOBILE")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CONTACT_NATION_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.CONTACT_NATION_IDField
             End Get
-            Set
-                If (Me.CONTACT_NATION_IDField.Equals(value) <> true) Then
+            Set(value As System.Nullable(Of Decimal))
+                If (Me.CONTACT_NATION_IDField.Equals(value) <> True) Then
                     Me.CONTACT_NATION_IDField = value
                     Me.RaisePropertyChanged("CONTACT_NATION_ID")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CONTACT_NATION_NAME() As String
             Get
                 Return Me.CONTACT_NATION_NAMEField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.CONTACT_NATION_NAMEField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.CONTACT_NATION_NAMEField, value) <> True) Then
                     Me.CONTACT_NATION_NAMEField = value
                     Me.RaisePropertyChanged("CONTACT_NATION_NAME")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CONTACT_NATION_TEMP() As System.Nullable(Of Decimal)
             Get
                 Return Me.CONTACT_NATION_TEMPField
             End Get
-            Set
-                If (Me.CONTACT_NATION_TEMPField.Equals(value) <> true) Then
+            Set(value As System.Nullable(Of Decimal))
+                If (Me.CONTACT_NATION_TEMPField.Equals(value) <> True) Then
                     Me.CONTACT_NATION_TEMPField = value
                     Me.RaisePropertyChanged("CONTACT_NATION_TEMP")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CONTACT_PER() As String
             Get
                 Return Me.CONTACT_PERField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.CONTACT_PERField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.CONTACT_PERField, value) <> True) Then
                     Me.CONTACT_PERField = value
                     Me.RaisePropertyChanged("CONTACT_PER")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CONTACT_PERSON() As String
             Get
                 Return Me.CONTACT_PERSONField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.CONTACT_PERSONField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.CONTACT_PERSONField, value) <> True) Then
                     Me.CONTACT_PERSONField = value
                     Me.RaisePropertyChanged("CONTACT_PERSON")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CONTACT_PERSON_ADDRESS() As String
             Get
                 Return Me.CONTACT_PERSON_ADDRESSField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.CONTACT_PERSON_ADDRESSField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.CONTACT_PERSON_ADDRESSField, value) <> True) Then
                     Me.CONTACT_PERSON_ADDRESSField = value
                     Me.RaisePropertyChanged("CONTACT_PERSON_ADDRESS")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CONTACT_PERSON_PHONE() As String
             Get
                 Return Me.CONTACT_PERSON_PHONEField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.CONTACT_PERSON_PHONEField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.CONTACT_PERSON_PHONEField, value) <> True) Then
                     Me.CONTACT_PERSON_PHONEField = value
                     Me.RaisePropertyChanged("CONTACT_PERSON_PHONE")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CONTACT_PER_PHONE() As String
             Get
                 Return Me.CONTACT_PER_PHONEField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.CONTACT_PER_PHONEField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.CONTACT_PER_PHONEField, value) <> True) Then
                     Me.CONTACT_PER_PHONEField = value
                     Me.RaisePropertyChanged("CONTACT_PER_PHONE")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CONTACT_PHONE() As String
             Get
                 Return Me.CONTACT_PHONEField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.CONTACT_PHONEField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.CONTACT_PHONEField, value) <> True) Then
                     Me.CONTACT_PHONEField = value
                     Me.RaisePropertyChanged("CONTACT_PHONE")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CONTACT_PROVINCE() As System.Nullable(Of Decimal)
             Get
                 Return Me.CONTACT_PROVINCEField
             End Get
-            Set
-                If (Me.CONTACT_PROVINCEField.Equals(value) <> true) Then
+            Set(value As System.Nullable(Of Decimal))
+                If (Me.CONTACT_PROVINCEField.Equals(value) <> True) Then
                     Me.CONTACT_PROVINCEField = value
                     Me.RaisePropertyChanged("CONTACT_PROVINCE")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CONTACT_PROVINCE_TEMP() As System.Nullable(Of Decimal)
             Get
                 Return Me.CONTACT_PROVINCE_TEMPField
             End Get
-            Set
-                If (Me.CONTACT_PROVINCE_TEMPField.Equals(value) <> true) Then
+            Set(value As System.Nullable(Of Decimal))
+                If (Me.CONTACT_PROVINCE_TEMPField.Equals(value) <> True) Then
                     Me.CONTACT_PROVINCE_TEMPField = value
                     Me.RaisePropertyChanged("CONTACT_PROVINCE_TEMP")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CONTACT_REL_ADDRESS() As String
             Get
                 Return Me.CONTACT_REL_ADDRESSField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.CONTACT_REL_ADDRESSField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.CONTACT_REL_ADDRESSField, value) <> True) Then
                     Me.CONTACT_REL_ADDRESSField = value
                     Me.RaisePropertyChanged("CONTACT_REL_ADDRESS")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CON_ADDRESS() As String
             Get
                 Return Me.CON_ADDRESSField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.CON_ADDRESSField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.CON_ADDRESSField, value) <> True) Then
                     Me.CON_ADDRESSField = value
                     Me.RaisePropertyChanged("CON_ADDRESS")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CON_COUNTRY() As System.Nullable(Of Decimal)
             Get
                 Return Me.CON_COUNTRYField
             End Get
-            Set
-                If (Me.CON_COUNTRYField.Equals(value) <> true) Then
+            Set(value As System.Nullable(Of Decimal))
+                If (Me.CON_COUNTRYField.Equals(value) <> True) Then
                     Me.CON_COUNTRYField = value
                     Me.RaisePropertyChanged("CON_COUNTRY")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CON_COUNTRY_NAME() As String
             Get
                 Return Me.CON_COUNTRY_NAMEField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.CON_COUNTRY_NAMEField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.CON_COUNTRY_NAMEField, value) <> True) Then
                     Me.CON_COUNTRY_NAMEField = value
                     Me.RaisePropertyChanged("CON_COUNTRY_NAME")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CON_DISTRICT() As System.Nullable(Of Decimal)
             Get
                 Return Me.CON_DISTRICTField
             End Get
-            Set
-                If (Me.CON_DISTRICTField.Equals(value) <> true) Then
+            Set(value As System.Nullable(Of Decimal))
+                If (Me.CON_DISTRICTField.Equals(value) <> True) Then
                     Me.CON_DISTRICTField = value
                     Me.RaisePropertyChanged("CON_DISTRICT")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CON_DISTRICT_NAME() As String
             Get
                 Return Me.CON_DISTRICT_NAMEField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.CON_DISTRICT_NAMEField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.CON_DISTRICT_NAMEField, value) <> True) Then
                     Me.CON_DISTRICT_NAMEField = value
                     Me.RaisePropertyChanged("CON_DISTRICT_NAME")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CON_PROVINCE() As System.Nullable(Of Decimal)
             Get
                 Return Me.CON_PROVINCEField
             End Get
-            Set
-                If (Me.CON_PROVINCEField.Equals(value) <> true) Then
+            Set(value As System.Nullable(Of Decimal))
+                If (Me.CON_PROVINCEField.Equals(value) <> True) Then
                     Me.CON_PROVINCEField = value
                     Me.RaisePropertyChanged("CON_PROVINCE")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CON_PROVINCE_NAME() As String
             Get
                 Return Me.CON_PROVINCE_NAMEField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.CON_PROVINCE_NAMEField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.CON_PROVINCE_NAMEField, value) <> True) Then
                     Me.CON_PROVINCE_NAMEField = value
                     Me.RaisePropertyChanged("CON_PROVINCE_NAME")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CON_WARD() As System.Nullable(Of Decimal)
             Get
                 Return Me.CON_WARDField
             End Get
-            Set
-                If (Me.CON_WARDField.Equals(value) <> true) Then
+            Set(value As System.Nullable(Of Decimal))
+                If (Me.CON_WARDField.Equals(value) <> True) Then
                     Me.CON_WARDField = value
                     Me.RaisePropertyChanged("CON_WARD")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CON_WARD_NAME() As String
             Get
                 Return Me.CON_WARD_NAMEField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.CON_WARD_NAMEField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.CON_WARD_NAMEField, value) <> True) Then
                     Me.CON_WARD_NAMEField = value
                     Me.RaisePropertyChanged("CON_WARD_NAME")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CREATED_BY() As String
             Get
                 Return Me.CREATED_BYField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.CREATED_BYField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.CREATED_BYField, value) <> True) Then
                     Me.CREATED_BYField = value
                     Me.RaisePropertyChanged("CREATED_BY")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CREATED_DATE() As System.Nullable(Of Date)
             Get
                 Return Me.CREATED_DATEField
             End Get
-            Set
-                If (Me.CREATED_DATEField.Equals(value) <> true) Then
+            Set(value As System.Nullable(Of Date))
+                If (Me.CREATED_DATEField.Equals(value) <> True) Then
                     Me.CREATED_DATEField = value
                     Me.RaisePropertyChanged("CREATED_DATE")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property CREATED_LOG() As String
             Get
                 Return Me.CREATED_LOGField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.CREATED_LOGField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.CREATED_LOGField, value) <> True) Then
                     Me.CREATED_LOGField = value
                     Me.RaisePropertyChanged("CREATED_LOG")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property EDUCATION_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.EDUCATION_IDField
             End Get
-            Set
-                If (Me.EDUCATION_IDField.Equals(value) <> true) Then
+            Set(value As System.Nullable(Of Decimal))
+                If (Me.EDUCATION_IDField.Equals(value) <> True) Then
                     Me.EDUCATION_IDField = value
                     Me.RaisePropertyChanged("EDUCATION_ID")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property EDUCATION_ID_NAME() As String
             Get
                 Return Me.EDUCATION_ID_NAMEField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.EDUCATION_ID_NAMEField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.EDUCATION_ID_NAMEField, value) <> True) Then
                     Me.EDUCATION_ID_NAMEField = value
                     Me.RaisePropertyChanged("EDUCATION_ID_NAME")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property EDUCATION_MAJORS() As String
             Get
                 Return Me.EDUCATION_MAJORSField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.EDUCATION_MAJORSField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.EDUCATION_MAJORSField, value) <> True) Then
                     Me.EDUCATION_MAJORSField = value
                     Me.RaisePropertyChanged("EDUCATION_MAJORS")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
+        Public Property EXTEND_IMAGE() As String
+            Get
+                Return Me.EXTEND_IMAGEField
+            End Get
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.EXTEND_IMAGEField, value) <> True) Then
+                    Me.EXTEND_IMAGEField = value
+                    Me.RaisePropertyChanged("EXTEND_IMAGE")
+                End If
+            End Set
+        End Property
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property FINDER_ADDRESS() As String
             Get
                 Return Me.FINDER_ADDRESSField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.FINDER_ADDRESSField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.FINDER_ADDRESSField, value) <> True) Then
                     Me.FINDER_ADDRESSField = value
                     Me.RaisePropertyChanged("FINDER_ADDRESS")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property FINDER_NAME() As String
             Get
                 Return Me.FINDER_NAMEField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.FINDER_NAMEField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.FINDER_NAMEField, value) <> True) Then
                     Me.FINDER_NAMEField = value
                     Me.RaisePropertyChanged("FINDER_NAME")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property FINDER_SDT() As String
             Get
                 Return Me.FINDER_SDTField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.FINDER_SDTField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.FINDER_SDTField, value) <> True) Then
                     Me.FINDER_SDTField = value
                     Me.RaisePropertyChanged("FINDER_SDT")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property FULLNAME_VN() As String
             Get
                 Return Me.FULLNAME_VNField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.FULLNAME_VNField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.FULLNAME_VNField, value) <> True) Then
                     Me.FULLNAME_VNField = value
                     Me.RaisePropertyChanged("FULLNAME_VN")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property GENDER() As String
             Get
                 Return Me.GENDERField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.GENDERField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.GENDERField, value) <> True) Then
                     Me.GENDERField = value
                     Me.RaisePropertyChanged("GENDER")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property GENDER_NAME() As String
             Get
                 Return Me.GENDER_NAMEField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.GENDER_NAMEField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.GENDER_NAMEField, value) <> True) Then
                     Me.GENDER_NAMEField = value
                     Me.RaisePropertyChanged("GENDER_NAME")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property HOSPITAL_ADDRESS() As String
             Get
                 Return Me.HOSPITAL_ADDRESSField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.HOSPITAL_ADDRESSField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.HOSPITAL_ADDRESSField, value) <> True) Then
                     Me.HOSPITAL_ADDRESSField = value
                     Me.RaisePropertyChanged("HOSPITAL_ADDRESS")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property ID_DATE() As System.Nullable(Of Date)
             Get
                 Return Me.ID_DATEField
             End Get
-            Set
-                If (Me.ID_DATEField.Equals(value) <> true) Then
+            Set(value As System.Nullable(Of Date))
+                If (Me.ID_DATEField.Equals(value) <> True) Then
                     Me.ID_DATEField = value
                     Me.RaisePropertyChanged("ID_DATE")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property ID_DATE_EXPIRATION() As System.Nullable(Of Date)
             Get
                 Return Me.ID_DATE_EXPIRATIONField
             End Get
-            Set
-                If (Me.ID_DATE_EXPIRATIONField.Equals(value) <> true) Then
+            Set(value As System.Nullable(Of Date))
+                If (Me.ID_DATE_EXPIRATIONField.Equals(value) <> True) Then
                     Me.ID_DATE_EXPIRATIONField = value
                     Me.RaisePropertyChanged("ID_DATE_EXPIRATION")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property ID_NO() As String
             Get
                 Return Me.ID_NOField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.ID_NOField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.ID_NOField, value) <> True) Then
                     Me.ID_NOField = value
                     Me.RaisePropertyChanged("ID_NO")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property ID_PLACE() As String
             Get
                 Return Me.ID_PLACEField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.ID_PLACEField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.ID_PLACEField, value) <> True) Then
                     Me.ID_PLACEField = value
                     Me.RaisePropertyChanged("ID_PLACE")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property ID_PLACE_NAME() As String
             Get
                 Return Me.ID_PLACE_NAMEField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.ID_PLACE_NAMEField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.ID_PLACE_NAMEField, value) <> True) Then
                     Me.ID_PLACE_NAMEField = value
                     Me.RaisePropertyChanged("ID_PLACE_NAME")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property IMAGE() As String
             Get
                 Return Me.IMAGEField
             End Get
-            Set
-                If (Object.ReferenceEquals(Me.IMAGEField, value) <> true) Then
+            Set(value As String)
+                If (Object.ReferenceEquals(Me.IMAGEField, value) <> True) Then
                     Me.IMAGEField = value
                     Me.RaisePropertyChanged("IMAGE")
                 End If
             End Set
         End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
+        Public Property IMAGE_BINARY() As Byte()
+            Get
+                Return Me.IMAGE_BINARYField
+            End Get
+            Set(value As Byte())
+                If (Object.ReferenceEquals(Me.IMAGE_BINARYField, value) <> True) Then
+                    Me.IMAGE_BINARYField = value
+                    Me.RaisePropertyChanged("IMAGE_BINARY")
+                End If
+            End Set
+        End Property
+
+        <System.Runtime.Serialization.DataMemberAttribute()> _
         Public Property INSURANCE_DATE() As System.Nullable(Of Date)
             Get
                 Return Me.INSURANCE_DATEField
             End Get
-            Set
-                If (Me.INSURANCE_DATEField.Equals(value) <> true) Then
-                    Me.INSURANCE_DATEField = value
+            Set(value As System.Nullable(Of Date))
+                If (Me.INSURANCE_DATEField.Equals(Value) <> True) Then
+                    Me.INSURANCE_DATEField = Value
                     Me.RaisePropertyChanged("INSURANCE_DATE")
                 End If
             End Set

@@ -2,7 +2,9 @@
     Public Property FULLNAME_VN As String
     Public Property MODIFY_TYPE As String '0: not modify, 1: modify image, 2: modify info
 
+    Public Property IMAGE_BINARY As Byte()
     Public Property CANDIDATE_ID As Decimal?
+    Public Property EXTEND_IMAGE As String
     Public Property BIRTH_DATE As Date?
     Public Property GENDER As String
     Public Property GENDER_NAME As String

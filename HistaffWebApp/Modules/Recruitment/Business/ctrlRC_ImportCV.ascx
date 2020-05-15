@@ -4,6 +4,7 @@
 <asp:HiddenField ID="hidProgramID" runat="server" />
 <asp:HiddenField ID="lstID" runat="server" />
 <asp:HiddenField ID="CandidateID" runat="server" />
+
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
     <tlk:RadPane ID="RadPane1" runat="server" Height="33px" Scrolling="None">
         <tlk:RadToolBar ID="tbarMain" runat="server" OnClientButtonClicking="clientButtonClicking" />

@@ -246,11 +246,11 @@
                         <HeaderStyle Width="120px" />
                         <ItemStyle Width="120px" />
                     </tlk:GridDateTimeColumn>
-                    <tlk:GridBoundColumn DataField="NAME_SHOOLS" HeaderText="Tên trường" UniqueName="NAME_SHOOLS"
+                    <tlk:GridBoundColumn DataField="SCHOOL_NAME" HeaderText="Tên trường" UniqueName="SCHOOL_NAME"
                         ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
                         Visible="true">
                     </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn DataField="SPECIALIZED_TRAIN" HeaderText="Chuyên ngành" UniqueName="SPECIALIZED_TRAIN"
+                    <tlk:GridBoundColumn DataField="MAJOR_NAME" HeaderText="Chuyên ngành" UniqueName="MAJOR_NAME"
                         ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains">
                     </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn DataField="TYPE_TRAIN_NAME" HeaderText="Loại hình đào tạo" UniqueName="TYPE_TRAIN_NAME"
