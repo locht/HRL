@@ -4277,19 +4277,37 @@ Partial Class ProfileRepository
         Dim query As ObjectQuery(Of HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)
         Try
             query = (From p In Context.HU_PRO_TRAIN_OUT_COMPANY_EDIT
-                     From ot In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.FORM_TRAIN_ID And F.TYPE_ID = 142).DefaultIfEmpty
+                     From ot In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.FORM_TRAIN_ID).DefaultIfEmpty
+                     From ot_sc In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.SCHOOLS_ID).DefaultIfEmpty
+                     From ot_sp In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.SPECIALIZED_TRAIN_ID).DefaultIfEmpty
+                     From ot_m In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.RESULT_TRAIN_ID).DefaultIfEmpty
+                     From ot1 In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.CERTIFICATE).DefaultIfEmpty
+                     From ot_l In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.LEVEL_ID).DefaultIfEmpty
+                     From ot_train In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ot.TYPE_ID And f.CODE = "TRAINING_FORM").DefaultIfEmpty
+                     From ot_school In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ot_sc.TYPE_ID And f.CODE = "HU_GRADUATE_SCHOOL").DefaultIfEmpty
+                     From ot_major In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ot_sp.TYPE_ID And f.CODE = "MAJOR").DefaultIfEmpty
+                     From ot_mark_edu In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ot_m.TYPE_ID And f.CODE = "MARK_EDU").DefaultIfEmpty
+                     From ot_cer In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ot1.TYPE_ID And f.CODE = "CERTIFICATE_TYPE").DefaultIfEmpty
+                     From ot_level In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ot_l.TYPE_ID And f.CODE = "LEARNING_LEVEL").DefaultIfEmpty
                      Select New HU_PRO_TRAIN_OUT_COMPANYDTOEDIT With {
                         .ID = p.ID,
                         .EMPLOYEE_ID = p.EMPLOYEE_ID,
                         .FROM_DATE = p.FROM_DATE,
                         .TO_DATE = p.TO_DATE,
+                        .SCHOOLS_ID = p.SCHOOLS_ID,
+                        .SCHOOLS_NAME = ot_sc.NAME_VN,
+                        .SPECIALIZED_TRAIN_ID = p.SPECIALIZED_TRAIN_ID,
+                        .SPECIALIZED_TRAIN_NAME = ot_sp.NAME_VN,
+                        .LEVEL_ID = p.LEVEL_ID,
+                        .LEVEL_NAME = ot_l.NAME_VN,
+                        .CERTIFICATE = ot1.NAME_VN,
+                        .CERTIFICATE_ID = p.CERTIFICATE,
+                        .RESULT_TRAIN_ID = p.RESULT_TRAIN_ID,
+                        .RESULT_TRAIN_NAME = ot_m.NAME_VN,
                         .YEAR_GRA = p.YEAR_GRA,
-                        .NAME_SHOOLS = p.NAME_SHOOLS,
+                        .CONTENT_TRAIN = p.CONTENT_TRAIN,
                         .FORM_TRAIN_ID = p.FORM_TRAIN_ID,
                         .FORM_TRAIN_NAME = ot.NAME_VN,
-                        .SPECIALIZED_TRAIN = p.SPECIALIZED_TRAIN,
-                        .RESULT_TRAIN = p.RESULT_TRAIN,
-                        .CERTIFICATE = p.CERTIFICATE,
                         .EFFECTIVE_DATE_FROM = p.EFFECTIVE_DATE_FROM,
                         .EFFECTIVE_DATE_TO = p.EFFECTIVE_DATE_TO,
                         .CREATED_BY = p.CREATED_BY,
@@ -4305,15 +4323,44 @@ Partial Class ProfileRepository
                                            If(p.STATUS = 1, "Chờ phê duyệt",
                                               If(p.STATUS = 2, "Phê duyệt",
                                                  If(p.STATUS = 3, "Không phê duyệt", ""))))})
-
-            If _filter.EMPLOYEE_ID <> 0 Then
-                query = query.Where(Function(p) p.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
+            If _filter.FROM_DATE IsNot Nothing Then
+                query = query.Where(Function(p) p.FROM_DATE = _filter.FROM_DATE)
+            End If
+            If _filter.TO_DATE IsNot Nothing Then
+                query = query.Where(Function(p) p.TO_DATE = _filter.TO_DATE)
+            End If
+            If _filter.SCHOOLS_NAME <> "" Then
+                query = query.Where(Function(p) p.SCHOOLS_NAME.Trim.ToLower.Contains(_filter.SCHOOLS_NAME.Trim.ToLower))
+            End If
+            If _filter.SPECIALIZED_TRAIN_NAME <> "" Then
+                query = query.Where(Function(p) p.SPECIALIZED_TRAIN_NAME.Trim.ToLower.Contains(_filter.SPECIALIZED_TRAIN_NAME.Trim.ToLower))
+            End If
+            If _filter.LEVEL_NAME <> "" Then
+                query = query.Where(Function(p) p.LEVEL_NAME.Trim.ToLower.Contains(_filter.LEVEL_NAME.Trim.ToLower))
+            End If
+            If _filter.CERTIFICATE <> "" Then
+                query = query.Where(Function(p) p.CERTIFICATE.Trim.ToLower.Contains(_filter.CERTIFICATE.Trim.ToLower))
+            End If
+            If _filter.RESULT_TRAIN_NAME <> "" Then
+                query = query.Where(Function(p) p.RESULT_TRAIN_NAME.Trim.ToLower.Contains(_filter.RESULT_TRAIN_NAME.Trim.ToLower))
+            End If
+            If _filter.YEAR_GRA IsNot Nothing Then
+                query = query.Where(Function(p) p.YEAR_GRA = _filter.YEAR_GRA)
+            End If
+            If _filter.CONTENT_TRAIN <> "" Then
+                query = query.Where(Function(p) p.CONTENT_TRAIN.Trim.ToLower.Contains(_filter.CONTENT_TRAIN.Trim.ToLower))
+            End If
+            If _filter.FORM_TRAIN_NAME <> "" Then
+                query = query.Where(Function(p) p.FORM_TRAIN_NAME.Trim.ToLower.Contains(_filter.FORM_TRAIN_NAME.Trim.ToLower))
             End If
             If _filter.STATUS <> "" Then
                 query = query.Where(Function(p) p.STATUS = _filter.STATUS)
             End If
-            If _filter.ID <> 0 Then
-                query = query.Where(Function(p) p.ID = _filter.ID)
+            If _filter.STATUS_NAME <> "" Then
+                query = query.Where(Function(p) p.STATUS_NAME.Trim.ToLower.Contains(_filter.STATUS_NAME.Trim.ToLower))
+            End If
+            If _filter.REASON_UNAPROVE <> "" Then
+                query = query.Where(Function(p) p.REASON_UNAPROVE.Trim.ToLower.Contains(_filter.REASON_UNAPROVE.Trim.ToLower))
             End If
 
             Return query.ToList
@@ -4447,12 +4494,14 @@ Partial Class ProfileRepository
             objTitleData.EMPLOYEE_ID = objTitle.EMPLOYEE_ID
             objTitleData.FROM_DATE = objTitle.FROM_DATE
             objTitleData.TO_DATE = objTitle.TO_DATE
-            objTitleData.YEAR_GRA = objTitle.YEAR_GRA
             objTitleData.SCHOOLS_ID = objTitle.SCHOOLS_ID
             objTitleData.FORM_TRAIN_ID = objTitle.FORM_TRAIN_ID
+            objTitleData.YEAR_GRA = objTitle.YEAR_GRA
             objTitleData.SPECIALIZED_TRAIN_ID = objTitle.SPECIALIZED_TRAIN_ID
             objTitleData.RESULT_TRAIN_ID = objTitle.RESULT_TRAIN_ID
-            objTitleData.CERTIFICATE = objTitle.CERTIFICATE
+            objTitleData.CERTIFICATE = objTitle.CERTIFICATE_ID
+            objTitleData.LEVEL_ID = objTitle.LEVEL_ID
+            objTitleData.CONTENT_TRAIN = objTitle.CONTENT_TRAIN
             objTitleData.EFFECTIVE_DATE_FROM = objTitle.EFFECTIVE_DATE_FROM
             objTitleData.EFFECTIVE_DATE_TO = objTitle.EFFECTIVE_DATE_TO
             objTitleData.STATUS = 0
@@ -4478,12 +4527,14 @@ Partial Class ProfileRepository
             objTitleData.EMPLOYEE_ID = objTitle.EMPLOYEE_ID
             objTitleData.FROM_DATE = objTitle.FROM_DATE
             objTitleData.TO_DATE = objTitle.TO_DATE
-            objTitleData.YEAR_GRA = objTitle.YEAR_GRA
             objTitleData.SCHOOLS_ID = objTitle.SCHOOLS_ID
             objTitleData.FORM_TRAIN_ID = objTitle.FORM_TRAIN_ID
+            objTitleData.YEAR_GRA = objTitle.YEAR_GRA
             objTitleData.SPECIALIZED_TRAIN_ID = objTitle.SPECIALIZED_TRAIN_ID
             objTitleData.RESULT_TRAIN_ID = objTitle.RESULT_TRAIN_ID
-            objTitleData.CERTIFICATE = objTitle.CERTIFICATE
+            objTitleData.CERTIFICATE = objTitle.CERTIFICATE_ID
+            objTitleData.LEVEL_ID = objTitle.LEVEL_ID
+            objTitleData.CONTENT_TRAIN = objTitle.CONTENT_TRAIN
             objTitleData.EFFECTIVE_DATE_FROM = objTitle.EFFECTIVE_DATE_FROM
             objTitleData.EFFECTIVE_DATE_TO = objTitle.EFFECTIVE_DATE_TO
             objTitleData.REASON_UNAPROVE = objTitle.REASON_UNAPROVE

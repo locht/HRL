@@ -89,6 +89,8 @@ Public Class ctrlPortalTrainingOutCompany_Edit
             dic.Add("SPECIALIZED_TRAIN_ID", cboChuyenNganh)
             dic.Add("RESULT_TRAIN_ID", cboKetQua)
             dic.Add("CERTIFICATE_ID", cboRemark)
+            dic.Add("LEVEL_ID", cboLevelId)
+            dic.Add("CONTENT_LEVEL", rtxtContentLevel)
             'dic.Add("EFFECTIVE_DATE_FROM", rdFrom)
             'dic.Add("EFFECTIVE_DATE_TO", rdTo)
             dic.Add("ID", hidProcessTrainID)
@@ -103,6 +105,8 @@ Public Class ctrlPortalTrainingOutCompany_Edit
             dic1.Add("SPECIALIZED_TRAIN_ID", cboChuyenNganh)
             dic1.Add("RESULT_TRAIN_ID", cboKetQua)
             dic1.Add("CERTIFICATE_ID", cboRemark)
+            dic1.Add("LEVEL_ID", cboLevelId)
+            dic1.Add("CONTENT_TRAIN", rtxtContentLevel)
             'dic1.Add("EFFECTIVE_DATE_FROM", rdFrom)
             'dic1.Add("EFFECTIVE_DATE_TO", rdTo)
             dic1.Add("ID", hidID)
@@ -118,18 +122,18 @@ Public Class ctrlPortalTrainingOutCompany_Edit
         Try
             Select Case CurrentState
                 Case CommonMessage.STATE_NORMAL
-                    EnableControlAll(False, rdToiNgay, rdTuNgay, rntGraduateYear, cboTrainingForm, cboRemark, cboChuyenNganh, cboKetQua, cboTrainingSchool)
+                    EnableControlAll(False, rdToiNgay, rdTuNgay, rntGraduateYear, cboTrainingForm, cboRemark, cboChuyenNganh, cboKetQua, cboTrainingSchool, rtxtContentLevel, cboLevelId)
 
                     EnabledGridNotPostback(rgTrainingOutCompany, True)
                     EnabledGridNotPostback(rgTrainingOutCompanyEdit, True)
 
                 Case CommonMessage.STATE_NEW
-                    EnableControlAll(True, rdToiNgay, rdTuNgay, rntGraduateYear, cboTrainingForm, cboRemark, cboChuyenNganh, cboKetQua, cboTrainingSchool)
+                    EnableControlAll(True, rdToiNgay, rdTuNgay, rntGraduateYear, cboTrainingForm, cboRemark, cboChuyenNganh, cboKetQua, cboTrainingSchool, rtxtContentLevel, cboLevelId)
 
                     EnabledGridNotPostback(rgTrainingOutCompany, False)
                     EnabledGridNotPostback(rgTrainingOutCompanyEdit, False)
                 Case CommonMessage.STATE_EDIT
-                    EnableControlAll(True, rdToiNgay, rdTuNgay, rntGraduateYear, cboTrainingForm, cboRemark, cboChuyenNganh, cboKetQua, cboTrainingSchool)
+                    EnableControlAll(True, rdToiNgay, rdTuNgay, rntGraduateYear, cboTrainingForm, cboRemark, cboChuyenNganh, cboKetQua, cboTrainingSchool, rtxtContentLevel, cboLevelId)
 
                     EnabledGridNotPostback(rgTrainingOutCompany, False)
                     EnabledGridNotPostback(rgTrainingOutCompanyEdit, False)
@@ -151,7 +155,7 @@ Public Class ctrlPortalTrainingOutCompany_Edit
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     CurrentState = CommonMessage.STATE_NEW
-                    ClearControlValue(rdTuNgay, rdToiNgay, rntGraduateYear, cboTrainingForm, cboRemark, cboChuyenNganh, cboKetQua, cboTrainingSchool, hidProcessTrainID, hidID)
+                    ClearControlValue(rdTuNgay, rdToiNgay, rntGraduateYear, cboTrainingForm, cboRemark, cboChuyenNganh, cboKetQua, cboTrainingSchool, hidProcessTrainID, hidID, rtxtContentLevel, cboLevelId)
                     rdTuNgay.SelectedDate = Nothing
                     rdToiNgay.SelectedDate = Nothing
                     UpdateControlState()
@@ -189,7 +193,12 @@ Public Class ctrlPortalTrainingOutCompany_Edit
                         Else
                             objTrain.CERTIFICATE_ID = cboRemark.SelectedValue
                         End If
-
+                        If cboLevelId.SelectedValue = "" Then
+                            objTrain.LEVEL_ID = Nothing
+                        Else
+                            objTrain.LEVEL_ID = cboLevelId.SelectedValue
+                        End If
+                        objTrain.CONTENT_TRAIN = rtxtContentLevel.Text.Trim.ToLower
                         Using rep As New ProfileBusinessRepository
                             If hidProcessTrainID.Value <> "" Then
                                 objTrain.FK_PKEY = hidProcessTrainID.Value
@@ -228,7 +237,7 @@ Public Class ctrlPortalTrainingOutCompany_Edit
                     End If
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     CurrentState = CommonMessage.STATE_NORMAL
-                    ClearControlValue(rdTuNgay, rdToiNgay, rntGraduateYear, cboTrainingForm, cboRemark, cboChuyenNganh, cboKetQua, cboTrainingSchool, hidProcessTrainID, hidID)
+                    ClearControlValue(rdTuNgay, rdToiNgay, rntGraduateYear, cboTrainingForm, cboRemark, cboLevelId, cboChuyenNganh, cboKetQua, cboTrainingSchool, hidProcessTrainID, hidID, rtxtContentLevel)
                     rdTuNgay.SelectedDate = Nothing
                     rdToiNgay.SelectedDate = Nothing
                     UpdateControlState()
@@ -322,7 +331,8 @@ Public Class ctrlPortalTrainingOutCompany_Edit
                 cboChuyenNganh.SelectedValue = item.GetDataKeyValue("SPECIALIZED_TRAIN_ID")
                 cboKetQua.SelectedValue = item.GetDataKeyValue("RESULT_TRAIN_ID")
                 cboRemark.SelectedValue = item.GetDataKeyValue("CERTIFICATE_ID")
-
+                rtxtContentLevel.Text = item.GetDataKeyValue("CONTENT_TRAIN")
+                cboLevelId.SelectedValue = item.GetDataKeyValue("LEVEL_ID")
                 If item.GetDataKeyValue("FK_PKEY") IsNot Nothing Then
                     hidProcessTrainID.Value = item.GetDataKeyValue("FK_PKEY")
                 End If
@@ -349,6 +359,8 @@ Public Class ctrlPortalTrainingOutCompany_Edit
                 cboChuyenNganh.Text = item.GetDataKeyValue("SPECIALIZED_TRAIN_ID")
                 cboKetQua.SelectedValue = item.GetDataKeyValue("RESULT_TRAIN_ID")
                 cboRemark.SelectedValue = item.GetDataKeyValue("CERTIFICATE_ID")
+                rtxtContentLevel.Text = item.GetDataKeyValue("CONTENT_LEVEL")
+                cboLevelId.SelectedValue = item.GetDataKeyValue("LEVEL_ID")
                 hidProcessTrainID.Value = item.GetDataKeyValue("ID")
                 hidID.Value = ""
 
