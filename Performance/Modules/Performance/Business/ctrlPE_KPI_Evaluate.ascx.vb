@@ -622,10 +622,12 @@ Class ctrlPE_KPI_Evaluate
             If dtTemp.Rows(i).RowState = DataRowState.Deleted OrElse dtTemp.Rows(i).RowState = DataRowState.Detached Then Continue For
             rowDel = dtTemp.Rows(i)
             If rowDel("STT").ToString.Trim = "" Then
-                '  dtTemp.Rows(i).Delete()
+                dtTemp.Rows(i).Delete()
+                'ShowMessage(Translate("Phải nhập số TT các record import. Vui lòng kiểm tra lại"), NotifyType.Warning)
+                'Exit Sub
             End If
         Next
-        Dim checkSTT As Decimal
+
         For Each rows As DataRow In dtTemp.Rows
             If rows.RowState = DataRowState.Deleted OrElse rows.RowState = DataRowState.Detached Then Continue For
             newRow = dtLogs.NewRow
@@ -633,7 +635,6 @@ Class ctrlPE_KPI_Evaluate
             If IsDBNull(rows("STT")) Then
                 newRow("DISCIPTION") = newRow("DISCIPTION") + "STT - Phải nhập STT"
                 _error = False
-                checkSTT = 1
             End If
             If IsDBNull(rows("EMPLOYEE_CODE")) Then
                 newRow("DISCIPTION") = newRow("DISCIPTION") + "MÃ NV - Phải nhập MÃ NV"
@@ -674,10 +675,6 @@ Class ctrlPE_KPI_Evaluate
             If _error = False Then
                 dtLogs.Rows.Add(newRow)
                 _error = True
-                If checkSTT = 1 Then
-                    checkSTT = 0
-                    Exit For
-                End If
             End If
             count += 1
         Next

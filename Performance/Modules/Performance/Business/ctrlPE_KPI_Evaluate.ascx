@@ -58,6 +58,18 @@
                 <tlk:RadGrid PageSize="50" ID="rgEmployeeList" runat="server" AllowPaging="True"
                     Height="100%" AllowSorting="True" AllowMultiRowSelection="true">
                     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID">
+                        <ColumnGroups>
+                            <tlk:GridColumnGroup HeaderText="Tài chính" Name="FINANCE">
+                            </tlk:GridColumnGroup>
+                            <tlk:GridColumnGroup HeaderText="Khách hàng" Name="CUSTOMER">
+                            </tlk:GridColumnGroup>
+                            <tlk:GridColumnGroup HeaderText="Quy trình nội bộ" Name="PROCESS">
+                            </tlk:GridColumnGroup>
+                            <tlk:GridColumnGroup HeaderText="Học hỏi và phát triển" Name="LEARN">
+                            </tlk:GridColumnGroup>
+                            <tlk:GridColumnGroup HeaderText="Tổng cộng" Name="SUM">
+                            </tlk:GridColumnGroup>
+                        </ColumnGroups>
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderText="CheckBox" HeaderStyle-HorizontalAlign="center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="center">
@@ -78,41 +90,41 @@
                             </tlk:GridDateTimeColumn>
                             <tlk:GridNumericColumn HeaderText="Tài chính (Tỷ trọng %)" DataField="FINANCE_TT"
                                 ReadOnly="true" SortExpression="FINANCE_TT" UniqueName="FINANCE_TT" HeaderStyle-Width="100px"
-                                DataFormatString="{0:P2}" />
+                                ColumnGroupName="FINANCE" DataFormatString="{0:P2}" />
                             <tlk:GridBoundColumn HeaderText="Tài chính (Tỷ trọng x điểm )" DataField="FINANCE_TTX"
                                 SortExpression="FINANCE_TTX" UniqueName="FINANCE_TTX" ReadOnly="true" HeaderStyle-Width="100px"
-                                DataFormatString="{0:###,###.00}" />
+                                ColumnGroupName="FINANCE" DataFormatString="{0:###,###.00}" />
                             <tlk:GridBoundColumn HeaderText="Khách hàng (Tỷ trọng %)" DataField="CUSTOMER_TT"
                                 SortExpression="CUSTOMER_TT" UniqueName="CUSTOMER_TT" ReadOnly="true" HeaderStyle-Width="100px"
-                                DataFormatString="{0:P2}" />
+                                ColumnGroupName="CUSTOMER" DataFormatString="{0:P2}" />
                             <tlk:GridBoundColumn HeaderText="Khách hàng (Tỷ trọng x điểm )" DataField="CUSTOMER_TTX"
                                 SortExpression="CUSTOMER_TTX" UniqueName="CUSTOMER_TTX" ReadOnly="true" HeaderStyle-Width="100px"
-                                DataFormatString="{0:###,###.00}" />
+                                ColumnGroupName="CUSTOMER" DataFormatString="{0:###,###.00}" />
                             <tlk:GridBoundColumn HeaderText="Quy trình nội bộ (Tỷ trọng %)" DataField="PROCESS_TT"
                                 SortExpression="PROCESS_TT" UniqueName="PROCESS_TT" ReadOnly="true" HeaderStyle-Width="100px"
-                                DataFormatString="{0:P2}" />
+                                ColumnGroupName="PROCESS" DataFormatString="{0:P2}" />
                             <tlk:GridBoundColumn HeaderText="Quy trình nội bộ (Tỷ trọng x điểm )" DataField="PROCESS_TTX"
                                 SortExpression="PROCESS_TTX" UniqueName="PROCESS_TTX" ReadOnly="true" HeaderStyle-Width="100px"
-                                DataFormatString="{0:###,###.00}" />
+                                ColumnGroupName="PROCESS" DataFormatString="{0:###,###.00}" />
                             <tlk:GridBoundColumn HeaderText="Học hỏi và phát triển (Tỷ trọng %)" DataField="LEARN_TT"
                                 SortExpression="LEARN_TT" UniqueName="LEARN_TT" ReadOnly="true" HeaderStyle-Width="100px"
-                                DataFormatString="{0:P2}" />
+                                ColumnGroupName="LEARN" DataFormatString="{0:P2}" />
                             <tlk:GridBoundColumn HeaderText="Học hỏi và phát triển (Tỷ trọng x điểm )" DataField="LEARN_TTX"
                                 SortExpression="LEARN_TTX" UniqueName="LEARN_TTX" ReadOnly="true" HeaderStyle-Width="100px"
-                                DataFormatString="{0:###,###.00}" />
+                                ColumnGroupName="LEARN" DataFormatString="{0:###,###.00}" />
                             <tlk:GridBoundColumn HeaderText="Tổng cộng (Tỷ trọng %)" DataField="SUM_TT" SortExpression="SUM_TT"
-                                UniqueName="SUM_TT" ReadOnly="true" HeaderStyle-Width="100px" DataFormatString="{0:P2}" />
+                                ColumnGroupName="SUM" UniqueName="SUM_TT" ReadOnly="true" HeaderStyle-Width="100px" />
                             <tlk:GridBoundColumn HeaderText="Tổng cộng (Tỷ trọng x điểm )" DataField="SUM_TTX"
                                 SortExpression="SUM_TTX" UniqueName="SUM_TTX" ReadOnly="true" HeaderStyle-Width="100px"
-                                DataFormatString="{0:###,###.00}" />
+                                ColumnGroupName="SUM" DataFormatString="{0:###,###.00}" />
                             <tlk:GridBoundColumn HeaderText="Tổng cộng (Tỷ lệ đạt KPI tương ứng %)" DataField="SUM_RATE_KPI"
                                 SortExpression="SUM_RATE_KPI" UniqueName="SUM_RATE_KPI" ReadOnly="true" HeaderStyle-Width="100px"
-                                DataFormatString="{0:P2}" />
+                                ColumnGroupName="SUM" DataFormatString="{0:P2}" />
                             <tlk:GridBoundColumn HeaderText="Xếp loại" DataField="CLASSFICATION" SortExpression="CLASSFICATION"
                                 UniqueName="CLASSFICATION" HeaderStyle-Width="100px" />
                             <tlk:GridBoundColumn HeaderText="Nhận xét" DataField="COMMENTS" SortExpression="COMMENTS"
                                 UniqueName="COMMENTS" ReadOnly="true" HeaderStyle-Width="100px" />
-                            <tlk:GridBoundColumn HeaderText="Ghi chú" DataField="REMARK" SortExpression="REMARK"
+                            <tlk:GridNumericColumn HeaderText="Ghi chú" DataField="REMARK" SortExpression="REMARK"
                                 UniqueName="REMARK" ReadOnly="true" HeaderStyle-Width="100px" />
                         </Columns>
                     </MasterTableView>
