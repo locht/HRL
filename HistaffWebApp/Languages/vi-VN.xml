@@ -45382,4 +45382,12 @@ Xin cám ơn!
       <string>Chọn nơi khám chữa bệnh</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLPE_RESULT_EVALUATE</string>
+    </Key>
+    <Value>
+      <string>Xem kết quả đánh giá tổng hợp</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

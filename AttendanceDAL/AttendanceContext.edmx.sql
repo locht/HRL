@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 5/6/2020 3:50:56 PM
--- Generated from EDMX file: C:\workspaces\ACV_US_19\acv_19\AttendanceDAL\AttendanceContext.edmx
+-- Date Created: 5/15/2020 3:49:20 PM
+-- Generated from EDMX file: D:\acv_19\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -224,6 +224,8 @@
 -- DROP TABLE "AttendanceModelStoreContainer"."SE_USER_ORG_ACCESS1Set";
 
 -- DROP TABLE "AttendanceModelStoreContainer"."AT_SYMBOLS";
+
+-- DROP TABLE "AttendanceModelStoreContainer"."AT_ORG_SHIFTSet";
 
 -- DROP TABLE "AttendanceModelStoreContainer"."SE_USER_REPORT";
 
@@ -2532,6 +2534,19 @@ CREATE TABLE "dbo"."AT_SYMBOLS" (
    "IS_LEAVE_HOLIDAY" NUMBER(5,0) NULL
 );
 
+-- Creating table 'AT_ORG_SHIFT'
+CREATE TABLE "dbo"."AT_ORG_SHIFT" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "ORG_ID" NUMBER(38,0) NULL,
+   "SHIFT_CODE" NCLOB NULL,
+   "CREATED_DATE" DATE NULL,
+   "CREATED_BY" NVARCHAR2(255) NULL,
+   "CREATED_LOG" NVARCHAR2(255) NULL,
+   "MODIFIED_DATE" DATE NULL,
+   "MODIFIED_BY" NVARCHAR2(255) NULL,
+   "MODIFIED_LOG" NVARCHAR2(255) NULL
+);
+
 -- Creating table 'SE_USER_REPORT'
 CREATE TABLE "dbo"."SE_USER_REPORT" (
    "SE_REPORT_ID" NUMBER(38,0) NOT NULL,
@@ -3290,6 +3305,14 @@ ADD CONSTRAINT "PK_SE_USER_ORG_ACCESS1Set"
 -- Creating primary key on "ID"in table 'AT_SYMBOLS'
 ALTER TABLE "dbo"."AT_SYMBOLS"
 ADD CONSTRAINT "PK_AT_SYMBOLS"
+   PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'AT_ORG_SHIFT'
+ALTER TABLE "dbo"."AT_ORG_SHIFT"
+ADD CONSTRAINT "PK_AT_ORG_SHIFT"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;

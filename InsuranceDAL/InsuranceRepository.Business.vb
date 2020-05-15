@@ -3031,6 +3031,28 @@ Partial Public Class InsuranceRepository
         End Using
     End Function
 
+    Public Function CHECK_INS_LOCK(ByVal P_EMPLOYEE_ID As Decimal, ByVal P_DATE As Date) As Decimal
+        Using cls As New DataAccess.QueryData
+            Dim dtData As DataTable = cls.ExecuteStore("PKG_INSURANCE_LIST.CHECK_INS_LOCK",
+                                           New With {.P_EMPLOYEE_ID = P_EMPLOYEE_ID,
+                                                     .P_DATE = P_DATE,
+                                                     .P_CUR = cls.OUT_CURSOR})
+
+            Return Integer.Parse(dtData.Rows(0)("ID"))
+        End Using
+    End Function
+
+    Public Function CHECK_INS_LOCK1(ByVal P_INS_ORG_ID As Decimal, ByVal P_DATE As Date) As Decimal
+        Using cls As New DataAccess.QueryData
+            Dim dtData As DataTable = cls.ExecuteStore("PKG_INSURANCE_LIST.CHECK_INS_LOCK1",
+                                           New With {.P_INS_ORG_ID = P_INS_ORG_ID,
+                                                     .P_DATE = P_DATE,
+                                                     .P_CUR = cls.OUT_CURSOR})
+
+            Return Integer.Parse(dtData.Rows(0)("ID"))
+        End Using
+    End Function
+
 #End Region
 
 End Class

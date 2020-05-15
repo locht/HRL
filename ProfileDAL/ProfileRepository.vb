@@ -3607,4 +3607,38 @@ Public Class ProfileRepository
             Throw ex
         End Try
     End Function
+
+#Region "Quan ly file"
+    Public Function GetFoldersAll() As List(Of FoldersDTO)
+        Dim lstFolders As New List(Of FoldersDTO)
+        lstFolders = (From p In Context.HU_FOLDERS
+                   From parent In Context.HU_FOLDERS.Where(Function(f) f.ID = p.PARENT_ID).DefaultIfEmpty
+                   Order By p.ID Descending
+                   Select New FoldersDTO With {
+                       .ID = p.ID,
+                       .LINK = p.LINK,
+                       .NAME = p.NAME,
+                       .PARENT_ID = p.PARENT_ID,
+                       .PARENT_NAME = parent.NAME}).ToList
+
+        Return lstFolders
+    End Function
+
+    Public Function GetFoldersStructureInfo(ByVal _folderId As Decimal) As List(Of FoldersDTO)
+        Dim query As New FoldersDTO
+        Dim list As New List(Of FoldersDTO)
+        query.PARENT_ID = _folderId
+
+        Do While query.PARENT_ID IsNot Nothing
+            query = (From p In Context.HU_FOLDERS Where p.ID = query.PARENT_ID
+                     Order By p.NAME
+                     Select New FoldersDTO With {
+                     .ID = p.ID,
+                     .NAME = p.NAME,
+                     .PARENT_ID = p.PARENT_ID}).FirstOrDefault
+            list.Add(query)
+        Loop
+        Return list
+    End Function
+#End Region
 End Class

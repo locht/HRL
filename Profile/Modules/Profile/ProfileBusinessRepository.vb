@@ -2,7 +2,7 @@
 
 Partial Public Class ProfileBusinessRepository
     Inherits ProfileRepositoryBase
-    Public  Function Calculator_Salary(ByVal data_in As String) As DataTable
+    Public Function Calculator_Salary(ByVal data_in As String) As DataTable
 
         Using rep As New ProfileBusinessClient
             Try
@@ -642,7 +642,7 @@ Partial Public Class ProfileBusinessRepository
 #End Region
 
 #Region "Quản lý bảo hộ lao động"
-    
+
     Public Function GetLabourProtectionMng(ByVal _filter As LabourProtectionMngDTO, ByVal IsDissolve As Integer, ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
                                         ByRef Total As Integer,
@@ -1141,4 +1141,28 @@ Partial Public Class ProfileBusinessRepository
 
         Return Nothing
     End Function
+
+#Region "Quan ly file"
+    Public Function GetFoldersAll() As List(Of FoldersDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Dim lst = rep.GetFoldersAll()
+                Return lst
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function GetFoldersStructureInfo(ByVal _folderId As Decimal) As List(Of FoldersDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Dim lst = rep.GetFoldersStructureInfo(_folderId)
+                Return lst
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+#End Region
 End Class

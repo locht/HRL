@@ -128,10 +128,8 @@
             </tr>
     </table>
     <tlk:RadGrid PageSize=50 ID="rgTrainingOutCompanyEdit" runat="server" Height="250px" Width="99%">
-        <MasterTableView DataKeyNames="ID,EMPLOYEE_ID,FROM_DATE,TO_DATE,YEAR_GRA,NAME_SHOOLS,FORM_TRAIN_ID,SPECIALIZED_TRAIN,RESULT_TRAIN,CERTIFICATE,
-                          EFFECTIVE_DATE_FROM,EFFECTIVE_DATE_TO,STATUS,FK_PKEY,REASON_UNAPROVE "
-            ClientDataKeyNames="ID,EMPLOYEE_ID,FROM_DATE,TO_DATE,YEAR_GRA,NAME_SHOOLS,FORM_TRAIN_ID,SPECIALIZED_TRAIN,RESULT_TRAIN,CERTIFICATE,
-                          EFFECTIVE_DATE_FROM,EFFECTIVE_DATE_TO,STATUS,FK_PKEY,REASON_UNAPROVE"
+        <MasterTableView DataKeyNames="ID,FROM_DATE,TO_DATE,SCHOOLS_ID,SCHOOLS_NAME,SPECIALIZED_TRAIN_ID,SPECIALIZED_TRAIN_NAME,LEVEL_ID,LEVEL_NAME,CERTIFICATE_ID,CERTIFICATE,RESULT_TRAIN_ID,RESULT_TRAIN_NAME,YEAR_GRA,CONTENT_TRAIN,FORM_TRAIN_ID,FORM_TRAIN_NAME,STATUS,STATUS_NAME,FK_PKEY,REASON_UNAPROVE"
+            ClientDataKeyNames="ID,FROM_DATE,TO_DATE,SCHOOLS_ID,SCHOOLS_NAME,SPECIALIZED_TRAIN_ID,SPECIALIZED_TRAIN_NAME,LEVEL_ID,LEVEL_NAME,CERTIFICATE_ID,CERTIFICATE,RESULT_TRAIN_ID,RESULT_TRAIN_NAME,YEAR_GRA,CONTENT_TRAIN,FORM_TRAIN_ID,FORM_TRAIN_NAME,STATUS,STATUS_NAME,FK_PKEY,REASON_UNAPROVE"
             Caption="<%$ Translate: Thông tin chỉnh sửa %>">
             <Columns>
                 <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
@@ -141,60 +139,49 @@
                     <HeaderStyle Width="60px" />
                     <ItemStyle Font-Underline="true" Wrap="false" Width="60px" ForeColor="Blue" />
                 </tlk:GridButtonColumn>
-                <tlk:GridDateTimeColumn DataField="FROM_DATE" HeaderText="<%$ Translate: Từ tháng%>"
-                    UniqueName="FROM_DATE" ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="EqualTo"
-                    Visible="true" DataFormatString="{0:MM/yyyy}">
-                    <HeaderStyle Width="120px" />
-                    <ItemStyle Width="120px" />
-                </tlk:GridDateTimeColumn>
-                <tlk:GridDateTimeColumn DataField="TO_DATE" HeaderText="<%$ Translate: Tới tháng%>"
-                    UniqueName="TO_DATE" ShowFilterIcon="false" AutoPostBackOnFilter="true" DataFormatString="{0:MM/yyyy}"
-                    CurrentFilterFunction="EqualTo" Visible="true">
-                    <HeaderStyle Width="120px" />
-                    <ItemStyle Width="120px" />
-                </tlk:GridDateTimeColumn>
-                <tlk:GridNumericColumn HeaderText="<%$ Translate: Năm tốt nghiệp %>" DataField="YEAR_GRA"
-                    UniqueName="YEAR_GRA" SortExpression="YEAR_GRA" ShowFilterIcon="true">
-                    <HeaderStyle HorizontalAlign="Center" />
-                    <ItemStyle HorizontalAlign="Right" />
-                </tlk:GridNumericColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên trường %>" DataField="NAME_SHOOLS"
-                    UniqueName="NAME_SHOOLS" SortExpression="NAME_SHOOLS" ShowFilterIcon="false"
-                    AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Hình thức đào tạo %>" DataField="FORM_TRAIN_NAME"
-                    UniqueName="FORM_TRAIN_NAME" SortExpression="FORM_TRAIN_NAME" ShowFilterIcon="false"
-                    AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Chuyên ngành %>" DataField="SPECIALIZED_TRAIN"
-                    UniqueName="SPECIALIZED_TRAIN" SortExpression="SPECIALIZED_TRAIN" ShowFilterIcon="false"
-                    AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Kết quả đào tạo %>" DataField="RESULT_TRAIN"
-                    UniqueName="RESULT_TRAIN" SortExpression="RESULT_TRAIN" ShowFilterIcon="false"
-                    AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Bằng cấp/chứng chỉ %>" DataField="CERTIFICATE"
-                    UniqueName="CERTIFICATE" SortExpression="CERTIFICATE" ShowFilterIcon="false"
-                    AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
-                <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECTIVE_DATE_FROM"
-                    UniqueName="EFFECTIVE_DATE_FROM" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EFFECTIVE_DATE_FROM"
-                    ShowFilterIcon="true">
-                    <HeaderStyle HorizontalAlign="Center" />
-                    <ItemStyle HorizontalAlign="Center" />
-                </tlk:GridDateTimeColumn>
-                <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hết hiệu lực %>" DataField="EFFECTIVE_DATE_TO"
-                    UniqueName="EFFECTIVE_DATE_TO" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EFFECTIVE_DATE_TO"
-                    ShowFilterIcon="true">
-                    <HeaderStyle HorizontalAlign="Center" />
-                    <ItemStyle HorizontalAlign="Center" />
-                </tlk:GridDateTimeColumn>
+                 <tlk:GridDateTimeColumn DataField="FROM_DATE" HeaderText="Từ ngày"
+                        UniqueName="FROM_DATE" ShowFilterIcon="false" CurrentFilterFunction="EqualTo"
+                        Visible="true" DataFormatString="{0:dd/MM/yyyy}">
+                        <HeaderStyle Width="120px" />
+                        <ItemStyle Width="120px" />
+                    </tlk:GridDateTimeColumn>
+                    <tlk:GridDateTimeColumn DataField="TO_DATE" HeaderText="Tới ngày"
+                        UniqueName="TO_DATE" ShowFilterIcon="false" DataFormatString="{0:dd/MM/yyyy}"
+                        CurrentFilterFunction="EqualTo" Visible="true">
+                        <HeaderStyle Width="120px" />
+                        <ItemStyle Width="120px" />
+                    </tlk:GridDateTimeColumn>
+                    <tlk:GridBoundColumn DataField="SCHOOLS_NAME" HeaderText="Tên trường"
+                        UniqueName="SCHOOLS_NAME" ShowFilterIcon="false" CurrentFilterFunction="Contains"
+                        Visible="true">
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn DataField="SPECIALIZED_TRAIN_NAME" HeaderText="Ngành học"
+                        UniqueName="SPECIALIZED_TRAIN_NAME" ShowFilterIcon="false"
+                        CurrentFilterFunction="Contains">
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn DataField="LEVEL_NAME" HeaderText="Trình độ"
+                        UniqueName="LEVEL_NAME" ShowFilterIcon="false"
+                        CurrentFilterFunction="Contains">
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn DataField="CERTIFICATE" HeaderText="Bằng cấp/Chứng chỉ"
+                        UniqueName="CERTIFICATE" ShowFilterIcon="false"
+                        CurrentFilterFunction="Contains">
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn DataField="RESULT_TRAIN_NAME" HeaderText="Xếp loại"
+                        UniqueName="RESULT_TRAIN_NAME" ShowFilterIcon="false"
+                        CurrentFilterFunction="Contains" Visible="true">
+                    </tlk:GridBoundColumn> 
+                    <tlk:GridBoundColumn DataField="YEAR_GRA" HeaderText="Năm tốt nghiệp"
+                        UniqueName="YEAR_GRA" ShowFilterIcon="false" Visible="true">
+                    </tlk:GridBoundColumn>
+                     <tlk:GridBoundColumn DataField="CONTENT_TRAIN" HeaderText="Nội dung đào tạo"
+                        UniqueName="CONTENT_TRAIN" ShowFilterIcon="false"
+                        CurrentFilterFunction="Contains" Visible="true">
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn DataField="FORM_TRAIN_NAME" HeaderText="Hình thức đào tạo"
+                        UniqueName="FORM_TRAIN_NAME" ShowFilterIcon="false"
+                        CurrentFilterFunction="Contains">
+                    </tlk:GridBoundColumn>
                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái phê duyệt%>" DataField="STATUS_NAME"
                     UniqueName="STATUS_NAME" SortExpression="STATUS_NAME" ShowFilterIcon="false"
                     AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
@@ -209,68 +196,55 @@
     </tlk:RadGrid>
     <br />
     <tlk:RadGrid PageSize=50 ID="rgTrainingOutCompany" runat="server" Height="250px" Width="99%">
-        <MasterTableView DataKeyNames="ID,EMPLOYEE_ID,FROM_DATE,TO_DATE,YEAR_GRA,NAME_SHOOLS,FORM_TRAIN_ID,SPECIALIZED_TRAIN,RESULT_TRAIN,CERTIFICATE,
-                            EFFECTIVE_DATE_FROM,EFFECTIVE_DATE_TO " ClientDataKeyNames="ID,EMPLOYEE_ID,FROM_DATE,TO_DATE,YEAR_GRA,NAME_SHOOLS,FORM_TRAIN_ID,SPECIALIZED_TRAIN,RESULT_TRAIN,CERTIFICATE,
-                            EFFECTIVE_DATE_FROM,EFFECTIVE_DATE_TO" Caption="<%$ Translate: Thông tin hiện tại %>">
+        <MasterTableView DataKeyNames="ID,FROM_DATE,TO_DATE,SCHOOLS_ID,SCHOOLS_NAME,SPECIALIZED_TRAIN_ID,SPECIALIZED_TRAIN_NAME,LEVEL_ID,LEVEL_NAME,CERTIFICATE_ID,CERTIFICATE,RESULT_TRAIN_ID,RESULT_TRAIN_NAME,YEAR_GRA,CONTENT_LEVEL,FORM_TRAIN_ID,FORM_TRAIN_NAME" ClientDataKeyNames="ID,FROM_DATE,TO_DATE,SCHOOLS_ID,SCHOOLS_NAME,SPECIALIZED_TRAIN_ID,SPECIALIZED_TRAIN_NAME,LEVEL_ID,LEVEL_NAME,CERTIFICATE_ID,CERTIFICATE,RESULT_TRAIN_ID,RESULT_TRAIN_NAME,YEAR_GRA,CONTENT_LEVEL,FORM_TRAIN_ID,FORM_TRAIN_NAME" Caption="<%$ Translate: Thông tin hiện tại %>">
             <Columns>
                 <tlk:GridButtonColumn HeaderText="" Text="Sửa" CommandName="EditRow">
                     <HeaderStyle Wrap="False" Width="60px" />
                     <ItemStyle Font-Underline="true" Wrap="false" Width="60px" ForeColor="Blue" />
                 </tlk:GridButtonColumn>
-                <tlk:GridDateTimeColumn DataField="FROM_DATE" HeaderText="<%$ Translate: Từ tháng%>"
-                    UniqueName="FROM_DATE" ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="EqualTo"
-                    Visible="true" DataFormatString="{0:MM/yyyy}">
-                    <HeaderStyle Width="120px" />
-                    <ItemStyle Width="120px" />
-                </tlk:GridDateTimeColumn>
-                <tlk:GridDateTimeColumn DataField="TO_DATE" HeaderText="<%$ Translate: Tới tháng%>"
-                    UniqueName="TO_DATE" ShowFilterIcon="false" AutoPostBackOnFilter="true" DataFormatString="{0:MM/yyyy}"
-                    CurrentFilterFunction="EqualTo" Visible="true">
-                    <HeaderStyle Width="120px" />
-                    <ItemStyle Width="120px" />
-                </tlk:GridDateTimeColumn>
-                <tlk:GridNumericColumn HeaderText="<%$ Translate: Năm tốt nghiệp %>" DataField="YEAR_GRA"
-                    UniqueName="YEAR_GRA" SortExpression="YEAR_GRA" ShowFilterIcon="true">
-                    <HeaderStyle HorizontalAlign="Center" />
-                    <ItemStyle HorizontalAlign="Right" />
-                </tlk:GridNumericColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên trường %>" DataField="NAME_SHOOLS"
-                    UniqueName="NAME_SHOOLS" SortExpression="NAME_SHOOLS" ShowFilterIcon="false"
-                    AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Hình thức đào tạo %>" DataField="FORM_TRAIN_NAME"
-                    UniqueName="FORM_TRAIN_NAME" SortExpression="FORM_TRAIN_NAME" ShowFilterIcon="false"
-                    AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Chuyên ngành %>" DataField="SPECIALIZED_TRAIN"
-                    UniqueName="SPECIALIZED_TRAIN" SortExpression="SPECIALIZED_TRAIN" ShowFilterIcon="false"
-                    AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Kết quả đào tạo %>" DataField="RESULT_TRAIN"
-                    UniqueName="RESULT_TRAIN" SortExpression="RESULT_TRAIN" ShowFilterIcon="false"
-                    AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Bằng cấp/chứng chỉ %>" DataField="CERTIFICATE"
-                    UniqueName="CERTIFICATE" SortExpression="CERTIFICATE" ShowFilterIcon="false"
-                    AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
-                    <HeaderStyle HorizontalAlign="Center" />
-                </tlk:GridBoundColumn>
-                <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECTIVE_DATE_FROM"
-                    UniqueName="EFFECTIVE_DATE_FROM" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EFFECTIVE_DATE_FROM"
-                    ShowFilterIcon="true">
-                    <HeaderStyle HorizontalAlign="Center" />
-                    <ItemStyle HorizontalAlign="Center" />
-                </tlk:GridDateTimeColumn>
-                <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hết hiệu lực %>" DataField="EFFECTIVE_DATE_TO"
-                    UniqueName="EFFECTIVE_DATE_TO" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EFFECTIVE_DATE_TO"
-                    ShowFilterIcon="true">
-                    <HeaderStyle HorizontalAlign="Center" />
-                    <ItemStyle HorizontalAlign="Center" />
-                </tlk:GridDateTimeColumn>
+                <tlk:GridDateTimeColumn DataField="FROM_DATE" HeaderText="Từ ngày"
+                        UniqueName="FROM_DATE" ShowFilterIcon="false" CurrentFilterFunction="EqualTo"
+                        Visible="true" DataFormatString="{0:dd/MM/yyyy}">
+                        <HeaderStyle Width="120px" />
+                        <ItemStyle Width="120px" />
+                    </tlk:GridDateTimeColumn>
+                    <tlk:GridDateTimeColumn DataField="TO_DATE" HeaderText="Tới ngày"
+                        UniqueName="TO_DATE" ShowFilterIcon="false" DataFormatString="{0:dd/MM/yyyy}"
+                        CurrentFilterFunction="EqualTo" Visible="true">
+                        <HeaderStyle Width="120px" />
+                        <ItemStyle Width="120px" />
+                    </tlk:GridDateTimeColumn>
+                    <tlk:GridBoundColumn DataField="SCHOOLS_NAME" HeaderText="Tên trường"
+                        UniqueName="SCHOOLS_NAME" ShowFilterIcon="false" CurrentFilterFunction="Contains"
+                        Visible="true">
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn DataField="SPECIALIZED_TRAIN_NAME" HeaderText="Ngành học"
+                        UniqueName="SPECIALIZED_TRAIN_NAME" ShowFilterIcon="false"
+                        CurrentFilterFunction="Contains">
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn DataField="LEVEL_NAME" HeaderText="Trình độ"
+                        UniqueName="LEVEL_NAME" ShowFilterIcon="false"
+                        CurrentFilterFunction="Contains">
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn DataField="CERTIFICATE" HeaderText="Bằng cấp/Chứng chỉ"
+                        UniqueName="CERTIFICATE" ShowFilterIcon="false"
+                        CurrentFilterFunction="Contains">
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn DataField="RESULT_TRAIN_NAME" HeaderText="Xếp loại"
+                        UniqueName="RESULT_TRAIN_NAME" ShowFilterIcon="false"
+                        CurrentFilterFunction="Contains" Visible="true">
+                    </tlk:GridBoundColumn> 
+                    <tlk:GridBoundColumn DataField="YEAR_GRA" HeaderText="Năm tốt nghiệp"
+                        UniqueName="YEAR_GRA" ShowFilterIcon="false" Visible="true">
+                    </tlk:GridBoundColumn>
+                     <tlk:GridBoundColumn DataField="CONTENT_LEVEL" HeaderText="Nội dung đào tạo"
+                        UniqueName="CONTENT_LEVEL" ShowFilterIcon="false"
+                        CurrentFilterFunction="Contains" Visible="true">
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn DataField="FORM_TRAIN_NAME" HeaderText="Hình thức đào tạo"
+                        UniqueName="FORM_TRAIN_NAME" ShowFilterIcon="false"
+                        CurrentFilterFunction="Contains">
+                    </tlk:GridBoundColumn>
             </Columns>
         </MasterTableView>
     </tlk:RadGrid>

@@ -228,7 +228,7 @@
                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Được đăng ký cho Ngày lễ %>" DataField="IS_LEAVE_HOLIDAY"
                                 ItemStyle-VerticalAlign="Middle" UniqueName="IS_LEAVE_HOLIDAY" SortExpression="IS_LEAVE_HOLIDAY" HeaderStyle-Width="40px"
                                 FilterControlWidth="99%" ShowFilterIcon="false"></tlk:GridCheckBoxColumn>
-                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Được đăng ký cho Nghỉ nửa ngày %>" DataField="IS_DAY_HALF"
+                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Được đăng ký Nghỉ nửa ngày %>" DataField="IS_DAY_HALF"
                                 ItemStyle-VerticalAlign="Middle" UniqueName="IS_DAY_HALF" SortExpression="IS_DAY_HALF" HeaderStyle-Width="40px"
                                 FilterControlWidth="99%" ShowFilterIcon="false"></tlk:GridCheckBoxColumn>
 

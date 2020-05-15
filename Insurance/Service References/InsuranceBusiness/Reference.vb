@@ -10995,6 +10995,12 @@ Namespace InsuranceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GET_REARL_FILED", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GET_REARL_FILEDResponse")>  _
         Function GET_REARL_FILED(ByVal P_INS_ORG_ID As Decimal, ByVal P_YEAR As Decimal, ByVal P_MONTH As Decimal) As Decimal
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/CHECK_INS_LOCK", ReplyAction:="http://tempuri.org/IInsuranceBusiness/CHECK_INS_LOCKResponse")>  _
+        Function CHECK_INS_LOCK(ByVal P_EMPLOYEE_ID As Decimal, ByVal P_DATE As Date) As Decimal
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/CHECK_INS_LOCK1", ReplyAction:="http://tempuri.org/IInsuranceBusiness/CHECK_INS_LOCK1Response")>  _
+        Function CHECK_INS_LOCK1(ByVal P_INS_ORG_ID As Decimal, ByVal P_DATE As Date) As Decimal
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGE", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGEResponse")>  _
         Function GetINS_CHANGE(ByVal _filter As InsuranceBusiness.INS_CHANGEDTO, ByVal _param As InsuranceBusiness.PARAMDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGEDTO)
         
@@ -11937,6 +11943,14 @@ Namespace InsuranceBusiness
         
         Public Function GET_REARL_FILED(ByVal P_INS_ORG_ID As Decimal, ByVal P_YEAR As Decimal, ByVal P_MONTH As Decimal) As Decimal Implements InsuranceBusiness.IInsuranceBusiness.GET_REARL_FILED
             Return MyBase.Channel.GET_REARL_FILED(P_INS_ORG_ID, P_YEAR, P_MONTH)
+        End Function
+        
+        Public Function CHECK_INS_LOCK(ByVal P_EMPLOYEE_ID As Decimal, ByVal P_DATE As Date) As Decimal Implements InsuranceBusiness.IInsuranceBusiness.CHECK_INS_LOCK
+            Return MyBase.Channel.CHECK_INS_LOCK(P_EMPLOYEE_ID, P_DATE)
+        End Function
+        
+        Public Function CHECK_INS_LOCK1(ByVal P_INS_ORG_ID As Decimal, ByVal P_DATE As Date) As Decimal Implements InsuranceBusiness.IInsuranceBusiness.CHECK_INS_LOCK1
+            Return MyBase.Channel.CHECK_INS_LOCK1(P_INS_ORG_ID, P_DATE)
         End Function
         
         Public Function GetINS_CHANGE(ByVal _filter As InsuranceBusiness.INS_CHANGEDTO, ByVal _param As InsuranceBusiness.PARAMDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGEDTO) Implements InsuranceBusiness.IInsuranceBusiness.GetINS_CHANGE

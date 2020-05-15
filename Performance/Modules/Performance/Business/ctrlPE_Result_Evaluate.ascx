@@ -1,10 +1,10 @@
-﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlPE_KPI_Evaluate.ascx.vb"
-    Inherits="Performance.ctrlPE_KPI_Evaluate" %>
+﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlPE_Result_Evaluate.ascx.vb"
+    Inherits="Performance.ctrlPE_Result_Evaluate" %>
 <%@ Import Namespace="Common" %>
 <asp:HiddenField ID="hidIDEmp" runat="server" />
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%">
     <tlk:RadPane ID="LeftPane" runat="server" MinWidth="200" Width="260px" Scrolling="None">
-        <common:ctrlorganization id="ctrlOrganization" runat="server" />
+        <Common:ctrlOrganization ID="ctrlOrganization" runat="server" />
     </tlk:RadPane>
     <tlk:RadPane runat="server" ID="RadPane3" Width="100%" Height="100%" Scrolling="None">
         <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="95%" Height="95%" Orientation="Horizontal">
@@ -20,15 +20,12 @@
                             <tlk:RadComboBox runat="server" ID="cboYear" AutoPostBack="true">
                             </tlk:RadComboBox>
                         </td>
-                        <td class="lb">
+                        <td>
                             <%# Translate("Kỳ đánh giá")%>
                         </td>
                         <td>
                             <tlk:RadComboBox runat="server" ID="cboPeriodEvaluate" AutoPostBack="true">
                             </tlk:RadComboBox>
-                        </td>
-                        <td colspan="2">
-                            <asp:CheckBox ID="chkTerminate" runat="server" Text="Liệt kê cả nhân viên nghỉ việc" />
                         </td>
                     </tr>
                     <tr>
@@ -58,18 +55,6 @@
                 <tlk:RadGrid PageSize="50" ID="rgEmployeeList" runat="server" AllowPaging="True"
                     Height="100%" AllowSorting="True" AllowMultiRowSelection="true">
                     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID">
-                        <ColumnGroups>
-                            <tlk:GridColumnGroup HeaderText="Tài chính" Name="FINANCE">
-                            </tlk:GridColumnGroup>
-                            <tlk:GridColumnGroup HeaderText="Khách hàng" Name="CUSTOMER">
-                            </tlk:GridColumnGroup>
-                            <tlk:GridColumnGroup HeaderText="Quy trình nội bộ" Name="PROCESS">
-                            </tlk:GridColumnGroup>
-                            <tlk:GridColumnGroup HeaderText="Học hỏi và phát triển" Name="LEARN">
-                            </tlk:GridColumnGroup>
-                            <tlk:GridColumnGroup HeaderText="Tổng cộng" Name="SUM">
-                            </tlk:GridColumnGroup>
-                        </ColumnGroups>
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderText="CheckBox" HeaderStyle-HorizontalAlign="center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="center">
@@ -88,43 +73,13 @@
                             <tlk:GridDateTimeColumn HeaderText="Ngày nhận việc" DataField="JOIN_DATE" ItemStyle-HorizontalAlign="Center"
                                 SortExpression="JOIN_DATE" UniqueName="JOIN_DATE" DataFormatString="{0:dd/MM/yyyy}">
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridNumericColumn HeaderText="Tỷ trọng" DataField="FINANCE_TT"
-                                ReadOnly="true" SortExpression="FINANCE_TT" UniqueName="FINANCE_TT" HeaderStyle-Width="100px"
-                                ColumnGroupName="FINANCE" DataFormatString="{0:P2}" />
-                            <tlk:GridBoundColumn HeaderText="Tỷ trọng x điểm" DataField="FINANCE_TTX"
-                                SortExpression="FINANCE_TTX" UniqueName="FINANCE_TTX" ReadOnly="true" HeaderStyle-Width="100px"
-                                ColumnGroupName="FINANCE" DataFormatString="{0:###,###.00}" />
-                            <tlk:GridBoundColumn HeaderText="Tỷ trọng" DataField="CUSTOMER_TT"
-                                SortExpression="CUSTOMER_TT" UniqueName="CUSTOMER_TT" ReadOnly="true" HeaderStyle-Width="100px"
-                                ColumnGroupName="CUSTOMER" DataFormatString="{0:P2}" />
-                            <tlk:GridBoundColumn HeaderText="Tỷ trọng x điểm" DataField="CUSTOMER_TTX"
-                                SortExpression="CUSTOMER_TTX" UniqueName="CUSTOMER_TTX" ReadOnly="true" HeaderStyle-Width="100px"
-                                ColumnGroupName="CUSTOMER" DataFormatString="{0:###,###.00}" />
-                            <tlk:GridBoundColumn HeaderText="Tỷ trọng" DataField="PROCESS_TT"
-                                SortExpression="PROCESS_TT" UniqueName="PROCESS_TT" ReadOnly="true" HeaderStyle-Width="100px"
-                                ColumnGroupName="PROCESS" DataFormatString="{0:P2}" />
-                            <tlk:GridBoundColumn HeaderText="Tỷ trọng x điểm" DataField="PROCESS_TTX"
-                                SortExpression="PROCESS_TTX" UniqueName="PROCESS_TTX" ReadOnly="true" HeaderStyle-Width="100px"
-                                ColumnGroupName="PROCESS" DataFormatString="{0:###,###.00}" />
-                            <tlk:GridBoundColumn HeaderText="Tỷ trọng %" DataField="LEARN_TT"
-                                SortExpression="LEARN_TT" UniqueName="LEARN_TT" ReadOnly="true" HeaderStyle-Width="100px"
-                                ColumnGroupName="LEARN" DataFormatString="{0:P2}" />
-                            <tlk:GridBoundColumn HeaderText="Tỷ trọng x điểm" DataField="LEARN_TTX"
-                                SortExpression="LEARN_TTX" UniqueName="LEARN_TTX" ReadOnly="true" HeaderStyle-Width="100px"
-                                ColumnGroupName="LEARN" DataFormatString="{0:###,###.00}" />
-                            <tlk:GridBoundColumn HeaderText="Tỷ trọng" DataField="SUM_TT" SortExpression="SUM_TT"
-                                ColumnGroupName="SUM" UniqueName="SUM_TT" ReadOnly="true" HeaderStyle-Width="100px" />
-                            <tlk:GridBoundColumn HeaderText="Tỷ trọng x điểm" DataField="SUM_TTX"
-                                SortExpression="SUM_TTX" UniqueName="SUM_TTX" ReadOnly="true" HeaderStyle-Width="100px"
-                                ColumnGroupName="SUM" DataFormatString="{0:###,###.00}" />
-                            <tlk:GridBoundColumn HeaderText="Tỷ lệ đạt KPI tương ứng %" DataField="SUM_RATE_KPI"
-                                SortExpression="SUM_RATE_KPI" UniqueName="SUM_RATE_KPI" ReadOnly="true" HeaderStyle-Width="100px"
-                                ColumnGroupName="SUM" DataFormatString="{0:P2}" />
+                            <tlk:GridBoundColumn HeaderText="Hình thức đánh giá" DataField="" SortExpression=""
+                                UniqueName="" HeaderStyle-Width="100px" />
                             <tlk:GridBoundColumn HeaderText="Xếp loại" DataField="CLASSFICATION" SortExpression="CLASSFICATION"
                                 UniqueName="CLASSFICATION" HeaderStyle-Width="100px" />
                             <tlk:GridBoundColumn HeaderText="Nhận xét" DataField="COMMENTS" SortExpression="COMMENTS"
                                 UniqueName="COMMENTS" ReadOnly="true" HeaderStyle-Width="100px" />
-                            <tlk:GridNumericColumn HeaderText="Ghi chú" DataField="REMARK" SortExpression="REMARK"
+                            <tlk:GridBoundColumn HeaderText="Ghi chú" DataField="REMARK" SortExpression="REMARK"
                                 UniqueName="REMARK" ReadOnly="true" HeaderStyle-Width="100px" />
                         </Columns>
                     </MasterTableView>
@@ -139,12 +94,11 @@
         </tlk:RadSplitter>
     </tlk:RadPane>
 </tlk:RadSplitter>
-<common:ctrlmessagebox id="ctrlMessageBox" runat="server" />
-<common:ctrlupload id="ctrlUpload" runat="server" />
-<common:ctrlupload id="ctrlUpload1" runat="server" />
+<Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
+<Common:ctrlUpload ID="ctrlUpload" runat="server" />
+<Common:ctrlUpload ID="ctrlUpload1" runat="server" />
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
-
         var enableAjax = true;
         function onRequestStart(sender, eventArgs) {
             eventArgs.set_enableAjax(enableAjax);

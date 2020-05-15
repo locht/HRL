@@ -3022,8 +3022,17 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function EXPORT_DISCIPLINE() As DataSet
 
-        <OperationContract()>
+
         Function INPORT_DISCIPLINE(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+
+#Region "quan ly file"
+        <OperationContract()>
+        Function GetFoldersAll() As List(Of FoldersDTO)
+
+        <OperationContract()>
+        Function GetFoldersStructureInfo(ByVal _folderId As Decimal) As List(Of FoldersDTO)
+#End Region
     End Interface
+
 
 End Namespace

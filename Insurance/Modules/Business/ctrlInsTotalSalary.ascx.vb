@@ -249,7 +249,11 @@ Public Class ctrlInsTotalSalary
                         ShowMessage("Bạn phải chọn tháng?", NotifyType.Warning)
                         Exit Sub
                     End If
-                    Call LockData(1)
+                    ctrlMessageBox.MessageText = Translate("Bạn có muốn tổng hợp lại quỹ lương trước khi khóa")
+                    ctrlMessageBox.ActionName = "LOCK"
+                    ctrlMessageBox.DataBind()
+                    ctrlMessageBox.Show()
+
                 Case CommonMessage.TOOLBARITEM_UNLOCK
                     If ddlINS_ORG_ID.SelectedValue = 0 Then
                         ShowMessage("Bạn phải chọn đơn vị bảo hiểm?", NotifyType.Warning)
@@ -295,6 +299,12 @@ Public Class ctrlInsTotalSalary
             End If
             If e.ActionName = CommonMessage.TOOLBARITEM_CREATE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
                 Call CalDataBatch()
+            End If
+            If e.ActionName = "LOCK" And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                Call CalData()
+                Call LockData(1)
+            Else
+                Call LockData(0)
             End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -699,6 +709,7 @@ Public Class ctrlInsTotalSalary
     Private Sub Export()
         Try
             Dim _error As String = ""
+            Dim strOrg As String
 
             Dim dtVariable = New DataTable
             dtVariable.Columns.Add(New DataColumn("FROM_DATE"))
@@ -708,11 +719,19 @@ Public Class ctrlInsTotalSalary
             drVariable("TO_DATE") = Now.ToString("dd/MM/yyyy")
             dtVariable.Rows.Add(drVariable)
 
+            If ddlINS_ORG_ID.SelectedValue = "0" Then
+                For i = 1 To DS_INS_ORG.Rows.Count - 1
+                    strOrg &= IIf(strOrg = vbNullString, DS_INS_ORG.Rows(i)("ID"), "," & DS_INS_ORG.Rows(i)("ID"))
+                Next
+            Else
+                strOrg = "," & ddlINS_ORG_ID.SelectedValue
+            End If
+
             Using xls As New ExcelCommon
 
                 Dim lstSource As DataTable = (New InsuranceBusiness.InsuranceBusinessClient).GetInsTotalSalary(Common.Common.GetUsername(), InsCommon.getNumber(txtYear.Text) _
                                     , InsCommon.getNumber(txtMonth.Text) _
-                                    , InsCommon.getNumber(ddlINS_ORG_ID.SelectedValue) _
+                                    , strOrg _
                                      , InsCommon.getString(ddlPeriod.SelectedValue) _
                                     )
                 lstSource.TableName = "TABLE"

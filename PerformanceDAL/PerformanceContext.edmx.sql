@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 05/14/2020 4:31:32 PM
+-- Date Created: 05/15/2020 2:53:51 PM
 -- Generated from EDMX file: D:\MyProject2020\ACV_NEW\acv_19\PerformanceDAL\PerformanceContext.edmx
 -- --------------------------------------------------
 
@@ -9,67 +9,11 @@
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- ALTER TABLE "PerformanceModelStoreContainer"."HU_EMPLOYEE_CV" DROP CONSTRAINT "FK_HE_HEC" CASCADE;
-
--- ALTER TABLE "PerformanceModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HE_HT" CASCADE;
-
--- ALTER TABLE "PerformanceModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HU_ORG_HU_EMP" CASCADE;
-
--- ALTER TABLE "PerformanceModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HUEMD_HUEM" CASCADE;
-
--- ALTER TABLE "PerformanceModelStoreContainer"."HU_ORG_TITLE" DROP CONSTRAINT "FK_HUOG_HUOT" CASCADE;
-
--- ALTER TABLE "PerformanceModelStoreContainer"."HU_ORG_TITLE" DROP CONSTRAINT "FK_HUTL_HUOT" CASCADE;
-
--- ALTER TABLE "PerformanceModelStoreContainer"."HU_ORGANIZATION" DROP CONSTRAINT "FK_HU_ORG_HU_ORG" CASCADE;
-
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "PerformanceModelStoreContainer"."PE_CRITERIA";
-
--- DROP TABLE "PerformanceModelStoreContainer"."PE_OBJECT_GROUP";
-
--- DROP TABLE "PerformanceModelStoreContainer"."PE_OBJECT_GROUP_PERIOD";
-
--- DROP TABLE "PerformanceModelStoreContainer"."HU_EMPLOYEE";
-
--- DROP TABLE "PerformanceModelStoreContainer"."HU_EMPLOYEE_CV";
-
--- DROP TABLE "PerformanceModelStoreContainer"."HU_ORG_TITLE";
-
--- DROP TABLE "PerformanceModelStoreContainer"."HU_ORGANIZATION";
-
--- DROP TABLE "PerformanceModelStoreContainer"."HU_TITLE";
-
--- DROP TABLE "PerformanceModelStoreContainer"."SE_CHOSEN_ORG";
-
--- DROP TABLE "PerformanceModelStoreContainer"."HU_STAFF_RANK";
-
--- DROP TABLE "PerformanceModelStoreContainer"."HUV_ORGANIZATION";
-
--- DROP TABLE "PerformanceModelStoreContainer"."PE_PERSONAL";
-
--- DROP TABLE "PerformanceModelStoreContainer"."PE_EMPLOYEE_ASSESSMENT_DTL";
-
--- DROP TABLE "PerformanceModelStoreContainer"."PE_ORGANIZATION";
-
--- DROP TABLE "PerformanceModelStoreContainer"."PE_CLASSIFICATION";
-
--- DROP TABLE "PerformanceModelStoreContainer"."OT_OTHER_LIST";
-
--- DROP TABLE "PerformanceModelStoreContainer"."PE_ASSESSMENT";
-
--- DROP TABLE "PerformanceModelStoreContainer"."PE_EMPLOYEE_ASSESSMENT";
-
--- DROP TABLE "PerformanceModelStoreContainer"."PE_CRITERIA_OBJECT_GROUP";
-
--- DROP TABLE "PerformanceModelStoreContainer"."PE_PERIOD";
-
--- DROP TABLE "PerformanceModelStoreContainer"."PE_KPI_EVALUATE";
-
--- DROP TABLE "PerformanceModelStoreContainer"."PA_SALARY_LEVEL";
+-- DROP TABLE "PerformanceModelStoreContainer"."PE_EVALUATE_PERIOD";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -573,6 +517,29 @@ CREATE TABLE "dbo"."PA_SALARY_LEVEL" (
    "SAL_TO" NUMBER(38,0) NOT NULL
 );
 
+-- Creating table 'PE_EVALUATE_PERIOD'
+CREATE TABLE "dbo"."PE_EVALUATE_PERIOD" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "EMPLOYEE_ID" NUMBER(38,0) NULL,
+   "PERIOD_ID" NUMBER(38,0) NULL,
+   "ORG_ID" NUMBER(38,0) NULL,
+   "TITLE_ID" NUMBER(38,0) NULL,
+   "SAL_LEVEL_ID" NUMBER(38,0) NULL,
+   "RESPONSIBILITY" NUMBER(38,0) NULL,
+   "CREATED_DATE" DATE NULL,
+   "CREATED_BY" NVARCHAR2(255) NULL,
+   "CREATED_LOG" NVARCHAR2(255) NULL,
+   "MODIFIED_DATE" DATE NULL,
+   "MODIFIED_BY" NVARCHAR2(255) NULL,
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "COOPERATION" NUMBER(38,0) NULL,
+   "DILIGENCE" NUMBER(38,0) NULL,
+   "TOTAL" NUMBER(38,0) NULL,
+   "CLASSIFICATION" NUMBER(38,0) NULL,
+   "NOTE" NVARCHAR2(1000) NULL,
+   "COMMENT1" NVARCHAR2(1000) NULL
+);
+
 
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
@@ -749,6 +716,14 @@ ADD CONSTRAINT "PK_PE_KPI_EVALUATE"
 -- Creating primary key on "ID"in table 'PA_SALARY_LEVEL'
 ALTER TABLE "dbo"."PA_SALARY_LEVEL"
 ADD CONSTRAINT "PK_PA_SALARY_LEVEL"
+   PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'PE_EVALUATE_PERIOD'
+ALTER TABLE "dbo"."PE_EVALUATE_PERIOD"
+ADD CONSTRAINT "PK_PE_EVALUATE_PERIOD"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;

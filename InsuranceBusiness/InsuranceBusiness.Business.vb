@@ -969,6 +969,28 @@ Namespace InsuranceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+
+        Public Function CHECK_INS_LOCK(ByVal P_EMPLOYEE_ID As Decimal, ByVal P_DATE As Date) As Decimal _
+         Implements ServiceContracts.IInsuranceBusiness.CHECK_INS_LOCK
+            Using rep As New InsuranceRepository
+                Try
+                    Return rep.CHECK_INS_LOCK(P_EMPLOYEE_ID, P_DATE)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function CHECK_INS_LOCK1(ByVal P_INS_ORG_ID As Decimal, ByVal P_DATE As Date) As Decimal _
+        Implements ServiceContracts.IInsuranceBusiness.CHECK_INS_LOCK1
+            Using rep As New InsuranceRepository
+                Try
+                    Return rep.CHECK_INS_LOCK1(P_INS_ORG_ID, P_DATE)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #End Region
 
     End Class

@@ -394,6 +394,43 @@ Partial Class PerformanceRepository
             End Try
         End Using
     End Function
+#Region "xem kq tong hop"
+    Public Function GetListEmployeePaging1(ByVal _filter As KPI_EVALUATEDTO,
+                                         ByVal PageIndex As Integer,
+                                         ByVal PageSize As Integer,
+                                         ByRef Total As Integer, ByVal _param As ParamDTO,
+                                         Optional ByVal Sorts As String = "EMPLOYEE_CODE desc") As List(Of KPI_EVALUATEDTO)
+        Using rep As New PerformanceBusinessClient
+            Try
+                Return rep.GetListEmployeePaging1(_filter, PageIndex, PageSize, Total, _param, Sorts, Log)
+            Catch ex As Exception
+
+            End Try
+        End Using
+    End Function
+    Public Function GetListEmployeePaging1(ByVal _filter As KPI_EVALUATEDTO,
+                                ByVal _param As ParamDTO,
+                               Optional ByVal Sorts As String = "EMPLOYEE_CODE desc") As List(Of KPI_EVALUATEDTO)
+        Using rep As New PerformanceBusinessClient
+            Try
+                Return rep.GetListEmployeePaging1(_filter, 0, Integer.MaxValue, 0, _param, Sorts, Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function GetLstPeriod1(ByVal year As Decimal) As DataTable
+        Using rep As New PerformanceBusinessClient
+            Try
+                Return rep.GetLstPeriod1(year)
+            Catch ex As Exception
+
+            End Try
+        End Using
+
+    End Function
+#End Region
 #Region "danh gia kpis"
     Public Function CheckEmployee_Exits(ByVal empCode As String) As Integer
         Using rep As New PerformanceBusinessClient

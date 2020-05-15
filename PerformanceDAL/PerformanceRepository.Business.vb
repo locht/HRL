@@ -867,6 +867,163 @@ Partial Class PerformanceRepository
             Throw ex
         End Try
     End Function
+#Region "xem ket qua tong hop"
+    Public Function GetListEmployeePaging1(ByVal _filter As KPI_EVALUATEDTO,
+                                          ByVal PageIndex As Integer,
+                                          ByVal PageSize As Integer,
+                                          ByRef Total As Integer, ByVal _param As ParamDTO,
+                                          Optional ByVal Sorts As String = "EMPLOYEE_CODE desc",
+                                          Optional ByVal log As UserLog = Nothing) As List(Of KPI_EVALUATEDTO)
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username,
+                                           .P_ORGID = _param.ORG_ID,
+                                           .P_ISDISSOLVE = _param.IS_DISSOLVE})
+            End Using
+            Dim fileDirectory = ""
+            Dim str As String = "Kiêm nhiệm"
+            fileDirectory = AppDomain.CurrentDomain.BaseDirectory & "\EmployeeImage"
+            Dim wstt = 257
+
+            Dim query = From mbo In Context.PE_KPI_EVALUATE
+                        From p In Context.HU_EMPLOYEE.Where(Function(f) f.ID = mbo.EMPLOYEE_ID)
+                        From abc In Context.PE_EVALUATE_PERIOD.Where(Function(f) f.EMPLOYEE_ID = p.ID)
+                        From period In Context.PE_PERIOD.Where(Function(f) f.ID = mbo.KPI_ID).DefaultIfEmpty
+                        From sal_level In Context.PA_SALARY_LEVEL.Where(Function(f) f.ID = mbo.SALARYLEVEL_ID).DefaultIfEmpty
+                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = mbo.CLASSFICATION).DefaultIfEmpty
+                        From org In Context.HU_ORGANIZATION.Where(Function(f) mbo.ORG_ID = f.ID).DefaultIfEmpty
+                        From title In Context.HU_TITLE.Where(Function(f) mbo.TITLE_ID = f.ID).DefaultIfEmpty
+                        From k In Context.SE_CHOSEN_ORG.Where(Function(f) mbo.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
+                        Order By p.EMPLOYEE_CODE()
+
+            Dim lst = query.Select(Function(p) New KPI_EVALUATEDTO With {
+                             .EMPLOYEE_CODE = p.p.EMPLOYEE_CODE,
+                             .ID = p.p.ID,
+                             .FULLNAME = p.p.FULLNAME_VN,
+                             .ORG_NAME = p.org.NAME_VN,
+                             .TITLE_NAME = p.title.NAME_VN,
+                             .TER_EFFECT_DATE = p.p.TER_EFFECT_DATE,
+                             .WORK_STATUS = p.p.WORK_STATUS,
+                             .SALARY_LEVEL_ID = p.mbo.SALARYLEVEL_ID,
+                             .SALARY_LEVEL = p.sal_level.NAME,
+                             .KPI_EVALUATE = p.mbo.KPI_ID,
+                             .FINANCE_TT = p.mbo.FINANCE_TT,
+                             .FINANCE_TTX = p.mbo.FINANCE_TTX,
+                             .JOIN_DATE = p.mbo.JOIN_DATE,
+                             .END_DATE = p.mbo.END_DATE,
+                             .CUSTOMER_TT = p.mbo.CUSTOMER_TT,
+                             .CUSTOMER_TTX = p.mbo.CUSTOMER_TTX,
+                             .PROCESS_TT = p.mbo.PROCESS_TT,
+                             .PROCESS_TTX = p.mbo.PROCESS_TTX,
+                             .LEARN_TT = p.mbo.LEARN_TT,
+                             .LEARN_TTX = p.mbo.LEARN_TTX,
+                             .SUM_TT = p.mbo.SUM_TT,
+                             .SUM_TTX = p.mbo.SUM_TTX,
+                             .SUM_RATE_KPI = p.mbo.SUM_RATE_KPI,
+                             .CLASSFICATION_ID = p.mbo.CLASSFICATION,
+                             .CLASSFICATION = p.ot.NAME_VN,
+                             .COMMENTS = p.mbo.COMMENTS,
+                             .REMARK = p.mbo.REMARK
+                         })
+
+            Dim dateNow = Date.Now.Date
+            Dim terID = 257
+            If Not _filter.IS_TER Then
+                lst = lst.Where(Function(p) Not p.WORK_STATUS.HasValue Or _
+                                    (p.WORK_STATUS.HasValue And _
+                                     ((p.WORK_STATUS <> terID) Or (p.WORK_STATUS = terID And p.TER_EFFECT_DATE > dateNow))))
+
+            End If
+            If _filter.EMPLOYEE_CODE <> "" Then
+                lst = lst.Where(Function(p) p.EMPLOYEE_CODE.ToUpper().IndexOf(_filter.EMPLOYEE_CODE.ToUpper) >= 0)
+            End If
+            If _filter.KPI_EVALUATE IsNot Nothing Then
+                lst = lst.Where(Function(p) p.KPI_EVALUATE = _filter.KPI_EVALUATE)
+            End If
+            If _filter.FULLNAME <> "" Then
+                lst = lst.Where(Function(p) p.FULLNAME.ToUpper().IndexOf(_filter.FULLNAME.ToUpper) >= 0)
+            End If
+
+            If _filter.TITLE_NAME <> "" Then
+                lst = lst.Where(Function(p) p.TITLE_NAME.ToUpper().IndexOf(_filter.TITLE_NAME.ToUpper) >= 0)
+            End If
+
+            If _filter.ORG_NAME <> "" Then
+                lst = lst.Where(Function(p) p.ORG_NAME.ToUpper().IndexOf(_filter.ORG_NAME.ToUpper) >= 0)
+            End If
+            If _filter.FINANCE_TT IsNot Nothing Then
+                lst = lst.Where(Function(p) p.FINANCE_TT = _filter.FINANCE_TT)
+            End If
+
+            If _filter.FINANCE_TTX IsNot Nothing Then
+                lst = lst.Where(Function(p) p.FINANCE_TTX = _filter.FINANCE_TTX)
+            End If
+            If _filter.CUSTOMER_TT IsNot Nothing Then
+                lst = lst.Where(Function(p) p.CUSTOMER_TT = _filter.CUSTOMER_TT)
+            End If
+            If _filter.CUSTOMER_TTX IsNot Nothing Then
+                lst = lst.Where(Function(p) p.CUSTOMER_TTX = _filter.CUSTOMER_TTX)
+            End If
+            If _filter.PROCESS_TT IsNot Nothing Then
+                lst = lst.Where(Function(p) p.PROCESS_TT = _filter.PROCESS_TT)
+            End If
+            If _filter.PROCESS_TTX IsNot Nothing Then
+                lst = lst.Where(Function(p) p.PROCESS_TTX = _filter.PROCESS_TTX)
+            End If
+            If _filter.LEARN_TT IsNot Nothing Then
+                lst = lst.Where(Function(p) p.LEARN_TT = _filter.LEARN_TT)
+            End If
+            If _filter.LEARN_TTX IsNot Nothing Then
+                lst = lst.Where(Function(p) p.LEARN_TTX = _filter.LEARN_TTX)
+            End If
+            If _filter.SUM_TT IsNot Nothing Then
+                lst = lst.Where(Function(p) p.SUM_TT = _filter.SUM_TT)
+            End If
+            If _filter.SUM_TTX IsNot Nothing Then
+                lst = lst.Where(Function(p) p.SUM_TTX = _filter.SUM_TTX)
+            End If
+            If _filter.SUM_RATE_KPI IsNot Nothing Then
+                lst = lst.Where(Function(p) p.SUM_RATE_KPI = _filter.SUM_RATE_KPI)
+            End If
+            If _filter.COMMENTS IsNot Nothing Then
+                lst = lst.Where(Function(p) p.COMMENTS.ToUpper.Contains(_filter.COMMENTS.ToUpper))
+            End If
+            If _filter.CLASSFICATION IsNot Nothing Then
+                lst = lst.Where(Function(p) p.CLASSFICATION.ToUpper.Contains(_filter.CLASSFICATION.ToUpper))
+            End If
+            If _filter.REMARK IsNot Nothing Then
+                lst = lst.Where(Function(p) p.REMARK.ToUpper.Contains(_filter.REMARK.ToUpper))
+            End If
+
+
+            lst = lst.OrderBy(Sorts)
+            Total = lst.Count
+            lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
+
+            Dim lstEmp = lst.ToList
+
+
+            Return lstEmp
+
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+    Public Function GetLstPeriod1(ByVal year As Decimal) As DataTable
+        Dim dt As New DataTable
+        Try
+            dt = (From p In Context.PE_PERIOD
+                  Where p.ACTFLG = "A"
+                  Where p.YEAR = year Select p.ID, p.NAME).ToList.ToTable()
+
+            Return dt
+        Catch ex As Exception
+
+        End Try
+    End Function
+#End Region
 #Region "danh gia kpis"
     Public Function CheckEmployee_Exits(ByVal empCode As String) As Integer
         Dim objEmp As HU_EMPLOYEE

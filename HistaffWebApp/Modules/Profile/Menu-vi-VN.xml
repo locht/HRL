@@ -26,6 +26,7 @@
             <Item Value="ctrlHU_ApproveFamily_Edit" Text="Phê duyệt thông tin nhân thân" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_ApproveFamily_Edit&amp;group=Business" CheckPermission="true"/>
             <Item Value="ctrlHU_ApproveEmployee_Edit" Text="Phê duyệt hồ sơ nhân viên" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_ApproveEmployee_Edit&amp;group=Business" CheckPermission="true"/>
             <Item Value="ctrlHU_ApproveCertificateEmployee" Text="Phê duyệt bằng cấp/chứng chỉ" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_ApproveCertificateEmployee&amp;group=Business" CheckPermission="true"/>
+            <Item Value="ctrlHU_ApproveTrainingOutCompany_Edit"  Text="Phê duyệt quá trình đào tạo ngoài công ty" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_ApproveTrainingOutCompany_Edit&amp;group=Business" CheckPermission="true" CausesValidation="False" />
           </Group>
         </Item>
       </Group>

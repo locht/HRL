@@ -243,6 +243,12 @@ Public Class ctrlInsArisingManual
                     Dim str As String = "getRadWindow().close('1');"
                     ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
                 Case CommonMessage.TOOLBARITEM_SAVE
+
+                    If rep.CHECK_INS_LOCK1(ddlINS_ORG_ID.SelectedValue, txtDECLARE_DATE.SelectedDate) > 0 Then
+                        ShowMessage(Translate("Tháng khai báo cơ quan BH đã khóa, Vui lòng kiểm tra lại."), NotifyType.Warning)
+                        Exit Sub
+                    End If
+
                     Call SaveData()
             End Select
         Catch ex As Exception
