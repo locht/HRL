@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 5/15/2020 3:39:03 PM
+-- Date Created: 5/15/2020 3:49:20 PM
 -- Generated from EDMX file: D:\acv_19\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
@@ -224,6 +224,8 @@
 -- DROP TABLE "AttendanceModelStoreContainer"."SE_USER_ORG_ACCESS1Set";
 
 -- DROP TABLE "AttendanceModelStoreContainer"."AT_SYMBOLS";
+
+-- DROP TABLE "AttendanceModelStoreContainer"."AT_ORG_SHIFTSet";
 
 -- DROP TABLE "AttendanceModelStoreContainer"."SE_USER_REPORT";
 
@@ -2532,8 +2534,8 @@ CREATE TABLE "dbo"."AT_SYMBOLS" (
    "IS_LEAVE_HOLIDAY" NUMBER(5,0) NULL
 );
 
--- Creating table 'AT_ORG_SHIFTSet'
-CREATE TABLE "dbo"."AT_ORG_SHIFTSet" (
+-- Creating table 'AT_ORG_SHIFT'
+CREATE TABLE "dbo"."AT_ORG_SHIFT" (
    "ID" NUMBER(38,0) NOT NULL,
    "ORG_ID" NUMBER(38,0) NULL,
    "SHIFT_CODE" NCLOB NULL,
@@ -3308,9 +3310,9 @@ ADD CONSTRAINT "PK_AT_SYMBOLS"
    VALIDATE;
 
 
--- Creating primary key on "ID"in table 'AT_ORG_SHIFTSet'
-ALTER TABLE "dbo"."AT_ORG_SHIFTSet"
-ADD CONSTRAINT "PK_AT_ORG_SHIFTSet"
+-- Creating primary key on "ID"in table 'AT_ORG_SHIFT'
+ALTER TABLE "dbo"."AT_ORG_SHIFT"
+ADD CONSTRAINT "PK_AT_ORG_SHIFT"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;

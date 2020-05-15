@@ -100,7 +100,7 @@
             <EntitySet Name="AT_SYMBOL_FUNC" EntityType="AttendanceModel.Store.AT_SYMBOL_FUNC" store:Type="Tables"  />
             <EntitySet Name="SE_USER_ORG_ACCESS1Set" EntityType="AttendanceModel.Store.SE_USER_ORG_ACCESS1Set" store:Type="Tables"  />
             <EntitySet Name="AT_SYMBOLS" EntityType="AttendanceModel.Store.AT_SYMBOLS" store:Type="Tables"  />
-            <EntitySet Name="AT_ORG_SHIFTSet" EntityType="AttendanceModel.Store.AT_ORG_SHIFTSet" store:Type="Tables"  />
+            <EntitySet Name="AT_ORG_SHIFT" EntityType="AttendanceModel.Store.AT_ORG_SHIFT" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="AttendanceModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_OOLT_OOL" Association="AttendanceModel.Store.FK_OOLT_OOL">
                 <End Role="OT_OTHER_LIST_TYPE" EntitySet="OT_OTHER_LIST_TYPE" />
@@ -2550,7 +2550,7 @@
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="IS_LEAVE_HOLIDAY" Type="number" Nullable="true" Precision="5" />
         </EntityType>
-        <EntityType Name="AT_ORG_SHIFTSet">
+        <EntityType Name="AT_ORG_SHIFT">
             <Key>
                 <PropertyRef Name="ID" />
             </Key>
@@ -2883,7 +2883,7 @@
           <EntitySet Name="AT_SYMBOL_FUNC" EntityType="AttendanceModel.AT_SYMBOL_FUNC" />
           <EntitySet Name="SE_USER_ORG_ACCESS1Set" EntityType="AttendanceModel.SE_USER_ORG_ACCESS1" />
           <EntitySet Name="AT_SYMBOLS" EntityType="AttendanceModel.AT_SYMBOLS" />
-          <EntitySet Name="AT_ORG_SHIFTSet" EntityType="AttendanceModel.AT_ORG_SHIFT" />
+          <EntitySet Name="AT_ORG_SHIFT" EntityType="AttendanceModel.AT_ORG_SHIFT" />
           </EntityContainer>
         <EntityType Name="OT_OTHER_LIST">
           <Key>
@@ -7943,9 +7943,9 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
-        <EntitySetMapping Name="AT_ORG_SHIFTSet">
+        <EntitySetMapping Name="AT_ORG_SHIFT">
             <EntityTypeMapping TypeName="AttendanceModel.AT_ORG_SHIFT">
-                <MappingFragment StoreEntitySet="AT_ORG_SHIFTSet">
+                <MappingFragment StoreEntitySet="AT_ORG_SHIFT">
                     <ScalarProperty Name="ID" ColumnName="ID" />
                     <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
                     <ScalarProperty Name="SHIFT_CODE" ColumnName="SHIFT_CODE" />

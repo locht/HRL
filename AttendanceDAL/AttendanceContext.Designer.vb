@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("37c6a1e7-425f-4eea-92ed-714c8cbcca79")>
+<Assembly: EdmSchemaAttribute("9d766bf7-d868-4ad4-85dd-a6f9a0cf855f")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -1401,16 +1401,16 @@ Public Partial Class AttendanceContext
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    Public ReadOnly Property AT_ORG_SHIFTSet() As ObjectSet(Of AT_ORG_SHIFT)
+    Public ReadOnly Property AT_ORG_SHIFT() As ObjectSet(Of AT_ORG_SHIFT)
         Get
-            If (_AT_ORG_SHIFTSet Is Nothing) Then
-                _AT_ORG_SHIFTSet = MyBase.CreateObjectSet(Of AT_ORG_SHIFT)("AT_ORG_SHIFTSet")
+            If (_AT_ORG_SHIFT Is Nothing) Then
+                _AT_ORG_SHIFT = MyBase.CreateObjectSet(Of AT_ORG_SHIFT)("AT_ORG_SHIFT")
             End If
-            Return _AT_ORG_SHIFTSet
+            Return _AT_ORG_SHIFT
         End Get
     End Property
 
-    Private _AT_ORG_SHIFTSet As ObjectSet(Of AT_ORG_SHIFT)
+    Private _AT_ORG_SHIFT As ObjectSet(Of AT_ORG_SHIFT)
 
     #End Region
 
@@ -2075,10 +2075,10 @@ Public Partial Class AttendanceContext
     End Sub
 
     ''' <summary>
-    ''' Deprecated Method for adding a new object to the AT_ORG_SHIFTSet EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' Deprecated Method for adding a new object to the AT_ORG_SHIFT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
     ''' </summary>
-    Public Sub AddToAT_ORG_SHIFTSet(ByVal aT_ORG_SHIFT As AT_ORG_SHIFT)
-        MyBase.AddObject("AT_ORG_SHIFTSet", aT_ORG_SHIFT)
+    Public Sub AddToAT_ORG_SHIFT(ByVal aT_ORG_SHIFT As AT_ORG_SHIFT)
+        MyBase.AddObject("AT_ORG_SHIFT", aT_ORG_SHIFT)
     End Sub
 
     #End Region
