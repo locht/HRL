@@ -48,7 +48,7 @@
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
                 <tlk:RadGrid PageSize="50" ID="rgEmployeeList" runat="server" AllowPaging="True"
-                    Height="100%" AllowSorting="True" AllowMultiRowSelection="true">
+                    AllowFilteringByColumn="true" Height="100%" AllowSorting="True" AllowMultiRowSelection="true">
                     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderText="CheckBox" HeaderStyle-HorizontalAlign="center"
@@ -82,7 +82,6 @@
                     <ClientSettings EnableRowHoverStyle="true">
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnGridCreated="GridCreated" />
-                        <ClientEvents OnCommand="ValidateFilter" />
                         <Scrolling AllowScroll="true" UseStaticHeaders="true" />
                     </ClientSettings>
                 </tlk:RadGrid>
@@ -101,18 +100,7 @@
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
         }
-        function ValidateFilter(sender, eventArgs) {
-            var params = eventArgs.get_commandArgument() + '';
-            if (params.indexOf("|") > 0) {
-                var s = eventArgs.get_commandArgument().split("|");
-                if (s.length > 1) {
-                    var val = s[1];
-                    if (validateHTMLText(val) || validateSQLText(val)) {
-                        eventArgs.set_cancel(true);
-                    }
-                }
-            }
-        }
+        
         function GridCreated(sender, eventArgs) {
             //            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlPortal_Result_Evaluate_RadSplitter3');
         }
