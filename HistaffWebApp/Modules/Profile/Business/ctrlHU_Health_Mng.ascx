@@ -66,10 +66,12 @@
                                 ReadOnly="true" UniqueName="ORG_NAME" HeaderStyle-Width="200px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
                                 ReadOnly="true" UniqueName="TITLE_NAME" HeaderStyle-Width="200px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Năm %>" DataField="YEAR_KHAMBENH"
-                                ReadOnly="true" UniqueName="YEAR_KHAMBENH" HeaderStyle-Width="100px" DataFormatString="{0:yyyy}" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đợt khám %>" DataField="DATE_KHAMBENH"
-                                ReadOnly="true" UniqueName="DATE_KHAMBENH" HeaderStyle-Width="100px" DataFormatString="{0:dd/MM/yyyy}"/>
+                               <tlk:GridBoundColumn HeaderText="<%$ Translate: Năm %>" DataField="YEAR_KHAMBENH" ItemStyle-HorizontalAlign="Center"
+                                ReadOnly="true" UniqueName="YEAR_KHAMBENH" HeaderStyle-Width="100px" />
+                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Đợt khám %>" DataField="DATE_KHAMBENH"  HeaderStyle-Width="100px"
+                                ItemStyle-HorizontalAlign="Center" SortExpression="DATE_KHAMBENH" UniqueName="DATE_KHAMBENH" ReadOnly="true"
+                                DataFormatString="{0:dd/MM/yyyy}">
+                            </tlk:GridDateTimeColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Cân nặng %>" DataField="CAN_NANG"
                                 ReadOnly="true" UniqueName="CAN_NANG" HeaderStyle-Width="100px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Huyết áp %>" DataField="HUYET_AP"
@@ -160,8 +162,10 @@
                                 ReadOnly="true" UniqueName="BENH_NN2" HeaderStyle-Width="100px" />
                                  <tlk:GridBoundColumn HeaderText="<%$ Translate: Bệnh TN, NN cần theo dõi %>" DataField="BENH_TN_NN"
                                 ReadOnly="true" UniqueName="BENH_TN_NN" HeaderStyle-Width="100px" />
-                                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày điều trị %>" DataField="NGAY_DIEU_TRI"
-                                ReadOnly="true" UniqueName="NGAY_DIEU_TRI" HeaderStyle-Width="100px" DataFormatString="{0:dd/MM/yyyy}"  />
+                                <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày điều trị %>" DataField="NGAY_DIEU_TRI"  HeaderStyle-Width="100px"
+                                ItemStyle-HorizontalAlign="Center" SortExpression="NGAY_DIEU_TRI" UniqueName="NGAY_DIEU_TRI" ReadOnly="true"
+                                DataFormatString="{0:dd/MM/yyyy}">
+                                </tlk:GridDateTimeColumn>
                                  <tlk:GridBoundColumn HeaderText="<%$ Translate: Phương pháp điều trị %>" DataField="PP_DIEU_TRI"
                                 ReadOnly="true" UniqueName="PP_DIEU_TRI" HeaderStyle-Width="100px" />
                                  <tlk:GridBoundColumn HeaderText="<%$ Translate: Kết quả điều trị %>" DataField="KQ_DIEU_TRI"

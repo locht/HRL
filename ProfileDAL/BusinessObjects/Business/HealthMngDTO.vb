@@ -13,7 +13,7 @@
     Public Property MODIFIED_DATE As Date
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
-    Public Property YEAR_KHAMBENH As Date?
+    Public Property YEAR_KHAMBENH As String
     Public Property DATE_KHAMBENH As Date?
     Public Property CAN_NANG As String
     Public Property HUYET_AP As String
