@@ -800,6 +800,8 @@ Partial Class ProfileRepository
                 objWorking.OTHERSALARY4 = objWorkingData.OTHERSALARY4
                 objWorking.OTHERSALARY5 = objWorkingData.OTHERSALARY5
                 objWorking.OBJECT_LABOR = objWorkingData.OBJECT_LABOR
+                objWorking.JOB_POSITION = objWorkingData.JOB_POSITION
+                objWorking.JOB_DESCRIPTION = objWorkingData.JOB_DESCRIPTION
 
                 If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID Then
                     objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
