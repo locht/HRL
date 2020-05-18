@@ -5462,7 +5462,7 @@ Partial Class RecruitmentRepository
                 '--------------candide_CV--------------
                 Dim objCandidate_Cv As New RC_CANDIDATE_CV
                 objCandidate_Cv.CANDIDATE_ID = fileID
-                objCandidate_Cv.IMAGE = _strEmpCode & objEmpCV.EXTEND_IMAGE
+                objCandidate_Cv.IMAGE = _strEmpCode & "." & objEmpCV.EXTEND_IMAGE
                 objCandidate_Cv.BIRTH_DATE = objEmpCV.BIRTH_DATE
                 objCandidate_Cv.BIRTH_PROVINCE = objEmpCV.BIRTH_PROVINCE
                 objCandidate_Cv.GENDER = objEmpCV.GENDER
