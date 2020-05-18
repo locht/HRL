@@ -910,7 +910,8 @@ Partial Class PerformanceRepository
                              .CLASSFICATION = ot.NAME_VN,
                              .COMMENTS = mbo.COMMENTS,
                              .REMARK = mbo.REMARK,
-                             .FORM_EVALUATE = period.NAME
+                             .FORM_EVALUATE = period.NAME,
+                             .EMPLOYEE_ID = mbo.EMPLOYEE_ID
                          }
 
 
@@ -938,7 +939,8 @@ Partial Class PerformanceRepository
                              .CLASSFICATION = ot.NAME_VN,
                              .COMMENTS = mbo.COMMENT1,
                              .REMARK = mbo.NOTE,
-                             .FORM_EVALUATE = period.NAME
+                             .FORM_EVALUATE = period.NAME,
+                             .EMPLOYEE_ID = mbo.EMPLOYEE_ID
                          }
 
             Dim lst = query.Union(query1)
@@ -957,6 +959,9 @@ Partial Class PerformanceRepository
             End If
             If _filter.KPI_EVALUATE IsNot Nothing Then
                 lst = lst.Where(Function(p) p.KPI_EVALUATE = _filter.KPI_EVALUATE)
+            End If
+            If _filter.EMPLOYEE_ID IsNot Nothing Then
+                lst = lst.Where(Function(p) p.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
             End If
             If _filter.FULLNAME <> "" Then
                 lst = lst.Where(Function(p) p.FULLNAME.ToUpper().IndexOf(_filter.FULLNAME.ToUpper) >= 0)

@@ -1,5 +1,6 @@
 ﻿Public Class KPI_EVALUATEDTO
     Public Property ID As Decimal
+    Public Property EMPLOYEE_ID As Decimal?
     Public Property EMPLOYEE_CODE As String
     Public Property FULLNAME As String
     Public Property ORG_NAME As String

@@ -3,7 +3,7 @@
   <Item Text="Thông tin cá nhân" Expanded="True" Value="Profile">
     <Item Value="Profile;ctrlPortalEmpProfile;NoPer;NoEdit" Text="Hồ sơ nhân sự" ImageUrl="~/Static/Images/RibbonBar/user.png" />
     <Item Value="Profile;ctrlPortalFamily_Edit;NoPer;NoEdit" Text="Quan hệ nhân thân" ImageUrl="~/Static/Images/RibbonBar/family.png" />
-	<Item Value="Profile;ctrlInfoCertificate;NoPer;NoEdit" Text="Quản lý chứng chỉ" ImageUrl="~/Static/Images/RibbonBar/family.png" />
+    <Item Value="Profile;ctrlInfoCertificate;NoPer;NoEdit" Text="Quản lý chứng chỉ" ImageUrl="~/Static/Images/RibbonBar/family.png" />
     <Item Value="Profile;ctrlPortalWorking;NoPer;NoEdit" Text="Quá trình công tác hiện tại" ImageUrl="~/Static/Images/RibbonBar/working.png" />
     <Item Value="Profile;ctrlPortalWorkingBefore_Edit;NoPer;NoEdit" Text="Quá trình công tác trước đây" ImageUrl="~/Static/Images/RibbonBar/working_before.png" />
     <Item Value="Profile;ctrlPortalContract;NoPer;NoEdit" Text="Quá trình hợp đồng lao động" ImageUrl="~/Static/Images/RibbonBar/contract.png" />
@@ -19,6 +19,9 @@
   <Item Text="Đăng ký nghỉ &amp; Phê duyệt nghỉ" Expanded="True" Value="Attendance">
     <Item Value="Attendance;ctrlLeaveRegistration;NoPer;NoEdit" Text="Đăng ký nghỉ" ImageUrl="~/Static/Images/RibbonBar/leave.png"/>
     <Item Value="Attendance;ctrlLeaveRegistrationByManager;NoPer;NoEdit" Text="Phê duyệt nghỉ" ImageUrl="~/Static/Images/RibbonBar/approve.png" />
+  </Item>
+  <Item Text="Đánh giá" Expanded="True" Value="Performance">
+    <Item Value="Performance;ctrlPortal_Result_Evaluate;NoPer;NoEdit" Text="Xem kết quả đánh giá" />
   </Item>
   <Item Text="Phiếu lương" Expanded="True" Value="Payroll;ctrlPA_PortalSalary;NoPer;NoEdit" />
   <Item Text="Quản trị hệ thống" Expanded="True" Value="Common">

@@ -1,6 +1,12 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlLanguageManagementPortal.ascx.vb"
     Inherits="Common.ctrlLanguageManagementPortal" %>
 <link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    #RAD_SPLITTER_PANE_CONTENT_ctl00_MainContent_ctrlLanguageManagementPortal_RadPane1
+    {
+        height:300px !important;
+    }
+</style>
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
     <tlk:RadPane ID="RadPane2" runat="server" Height="35px" Scrolling="None">
         <tlk:RadToolBar ID="tbarLanguage" runat="server">

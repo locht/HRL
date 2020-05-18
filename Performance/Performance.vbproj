@@ -217,6 +217,7 @@
     <Content Include="Modules\Performance\List\ctrlPE_Criteria.ascx" />
     <Content Include="Modules\Portal\ctrlPE_DirectViewRating.ascx" />
     <Content Include="Modules\Performance\Business\ctrlPE_CBNSViewRating.ascx" />
+    <Content Include="Modules\Portal\ctrlPortal_Result_Evaluate.ascx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -408,6 +409,13 @@
     </Compile>
     <Compile Include="Modules\Performance\Business\ctrlPE_CBNSViewRating.ascx.vb">
       <DependentUpon>ctrlPE_CBNSViewRating.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlPortal_Result_Evaluate.ascx.designer.vb">
+      <DependentUpon>ctrlPortal_Result_Evaluate.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlPortal_Result_Evaluate.ascx.vb">
+      <DependentUpon>ctrlPortal_Result_Evaluate.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
