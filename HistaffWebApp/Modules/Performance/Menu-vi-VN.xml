@@ -5,6 +5,7 @@
       <Group>
         <Item  Value="ctrlPE_KPI_Evaluate"  Text="Import đánh giá KPIs" PostBack="True" NavigateUrl="Default.aspx?mid=Performance&amp;fid=ctrlPE_KPI_Evaluate&amp;group=Business" CheckPermission="true"/>
         <Item  Value="ctrlPE_Result_Evaluate"  Text="Xem kết quả đánh giá tổng hợp" PostBack="True" NavigateUrl="Default.aspx?mid=Performance&amp;fid=ctrlPE_Result_Evaluate&amp;group=Business" CheckPermission="true"/>
+        <Item  Value="ctrlPE_KPI_EvaluateABC"  Text="Import đánh giá ABC" PostBack="True" NavigateUrl="Default.aspx?mid=Performance&amp;fid=ctrlPE_KPI_EvaluateABC&amp;group=Business" CheckPermission="true"/>
       </Group>
     </Item>
     <Item Text="Báo cáo" PostBack="False">

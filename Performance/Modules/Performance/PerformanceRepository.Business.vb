@@ -506,4 +506,42 @@ Partial Class PerformanceRepository
         End Using
     End Function
 #End Region
+
+    Public Function GetPeEvaluatePeriod(ByVal _filter As PE_EVALUATE_PERIODDTO,
+                                        ByVal _param As ParamDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of PE_EVALUATE_PERIODDTO)
+        Dim lstPeriod As List(Of PE_EVALUATE_PERIODDTO)
+
+        Using rep As New PerformanceBusinessClient
+            Try
+                lstPeriod = rep.GetPeEvaluatePeriod(_filter, _param, PageIndex, PageSize, Total, Sorts, Me.Log)
+                Return lstPeriod
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function GetPeEvaluatePeriod(ByVal _filter As PE_EVALUATE_PERIODDTO,
+                                        ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of PE_EVALUATE_PERIODDTO)
+        Dim lstPeriod As List(Of PE_EVALUATE_PERIODDTO)
+
+        Using rep As New PerformanceBusinessClient
+            Try
+                lstPeriod = rep.GetPeEvaluatePeriod(_filter, _param, Integer.MaxValue, 0, 0, Sorts, Me.Log)
+                Return lstPeriod
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
 End Class

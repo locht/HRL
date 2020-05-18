@@ -360,6 +360,13 @@
                     </tlk:RadTextBox>
                 </td>
             </tr>
+                        <tr>
+                    <td>
+                        <tlk:RadButton EnableEmbeddedSkins="false" ID="btnE" runat="server" SkinID="ButtonView"
+                CausesValidation="false">
+            </tlk:RadButton>
+                    </td>
+                </tr>
         </table>
         </fieldset> 
         </tlk:RadPageView>
@@ -413,6 +420,13 @@
         </tlk:RadGrid>
     </tlk:RadPane>
 </tlk:RadSplitter>
+<tlk:RadWindowManager ID="RadWindowManager1" runat="server">
+    <Windows>
+        <tlk:RadWindow runat="server" ID="rwPopup" VisibleStatusbar="false" Width="900" Height="600px"
+            EnableShadow="true" Behaviors="Close, Maximize, Move" Modal="true" ShowContentDuringLoad="false">
+        </tlk:RadWindow>
+    </Windows>
+</tlk:RadWindowManager>
 <asp:PlaceHolder ID="phFindEmployee" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="phFindOrg" runat="server"></asp:PlaceHolder>
 <Common:ctrlUpload ID="ctrlUpload1" runat="server" />

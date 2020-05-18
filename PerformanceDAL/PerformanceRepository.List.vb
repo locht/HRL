@@ -609,4 +609,173 @@ Partial Class PerformanceRepository
 
 #End Region
 
+#Region "Import đánh giá ABC"
+    Public Function GET_LIST_YEAR() As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dsdata As DataTable = cls.ExecuteStore("PKG_PERFORMANCE_LIST.GET_LIST_YEAR",
+                                                         New With {.P_CUR = cls.OUT_CURSOR})
+                Return dsdata
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "PERFORMANCE")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GET_PERIOD_BY_YEAR(ByVal P_YEAR As Integer) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dsdata As DataTable = cls.ExecuteStore("PKG_PERFORMANCE_LIST.GET_PERIOD_BY_YEAR",
+                                                         New With {.P_YEAR = P_YEAR,
+                                                                    .P_CUR = cls.OUT_CURSOR})
+                Return dsdata
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "PERFORMANCE")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GET_DATE_BY_PERIOD(ByVal P_PERIOD_ID As Integer) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dsdata As DataTable = cls.ExecuteStore("PKG_PERFORMANCE_LIST.GET_DATE_BY_PERIOD",
+                                                         New With {.P_PERIOD_ID = P_PERIOD_ID,
+                                                                    .P_CUR = cls.OUT_CURSOR})
+                Return dsdata
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "PERFORMANCE")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetPeEvaluatePeriod(ByVal _filter As PE_EVALUATE_PERIODDTO,
+                                         ByVal _param As ParamDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                        Optional ByVal log As UserLog = Nothing) As List(Of PE_EVALUATE_PERIODDTO)
+
+        Try
+
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username.ToUpper,
+                                           .P_ORGID = _param.ORG_ID,
+                                           .P_ISDISSOLVE = _param.IS_DISSOLVE})
+            End Using
+
+            Dim query = (From p In Context.PE_EVALUATE_PERIOD
+                         From e In Context.HU_EMPLOYEE.Where(Function(s) s.ID = p.EMPLOYEE_ID).DefaultIfEmpty
+                         From pe In Context.PE_PERIOD.Where(Function(s) s.ID = p.PERIOD_ID).DefaultIfEmpty
+                         From o In Context.HU_ORGANIZATION.Where(Function(s) s.ID = p.ORG_ID).DefaultIfEmpty
+                         From t In Context.HU_TITLE.Where(Function(s) s.ID = p.TITLE_ID).DefaultIfEmpty
+                         From lv In Context.PA_SALARY_LEVEL.Where(Function(s) s.ID = p.SAL_LEVEL_ID).DefaultIfEmpty
+                         From c In Context.OT_OTHER_LIST.Where(Function(s) s.ID = p.CLASSIFICATION).DefaultIfEmpty
+                         Where p.PERIOD_ID = _filter.PERIOD_ID
+                        Select New PE_EVALUATE_PERIODDTO With {
+                            .ID = p.ID,
+                            .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                            .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                            .FULLNAME = e.FULLNAME_VN,
+                            .ORG_NAME = o.NAME_VN,
+                            .TITLE_NAME = t.NAME_VN,
+                            .SALARY_LEVEL = lv.NAME,
+                            .JOIN_DATE = e.JOIN_DATE,
+                            .RESPONSIBILITY = p.RESPONSIBILITY,
+                            .COOPERATION = p.COOPERATION,
+                            .CLASSIFICATION_NAME = c.NAME_VN,
+                            .DILIGENCE = p.DILIGENCE,
+                            .TOTAL = p.TOTAL,
+                            .NOTE = p.NOTE,
+                            .COMMENT1 = p.COMMENT1,
+                            .PERIOD_ID = p.PERIOD_ID,
+                            .CREATED_DATE = p.CREATED_DATE
+                           })
+            Dim lst = query
+
+            If _filter.EMPLOYEE_CODE <> "" Then
+                lst = lst.Where(Function(p) p.EMPLOYEE_CODE.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper))
+            End If
+            If _filter.FULLNAME <> "" Then
+                lst = lst.Where(Function(p) p.FULLNAME.ToUpper.Contains(_filter.FULLNAME.ToUpper))
+            End If
+            If _filter.ORG_NAME <> "" Then
+                lst = lst.Where(Function(p) p.ORG_NAME.ToUpper.Contains(_filter.ORG_NAME.ToUpper))
+            End If
+            If _filter.TITLE_NAME IsNot Nothing Then
+                lst = lst.Where(Function(p) p.TITLE_NAME.ToUpper.Contains(_filter.TITLE_NAME.ToUpper) = _filter.TITLE_NAME)
+            End If
+            If _filter.SALARY_LEVEL IsNot Nothing Then
+                lst = lst.Where(Function(p) p.SALARY_LEVEL.ToUpper.Contains(_filter.SALARY_LEVEL.ToUpper) = _filter.SALARY_LEVEL)
+            End If
+            If _filter.JOIN_DATE IsNot Nothing Then
+                lst = lst.Where(Function(p) p.JOIN_DATE = _filter.JOIN_DATE)
+            End If
+            If _filter.RESPONSIBILITY IsNot Nothing Then
+                lst = lst.Where(Function(p) p.RESPONSIBILITY = _filter.RESPONSIBILITY)
+            End If
+            If _filter.COOPERATION IsNot Nothing Then
+                lst = lst.Where(Function(p) p.COOPERATION = _filter.COOPERATION)
+            End If
+            If _filter.CLASSIFICATION_NAME IsNot Nothing Then
+                lst = lst.Where(Function(p) p.CLASSIFICATION_NAME.ToUpper.Contains(_filter.CLASSIFICATION_NAME.ToUpper))
+            End If
+            If _filter.DILIGENCE IsNot Nothing Then
+                lst = lst.Where(Function(p) p.DILIGENCE = _filter.DILIGENCE)
+            End If
+            If _filter.TOTAL IsNot Nothing Then
+                lst = lst.Where(Function(p) p.TOTAL = _filter.TOTAL)
+            End If
+            If _filter.NOTE IsNot Nothing Then
+                lst = lst.Where(Function(p) p.NOTE.ToUpper.Contains(_filter.NOTE.ToUpper))
+            End If
+            If _filter.COMMENT1 IsNot Nothing Then
+                lst = lst.Where(Function(p) p.COMMENT1.ToUpper.Contains(_filter.COMMENT1.ToUpper))
+            End If
+
+            lst = lst.OrderBy(Sorts)
+            Total = lst.Count
+            lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
+
+            Return lst.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPerformance")
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function EXPORT_EVALUATE_ABC(ByVal P_PERIOD_ID As Integer) As DataSet
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dsdata As DataSet = cls.ExecuteStore("PKG_PERFORMANCE_LIST.EXPORT_EVALUATE_ABC",
+                                                         New With {.P_PERIOD_ID = P_PERIOD_ID,
+                                                                    .P_CUR = cls.OUT_CURSOR,
+                                                                    .P_CUR1 = cls.OUT_CURSOR,
+                                                                    .P_CUR2 = cls.OUT_CURSOR}, False)
+                Return dsdata
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "PERFORMANCE")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function INPORT_EVALUATE_ABC(ByVal P_DOCXML As String, ByVal P_PERIOD_ID As Decimal, ByVal P_USER As String) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_PERFORMANCE_LIST.INPORT_EVALUATE_ABC",
+                                 New With {.P_DOCXML = P_DOCXML, .P_PERIOD_ID = P_PERIOD_ID, .P_USER = P_USER})
+            End Using
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+
+    End Function
+#End Region
+
 End Class

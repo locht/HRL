@@ -394,5 +394,28 @@ Namespace PerformanceBusiness.ServiceContracts
         <OperationContract()>
         Function GetExportKPI(ByVal id As Decimal) As DataSet
 #End Region
+
+        <OperationContract()>
+        Function GET_LIST_YEAR() As DataTable
+
+        <OperationContract()>
+        Function GET_PERIOD_BY_YEAR(ByVal P_YEAR As Integer) As DataTable
+
+        <OperationContract()>
+        Function GET_DATE_BY_PERIOD(ByVal P_PERIOD_ID As Integer) As DataTable
+
+        <OperationContract()>
+        Function GetPeEvaluatePeriod(ByVal _filter As PE_EVALUATE_PERIODDTO,
+                                         ByVal _param As ParamDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                        Optional ByVal log As UserLog = Nothing) As List(Of PE_EVALUATE_PERIODDTO)
+
+        <OperationContract()>
+        Function EXPORT_EVALUATE_ABC(ByVal P_PERIOD_ID As Integer) As DataSet
+
+        <OperationContract()>
+        Function INPORT_EVALUATE_ABC(ByVal P_DOCXML As String, ByVal P_PERIOD_ID As Decimal, ByVal P_USER As String) As Boolean
     End Interface
 End Namespace

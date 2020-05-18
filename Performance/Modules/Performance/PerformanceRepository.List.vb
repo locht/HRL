@@ -1,5 +1,6 @@
 ﻿Imports Performance.PerformanceBusiness
 Imports Framework.UI
+Imports Common.CommonBusiness
 
 Partial Class PerformanceRepository
 
@@ -410,6 +411,85 @@ Partial Class PerformanceRepository
         Using rep As New PerformanceBusinessClient
             Try
                 Return rep.DeletePeriod(lstPeriod)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+#End Region
+
+#Region "Import đánh giá ABC"
+    Public Function GET_LIST_YEAR() As DataTable
+        Dim dtdata As DataTable
+
+        Using rep As New PerformanceBusinessClient
+            Try
+                dtdata = rep.GET_LIST_YEAR()
+                Return dtdata
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function GET_PERIOD_BY_YEAR(ByVal P_YEAR As Integer) As DataTable
+        Dim dtdata As DataTable
+
+        Using rep As New PerformanceBusinessClient
+            Try
+                dtdata = rep.GET_PERIOD_BY_YEAR(P_YEAR)
+                Return dtdata
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function GET_DATE_BY_PERIOD(ByVal P_PERIOD_ID As Integer) As DataTable
+        Dim dtdata As DataTable
+
+        Using rep As New PerformanceBusinessClient
+            Try
+                dtdata = rep.GET_DATE_BY_PERIOD(P_PERIOD_ID)
+                Return dtdata
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function EXPORT_EVALUATE_ABC(ByVal P_PERIOD_ID As Integer) As DataSet
+        Dim dtdata As DataSet
+
+        Using rep As New PerformanceBusinessClient
+            Try
+                dtdata = rep.EXPORT_EVALUATE_ABC(P_PERIOD_ID)
+                Return dtdata
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function INPORT_EVALUATE_ABC(ByVal P_DOCXML As String, ByVal P_PERIOD_ID As Decimal, ByVal P_USER As String) As Boolean
+        Using rep As New PerformanceBusinessClient
+            Try
+                Return rep.INPORT_EVALUATE_ABC(P_DOCXML, P_PERIOD_ID, Me.Log.Username)
             Catch ex As Exception
                 rep.Abort()
                 Throw ex

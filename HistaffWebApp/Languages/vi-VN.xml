@@ -45390,4 +45390,12 @@ Xin cám ơn!
       <string>Xem kết quả đánh giá tổng hợp</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLPE_KPI_EVALUATEABC</string>
+    </Key>
+    <Value>
+      <string>Import đánh giá ABC</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

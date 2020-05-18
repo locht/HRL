@@ -312,6 +312,78 @@ Namespace PerformanceBusiness.ServiceImplementations
 
 
 #End Region
+#Region "Import đánh giá ABC"
+        Public Function GET_LIST_YEAR() As DataTable Implements ServiceContracts.IPerformanceBusiness.GET_LIST_YEAR
+            Try
+                Using rep As New PerformanceRepository
+                    Return rep.GET_LIST_YEAR()
+                End Using
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Function
+
+        Public Function GET_PERIOD_BY_YEAR(ByVal P_YEAR As Integer) As DataTable Implements ServiceContracts.IPerformanceBusiness.GET_PERIOD_BY_YEAR
+            Try
+                Using rep As New PerformanceRepository
+                    Return rep.GET_PERIOD_BY_YEAR(P_YEAR)
+                End Using
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Function
+
+        Public Function GET_DATE_BY_PERIOD(ByVal P_PERIOD_ID As Integer) As DataTable Implements ServiceContracts.IPerformanceBusiness.GET_DATE_BY_PERIOD
+            Try
+                Using rep As New PerformanceRepository
+                    Return rep.GET_DATE_BY_PERIOD(P_PERIOD_ID)
+                End Using
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Function
+
+        Public Function GetPeEvaluatePeriod(ByVal _filter As PE_EVALUATE_PERIODDTO,
+                                         ByVal _param As ParamDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                        Optional ByVal log As UserLog = Nothing) As List(Of PE_EVALUATE_PERIODDTO) Implements ServiceContracts.IPerformanceBusiness.GetPeEvaluatePeriod
+            Try
+                Using rep As New PerformanceRepository
+                    Return rep.GetPeEvaluatePeriod(_filter, _param, PageIndex, PageSize, Total, Sorts, log)
+                End Using
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Function
+
+        Public Function EXPORT_EVALUATE_ABC(ByVal P_PERIOD_ID As Integer) As DataSet Implements ServiceContracts.IPerformanceBusiness.EXPORT_EVALUATE_ABC
+            Try
+                Using rep As New PerformanceRepository
+                    Return rep.EXPORT_EVALUATE_ABC(P_PERIOD_ID)
+                End Using
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Function
+
+        Public Function INPORT_EVALUATE_ABC(ByVal P_DOCXML As String, ByVal P_PERIOD_ID As Decimal, ByVal P_USER As String) As Boolean _
+         Implements ServiceContracts.IPerformanceBusiness.INPORT_EVALUATE_ABC
+            Using rep As New PerformanceRepository
+                Try
+                    Return rep.INPORT_EVALUATE_ABC(P_DOCXML, P_PERIOD_ID, P_USER)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
 
     End Class
 End Namespace
