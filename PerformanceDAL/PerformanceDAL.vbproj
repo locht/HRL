@@ -72,8 +72,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessObjects\Business\AssessmentDTO.vb" />
-    <Compile Include="BusinessObjects\Business\PE_EVALUATE_PERIODDTO.vb" />
     <Compile Include="BusinessObjects\Business\KPI_EVALUATEDTO.vb" />
+    <Compile Include="BusinessObjects\Business\PE_EVALUATE_PERIODDTO.vb" />
     <Compile Include="BusinessObjects\Dashboard\StatisticDTO.vb" />
     <Compile Include="BusinessObjects\Portal\AssessmentDirectDTO.vb" />
     <Compile Include="BusinessObjects\Business\PE_ORGANIZATIONDTO.vb" />

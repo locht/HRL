@@ -194,6 +194,7 @@
     <Content Include="Modules\Common\ctrlUpload.ascx" />
     <Content Include="Modules\Performance\Business\ctrlPE_DirectViewKPIEmp.ascx" />
     <Content Include="Modules\Performance\Business\ctrlPE_KPI_Evaluate.ascx" />
+    <Content Include="Modules\Performance\Business\ctrlPE_KPI_EvaluateABC.ascx" />
     <Content Include="Modules\Performance\Business\ctrlPE_Result_Evaluate.ascx" />
     <Content Include="Modules\Performance\Dashboard\ctrlDashboardSixCell.ascx" />
     <Content Include="Modules\Performance\Dashboard\ctrlPE_ViewRatingSeniority.ascx" />
@@ -241,6 +242,13 @@
     </Compile>
     <Compile Include="Modules\Performance\Business\ctrlPE_KPI_Evaluate.ascx.vb">
       <DependentUpon>ctrlPE_KPI_Evaluate.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Performance\Business\ctrlPE_KPI_EvaluateABC.ascx.designer.vb">
+      <DependentUpon>ctrlPE_KPI_EvaluateABC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Performance\Business\ctrlPE_KPI_EvaluateABC.ascx.vb">
+      <DependentUpon>ctrlPE_KPI_EvaluateABC.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Performance\Business\ctrlPE_Result_Evaluate.ascx.designer.vb">
