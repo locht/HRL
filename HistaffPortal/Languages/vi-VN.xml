@@ -88,14 +88,6 @@
       <string>Submit</string>
     </Value>
   </Item>
-  <!--<Item>
-    <Key>
-      <string>ctrlPortalWorkingBefore_Edit</string>
-    </Key>
-    <Value>
-      <string>Quá trình công tác</string>
-    </Value>
-  </Item>-->
   <Item>
     <Key>
       <string>ALLOW_SPECIAL5</string>
@@ -42928,7 +42920,7 @@ Xin cám ơn!
   </Item>
   <Item>
     <Key>
-      <string>CTRLPORTALWORKINGBEFORE_EDIT</string>      
+      <string>CTRLPORTALWORKINGBEFORE_EDIT</string>
     </Key>
     <Value>
       <string>Quá trình công tác trước đây</string>
@@ -43076,6 +43068,22 @@ Xin cám ơn!
     </Key>
     <Value>
       <string>Quá trình bảo hiểm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLANGUAGEMANAGEMENTPORTAL</string>
+    </Key>
+    <Value>
+      <string>ctrlLanguageManagementPortal</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLPORTAL_RESULT_EVALUATE</string>
+    </Key>
+    <Value>
+      <string>Xem kết quả đánh giá</string>
     </Value>
   </Item>
 </SerializableDictionaryOfStringString>
