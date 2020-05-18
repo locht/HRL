@@ -764,7 +764,7 @@ Public Class ctrlRC_ImportCV
                     End If
                 Case -1
                     For Each i In lstSave
-                        For Each item In lst1
+                        For Each item In lst
                             If item.can.ID = i Then
                                 Dim obj_new As New CandidateImportDTO
                                 obj_new.can = item.can
@@ -825,10 +825,11 @@ Public Class ctrlRC_ImportCV
                     lstData.Add(obj.can)
                 Next
                 checkOut = -2
+                lst = lst1
             End If
             rgData.VirtualItemCount = MaximumRows
             rgData.DataSource = lstData
-            lst = lst1
+
 
         Catch ex As Exception
             Throw ex
