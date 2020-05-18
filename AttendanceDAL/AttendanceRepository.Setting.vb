@@ -190,22 +190,54 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 
-
-    Public Function GetOrgShiftList(ByVal _param As ParamDTO, Optional ByVal log As UserLog = Nothing) As DataTable
+    Public Function GetOrgShiftList(ByVal strId As String, Optional ByVal log As UserLog = Nothing) As DataTable
         Try
 
             Using cls As New DataAccess.QueryData
                 Dim dtData As DataTable = cls.ExecuteStore("PKG_ATTENDANCE_LIST.AT_ORGSHIFT_LIST",
                                            New With {.P_USERNAME = log.Username.ToUpper,
-                                                     .P_ORG_ID = _param.ORG_ID,
-                                                     .P_ISDISSOLVE = _param.IS_DISSOLVE,
+                                                     .P_ORG_ID = strId,
                                                      .P_OUT = cls.OUT_CURSOR})
-
                 Return dtData
+
             End Using
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
             Throw ex
         End Try
     End Function
+
+    Public Function InsertOrgShifT(ByVal list As List(Of AT_ORG_SHIFT_DTO), Optional ByVal log As UserLog = Nothing) As Boolean
+        Try
+
+            For Each item In list
+                Dim objData As New AT_ORG_SHIFT
+                objData.ID = Utilities.GetNextSequence(Context, Context.AT_ORG_SHIFT.EntitySet.Name)
+                objData.ORG_ID = item.ORG_ID
+                objData.SHIFT_CODE = item.SHIFT_CODE
+                Context.AT_ORG_SHIFT.AddObject(objData)
+            Next
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function DeleteAtOrgShift(ByVal lstID As List(Of Decimal)) As Boolean
+        Try
+            Dim lst = (From p In Context.AT_ORG_SHIFT Where lstID.Contains(p.ORG_ID)).ToList
+            For index = 0 To lst.Count - 1
+                Context.AT_ORG_SHIFT.DeleteObject(lst(index))
+            Next
+
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+
 End Class

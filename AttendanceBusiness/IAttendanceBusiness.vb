@@ -1292,7 +1292,13 @@ Namespace AttendanceBusiness.ServiceContracts
                                        ByVal objEdit As AT_ObjectEmpployeeCompensatoryDTO,
                                         ByVal code_func As String) As Boolean
         <OperationContract()>
-        Function GetOrgShiftList(ByVal _param As ParamDTO, Optional ByVal log As UserLog = Nothing) As DataTable
+        Function GetOrgShiftList(ByVal strId As String, Optional ByVal log As UserLog = Nothing) As DataTable
+
+        <OperationContract()>
+        Function InsertOrgShifT(ByVal list As List(Of AT_ORG_SHIFT_DTO), Optional ByVal log As UserLog = Nothing) As Boolean
+
+        <OperationContract()>
+        Function DeleteAtOrgShift(ByVal lstID As List(Of Decimal)) As Boolean
 #End Region
     End Interface
 End Namespace

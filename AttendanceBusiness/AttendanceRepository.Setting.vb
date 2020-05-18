@@ -22,16 +22,38 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
-        Public Function GetOrgShiftList(ByVal _param As ParamDTO, Optional ByVal log As UserLog = Nothing) As DataTable _
+        Public Function GetOrgShiftList(ByVal strId As String, Optional ByVal log As UserLog = Nothing) As DataTable _
         Implements ServiceContracts.IAttendanceBusiness.GetOrgShiftList
             Using rep As New AttendanceRepository
                 Try
-                    Return rep.GetOrgShiftList(_param, log)
+                    Return rep.GetOrgShiftList(strId, log)
                 Catch ex As Exception
                     Throw ex
                 End Try
             End Using
         End Function
+        Public Function InsertOrgShifT(ByVal list As List(Of AT_ORG_SHIFT_DTO), Optional ByVal log As UserLog = Nothing) As Boolean _
+        Implements ServiceContracts.IAttendanceBusiness.InsertOrgShifT
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.InsertOrgShifT(list, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function DeleteAtOrgShift(ByVal lstID As List(Of Decimal)) As Boolean _
+        Implements ServiceContracts.IAttendanceBusiness.DeleteAtOrgShift
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.DeleteAtOrgShift(lstID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
         Public Function Update_ObjectEandC(ByVal list As List(Of AT_ObjectEmpployeeCompensatoryDTO),
                                        ByVal objEdit As AT_ObjectEmpployeeCompensatoryDTO,
                                         ByVal code_func As String) As Boolean _

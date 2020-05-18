@@ -31,6 +31,14 @@ Public Class ctrlAT_OrgShift
             ViewState(Me.ID & "_IsLoad") = value
         End Set
     End Property
+    Property LSTCODE As List(Of String)
+        Get
+            Return ViewState(Me.ID & "_LSTCODE")
+        End Get
+        Set(ByVal value As List(Of String))
+            ViewState(Me.ID & "_LSTCODE") = value
+        End Set
+    End Property
     Property ID_Item As Decimal
         Get
             Return ViewState(Me.ID & "_ID_Item")
@@ -71,8 +79,8 @@ Public Class ctrlAT_OrgShift
         Try
             Me.ctrlMessageBox.Listener = Me
             Me.MainToolBar = tbarMain
-            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Edit, ToolbarItem.Save, ToolbarItem.Cancel, ToolbarItem.Sync, ToolbarItem.Export)
-            CType(MainToolBar.Items(3), RadToolBarButton).Text = "Cập nhật hàng loạt"
+            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Edit, ToolbarItem.Save, ToolbarItem.Cancel)
+            'CType(MainToolBar.Items(3), RadToolBarButton).Text = "Cập nhật hàng loạt"
             'CType(MainToolBar.Items(4), RadToolBarButton)
         Catch ex As Exception
             Throw ex
@@ -185,14 +193,16 @@ Public Class ctrlAT_OrgShift
         Try
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_EDIT
-                    Dim isCheck As Boolean = False
-                    For Each item As GridDataItem In rgData.MasterTableView.Items
-                        If item.Selected Then
-                            isCheck = True
-                            item.Edit = True
-                        End If
-                    Next
+                    If ctrlOrg.CheckedValueKeys.Count = 0 Then
+                        ShowMessage(Translate("Vui lòng chọn phòng ban để thiết lập ca."), NotifyType.Warning)
+                        Exit Sub
+                    End If
 
+                    For Each item As GridDataItem In rgData.MasterTableView.Items
+
+                        item.Edit = True
+                    Next
+                    ctrlOrg.Enabled = False
                     CurrentState = CommonMessage.STATE_EDIT
                     UpdateControlState()
                     rgData.MasterTableView.Rebind()
@@ -204,65 +214,80 @@ Public Class ctrlAT_OrgShift
                     UpdateControlState()
                     rgData.MasterTableView.Rebind()
                 Case CommonMessage.TOOLBARITEM_SAVE
-                    Dim lst As New List(Of AT_ObjectEmpployeeCompensatoryDTO)
-                    Dim objEdit As New AT_ObjectEmpployeeCompensatoryDTO
-                    For Each item As GridDataItem In rgData.EditItems
-                        If item.Edit = True Then
-                            Dim edit = CType(item, GridEditableItem)
-                            Dim cbo_OBJ_EMP_ID As RadComboBox
-                            Dim cbo_OBJ_CSL_ID As RadComboBox
+                    Dim lst As New List(Of AT_ORG_SHIFT_DTO)
 
-                            cbo_OBJ_EMP_ID = CType(edit.FindControl("cbo_OBJ_EMP_NAME"), RadComboBox)
-                            cbo_OBJ_CSL_ID = CType(edit.FindControl("cbo_OBJ_CSL_NAME"), RadComboBox)
-                            Dim obj As New AT_ObjectEmpployeeCompensatoryDTO
-                            With obj
-                                .ID = item.GetDataKeyValue("ID")
-                                .OBJ_EMP_ID = If(cbo_OBJ_EMP_ID.SelectedValue <> "", Decimal.Parse(cbo_OBJ_EMP_ID.SelectedValue), Nothing)
-                                .OBJ_CSL_ID = If(cbo_OBJ_CSL_ID.SelectedValue <> "", Decimal.Parse(cbo_OBJ_CSL_ID.SelectedValue), Nothing)
-                            End With
-                            lst.Add(obj)
-                        End If
-                    Next
-                    Using repUpdate As New AttendanceRepository
-                        If repUpdate.Update_ObjectEandC(lst, objEdit, "Update_ObjectEandC_EachOne") Then
-                            CurrentState = CommonMessage.STATE_NORMAL
-                            For Each item As GridDataItem In rgData.MasterTableView.Items
-                                item.Edit = False
-                            Next
-                            rgData.Rebind()
-                            UpdateControlState()
-                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                        End If
-                    End Using
-                Case CommonMessage.TOOLBARITEM_SYNC
+                    Dim lstId As New List(Of Decimal)
                     If rgData.SelectedItems.Count = 0 Then
-                        ShowMessage(Translate("Vui lòng chọn các nhân viên cần cập nhật"), NotifyType.Warning)
+                        ShowMessage(Translate("Vui lòng chọn phòng ban để lưu"), NotifyType.Warning)
                         Exit Sub
                     End If
-                    Dim lst As New List(Of AT_ObjectEmpployeeCompensatoryDTO)
-                    Dim objEdit As New AT_ObjectEmpployeeCompensatoryDTO
-                    'objEdit.OBJ_EMP_ID = If(cbo_OBJ_EMP_updateAll.SelectedValue <> "", Decimal.Parse(cbo_OBJ_EMP_updateAll.SelectedValue), Nothing)
-                    'objEdit.OBJ_CSL_ID = If(cbo_OBJ_CSL_updateAll.SelectedValue <> "", Decimal.Parse(cbo_OBJ_CSL_updateAll.SelectedValue), Nothing)
-                    For Each item As GridDataItem In rgData.SelectedItems()
-                        Dim obj As New AT_ObjectEmpployeeCompensatoryDTO
-                        With obj
-                            .ID = item.GetDataKeyValue("ID")
-                            .OBJ_EMP_ID = If(objEdit.OBJ_EMP_ID <> 0, objEdit.OBJ_EMP_ID, If(item.GetDataKeyValue("OBJ_EMP_ID") <> 0, item.GetDataKeyValue("OBJ_EMP_ID"), 0))
-                            .OBJ_CSL_ID = If(objEdit.OBJ_CSL_ID <> 0, objEdit.OBJ_CSL_ID, If(item.GetDataKeyValue("OBJ_CSL_ID") <> 0, item.GetDataKeyValue("OBJ_CSL_ID"), 0))
-                        End With
-                        lst.Add(obj)
-                    Next
-                    Using repUpdate As New AttendanceRepository
-                        If repUpdate.Update_ObjectEandC(lst, objEdit, "Update_ObjectEandC_EachOne") Then
-                            CurrentState = CommonMessage.STATE_NORMAL
-                            For Each item As GridDataItem In rgData.MasterTableView.Items
-                                item.Edit = False
-                            Next
-                            rgData.Rebind()
-                            UpdateControlState()
+                    Try
+                        For Each ROW As GridDataItem In rgData.SelectedItems()
+                            lstId.Add(ROW.GetDataKeyValue("ORGID"))
+                            rep.DeleteAtOrgShift(lstId)
+                            Try
+                                For Each COL In LSTCODE
+                                    If COL = "ORGPARENTID" Or COL = "ORGNAME" Or COL = "ORGID" Then Continue For
+                                    Dim edit = CType(ROW, GridEditableItem)
+                                    Dim isCheck As CheckBox = CType(edit(COL).Controls(0), CheckBox)
+                                    If isCheck.Checked Then
+                                        Dim obj As New AT_ORG_SHIFT_DTO
+                                        obj.ORG_ID = ROW.GetDataKeyValue("ORGID")
+                                        obj.SHIFT_CODE = COL
+                                        lst.Add(obj)
+
+                                    End If
+                                Next
+                            Catch ex As Exception
+
+                            End Try
+                        Next
+                    Catch ex As Exception
+
+                    End Try
+
+                    Using insert As New AttendanceRepository
+                        If insert.InsertOrgShifT(lst) Then
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         End If
                     End Using
+                    CurrentState = CommonMessage.STATE_NORMAL
+                    UpdateControlState()
+
+                    For Each item As GridDataItem In rgData.MasterTableView.Items
+
+                        item.Edit = False
+                    Next
+                    rgData.MasterTableView.Rebind()
+                Case CommonMessage.TOOLBARITEM_SYNC
+                    'If rgData.SelectedItems.Count = 0 Then
+                    '    ShowMessage(Translate("Vui lòng chọn các nhân viên cần cập nhật"), NotifyType.Warning)
+                    '    Exit Sub
+                    'End If
+                    'Dim lst As New List(Of AT_ObjectEmpployeeCompensatoryDTO)
+                    'Dim objEdit As New AT_ObjectEmpployeeCompensatoryDTO
+                    ''objEdit.OBJ_EMP_ID = If(cbo_OBJ_EMP_updateAll.SelectedValue <> "", Decimal.Parse(cbo_OBJ_EMP_updateAll.SelectedValue), Nothing)
+                    ''objEdit.OBJ_CSL_ID = If(cbo_OBJ_CSL_updateAll.SelectedValue <> "", Decimal.Parse(cbo_OBJ_CSL_updateAll.SelectedValue), Nothing)
+                    'For Each item As GridDataItem In rgData.SelectedItems()
+                    '    Dim obj As New AT_ObjectEmpployeeCompensatoryDTO
+                    '    With obj
+                    '        .ID = item.GetDataKeyValue("ID")
+                    '        .OBJ_EMP_ID = If(objEdit.OBJ_EMP_ID <> 0, objEdit.OBJ_EMP_ID, If(item.GetDataKeyValue("OBJ_EMP_ID") <> 0, item.GetDataKeyValue("OBJ_EMP_ID"), 0))
+                    '        .OBJ_CSL_ID = If(objEdit.OBJ_CSL_ID <> 0, objEdit.OBJ_CSL_ID, If(item.GetDataKeyValue("OBJ_CSL_ID") <> 0, item.GetDataKeyValue("OBJ_CSL_ID"), 0))
+                    '    End With
+                    '    lst.Add(obj)
+                    'Next
+                    'Using repUpdate As New AttendanceRepository
+                    '    If repUpdate.Update_ObjectEandC(lst, objEdit, "Update_ObjectEandC_EachOne") Then
+                    '        CurrentState = CommonMessage.STATE_NORMAL
+                    '        For Each item As GridDataItem In rgData.MasterTableView.Items
+                    '            item.Edit = False
+                    '        Next
+                    '        rgData.Rebind()
+                    '        UpdateControlState()
+                    '        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                    '    End If
+                    'End Using
                 Case CommonMessage.TOOLBARITEM_EXPORT
                     Dim dtData As DataTable
                     Using xls As New ExcelCommon
@@ -284,18 +309,29 @@ Public Class ctrlAT_OrgShift
         Dim rep As New AttendanceRepository
         Try
             'CreateDataFilter()
+            Dim Sorts As String = rgData.MasterTableView.SortExpressions.GetSortString()
+            Dim strId As String
+            For Each dr As Decimal In ctrlOrg.CheckedValueKeys
+                strId &= IIf(strId = vbNullString, dr, "," & dr)
+            Next
+            If strId = "," Then
+                strId = ""
+            End If
 
-            Dim _param = New Attendance.AttendanceBusiness.ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue),
-                                            .IS_DISSOLVE = ctrlOrg.IsDissolve}
             Dim datalist As DataTable
-            datalist = rep.GetOrgShiftList(_param)
+
+            datalist = rep.GetOrgShiftList(strId)
             If datalist IsNot Nothing Then
 
                 If Not IsPostBack Then
                     DesignGrid(datalist)
                 End If
+
                 rgData.DataSource = datalist
+
             End If
+
+
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -338,42 +374,66 @@ Public Class ctrlAT_OrgShift
 
         Dim rColCheck As GridClientSelectColumn
         Dim rCol As GridCheckBoxColumn
-        'Dim rCol As GridTemplateColumn
+        Dim rColName As GridBoundColumn
+        LSTCODE = New List(Of String)
+        'CODES = String.Join(",", (From P In dt.Columns Select P.))
         rgData.MasterTableView.Columns.Clear()
         For Each column As DataColumn In dt.Columns
-            If column.ColumnName = "ID" Then
+            If column.ColumnName = "ORGID" Then
                 rColCheck = New GridClientSelectColumn()
-
                 rgData.MasterTableView.Columns.Add(rColCheck)
+                LSTCODE.Add(column.ColumnName)
+
                 rColCheck.HeaderStyle.Width = 30
                 rColCheck.HeaderStyle.HorizontalAlign = HorizontalAlign.Center
+                rColCheck.UniqueName = column.ColumnName
 
-            Else
-                rCol = New GridCheckBoxColumn()
-                rgData.MasterTableView.Columns.Add(rCol)
-                rCol.HeaderStyle.Width = 30
-                rCol.HeaderStyle.HorizontalAlign = HorizontalAlign.Center
-                rCol.HeaderText = Translate(column.ColumnName)
-                rCol.AllowFiltering = False
+            ElseIf column.ColumnName = "ORGNAME" Then
+                rColName = New GridBoundColumn()
+                rgData.MasterTableView.Columns.Add(rColName)
+                LSTCODE.Add(column.ColumnName)
+                rColName.DataField = column.ColumnName
+                rColName.ReadOnly = True
+                rColName.HeaderText = Translate(column.ColumnName)
+                rColName.HeaderStyle.Width = 150
+                rColName.HeaderStyle.HorizontalAlign = HorizontalAlign.Center
+                rColName.UniqueName = column.ColumnName
+
+                rColName.AllowFiltering = False
             End If
 
+            If Not column.ColumnName = "ORGPARENTID" And Not column.ColumnName = "ORGNAME" And Not column.ColumnName = "ORGID" Then
+                rCol = New GridCheckBoxColumn()
+                rgData.MasterTableView.Columns.Add(rCol)
+                LSTCODE.Add(column.ColumnName)
+                rCol.DataField = column.ColumnName
+                rCol.HeaderStyle.Width = 50
+                rCol.HeaderStyle.HorizontalAlign = HorizontalAlign.Center
+                rCol.HeaderText = Translate(column.ColumnName)
+                rCol.UniqueName = column.ColumnName
+                rCol.AllowFiltering = False
+
+            End If
         Next
+        rgData.MasterTableView.DataKeyNames = LSTCODE.ToArray
+        rgData.MasterTableView.ClientDataKeyNames = LSTCODE.ToArray
+
     End Sub
 
 #End Region
 
-    Private Sub ctrlOrg_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlOrg.SelectedNodeChanged
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim startTime As DateTime = DateTime.UtcNow
-        Try
+    Private Sub ctrlOrg_CheckedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlOrg.CheckedNodeChanged
+        ' Dim lstObject As New List(Of AT_ORG_SHIFT_DTO)
+        Dim lstId As New List(Of Decimal)
+        rgData.Rebind()
 
-            rgData.CurrentPageIndex = 0
-            rgData.MasterTableView.SortExpressions.Clear()
-            rgData.Rebind()
-            _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Try
+            For Each item As DataColumn In rgData.MasterTableView.Columns
+
+            Next
+
         Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-            DisplayException(Me.ViewName, Me.ID, ex)
+
         End Try
     End Sub
 

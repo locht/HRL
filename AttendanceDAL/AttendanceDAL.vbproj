@@ -164,6 +164,7 @@
     <Compile Include="BusinessObjects\LEAVE_DETAIL_EMP_DTO.vb" />
     <Compile Include="BusinessObjects\HistoryLeaveDTO.vb" />
     <Compile Include="BusinessObjects\Setting\AT_ObjectEmpployeeCompensatoryDTO.vb" />
+    <Compile Include="BusinessObjects\AT_ORG_SHIFT_DTO.vb" />
     <Compile Include="BusinessObjects\SetUpCodeAttDTO.vb" />
     <Compile Include="BusinessObjects\SHIFT_DTO.vb" />
     <Compile Include="BusinessObjects\SIGNDEFAULTDTO.vb" />

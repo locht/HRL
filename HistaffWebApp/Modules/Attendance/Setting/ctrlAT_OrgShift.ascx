@@ -18,7 +18,7 @@
             </tlk:RadPane>          
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
                 <tlk:RadGrid ID="rgData" runat="server" Height="100%" PageSize="50" AllowPaging="true"
-                    AllowMultiRowEdit="true" Width="100%">
+                    AllowMultiRowEdit="true" Width="100%" Scrolling="None">
                     <ClientSettings>
                         <Scrolling AllowScroll="True" UseStaticHeaders="True" />
                         <Selecting AllowRowSelect="True" />

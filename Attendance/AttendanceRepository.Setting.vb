@@ -20,16 +20,39 @@ Partial Class AttendanceRepository
     End Function
 
 
-    Function GetOrgShiftList(ByVal _param As ParamDTO) As DataTable
+    Function GetOrgShiftList(ByVal strId As String) As DataTable
         Using rep As New AttendanceBusinessClient
             Try
-                Dim lst = rep.GetOrgShiftList(_param, Me.Log)
+                Dim lst = rep.GetOrgShiftList(strId, Me.Log)
                 Return lst
             Catch ex As Exception
                 Throw ex
             End Try
         End Using
     End Function
+
+    Function InsertOrgShifT(ByVal list As List(Of AT_ORG_SHIFT_DTO)) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Dim lst = rep.InsertOrgShifT(list, Me.Log)
+                Return lst
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Function DeleteAtOrgShift(ByVal lstID As List(Of Decimal)) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Dim lst = rep.DeleteAtOrgShift(lstID)
+                Return lst
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+
     Public Function Update_ObjectEandC(ByVal list As List(Of AT_ObjectEmpployeeCompensatoryDTO),
                                        ByVal objEdit As AT_ObjectEmpployeeCompensatoryDTO,
                                         ByVal code_func As String) As Boolean
