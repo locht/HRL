@@ -106,7 +106,7 @@
                             <tlk:GridBoundColumn HeaderText="Tỷ trọng x điểm" DataField="PROCESS_TTX"
                                 SortExpression="PROCESS_TTX" UniqueName="PROCESS_TTX" ReadOnly="true" HeaderStyle-Width="100px"
                                 ColumnGroupName="PROCESS" DataFormatString="{0:###,###.00}" />
-                            <tlk:GridBoundColumn HeaderText="Tỷ trọng %" DataField="LEARN_TT"
+                            <tlk:GridBoundColumn HeaderText="Tỷ trọng" DataField="LEARN_TT"
                                 SortExpression="LEARN_TT" UniqueName="LEARN_TT" ReadOnly="true" HeaderStyle-Width="100px"
                                 ColumnGroupName="LEARN" DataFormatString="{0:P2}" />
                             <tlk:GridBoundColumn HeaderText="Tỷ trọng x điểm" DataField="LEARN_TTX"
@@ -117,7 +117,7 @@
                             <tlk:GridBoundColumn HeaderText="Tỷ trọng x điểm" DataField="SUM_TTX"
                                 SortExpression="SUM_TTX" UniqueName="SUM_TTX" ReadOnly="true" HeaderStyle-Width="100px"
                                 ColumnGroupName="SUM" DataFormatString="{0:###,###.00}" />
-                            <tlk:GridBoundColumn HeaderText="Tỷ lệ đạt KPI tương ứng %" DataField="SUM_RATE_KPI"
+                            <tlk:GridBoundColumn HeaderText="Tỷ lệ đạt KPI tương ứng " DataField="SUM_RATE_KPI"
                                 SortExpression="SUM_RATE_KPI" UniqueName="SUM_RATE_KPI" ReadOnly="true" HeaderStyle-Width="100px"
                                 ColumnGroupName="SUM" DataFormatString="{0:P2}" />
                             <tlk:GridBoundColumn HeaderText="Xếp loại" DataField="CLASSFICATION" SortExpression="CLASSFICATION"

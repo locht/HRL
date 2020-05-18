@@ -73,8 +73,8 @@
                             <tlk:GridDateTimeColumn HeaderText="Ngày nhận việc" DataField="JOIN_DATE" ItemStyle-HorizontalAlign="Center"
                                 SortExpression="JOIN_DATE" UniqueName="JOIN_DATE" DataFormatString="{0:dd/MM/yyyy}">
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridBoundColumn HeaderText="Hình thức đánh giá" DataField="" SortExpression=""
-                                UniqueName="" HeaderStyle-Width="100px" />
+                            <tlk:GridBoundColumn HeaderText="Hình thức đánh giá" DataField="FORM_EVALUATE" SortExpression="FORM_EVALUATE"
+                                UniqueName="FORM_EVALUATE" HeaderStyle-Width="100px" />
                             <tlk:GridBoundColumn HeaderText="Xếp loại" DataField="CLASSFICATION" SortExpression="CLASSFICATION"
                                 UniqueName="CLASSFICATION" HeaderStyle-Width="100px" />
                             <tlk:GridBoundColumn HeaderText="Nhận xét" DataField="COMMENTS" SortExpression="COMMENTS"

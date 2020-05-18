@@ -888,7 +888,6 @@ Partial Class PerformanceRepository
 
             Dim query = From mbo In Context.PE_KPI_EVALUATE
                         From p In Context.HU_EMPLOYEE.Where(Function(f) f.ID = mbo.EMPLOYEE_ID)
-                        From abc In Context.PE_EVALUATE_PERIOD.Where(Function(f) f.EMPLOYEE_ID = p.ID)
                         From period In Context.PE_PERIOD.Where(Function(f) f.ID = mbo.KPI_ID).DefaultIfEmpty
                         From sal_level In Context.PA_SALARY_LEVEL.Where(Function(f) f.ID = mbo.SALARYLEVEL_ID).DefaultIfEmpty
                         From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = mbo.CLASSFICATION).DefaultIfEmpty
@@ -896,36 +895,54 @@ Partial Class PerformanceRepository
                         From title In Context.HU_TITLE.Where(Function(f) mbo.TITLE_ID = f.ID).DefaultIfEmpty
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) mbo.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
                         Order By p.EMPLOYEE_CODE()
+                        Select New KPI_EVALUATEDTO With {
+                             .EMPLOYEE_CODE = p.EMPLOYEE_CODE,
+                             .ID = p.ID,
+                             .FULLNAME = p.FULLNAME_VN,
+                             .ORG_NAME = org.NAME_VN,
+                             .TITLE_NAME = title.NAME_VN,
+                             .TER_EFFECT_DATE = p.TER_EFFECT_DATE,
+                             .WORK_STATUS = p.WORK_STATUS,
+                             .SALARY_LEVEL_ID = mbo.SALARYLEVEL_ID,
+                             .SALARY_LEVEL = sal_level.NAME,
+                             .KPI_EVALUATE = mbo.KPI_ID,
+                             .CLASSFICATION_ID = mbo.CLASSFICATION,
+                             .CLASSFICATION = ot.NAME_VN,
+                             .COMMENTS = mbo.COMMENTS,
+                             .REMARK = mbo.REMARK,
+                             .FORM_EVALUATE = period.NAME
+                         }
 
-            Dim lst = query.Select(Function(p) New KPI_EVALUATEDTO With {
-                             .EMPLOYEE_CODE = p.p.EMPLOYEE_CODE,
-                             .ID = p.p.ID,
-                             .FULLNAME = p.p.FULLNAME_VN,
-                             .ORG_NAME = p.org.NAME_VN,
-                             .TITLE_NAME = p.title.NAME_VN,
-                             .TER_EFFECT_DATE = p.p.TER_EFFECT_DATE,
-                             .WORK_STATUS = p.p.WORK_STATUS,
-                             .SALARY_LEVEL_ID = p.mbo.SALARYLEVEL_ID,
-                             .SALARY_LEVEL = p.sal_level.NAME,
-                             .KPI_EVALUATE = p.mbo.KPI_ID,
-                             .FINANCE_TT = p.mbo.FINANCE_TT,
-                             .FINANCE_TTX = p.mbo.FINANCE_TTX,
-                             .JOIN_DATE = p.mbo.JOIN_DATE,
-                             .END_DATE = p.mbo.END_DATE,
-                             .CUSTOMER_TT = p.mbo.CUSTOMER_TT,
-                             .CUSTOMER_TTX = p.mbo.CUSTOMER_TTX,
-                             .PROCESS_TT = p.mbo.PROCESS_TT,
-                             .PROCESS_TTX = p.mbo.PROCESS_TTX,
-                             .LEARN_TT = p.mbo.LEARN_TT,
-                             .LEARN_TTX = p.mbo.LEARN_TTX,
-                             .SUM_TT = p.mbo.SUM_TT,
-                             .SUM_TTX = p.mbo.SUM_TTX,
-                             .SUM_RATE_KPI = p.mbo.SUM_RATE_KPI,
-                             .CLASSFICATION_ID = p.mbo.CLASSFICATION,
-                             .CLASSFICATION = p.ot.NAME_VN,
-                             .COMMENTS = p.mbo.COMMENTS,
-                             .REMARK = p.mbo.REMARK
-                         })
+
+            Dim query1 = From mbo In Context.PE_EVALUATE_PERIOD
+                        From p In Context.HU_EMPLOYEE.Where(Function(f) f.ID = mbo.EMPLOYEE_ID)
+                        From period In Context.PE_PERIOD.Where(Function(f) f.ID = mbo.PERIOD_ID).DefaultIfEmpty
+                        From sal_level In Context.PA_SALARY_LEVEL.Where(Function(f) f.ID = mbo.SAL_LEVEL_ID).DefaultIfEmpty
+                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = mbo.CLASSIFICATION).DefaultIfEmpty
+                        From org In Context.HU_ORGANIZATION.Where(Function(f) mbo.ORG_ID = f.ID).DefaultIfEmpty
+                        From title In Context.HU_TITLE.Where(Function(f) mbo.TITLE_ID = f.ID).DefaultIfEmpty
+                        From k In Context.SE_CHOSEN_ORG.Where(Function(f) mbo.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
+                        Order By p.EMPLOYEE_CODE()
+                        Select New KPI_EVALUATEDTO With {
+                             .EMPLOYEE_CODE = p.EMPLOYEE_CODE,
+                             .ID = p.ID,
+                             .FULLNAME = p.FULLNAME_VN,
+                             .ORG_NAME = org.NAME_VN,
+                             .TITLE_NAME = title.NAME_VN,
+                             .TER_EFFECT_DATE = p.TER_EFFECT_DATE,
+                             .WORK_STATUS = p.WORK_STATUS,
+                             .SALARY_LEVEL_ID = mbo.SAL_LEVEL_ID,
+                             .SALARY_LEVEL = sal_level.NAME,
+                             .KPI_EVALUATE = mbo.PERIOD_ID,
+                             .CLASSFICATION_ID = mbo.CLASSIFICATION,
+                             .CLASSFICATION = ot.NAME_VN,
+                             .COMMENTS = mbo.COMMENT1,
+                             .REMARK = mbo.NOTE,
+                             .FORM_EVALUATE = period.NAME
+                         }
+
+            Dim lst = query.Union(query1)
+
 
             Dim dateNow = Date.Now.Date
             Dim terID = 257
@@ -952,40 +969,7 @@ Partial Class PerformanceRepository
             If _filter.ORG_NAME <> "" Then
                 lst = lst.Where(Function(p) p.ORG_NAME.ToUpper().IndexOf(_filter.ORG_NAME.ToUpper) >= 0)
             End If
-            If _filter.FINANCE_TT IsNot Nothing Then
-                lst = lst.Where(Function(p) p.FINANCE_TT = _filter.FINANCE_TT)
-            End If
-
-            If _filter.FINANCE_TTX IsNot Nothing Then
-                lst = lst.Where(Function(p) p.FINANCE_TTX = _filter.FINANCE_TTX)
-            End If
-            If _filter.CUSTOMER_TT IsNot Nothing Then
-                lst = lst.Where(Function(p) p.CUSTOMER_TT = _filter.CUSTOMER_TT)
-            End If
-            If _filter.CUSTOMER_TTX IsNot Nothing Then
-                lst = lst.Where(Function(p) p.CUSTOMER_TTX = _filter.CUSTOMER_TTX)
-            End If
-            If _filter.PROCESS_TT IsNot Nothing Then
-                lst = lst.Where(Function(p) p.PROCESS_TT = _filter.PROCESS_TT)
-            End If
-            If _filter.PROCESS_TTX IsNot Nothing Then
-                lst = lst.Where(Function(p) p.PROCESS_TTX = _filter.PROCESS_TTX)
-            End If
-            If _filter.LEARN_TT IsNot Nothing Then
-                lst = lst.Where(Function(p) p.LEARN_TT = _filter.LEARN_TT)
-            End If
-            If _filter.LEARN_TTX IsNot Nothing Then
-                lst = lst.Where(Function(p) p.LEARN_TTX = _filter.LEARN_TTX)
-            End If
-            If _filter.SUM_TT IsNot Nothing Then
-                lst = lst.Where(Function(p) p.SUM_TT = _filter.SUM_TT)
-            End If
-            If _filter.SUM_TTX IsNot Nothing Then
-                lst = lst.Where(Function(p) p.SUM_TTX = _filter.SUM_TTX)
-            End If
-            If _filter.SUM_RATE_KPI IsNot Nothing Then
-                lst = lst.Where(Function(p) p.SUM_RATE_KPI = _filter.SUM_RATE_KPI)
-            End If
+            
             If _filter.COMMENTS IsNot Nothing Then
                 lst = lst.Where(Function(p) p.COMMENTS.ToUpper.Contains(_filter.COMMENTS.ToUpper))
             End If
@@ -995,7 +979,6 @@ Partial Class PerformanceRepository
             If _filter.REMARK IsNot Nothing Then
                 lst = lst.Where(Function(p) p.REMARK.ToUpper.Contains(_filter.REMARK.ToUpper))
             End If
-
 
             lst = lst.OrderBy(Sorts)
             Total = lst.Count

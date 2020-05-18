@@ -5270,6 +5270,9 @@ Namespace PerformanceBusiness
         Private FINANCE_TTXField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FORM_EVALUATEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FULLNAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -5458,6 +5461,19 @@ Namespace PerformanceBusiness
                 If (Me.FINANCE_TTXField.Equals(value) <> true) Then
                     Me.FINANCE_TTXField = value
                     Me.RaisePropertyChanged("FINANCE_TTX")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FORM_EVALUATE() As String
+            Get
+                Return Me.FORM_EVALUATEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FORM_EVALUATEField, value) <> true) Then
+                    Me.FORM_EVALUATEField = value
+                    Me.RaisePropertyChanged("FORM_EVALUATE")
                 End If
             End Set
         End Property

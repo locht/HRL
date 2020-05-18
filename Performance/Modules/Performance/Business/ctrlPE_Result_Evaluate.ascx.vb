@@ -118,13 +118,8 @@ Class ctrlPE_Result_Evaluate
             Me.ctrlMessageBox.Listener = Me
             Me.MainToolBar = tbarMainToolBar
             Common.Common.BuildToolbar(Me.MainToolBar,
-                                       ToolbarItem.Export,
-                                       ToolbarItem.Next,
-                                       ToolbarItem.Import
+                                       ToolbarItem.Export
                                        )
-            CType(Me.MainToolBar.Items(1), RadToolBarButton).Text = Translate("Xuất file mẫu")
-            CType(Me.MainToolBar.Items(1), RadToolBarButton).ImageUrl = CType(Me.MainToolBar.Items(0), RadToolBarButton).ImageUrl
-            CType(Me.MainToolBar.Items(2), RadToolBarButton).Text = Translate("Nhập file mẫu")
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -217,7 +212,7 @@ Class ctrlPE_Result_Evaluate
                     Using xls As New ExcelCommon
                         dtData = CreateDataFilter(True)
                         If dtData.Rows.Count > 0 Then
-                            rgEmployeeList.ExportExcel(Server, Response, dtData, "ResultMBO")
+                            rgEmployeeList.ExportExcel(Server, Response, dtData, "Result")
                         Else
                             ShowMessage(Translate(MESSAGE_WARNING_EXPORT_EMPTY), Utilities.NotifyType.Warning)
                         End If

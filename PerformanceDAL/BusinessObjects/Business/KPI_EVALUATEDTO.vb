@@ -30,5 +30,5 @@
     Public Property ORG_ID As Decimal
     Public Property KPI_EVALUATE As Decimal?
     Public Property TITLE_ID As Decimal
-
+    Public Property FORM_EVALUATE As String
 End Class
