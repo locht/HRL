@@ -1,21 +1,237 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 5/18/2020 4:57:42 PM
--- Generated from EDMX file: C:\workspaces\ACV_US_19\acv_19\AttendanceDAL\AttendanceContext.edmx
+-- Date Created: 05/19/2020 9:06:44 AM
+-- Generated from EDMX file: D:\MyProject2020\ACV_NEW\acv_19\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+-- ALTER TABLE "dbo"."OT_OTHER_LIST" DROP CONSTRAINT "FK_OOLT_OOL" CASCADE;
+
+-- ALTER TABLE "dbo"."OT_OTHER_LIST_TYPE" DROP CONSTRAINT "FK_OOLG_OOLT" CASCADE;
+
+-- ALTER TABLE "dbo"."HU_EMPLOYEE_HEALTH" DROP CONSTRAINT "FK_FE_HEH" CASCADE;
+
+-- ALTER TABLE "dbo"."HU_EMPLOYEE_EDUCATION" DROP CONSTRAINT "FK_HE_HEE" CASCADE;
+
+-- ALTER TABLE "dbo"."HU_EMPLOYEE_FILES" DROP CONSTRAINT "FK_HE_HEF" CASCADE;
+
+-- ALTER TABLE "dbo"."HU_EMPLOYEE_OTHER_INFO" DROP CONSTRAINT "FK_HE_HEO" CASCADE;
+
+-- ALTER TABLE "dbo"."HU_EMPLOYEE_SALARY" DROP CONSTRAINT "FK_HE_HES" CASCADE;
+
+-- ALTER TABLE "dbo"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HUEMD_HUEM" CASCADE;
+
+-- ALTER TABLE "dbo"."HU_ORGANIZATION" DROP CONSTRAINT "FK_HU_ORG_HU_ORG" CASCADE;
+
+-- ALTER TABLE "dbo"."HU_ORG_TITLE" DROP CONSTRAINT "FK_HUTL_HUOT" CASCADE;
+
+-- ALTER TABLE "dbo"."SE_USER_REPORT" DROP CONSTRAINT "FK_SE_USER_REPORT_SE_REPORT" CASCADE;
+
+-- ALTER TABLE "dbo"."SE_USER_REPORT" DROP CONSTRAINT "FK_SE_USER_REPORT_SE_USER" CASCADE;
+
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "ACV_19_DEV"."AT_FML_DETAIL";
+-- DROP TABLE "dbo"."OT_OTHER_LIST";
 
--- DROP TABLE "ACV_19_DEV"."AT_FORMULAR";
+-- DROP TABLE "dbo"."OT_OTHER_LIST_GROUP";
+
+-- DROP TABLE "dbo"."OT_OTHER_LIST_TYPE";
+
+-- DROP TABLE "dbo"."SE_CHOSEN_ORG";
+
+-- DROP TABLE "dbo"."AT_GSIGN";
+
+-- DROP TABLE "dbo"."AT_SWIPE_DATA";
+
+-- DROP TABLE "dbo"."AT_ORG_PERIOD";
+
+-- DROP TABLE "dbo"."HU_EMPLOYEE";
+
+-- DROP TABLE "dbo"."HU_CONTRACT";
+
+-- DROP TABLE "dbo"."HU_EMPLOYEE_EDUCATION";
+
+-- DROP TABLE "dbo"."HU_EMPLOYEE_FILES";
+
+-- DROP TABLE "dbo"."HU_EMPLOYEE_HEALTH";
+
+-- DROP TABLE "dbo"."HU_EMPLOYEE_OTHER_INFO";
+
+-- DROP TABLE "dbo"."HU_EMPLOYEE_SALARY";
+
+-- DROP TABLE "dbo"."HU_EMPLOYEE_TRAIN";
+
+-- DROP TABLE "dbo"."AT_TIMESHEET_REGISTER";
+
+-- DROP TABLE "dbo"."SE_APP_PROCESS";
+
+-- DROP TABLE "dbo"."SE_APP_SETUP";
+
+-- DROP TABLE "dbo"."SE_APP_SETUPEXT";
+
+-- DROP TABLE "dbo"."SE_APP_TEMPLATE_DTL";
+
+-- DROP TABLE "dbo"."SE_APP_TEMPLATE";
+
+-- DROP TABLE "dbo"."HU_ORGANIZATION";
+
+-- DROP TABLE "dbo"."HU_WORKING";
+
+-- DROP TABLE "dbo"."AT_PORTAL_APP";
+
+-- DROP TABLE "dbo"."AT_RGT";
+
+-- DROP TABLE "dbo"."HU_ORG_TITLE";
+
+-- DROP TABLE "dbo"."HU_TITLE";
+
+-- DROP TABLE "dbo"."AT_WORKSIGN";
+
+-- DROP TABLE "dbo"."AT_PORTAL_REG";
+
+-- DROP TABLE "dbo"."HU_STAFF_RANK";
+
+-- DROP TABLE "dbo"."AT_TIME_TIMESHEET_RICE";
+
+-- DROP TABLE "dbo"."AT_TIME_TIMESHEET_OT";
+
+-- DROP TABLE "dbo"."AT_DMVS";
+
+-- DROP TABLE "dbo"."AT_HOLIDAY";
+
+-- DROP TABLE "dbo"."AT_HOLIDAY_GENERAL";
+
+-- DROP TABLE "dbo"."AT_HOLIDAY_OBJECT";
+
+-- DROP TABLE "dbo"."AT_LATE_COMBACKOUT";
+
+-- DROP TABLE "dbo"."AT_PERIOD";
+
+-- DROP TABLE "dbo"."AT_SETUP_SPECIAL";
+
+-- DROP TABLE "dbo"."AT_SIGNDEFAULT";
+
+-- DROP TABLE "dbo"."AT_TIME_MANUAL";
+
+-- DROP TABLE "dbo"."AT_TIME_RICE";
+
+-- DROP TABLE "dbo"."AT_TIME_TIMESHEET_DAILY";
+
+-- DROP TABLE "dbo"."AT_TIME_TIMESHEET_MACHINET";
+
+-- DROP TABLE "dbo"."AT_DATA_INOUT";
+
+-- DROP TABLE "dbo"."AT_FML";
+
+-- DROP TABLE "dbo"."AT_TERMINALS";
+
+-- DROP TABLE "dbo"."AT_ACTION_ORG_LOG";
+
+-- DROP TABLE "dbo"."HU_EMPLOYEE_CV";
+
+-- DROP TABLE "dbo"."SE_MAIL";
+
+-- DROP TABLE "dbo"."AT_SETUP_TIME_EMP";
+
+-- DROP TABLE "dbo"."SE_EMPLOYEE_CHOSEN";
+
+-- DROP TABLE "dbo"."AT_LIST_PARAM_SYSTEM";
+
+-- DROP TABLE "dbo"."AT_REGISTER_OT";
+
+-- DROP TABLE "dbo"."SE_USER";
+
+-- DROP TABLE "dbo"."SE_REPORT";
+
+-- DROP TABLE "dbo"."AT_COMPENSATORY";
+
+-- DROP TABLE "dbo"."AT_ACTION_LOG";
+
+-- DROP TABLE "dbo"."AT_DECLARE_ENTITLEMENT";
+
+-- DROP TABLE "dbo"."AT_PROJECT";
+
+-- DROP TABLE "dbo"."AT_PROJECT_TITLE";
+
+-- DROP TABLE "dbo"."AT_PROJECT_EMP";
+
+-- DROP TABLE "dbo"."AT_PROJECT_WORK";
+
+-- DROP TABLE "dbo"."AT_PROJECT_ASSIGN";
+
+-- DROP TABLE "dbo"."AT_TIMESHEET_OT_DTL";
+
+-- DROP TABLE "dbo"."AT_TIME_TIMESHEET_MONTHLY";
+
+-- DROP TABLE "dbo"."AT_PORTAL_REG_LIST";
+
+-- DROP TABLE "dbo"."AT_TIMESHEET";
+
+-- DROP TABLE "dbo"."AT_SHIFTCYCLE_EMP_DETAIL";
+
+-- DROP TABLE "dbo"."AT_SETUP_ATT_EMP";
+
+-- DROP TABLE "dbo"."AT_OT_REGISTRATION";
+
+-- DROP TABLE "dbo"."AT_OFFSETTING_TIMEKEEPING";
+
+-- DROP TABLE "dbo"."AT_OFFSETTING_TIMEKEEPING_EMP";
+
+-- DROP TABLE "dbo"."HUV_AT_PORTAL";
+
+-- DROP TABLE "dbo"."AT_SHIFTCYCLE";
+
+-- DROP TABLE "dbo"."AT_SHIFTCYCLE_EMP";
+
+-- DROP TABLE "dbo"."AT_SHIFTCYCLE_DETAIL";
+
+-- DROP TABLE "dbo"."ATV_HOLIDAY_HOSE";
+
+-- DROP TABLE "dbo"."HU_ANNUALLEAVE_PLANS";
+
+-- DROP TABLE "dbo"."HU_CONTRACT_TYPE";
+
+-- DROP TABLE "dbo"."PROCESS_APPROVED_STATUS";
+
+-- DROP TABLE "dbo"."ATV_OFFSETTING";
+
+-- DROP TABLE "dbo"."SE_USER_ORG_ACCESS";
+
+-- DROP TABLE "dbo"."AT_SHIFT";
+
+-- DROP TABLE "dbo"."AT_LEAVESHEET_DETAIL";
+
+-- DROP TABLE "dbo"."AT_LEAVESHEET";
+
+-- DROP TABLE "dbo"."AT_TIMESHEET_MACHINET_IMPORT";
+
+-- DROP TABLE "dbo"."AT_TYPE_PROCESS";
+
+-- DROP TABLE "dbo"."AT_TIME_MANUAL_RATE";
+
+-- DROP TABLE "dbo"."AT_ENTITLEMENT";
+
+-- DROP TABLE "dbo"."AT_SETUP_EXCHANGE";
+
+-- DROP TABLE "dbo"."AT_SYMBOL_FUNC";
+
+-- DROP TABLE "dbo"."SE_USER_ORG_ACCESS1Set";
+
+-- DROP TABLE "dbo"."AT_SYMBOLS";
+
+-- DROP TABLE "dbo"."AT_ORG_SHIFT";
+
+-- DROP TABLE "dbo"."AT_FML_DETAIL";
+
+-- DROP TABLE "dbo"."AT_FORMULAR";
+
+-- DROP TABLE "dbo"."SE_USER_REPORT";
 
 -- --------------------------------------------------
 -- Creating all tables
