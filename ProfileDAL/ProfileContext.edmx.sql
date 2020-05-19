@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 14/5/2020 10:33:25 PM
--- Generated from EDMX file: G:\Cty TVC\Source\acv_19\ProfileDAL\ProfileContext.edmx
+-- Date Created: 05/19/2020 2:22:49 PM
+-- Generated from EDMX file: F:\WORKING\acv_19\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -4205,7 +4205,8 @@ CREATE TABLE "dbo"."HU_USERFILES" (
    "CREATED_DATE" DATE NULL,
    "CREATED_BY" NVARCHAR2(255) NULL,
    "CREATED_LOG" NVARCHAR2(255) NULL,
-   "FOLDER_ID" NUMBER(38,0) NULL
+   "FOLDER_ID" NUMBER(38,0) NULL,
+   "FILE_NAME" NUMBER(38,0) NULL
 );
 
 -- Creating table 'SE_USER_REPORT'

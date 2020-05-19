@@ -38,11 +38,13 @@ Public Class ctrlPortalEmpFileMng
         End Try
     End Sub
 
+    Public Property popupId As String
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
+
             rgHealth.AllowCustomPaging = True
             rgHealth.SetFilter()
             InitControl()
@@ -67,7 +69,7 @@ Public Class ctrlPortalEmpFileMng
             Dim startTime As DateTime = DateTime.UtcNow
             Me.MainToolBar = tbarContracts
 
-            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Submit, ToolbarItem.Edit, ToolbarItem.Delete, ToolbarItem.Create)
+            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create, ToolbarItem.Edit, ToolbarItem.Delete, ToolbarItem.Submit)
 
             CType(Me.MainToolBar.Items(0), RadToolBarButton).Text = Translate("Tạo thu mục")
             CType(Me.MainToolBar.Items(1), RadToolBarButton).Text = Translate("Đổi tên")
@@ -80,26 +82,18 @@ Public Class ctrlPortalEmpFileMng
     End Sub
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
-        Dim rep As New ProfileStoreProcedure
         Try
-            'SetValueObjectByRadGrid(rgHealth, New ContractDTO)
-
             If Not IsPostBack Then
-                GridList = rep.GET_HEALTH_BY_ID(EmployeeID)
                 CurrentState = CommonMessage.STATE_NORMAL
             Else
-                If Message = CommonMessage.ACTION_SAVED Then
-                    GridList = rep.GET_HEALTH_BY_ID(EmployeeID)
-                End If
-            End If
-
-            'Đưa dữ liệu vào Grid
-            If Me.GridList IsNot Nothing Then
-                rgHealth.DataSource = Me.GridList
-                rgHealth.DataBind()
-            Else
-                rgHealth.DataSource = New DataTable
-                rgHealth.DataBind()
+                Select Case Message
+                    Case "UpdateView"
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                        rgHealth.Rebind()
+                        CurrentState = CommonMessage.STATE_NORMAL
+                    Case "Cancel"
+                        rgHealth.MasterTableView.ClearSelectedItems()
+                End Select
             End If
 
         Catch ex As Exception

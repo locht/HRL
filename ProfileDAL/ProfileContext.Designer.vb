@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("ff882d22-2ead-40c3-9cba-6e003a70b17c")>
+<Assembly: EdmSchemaAttribute("760950c3-2e86-48bd-8d23-1db1bd2fc138")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -65999,6 +65999,31 @@ Public Partial Class HU_USERFILES
     End Sub
 
     Private Partial Sub OnFOLDER_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FILE_NAME() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _FILE_NAME
+        End Get
+        Set
+            OnFILE_NAMEChanging(value)
+            ReportPropertyChanging("FILE_NAME")
+            _FILE_NAME = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("FILE_NAME")
+            OnFILE_NAMEChanged()
+        End Set
+    End Property
+
+    Private _FILE_NAME As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnFILE_NAMEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnFILE_NAMEChanged()
     End Sub
 
     #End Region

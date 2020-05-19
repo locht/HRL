@@ -90,6 +90,7 @@
     <Compile Include="BusinessObjects\Business\EmployeeBackgroundDTO.vb" />
     <Compile Include="BusinessObjects\Business\FoldersDTO.vb" />
     <Compile Include="BusinessObjects\Business\JobDescriptionDTO.vb" />
+    <Compile Include="BusinessObjects\Business\UserFileDTO.vb" />
     <Compile Include="BusinessObjects\Business\SAFELABOR_MNGDTO.vb" />
     <Compile Include="BusinessObjects\Business\SAFELABOR_MNG_EMPDTO.vb" />
     <Compile Include="BusinessObjects\Business\Temp_ConcurrentlyDTO.vb" />

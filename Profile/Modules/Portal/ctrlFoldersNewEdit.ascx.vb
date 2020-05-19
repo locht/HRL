@@ -15,7 +15,7 @@ Public Class ctrlFoldersNewEdit
     Dim _pathLog As String = _mylog._pathLog
     Dim _flag As Boolean = True
     Dim _classPath As String = "Profile\Portal" + Me.GetType().Name.ToString()
-
+    Dim IDSelect As Decimal?
 
 #Region "Property"
 
@@ -34,14 +34,11 @@ Public Class ctrlFoldersNewEdit
     Public Overrides Sub ViewLoad(ByVal e As System.EventArgs)
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
+            ScriptManager.GetCurrent(Page).RegisterPostBackControl(tbarFolderEdit)
             Dim startTime As DateTime = DateTime.UtcNow
             GetParams()
             Refresh()
             UpdateControlState()
-
-            If (_flag = False) Then
-                EnableControlAll_Cus(False, LeftPane)
-            End If
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -99,6 +96,11 @@ Public Class ctrlFoldersNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
+
+            Me.MainToolBar = tbarFolderEdit
+
+            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Save, ToolbarItem.Cancel)
+
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -121,7 +123,7 @@ Public Class ctrlFoldersNewEdit
                 Case "UpdateView"
                     CurrentState = CommonMessage.STATE_EDIT
 
-                Case "NormalView"
+                Case "InsertView"
                     CurrentState = CommonMessage.STATE_NEW
                     Dim dt As New DataTable
                     'rgAllow.DataSource = New List(Of WorkingAllowanceDTO)
@@ -150,25 +152,34 @@ Public Class ctrlFoldersNewEdit
     ''' <remarks></remarks>
     Public Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
         Dim gID As Decimal
+        Dim rep As New ProfileBusinessRepository
+        Dim store As New ProfileStoreProcedure
         'Dim stt As OtherListDTOsave
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
 
-
-            Dim strUrl As String = Request.Url.ToString()
-            Dim isPopup As Boolean = False
-            If (strUrl.ToUpper.Contains("DIALOG")) Then
-                isPopup = True
-            End If
             Select Case CType(e.Item, RadToolBarButton).CommandName
-                Case CommonMessage.TOOLBARITEM_CANCEL
-                    If (isPopup) Then
-                        Dim str As String = "getRadWindow().close('1');"
-                        ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
-                    Else
-                        Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_Contract&group=Business")
+                Case CommonMessage.TOOLBARITEM_SAVE
+                    Dim PrID As Decimal = 0
+                    If IsNumeric(Request.Params("PrID")) Then
+                        PrID = Request.Params("PrID")
                     End If
+                    Dim _folder As New FoldersDTO
+                    _folder.NAME = txtFolderName.Text
+                    _folder.PARENT_ID = PrID
+                    If rep.AddFolder(_folder) = 1 Then
+                        ShowMessage(Translate("Trùng tên thư mục"), NotifyType.Warning)
+                        Exit Sub
+                    Else
+                        Dim link = Server.MapPath("TemplateDynamic\UserFiles\" & store.Get_Folder_link(_folder.PARENT_ID) & "\" & _folder.NAME)
+                        If Not Directory.Exists(link) Then
+                            Directory.CreateDirectory(link)
+                        End If
+                        Gotolink("/Default.aspx?mid=Profile&fid=ctrlPortalEmpFileMng")
+                    End If
+                    Refresh()
+                    CurrentState = CommonMessage.STATE_NORMAL
             End Select
             UpdateControlState()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -178,37 +189,40 @@ Public Class ctrlFoldersNewEdit
         End Try
     End Sub
 
-    Private Sub btnSave_Click(sender As Object, e As System.EventArgs) Handles btnSave.Click
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim rep As New ProfileBusinessRepository
-        Dim store As New ProfileStoreProcedure
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim PrID As Decimal = 0
-            If IsNumeric(Request.Params("PrID")) Then
-                PrID = Request.Params("PrID")
-            End If
-            Dim _folder As New FoldersDTO
-            _folder.NAME = txtFolderName.Text
-            _folder.PARENT_ID = PrID
-            If rep.AddFolder(_folder) = 1 Then
-                ShowMessage(Translate("Trùng tên thư mục"), NotifyType.Warning)
-                Exit Sub
-            Else
-                Dim link = Server.MapPath("TemplateDynamic\UserFiles\" & store.Get_Folder_link(_folder.PARENT_ID) & "\" & _folder.NAME)
-                If Not Directory.Exists(link) Then
-                    Directory.CreateDirectory(link)
-                End If
-                ScriptManager.RegisterStartupScript(Page, Page.GetType, "Close", "CloseWindow();", True)
-            End If
-            UpdateControlState()
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
+    'Private Sub btnSave_Click(sender As Object, e As System.EventArgs) Handles btnSave.Click
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim rep As New ProfileBusinessRepository
+    '    Dim store As New ProfileStoreProcedure
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
 
-    End Sub
+    '        ScriptManager.RegisterStartupScript(Page, Page.GetType, "Close", "CloseWindow();", True)
+    '        'Dim PrID As Decimal = 0
+    '        'If IsNumeric(Request.Params("PrID")) Then
+    '        '    PrID = Request.Params("PrID")
+    '        'End If
+    '        'Dim _folder As New FoldersDTO
+    '        '_folder.NAME = txtFolderName.Text
+    '        '_folder.PARENT_ID = PrID
+    '        'If rep.AddFolder(_folder) = 1 Then
+    '        '    ShowMessage(Translate("Trùng tên thư mục"), NotifyType.Warning)
+    '        '    Exit Sub
+    '        'Else
+    '        '    Dim link = Server.MapPath("TemplateDynamic\UserFiles\" & store.Get_Folder_link(_folder.PARENT_ID) & "\" & _folder.NAME)
+    '        '    If Not Directory.Exists(link) Then
+    '        '        Directory.CreateDirectory(link)
+    '        '    End If
+    '        '    ScriptManager.RegisterStartupScript(Page, Page.GetType, "Close", "CloseWindow();", True)
+    '        'End If
+    '        'UpdateControlState()
+    '        CurrentState = CommonMessage.STATE_NORMAL
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+
+    'End Sub
 #End Region
 
 #Region "Custom"
@@ -230,10 +244,6 @@ Public Class ctrlFoldersNewEdit
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Select Case CurrentState
-                Case CommonMessage.STATE_NEW
-                Case CommonMessage.STATE_EDIT
-            End Select
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -251,27 +261,31 @@ Public Class ctrlFoldersNewEdit
     ''' <remarks></remarks>
 
     Private Sub GetParams()
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
-
             If CurrentState Is Nothing Then
-
                 If Request.Params("ID") IsNot Nothing Then
-                    'hidID.Value = Request.Params("IDSelect")
-                    Refresh("UpdateView")
-                    Exit Sub
+                    IDSelect = Decimal.Parse(Request.Params("ID"))
                 End If
-                Refresh("NormalView")
+                If IDSelect IsNot Nothing And IDSelect <> -1 Then
+                    Refresh("UpdateView")
+                Else
+                    Refresh("InsertView")
+                End If
             End If
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
 #End Region
 
+    Sub Gotolink(ByVal link As String)
+        Dim str As String
+        str = "var link=document.createElement('a');"
+        str &= String.Format("link.href='{0}';", link)
+        str &= String.Format("link.target='{0}';", "_parent")
+        str &= "link.click();"
 
+        ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
+    End Sub
 
 End Class

@@ -136,7 +136,7 @@
 <tlk:radwindowmanager id="RadWindowManager1" runat="server">
     <windows>
         <tlk:RadWindow runat="server" ID="rwPopup" VisibleStatusbar="false" Width="500px"
-            OnClientClose="popupclose" Height="300px" EnableShadow="true" Behaviors="Close, Maximize, Move"
+            OnClientClose="OnClientClose" Height="300px" EnableShadow="true" Behaviors="Close, Maximize, Move"
             Modal="true" ShowContentDuringLoad="false" Title="<%$ Translate: Tạo hợp đồng %>">
         </tlk:RadWindow>
     </windows>
@@ -146,19 +146,19 @@
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
         var enableAjax = true;
-        function clientButtonClicking(sender, args) {
-        }
         function onRequestStart(sender, eventArgs) {
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
         }
 
         function OpenNew(_id) {
-            var url = 'Dialog.aspx?mid=Profile&fid=ctrlFoldersNewEdit&PrID=' + _id;
+            var url = 'Dialog.aspx?mid=Profile&fid=ctrlFoldersNewEdit&PrID=' + _id + '&noscroll=1&reload=1&FormType=0';
             var oWindow = radopen(url, "rwPopup");
             var pos = $("html").offset();
             oWindow.moveTo(pos.center);
             oWindow.setSize("500px", "200px");
+            oWindow.center();
+            return 0;
         }
 
         function OpenEditFolder(_id) {
@@ -167,28 +167,26 @@
             oWindow.moveTo(pos.center);
             oWindow.setSize("300px", "200px");
         }
-        var enableAjax = true;
         function clientButtonClicking(sender, args) {
-            if (args.get_item().get_commandName() == 'SUBMIT') {
-                var ctrFolder = document.getElementById('ctl00_MainContent_ctrlPortalEmpFileMng_ctrlFD_trvOrgPostback').value;
+            var ctrFolder = document.getElementById('ctl00_MainContent_ctrlPortalEmpFileMng_ctrlFD_trvOrgPostback').value;
+            if (args.get_item().get_commandName() == 'CREATE') {
                 OpenNew(ctrFolder);
                 args.set_cancel(true);
             }
             if (args.get_item().get_commandName() == "EDIT") {
-                OpenEditFolder(1);
+                OpenEditFolder(ctrFolder);
                 args.set_cancel(true);
             }
         }
-        function popupclose(sender, args) {
-
+        function OnClientClose(oWnd, args) {
             var m;
             var arg = args.get_argument();
             if (arg == '1') {
-                m = '<%= Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS) %>';
+                m = '<%# Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS) %>';
                 var n = noty({ text: m, dismissQueue: true, type: 'success' });
                 setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+                $find("<%= rgHealth.ClientID %>").get_masterTableView().rebind();
             }
-            $find("<%= rgHealth.ClientID %>").get_masterTableView().rebind();
         }
     </script>
 </tlk:RadCodeBlock>

@@ -5,40 +5,35 @@
 <style>
     .tvc_table_1
     {
-        height:140px;
-        position:relative;
+        height: 140px;
+        position: relative;
     }
     .tvc_table_1 tr
     {
         position: absolute;
-        top:40%;
-        left: 9%;
+        top: 30%;
+        left: 15%;
     }
 </style>
+<asp:HiddenField ID="hidID" runat="server"/>
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Orientation="Horizontal">
-    <tlk:RadPane ID="LeftPane" runat="server">
+    <tlk:RadPane ID="RadPane1" runat="server" Height="35px" Width="100%" Scrolling="None">
+        <tlk:RadToolBar ID="tbarFolderEdit" runat="server"  OnClientButtonClicking="clientButtonClicking"/>
+    </tlk:RadPane>
+    <tlk:RadPane ID="RadPane2" runat="server">
         <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />
-        <table class="table-form tvc_table_1" onkeydown="return (event.keyCode!=13)" >
+        <table class="table-form tvc_table_1" onkeydown="return (event.keyCode!=13)">
             <tr>
                 <td class="label">
                     <asp:Label ID="lbOrg_Name" runat="server" Text="<%$ Translate: Tên thư mục %>"></asp:Label><span
                         class="lbReq">*</span>
                 </td>
-                <td colspan="6">
-                    <tlk:RadTextBox ID="txtFolderName" runat="server">
+                <td colspan="8">
+                    <tlk:RadTextBox ID="txtFolderName" runat="server" Width="100%">
                     </tlk:RadTextBox>
                     <asp:RequiredFieldValidator ID="reqFName" ControlToValidate="txtFolderName" runat="server"
                         ErrorMessage="<%$ Translate: Bạn phải nhập Tên thư mục %>" ToolTip="<%$ Translate: Bạn phải nhập Tên thư mục %>">
                     </asp:RequiredFieldValidator>
-                </td>
-                <td></td>
-                <td>
-                    <asp:Button runat="server" ID="btnSave" Text="Thêm" />
-                </td>
-                <td>
-                </td>
-                <td>
-                    <asp:Button runat="server" ID="btnCancel" Text="Hủy" />
                 </td>
             </tr>
         </table>
@@ -52,15 +47,20 @@
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
         }
-        function CloseWindow() {
-            var oWindow = GetRadWindow();
-            if (oWindow) oWindow.close(1);
+        function getRadWindow() {
+            if (window.radWindow) {
+                return window.radWindow;
+            }
+            if (window.frameElement && window.frameElement.radWindow) {
+                return window.frameElement.radWindow;
+            }
+            return null;
         }
-        function GetRadWindow() {
-            var oWindow = null;
-            if (window.radWindow) oWindow = window.radWindow;
-            else if (window.frameElement.radWindow) oWindow = window.frameElement.radWindow;
-            return oWindow;
+
+        function clientButtonClicking(sender, args) {
+            if (args.get_item().get_commandName() == 'CANCEL') {
+                getRadWindow().close(0);
+            }
         }
     </script>
 </tlk:RadCodeBlock>

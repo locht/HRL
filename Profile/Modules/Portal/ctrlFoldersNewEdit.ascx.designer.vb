@@ -14,6 +14,15 @@ Option Explicit On
 Partial Public Class ctrlFoldersNewEdit
 
     '''<summary>
+    '''hidID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hidID As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
     '''RadSplitter1 control.
     '''</summary>
     '''<remarks>
@@ -23,13 +32,31 @@ Partial Public Class ctrlFoldersNewEdit
     Protected WithEvents RadSplitter1 As Global.Telerik.Web.UI.RadSplitter
 
     '''<summary>
-    '''LeftPane control.
+    '''RadPane1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents LeftPane As Global.Telerik.Web.UI.RadPane
+    Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
+
+    '''<summary>
+    '''tbarFolderEdit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tbarFolderEdit As Global.Telerik.Web.UI.RadToolBar
+
+    '''<summary>
+    '''RadPane2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadPane2 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
     '''valSum control.
@@ -66,24 +93,6 @@ Partial Public Class ctrlFoldersNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqFName As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''btnSave control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnSave As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btnCancel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCancel As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''ctrlMessageBox control.
