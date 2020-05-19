@@ -57029,6 +57029,12 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetFoldersStructureInfo", ReplyAction:="http://tempuri.org/IProfileBusiness/GetFoldersStructureInfoResponse")>  _
         Function GetFoldersStructureInfo(ByVal _folderId As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.FoldersDTO)
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/AddFolder", ReplyAction:="http://tempuri.org/IProfileBusiness/AddFolderResponse")>  _
+        Function AddFolder(ByVal _folder As ProfileBusiness.FoldersDTO) As Integer
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteFolder", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteFolderResponse")>  _
+        Function DeleteFolder(ByVal _id As Decimal) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetPeriodbyYear", ReplyAction:="http://tempuri.org/IProfileBusiness/GetPeriodbyYearResponse")>  _
         Function GetPeriodbyYear(ByVal year As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO)
         
@@ -59864,6 +59870,14 @@ Namespace ProfileBusiness
         
         Public Function GetFoldersStructureInfo(ByVal _folderId As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.FoldersDTO) Implements ProfileBusiness.IProfileBusiness.GetFoldersStructureInfo
             Return MyBase.Channel.GetFoldersStructureInfo(_folderId)
+        End Function
+        
+        Public Function AddFolder(ByVal _folder As ProfileBusiness.FoldersDTO) As Integer Implements ProfileBusiness.IProfileBusiness.AddFolder
+            Return MyBase.Channel.AddFolder(_folder)
+        End Function
+        
+        Public Function DeleteFolder(ByVal _id As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteFolder
+            Return MyBase.Channel.DeleteFolder(_id)
         End Function
         
         Public Function GetPeriodbyYear(ByVal year As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO) Implements ProfileBusiness.IProfileBusiness.GetPeriodbyYear

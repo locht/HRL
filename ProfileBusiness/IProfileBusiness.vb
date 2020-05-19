@@ -3031,6 +3031,12 @@ Namespace ProfileBusiness.ServiceContracts
 
         <OperationContract()>
         Function GetFoldersStructureInfo(ByVal _folderId As Decimal) As List(Of FoldersDTO)
+
+        <OperationContract()>
+        Function AddFolder(ByVal _folder As FoldersDTO) As Integer
+
+        <OperationContract()>
+        Function DeleteFolder(ByVal _id As Decimal) As Boolean
 #End Region
     End Interface
 

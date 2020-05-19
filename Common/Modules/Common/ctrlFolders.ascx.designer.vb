@@ -23,24 +23,6 @@ Partial Public Class ctrlFolders
     Protected WithEvents RadSplitter3 As Global.Telerik.Web.UI.RadSplitter
 
     '''<summary>
-    '''RadPane1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
-
-    '''<summary>
-    '''tbarContracts control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tbarContracts As Global.Telerik.Web.UI.RadToolBar
-
-    '''<summary>
     '''RadPane2 control.
     '''</summary>
     '''<remarks>

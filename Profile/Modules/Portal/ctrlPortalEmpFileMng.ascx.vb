@@ -67,9 +67,12 @@ Public Class ctrlPortalEmpFileMng
             Dim startTime As DateTime = DateTime.UtcNow
             Me.MainToolBar = tbarContracts
 
-            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create)
+            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Submit, ToolbarItem.Edit, ToolbarItem.Delete, ToolbarItem.Create)
 
-            CType(Me.MainToolBar.Items(0), RadToolBarButton).Text = Translate("Thêm file")
+            CType(Me.MainToolBar.Items(0), RadToolBarButton).Text = Translate("Tạo thu mục")
+            CType(Me.MainToolBar.Items(1), RadToolBarButton).Text = Translate("Đổi tên")
+            CType(Me.MainToolBar.Items(2), RadToolBarButton).Text = Translate("Xóa thư mục")
+            CType(Me.MainToolBar.Items(3), RadToolBarButton).Text = Translate("Thêm file")
         Catch ex As Exception
             Throw ex
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -132,7 +135,6 @@ Public Class ctrlPortalEmpFileMng
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_IMPORT
                     ctrlUpload1.Show()
-                
             End Select
 
             'UpdateControlState()

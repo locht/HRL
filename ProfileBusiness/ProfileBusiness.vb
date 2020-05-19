@@ -1112,6 +1112,28 @@ Implements ServiceContracts.IProfileBusiness.GetHU_DataDynamicContractAppendix
             End Using
         End Function
 
+        Public Function AddFolder(ByVal _folder As FoldersDTO) As Integer Implements ServiceContracts.IProfileBusiness.AddFolder
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.AddFolder(_folder)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function DeleteFolder(ByVal _id As Decimal) As Boolean Implements ServiceContracts.IProfileBusiness.DeleteFolder
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.DeleteFolder(_id)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
 
 #End Region
     End Class

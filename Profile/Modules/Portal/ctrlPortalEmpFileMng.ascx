@@ -4,8 +4,7 @@
 <%@ Import Namespace="Framework.UI.Utilities" %>
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
     <tlk:radpane id="LeftPane" runat="server" minwidth="200" width="250px" Height="100%" scrolling="None">
-        <Common:ctrlOrganization ID="ctrlOrg" runat="server" />
-        <Common:ctrlFindEmployeePopup ID="CtrlOrganization1" runat="server" />
+        <Common:ctrlFolders ID="ctrlFD" runat="server" />
     </tlk:radpane>
     <tlk:RadSplitBar ID="RadSplitBar1" runat="server" CollapseMode="Forward">
     </tlk:RadSplitBar>
@@ -134,7 +133,16 @@
         </tlk:RadSplitter>
     </tlk:RadPane>
 </tlk:RadSplitter>
+<tlk:radwindowmanager id="RadWindowManager1" runat="server">
+    <windows>
+        <tlk:RadWindow runat="server" ID="rwPopup" VisibleStatusbar="false" Width="500px"
+            OnClientClose="popupclose" Height="300px" EnableShadow="true" Behaviors="Close, Maximize, Move"
+            Modal="true" ShowContentDuringLoad="false" Title="<%$ Translate: Tạo hợp đồng %>">
+        </tlk:RadWindow>
+    </windows>
+</tlk:radwindowmanager>
 <Common:ctrlUpload ID="ctrlUpload1" runat="server" />
+<Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
         var enableAjax = true;
@@ -143,6 +151,44 @@
         function onRequestStart(sender, eventArgs) {
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
+        }
+
+        function OpenNew(_id) {
+            var url = 'Dialog.aspx?mid=Profile&fid=ctrlFoldersNewEdit&PrID=' + _id;
+            var oWindow = radopen(url, "rwPopup");
+            var pos = $("html").offset();
+            oWindow.moveTo(pos.center);
+            oWindow.setSize("500px", "200px");
+        }
+
+        function OpenEditFolder(_id) {
+            var oWindow = radopen('Dialog.aspx?mid=Profile&fid=ctrlFoldersNewEdit', "rwPopup");
+            var pos = $("html").offset();
+            oWindow.moveTo(pos.center);
+            oWindow.setSize("300px", "200px");
+        }
+        var enableAjax = true;
+        function clientButtonClicking(sender, args) {
+            if (args.get_item().get_commandName() == 'SUBMIT') {
+                var ctrFolder = document.getElementById('ctl00_MainContent_ctrlPortalEmpFileMng_ctrlFD_trvOrgPostback').value;
+                OpenNew(ctrFolder);
+                args.set_cancel(true);
+            }
+            if (args.get_item().get_commandName() == "EDIT") {
+                OpenEditFolder(1);
+                args.set_cancel(true);
+            }
+        }
+        function popupclose(sender, args) {
+
+            var m;
+            var arg = args.get_argument();
+            if (arg == '1') {
+                m = '<%= Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS) %>';
+                var n = noty({ text: m, dismissQueue: true, type: 'success' });
+                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+            }
+            $find("<%= rgHealth.ClientID %>").get_masterTableView().rebind();
         }
     </script>
 </tlk:RadCodeBlock>

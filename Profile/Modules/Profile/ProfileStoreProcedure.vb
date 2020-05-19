@@ -687,4 +687,15 @@ Public Class ProfileStoreProcedure
         End If
     End Function
 #End Region
+
+#Region "file"
+    Public Function Get_Folder_link(ByVal _pID As Decimal) As String
+        Dim dt As DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_PROFILE.GET_FOLDER_LINK", New List(Of Object)(New Object() {_pID}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt.Rows(0)(0).ToString
+    End Function
+#End Region
 End Class

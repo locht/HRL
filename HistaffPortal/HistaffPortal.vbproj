@@ -126,6 +126,7 @@
     <Content Include="Modules\Performance\ctrlPE_AssessHistory.ascx" />
     <Content Include="Modules\Common\ctrlFolders.ascx" />
     <Content Include="Modules\Performance\ctrlPortal_Result_Evaluate.ascx" />
+    <Content Include="Modules\Profile\ctrlFoldersNewEdit.ascx" />
     <Content Include="Modules\Profile\ctrlPortalContractAppendix.ascx" />
     <Content Include="Modules\Profile\ctrlInfoCertificate.ascx" />
     <Content Include="Modules\Profile\ctrlPortalEmpDtlTrainingEvaluate.ascx" />

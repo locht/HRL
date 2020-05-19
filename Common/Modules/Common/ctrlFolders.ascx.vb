@@ -510,15 +510,15 @@ Public Class ctrlFolders
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
-            Me.MainToolBar = tbarContracts
+            'Me.MainToolBar = tbarContracts
 
-            Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create,
-                                       ToolbarItem.Edit,
-                                       ToolbarItem.Delete)
+            'Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create,
+            '                           ToolbarItem.Edit,
+            '                           ToolbarItem.Delete)
 
-            CType(MainToolBar.Items(0), RadToolBarButton).Text = Translate("Tạo thư mục")
-            CType(MainToolBar.Items(1), RadToolBarButton).Text = Translate("Đổi tên")
-            CType(Me.MainToolBar.Items(2), RadToolBarButton).Text = Translate("Xóa")
+            'CType(MainToolBar.Items(0), RadToolBarButton).Text = Translate("Tạo thư mục")
+            'CType(MainToolBar.Items(1), RadToolBarButton).Text = Translate("Đổi tên")
+            'CType(Me.MainToolBar.Items(2), RadToolBarButton).Text = Translate("Xóa")
         Catch ex As Exception
             Throw ex
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -610,9 +610,35 @@ Public Class ctrlFolders
             End If
 
             'e.Node.Text = node.CODE & " - " & node.NAME_VN
-            
+
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    Protected Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
+        Dim objOrgFunction As New FoldersDTO
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+
+            Dim startTime As DateTime = DateTime.UtcNow
+            Select Case CType(e.Item, RadToolBarButton).CommandName
+                'Case CommonMessage.TOOLBARITEM_CREATE
+                '    Dim Script = "window.open('/Default.aspx?mid=Common&fid=ctrlFoldersNewEdit','popup_window','width=300,height=100,left=100,top=100,resizable=yes');"
+                '    ScriptManager.RegisterStartupScript(Page, Me.GetType, "UserPopup", Script, True)
+                'Case CommonMessage.TOOLBARITEM_EDIT
+                '    Dim Script = "window.open('/Default.aspx?mid=Common&fid=ctrlFoldersNewEdit&ID='" & trvOrgPostback.SelectedValue & ",'_self');"
+                '    ScriptManager.RegisterStartupScript(Page, Me.GetType, "UserPopup", Script, True)
+                Case (CommonMessage.TOOLBARITEM_SAVE)
+                    'ctrlUpload1.Show()
+
+            End Select
+
+            'UpdateControlState()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
@@ -962,6 +988,8 @@ Public Class ctrlFolders
             Throw ex
         End Try
     End Sub
+
+
 #End Region
 
 End Class

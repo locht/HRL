@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class ctrlPortalEmpFileMng
+Partial Public Class ctrlFoldersNewEdit
 
     '''<summary>
     '''RadSplitter1 control.
@@ -32,103 +32,58 @@ Partial Public Class ctrlPortalEmpFileMng
     Protected WithEvents LeftPane As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
-    '''ctrlFD control.
+    '''valSum control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ctrlFD As Global.Common.ctrlFolders
+    Protected WithEvents valSum As Global.System.Web.UI.WebControls.ValidationSummary
 
     '''<summary>
-    '''RadSplitBar1 control.
+    '''lbOrg_Name control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RadSplitBar1 As Global.Telerik.Web.UI.RadSplitBar
+    Protected WithEvents lbOrg_Name As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''MainPane control.
+    '''txtFolderName control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents MainPane As Global.Telerik.Web.UI.RadPane
+    Protected WithEvents txtFolderName As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''RadSplitter3 control.
+    '''reqFName control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RadSplitter3 As Global.Telerik.Web.UI.RadSplitter
+    Protected WithEvents reqFName As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''RadPane1 control.
+    '''btnSave control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
+    Protected WithEvents btnSave As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''tbarContracts control.
+    '''btnCancel control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tbarContracts As Global.Telerik.Web.UI.RadToolBar
-
-    '''<summary>
-    '''RadPane2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RadPane2 As Global.Telerik.Web.UI.RadPane
-
-    '''<summary>
-    '''rgHealth control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rgHealth As Global.Telerik.Web.UI.RadGrid
-
-    '''<summary>
-    '''RadWindowManager1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RadWindowManager1 As Global.Telerik.Web.UI.RadWindowManager
-
-    '''<summary>
-    '''rwPopup control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rwPopup As Global.Telerik.Web.UI.RadWindow
-
-    '''<summary>
-    '''ctrlUpload1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ctrlUpload1 As Global.Common.ctrlUpload
+    Protected WithEvents btnCancel As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''ctrlMessageBox control.

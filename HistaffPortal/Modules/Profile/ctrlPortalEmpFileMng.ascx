@@ -3,19 +3,19 @@
 <%@ Import Namespace="Common" %>
 <%@ Import Namespace="Framework.UI.Utilities" %>
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
-    <tlk:RadPane ID="LeftPane" runat="server" MinWidth="200" Width="250px" Height="100%" Scrolling="None">
-        <Common:ctrlFolders ID="ctrlFd" runat="server" height="100%"/>
-    </tlk:RadPane>
+    <tlk:radpane id="LeftPane" runat="server" minwidth="200" width="250px" Height="100%" scrolling="None">
+        <Common:ctrlFolders ID="ctrlFD" runat="server" />
+    </tlk:radpane>
     <tlk:RadSplitBar ID="RadSplitBar1" runat="server" CollapseMode="Forward">
     </tlk:RadSplitBar>
     <tlk:RadPane ID="MainPane" runat="server" Scrolling="None">
-        <tlk:RadSplitter ID="RadSplitter3" runat="server"  width="100%" Height="100%" Orientation="Horizontal">
+        <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
             <tlk:RadPane ID="RadPane1" runat="server" Height="35px" Width="100%" Scrolling="None">
                 <tlk:RadToolBar ID="tbarContracts" runat="server" OnClientButtonClicking="clientButtonClicking" />
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane2" Height="100%" runat="server" Scrolling="None">
-                <tlk:RadGrid PageSize="50" ID="rgHealth" Width="100%"  runat="server" Height="350px" AllowFilteringByColumn="true"
-                    Scrolling="both">
+                <tlk:RadGrid PageSize="50" ID="rgHealth" Width="100%" runat="server" Height="350px"
+                    AllowFilteringByColumn="true" Scrolling="both">
                     <MasterTableView DataKeyNames="ID">
                         <Columns>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
@@ -133,8 +133,17 @@
         </tlk:RadSplitter>
     </tlk:RadPane>
 </tlk:RadSplitter>
+<tlk:radwindowmanager id="RadWindowManager1" runat="server">
+    <windows>
+        <tlk:RadWindow runat="server" ID="rwPopup" VisibleStatusbar="false" Width="500px"
+            OnClientClose="popupclose" Height="300px" EnableShadow="true" Behaviors="Close, Maximize, Move"
+            Modal="true" ShowContentDuringLoad="false" Title="<%$ Translate: Tạo hợp đồng %>">
+        </tlk:RadWindow>
+    </windows>
+</tlk:radwindowmanager>
 <Common:ctrlUpload ID="ctrlUpload1" runat="server" />
-<tlk:radcodeblock id="RadCodeBlock1" runat="server">
+<Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
+<tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
         var enableAjax = true;
         function clientButtonClicking(sender, args) {
@@ -143,5 +152,42 @@
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
         }
+
+        function OpenNew(_id) {
+            var url = 'Dialog.aspx?mid=Profile&fid=ctrlFoldersNewEdit&PrID='+_id;
+            var oWindow = radopen(url, "rwPopup");
+            var pos = $("html").offset();
+            oWindow.moveTo(pos.center);
+            oWindow.setSize("500px", "200px");
+        }
+
+        function OpenEditFolder(_id) {
+            var oWindow = radopen('Dialog.aspx?mid=Profile&fid=ctrlFoldersNewEdit', "rwPopup");
+            var pos = $("html").offset();
+            oWindow.moveTo(pos.center);
+            oWindow.setSize("300px", "200px");
+        }
+        var enableAjax = true;
+        function clientButtonClicking(sender, args) {
+            if (args.get_item().get_commandName() == 'SUBMIT') {
+                var ctrFolder = document.getElementById('ctl00_MainContent_ctrlPortalEmpFileMng_ctrlFD_trvOrgPostback').value;
+                OpenNew(ctrFolder);
+                args.set_cancel(true);
+            }
+            if (args.get_item().get_commandName() == "EDIT") {
+                OpenEditFolder(1);
+                args.set_cancel(true);
+            }
+        }
+        function popupclose(sender, args) {
+
+            var m;
+            var arg = args.get_argument();
+            if (arg == '1') {
+                m = '<%= Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS) %>';
+                var n = noty({ text: m, dismissQueue: true, type: 'success' });
+                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+            }
+        }
     </script>
-</tlk:radcodeblock>
+</tlk:RadCodeBlock>

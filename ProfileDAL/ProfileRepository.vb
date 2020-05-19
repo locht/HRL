@@ -647,7 +647,7 @@ Public Class ProfileRepository
         Dim query
         'don vi ky hop dong sua lai theo vnm
         If _combolistDTO.GET_SIGN_WORK Then
-            query = (From p In Context.HU_ORGANIZATION Where p.ACTFLG = "A" And p.is_sign_contract = -1
+            query = (From p In Context.HU_ORGANIZATION Where p.ACTFLG = "A" And p.IS_SIGN_CONTRACT = -1
                      Select New OrganizationDTO With {
                          .ID = p.ID,
                          .NAME_VN = p.NAME_VN,
@@ -2181,7 +2181,7 @@ Public Class ProfileRepository
                                                         .P_ORGID = _filter.ORG_ID,
                                                         .P_ISDISSOLVE = _param.IS_DISSOLVE,
                                                          .P_CUR = cls.OUT_CURSOR})
-                    lst = dtData.ToList(Of HealthMngDTO)
+                    lst = dtData.ToList(Of HealthMngDTO)()
                     Total = lst.Count
                     Return dtData
                 End Using
@@ -3639,6 +3639,45 @@ Public Class ProfileRepository
             list.Add(query)
         Loop
         Return list
+    End Function
+
+    Public Function AddFolder(ByVal _folder As FoldersDTO) As Integer
+        Try
+            If _folder.ID = 0 Then
+                Dim check = (From p In Context.HU_FOLDERS Where p.NAME.ToUpper.Equals(_folder.NAME.ToUpper)).Count
+                If check > 0 Then
+                    Return 1
+                Else
+                    Dim objFolder As New HU_FOLDERS
+                    objFolder.ID = Utilities.GetNextSequence(Context, Context.HU_FOLDERS.EntitySet.Name)
+                    objFolder.NAME = _folder.NAME
+                    objFolder.PARENT_ID = _folder.PARENT_ID
+                    Context.HU_FOLDERS.AddObject(objFolder)
+                End If
+            Else
+                Dim check = (From p In Context.HU_FOLDERS Where p.NAME.ToUpper.Equals(_folder.NAME.ToUpper) And p.ID <> _folder.ID).Count
+                If check > 0 Then
+                    Return 1
+                Else
+                    Dim objFolder = (From p In Context.HU_FOLDERS Where p.ID = _folder.ID).FirstOrDefault
+                    objFolder.NAME = _folder.NAME
+                End If
+            End If
+            Context.SaveChanges()
+            Return 0
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function DeleteFolder(ByVal _id As Decimal) As Boolean
+        Try
+            Dim folder = (From p In Context.HU_FOLDERS Where p.ID = _id).FirstOrDefault
+            Context.HU_FOLDERS.DeleteObject(folder)
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Function
 #End Region
 End Class
