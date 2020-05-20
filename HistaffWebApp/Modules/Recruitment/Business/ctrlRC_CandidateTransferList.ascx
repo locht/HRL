@@ -148,7 +148,7 @@
             Height="380px">
             <tlk:RadPageView ID="rpvElect" runat="server" Width="100%" Height="380px">
                 <tlk:RadGrid ID="rgCandidateList" runat="server" Width="100%" Height="200px">
-                    <MasterTableView DataKeyNames="ID,CANDIDATE_CODE,ID_CANDIDATE" ClientDataKeyNames="ID,CANDIDATE_CODE,STATUS_CODE,ID_CANDIDATE">
+                    <MasterTableView DataKeyNames="ID,CANDIDATE_CODE,ID_CANDIDATE" ClientDataKeyNames="ID,CANDIDATE_CODE,STATUS_CODE,ID_CANDIDATE,STATUS_US">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">

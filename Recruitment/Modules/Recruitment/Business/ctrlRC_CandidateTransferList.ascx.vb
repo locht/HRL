@@ -424,6 +424,15 @@ Public Class ctrlRC_CandidateTransferList
                     ShowMessage(Translate("Tồn tại ứng viên đang ở trạng thái Ứng viên tìêm năng"), NotifyType.Warning)
                     Exit Sub
             End Select
+
+            Dim status_us As String = ""
+            If Not IsDBNull(dr.GetDataKeyValue("STATUS_US")) Then
+                status_us = dr.GetDataKeyValue("STATUS_US")
+                If status_us = "CANDIDATE_NB" Then
+                    ShowMessage(Translate("Không chuyển hồ sơ đối với ứng viên nội bộ, vui lòng kiểm tra lại!"), NotifyType.Warning)
+                    Exit Sub
+                End If
+            End If
         Next
         'Hiển thị Confirm delete.
 
