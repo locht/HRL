@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("183960f1-58df-4354-a836-08858450e09d")>
+<Assembly: EdmSchemaAttribute("7294539d-e54a-4c37-a3ec-a65d2f55d089")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -29621,6 +29621,56 @@ Public Partial Class HU_EMPLOYEE_CV
     End Sub
 
     Private Partial Sub OnRESIDENCEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property INTERVIEWER1() As Global.System.String
+        Get
+            Return _INTERVIEWER1
+        End Get
+        Set
+            OnINTERVIEWER1Changing(value)
+            ReportPropertyChanging("INTERVIEWER1")
+            _INTERVIEWER1 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("INTERVIEWER1")
+            OnINTERVIEWER1Changed()
+        End Set
+    End Property
+
+    Private _INTERVIEWER1 As Global.System.String
+    Private Partial Sub OnINTERVIEWER1Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnINTERVIEWER1Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property INTERVIEWER2() As Global.System.String
+        Get
+            Return _INTERVIEWER2
+        End Get
+        Set
+            OnINTERVIEWER2Changing(value)
+            ReportPropertyChanging("INTERVIEWER2")
+            _INTERVIEWER2 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("INTERVIEWER2")
+            OnINTERVIEWER2Changed()
+        End Set
+    End Property
+
+    Private _INTERVIEWER2 As Global.System.String
+    Private Partial Sub OnINTERVIEWER2Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnINTERVIEWER2Changed()
     End Sub
 
     #End Region

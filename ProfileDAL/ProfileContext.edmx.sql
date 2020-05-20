@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 05/20/2020 3:13:35 PM
--- Generated from EDMX file: F:\WORKING\acv_19\ProfileDAL\ProfileContext.edmx
+-- Date Created: 5/20/2020 4:18:33 PM
+-- Generated from EDMX file: D:\acv_19\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -724,7 +724,9 @@ CREATE TABLE "dbo"."HU_EMPLOYEE_CV" (
    "IS_ATVS" NUMBER(5,0) NULL,
    "TNCN_NO" NVARCHAR2(255) NULL,
    "IS_TRANSFER" NUMBER(5,0) NULL,
-   "RESIDENCE" NCLOB NULL
+   "RESIDENCE" NCLOB NULL,
+   "INTERVIEWER1" NCLOB NULL,
+   "INTERVIEWER2" NCLOB NULL
 );
 
 -- Creating table 'HU_EMPLOYEE_HEALTH'
