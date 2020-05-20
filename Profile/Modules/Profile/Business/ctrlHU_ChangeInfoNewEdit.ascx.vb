@@ -1413,7 +1413,10 @@ Public Class ctrlHU_ChangeInfoNewEdit
                 txtDecisionold.Text = obj.DECISION_NO
                 txtDecision.Text = obj.DECISION_NO
                 txtDecisionTypeOld.Text = obj.DECISION_TYPE_NAME
-                cboDecisionType.SelectedValue = obj.DECISION_TYPE_ID
+                'If obj.DECISION_TYPE_ID IsNot Nothing Then
+                '    cboDecisionType.SelectedValue = obj.DECISION_TYPE_ID
+                'End If
+
                 txtOrgNameOld.Text = obj.ORG_NAME
                 rdEffectDateOld.SelectedDate = obj.EFFECT_DATE
                 rdExpireDateOld.SelectedDate = obj.EXPIRE_DATE
