@@ -123,14 +123,28 @@ Public Class ctrlPortalEmpFileMng
             'My.Computer.FileSystem.DeleteFile(fileName)
         End If
         If e.CommandName = "DownloadFile" Then
-            If Not Directory.Exists(link) Then
+            If Not My.Computer.FileSystem.FileExists(link) Then
                 ShowMessage(Translate("File không tồn tại"), NotifyType.Warning)
                 Exit Sub
             End If
-            Dim url As String = "Download.aspx?" & "ctrlPortalEmpFileMng," & e.CommandArgument
-            Dim str As String = "window.open('" & url + "');"
-            ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
+            ZipFiles(link, _file.FILE_NAME)
+            'Dim url As String = "Download.aspx?" & "ctrlPortalEmpFileMng," & e.CommandArgument
+            'Dim str As String = "window.open('" & url + "');"
+            'ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
         End If
+    End Sub
+
+    Private Sub rgHealth_ItemDataBound(sender As Object, e As Telerik.Web.UI.GridItemEventArgs) Handles rgHealth.ItemDataBound
+        Try
+            For Each item As GridDataItem In rgHealth.MasterTableView.Items
+                Dim btnDownload As RadButton = DirectCast(item("ID").FindControl("btnDownload"), RadButton)
+                btnDownload.Enabled = True
+                Dim btnDelete As RadButton = DirectCast(item("ID").FindControl("btnDelete"), RadButton)
+                btnDelete.Enabled = True
+            Next
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub rgHealth_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgHealth.NeedDataSource
@@ -293,6 +307,27 @@ Public Class ctrlPortalEmpFileMng
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    Private Sub ZipFiles(ByVal path As String, ByVal _name As String)
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            Dim fileNameZip As String
+            fileNameZip = _name
+            Dim file As System.IO.FileInfo = New System.IO.FileInfo(path)
+            Response.Clear()
+            Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name)
+            Response.AddHeader("Content-Length", file.Length.ToString())
+            'Response.ContentType = "application/octet-stream"
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document "
+            Response.WriteFile(file.FullName)
+            Response.End()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            HttpContext.Current.Trace.Warn(ex.ToString())
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub

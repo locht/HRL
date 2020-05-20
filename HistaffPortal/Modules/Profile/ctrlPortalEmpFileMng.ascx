@@ -30,15 +30,15 @@
                             </tlk:GridDateTimeColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Người tạo %>" DataField="CREATED_BY"
                                 AllowFiltering="false" ReadOnly="true" UniqueName="CREATED_BY" HeaderStyle-Width="200px" />
-                            <tlk:GridTemplateColumn >
-                                <EditItemTemplate>
-                                    <tlk:RadButton runat="server" Text="Upload" ID="btnDownload" CommandName="Download"
+                            <tlk:GridTemplateColumn AllowFiltering="false">
+                                <ItemTemplate>
+                                    <tlk:RadButton runat="server" Text="Download" ID="btnDownload" OnClientClicked="rbtClicked" CommandName="DownloadFile"
                                         CommandArgument='<%# Eval("ID") %>'>
                                     </tlk:RadButton>
                                     <tlk:RadButton runat="server" Text="Delete" ID="btnDelete" CommandName="DeleteFile"
                                         CommandArgument='<%# Eval("ID") %>'>
                                     </tlk:RadButton>
-                                </EditItemTemplate>
+                                </ItemTemplate>
                             </tlk:GridTemplateColumn>
                         </Columns>
                     </MasterTableView>
@@ -118,6 +118,10 @@
                 setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                 location.reload();
             }
+        }
+
+        function rbtClicked(sender, eventArgs) {
+            enableAjax = false;
         }
     </script>
 </tlk:RadCodeBlock>
