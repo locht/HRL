@@ -57216,6 +57216,15 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetFolderByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetFolderByIDResponse")>  _
         Function GetFolderByID(ByVal _id As Decimal) As ProfileBusiness.FoldersDTO
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/AddUserFile", ReplyAction:="http://tempuri.org/IProfileBusiness/AddUserFileResponse")>  _
+        Function AddUserFile(ByVal _userFile As ProfileBusiness.UserFileDTO) As Decimal
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteUserFile", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteUserFileResponse")>  _
+        Function DeleteUserFile(ByVal _id As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetUserFileByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetUserFileByIDResponse")>  _
+        Function GetUserFileByID(ByVal _id As Decimal) As ProfileBusiness.UserFileDTO
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetPeriodbyYear", ReplyAction:="http://tempuri.org/IProfileBusiness/GetPeriodbyYearResponse")>  _
         Function GetPeriodbyYear(ByVal year As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO)
         
@@ -60075,6 +60084,18 @@ Namespace ProfileBusiness
         
         Public Function GetFolderByID(ByVal _id As Decimal) As ProfileBusiness.FoldersDTO Implements ProfileBusiness.IProfileBusiness.GetFolderByID
             Return MyBase.Channel.GetFolderByID(_id)
+        End Function
+        
+        Public Function AddUserFile(ByVal _userFile As ProfileBusiness.UserFileDTO) As Decimal Implements ProfileBusiness.IProfileBusiness.AddUserFile
+            Return MyBase.Channel.AddUserFile(_userFile)
+        End Function
+        
+        Public Function DeleteUserFile(ByVal _id As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteUserFile
+            Return MyBase.Channel.DeleteUserFile(_id)
+        End Function
+        
+        Public Function GetUserFileByID(ByVal _id As Decimal) As ProfileBusiness.UserFileDTO Implements ProfileBusiness.IProfileBusiness.GetUserFileByID
+            Return MyBase.Channel.GetUserFileByID(_id)
         End Function
         
         Public Function GetPeriodbyYear(ByVal year As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO) Implements ProfileBusiness.IProfileBusiness.GetPeriodbyYear

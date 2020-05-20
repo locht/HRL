@@ -6,7 +6,7 @@ Imports System.IO
 Imports Common
 Imports Profile.ProfileBusiness
 
-Public Class ctrlFoldersNewEdit
+Public Class ctrlUserFileNewEdit
     Inherits CommonView
     Public Overrides Property MustAuthorize As Boolean = False
 
@@ -33,6 +33,24 @@ Public Class ctrlFoldersNewEdit
             ViewState(Me.ID & "_OldFolderName") = value
         End Set
     End Property
+
+    Property AttachFile As AttachFilesDTO
+        Get
+            Return ViewState(Me.ID & "_AttachFile")
+        End Get
+        Set(ByVal value As AttachFilesDTO)
+            ViewState(Me.ID & "_AttachFile") = value
+        End Set
+    End Property
+
+    Property FileUpload As UploadedFile
+        Get
+            Return ViewState(Me.ID & "_FileUpload")
+        End Get
+        Set(value As UploadedFile)
+            ViewState(Me.ID & "_FileUpload") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
@@ -53,7 +71,7 @@ Public Class ctrlFoldersNewEdit
             GetParams()
             Refresh()
             UpdateControlState()
-
+            btnUpload.Enabled = True
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -137,9 +155,6 @@ Public Class ctrlFoldersNewEdit
             Select Case Message
                 Case "UpdateView"
                     CurrentState = CommonMessage.STATE_EDIT
-                    Dim objFolder = rep.GetFolderByID(IDSelect)
-                    txtFolderName.Text = objFolder.NAME
-                    OldFolderName = objFolder.NAME
                 Case "InsertView"
                     CurrentState = CommonMessage.STATE_NEW
                     Dim dt As New DataTable
@@ -178,49 +193,36 @@ Public Class ctrlFoldersNewEdit
 
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_SAVE
+
                     Dim regex As New Regex("^[A-Za-z0-9_\-\s_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]{1,255}$")
 
-                    If Not regex.Match(txtFolderName.Text).Success Then
-                        ShowMessage(Translate("Tên thư mục không được chứa ký tự đặc biệt"), NotifyType.Error)
+                    If Not regex.Match(txtFileName.Text).Success Then
+                        ShowMessage(Translate("Tên File không được chứa ký tự đặc biệt"), NotifyType.Error)
                         Exit Sub
                     End If
-                    Dim _folder As New FoldersDTO
-                    If CurrentState = CommonMessage.STATE_EDIT Then
-                        _folder.ID = IDSelect
-                    End If
 
-                    _folder.NAME = txtFolderName.Text
+                    Dim _file As New UserFileDTO
+                    AttachFile.ATTACHFILE_NAME = txtFileName.Text & AttachFile.FILE_TYPE
+                    _file.NAME = txtFileName.Text
+                    _file.FOLDER_ID = IDSelect
+                    _file.DESCRIPTION = txtDescription.Text
+                    _file.CREATED_BY = LogHelper.GetUserLog.Username
+                    _file.FILE_NAME = AttachFile.ATTACHFILE_NAME
 
-                    If CurrentState = CommonMessage.STATE_NEW Then
-                        _folder.PARENT_ID = IDSelect
-                    End If
-
-                    If rep.AddFolder(_folder) = 1 Then
-                        ShowMessage(Translate("Trùng tên thư mục"), NotifyType.Warning)
+                    
+                    If rep.AddUserFile(_file) = 1 Then
+                        ShowMessage(Translate("File đã tồn tại"), NotifyType.Warning)
                         Exit Sub
                     Else
                         Dim path = store.Get_Folder_link(IDSelect)
-
-                        Select Case CurrentState
-                            Case CommonMessage.STATE_NEW
-                                Dim link = Server.MapPath("TemplateDynamic\UserFiles\" & path & "\" & _folder.NAME)
-                                If Not Directory.Exists(link) Then
-                                    Directory.CreateDirectory(link)
-                                End If
-                            Case CommonMessage.STATE_EDIT
-                                Dim lastindx = path.LastIndexOf("\")
-                                path = path.Substring(0, lastindx)
-                                Dim link = Server.MapPath("TemplateDynamic\UserFiles\" & path & "\" & _folder.NAME)
-                                Dim _oldLink = Server.MapPath("TemplateDynamic\UserFiles\" & path & "\" & OldFolderName)
-                                If Not Directory.Exists(_oldLink) Then
-                                    Directory.CreateDirectory(link)
-                                Else
-                                    FileIO.FileSystem.RenameDirectory(_oldLink, _folder.NAME)
-                                End If
-                        End Select
+                        Dim link = Server.MapPath("TemplateDynamic\UserFiles\" & path & "\")
+                        If Not Directory.Exists(link) Then
+                            Directory.CreateDirectory(link)
+                        End If
+                        Dim strpath = System.IO.Path.Combine(link, AttachFile.ATTACHFILE_NAME)
+                        FileUpload.SaveAs(strpath, True)
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                        'Gotolink("/Default.aspx?mid=Profile&fid=ctrlPortalEmpFileMng")
-                        ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "close", "getRadWindow().close(2);", True)
+                        Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlPortalEmpFileMng")
                     End If
                     Refresh()
                     CurrentState = CommonMessage.STATE_NORMAL
@@ -233,40 +235,70 @@ Public Class ctrlFoldersNewEdit
         End Try
     End Sub
 
-    'Private Sub btnSave_Click(sender As Object, e As System.EventArgs) Handles btnSave.Click
-    '    Dim startTime As DateTime = DateTime.UtcNow
-    '    Dim rep As New ProfileBusinessRepository
-    '    Dim store As New ProfileStoreProcedure
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-    '    Try
+    Protected Sub btnUpload_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpload.Click
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"
+            'ctrlUpload1.isMultiple = AsyncUpload.MultipleFileSelection.Disabled
+            ctrlUpload1.Show()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
 
-    '        ScriptManager.RegisterStartupScript(Page, Page.GetType, "Close", "CloseWindow();", True)
-    '        'Dim PrID As Decimal = 0
-    '        'If IsNumeric(Request.Params("PrID")) Then
-    '        '    PrID = Request.Params("PrID")
-    '        'End If
-    '        'Dim _folder As New FoldersDTO
-    '        '_folder.NAME = txtFolderName.Text
-    '        '_folder.PARENT_ID = PrID
-    '        'If rep.AddFolder(_folder) = 1 Then
-    '        '    ShowMessage(Translate("Trùng tên thư mục"), NotifyType.Warning)
-    '        '    Exit Sub
-    '        'Else
-    '        '    Dim link = Server.MapPath("TemplateDynamic\UserFiles\" & store.Get_Folder_link(_folder.PARENT_ID) & "\" & _folder.NAME)
-    '        '    If Not Directory.Exists(link) Then
-    '        '        Directory.CreateDirectory(link)
-    '        '    End If
-    '        '    ScriptManager.RegisterStartupScript(Page, Page.GetType, "Close", "CloseWindow();", True)
-    '        'End If
-    '        'UpdateControlState()
-    '        CurrentState = CommonMessage.STATE_NORMAL
-    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-    '    End Try
+    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
-    'End Sub
+        Try
+            txtUpload.Text = ""
+            Dim listExtension = New List(Of String)
+            listExtension.Add(".xls")
+            listExtension.Add(".xlsx")
+            listExtension.Add(".txt")
+            listExtension.Add(".ctr")
+            listExtension.Add(".doc")
+            listExtension.Add(".docx")
+            listExtension.Add(".xml")
+            listExtension.Add(".png")
+            listExtension.Add(".jpg")
+            listExtension.Add(".bitmap")
+            listExtension.Add(".jpeg")
+            listExtension.Add(".gif")
+            listExtension.Add(".pdf")
+            listExtension.Add(".rar")
+            listExtension.Add(".zip")
+            listExtension.Add(".ppt")
+            listExtension.Add(".pptx")
+            'Dim fileName As String
+
+            'Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/ContractInfo/")
+            If ctrlUpload1.UploadedFiles.Count >= 1 Then
+                Dim finfo As New AttachFilesDTO
+                Dim file As UploadedFile = ctrlUpload1.UploadedFiles(ctrlUpload1.UploadedFiles.Count - 1)
+                FileUpload = file
+                If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
+                    'System.IO.Directory.CreateDirectory(strPath)
+                    'strPath = strPath
+                    'fileName = System.IO.Path.Combine(strPath, file.FileName)
+                    'file.SaveAs(fileName, True)
+                    txtUpload.Text = file.FileName
+                    finfo.ATTACHFILE_NAME = file.FileName
+                    finfo.CONTROL_NAME = "ctrlUserFileNewEdit"
+                    finfo.FILE_TYPE = file.GetExtension
+                    AttachFile = finfo
+                Else
+                    ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf,rar,zip,ppt,pptx"), NotifyType.Warning)
+                    Exit Sub
+                End If
+            End If
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
 #End Region
 
 #Region "Custom"
@@ -310,8 +342,8 @@ Public Class ctrlFoldersNewEdit
                 If Request.Params("ID") IsNot Nothing Then
                     IDSelect = If(IsNumeric(Request.Params("ID")), Decimal.Parse(Request.Params("ID")), 0)
                     Refresh("UpdateView")
-                ElseIf Request.Params("PrID") IsNot Nothing Then
-                    IDSelect = If(IsNumeric(Request.Params("PrID")), Decimal.Parse(Request.Params("PrID")), 0)
+                ElseIf Request.Params("FoID") IsNot Nothing Then
+                    IDSelect = If(IsNumeric(Request.Params("FoID")), Decimal.Parse(Request.Params("FoID")), 0)
                     Refresh("InsertView")
                 End If
             End If

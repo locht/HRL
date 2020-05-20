@@ -1163,6 +1163,39 @@ Implements ServiceContracts.IProfileBusiness.GetHU_DataDynamicContractAppendix
             End Using
         End Function
 
+        Public Function AddUserFile(ByVal _userFile As UserFileDTO) As Decimal Implements ServiceContracts.IProfileBusiness.AddUserFile
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.AddUserFile(_userFile)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function DeleteUserFile(ByVal _id As Decimal) As Boolean Implements ServiceContracts.IProfileBusiness.DeleteUserFile
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.DeleteUserFile(_id)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function GetUserFileByID(ByVal _id As Decimal) As UserFileDTO Implements ServiceContracts.IProfileBusiness.GetUserFileByID
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.GetUserFileByID(_id)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
 #End Region
     End Class
 

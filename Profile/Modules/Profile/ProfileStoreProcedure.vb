@@ -706,5 +706,14 @@ Public Class ProfileStoreProcedure
         End If
         Return dt.Rows(0)(0)
     End Function
+
+    Public Function Insert_UserFile(ByVal P_NAME As String, ByVal P_FOLDERID As Decimal, ByVal P_DESCRIPTION As String, ByVal P_CREATED_BY As String, ByVal P_FILENAME As String) As Decimal
+        Dim dt As DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_PROFILE.INSERT_USERFILE", New List(Of Object)(New Object() {P_NAME, P_FOLDERID, P_DESCRIPTION, P_CREATED_BY, P_FILENAME}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt.Rows(0)(0)
+    End Function
 #End Region
 End Class

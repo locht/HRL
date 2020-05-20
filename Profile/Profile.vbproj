@@ -156,6 +156,7 @@
     <Content Include="Modules\Competency\Report\ctrlHU_Competency_RadarReport.ascx" />
     <Content Include="Modules\Competency\Report\ctrlHU_Competency_RadarReportGaps.ascx" />
     <Content Include="Modules\Competency\Setting\ctrlHU_CompetencyCourse.ascx" />
+    <Content Include="Modules\Portal\ctrlUserFileNewEdit.ascx" />
     <Content Include="Modules\Portal\ctrlFoldersNewEdit.ascx" />
     <Content Include="Modules\Portal\ctrlPortalEmpFileMng.ascx" />
     <Content Include="Modules\Portal\ctrlPortalEmpInsurance.ascx" />
@@ -768,6 +769,13 @@
     </Compile>
     <Compile Include="Modules\Competency\Setting\ctrlHU_CompetencyCourse.ascx.vb">
       <DependentUpon>ctrlHU_CompetencyCourse.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlUserFileNewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlUserFileNewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlUserFileNewEdit.ascx.vb">
+      <DependentUpon>ctrlUserFileNewEdit.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Portal\ctrlFoldersNewEdit.ascx.designer.vb">

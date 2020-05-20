@@ -3738,5 +3738,60 @@ Public Class ProfileRepository
             Throw ex
         End Try
     End Function
+
+    Public Function AddUserFile(ByVal _userFile As UserFileDTO) As Decimal
+        Try
+            Dim check = (From p In Context.HU_USERFILES Where p.NAME.ToUpper.Equals(_userFile.NAME.ToUpper) And p.FOLDER_ID = _userFile.FOLDER_ID).Count
+            If check > 0 Then
+                Return 1
+            Else
+                Dim objUserFile As New HU_USERFILES
+                objUserFile.ID = Utilities.GetNextSequence(Context, Context.HU_USERFILES.EntitySet.Name)
+                objUserFile.NAME = _userFile.NAME
+                objUserFile.FOLDER_ID = _userFile.FOLDER_ID
+                objUserFile.FILE_NAME = _userFile.FILE_NAME
+                objUserFile.DESCRIPTION = _userFile.DESCRIPTION
+                objUserFile.CREATED_BY = _userFile.CREATED_BY
+                objUserFile.CREATED_DATE = DateTime.Now()
+                Context.HU_USERFILES.AddObject(objUserFile)
+            End If
+            Context.SaveChanges()
+            Return 0
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function DeleteUserFile(ByVal _id As Decimal) As Boolean
+        Try
+            Dim UserFile = (From p In Context.HU_USERFILES Where p.ID = _id).FirstOrDefault
+            Context.HU_USERFILES.DeleteObject(UserFile)
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetUserFileByID(ByVal _id As Decimal) As UserFileDTO
+        Try
+            Dim obj = (From p In Context.HU_USERFILES Where p.ID = _id
+                       Select New UserFileDTO With {
+                            .ID = p.ID,
+                            .NAME = p.NAME,
+                            .FOLDER_ID = p.FOLDER_ID,
+                            .DESCRIPTION = p.DESCRIPTION,
+                            .FILE_NAME = p.FILE_NAME,
+                            .CREATED_BY = p.CREATED_BY,
+                            .CREATED_DATE = p.CREATED_DATE
+                        }).FirstOrDefault
+            Return obj
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
 #End Region
 End Class

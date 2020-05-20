@@ -3050,6 +3050,15 @@ Namespace ProfileBusiness.ServiceContracts
 
         <OperationContract()>
         Function GetFolderByID(ByVal _id As Decimal) As FoldersDTO
+
+        <OperationContract()>
+        Function AddUserFile(ByVal _userFile As UserFileDTO) As Decimal
+
+        <OperationContract()>
+        Function DeleteUserFile(ByVal _id As Decimal) As Boolean
+
+        <OperationContract()>
+        Function GetUserFileByID(ByVal _id As Decimal) As UserFileDTO
 #End Region
     End Interface
 

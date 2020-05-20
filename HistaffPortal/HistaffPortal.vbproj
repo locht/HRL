@@ -136,6 +136,7 @@
     <Content Include="Modules\Profile\ctrlPortalEmpInsurance.ascx" />
     <Content Include="Modules\Profile\ctrlPortalTrainingOutCompany.ascx" />
     <Content Include="Modules\Profile\ctrlPortalWorkingBefore.ascx" />
+    <Content Include="Modules\Profile\ctrlUserFileNewEdit.ascx" />
     <Content Include="Modules\Recruitment\ctrlRC_RequestPortalNewEdit.ascx" />
     <Content Include="Modules\Training\ctrlTR_RequestPortalNewEdit.ascx" />
     <Content Include="ProcessApprove.aspx" />

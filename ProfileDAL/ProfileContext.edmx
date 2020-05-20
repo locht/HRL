@@ -4270,7 +4270,7 @@
             <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="FOLDER_ID" Type="number" Nullable="true" Precision="38" />
-            <Property Name="FILE_NAME" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FILE_NAME" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
@@ -9310,7 +9310,7 @@
           <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="FOLDER_ID" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="FILE_NAME" />
+          <Property Type="String" Name="FILE_NAME" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>

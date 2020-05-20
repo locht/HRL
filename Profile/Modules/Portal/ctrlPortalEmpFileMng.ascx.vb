@@ -105,6 +105,34 @@ Public Class ctrlPortalEmpFileMng
 
 #Region "Event"
 
+    Private Sub rgHealth_ItemCommand(sender As Object, e As Telerik.Web.UI.GridCommandEventArgs) Handles rgHealth.ItemCommand
+        Dim rep As New ProfileBusinessRepository
+        Dim store As New ProfileStoreProcedure
+        Dim _fileID = e.CommandArgument
+        Dim _file As UserFileDTO = rep.GetUserFileByID(_fileID)
+
+        Dim path = store.Get_Folder_link(_file.FOLDER_ID)
+
+        Dim link = Server.MapPath("TemplateDynamic\UserFiles\" & path & "\" & _file.FILE_NAME)
+        If e.CommandName = "DeleteFile" Then
+            
+            If rep.DeleteUserFile(_fileID) Then
+                My.Computer.FileSystem.DeleteFile(link)
+                rgHealth.Rebind()
+            End If
+            'My.Computer.FileSystem.DeleteFile(fileName)
+        End If
+        If e.CommandName = "DownloadFile" Then
+            If Not Directory.Exists(link) Then
+                ShowMessage(Translate("File không tồn tại"), NotifyType.Warning)
+                Exit Sub
+            End If
+            Dim url As String = "Download.aspx?" & "ctrlPortalEmpFileMng," & e.CommandArgument
+            Dim str As String = "window.open('" & url + "');"
+            ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
+        End If
+    End Sub
+
     Private Sub rgHealth_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgHealth.NeedDataSource
         Try
             SetValueObjectByRadGrid(rgHealth, New Object)
@@ -246,11 +274,16 @@ Public Class ctrlPortalEmpFileMng
             Select Case CurrentState
                 Case CommonMessage.STATE_DELETE
                     Dim _folderID = ctrlFD.CurrentValue
+                    If _folderID = 1 Then
+                        ShowMessage(Translate("Không thể xóa thư mục gốc!!"), NotifyType.Warning)
+                        Exit Sub
+                    End If
                     Dim path As String = Server.MapPath("TemplateDynamic\UserFiles\" & store.Get_Folder_link(_folderID))
                     If store.Delete_folder(ctrlFD.CurrentValue) = 1 Then
                         If Directory.Exists(path) Then
-                            Directory.Delete(path)
+                            Directory.Delete(path, True)
                         End If
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlPortalEmpFileMng")
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
