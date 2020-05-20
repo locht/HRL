@@ -1134,6 +1134,34 @@ Implements ServiceContracts.IProfileBusiness.GetHU_DataDynamicContractAppendix
             End Using
         End Function
 
+        Public Function GetFileOfFolder(ByVal _filter As UserFileDTO,
+                                    ByVal _FolderID As Decimal,
+                                    ByVal PageIndex As Integer,
+                                    ByVal PageSize As Integer,
+                                    ByRef Total As Integer,
+                                    Optional ByVal log As UserLog = Nothing,
+                                    Optional ByVal Sorts As String = "CREATED_DATE desc"
+                                    ) As List(Of UserFileDTO) Implements ServiceContracts.IProfileBusiness.GetFileOfFolder
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.GetFileOfFolder(_filter, _FolderID, PageIndex, PageSize, Total, log, Sorts)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function GetFolderByID(ByVal _id As Decimal) As FoldersDTO Implements ServiceContracts.IProfileBusiness.GetFolderByID
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.GetFolderByID(_id)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 
 #End Region
     End Class

@@ -14,15 +14,6 @@ Option Explicit On
 Partial Public Class ctrlFoldersNewEdit
 
     '''<summary>
-    '''hidID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents hidID As Global.System.Web.UI.WebControls.HiddenField
-
-    '''<summary>
     '''RadSplitter1 control.
     '''</summary>
     '''<remarks>

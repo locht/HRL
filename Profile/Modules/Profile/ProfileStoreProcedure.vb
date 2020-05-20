@@ -697,5 +697,14 @@ Public Class ProfileStoreProcedure
         End If
         Return dt.Rows(0)(0).ToString
     End Function
+
+    Public Function Delete_folder(ByVal _pID As Decimal) As Decimal
+        Dim dt As DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_PROFILE.DELETE_FOLDER", New List(Of Object)(New Object() {_pID}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt.Rows(0)(0)
+    End Function
 #End Region
 End Class

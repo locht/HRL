@@ -2093,6 +2093,181 @@ Namespace ProfileBusiness
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="UserFileDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/ProfileDAL"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class UserFileDTO
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_BYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DESCRIPTIONField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FILE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FOLDER_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LINKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NAMEField As String
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_BY() As String
+            Get
+                Return Me.CREATED_BYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CREATED_BYField, value) <> true) Then
+                    Me.CREATED_BYField = value
+                    Me.RaisePropertyChanged("CREATED_BY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.CREATED_DATEField
+            End Get
+            Set
+                If (Me.CREATED_DATEField.Equals(value) <> true) Then
+                    Me.CREATED_DATEField = value
+                    Me.RaisePropertyChanged("CREATED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_LOG() As String
+            Get
+                Return Me.CREATED_LOGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CREATED_LOGField, value) <> true) Then
+                    Me.CREATED_LOGField = value
+                    Me.RaisePropertyChanged("CREATED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DESCRIPTION() As String
+            Get
+                Return Me.DESCRIPTIONField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.DESCRIPTIONField, value) <> true) Then
+                    Me.DESCRIPTIONField = value
+                    Me.RaisePropertyChanged("DESCRIPTION")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FILE_NAME() As String
+            Get
+                Return Me.FILE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FILE_NAMEField, value) <> true) Then
+                    Me.FILE_NAMEField = value
+                    Me.RaisePropertyChanged("FILE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FOLDER_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.FOLDER_IDField
+            End Get
+            Set
+                If (Me.FOLDER_IDField.Equals(value) <> true) Then
+                    Me.FOLDER_IDField = value
+                    Me.RaisePropertyChanged("FOLDER_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID() As Decimal
+            Get
+                Return Me.IDField
+            End Get
+            Set
+                If (Me.IDField.Equals(value) <> true) Then
+                    Me.IDField = value
+                    Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LINK() As String
+            Get
+                Return Me.LINKField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LINKField, value) <> true) Then
+                    Me.LINKField = value
+                    Me.RaisePropertyChanged("LINK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NAME() As String
+            Get
+                Return Me.NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.NAMEField, value) <> true) Then
+                    Me.NAMEField = value
+                    Me.RaisePropertyChanged("NAME")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
      System.Runtime.Serialization.DataContractAttribute(Name:="ATPeriodDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/ProfileDAL"),  _
      System.SerializableAttribute()>  _
     Partial Public Class ATPeriodDTO
@@ -12827,7 +13002,7 @@ Namespace ProfileBusiness
         Private X_QUANGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private YEAR_KHAMBENHField As System.Nullable(Of Date)
+        Private YEAR_KHAMBENHField As String
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
@@ -13646,12 +13821,12 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property YEAR_KHAMBENH() As System.Nullable(Of Date)
+        Public Property YEAR_KHAMBENH() As String
             Get
                 Return Me.YEAR_KHAMBENHField
             End Get
             Set
-                If (Me.YEAR_KHAMBENHField.Equals(value) <> true) Then
+                If (Object.ReferenceEquals(Me.YEAR_KHAMBENHField, value) <> true) Then
                     Me.YEAR_KHAMBENHField = value
                     Me.RaisePropertyChanged("YEAR_KHAMBENH")
                 End If
@@ -57035,6 +57210,12 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteFolder", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteFolderResponse")>  _
         Function DeleteFolder(ByVal _id As Decimal) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetFileOfFolder", ReplyAction:="http://tempuri.org/IProfileBusiness/GetFileOfFolderResponse")>  _
+        Function GetFileOfFolder(ByVal _filter As ProfileBusiness.UserFileDTO, ByVal _FolderID As Decimal, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.UserFileDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetFolderByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetFolderByIDResponse")>  _
+        Function GetFolderByID(ByVal _id As Decimal) As ProfileBusiness.FoldersDTO
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetPeriodbyYear", ReplyAction:="http://tempuri.org/IProfileBusiness/GetPeriodbyYearResponse")>  _
         Function GetPeriodbyYear(ByVal year As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO)
         
@@ -57084,6 +57265,8 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DeductDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FoldersDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FoldersDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.UserFileDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.UserFileDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ATPeriodDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Se_ReportDTO)),  _
@@ -57312,6 +57495,8 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DeductDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FoldersDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FoldersDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.UserFileDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.UserFileDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ATPeriodDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Se_ReportDTO)),  _
@@ -57675,6 +57860,8 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DeductDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FoldersDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FoldersDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.UserFileDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.UserFileDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ATPeriodDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Se_ReportDTO)),  _
@@ -57888,6 +58075,8 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DeductDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.FoldersDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.FoldersDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.UserFileDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.UserFileDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ATPeriodDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Se_ReportDTO)),  _
@@ -59878,6 +60067,14 @@ Namespace ProfileBusiness
         
         Public Function DeleteFolder(ByVal _id As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteFolder
             Return MyBase.Channel.DeleteFolder(_id)
+        End Function
+        
+        Public Function GetFileOfFolder(ByVal _filter As ProfileBusiness.UserFileDTO, ByVal _FolderID As Decimal, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.UserFileDTO) Implements ProfileBusiness.IProfileBusiness.GetFileOfFolder
+            Return MyBase.Channel.GetFileOfFolder(_filter, _FolderID, PageIndex, PageSize, Total, log, Sorts)
+        End Function
+        
+        Public Function GetFolderByID(ByVal _id As Decimal) As ProfileBusiness.FoldersDTO Implements ProfileBusiness.IProfileBusiness.GetFolderByID
+            Return MyBase.Channel.GetFolderByID(_id)
         End Function
         
         Public Function GetPeriodbyYear(ByVal year As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO) Implements ProfileBusiness.IProfileBusiness.GetPeriodbyYear

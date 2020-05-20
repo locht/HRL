@@ -3644,7 +3644,7 @@ Public Class ProfileRepository
     Public Function AddFolder(ByVal _folder As FoldersDTO) As Integer
         Try
             If _folder.ID = 0 Then
-                Dim check = (From p In Context.HU_FOLDERS Where p.NAME.ToUpper.Equals(_folder.NAME.ToUpper)).Count
+                Dim check = (From p In Context.HU_FOLDERS Where p.NAME.ToUpper.Equals(_folder.NAME.ToUpper) And p.PARENT_ID = _folder.PARENT_ID).Count
                 If check > 0 Then
                     Return 1
                 Else
@@ -3666,6 +3666,7 @@ Public Class ProfileRepository
             Context.SaveChanges()
             Return 0
         Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw ex
         End Try
     End Function
@@ -3676,6 +3677,64 @@ Public Class ProfileRepository
             Context.SaveChanges()
             Return True
         Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetFolderByID(ByVal _id As Decimal) As FoldersDTO
+        Try
+            Dim obj = (From p In Context.HU_FOLDERS Where p.ID = _id
+                       Select New FoldersDTO With {
+                            .ID = p.ID,
+                            .NAME = p.NAME,
+                            .PARENT_ID = p.PARENT_ID
+                        }).FirstOrDefault
+            Return obj
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetFileOfFolder(ByVal _filter As UserFileDTO,
+                                    ByVal _FolderID As Decimal,
+                                    ByVal PageIndex As Integer,
+                                    ByVal PageSize As Integer,
+                                    ByRef Total As Integer,
+                                    Optional ByVal log As UserLog = Nothing,
+                                    Optional ByVal Sorts As String = "CREATED_DATE desc"
+                                    ) As List(Of UserFileDTO)
+        Try
+            Dim query = (From p In Context.HU_USERFILES Where p.FOLDER_ID = _FolderID
+                         Select New UserFileDTO With {
+                             .ID = p.ID,
+                             .NAME = p.NAME,
+                             .FILE_NAME = p.FILE_NAME,
+                             .FOLDER_ID = p.FOLDER_ID,
+                             .CREATED_BY = p.CREATED_BY,
+                             .CREATED_DATE = p.CREATED_DATE,
+                             .DESCRIPTION = p.DESCRIPTION,
+                             .CREATED_LOG = p.CREATED_LOG})
+
+            'If _filter.NAME IsNot Nothing Then
+            '    query = query.Where(Function(f) f.NAME.ToUpper.Contains(_filter.NAME.ToUpper))
+            'End If
+            'If _filter.DESCRIPTION IsNot Nothing Then
+            '    query = query.Where(Function(f) f.DESCRIPTION.ToUpper.Contains(_filter.DESCRIPTION.ToUpper))
+            'End If
+            'If IsDate(_filter.CREATED_DATE) Then
+            '    query = query.Where(Function(f) f.CREATED_DATE = _filter.CREATED_DATE)
+            'End If
+            query = query.OrderBy(Sorts)
+            Total = query.Count
+            query = query.Skip(PageIndex * PageSize).Take(PageSize)
+
+            Dim listFiles As New List(Of UserFileDTO)
+            listFiles = query.ToList()
+            Return listFiles
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw ex
         End Try
     End Function

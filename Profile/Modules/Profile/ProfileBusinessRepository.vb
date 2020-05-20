@@ -1186,5 +1186,33 @@ Partial Public Class ProfileBusinessRepository
             End Try
         End Using
     End Function
+
+    Public Function GetFileOfFolder(ByVal _filter As UserFileDTO,
+                                    ByVal _FolderID As Decimal,
+                                    ByVal PageIndex As Integer,
+                                    ByVal PageSize As Integer,
+                                    ByRef Total As Integer,
+                                    Optional ByVal Sorts As String = "CREATED_DATE desc"
+                                    ) As List(Of UserFileDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Dim lst = rep.GetFileOfFolder(_filter, _FolderID, PageIndex, PageSize, Total, Me.Log, Sorts)
+                Return lst
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function GetFolderByID(ByVal _id As Decimal) As FoldersDTO
+        Using rep As New ProfileBusinessClient
+            Try
+                Dim lst = rep.GetFolderByID(_id)
+                Return lst
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
 #End Region
 End Class

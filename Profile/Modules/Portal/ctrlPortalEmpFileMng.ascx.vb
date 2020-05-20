@@ -4,6 +4,7 @@ Imports Common
 Imports Profile.ProfileBusiness
 Imports Telerik.Web.UI
 Imports WebAppLog
+Imports System.IO
 
 Public Class ctrlPortalEmpFileMng
     Inherits CommonView
@@ -106,12 +107,12 @@ Public Class ctrlPortalEmpFileMng
 
     Private Sub rgHealth_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgHealth.NeedDataSource
         Try
-            If IsPostBack Then Exit Sub
-            SetValueObjectByRadGrid(rgHealth, New ContractDTO)
+            SetValueObjectByRadGrid(rgHealth, New Object)
 
-            Dim rep As New ProfileStoreProcedure
-            GridList = rep.GET_HEALTH_BY_ID(EmployeeID)
-            rgHealth.DataSource = GridList
+            Dim rep As New ProfileBusinessRepository
+            'GridList = rep.GetFileOfFolder(ctrlFD.CurrentValue)
+            'rgHealth.DataSource = GridList
+            CreateDataFilter()
 
         Catch ex As Exception
             Me.DisplayException(Me.ViewName, Me.ID, ex)
@@ -129,6 +130,11 @@ Public Class ctrlPortalEmpFileMng
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_IMPORT
                     ctrlUpload1.Show()
+                Case CommonMessage.TOOLBARITEM_DELETE
+                    ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
+                    ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
+                    ctrlMessageBox.DataBind()
+                    ctrlMessageBox.Show()
             End Select
 
             'UpdateControlState()
@@ -137,6 +143,32 @@ Public Class ctrlPortalEmpFileMng
             DisplayException(Me.ViewName, Me.ID, ex)
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
+    End Sub
+
+    ''' <lastupdate>
+    ''' 07/07/2017 08:24
+    ''' </lastupdate>
+    ''' <summary>
+    ''' Xu ly su kien command button cua control ctrkMessageBox
+    ''' Cap nhat trang thai cua cac control
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                CurrentState = CommonMessage.STATE_DELETE
+                UpdateControlState()
+            End If
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+
     End Sub
 
     Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
@@ -160,9 +192,78 @@ Public Class ctrlPortalEmpFileMng
         End Try
     End Sub
 
+    Private Sub ctrlFD_SelectedNodeChanged(sender As Object, e As System.EventArgs) Handles ctrlFD.SelectedNodeChanged
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            rgHealth.CurrentPageIndex = 0
+            rgHealth.MasterTableView.SortExpressions.Clear()
+            rgHealth.Rebind()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
 #End Region
 
 #Region "Custom"
+    Protected Function CreateDataFilter(Optional ByVal isFull As Boolean = False) As DataTable
+        Dim rep As New ProfileBusinessRepository
+        Dim _filter As New UserFileDTO
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            If ctrlFD.CurrentValue Is Nothing Then
+                rgHealth.DataSource = New List(Of UserFileDTO)
+                Exit Function
+            End If
+            Dim _folderID = ctrlFD.CurrentValue
+            Dim MaximumRows As Integer
+            Dim Sorts As String = rgHealth.MasterTableView.SortExpressions.GetSortString()
+            If Sorts IsNot Nothing Then
+                GridList = rep.GetFileOfFolder(_filter, _folderID, rgHealth.CurrentPageIndex, rgHealth.PageSize, MaximumRows, Sorts).ToTable
+            Else
+                GridList = rep.GetFileOfFolder(_filter, _folderID, rgHealth.CurrentPageIndex, rgHealth.PageSize, MaximumRows).ToTable
+            End If
 
+            rgHealth.VirtualItemCount = MaximumRows
+            rgHealth.DataSource = GridList
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            Throw ex
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Function
+
+    Public Overrides Sub UpdateControlState()
+        Dim rep As New ProfileBusinessRepository
+        Dim store As New ProfileStoreProcedure
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Select Case CurrentState
+                Case CommonMessage.STATE_DELETE
+                    Dim _folderID = ctrlFD.CurrentValue
+                    Dim path As String = Server.MapPath("TemplateDynamic\UserFiles\" & store.Get_Folder_link(_folderID))
+                    If store.Delete_folder(ctrlFD.CurrentValue) = 1 Then
+                        If Directory.Exists(path) Then
+                            Directory.Delete(path)
+                        End If
+                        Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlPortalEmpFileMng")
+                    Else
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                    End If
+            End Select
+            rep.Dispose()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            Throw ex
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
 #End Region
+
+
 End Class

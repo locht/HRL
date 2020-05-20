@@ -15,7 +15,6 @@
         left: 15%;
     }
 </style>
-<asp:HiddenField ID="hidID" runat="server"/>
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Orientation="Horizontal">
     <tlk:RadPane ID="RadPane1" runat="server" Height="35px" Width="100%" Scrolling="None">
         <tlk:RadToolBar ID="tbarFolderEdit" runat="server"  OnClientButtonClicking="clientButtonClicking"/>

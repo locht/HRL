@@ -15,10 +15,24 @@ Public Class ctrlFoldersNewEdit
     Dim _pathLog As String = _mylog._pathLog
     Dim _flag As Boolean = True
     Dim _classPath As String = "Profile\Portal" + Me.GetType().Name.ToString()
-    Dim IDSelect As Decimal?
-
 #Region "Property"
+    Property IDSelect As Decimal
+        Get
+            Return ViewState(Me.ID & "_IDSelect")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_IDSelect") = value
+        End Set
+    End Property
 
+    Property OldFolderName As String
+        Get
+            Return ViewState(Me.ID & "_OldFolderName")
+        End Get
+        Set(ByVal value As String)
+            ViewState(Me.ID & "_OldFolderName") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
@@ -118,11 +132,14 @@ Public Class ctrlFoldersNewEdit
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
+        Dim rep As New ProfileBusinessRepository
         Try
             Select Case Message
                 Case "UpdateView"
                     CurrentState = CommonMessage.STATE_EDIT
-
+                    Dim objFolder = rep.GetFolderByID(IDSelect)
+                    txtFolderName.Text = objFolder.NAME
+                    OldFolderName = objFolder.NAME
                 Case "InsertView"
                     CurrentState = CommonMessage.STATE_NEW
                     Dim dt As New DataTable
@@ -161,21 +178,42 @@ Public Class ctrlFoldersNewEdit
 
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_SAVE
-                    Dim PrID As Decimal = 0
-                    If IsNumeric(Request.Params("PrID")) Then
-                        PrID = Request.Params("PrID")
-                    End If
                     Dim _folder As New FoldersDTO
+                    If CurrentState = CommonMessage.STATE_EDIT Then
+                        _folder.ID = IDSelect
+                    End If
+
                     _folder.NAME = txtFolderName.Text
-                    _folder.PARENT_ID = PrID
+
+                    If CurrentState = CommonMessage.STATE_NEW Then
+                        _folder.PARENT_ID = IDSelect
+                    End If
+
                     If rep.AddFolder(_folder) = 1 Then
                         ShowMessage(Translate("Trùng tên thư mục"), NotifyType.Warning)
                         Exit Sub
                     Else
-                        Dim link = Server.MapPath("TemplateDynamic\UserFiles\" & store.Get_Folder_link(_folder.PARENT_ID) & "\" & _folder.NAME)
-                        If Not Directory.Exists(link) Then
-                            Directory.CreateDirectory(link)
-                        End If
+                        Dim path = store.Get_Folder_link(IDSelect)
+
+                        Select Case CurrentState
+                            Case CommonMessage.STATE_NEW
+                                Dim link = Server.MapPath("TemplateDynamic\UserFiles\" & path & "\" & _folder.NAME)
+                                If Not Directory.Exists(link) Then
+                                    Directory.CreateDirectory(link)
+                                End If
+                            Case CommonMessage.STATE_EDIT
+                                Dim lastindx = path.LastIndexOf("\")
+                                path = path.Substring(0, lastindx)
+                                Dim link = Server.MapPath("TemplateDynamic\UserFiles\" & path & "\" & _folder.NAME)
+                                Dim _oldLink = Server.MapPath("TemplateDynamic\UserFiles\" & path & "\" & OldFolderName)
+                                If Not Directory.Exists(_oldLink) Then
+                                    Directory.CreateDirectory(link)
+                                Else
+                                    FileIO.FileSystem.RenameDirectory(_oldLink, _folder.NAME)
+                                End If
+                        End Select
+                        
+
                         Gotolink("/Default.aspx?mid=Profile&fid=ctrlPortalEmpFileMng")
                     End If
                     Refresh()
@@ -264,11 +302,10 @@ Public Class ctrlFoldersNewEdit
         Try
             If CurrentState Is Nothing Then
                 If Request.Params("ID") IsNot Nothing Then
-                    IDSelect = Decimal.Parse(Request.Params("ID"))
-                End If
-                If IDSelect IsNot Nothing And IDSelect <> -1 Then
+                    IDSelect = If(IsNumeric(Request.Params("ID")), Decimal.Parse(Request.Params("ID")), 0)
                     Refresh("UpdateView")
-                Else
+                ElseIf Request.Params("PrID") IsNot Nothing Then
+                    IDSelect = If(IsNumeric(Request.Params("PrID")), Decimal.Parse(Request.Params("PrID")), 0)
                     Refresh("InsertView")
                 End If
             End If

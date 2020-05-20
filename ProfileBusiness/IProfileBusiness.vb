@@ -3037,6 +3037,19 @@ Namespace ProfileBusiness.ServiceContracts
 
         <OperationContract()>
         Function DeleteFolder(ByVal _id As Decimal) As Boolean
+
+        <OperationContract()>
+        Function GetFileOfFolder(ByVal _filter As UserFileDTO,
+                                    ByVal _FolderID As Decimal,
+                                    ByVal PageIndex As Integer,
+                                    ByVal PageSize As Integer,
+                                    ByRef Total As Integer,
+                                    Optional ByVal log As UserLog = Nothing,
+                                    Optional ByVal Sorts As String = "CREATED_DATE desc"
+                                    ) As List(Of UserFileDTO)
+
+        <OperationContract()>
+        Function GetFolderByID(ByVal _id As Decimal) As FoldersDTO
 #End Region
     End Interface
 
