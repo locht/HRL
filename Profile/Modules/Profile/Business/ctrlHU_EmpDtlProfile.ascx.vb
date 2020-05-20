@@ -1388,14 +1388,54 @@ Public Class ctrlHU_EmpDtlProfile
                                         ctrlMessageBox.DataBind()
                                         ctrlMessageBox.Show()
                                     Else
-                                        If Save(strEmpID, _err) Then
-                                            Dim purl = String.Format("~/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&state=Normal&message=SUCCESS", strEmpID)
-                                            Response.Redirect(purl, False)
+                                        If IsDate(rdBirthDate.SelectedDate) Then
+                                            Dim tuoi As New Decimal
+                                            tuoi = Year(DateTime.Now) - Year(rdBirthDate.SelectedDate)
+                                            If tuoi < 18 Then
+                                                ctrlMessageBox.MessageText = Translate("Nhân viên vừa khai báo chưa đủ 18 tuổi. Bạn có muốn tiếp tục lưu không?")
+                                                ctrlMessageBox.ActionName = "CHILDREN"
+                                                ctrlMessageBox.DataBind()
+                                                ctrlMessageBox.Show()
+                                            Else
+                                                If Save(strEmpID, _err) Then
+                                                    Dim purl = String.Format("~/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&state=Normal&message=SUCCESS", strEmpID)
+                                                    Response.Redirect(purl, False)
+                                                Else
+                                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                                                End If
+                                            End If
                                         Else
-                                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                                            If Save(strEmpID, _err) Then
+                                                Dim purl = String.Format("~/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&state=Normal&message=SUCCESS", strEmpID)
+                                                Response.Redirect(purl, False)
+                                            Else
+                                                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                                            End If
                                         End If
                                     End If
                                 End If
+                                'If blacklist <> "" Then
+                                '    blacklist += "Bạn có muốn tuyển dụng lại nhân viên này không?"
+                                '    ctrlMessageBox.MessageText = Translate(blacklist)
+                                '    ctrlMessageBox.ActionName = "BLACKLIST"
+                                '    ctrlMessageBox.DataBind()
+                                '    ctrlMessageBox.Show()
+                                'Else
+                                '    If message <> "" Then
+                                '        message += " Bạn có muốn lưu không?"
+                                '        ctrlMessageBox.MessageText = Translate(message)
+                                '        ctrlMessageBox.ActionName = "WARNING"
+                                '        ctrlMessageBox.DataBind()
+                                '        ctrlMessageBox.Show()
+                                '    Else
+                                '        If Save(strEmpID, _err) Then
+                                '            Dim purl = String.Format("~/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&state=Normal&message=SUCCESS", strEmpID)
+                                '            Response.Redirect(purl, False)
+                                '        Else
+                                '            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                                '        End If
+                                '    End If
+                                'End If
                                 'If Not checkID_NO Then
                                 '    _filter.ID_NO = txtID_NO.Text
 
@@ -1464,9 +1504,7 @@ Public Class ctrlHU_EmpDtlProfile
                                 If Not checkBlackList Then
                                     blacklist = "Thông tin nhân viên có CMND vừa nhập đã tồn tại trong danh sách đen không tái tuyển dụng."
                                 End If
-                                'If hidDirectManager.Value = "" Then
-                                '    message = If(message <> "", message + " Nhân viên này không có Quản lý trực tiếp.", "Nhân viên này không có Quản lý trực tiếp.")
-                                'End If
+
                                 If blacklist <> "" Then
                                     blacklist += "Bạn có muốn tuyển dụng lại nhân viên này không?"
                                     ctrlMessageBox.MessageText = Translate(blacklist)
@@ -1481,14 +1519,59 @@ Public Class ctrlHU_EmpDtlProfile
                                         ctrlMessageBox.DataBind()
                                         ctrlMessageBox.Show()
                                     Else
-                                        If Save(strEmpID, _err) Then
-                                            CurrentState = CommonMessage.STATE_NORMAL
-                                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                                        If IsDate(rdBirthDate.SelectedDate) Then
+                                            Dim tuoi As New Decimal
+                                            tuoi = Year(DateTime.Now) - Year(rdBirthDate.SelectedDate)
+                                            If tuoi < 18 Then
+                                                ctrlMessageBox.MessageText = Translate("Nhân viên vừa khai báo chưa đủ 18 tuổi. Bạn có muốn tiếp tục lưu không?")
+                                                ctrlMessageBox.ActionName = "CHILDREN"
+                                                ctrlMessageBox.DataBind()
+                                                ctrlMessageBox.Show()
+                                            Else
+                                                If Save(strEmpID, _err) Then
+                                                    Dim purl = String.Format("~/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&state=Normal&message=SUCCESS", strEmpID)
+                                                    Response.Redirect(purl, False)
+                                                Else
+                                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                                                End If
+                                            End If
                                         Else
-                                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                                            If Save(strEmpID, _err) Then
+                                                Dim purl = String.Format("~/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&state=Normal&message=SUCCESS", strEmpID)
+                                                Response.Redirect(purl, False)
+                                            Else
+                                                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                                            End If
                                         End If
                                     End If
                                 End If
+
+
+                                'If hidDirectManager.Value = "" Then
+                                '    message = If(message <> "", message + " Nhân viên này không có Quản lý trực tiếp.", "Nhân viên này không có Quản lý trực tiếp.")
+                                'End If
+                                'If blacklist <> "" Then
+                                '    blacklist += "Bạn có muốn tuyển dụng lại nhân viên này không?"
+                                '    ctrlMessageBox.MessageText = Translate(blacklist)
+                                '    ctrlMessageBox.ActionName = "BLACKLIST"
+                                '    ctrlMessageBox.DataBind()
+                                '    ctrlMessageBox.Show()
+                                'Else
+                                '    If message <> "" Then
+                                '        message += " Bạn có muốn lưu không?"
+                                '        ctrlMessageBox.MessageText = Translate(message)
+                                '        ctrlMessageBox.ActionName = "WARNING"
+                                '        ctrlMessageBox.DataBind()
+                                '        ctrlMessageBox.Show()
+                                '    Else
+                                '        If Save(strEmpID, _err) Then
+                                '            CurrentState = CommonMessage.STATE_NORMAL
+                                '            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                                '        Else
+                                '            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                                '        End If
+                                '    End If
+                                'End If
 
 
 
@@ -1686,9 +1769,37 @@ Public Class ctrlHU_EmpDtlProfile
                         End If
                 End Select
                 UpdateControlState()
-            Else
-                Exit Sub
+
             End If
+
+            If e.ActionName = "CHILDREN" And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                Dim _err As String = ""
+                Dim strEmpID As Decimal
+                Dim rep As New ProfileBusinessRepository
+                If EmployeeInfo IsNot Nothing Then
+                    strEmpID = EmployeeInfo.ID
+                End If
+                Select Case CurrentState
+                    Case CommonMessage.STATE_NEW
+                        If Save(EmployeeID, _err) Then
+                            CurrentState = CommonMessage.STATE_NORMAL
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                        Else
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                        End If
+                    Case CommonMessage.STATE_EDIT
+                        If Save(EmployeeID, _err) Then
+                            CurrentState = CommonMessage.STATE_NORMAL
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                            Dim purl = String.Format("~/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp={0}&state=Normal&message=SUCCESS", strEmpID)
+                            Response.Redirect(purl, False)
+                        Else
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                        End If
+                End Select
+                UpdateControlState()
+            End If
+
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
