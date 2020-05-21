@@ -331,6 +331,9 @@ Public Class ctrlHU_EmpDtlProfile
                             rdDateOfEntry.SelectedDate = empCV.DATEOFENTRY
                             txtPerson_Inheritance.Text = empCV.PERSON_INHERITANCE
                             rdEffect_Bank.SelectedDate = empCV.EFFECTDATE_BANK
+                            'txtInterviewer_1.Text = empCV.INTERVIEWER1
+                            'txtInterviewer_2.Text = empCV.INTERVIEWER2
+
                             'txtPlaceKS.Text = empCV.BIRTH_PLACE
                             txtVillage.Text = empCV.VILLAGE
                             If IsNumeric(empEdu.COMPUTER_CERTIFICATE) Then
@@ -1060,7 +1063,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        txtFirstNameVN, txtGhiChuSK, txtNamTN, txtResidence,
                                        txtHomePhone, txtHuyetAp, txtID_NO, chkIs_pay_bank,
                                        cboIDPlace, txtLangMark, txtLangMark2,
-                                       txtLastNameVN, txtMatPhai, txtMatTrai,
+                                       txtLastNameVN, txtMatPhai, txtMatTrai, txtInterviewer_1, txtInterviewer_2,
                                        txtMobilePhone, txtNavAddress, txtNhomMau, cboCertificate, cboBasic,
                                         txtPassNo, txtPassPlace, txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
                                        txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
@@ -1116,7 +1119,7 @@ Public Class ctrlHU_EmpDtlProfile
                                            txtHomePhone, txtHuyetAp, txtID_NO, txtResidence,
                                            cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                                            txtLastNameVN, txtMatPhai, txtMatTrai,
-                                           txtMobilePhone, txtNavAddress, txtNhomMau,
+                                           txtMobilePhone, txtNavAddress, txtNhomMau, txtInterviewer_1, txtInterviewer_2,
                                             txtPassNo, txtPassPlace, txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
                                            txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
                                            txtVienGanB, txtVisa, txtVisaPlace, cboCertificate, cboBasic,
@@ -1162,7 +1165,7 @@ Public Class ctrlHU_EmpDtlProfile
                                            txtHomePhone, txtHuyetAp, txtID_NO, txtResidence,
                                            cboIDPlace, txtLangMark, txtLangMark2,
                                            txtLastNameVN, txtMatPhai, txtMatTrai,
-                                           txtMobilePhone, txtNavAddress, txtNhomMau,
+                                           txtMobilePhone, txtNavAddress, txtNhomMau, txtInterviewer_1, txtInterviewer_2,
                                             txtPassNo, txtPassPlace, txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
                                            txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
                                             txtAo, txtVay, txtAoVest, txtQuanTay, txtAo_bh, txtQuan_bh, txtQuanVai,
@@ -1209,7 +1212,7 @@ Public Class ctrlHU_EmpDtlProfile
                                       txtFirstNameVN, txtGhiChuSK, rtCHUC_VU_DOAN, rtDiem_XL_TH, txtDiem_XL_TH2, txtNoteTDTH1, txtNoteTDTH2,
                                       txtHomePhone, txtHuyetAp, txtID_NO, chkIs_pay_bank,
                                       cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
-                                      txtLastNameVN, txtMatPhai, txtMatTrai,
+                                      txtLastNameVN, txtMatPhai, txtMatTrai, txtInterviewer_1, txtInterviewer_2,
                                       txtMobilePhone, txtNavAddress, txtNhomMau, cboCertificate, cboBasic, rdExpireIDNO, rdDateOfEntry, rdWeddingDay,
                                        txtPassNo, txtPassPlace, cboObject, cboObjectLabor, cbObjectBook, txtTimeID, cboCertificate, cboBasic, cboComputerRank, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank, cboMotoDrivingLicense, txtNote,
                                       txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
@@ -1253,7 +1256,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        txtPassNo, txtPassPlace, cboObject, cbObjectBook, txtTimeID, cboCertificate, cboBasic, cboComputerRank, txtPlaceKS, txtVillage, rdDayPitcode, txtPlacePitcode, txtPerson_Inheritance, rdEffect_Bank,
                                       txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer, cboMotoDrivingLicense, txtNote,
                                       txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
-                                      txtVienGanB, txtVisa, txtVisaPlace,
+                                      txtVienGanB, txtVisa, txtVisaPlace, txtInterviewer_1, txtInterviewer_2,
                                        txtAo, txtVay, txtAoVest, txtQuanTay, txtAo_bh, txtQuan_bh, txtQuanVai,
                                        txtGiayDau, txtGiayNhua, txtAoThun, txtQuanThun, txtDep, txtNon, txtKhac,
                                       txtWorkEmail, txtWorkPermit, txtWorkPermitPlace, txtGPHN, rdFrom_GPHN, rdTo_GPHN, txtNoiCap_GPHN,

@@ -2024,9 +2024,9 @@ Partial Class ProfileRepository
                      From nav_ward In Context.HU_WARD.Where(Function(f) cv.NAV_WARD = f.ID).DefaultIfEmpty
                      From emp In Context.HU_EMPLOYEE.Where(Function(f) f.ID = cv.EMPLOYEE_ID).DefaultIfEmpty
                      From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = emp.ORG_ID).DefaultIfEmpty
-                    From region In Context.OT_OTHER_LIST.Where(Function(f) f.ID = org.REGION_ID).DefaultIfEmpty
-                    From emp_pro In Context.HU_PROVINCE.Where(Function(f) cv.PER_PROVINCE = f.ID).DefaultIfEmpty
-                      From emp_birthplace In Context.HU_PROVINCE.Where(Function(f) cv.BIRTH_PLACE = f.ID).DefaultIfEmpty
+                     From region In Context.OT_OTHER_LIST.Where(Function(f) f.ID = org.REGION_ID).DefaultIfEmpty
+                     From emp_pro In Context.HU_PROVINCE.Where(Function(f) cv.PER_PROVINCE = f.ID).DefaultIfEmpty
+                     From emp_birthplace In Context.HU_PROVINCE.Where(Function(f) cv.BIRTH_PLACE = f.ID).DefaultIfEmpty
                      From emp_dis In Context.HU_DISTRICT.Where(Function(f) cv.PER_DISTRICT = f.ID).DefaultIfEmpty
                      From emp_ward In Context.HU_WARD.Where(Function(f) cv.PER_WARD = f.ID).DefaultIfEmpty
                      From nguyenquan In Context.HU_PROVINCE.Where(Function(f) f.ID = cv.PROVINCENQ_ID).DefaultIfEmpty
@@ -2037,10 +2037,10 @@ Partial Class ProfileRepository
                      From bir_ward In Context.HU_WARD.Where(Function(f) cv.WARDEMP_ID = f.ID).DefaultIfEmpty
                      From relation_per In Context.OT_OTHER_LIST.Where(Function(f) cv.RELATION_PER_CTR = f.ID).DefaultIfEmpty
                      From objectIns In Context.OT_OTHER_LIST.Where(Function(f) f.ID = cv.OBJECT_INS And f.TYPE_ID = 6894).DefaultIfEmpty
-                      From ks_pro In Context.HU_PROVINCE.Where(Function(f) cv.PROVINCEEMP_ID = f.ID).DefaultIfEmpty
+                     From ks_pro In Context.HU_PROVINCE.Where(Function(f) cv.PROVINCEEMP_ID = f.ID).DefaultIfEmpty
                      From ks_dis In Context.HU_DISTRICT.Where(Function(f) cv.DISTRICTEMP_ID = f.ID).DefaultIfEmpty
                      From ks_ward In Context.HU_WARD.Where(Function(f) cv.WARDEMP_ID = f.ID).DefaultIfEmpty
-            Where (cv.EMPLOYEE_ID = sEmployeeID)
+                     Where (cv.EMPLOYEE_ID = sEmployeeID)
                      Select New EmployeeCVDTO With {
                          .EMPLOYEE_ID = cv.EMPLOYEE_ID,
                          .GENDER = cv.GENDER,
@@ -2147,6 +2147,8 @@ Partial Class ProfileRepository
                          .DANG = cv.DANG,
                          .SKILL = cv.SKILL,
                          .BANTT = cv.BANTT,
+                         .INTERVIEWER1 = cv.INTERVIEWER1,
+                         .INTERVIEWER2 = cv.INTERVIEWER2,
                          .WORKPLACE_NAME = cv.WORKPLACE_NAME,
                          .NGAY_VAO_DANG_DB = cv.NGAY_VAO_DANG_DB,
                          .HANG_THUONG_BINH = cv.HANG_THUONG_BINH,

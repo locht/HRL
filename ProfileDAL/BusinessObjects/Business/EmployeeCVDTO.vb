@@ -183,4 +183,7 @@
     '' nguyen quan
     Public Property RESIDENCE As String
 
+    Public Property INTERVIEWER1 As String
+    Public Property INTERVIEWER2 As String
+
 End Class

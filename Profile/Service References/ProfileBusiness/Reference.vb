@@ -50076,6 +50076,12 @@ Namespace ProfileBusiness
         Private INS_REGION_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private INTERVIEWER1Field As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private INTERVIEWER2Field As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_ATVSField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -51094,6 +51100,32 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.INS_REGION_NAMEField, value) <> true) Then
                     Me.INS_REGION_NAMEField = value
                     Me.RaisePropertyChanged("INS_REGION_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property INTERVIEWER1() As String
+            Get
+                Return Me.INTERVIEWER1Field
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.INTERVIEWER1Field, value) <> true) Then
+                    Me.INTERVIEWER1Field = value
+                    Me.RaisePropertyChanged("INTERVIEWER1")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property INTERVIEWER2() As String
+            Get
+                Return Me.INTERVIEWER2Field
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.INTERVIEWER2Field, value) <> true) Then
+                    Me.INTERVIEWER2Field = value
+                    Me.RaisePropertyChanged("INTERVIEWER2")
                 End If
             End Set
         End Property
