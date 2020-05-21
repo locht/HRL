@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("c1034316-080d-4fc4-91c4-c64b04b8fc52")>
+<Assembly: EdmSchemaAttribute("9aaf94a6-a867-475b-9259-8adbcc3426a0")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -62216,21 +62216,21 @@ Public Partial Class HU_TITLE
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property LADDER_WORK_ID() As Global.System.String
+    Public Property LADDER_WORK_ID() As Nullable(Of Global.System.Decimal)
         Get
             Return _LADDER_WORK_ID
         End Get
         Set
             OnLADDER_WORK_IDChanging(value)
             ReportPropertyChanging("LADDER_WORK_ID")
-            _LADDER_WORK_ID = StructuralObject.SetValidValue(value, true)
+            _LADDER_WORK_ID = StructuralObject.SetValidValue(value)
             ReportPropertyChanged("LADDER_WORK_ID")
             OnLADDER_WORK_IDChanged()
         End Set
     End Property
 
-    Private _LADDER_WORK_ID As Global.System.String
-    Private Partial Sub OnLADDER_WORK_IDChanging(value As Global.System.String)
+    Private _LADDER_WORK_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnLADDER_WORK_IDChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnLADDER_WORK_IDChanged()

@@ -2507,7 +2507,7 @@
             <Property Name="FUNCTION_WORK" Type="nclob" Nullable="true" />
             <Property Name="REQUEST_WORK" Type="nclob" Nullable="true" />
             <Property Name="PURPOSE_WORK" Type="nclob" Nullable="true" />
-            <Property Name="LADDER_WORK_ID" Type="nclob" Nullable="true" />
+            <Property Name="LADDER_WORK_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="PA_PAYMENTSOURCES">
             <Key>
@@ -7529,7 +7529,7 @@
           <Property Type="String" Name="FUNCTION_WORK" />
           <Property Type="String" Name="REQUEST_WORK" />
           <Property Type="String" Name="PURPOSE_WORK" />
-          <Property Type="String" Name="LADDER_WORK_ID" />
+          <Property Type="Decimal" Name="LADDER_WORK_ID" />
         </EntityType>
         <EntityType Name="PA_PAYMENTSOURCES">
           <Key>

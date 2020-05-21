@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 5/21/2020 8:47:06 AM
--- Generated from EDMX file: D:\SOURCE_GIT_NEW\ACV_NEW\ProfileDAL\ProfileContext.edmx
+-- Date Created: 5/21/2020 10:11:57 AM
+-- Generated from EDMX file: D:\SOURCE_GIT_NEW\ACV\acv_19\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -2519,7 +2519,7 @@ CREATE TABLE "dbo"."HU_TITLE" (
    "FUNCTION_WORK" NCLOB NULL,
    "REQUEST_WORK" NCLOB NULL,
    "PURPOSE_WORK" NCLOB NULL,
-   "LADDER_WORK_ID" NCLOB NULL
+   "LADDER_WORK_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'PA_PAYMENTSOURCES'
