@@ -2297,10 +2297,10 @@ Public Class ProfileRepository
                            From type In Context.HU_CONTRACT_TYPE.Where(Function(x) x.ID = c.CONTRACT_TYPE_ID).DefaultIfEmpty
                            From org In Context.HU_ORGANIZATION.Where(Function(x) x.ID = u.ORG_ID).DefaultIfEmpty
                            From f In Context.OT_OTHER_LIST.Where(Function(x) x.ID = p.FORM_ID).DefaultIfEmpty
-                            From staffrank In Context.HU_STAFF_RANK.Where(Function(x) u.STAFF_RANK_ID = f.ID).DefaultIfEmpty
-                            From w In Context.HU_WORKING.Where(Function(x) p.WORKING_ID = f.ID).DefaultIfEmpty
-                            From sal_group In Context.PA_SALARY_GROUP.Where(Function(x) w.SAL_GROUP_ID = f.ID).DefaultIfEmpty
-                            From sal_level In Context.PA_SALARY_LEVEL.Where(Function(x) w.SAL_LEVEL_ID = f.ID).DefaultIfEmpty
+                            From staffrank In Context.HU_STAFF_RANK.Where(Function(x) u.STAFF_RANK_ID = x.ID).DefaultIfEmpty
+                            From w In Context.HU_WORKING.Where(Function(x) p.WORKING_ID = x.ID).DefaultIfEmpty
+                            From sal_group In Context.PA_SALARY_GROUP.Where(Function(x) w.SAL_GROUP_ID = x.ID).DefaultIfEmpty
+                            From sal_level In Context.PA_SALARY_LEVEL.Where(Function(x) w.SAL_LEVEL_ID = x.ID).DefaultIfEmpty
                              Where p.ID = ID
                             Select New FileContractDTO With {.ID = p.ID,
                                                             .EMPLOYEE_ID = p.EMP_ID,
