@@ -436,6 +436,24 @@ Namespace ProfileBusiness.ServiceImplementations
 #End Region
 
 #Region "Job Description"
+        Public Function GetIdJobPosition(ByVal empCode As String) As Decimal Implements ServiceContracts.IProfileBusiness.GetIdJobPosition
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetIdJobPosition(empCode)
+                Catch ex As Exception
+
+                End Try
+            End Using
+        End Function
+        Public Function CheckDecision(ByVal decision As String) As Decimal Implements ServiceContracts.IProfileBusiness.CheckDecision
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.CheckDecision(decision)
+                Catch ex As Exception
+
+                End Try
+            End Using
+        End Function
         Public Function GetJobDescription(ByVal _filter As JobDescriptionDTO,
                                         ByVal _param As ParamDTO,
                                         ByVal PageIndex As Integer,
@@ -446,8 +464,8 @@ Namespace ProfileBusiness.ServiceImplementations
             Using rep As New ProfileRepository
                 Try
                     Return rep.GetJobDescription(_filter, _param, PageIndex, PageSize, Total, Sorts, log)
-            Catch ex As Exception
-                Throw ex
+                Catch ex As Exception
+                    Throw ex
                 End Try
             End Using
         End Function
@@ -456,8 +474,8 @@ Namespace ProfileBusiness.ServiceImplementations
             Using rep As New ProfileRepository
                 Try
                     Return rep.InserJobDescription(objJobDes, log)
-            Catch ex As Exception
-                Throw ex
+                Catch ex As Exception
+                    Throw ex
                 End Try
             End Using
         End Function
@@ -466,8 +484,8 @@ Namespace ProfileBusiness.ServiceImplementations
             Using rep As New ProfileRepository
                 Try
                     Return rep.ModifyJobDescription(objJobDes, log, gID)
-            Catch ex As Exception
-                Throw ex
+                Catch ex As Exception
+                    Throw ex
                 End Try
             End Using
         End Function
@@ -476,8 +494,8 @@ Namespace ProfileBusiness.ServiceImplementations
             Using rep As New ProfileRepository
                 Try
                     Return rep.DeleteJobDescretion(objJobDes)
-            Catch ex As Exception
-                Throw ex
+                Catch ex As Exception
+                    Throw ex
                 End Try
             End Using
         End Function
@@ -490,6 +508,18 @@ Namespace ProfileBusiness.ServiceImplementations
                     Throw ex
                 End Try
             End Using
+        End Function
+#End Region
+#Region "export ChangeInfo"
+        Public Function GetExportChangeInfo(ByVal org_id As Decimal) As DataSet Implements ServiceContracts.IProfileBusiness.GetExportChangeInfo
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetExportChangeInfo(org_id)
+                Catch ex As Exception
+
+                End Try
+            End Using
+
         End Function
 #End Region
     End Class

@@ -3060,6 +3060,16 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function GetUserFileByID(ByVal _id As Decimal) As UserFileDTO
 #End Region
+#Region "Export ChangeInfo"
+        <OperationContract()>
+        Function GetIdJobPosition(ByVal empCode As String) As Decimal
+        <OperationContract()>
+        Function CheckDecision(ByVal decision As String) As Decimal
+        <OperationContract()>
+        Function GetExportChangeInfo(ByVal org_id As Decimal) As DataSet
+#End Region
+
+
     End Interface
 
 

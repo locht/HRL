@@ -248,7 +248,7 @@
                 args.set_cancel(true);
             }
 
-            if (args.get_item().get_commandName() == "EXPORT") {
+            if (args.get_item().get_commandName() == "EXPORT" || args.get_item().get_commandName() == "NEXT") {
                 enableAjax = false;
             }
             if (args.get_item().get_commandName() == "PRINT") {

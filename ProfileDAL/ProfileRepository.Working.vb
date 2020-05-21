@@ -1513,11 +1513,11 @@ Partial Class ProfileRepository
             Dim HSL_old = (From p In Context.HU_WORKING Where p.EMPLOYEE_ID = objWorking.EMPLOYEE_ID Order By p.ID Descending).FirstOrDefault
             If HSL_old IsNot Nothing Then
                 HSL_old.EXPIRE_DATE = objWorking.EFFECT_DATE.Value.AddDays(-1)
-            End If            
+            End If
         End If
         Try
             Dim objWorkingData As New HU_WORKING
-            objWorkingData.ID = Utilities.GetNextSequence(Context, Context.HU_WORKING.EntitySet.Name)          
+            objWorkingData.ID = Utilities.GetNextSequence(Context, Context.HU_WORKING.EntitySet.Name)
             objWorking.ID = objWorkingData.ID
             objWorkingData.EMPLOYEE_ID = objWorking.EMPLOYEE_ID
             ' objWorkingData.OBJECT_ATTENDANCE = objWorking.OBJECT_ATTENDANCE
@@ -1554,7 +1554,7 @@ Partial Class ProfileRepository
             objWorkingData.FILENAME = objWorking.FILENAME
             objWorkingData.TAX_TABLE_ID = objWorking.TAX_TABLE_ID
             objWorkingData.SAL_TOTAL = objWorking.SAL_TOTAL
-            objWorkingData.SAL_INS = objWorking.SAL_INS            
+            objWorkingData.SAL_INS = objWorking.SAL_INS
             objWorkingData.ATTACH_FILE = objWorking.ATTACH_FILE
             objWorkingData.PERCENTSALARY = objWorking.PERCENTSALARY
             objWorkingData.FACTORSALARY = objWorking.FACTORSALARY
@@ -1818,7 +1818,7 @@ Partial Class ProfileRepository
             ' nếu phê duyệt thì trừ đi 1 ngày vào ngày hết hiệu lực với HSL cũ gần nhất trước đó
             If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 Dim HSL_old = (From p In Context.HU_WORKING Where p.EMPLOYEE_ID = objWorking.EMPLOYEE_ID And p.ID < objWorking.ID Order By p.ID Descending).FirstOrDefault
-                HSL_old.EXPIRE_DATE = objWorking.EFFECT_DATE.Value.AddDays(-1)              
+                HSL_old.EXPIRE_DATE = objWorking.EFFECT_DATE.Value.AddDays(-1)
             End If
             Dim objWorkingData = (From p In Context.HU_WORKING Where objWorking.ID = p.ID).First()
             objWorkingData.EMPLOYEE_ID = objWorking.EMPLOYEE_ID
@@ -3143,6 +3143,48 @@ Partial Class ProfileRepository
                                                                       .CONTROL_NAME = p.CONTROL_NAME,
                                                                       .ATTACHFILE_NAME = p.ATTACHFILE_NAME}).ToList()
             Return objJobDes
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+#End Region
+#Region "import changeinfo"
+    Public Function GetIdJobPosition(ByVal empCode As String) As Decimal
+        Try
+            Dim jobId = (From p In Context.HU_EMPLOYEE Where p.EMPLOYEE_CODE = empCode
+                      Select p.JOB_POSITION).FirstOrDefault
+            If jobId Is Nothing Then
+                Return 0
+            End If
+            Return jobId
+        Catch ex As Exception
+
+        End Try
+    End Function
+    Public Function CheckDecision(ByVal decision As String) As Decimal
+        Try
+            Dim gtri = (From p In Context.HU_WORKING Where p.DECISION_NO.ToUpper = decision.ToUpper).ToList.Count
+
+            Return gtri
+        Catch ex As Exception
+
+        End Try
+    End Function
+    Public Function GetExportChangeInfo(ByVal org_id As Decimal) As DataSet
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dsdata As DataSet = cls.ExecuteStore("pkg_profile_integrated.GetExportChangeInfo",
+                                                         New With {.P_ID = org_id,
+                                                                   .P_CUR = cls.OUT_CURSOR,
+                                                                   .P_CUR1 = cls.OUT_CURSOR,
+                                                                   .P_CUR2 = cls.OUT_CURSOR,
+                                                                   .P_CUR3 = cls.OUT_CURSOR,
+                                                                   .P_CUR4 = cls.OUT_CURSOR,
+                                                                   .P_CUR5 = cls.OUT_CURSOR}, False)
+
+                Return dsdata
+
+            End Using
         Catch ex As Exception
             Throw ex
         End Try

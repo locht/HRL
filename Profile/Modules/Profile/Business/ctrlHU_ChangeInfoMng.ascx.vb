@@ -6,6 +6,10 @@ Imports Telerik.Web.UI
 Imports System.IO
 Imports WebAppLog
 Imports HistaffWebAppResources.My.Resources
+Imports Aspose.Cells
+Imports HistaffFrameworkPublic
+Imports System.Globalization
+
 Public Class ctrlHU_ChangeInfoMng
     Inherits Common.CommonView
 
@@ -24,7 +28,14 @@ Public Class ctrlHU_ChangeInfoMng
     Dim _classPath As String = "Profile\Modules\Profile\Business" + Me.GetType().Name.ToString()
 
 #Region "Property"
-
+    Private Property dtLogs As DataTable
+        Get
+            Return PageViewState(Me.ID & "_dtLogs")
+        End Get
+        Set(ByVal value As DataTable)
+            PageViewState(Me.ID & "_dtLogs") = value
+        End Set
+    End Property
     ''' <lastupdate>06/07/2017</lastupdate>
     ''' <summary>ListComboData</summary>
     ''' <remarks></remarks>
@@ -156,7 +167,14 @@ Public Class ctrlHU_ChangeInfoMng
                                                                      ToolbarAuthorize.Special1,
                                                                      Translate("Điều động hàng loạt")))
             MainToolBar.Items.Add(Common.Common.CreateToolbarItem("RESET_PASSWORD", ToolbarIcons.Reset, ToolbarAuthorize.Special1, "Sửa phê duyệt"))
-
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("NEXT",
+                                                                    ToolbarIcons.Export,
+                                                                    ToolbarAuthorize.Special1,
+                                                                    Translate("Xuất file mẫu")))
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("IMPORT",
+                                                                    ToolbarIcons.Import,
+                                                                    ToolbarAuthorize.Special1,
+                                                                    Translate("Nhập file mẫu")))
             CType(MainToolBar.Items(4), RadToolBarButton).Text = "In"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             rgWorking.MasterTableView.GetColumn("DECISION_TYPE_NAME").HeaderText = UI.DecisionType
@@ -263,6 +281,10 @@ Public Class ctrlHU_ChangeInfoMng
                     ctrlOrgPopup.Show()
                     Exit Sub
                 Case "IMPORT_TEMP"
+                    ctrlUpload1.Show()
+                Case "NEXT"
+                    ExportChangeInfo()
+                Case "IMPORT"
                     ctrlUpload1.Show()
                 Case CommonMessage.TOOLBARITEM_EXPORT
                     Dim dtData As DataTable
@@ -420,7 +442,7 @@ Public Class ctrlHU_ChangeInfoMng
                     CurrentState = CommonMessage.STATE_NORMAL
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
                 End If
-           
+
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -488,51 +510,47 @@ Public Class ctrlHU_ChangeInfoMng
     ''' <remarks></remarks>
     Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim fileName As String
-        Dim dsDataPrepare As New DataSet
-        Dim workbook As Aspose.Cells.Workbook
-        Dim worksheet As Aspose.Cells.Worksheet
-        Dim dtData As DataTable
         Dim startTime As DateTime = DateTime.UtcNow
-
+        Dim fileName As String
         Try
-            If ctrlUpload1.UploadedFiles.Count = 0 Then
-                ShowMessage(Translate("Bạn chưa chọn biễu mẫu import"), NotifyType.Warning)
-                Exit Sub
-            End If
-
             Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
             Dim savepath = Context.Server.MapPath(tempPath)
-
-            For Each file As UploadedFile In ctrlUpload1.UploadedFiles
-                fileName = System.IO.Path.Combine(savepath, Guid.NewGuid().ToString() & ".xls")
+            Dim countFile As Integer = ctrlUpload1.UploadedFiles.Count
+            Dim ds As New DataSet
+            If countFile > 0 Then
+                Dim file As UploadedFile = ctrlUpload1.UploadedFiles(countFile - 1)
+                fileName = System.IO.Path.Combine(savepath, file.FileName)
                 file.SaveAs(fileName, True)
-                workbook = New Aspose.Cells.Workbook(fileName)
-                ' Kiểm tra file mẫu đúng định dạng hay không
-                If workbook.Worksheets.GetSheetByCodeName("DataChangeInfo") Is Nothing Then
-                    ShowMessage(Translate("File mẫu không đúng định dạng"), NotifyType.Warning)
-                    Exit Sub
-                End If
-                worksheet = workbook.Worksheets(0)
-                dsDataPrepare.Tables.Add(worksheet.Cells.ExportDataTableAsString(3, 0, worksheet.Cells.MaxRow + 1, worksheet.Cells.MaxColumn + 1, True))
-                If System.IO.File.Exists(fileName) Then System.IO.File.Delete(fileName)
-            Next
-
-            dtData = dsDataPrepare.Tables(0).Clone
-            For Each dt As DataTable In dsDataPrepare.Tables
-                For Each row In dt.Rows
-                    dtData.ImportRow(row)
-                Next
-            Next
-
-            dtData.Columns.Add("STT")
-
-            ProcessData(dtData)
-
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+                Using ep As New ExcelPackage
+                    ds = ep.ReadExcelToDataSet(fileName, False)
+                End Using
+            End If
+            If ds Is Nothing Then
+                Exit Sub
+            End If
+            TableMapping(ds.Tables(0))
+            dtLogs.TableName = "DATA_ERROR"
+            If dtLogs.Rows.Count > 0 Then
+                ShowMessage(Translate("Đã có lỗi xảy ra,Xin kiểm tra lại"), NotifyType.Warning)
+                HttpContext.Current.Session("KHDT_ERROR") = dtLogs
+                ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('ACV_DANHGIAKPI_error');", True)
+                Exit Sub
+                'ExportTemplate("Training/QLKH/VNM_Kehoachdt_error.xls",
+                '                      dtLogs.DataSet, Nothing, "Template_ERROR_" & Format(Date.Now, "yyyyMMdd"))
+            End If
+            Dim sw As New StringWriter()
+            Dim DocXml As String = String.Empty
+            ds.Tables(0).WriteXml(sw, False)
+            DocXml = sw.ToString
+            Dim callst As New ProfileStoreProcedure
+            If callst.Import_Working(LogHelper.GetUserLog.Username.ToUpper, DocXml) Then
+                ShowMessage(Translate("Import thành công"), NotifyType.Success)
+                rgWorking.Rebind()
+            Else
+                ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
+            End If
         Catch ex As Exception
             ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
 
@@ -1017,4 +1035,276 @@ Public Class ctrlHU_ChangeInfoMng
     End Sub
 #End Region
 
+    Private Sub ExportChangeInfo()
+        Try
+            Using REP As New ProfileBusinessRepository
+                Dim dsData As New DataSet
+                dsData = REP.GetExportChangeInfo(ctrlOrg.CurrentValue)
+                dsData.Tables(0).TableName = "Table"
+                dsData.Tables(1).TableName = "Table1"
+                dsData.Tables(2).TableName = "Table2"
+                dsData.Tables(3).TableName = "Table3"
+                dsData.Tables(4).TableName = "Table4"
+                dsData.Tables(5).TableName = "Table5"
+                REP.Dispose()
+                ExportTemplate("Profile\Working\Template_quyet dinh.xls",
+                                   dsData, Nothing, "Template_quyet dinh" & Format(Date.Now, "yyyyMMdd"))
+
+            End Using
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Public Function ExportTemplate(ByVal sReportFileName As String,
+                                                    ByVal dsData As DataSet,
+                                                    ByVal dtVariable As DataTable,
+                                                    ByVal filename As String) As Boolean
+
+        Dim filePath As String
+        Dim templatefolder As String
+
+        Dim designer As WorkbookDesigner
+        Try
+
+            templatefolder = ConfigurationManager.AppSettings("ReportTemplatesFolder")
+            filePath = AppDomain.CurrentDomain.BaseDirectory & templatefolder & "\" & sReportFileName
+
+            If Not File.Exists(filePath) Then
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "javascriptfunction", "goBack()", True)
+                Return False
+            End If
+
+            designer = New WorkbookDesigner
+            designer.Open(filePath)
+            designer.SetDataSource(dsData)
+
+            If dtVariable IsNot Nothing Then
+                Dim intCols As Integer = dtVariable.Columns.Count
+                For i As Integer = 0 To intCols - 1
+                    designer.SetDataSource(dtVariable.Columns(i).ColumnName.ToString(), dtVariable.Rows(0).ItemArray(i).ToString())
+                Next
+            End If
+            designer.Process()
+            designer.Workbook.CalculateFormula()
+            designer.Workbook.Save(HttpContext.Current.Response, filename & ".xls", ContentDisposition.Attachment, New XlsSaveOptions())
+
+        Catch ex As Exception
+            Return False
+        End Try
+        Return True
+    End Function
+    Private Sub TableMapping(ByVal dtTemp As System.Data.DataTable)
+        ' lấy dữ liệu thô từ excel vào và tinh chỉnh dữ liệu
+        dtTemp.Columns(0).ColumnName = "STT"
+        dtTemp.Columns(1).ColumnName = "EMPLOYEE_CODE"
+        dtTemp.Columns(2).ColumnName = "FULLNAME_VN"
+        dtTemp.Columns(3).ColumnName = "ORG_NAME"
+        dtTemp.Columns(4).ColumnName = "ORG_ID"
+        dtTemp.Columns(5).ColumnName = "TITLE_NAME"
+        dtTemp.Columns(6).ColumnName = "TITLE_ID"
+        dtTemp.Columns(7).ColumnName = "IS_REPLACE"
+        dtTemp.Columns(8).ColumnName = "NV_REPLACE"
+        dtTemp.Columns(9).ColumnName = "JOB_NAME"
+        dtTemp.Columns(10).ColumnName = "JOB_ID"
+        dtTemp.Columns(11).ColumnName = "DECISION"
+        dtTemp.Columns(12).ColumnName = "DECISION_ID"
+        dtTemp.Columns(13).ColumnName = "IS_SAVE"
+        dtTemp.Columns(14).ColumnName = "DECISION_NO"
+        dtTemp.Columns(15).ColumnName = "EFFECT_DATE"
+        dtTemp.Columns(16).ColumnName = "EXPIRE_DATE"
+        dtTemp.Columns(17).ColumnName = "IS_HURTFUL"
+        dtTemp.Columns(18).ColumnName = "DATE_HURFUL"
+        dtTemp.Columns(19).ColumnName = "SIGN_DATE"
+        dtTemp.Columns(20).ColumnName = "SIGN_NAME"
+        dtTemp.Columns(21).ColumnName = "SIGN_ID"
+        dtTemp.Columns(22).ColumnName = "REMARK"
+        'XOA DONG TIEU DE VA HEADER
+        dtTemp.Rows(0).Delete()
+        dtTemp.Rows(1).Delete()
+        ' add Log
+        Dim _error As Boolean = True
+        Dim count As Integer
+        Dim newRow As DataRow
+        Dim dsEMP As DataTable
+        Dim rep As New ProfileBusinessRepository
+        ' Dim rep As New PerformanceBusinessClient
+        If dtLogs Is Nothing Then
+            dtLogs = New DataTable("data")
+            dtLogs.Columns.Add("STT", GetType(Integer))
+            dtLogs.Columns.Add("DISCIPTION", GetType(String))
+        End If
+        dtLogs.Clear()
+        'XOA NHUNG DONG DU LIEU NULL STT
+        Dim rowDel As DataRow
+        For i As Integer = 0 To dtTemp.Rows.Count - 1
+            If dtTemp.Rows(i).RowState = DataRowState.Deleted OrElse dtTemp.Rows(i).RowState = DataRowState.Detached Then Continue For
+            rowDel = dtTemp.Rows(i)
+            If rowDel("STT").ToString.Trim = "" Then
+                dtTemp.Rows(i).Delete()
+                'ShowMessage(Translate("Phải nhập số TT các record import. Vui lòng kiểm tra lại"), NotifyType.Warning)
+                'Exit Sub
+            End If
+        Next
+        Dim str1 As String = ""
+        Dim str2 As String = ""
+        Dim flag As Decimal = 0
+        Dim flagSum As Decimal = 0
+        For Each rows As DataRow In dtTemp.Rows
+            If rows.RowState = DataRowState.Deleted OrElse rows.RowState = DataRowState.Detached Then Continue For
+            newRow = dtLogs.NewRow
+            newRow("STT") = count + 1
+            If IsDBNull(rows("STT")) Then
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "STT - Phải nhập STT"
+                _error = False
+            End If
+            If IsDBNull(rows("EMPLOYEE_CODE")) Then
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "MÃ NV - Phải nhập MÃ NV"
+                _error = False
+            Else
+                Dim empId = rep.CheckEmployee_Exits(rows("EMPLOYEE_CODE"))
+                If empId = 0 Then
+                    newRow("DISCIPTION") = "Mã nhân viên - Không tồn tại,"
+                    _error = False
+                End If
+            End If
+
+            If rows("IS_REPLACE").ToString <> "" Then
+                If rows("IS_REPLACE").ToString <> "1" And rows("IS_REPLACE").ToString <> "0" Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Thay thế - Kiểm tra định dạng Thay thế"
+                    _error = False
+                End If
+            End If
+
+            If rows("NV_REPLACE").ToString <> "" Then
+                Dim empId = rep.CheckEmployee_Exits(rows("NV_REPLACE"))
+                If empId = 0 Then
+                    newRow("DISCIPTION") = "Mã nhân sự thay thế - Không tồn tại,"
+                    _error = False
+                End If
+            End If
+
+            If IsDBNull(rows("JOB_NAME")) Then
+                If rows("IS_REPLACE").ToString = "1" Then
+                    If rows("NV_REPLACE").ToString = "" Then
+                        newRow("DISCIPTION") = "Mã nhân sự thay thế - Bắt buộc nhập,"
+                        _error = False
+                    Else
+                        Dim idjob = rep.GetIdJobPosition(rows("NV_REPLACE"))
+                        rows("JOB_ID") = idjob
+                    End If
+                Else
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Vị trí công việc - Phải nhập Vị trí công việc"
+                    _error = False
+                End If
+            End If
+            If IsDBNull(rows("DECISION")) Then
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Loại quyết định - Phải nhập Loại quyết định"
+                _error = False
+            End If
+
+            If rows("IS_SAVE").ToString <> "" Then
+                If rows("IS_SAVE").ToString <> "1" And rows("IS_SAVE").ToString <> "0" Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Lưu dữ liệu sang quá trình công tác - Kiểm tra định dạng Lưu dữ liệu sang quá trình công tác"
+                    _error = False
+                End If
+            End If
+
+            If IsDBNull(rows("DECISION_NO")) Then
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Số quyết định - Phải nhập Số quyết định"
+                _error = False
+            Else
+                If rows("DECISION_NO").ToString <> "" Then
+                    'viet ham kiem tra trung so quyet dinh
+                    Dim ktr = rep.CheckDecision(rows("DECISION_NO"))
+                    If ktr > 0 Then
+                        newRow("DISCIPTION") = newRow("DISCIPTION") + "Số quyết định - Trùng Số quyết định"
+                        _error = False
+                    End If
+                End If
+
+            End If
+            If IsDBNull(rows("EFFECT_DATE")) Then
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày hiệu lực - Phải nhập Ngày hiệu lực"
+                _error = False
+            Else
+                If rows("EFFECT_DATE").ToString <> "" Then
+                    If CheckDate(rows("EFFECT_DATE")) = False Then
+                        newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày hiệu lực - Phải nhập đúng định dạng ngày tháng"
+                        _error = False
+                    End If
+                End If
+            End If
+            If IsDBNull(rows("EXPIRE_DATE")) Then
+            Else
+                If rows("EXPIRE_DATE").ToString <> "" Then
+                    If CheckDate(rows("EXPIRE_DATE")) = False Then
+                        newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày hết hiệu lực - Phải nhập đúng định dạng ngày tháng"
+                        _error = False
+                    End If
+                End If
+            End If
+
+            If rows("IS_HURTFUL").ToString <> "" Then
+                If rows("IS_HURTFUL").ToString <> "1" And rows("IS_HURTFUL").ToString <> "0" Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Làm việc trong môi trường độc hại - Kiểm tra định dạng Làm việc trong môi trường độc hại"
+                    _error = False
+                End If
+            End If
+
+            If IsDBNull(rows("DATE_HURFUL")) Then
+            Else
+                If rows("DATE_HURFUL").ToString <> "" Then
+                    If CheckDate(rows("DATE_HURFUL")) = False Then
+                        newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày hiệu lực độc hại - Phải nhập đúng định dạng ngày tháng"
+                        _error = False
+                    End If
+                End If
+            End If
+
+            If IsDBNull(rows("SIGN_DATE")) Then
+            Else
+                If rows("SIGN_DATE").ToString <> "" Then
+                    If CheckDate(rows("SIGN_DATE")) = False Then
+                        newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày ký - Phải nhập đúng định dạng ngày tháng"
+                        _error = False
+                    End If
+                End If
+            End If
+            'ktra trung vi tri cv tren cung 1 file
+            If rows("JOB_ID").ToString <> "" Then
+                str1 = rows("JOB_ID")
+                If flag > 0 Then
+                    If str2.Contains(str1) = True Then
+                        newRow("DISCIPTION") = newRow("DISCIPTION") + "Vị trí công việc - Tồn tại cùng 1 vị trí công việc trên file"
+                        _error = False
+                    End If
+                End If
+                str2 += rows("JOB_ID").ToString + ","
+                flag += 1
+            End If
+
+            If _error = False Then
+                dtLogs.Rows.Add(newRow)
+                _error = True
+            End If
+            count += 1
+        Next
+        dtTemp.AcceptChanges()
+    End Sub
+    Private Function CheckDate(ByVal value As String) As Boolean
+        Dim dateCheck As Boolean
+        Dim result As Date
+
+        If value = "" Or value = "&nbsp;" Then
+            value = ""
+            Return True
+        End If
+
+        Try
+            dateCheck = DateTime.TryParseExact(value, "dd/MM/yyyy", New CultureInfo("en-US"), DateTimeStyles.None, result)
+            Return dateCheck
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
 End Class

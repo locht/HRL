@@ -37,7 +37,7 @@
                             <tlk:RadDatePicker ID="rdExpireDate" runat="server">
                             </tlk:RadDatePicker>
                         </td>
-                        <td colspan="2">
+                        <td>
                             <asp:CheckBox ID="chkTerminate" runat="server" Text="<%$ Translate: Liệt kê cả nhân viên nghỉ việc %>" />
                         </td>
                         <td>
@@ -225,7 +225,7 @@
                 args.set_cancel(true);
             }
 
-            if (args.get_item().get_commandName() == "EXPORT") {
+            if (args.get_item().get_commandName() == "EXPORT" || args.get_item().get_commandName() == "NEXT") {
                 enableAjax = false;
             }
             if (args.get_item().get_commandName() == "PRINT") {

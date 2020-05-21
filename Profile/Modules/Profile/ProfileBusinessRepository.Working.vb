@@ -506,6 +506,24 @@ Partial Public Class ProfileBusinessRepository
 
 #End Region
 #Region "Job Description"
+    Public Function GetIdJobPosition(ByVal empCode As String) As Decimal
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetIdJobPosition(empCode)
+            Catch ex As Exception
+
+            End Try
+        End Using
+    End Function
+    Public Function CheckDecision(ByVal decision As String) As Decimal
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CheckDecision(decision)
+            Catch ex As Exception
+
+            End Try
+        End Using
+    End Function
     Public Function GetJobDescription(ByVal _filter As JobDescriptionDTO,
                                         ByVal _param As ParamDTO,
                                         ByVal PageIndex As Integer,
@@ -579,5 +597,18 @@ Partial Public Class ProfileBusinessRepository
             End Try
         End Using
     End Function
+#End Region
+#Region "Export ChangeInfo"
+    Public Function GetExportChangeInfo(ByVal org_id As Decimal) As DataSet
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetExportChangeInfo(org_id)
+            Catch ex As Exception
+
+            End Try
+        End Using
+
+    End Function
+
 #End Region
 End Class

@@ -57257,6 +57257,15 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetUserFileByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetUserFileByIDResponse")>  _
         Function GetUserFileByID(ByVal _id As Decimal) As ProfileBusiness.UserFileDTO
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetIdJobPosition", ReplyAction:="http://tempuri.org/IProfileBusiness/GetIdJobPositionResponse")>  _
+        Function GetIdJobPosition(ByVal empCode As String) As Decimal
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckDecision", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckDecisionResponse")>  _
+        Function CheckDecision(ByVal decision As String) As Decimal
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetExportChangeInfo", ReplyAction:="http://tempuri.org/IProfileBusiness/GetExportChangeInfoResponse")>  _
+        Function GetExportChangeInfo(ByVal org_id As Decimal) As System.Data.DataSet
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetPeriodbyYear", ReplyAction:="http://tempuri.org/IProfileBusiness/GetPeriodbyYearResponse")>  _
         Function GetPeriodbyYear(ByVal year As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO)
         
@@ -60128,6 +60137,18 @@ Namespace ProfileBusiness
         
         Public Function GetUserFileByID(ByVal _id As Decimal) As ProfileBusiness.UserFileDTO Implements ProfileBusiness.IProfileBusiness.GetUserFileByID
             Return MyBase.Channel.GetUserFileByID(_id)
+        End Function
+        
+        Public Function GetIdJobPosition(ByVal empCode As String) As Decimal Implements ProfileBusiness.IProfileBusiness.GetIdJobPosition
+            Return MyBase.Channel.GetIdJobPosition(empCode)
+        End Function
+        
+        Public Function CheckDecision(ByVal decision As String) As Decimal Implements ProfileBusiness.IProfileBusiness.CheckDecision
+            Return MyBase.Channel.CheckDecision(decision)
+        End Function
+        
+        Public Function GetExportChangeInfo(ByVal org_id As Decimal) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.GetExportChangeInfo
+            Return MyBase.Channel.GetExportChangeInfo(org_id)
         End Function
         
         Public Function GetPeriodbyYear(ByVal year As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO) Implements ProfileBusiness.IProfileBusiness.GetPeriodbyYear
