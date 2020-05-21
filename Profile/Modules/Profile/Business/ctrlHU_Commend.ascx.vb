@@ -978,10 +978,10 @@ Public Class ctrlHU_Commend
                         Exit Sub
                     End If
                 Next
-                If bCheckHasfile = 1 Then
-                    ShowMessage(Translate("Duyệt khi tất cả các record đã có tập tin đính kèm,bạn kiểm tra lại"), NotifyType.Warning)
-                    Exit Sub
-                End If
+                'If bCheckHasfile = 1 Then
+                '    ShowMessage(Translate("Duyệt khi tất cả các record đã có tập tin đính kèm,bạn kiểm tra lại"), NotifyType.Warning)
+                '    Exit Sub
+                'End If
                 If rep.ApproveListCommend(lstID) Then
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                     rgCommend.Rebind()
