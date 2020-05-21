@@ -331,8 +331,8 @@ Public Class ctrlHU_EmpDtlProfile
                             rdDateOfEntry.SelectedDate = empCV.DATEOFENTRY
                             txtPerson_Inheritance.Text = empCV.PERSON_INHERITANCE
                             rdEffect_Bank.SelectedDate = empCV.EFFECTDATE_BANK
-                            'txtInterviewer_1.Text = empCV.INTERVIEWER1
-                            'txtInterviewer_2.Text = empCV.INTERVIEWER2
+                            txtInterviewer_1.Text = empCV.INTERVIEWER1
+                            txtInterviewer_2.Text = empCV.INTERVIEWER2
 
                             'txtPlaceKS.Text = empCV.BIRTH_PLACE
                             txtVillage.Text = empCV.VILLAGE

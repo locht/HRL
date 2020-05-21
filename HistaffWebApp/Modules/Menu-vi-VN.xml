@@ -3,8 +3,7 @@
   <Group>
     <Item Text="Module">
       <Group>
-        <Item Value="Organize" Text="Tổ chức" PostBack="True" NavigateUrl="/Default.aspx?mid=Organize&amp;fid=ctrlDashboard"/>
-        <Item Value="Planning" Text="Hoạch định" PostBack="True" NavigateUrl="Default.aspx?mid=Planning&amp;fid=ctrlDashboardPlanning&amp;group=Dashboard"/>
+        <Item Value="Organize" Text="Tổ chức" PostBack="True" NavigateUrl="/Default.aspx?mid=Organize&amp;fid=ctrlDashboard"/>      
         
 		<Item Value="Profile" Text="Hồ sơ" PostBack="True"/>
         <Item Value="Insurance" Text="Bảo hiểm" PostBack="True" />
