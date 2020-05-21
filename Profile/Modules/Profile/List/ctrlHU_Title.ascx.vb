@@ -202,18 +202,18 @@ Public Class ctrlHU_Title
                     Case "UpdateView"
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         rgMain.Rebind()
-                        ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, chkSign, cboOrgType, cboHurtType, ckOVT, txtRemindLink, txtUpload, txtUploadFile, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose)
+                        ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, chkSign, cboOrgType, cboHurtType, ckOVT, txtRemindLink, txtUpload, txtUploadFile, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose, cboLADDER_WORK)
                         CurrentState = CommonMessage.STATE_NORMAL
                     Case "InsertView"
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         rgMain.CurrentPageIndex = 0
                         rgMain.MasterTableView.SortExpressions.Clear()
                         rgMain.Rebind()
-                        ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, chkSign, cboOrgType, cboHurtType, ckOVT, txtRemindLink, txtUpload, txtUploadFile, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose)
+                        ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, chkSign, cboOrgType, cboHurtType, ckOVT, txtRemindLink, txtUpload, txtUploadFile, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose, cboLADDER_WORK)
                         CurrentState = CommonMessage.STATE_NORMAL
                     Case "Cancel"
                         rgMain.MasterTableView.ClearSelectedItems()
-                        ClearControlValue(txtNameVN, txtRemark, cboOrgType, cboHurtType, ckOVT, txtRemindLink, txtUpload, txtUploadFile, chkSign, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose)
+                        ClearControlValue(txtNameVN, txtRemark, cboOrgType, cboHurtType, ckOVT, txtRemindLink, txtUpload, txtUploadFile, chkSign, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose, cboLADDER_WORK)
                     Case ""
                         cboTitleGroup.AutoPostBack = False
                         cboOrgType.AutoPostBack = False
@@ -285,7 +285,7 @@ Public Class ctrlHU_Title
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
                     EnabledGridNotPostback(rgMain, False)
-                    EnableControlAll(True, cboTitleGroup, txtNameVN, txtRemark, chkSign, cboOrgType, cboHurtType, ckOVT, btnDownload, btnUploadFile, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose, txtCode)
+                    EnableControlAll(True, cboTitleGroup, txtNameVN, txtRemark, chkSign, cboOrgType, cboHurtType, ckOVT, btnDownload, btnUploadFile, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose, txtCode, cboLADDER_WORK)
                     If cboHurtType.SelectedItem IsNot Nothing Or txtRemark.Text IsNot Nothing Then
                         GoTo dontrefresh
                     End If
@@ -294,11 +294,11 @@ Public Class ctrlHU_Title
 dontrefresh:
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgMain, True)
-                    EnableControlAll(False, cboTitleGroup, txtNameVN, txtRemark, chkSign, cboOrgType, cboHurtType, ckOVT, btnUploadFile, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose, txtCode)
+                    EnableControlAll(False, cboTitleGroup, txtNameVN, txtRemark, chkSign, cboOrgType, cboHurtType, ckOVT, btnUploadFile, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose, txtCode, cboLADDER_WORK)
                 Case CommonMessage.STATE_EDIT
                     EnabledGridNotPostback(rgMain, False)
                     Utilities.EnableRadCombo(cboTitleGroup, True)
-                    EnableControlAll(True, cboTitleGroup, txtNameVN, txtRemark, chkSign, cboOrgType, cboHurtType, ckOVT, btnDownload, btnUploadFile, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose, txtCode)
+                    EnableControlAll(True, cboTitleGroup, txtNameVN, txtRemark, chkSign, cboOrgType, cboHurtType, ckOVT, btnDownload, btnUploadFile, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose, txtCode, cboLADDER_WORK)
                     If txtUpload.Text <> "" Then
                         btnDownload.Enabled = True
                     Else
@@ -381,6 +381,8 @@ dontrefresh:
                 FillRadCombobox(cboHurtType, dtData, "NAME", "ID")
                 dataTable = rep.GetOtherList("GROUP_WORK", True)
                 FillRadCombobox(cboGroupWork, dataTable, "NAME", "ID")
+                dataTable = rep.GetOtherList("LADDER_WORK", True)
+                FillRadCombobox(cboLADDER_WORK, dataTable, "NAME", "ID")
             End Using
             dataTable = repS.GET_NGACH_LUONG_ACV()
             FillRadCombobox(cboNgachLuong, dataTable, "NAME_VN", "ID")
@@ -398,6 +400,7 @@ dontrefresh:
             dic.Add("IS_SIGN", chkSign)
             dic.Add("GR_GLONE_ID", cboNgachLuong)
             dic.Add("GR_WORK_ID", cboGroupWork)
+            dic.Add("LADDER_WORK_ID", cboLADDER_WORK)
             dic.Add("FUNCTION_WORK", txtFuncWork)
             dic.Add("REQUEST_WORK", txtRequestWork)
             dic.Add("PURPOSE_WORK", txtPurpose)
@@ -475,7 +478,7 @@ dontrefresh:
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     CurrentState = CommonMessage.STATE_NEW
-                    ClearControlValue(txtCode, txtNameVN, cboOrgType, txtRemark, cboTitleGroup, chkSign, ckOVT, cboHurtType, txtUpload, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose)
+                    ClearControlValue(txtCode, txtNameVN, cboOrgType, txtRemark, cboTitleGroup, chkSign, ckOVT, cboHurtType, txtUpload, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose, cboLADDER_WORK)
                     ' txtCode.Text = rep.AutoGenCode("CD", "HU_TITLE", "CODE")
 
                     UpdateControlState()
@@ -517,7 +520,7 @@ dontrefresh:
                     ctrlMessageBox.DataBind()
                     ctrlMessageBox.Show()
 
-                    ClearControlValue(cboTitleGroup, txtCode, txtNameVN, txtRemark, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose)
+                    ClearControlValue(cboTitleGroup, txtCode, txtNameVN, txtRemark, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose, cboLADDER_WORK)
 
                 Case CommonMessage.TOOLBARITEM_EXPORT
                     Dim dtData As DataTable
@@ -571,6 +574,9 @@ dontrefresh:
                         End If
                         If cboNgachLuong.SelectedValue <> "" Then
                             objTitle.GR_GLONE_ID = cboNgachLuong.SelectedValue
+                        End If
+                        If cboLADDER_WORK.SelectedValue <> "" Then
+                            objTitle.LADDER_WORK_ID = cboLADDER_WORK.SelectedValue
                         End If
                         If cboGroupWork.SelectedValue <> "" Then
                             objTitle.GR_WORK_ID = cboGroupWork.SelectedValue
@@ -635,7 +641,7 @@ dontrefresh:
                         ExcuteScript("Resize", "ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgMain')")
                     End If
                 Case CommonMessage.TOOLBARITEM_CANCEL
-                    ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose)
+                    ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose, cboLADDER_WORK)
                     CurrentState = CommonMessage.STATE_NORMAL
                     Refresh("Cancel")
                     UpdateControlState()
@@ -660,19 +666,19 @@ dontrefresh:
             If e.ActionName = CommonMessage.TOOLBARITEM_ACTIVE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
                 CurrentState = CommonMessage.STATE_ACTIVE
                 UpdateControlState()
-                ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose)
+                ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose, cboLADDER_WORK)
             End If
 
             If e.ActionName = CommonMessage.TOOLBARITEM_DEACTIVE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
                 CurrentState = CommonMessage.STATE_DEACTIVE
                 UpdateControlState()
-                ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose)
+                ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose, cboLADDER_WORK)
             End If
 
             If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
                 CurrentState = CommonMessage.STATE_DELETE
                 UpdateControlState()
-                ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose)
+                ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, cboNgachLuong, cboGroupWork, txtFuncWork, txtRequestWork, txtPurpose, cboLADDER_WORK)
             End If
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -879,6 +885,7 @@ dontrefresh:
                 dic.Add("IS_SIGN", chkSign)
                 dic.Add("GR_GLONE_ID", cboNgachLuong)
                 dic.Add("GR_WORK_ID", cboGroupWork)
+                dic.Add("LADDER_WORK_ID", cboLADDER_WORK)
                 dic.Add("FUNCTION_WORK", txtFuncWork)
                 dic.Add("REQUEST_WORK", txtRequestWork)
                 dic.Add("PURPOSE_WORK", txtPurpose)

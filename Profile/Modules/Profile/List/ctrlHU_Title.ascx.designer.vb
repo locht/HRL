@@ -122,24 +122,6 @@ Partial Public Class ctrlHU_Title
     Protected WithEvents rqNgachLuong As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''lbOrgType control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbOrgType As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''cboOrgType control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboOrgType As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
     '''lbCode control.
     '''</summary>
     '''<remarks>
@@ -183,6 +165,24 @@ Partial Public Class ctrlHU_Title
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RegularExpressionValidator1 As Global.System.Web.UI.WebControls.RegularExpressionValidator
+
+    '''<summary>
+    '''lbOrgType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbOrgType As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cboOrgType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboOrgType As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''lbNameVN control.
@@ -237,6 +237,24 @@ Partial Public Class ctrlHU_Title
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboGroupWork As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''Label6 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label6 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cboLADDER_WORK control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboLADDER_WORK As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''lbHurtType control.

@@ -117,6 +117,7 @@ Partial Class ProfileRepository
                         From hurtType In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.HURT_TYPE_ID).DefaultIfEmpty
                         From ngach In Context.PA_SALARY_LEVEL_GROUP.Where(Function(f) f.ID = p.GR_GLONE_ID).DefaultIfEmpty
                         From nhom_cv In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.GR_WORK_ID).DefaultIfEmpty
+                        From tbl In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.LADDER_WORK_ID).DefaultIfEmpty
                         Select New TitleDTO With {
                                    .ID = p.ID,
                                    .CODE = p.CODE,
@@ -144,7 +145,9 @@ Partial Class ProfileRepository
                                    .FUNCTION_WORK = p.FUNCTION_WORK,
                                    .REQUEST_WORK = p.REQUEST_WORK,
                                    .PURPOSE_WORK = p.PURPOSE_WORK,
-                                   .TITLE_GROUP_ID1 = p.TITLE_GROUP_ID}
+                                   .TITLE_GROUP_ID1 = p.TITLE_GROUP_ID,
+                                   .LADDER_WORK_ID = p.LADDER_WORK_ID,
+                                   .LADDER_WORK_NAME = tbl.NAME_VN}
 
             Dim lst = query
 
@@ -153,6 +156,9 @@ Partial Class ProfileRepository
             End If
             If Not String.IsNullOrEmpty(_filter.NAME_EN) Then
                 lst = lst.Where(Function(p) p.NAME_EN.ToUpper.Contains(_filter.NAME_EN.ToUpper))
+            End If
+            If Not String.IsNullOrEmpty(_filter.LADDER_WORK_NAME) Then
+                lst = lst.Where(Function(p) p.LADDER_WORK_NAME.ToUpper.Contains(_filter.LADDER_WORK_NAME.ToUpper))
             End If
             If Not String.IsNullOrEmpty(_filter.NAME_VN) Then
                 lst = lst.Where(Function(p) p.NAME_VN.ToUpper.Contains(_filter.NAME_VN.ToUpper))
@@ -203,7 +209,8 @@ Partial Class ProfileRepository
                                     .OVT = p.OVT,
                                     .OVT_CHECK = If(p.OVT = "-1", True, False),
                                     .UPLOAD_FILE = p.UPLOAD_FILE,
-                                    .LEVEL_ID = p.LEVEL_ID}).SingleOrDefault
+                                    .LEVEL_ID = p.LEVEL_ID,
+                                    .LADDER_WORK_ID = p.LADDER_WORK_ID}).SingleOrDefault
 
             Return query
         Catch ex As Exception
@@ -237,6 +244,7 @@ Partial Class ProfileRepository
             objTitleData.FUNCTION_WORK = objTitle.FUNCTION_WORK
             objTitleData.REQUEST_WORK = objTitle.REQUEST_WORK
             objTitleData.PURPOSE_WORK = objTitle.PURPOSE_WORK
+            objTitleData.LADDER_WORK_ID = objTitle.LADDER_WORK_ID
             Context.HU_TITLE.AddObject(objTitleData)
             Context.SaveChanges(log)
             gID = objTitleData.ID
@@ -306,6 +314,7 @@ Partial Class ProfileRepository
             objTitleData.FUNCTION_WORK = objTitle.FUNCTION_WORK
             objTitleData.REQUEST_WORK = objTitle.REQUEST_WORK
             objTitleData.PURPOSE_WORK = objTitle.PURPOSE_WORK
+            objTitleData.LADDER_WORK_ID = objTitle.LADDER_WORK_ID
             Context.SaveChanges(log)
             gID = objTitleData.ID
             Return True

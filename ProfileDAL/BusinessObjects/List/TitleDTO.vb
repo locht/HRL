@@ -46,6 +46,7 @@
     Public Property FUNCTION_WORK As String
     Public Property REQUEST_WORK As String
     Public Property PURPOSE_WORK As String
-
+    Public Property LADDER_WORK_ID As Decimal?
+    Public Property LADDER_WORK_NAME As String
 
 End Class

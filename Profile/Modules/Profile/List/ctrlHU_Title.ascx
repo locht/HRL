@@ -33,19 +33,6 @@
                         ErrorMessage="Bạn phải nhập ngạch lương" ToolTip="Bạn phải nhập ngạch lương">
                     </asp:RequiredFieldValidator>
                 </td>
-                <td class="lb" style="display: none">
-                    <asp:Label runat="server" ID="lbOrgType" Text="Loại tổ chức"></asp:Label>
-                    <span class="lbReq">*</span>
-                </td>
-                <td style="display: none">
-                    <tlk:RadComboBox ID="cboOrgType" AutoPostBack="true" runat="server">
-                    </tlk:RadComboBox>
-                    <%--<asp:RequiredFieldValidator ID="rqOrgType" ControlToValidate="cboOrgType" runat="server"
-                        ErrorMessage="Bạn phải nhập loại tổ chức" ToolTip="Bạn phải nhập loại tổ chức">
-                    </asp:RequiredFieldValidator>--%>
-                </td>
-            </tr>
-            <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbCode" Text="Mã chức danh"></asp:Label>
                 </td>
@@ -61,6 +48,19 @@
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Mã không được chứa ký tự đặc biệt và khoảng trắng"
                         ControlToValidate="txtCode" ValidationExpression="^[a-zA-Z0-9_]*$"></asp:RegularExpressionValidator>
                 </td>
+                <td class="lb" style="display: none">
+                    <asp:Label runat="server" ID="lbOrgType" Text="Loại tổ chức"></asp:Label>
+                    <span class="lbReq">*</span>
+                </td>
+                <td style="display: none">
+                    <tlk:RadComboBox ID="cboOrgType" AutoPostBack="true" runat="server">
+                    </tlk:RadComboBox>
+                    <%--<asp:RequiredFieldValidator ID="rqOrgType" ControlToValidate="cboOrgType" runat="server"
+                        ErrorMessage="Bạn phải nhập loại tổ chức" ToolTip="Bạn phải nhập loại tổ chức">
+                    </asp:RequiredFieldValidator>--%>
+                </td>
+            </tr>
+            <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbNameVN" Text="Tên chức danh"></asp:Label>
                 </td>
@@ -74,10 +74,17 @@
                         ControlToValidate="txtNameVN" ValidationExpression="^(?!.*<[^>]+>).*"></asp:RegularExpressionValidator>
                 </td>
                 <td class="lb">
-                    <asp:Label runat="server" ID="Label2" Text="Nhóm công việc"></asp:Label>
+                    <asp:Label runat="server" ID="Label2" Text="Phân loại nhân viên"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboGroupWork" runat="server">
+                    </tlk:RadComboBox>
+                </td>
+                <td class="lb">
+                    <asp:Label runat="server" ID="Label6" Text="Thang công việc"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboLADDER_WORK" runat="server">
                     </tlk:RadComboBox>
                 </td>
                 <td class="lb">
@@ -110,6 +117,8 @@
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtPurpose" SkinID="Textbox1023">
                     </tlk:RadTextBox>
+                </td>
+                <td>
                 </td>
                 <td style="display: none">
                     <%--<asp:CheckBox ID="ckSpecDH" runat="server" Text="Đặc biệt độc hại" />--%>
@@ -158,7 +167,7 @@
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,TITLE_GROUP_NAME,TITLE_GROUP_ID,REMARK,ORG_ID,ORG_TYPE,FILENAME,HURTFUL,HURTFUL_CHECK,OVT,OVT_CHECK,SPEC_HURFUL,SPEC_HURFUL_CHECK,UPLOAD_FILE,HURT_TYPE_ID,HURT_TYPE_NAME,TITLE_GROUP_ID1,GR_GLONE_ID,GR_GLONE_NAME,GR_WORK_ID,GR_WORK_NAME,FUNCTION_WORK,REQUEST_WORK,PURPOSE_WORK">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,TITLE_GROUP_NAME,TITLE_GROUP_ID,REMARK,ORG_ID,ORG_TYPE,FILENAME,HURTFUL,HURTFUL_CHECK,OVT,OVT_CHECK,SPEC_HURFUL,SPEC_HURFUL_CHECK,UPLOAD_FILE,HURT_TYPE_ID,HURT_TYPE_NAME,TITLE_GROUP_ID1,IS_SIGN,GR_GLONE_ID,GR_GLONE_NAME,GR_WORK_ID,GR_WORK_NAME,FUNCTION_WORK,REQUEST_WORK,PURPOSE_WORK,LADDER_WORK_ID">
                 <Columns>
                     <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -239,8 +248,7 @@
                     return;
                 }
                 enableAjax = false;
-            }
-            if (args.get_item().get_commandName() == "NEXT") {
+            } if (args.get_item().get_commandName() == "NEXT") {
                 enableAjax = false;
             } else if (args.get_item().get_commandName() == "SAVE") {
                 // Nếu nhấn nút SAVE thì resize
@@ -262,15 +270,15 @@
                 // Nếu nhấn các nút khác thì resize default
                 ResizeSplitterDefault(splitterID, pane1ID, pane2ID, oldSize);
             }
-        }
+}
 
-        function onRequestStart(sender, eventArgs) {
-            eventArgs.set_enableAjax(enableAjax);
-            enableAjax = true;
-        }
+function onRequestStart(sender, eventArgs) {
+    eventArgs.set_enableAjax(enableAjax);
+    enableAjax = true;
+}
 
-        function cusTitleGroup(oSrc, args) {
-            var cbo = $find("<%# cboTitleGroup.ClientID %>");
+function cusTitleGroup(oSrc, args) {
+    var cbo = $find("<%# cboTitleGroup.ClientID %>");
             args.IsValid = (cbo.get_value().length != 0);
         }
 

@@ -11755,6 +11755,12 @@ Namespace ProfileBusiness
         Private IS_SIGNField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LADDER_WORK_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LADDER_WORK_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LEVEL_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -12079,6 +12085,32 @@ Namespace ProfileBusiness
                 If (Me.IS_SIGNField.Equals(value) <> true) Then
                     Me.IS_SIGNField = value
                     Me.RaisePropertyChanged("IS_SIGN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LADDER_WORK_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.LADDER_WORK_IDField
+            End Get
+            Set
+                If (Me.LADDER_WORK_IDField.Equals(value) <> true) Then
+                    Me.LADDER_WORK_IDField = value
+                    Me.RaisePropertyChanged("LADDER_WORK_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LADDER_WORK_NAME() As String
+            Get
+                Return Me.LADDER_WORK_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LADDER_WORK_NAMEField, value) <> true) Then
+                    Me.LADDER_WORK_NAMEField = value
+                    Me.RaisePropertyChanged("LADDER_WORK_NAME")
                 End If
             End Set
         End Property
