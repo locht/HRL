@@ -15858,12 +15858,6 @@ Namespace ProfileBusiness
         Private FROM_MONTH_YEARField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private FULL_NAME_ENField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private FULL_NAME_VNField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -15886,12 +15880,6 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private NAME_SHOOLSField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ORG_IDField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ORG_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REASON_UNAPROVEField As String
@@ -15940,12 +15928,6 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private STATUS_NAMEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private TITLE_IDField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private TITLE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TO_DATEField As System.Nullable(Of Date)
@@ -16210,32 +16192,6 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property FULL_NAME_EN() As String
-            Get
-                Return Me.FULL_NAME_ENField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.FULL_NAME_ENField, value) <> true) Then
-                    Me.FULL_NAME_ENField = value
-                    Me.RaisePropertyChanged("FULL_NAME_EN")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property FULL_NAME_VN() As String
-            Get
-                Return Me.FULL_NAME_VNField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.FULL_NAME_VNField, value) <> true) Then
-                    Me.FULL_NAME_VNField = value
-                    Me.RaisePropertyChanged("FULL_NAME_VN")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.IDField
@@ -16335,32 +16291,6 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.NAME_SHOOLSField, value) <> true) Then
                     Me.NAME_SHOOLSField = value
                     Me.RaisePropertyChanged("NAME_SHOOLS")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ORG_ID() As System.Nullable(Of Decimal)
-            Get
-                Return Me.ORG_IDField
-            End Get
-            Set
-                If (Me.ORG_IDField.Equals(value) <> true) Then
-                    Me.ORG_IDField = value
-                    Me.RaisePropertyChanged("ORG_ID")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ORG_NAME() As String
-            Get
-                Return Me.ORG_NAMEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.ORG_NAMEField, value) <> true) Then
-                    Me.ORG_NAMEField = value
-                    Me.RaisePropertyChanged("ORG_NAME")
                 End If
             End Set
         End Property
@@ -16569,32 +16499,6 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.STATUS_NAMEField, value) <> true) Then
                     Me.STATUS_NAMEField = value
                     Me.RaisePropertyChanged("STATUS_NAME")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property TITLE_ID() As System.Nullable(Of Decimal)
-            Get
-                Return Me.TITLE_IDField
-            End Get
-            Set
-                If (Me.TITLE_IDField.Equals(value) <> true) Then
-                    Me.TITLE_IDField = value
-                    Me.RaisePropertyChanged("TITLE_ID")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property TITLE_NAME() As String
-            Get
-                Return Me.TITLE_NAMEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.TITLE_NAMEField, value) <> true) Then
-                    Me.TITLE_NAMEField = value
-                    Me.RaisePropertyChanged("TITLE_NAME")
                 End If
             End Set
         End Property
@@ -32247,6 +32151,9 @@ Namespace ProfileBusiness
         Private DEGREE_EXPIRE_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EFFECT_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EMPLOYEE_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -32278,6 +32185,12 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NGAY_CAM_KETField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NGAY_KET_THUC_CAM_KETField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ORG_CODEField As String
@@ -32314,6 +32227,12 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SIGN_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SO_CAM_KETField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SO_THANG_CAM_KETField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private START_DATEField As System.Nullable(Of Date)
@@ -32457,6 +32376,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EFFECT_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.EFFECT_DATEField
+            End Get
+            Set
+                If (Me.EFFECT_DATEField.Equals(value) <> true) Then
+                    Me.EFFECT_DATEField = value
+                    Me.RaisePropertyChanged("EFFECT_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property EMPLOYEE_CODE() As String
             Get
                 Return Me.EMPLOYEE_CODEField
@@ -32595,6 +32527,32 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.MODIFIED_LOGField, value) <> true) Then
                     Me.MODIFIED_LOGField = value
                     Me.RaisePropertyChanged("MODIFIED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NGAY_CAM_KET() As System.Nullable(Of Date)
+            Get
+                Return Me.NGAY_CAM_KETField
+            End Get
+            Set
+                If (Me.NGAY_CAM_KETField.Equals(value) <> true) Then
+                    Me.NGAY_CAM_KETField = value
+                    Me.RaisePropertyChanged("NGAY_CAM_KET")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NGAY_KET_THUC_CAM_KET() As System.Nullable(Of Date)
+            Get
+                Return Me.NGAY_KET_THUC_CAM_KETField
+            End Get
+            Set
+                If (Me.NGAY_KET_THUC_CAM_KETField.Equals(value) <> true) Then
+                    Me.NGAY_KET_THUC_CAM_KETField = value
+                    Me.RaisePropertyChanged("NGAY_KET_THUC_CAM_KET")
                 End If
             End Set
         End Property
@@ -32751,6 +32709,32 @@ Namespace ProfileBusiness
                 If (Me.SIGN_IDField.Equals(value) <> true) Then
                     Me.SIGN_IDField = value
                     Me.RaisePropertyChanged("SIGN_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SO_CAM_KET() As String
+            Get
+                Return Me.SO_CAM_KETField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SO_CAM_KETField, value) <> true) Then
+                    Me.SO_CAM_KETField = value
+                    Me.RaisePropertyChanged("SO_CAM_KET")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SO_THANG_CAM_KET() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SO_THANG_CAM_KETField
+            End Get
+            Set
+                If (Me.SO_THANG_CAM_KETField.Equals(value) <> true) Then
+                    Me.SO_THANG_CAM_KETField = value
+                    Me.RaisePropertyChanged("SO_THANG_CAM_KET")
                 End If
             End Set
         End Property
@@ -33141,9 +33125,6 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ORG_NAME5Field As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ORG_PARENTField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private PARENT_IDField As System.Nullable(Of Decimal)
@@ -34296,19 +34277,6 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.ORG_NAME5Field, value) <> true) Then
                     Me.ORG_NAME5Field = value
                     Me.RaisePropertyChanged("ORG_NAME5")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ORG_PARENT() As String
-            Get
-                Return Me.ORG_PARENTField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.ORG_PARENTField, value) <> true) Then
-                    Me.ORG_PARENTField = value
-                    Me.RaisePropertyChanged("ORG_PARENT")
                 End If
             End Set
         End Property
