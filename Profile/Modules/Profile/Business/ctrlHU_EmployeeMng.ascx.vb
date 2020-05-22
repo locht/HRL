@@ -137,7 +137,7 @@ Public Class ctrlHU_EmployeeMng
             'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("PRINT_CV", ToolbarIcons.Print,
             '                                                        ToolbarAuthorize.Export, Translate("In lý lịch trích ngang")))
             Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("REFRESH",
-                                                                    ToolbarIcons.Print,
+                                                                    ToolbarIcons.Export,
                                                                     ToolbarAuthorize.Special1,
                                                                     Translate("Xuất hình")))
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
