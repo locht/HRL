@@ -43,6 +43,22 @@
                          <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
+                    <tlk:GridBoundColumn DataField="EMPLOYEE_CODE" HeaderText="Mã nhân viên"
+                        UniqueName="EMPLOYEE_CODE" ShowFilterIcon="false"
+                        CurrentFilterFunction="Contains">
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn DataField="FULL_NAME_VN" HeaderText="Họ và tên"
+                        UniqueName="FULL_NAME_VN" ShowFilterIcon="false"
+                        CurrentFilterFunction="Contains">
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn DataField="ORG_NAME" HeaderText="Phòng ban"
+                        UniqueName="ORG_NAME" ShowFilterIcon="false"
+                        CurrentFilterFunction="Contains">
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn DataField="TITLE_NAME" HeaderText="Chức danh"
+                        UniqueName="TITLE_NAME" ShowFilterIcon="false"
+                        CurrentFilterFunction="Contains">
+                    </tlk:GridBoundColumn>
                            <tlk:GridDateTimeColumn DataField="FROM_DATE" HeaderText="Từ ngày"
                         UniqueName="FROM_DATE" ShowFilterIcon="false" CurrentFilterFunction="EqualTo"
                         Visible="true" DataFormatString="{0:dd/MM/yyyy}">

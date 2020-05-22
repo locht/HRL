@@ -4411,11 +4411,20 @@ Partial Class ProfileRepository
                          From ot_cer In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ot1.TYPE_ID And f.CODE = "CERTIFICATE_TYPE").DefaultIfEmpty
                          From ot_level In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ot_l.TYPE_ID And f.CODE = "LEARNING_LEVEL").DefaultIfEmpty
                          From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
+                         From tit In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
+                         From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
                          From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And f.USERNAME = log.Username.ToUpper)
                          Where p.STATUS = 1
                          Select New HU_PRO_TRAIN_OUT_COMPANYDTOEDIT With {
                             .ID = p.ID,
                             .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                            .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                            .FULL_NAME_VN = e.FULLNAME_VN,
+                            .FULL_NAME_EN = e.FULLNAME_EN,
+                            .TITLE_ID = e.TITLE_ID,
+                            .TITLE_NAME = tit.NAME_VN,
+                            .ORG_ID = e.ORG_ID,
+                            .ORG_NAME = org.NAME_VN,
                             .FROM_DATE = p.FROM_DATE,
                             .TO_DATE = p.TO_DATE,
                             .SCHOOLS_ID = p.SCHOOLS_ID,
@@ -4480,6 +4489,18 @@ Partial Class ProfileRepository
             End If
             If _filter.STATUS_NAME <> "" Then
                 query = query.Where(Function(p) p.STATUS_NAME.Trim.ToLower.Contains(_filter.STATUS_NAME.Trim.ToLower))
+            End If
+            If _filter.EMPLOYEE_CODE <> "" Then
+                query = query.Where(Function(p) p.EMPLOYEE_CODE.Trim.ToLower.Contains(_filter.EMPLOYEE_CODE.Trim.ToLower))
+            End If
+            If _filter.FULL_NAME_VN <> "" Then
+                query = query.Where(Function(p) p.FULL_NAME_VN.Trim.ToLower.Contains(_filter.FULL_NAME_VN.Trim.ToLower))
+            End If
+            If _filter.TITLE_NAME <> "" Then
+                query = query.Where(Function(p) p.TITLE_NAME.Trim.ToLower.Contains(_filter.TITLE_NAME.Trim.ToLower))
+            End If
+            If _filter.ORG_NAME <> "" Then
+                query = query.Where(Function(p) p.ORG_NAME.Trim.ToLower.Contains(_filter.ORG_NAME.Trim.ToLower))
             End If
 
             Dim working = query

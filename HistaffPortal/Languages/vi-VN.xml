@@ -43086,4 +43086,20 @@ Xin cám ơn!
       <string>Xem kết quả đánh giá</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLPORTALTRAININGOUTCOMPANY_EDIT</string>
+    </Key>
+    <Value>
+      <string>Quá trình đào tạo ngoài công ty</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TRẠNG THÁI PHÊ DUYỆT</string>
+    </Key>
+    <Value>
+      <string>Trạng thái phê duyệt</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

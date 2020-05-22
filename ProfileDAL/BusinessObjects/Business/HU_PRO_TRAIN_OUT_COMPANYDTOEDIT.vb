@@ -3,6 +3,12 @@
     Public Property EMPLOYEE_ID As Decimal?
     Public Property EMPLOYEE_CODE As String
     Public Property EMPLOYEE_NAME As String
+    Public Property FULL_NAME_VN As String
+    Public Property FULL_NAME_EN As String
+    Public Property ORG_ID As Decimal?
+    Public Property ORG_NAME As String
+    Public Property TITLE_ID As Decimal?
+    Public Property TITLE_NAME As String
     Public Property FROM_DATE As Date?
     Public Property TO_DATE As Date?
     Public Property FROM_MONTH_YEAR As String

@@ -15,6 +15,7 @@
     <Item Value="Profile;ctrlPortalEmpHealth;NoPer;NoEdit" Text="Quá trình sức khỏe" ImageUrl="~/Static/Images/RibbonBar/discipline.png" />
     <Item Value="Profile;ctrlPortalEmpInsurance;NoPer;NoEdit" Text="Quá trình bảo hiểm" ImageUrl="~/Static/Images/RibbonBar/discipline.png" />
     <Item Value="Profile;ctrlPortalEmpFileMng;NoPer;NoEdit" Text="Quản lý file" ImageUrl="~/Static/Images/RibbonBar/discipline.png" />
+    <Item Value="Profile;ctrlPortalTrainingOutCompany_Edit;NoPer;NoEdit" Text="Quá trình đào tạo ngoài công ty" ImageUrl="~/Static/Images/RibbonBar/discipline.png" />
   </Item>
   <Item Text="Đăng ký nghỉ &amp; Phê duyệt nghỉ" Expanded="True" Value="Attendance">
     <Item Value="Attendance;ctrlLeaveRegistration;NoPer;NoEdit" Text="Đăng ký nghỉ" ImageUrl="~/Static/Images/RibbonBar/leave.png"/>
