@@ -199,7 +199,7 @@ Public Class ctrlInsMaternityDetail
             txtSoCon.Enabled = val
             txtTamUng.Enabled = val
             txtINS_PAY_UNIT.Enabled = val
-            txtDiffMoney.Enabled = val
+            txtDiffMoney1.Enabled = val
             txtRemark.Enabled = val
         Catch ex As Exception
 
@@ -230,7 +230,7 @@ Public Class ctrlInsMaternityDetail
             txtSoCon.Text = 1
             txtTamUng.Text = 0
             txtInsPay.Text = 0
-            txtDiffMoney.Text = 0
+            txtDiffMoney1.Text = 0
             txtRemark.Text = String.Empty
         Catch ex As Exception
         End Try
@@ -258,7 +258,7 @@ Public Class ctrlInsMaternityDetail
                                                                             InsCommon.getNumber(txtSoCon.Text),
                                                                             InsCommon.getNumber(txtTamUng.Text),
                                                                             InsCommon.getNumber(txtInsPay.Text),
-                                                                            InsCommon.getNumber(txtDiffMoney.Text),
+                                                                            InsCommon.getNumber(txtDiffMoney1.Text),
                                                                             Nothing,
                                                                             txtRemark.Text,
                                                                             userlog.Username,
@@ -299,7 +299,7 @@ Public Class ctrlInsMaternityDetail
                                                              InsCommon.getNumber(txtSoCon.Text),
                                                              InsCommon.getNumber(txtTamUng.Text),
                                                              InsCommon.getNumber(txtInsPay.Text),
-                                                             InsCommon.getNumber(txtDiffMoney.Text),
+                                                             InsCommon.getNumber(txtDiffMoney1.Text),
                                                              Nothing,
                                                              txtRemark.Text, userlog.Username,
                                                              String.Format("{0}-{1}", userlog.ComputerName, userlog.Ip)) Then
@@ -394,7 +394,7 @@ Public Class ctrlInsMaternityDetail
                 InsCommon.SetNumber(txtSoCon, lstSource.Rows(0)("SO_CON"))
                 InsCommon.SetNumber(txtTamUng, lstSource.Rows(0)("TIEN_TAM_UNG"))
                 InsCommon.SetNumber(txtInsPay, lstSource.Rows(0)("INSURANCE_FEE_PAY"))
-                InsCommon.SetNumber(txtDiffMoney, lstSource.Rows(0)("DIFFERENCE_FEE"))
+                InsCommon.SetString(txtDiffMoney1, lstSource.Rows(0)("DIFFERENCE_FEE"))
                 InsCommon.SetString(txtRemark, lstSource.Rows(0)("REMARK"))
             End If
 
@@ -602,18 +602,18 @@ Public Class ctrlInsMaternityDetail
 
     Private Sub txtInsPay_TextChanged(sender As Object, e As EventArgs) Handles txtInsPay.TextChanged
         If txtTamUng.Text <> 0 Then
-            txtDiffMoney.Text = CDec(Val(txtTamUng.Text)) - CDec(Val(txtInsPay.Text))
+            txtDiffMoney1.Text = CDec(Val(txtTamUng.Text)) - CDec(Val(txtInsPay.Text))
         Else
-            txtDiffMoney.Text = ""
+            txtDiffMoney1.Text = ""
         End If
 
     End Sub
 
     Private Sub txtTamUng_TextChanged(sender As Object, e As EventArgs) Handles txtTamUng.TextChanged
         If txtTamUng.Text <> 0 And txtInsPay.Text <> 0 Then
-            txtDiffMoney.Text = CDec(Val(txtTamUng.Text)) - CDec(Val(txtInsPay.Text))
+            txtDiffMoney1.Text = CDec(Val(txtTamUng.Text)) - CDec(Val(txtInsPay.Text))
         Else
-            txtDiffMoney.Text = ""
+            txtDiffMoney1.Text = ""
         End If
     End Sub
 End Class

@@ -266,13 +266,13 @@ Partial Public Class ctrlInsMaternityDetail
     Protected WithEvents txtInsPay As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
-    '''txtDiffMoney control.
+    '''txtDiffMoney1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtDiffMoney As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents txtDiffMoney1 As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''txtRemark control.

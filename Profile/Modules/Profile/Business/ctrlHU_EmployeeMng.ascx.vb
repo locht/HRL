@@ -13,6 +13,10 @@ Imports System.Drawing
 Imports Aspose.Cells
 Imports Common.CommonBusiness
 Imports HistaffFrameworkPublic
+Imports System.Collections.Generic
+Imports ICSharpCode.SharpZipLib.Checksums
+Imports Aspose.Words
+Imports System.IO.Compression
 
 Public Class ctrlHU_EmployeeMng
     Inherits Common.CommonView
@@ -127,9 +131,15 @@ Public Class ctrlHU_EmployeeMng
             CType(Me.MainToolBar.Items(4), RadToolBarButton).Text = Translate("Xuất file mẫu")
             CType(Me.MainToolBar.Items(4), RadToolBarButton).ImageUrl = CType(Me.MainToolBar.Items(2), RadToolBarButton).ImageUrl
             CType(Me.MainToolBar.Items(5), RadToolBarButton).Text = Translate("Nhập file mẫu")
+
+            'CType(Me.MainToolBar.Items(6), RadToolBarButton).Text = Translate("")
+            'CType(Me.MainToolBar.Items(6), RadToolBarButton).ImageUrl = CType(Me.MainToolBar.Items(2), RadToolBarButton).ImageUrl
             'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("PRINT_CV", ToolbarIcons.Print,
             '                                                        ToolbarAuthorize.Export, Translate("In lý lịch trích ngang")))
-
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("REFRESH",
+                                                                    ToolbarIcons.Print,
+                                                                    ToolbarAuthorize.Special1,
+                                                                    Translate("Xuất hình")))
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
 
@@ -260,6 +270,61 @@ Public Class ctrlHU_EmployeeMng
                                    dtDATA, Nothing, "Template_Export_Emp" & Format(Date.Now, "yyyyMMdd"))
                 Case CommonMessage.TOOLBARITEM_IMPORT
                     ctrlUpload1.Show()
+                Case "REFRESH"
+                    Dim lstImg As New List(Of ImageInfoDTO)
+                    Dim rep1 As New ProfileBusinessRepository
+                    Dim sError As String = ""
+                    Dim a = rep.GetEmployeeImage(1, sError) 'empid
+                    Dim dt As DataTable = CreateDataFilter()
+                    Dim lstFile As New List(Of String)
+
+                    For Each Row As DataRow In dt.Rows
+                        Dim img As New ImageInfoDTO
+                        'img.EMP_ID = Row("EMPLOYEE_ID")
+                        'img.EMP_CODE = Row("EMPLOYEE_CODE")
+                        'img.EMP_IMAGE_BYTE = rep.GetEmployeeImage(img.EMP_ID, sError)
+                        img.ORG_NAME = Row("ORG_PARENT")
+                        If Row("IMAGE").ToString <> "" Then
+                            Dim t = Row("IMAGE").ToString
+                            img.EMP_LINK_IMG = AppDomain.CurrentDomain.BaseDirectory & "EmployeeImage\" & Row("IMAGE")
+                            lstFile.Add(img.EMP_LINK_IMG)
+                        End If
+                        lstImg.Add(img)
+                    Next
+
+                    Using zip As New ZipFile
+                        'Dim lstFile As List(Of String) = Utilities.SaveMultyFile(dt, System.IO.Path.Combine(Server.MapPath(tempPath), "ContractAppendixSupport\" + (CType(rgEmployeeList.SelectedItems(0), GridDataItem)).GetDataKeyValue("FORM_CODE") + ".doc"),
+                        '                                                         (CType(rgEmployeeList.SelectedItems(0), GridDataItem)).GetDataKeyValue("FORM_CODE"))
+                        Dim obj_img = lstImg(0)
+                        zip.AlternateEncodingUsage = ZipOption.AsNecessary
+                        zip.AddDirectoryByName("Employee_image")
+                        For i As Integer = 0 To lstFile.Count - 1
+                            Dim file As System.IO.FileInfo = New System.IO.FileInfo(lstFile(i))
+                            If file.Exists Then
+                                Dim a1 = file.FullName
+                                zip.AddFile(file.FullName, "Employee_image")
+                            End If
+                        Next
+                        Response.Clear()
+
+                        'Dim zipName As String = [String].Format("{0}_{1}.zip", "PLHD", DateTime.Now.ToString("yyyy-MMM-dd-HHmmss"))
+
+                        Dim zipName = obj_img.ORG_NAME & ".zip"
+                        Response.ContentType = "application/zip"
+                        Response.AddHeader("content-disposition", "attachment; filename=" + zipName)
+                        zip.Save(Response.OutputStream)
+                        Response.Flush()
+                        Response.SuppressContent = True
+                        HttpContext.Current.ApplicationInstance.CompleteRequest()
+                    End Using
+                    'For i As Integer = 0 To lstFile.Count - 1
+                    '    Delete files
+                    '    Dim file As System.IO.FileInfo = New System.IO.FileInfo(lstFile(i))
+                    '    If file.Exists Then
+                    '        file.Delete()
+                    '    End If
+                    'Next
+
             End Select
             rep.Dispose()
             ' UpdateControlState()
@@ -318,7 +383,7 @@ Public Class ctrlHU_EmployeeMng
             End If
             TableMapping(ds.Tables(0))
             If dtLogs Is Nothing Or dtLogs.Rows.Count <= 0 Then
-                
+
                 Dim DocXml As String = String.Empty
                 Dim sw As New StringWriter()
                 If ds.Tables(0) IsNot Nothing AndAlso ds.Tables(0).Rows.Count > 0 Then
@@ -684,8 +749,9 @@ Public Class ctrlHU_EmployeeMng
 
                     rgEmployeeList.VirtualItemCount = MaximumRows
                     rgEmployeeList.DataSource = EmployeeList
+                    Return EmployeeList.ToTable()
                 End If
-
+                'Return EmployeeList
             End Using
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -867,7 +933,7 @@ Public Class ctrlHU_EmployeeMng
             End If
             designer.Process()
             designer.Workbook.CalculateFormula()
-            designer.Workbook.Save(HttpContext.Current.Response, filename & ".xls", ContentDisposition.Attachment, New XlsSaveOptions())
+            designer.Workbook.Save(HttpContext.Current.Response, filename & ".xls", Aspose.Cells.ContentDisposition.Attachment, New XlsSaveOptions())
 
         Catch ex As Exception
             Return False

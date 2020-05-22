@@ -158,9 +158,9 @@
             }
         }
 
-//        function GridCreated(sender, eventArgs) {
-//            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_EmployeeMng_RadSplitter3');
-//        }
+        //        function GridCreated(sender, eventArgs) {
+        //            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_EmployeeMng_RadSplitter3');
+        //        }
 
         var enableAjax = true;
         function onRequestStart(sender, eventArgs) {
@@ -204,33 +204,35 @@
                 }
                 else if (bCheck > 1) {
                     var m1 = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW) %>';
-                    var n1 = noty({ text: m1, dismissQueue: true, type: 'warning' });
-                    setTimeout(function () { $.noty.close(n1.options.id); }, 10000);
-                    args.set_cancel(true);
-                }
-                else {
-                    OpenEditWindow("Edit");
-                    args.set_cancel(true);
-                }
+                        var n1 = noty({ text: m1, dismissQueue: true, type: 'warning' });
+                        setTimeout(function () { $.noty.close(n1.options.id); }, 10000);
+                        args.set_cancel(true);
+                    }
+                    else {
+                        OpenEditWindow("Edit");
+                        args.set_cancel(true);
+                    }
 
             }
 
-            if (item.get_commandName() == "EXPORT" || item.get_commandName() == "NEXT") {
-                enableAjax = false;
-            }
-
-            if (item.get_commandName() == "PRINT") {
-                enableAjax = false;
-            }
-
+        if (item.get_commandName() == "EXPORT" || item.get_commandName() == "NEXT") {
+            enableAjax = false;
         }
 
-        function OnClientClose(oWnd, args) {
-            postBack(oWnd.get_navigateUrl());
+        if (item.get_commandName() == "PRINT") {
+            enableAjax = false;
         }
+        if (item.get_commandName() == "REFRESH") {
+            enableAjax = false;
+        }
+    }
 
-        function postBack(url) {
-            var ajaxManager = $find("<%= AjaxManagerId %>");
+    function OnClientClose(oWnd, args) {
+        postBack(oWnd.get_navigateUrl());
+    }
+
+    function postBack(url) {
+        var ajaxManager = $find("<%= AjaxManagerId %>");
             ajaxManager.ajaxRequest(url); //Making ajax request with the argument
         }
 
@@ -243,13 +245,13 @@
                 args.set_cancel(true);
                 return;
             }
-//            if (bCheck > 1) {
-//                var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW) %>';
-//                var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-//                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-//                args.set_cancel(true);
-//                return;
-//            }
+            //            if (bCheck > 1) {
+            //                var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW) %>';
+            //                var n = noty({ text: m, dismissQueue: true, type: 'warning' });
+            //                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+            //                args.set_cancel(true);
+            //                return;
+            //            }
             enableAjax = false;
         }
 

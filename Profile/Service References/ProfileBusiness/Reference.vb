@@ -33047,6 +33047,9 @@ Namespace ProfileBusiness
         Private ORG_NAME5Field As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_PARENTField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private PARENT_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -34197,6 +34200,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.ORG_NAME5Field, value) <> true) Then
                     Me.ORG_NAME5Field = value
                     Me.RaisePropertyChanged("ORG_NAME5")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_PARENT() As String
+            Get
+                Return Me.ORG_PARENTField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ORG_PARENTField, value) <> true) Then
+                    Me.ORG_PARENTField = value
+                    Me.RaisePropertyChanged("ORG_PARENT")
                 End If
             End Set
         End Property

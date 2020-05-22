@@ -127,4 +127,6 @@
     Public Property PRODUCTION_PROCESS As Decimal?
     Public Property PRODUCTION_PROCESS_NAME As String
     Public Property unit_rank_id As Decimal?
+
+    Public Property ORG_PARENT As String
 End Class

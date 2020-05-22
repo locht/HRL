@@ -252,6 +252,13 @@ Partial Class ProfileRepository
             fileDirectory = AppDomain.CurrentDomain.BaseDirectory & "\EmployeeImage"
             Dim wstt = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
 
+            Dim org_parent = (From p In Context.HU_ORGANIZATION
+                             Where _param.ORG_ID = p.ID).FirstOrDefault
+            'Select New OrganizationDTO With {
+            '   .NAME_VN = p.NAME_VN}
+
+            'From org1 In Context.HU_ORGANIZATION.Where(Function(f) _param.ORG_ID = f.ID).DefaultIfEmpty
+
             Dim query = From p In Context.HU_EMPLOYEE
                         From pv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = p.ID).DefaultIfEmpty
                         From s In Context.HU_STAFF_RANK.Where(Function(F) p.STAFF_RANK_ID = F.ID).DefaultIfEmpty
@@ -277,6 +284,7 @@ Partial Class ProfileRepository
                              .FULLNAME_EN = p.p.FULLNAME_EN,
                              .ORG_ID = p.p.ORG_ID,
                              .ORG_NAME = p.org.NAME_VN,
+                             .ORG_PARENT = org_parent.NAME_VN,
                              .ORG_DESC = p.org.DESCRIPTION_PATH,
                              .TITLE_ID = p.p.TITLE_ID,
                              .TITLE_NAME_VN = p.title.NAME_VN,

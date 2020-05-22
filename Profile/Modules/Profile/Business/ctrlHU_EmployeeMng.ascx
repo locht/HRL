@@ -222,7 +222,9 @@
             if (item.get_commandName() == "PRINT") {
                 enableAjax = false;
             }
-
+            if (item.get_commandName() == "REFRESH") {
+                enableAjax = false;
+            }
         }
 
         function OnClientClose(oWnd, args) {

@@ -24,7 +24,7 @@
                 <td>
                     <tlk:RadTextBox ID="txtEMPLOYEE_ID" ReadOnly="true" runat="server">
                     </tlk:RadTextBox>
-                    <tlk:RadButton EnableEmbeddedSkins="false" runat="server" ID="btnSearchEmp" SkinID="ButtonView"
+                    <tlk:RadButton EnableEmbeddedSkins="true" runat="server" ID="btnSearchEmp" SkinID="ButtonView"
                         TabIndex="1" CausesValidation="false">
                     </tlk:RadButton>
                     <asp:RequiredFieldValidator ID="reqtxtEMPLOYEE_ID" ControlToValidate="txtEMPLOYEE_ID"
@@ -203,9 +203,8 @@
                     <%# Translate("Tiền chênh lệch")%>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="txtDiffMoney" runat="server" SkinID="Money" Width="150px" ReadOnly="true"
-                        ShowSpinButtons="true" IncrementSettings-Step="5000">
-                    </tlk:RadNumericTextBox>
+                    <tlk:RadTextBox ID="txtDiffMoney1" runat="server"  Width="150px" ReadOnly="true">
+                    </tlk:RadTextBox>
                 </td>
             </tr>
 
@@ -276,7 +275,7 @@
                 var a = $find("<%=txtTamUng.ClientID%>").get_value();
                 var b = $find("<%=txtInsPay.ClientID%>").get_value();
                 var c = a - b;
-                $find("<%=txtDiffMoney.ClientID%>").set_value(c);
+                $find("<%=txtDiffMoney1.ClientID%>").set_value(c);
             }
             catch (err) { }
 
