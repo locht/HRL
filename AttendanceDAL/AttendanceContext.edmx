@@ -103,6 +103,7 @@
             <EntitySet Name="AT_ORG_SHIFT" EntityType="AttendanceModel.Store.AT_ORG_SHIFT" store:Type="Tables"  />
             <EntitySet Name="AT_FML_DETAIL" EntityType="AttendanceModel.Store.AT_FML_DETAIL" store:Type="Tables"  />
             <EntitySet Name="AT_FORMULAR" EntityType="AttendanceModel.Store.AT_FORMULAR" store:Type="Tables"  />
+            <EntitySet Name="AT_PORTAL_REG_SIGN" EntityType="AttendanceModel.Store.AT_PORTAL_REG_SIGN" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="AttendanceModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_OOLT_OOL" Association="AttendanceModel.Store.FK_OOLT_OOL">
                 <End Role="OT_OTHER_LIST_TYPE" EntitySet="OT_OTHER_LIST_TYPE" />
@@ -2596,6 +2597,19 @@
             <Property Name="UPDATEUSER" Type="nvarchar2" Nullable="true" MaxLength="50" />
             <Property Name="UPDATEDATE" Type="date" Nullable="true" />
         </EntityType>
+        <EntityType Name="AT_PORTAL_REG_SIGN">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SHIFT_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="DATE_FROM" Type="date" Nullable="true" />
+            <Property Name="DATE_TO" Type="date" Nullable="true" />
+            <Property Name="REASON" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -2918,6 +2932,7 @@
           <EntitySet Name="AT_ORG_SHIFT" EntityType="AttendanceModel.AT_ORG_SHIFT" />
           <EntitySet Name="AT_FML_DETAIL" EntityType="AttendanceModel.AT_FML_DETAIL" />
           <EntitySet Name="AT_FORMULAR" EntityType="AttendanceModel.AT_FORMULAR" />
+          <EntitySet Name="AT_PORTAL_REG_SIGN" EntityType="AttendanceModel.AT_PORTAL_REG_SIGN" />
           </EntityContainer>
         <EntityType Name="OT_OTHER_LIST">
           <Key>
@@ -5512,6 +5527,19 @@
           <Property Type="String" Name="UPDATEUSER" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="UPDATEDATE" />
         </EntityType>
+        <EntityType Name="AT_PORTAL_REG_SIGN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="SHIFT_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="DATE_FROM" />
+          <Property Type="DateTime" Name="DATE_TO" />
+          <Property Type="String" Name="REASON" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="Decimal" Name="CREATED_BY" Precision="38" Scale="0" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -8054,6 +8082,20 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="AT_PORTAL_REG_SIGN">
+            <EntityTypeMapping TypeName="AttendanceModel.AT_PORTAL_REG_SIGN">
+                <MappingFragment StoreEntitySet="AT_PORTAL_REG_SIGN">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                    <ScalarProperty Name="SHIFT_ID" ColumnName="SHIFT_ID" />
+                    <ScalarProperty Name="DATE_FROM" ColumnName="DATE_FROM" />
+                    <ScalarProperty Name="DATE_TO" ColumnName="DATE_TO" />
+                    <ScalarProperty Name="REASON" ColumnName="REASON" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="AttendanceModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -8234,6 +8276,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_ORG_SHIFT" Width="1.5" PointX="8.5" PointY="13.375" Height="1.5956835937499996" />
         <EntityTypeShape EntityType="AttendanceModel.AT_FML_DETAIL" Width="1.5" PointX="27.375" PointY="0.75" Height="3.134095052083353" />
         <EntityTypeShape EntityType="AttendanceModel.AT_FORMULAR" Width="1.5" PointX="27.375" PointY="4.75" Height="2.7494921874999818" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_PORTAL_REG_SIGN" Width="2.375" PointX="17.375" PointY="27.75" Height="2.557190755208353" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
