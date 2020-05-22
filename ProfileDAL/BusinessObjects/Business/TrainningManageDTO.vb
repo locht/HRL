@@ -39,4 +39,9 @@
     Public Property COST As Decimal?
     Public Property RESULT_TRAIN As String
     Public Property DEGREE_EXPIRE_DATE As Date?
+    Public Property SO_CAM_KET As String
+    Public Property EFFECT_DATE As Date?
+    Public Property NGAY_CAM_KET As Date?
+    Public Property SO_THANG_CAM_KET As Decimal?
+    Public Property NGAY_KET_THUC_CAM_KET As Date?
 End Class

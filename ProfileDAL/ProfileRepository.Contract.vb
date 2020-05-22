@@ -358,7 +358,13 @@ Partial Class ProfileRepository
                                             .DEGREE_EXPIRE_DATE = p.p.DEGREE_EXPIRE_DATE,
                                             .REMARK = p.p.REMARK,
                                             .LOCATION = p.p.LOCATION,
-                                            .CREATED_DATE = p.p.CREATED_DATE
+                                            .CREATED_DATE = p.p.CREATED_DATE,
+                                            .DECISION_NO = p.p.DECISION_NO,
+                                            .EFFECT_DATE = p.p.EFFECT_DATE,
+                                            .SO_CAM_KET = p.p.SO_CAM_KET,
+                                            .NGAY_CAM_KET = p.p.NGAY_CAM_KET,
+                                            .SO_THANG_CAM_KET = p.p.SO_THANG_CAM_KET,
+                                            .NGAY_KET_THUC_CAM_KET = p.p.NGAY_KET_THUC_CAM_KET
                                             })
 
             trainingforeign = trainingforeign.OrderBy(Sorts)

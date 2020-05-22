@@ -3490,6 +3490,12 @@
             <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
             <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="DECISION_NO" Type="nclob" Nullable="true" />
+            <Property Name="SO_CAM_KET" Type="nclob" Nullable="true" />
+            <Property Name="EFFECT_DATE" Type="date" Nullable="true" />
+            <Property Name="NGAY_CAM_KET" Type="date" Nullable="true" />
+            <Property Name="SO_THANG_CAM_KET" Type="number" Nullable="true" Precision="38" />
+            <Property Name="NGAY_KET_THUC_CAM_KET" Type="date" Nullable="true" />
         </EntityType>
         <EntityType Name="HU_TRAININGEVALUATE">
             <Key>
@@ -8533,6 +8539,12 @@
           <Property Type="DateTime" Name="MODIFIED_DATE" />
           <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DECISION_NO" />
+          <Property Type="String" Name="SO_CAM_KET" />
+          <Property Type="DateTime" Name="EFFECT_DATE" />
+          <Property Type="DateTime" Name="NGAY_CAM_KET" />
+          <Property Type="Decimal" Name="SO_THANG_CAM_KET" />
+          <Property Type="DateTime" Name="NGAY_KET_THUC_CAM_KET" />
         </EntityType>
         <EntityType Name="HU_TRAININGEVALUATE">
           <Key>
@@ -12642,6 +12654,12 @@
                     <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
                     <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
                     <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="DECISION_NO" ColumnName="DECISION_NO" />
+                    <ScalarProperty Name="SO_CAM_KET" ColumnName="SO_CAM_KET" />
+                    <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
+                    <ScalarProperty Name="NGAY_CAM_KET" ColumnName="NGAY_CAM_KET" />
+                    <ScalarProperty Name="SO_THANG_CAM_KET" ColumnName="SO_THANG_CAM_KET" />
+                    <ScalarProperty Name="NGAY_KET_THUC_CAM_KET" ColumnName="NGAY_KET_THUC_CAM_KET" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -13545,23 +13563,26 @@
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_HEALTH" Width="1.875" PointX="13.5" PointY="0.5" Height="5.8263151041666665" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDUCATION" Width="4" PointX="41" PointY="6.125" Height="7.9416308593750014" IsExpanded="true" />
         <AssociationConnector Association="ProfileModel.FK_HE_HEC">
-          <ConnectorPoint PointX="19.25" PointY="6.887499999999994" />
-          <ConnectorPoint PointX="19.666666666666668" PointY="6.8874999999999931" />
-          <ConnectorPoint PointX="19.833333333333332" PointY="6.887499999999994" />
-          <ConnectorPoint PointX="37.625" PointY="6.887499999999994" />
+          <ConnectorPoint PointX="19.25" PointY="0.76749999999999863" />
+          <ConnectorPoint PointX="39.90625" PointY="0.76749999999999863" />
+          <ConnectorPoint PointX="39.90625" PointY="6" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_FE_HEH">
           <ConnectorPoint PointX="17.125" PointY="2.525" />
           <ConnectorPoint PointX="15.375" PointY="2.525" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_HE_HEE">
-          <ConnectorPoint PointX="19.25" PointY="7.1711220452724351" />
-          <ConnectorPoint PointX="19.75" PointY="7.1711220452724351" />
-          <ConnectorPoint PointX="19.75" PointY="6.125" />
-          <ConnectorPoint PointX="26.125" PointY="6.125" />
-          <ConnectorPoint PointX="26.125" PointY="5.4999999999999973" />
-          <ConnectorPoint PointX="43" PointY="5.4999999999999973" />
-          <ConnectorPoint PointX="43" PointY="6.125" />
+          <ConnectorPoint PointX="18.1875" PointY="12.797262369791666" />
+          <ConnectorPoint PointX="18.1875" PointY="12.859762369791664" />
+          <ConnectorPoint PointX="19.6875" PointY="12.859762369791664" />
+          <ConnectorPoint PointX="19.6875" PointY="9.4375000000000036" />
+          <ConnectorPoint PointX="29.9375" PointY="9.4375000000000036" />
+          <ConnectorPoint PointX="29.9375" PointY="11.215800781250005" />
+          <ConnectorPoint PointX="37.5625" PointY="11.215800781250005" />
+          <ConnectorPoint PointX="37.5625" PointY="5.9375" />
+          <ConnectorPoint PointX="40.90625" PointY="5.9375" />
+          <ConnectorPoint PointX="40.90625" PointY="10.095815429687502" />
+          <ConnectorPoint PointX="41" PointY="10.095815429687502" />
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HU_CONTRACT" Width="2.5" PointX="7.125" PointY="3.125" Height="8.9031380208333335" IsExpanded="true" />
         <AssociationConnector Association="ProfileModel.FK_HC_HE">
@@ -13611,10 +13632,10 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HU_TERMINATE" Width="1.875" PointX="11.5" PointY="23.625" Height="14.095276692708332" IsExpanded="true" />
         <AssociationConnector Association="ProfileModel.FK_HUEMD_HUEM">
-          <ConnectorPoint PointX="17.878557692307691" PointY="12.797262369791666" />
-          <ConnectorPoint PointX="17.878557692307691" PointY="13.047262369791664" />
-          <ConnectorPoint PointX="18.511153846153846" PointY="13.047262369791664" />
-          <ConnectorPoint PointX="18.511153846153846" PointY="12.797262369791666" />
+          <ConnectorPoint PointX="18.1875" PointY="12.797262369791666" />
+          <ConnectorPoint PointX="18.1875" PointY="13.047262369791664" />
+          <ConnectorPoint PointX="18.658269230769232" PointY="13.047262369791664" />
+          <ConnectorPoint PointX="18.658269230769232" PointY="12.797262369791666" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_OTST_HUCT">
           <ConnectorPoint PointX="7.045923076923077" PointY="4.75" />
@@ -13785,7 +13806,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_ATTACHFILES" Width="1.5" PointX="0.75" PointY="0.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_FILE" Width="1.5" PointX="32.375" PointY="14.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_TRAININGFOREIGN" Width="2.75" PointX="31.125" PointY="15.75" Height="7.5570279947916674" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProfileModel.HU_TRAININGMANAGE" Width="3.125" PointX="33.375" PointY="5.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_TRAININGMANAGE" Width="3.125" PointX="33.5" PointY="1.375" Height="6.4032194010416656" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_TRAININGEVALUATE" Width="1.5" PointX="33.375" PointY="26.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.PE_PERIOD" Width="1.5" PointX="33.375" PointY="33.125" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_RELATIONSHIP_LIST" Width="1.5" PointX="34.375" PointY="0.75" Height="0.4" IsExpanded="false" />

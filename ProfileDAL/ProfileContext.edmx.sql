@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 5/21/2020 10:11:57 AM
--- Generated from EDMX file: D:\SOURCE_GIT_NEW\ACV\acv_19\ProfileDAL\ProfileContext.edmx
+-- Date Created: 5/22/2020 3:22:53 PM
+-- Generated from EDMX file: E:\Projects\acv_19\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -3458,7 +3458,13 @@ CREATE TABLE "dbo"."HU_TRAININGMANAGE" (
    "CREATED_LOG" NVARCHAR2(255) NULL,
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_BY" NVARCHAR2(255) NULL,
-   "MODIFIED_LOG" NVARCHAR2(255) NULL
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "DECISION_NO" NCLOB NULL,
+   "SO_CAM_KET" NCLOB NULL,
+   "EFFECT_DATE" DATE NULL,
+   "NGAY_CAM_KET" DATE NULL,
+   "SO_THANG_CAM_KET" NUMBER(38,0) NULL,
+   "NGAY_KET_THUC_CAM_KET" DATE NULL
 );
 
 -- Creating table 'HU_TRAININGEVALUATE'

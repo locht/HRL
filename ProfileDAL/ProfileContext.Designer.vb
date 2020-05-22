@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("9aaf94a6-a867-475b-9259-8adbcc3426a0")>
+<Assembly: EdmSchemaAttribute("c620049c-4375-41b1-aa09-b532b967b63b")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -65134,6 +65134,156 @@ Public Partial Class HU_TRAININGMANAGE
     End Sub
 
     Private Partial Sub OnMODIFIED_LOGChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property DECISION_NO() As Global.System.String
+        Get
+            Return _DECISION_NO
+        End Get
+        Set
+            OnDECISION_NOChanging(value)
+            ReportPropertyChanging("DECISION_NO")
+            _DECISION_NO = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("DECISION_NO")
+            OnDECISION_NOChanged()
+        End Set
+    End Property
+
+    Private _DECISION_NO As Global.System.String
+    Private Partial Sub OnDECISION_NOChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnDECISION_NOChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SO_CAM_KET() As Global.System.String
+        Get
+            Return _SO_CAM_KET
+        End Get
+        Set
+            OnSO_CAM_KETChanging(value)
+            ReportPropertyChanging("SO_CAM_KET")
+            _SO_CAM_KET = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("SO_CAM_KET")
+            OnSO_CAM_KETChanged()
+        End Set
+    End Property
+
+    Private _SO_CAM_KET As Global.System.String
+    Private Partial Sub OnSO_CAM_KETChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnSO_CAM_KETChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EFFECT_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _EFFECT_DATE
+        End Get
+        Set
+            OnEFFECT_DATEChanging(value)
+            ReportPropertyChanging("EFFECT_DATE")
+            _EFFECT_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("EFFECT_DATE")
+            OnEFFECT_DATEChanged()
+        End Set
+    End Property
+
+    Private _EFFECT_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnEFFECT_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnEFFECT_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NGAY_CAM_KET() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _NGAY_CAM_KET
+        End Get
+        Set
+            OnNGAY_CAM_KETChanging(value)
+            ReportPropertyChanging("NGAY_CAM_KET")
+            _NGAY_CAM_KET = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("NGAY_CAM_KET")
+            OnNGAY_CAM_KETChanged()
+        End Set
+    End Property
+
+    Private _NGAY_CAM_KET As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnNGAY_CAM_KETChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnNGAY_CAM_KETChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SO_THANG_CAM_KET() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _SO_THANG_CAM_KET
+        End Get
+        Set
+            OnSO_THANG_CAM_KETChanging(value)
+            ReportPropertyChanging("SO_THANG_CAM_KET")
+            _SO_THANG_CAM_KET = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("SO_THANG_CAM_KET")
+            OnSO_THANG_CAM_KETChanged()
+        End Set
+    End Property
+
+    Private _SO_THANG_CAM_KET As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSO_THANG_CAM_KETChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSO_THANG_CAM_KETChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NGAY_KET_THUC_CAM_KET() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _NGAY_KET_THUC_CAM_KET
+        End Get
+        Set
+            OnNGAY_KET_THUC_CAM_KETChanging(value)
+            ReportPropertyChanging("NGAY_KET_THUC_CAM_KET")
+            _NGAY_KET_THUC_CAM_KET = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("NGAY_KET_THUC_CAM_KET")
+            OnNGAY_KET_THUC_CAM_KETChanged()
+        End Set
+    End Property
+
+    Private _NGAY_KET_THUC_CAM_KET As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnNGAY_KET_THUC_CAM_KETChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnNGAY_KET_THUC_CAM_KETChanged()
     End Sub
 
     #End Region
