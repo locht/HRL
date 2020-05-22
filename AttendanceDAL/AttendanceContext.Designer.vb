@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("87efe6a1-408d-4461-98c3-f9cd3a5d8e61")>
+<Assembly: EdmSchemaAttribute("52fc61ab-c4df-4bae-8574-692a660d08cf")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -1443,16 +1443,16 @@ Public Partial Class AttendanceContext
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    Public ReadOnly Property AT_PORTAL_REG_SIGN() As ObjectSet(Of AT_PORTAL_REG_SIGN)
+    Public ReadOnly Property AT_PORTAL_REG_SHIFT() As ObjectSet(Of AT_PORTAL_REG_SHIFT)
         Get
-            If (_AT_PORTAL_REG_SIGN Is Nothing) Then
-                _AT_PORTAL_REG_SIGN = MyBase.CreateObjectSet(Of AT_PORTAL_REG_SIGN)("AT_PORTAL_REG_SIGN")
+            If (_AT_PORTAL_REG_SHIFT Is Nothing) Then
+                _AT_PORTAL_REG_SHIFT = MyBase.CreateObjectSet(Of AT_PORTAL_REG_SHIFT)("AT_PORTAL_REG_SHIFT")
             End If
-            Return _AT_PORTAL_REG_SIGN
+            Return _AT_PORTAL_REG_SHIFT
         End Get
     End Property
 
-    Private _AT_PORTAL_REG_SIGN As ObjectSet(Of AT_PORTAL_REG_SIGN)
+    Private _AT_PORTAL_REG_SHIFT As ObjectSet(Of AT_PORTAL_REG_SHIFT)
 
     #End Region
 
@@ -2138,10 +2138,10 @@ Public Partial Class AttendanceContext
     End Sub
 
     ''' <summary>
-    ''' Deprecated Method for adding a new object to the AT_PORTAL_REG_SIGN EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' Deprecated Method for adding a new object to the AT_PORTAL_REG_SHIFT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
     ''' </summary>
-    Public Sub AddToAT_PORTAL_REG_SIGN(ByVal aT_PORTAL_REG_SIGN As AT_PORTAL_REG_SIGN)
-        MyBase.AddObject("AT_PORTAL_REG_SIGN", aT_PORTAL_REG_SIGN)
+    Public Sub AddToAT_PORTAL_REG_SHIFT(ByVal aT_PORTAL_REG_SHIFT As AT_PORTAL_REG_SHIFT)
+        MyBase.AddObject("AT_PORTAL_REG_SHIFT", aT_PORTAL_REG_SHIFT)
     End Sub
 
     #End Region
@@ -18725,21 +18725,21 @@ End Class
 ''' <summary>
 ''' No Metadata Documentation available.
 ''' </summary>
-<EdmEntityTypeAttribute(NamespaceName:="AttendanceModel", Name:="AT_PORTAL_REG_SIGN")>
+<EdmEntityTypeAttribute(NamespaceName:="AttendanceModel", Name:="AT_PORTAL_REG_SHIFT")>
 <Serializable()>
 <DataContractAttribute(IsReference:=True)>
-Public Partial Class AT_PORTAL_REG_SIGN
+Public Partial Class AT_PORTAL_REG_SHIFT
     Inherits EntityObject
     #Region "Factory Method"
 
     ''' <summary>
-    ''' Create a new AT_PORTAL_REG_SIGN object.
+    ''' Create a new AT_PORTAL_REG_SHIFT object.
     ''' </summary>
     ''' <param name="id">Initial value of the ID property.</param>
-    Public Shared Function CreateAT_PORTAL_REG_SIGN(id As Global.System.Decimal) As AT_PORTAL_REG_SIGN
-        Dim aT_PORTAL_REG_SIGN as AT_PORTAL_REG_SIGN = New AT_PORTAL_REG_SIGN
-        aT_PORTAL_REG_SIGN.ID = id
-        Return aT_PORTAL_REG_SIGN
+    Public Shared Function CreateAT_PORTAL_REG_SHIFT(id As Global.System.Decimal) As AT_PORTAL_REG_SHIFT
+        Dim aT_PORTAL_REG_SHIFT as AT_PORTAL_REG_SHIFT = New AT_PORTAL_REG_SHIFT
+        aT_PORTAL_REG_SHIFT.ID = id
+        Return aT_PORTAL_REG_SHIFT
     End Function
 
     #End Region

@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 05/22/2020 4:22:40 PM
+-- Date Created: 05/22/2020 4:41:06 PM
 -- Generated from EDMX file: F:\WORKING\acv_19\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
@@ -13,7 +13,7 @@
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "ACV_19_DEV"."AT_PORTAL_REG_SIGN";
+-- DROP TABLE "ACV_19_DEV"."AT_PORTAL_REG_SHIFT";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -2361,8 +2361,8 @@ CREATE TABLE "dbo"."AT_FORMULAR" (
    "UPDATEDATE" DATE NULL
 );
 
--- Creating table 'AT_PORTAL_REG_SIGN'
-CREATE TABLE "dbo"."AT_PORTAL_REG_SIGN" (
+-- Creating table 'AT_PORTAL_REG_SHIFT'
+CREATE TABLE "dbo"."AT_PORTAL_REG_SHIFT" (
    "ID" NUMBER(38,0) NOT NULL,
    "EMPLOYEE_ID" NUMBER(38,0) NULL,
    "SHIFT_ID" NUMBER(38,0) NULL,
@@ -3160,9 +3160,9 @@ ADD CONSTRAINT "PK_AT_FORMULAR"
    VALIDATE;
 
 
--- Creating primary key on "ID"in table 'AT_PORTAL_REG_SIGN'
-ALTER TABLE "dbo"."AT_PORTAL_REG_SIGN"
-ADD CONSTRAINT "PK_AT_PORTAL_REG_SIGN"
+-- Creating primary key on "ID"in table 'AT_PORTAL_REG_SHIFT'
+ALTER TABLE "dbo"."AT_PORTAL_REG_SHIFT"
+ADD CONSTRAINT "PK_AT_PORTAL_REG_SHIFT"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;
