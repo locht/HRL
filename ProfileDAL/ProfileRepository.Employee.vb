@@ -4299,6 +4299,7 @@ Partial Class ProfileRepository
                      From ot_mark_edu In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ot_m.TYPE_ID And f.CODE = "MARK_EDU").DefaultIfEmpty
                      From ot_cer In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ot1.TYPE_ID And f.CODE = "CERTIFICATE_TYPE").DefaultIfEmpty
                      From ot_level In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ot_l.TYPE_ID And f.CODE = "LEARNING_LEVEL").DefaultIfEmpty
+                     Order By p.CREATED_DATE Descending
                      Select New HU_PRO_TRAIN_OUT_COMPANYDTOEDIT With {
                         .ID = p.ID,
                         .EMPLOYEE_ID = p.EMPLOYEE_ID,
@@ -4384,7 +4385,7 @@ Partial Class ProfileRepository
                                          ByVal PageIndex As Integer,
                                          ByVal PageSize As Integer,
                                          ByRef Total As Integer, ByVal _param As ParamDTO,
-                                         Optional ByVal Sorts As String = "EMPLOYEE_ID desc",
+                                         Optional ByVal Sorts As String = "CREATED_DATE desc",
                                          Optional ByVal log As UserLog = Nothing) As List(Of HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)
 
         Try
