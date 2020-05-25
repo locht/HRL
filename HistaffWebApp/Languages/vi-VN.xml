@@ -45398,4 +45398,100 @@ Xin cám ơn!
       <string>Import đánh giá ABC</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>ctrlInsMaternityDetail</string>
+    </Key>
+    <Value>
+      <string>Chi tiết quản lý thai sản</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TIỀN BH THANH TOÁN</string>
+    </Key>
+    <Value>
+      <string>Tiền BH thanh toán</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TIỀN CHÊNH LỆCH</string>
+    </Key>
+    <Value>
+      <string>Tiền chênh lệch</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY BẢO HIỂM THANH TOÁN</string>
+    </Key>
+    <Value>
+      <string>Ngày bảo hiểm thanh toán</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUẢN LÝ THAI SẢN</string>
+    </Key>
+    <Value>
+      <string>Quản lý thai sản</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLINSMATERNITYDETAIL</string>
+    </Key>
+    <Value>
+      <string>Chi tiết quản lý thai sản</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN TỪ NGÀY.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn từ ngày.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN ĐẾN NGÀY.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn đến ngày.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐƠN VỊ ĐÓNG BẢO HIỂM</string>
+    </Key>
+    <Value>
+      <string>Đơn vị đóng bảo hiểm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SINH THƯỜNG</string>
+    </Key>
+    <Value>
+      <string>Sinh thường</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SINH MỔ</string>
+    </Key>
+    <Value>
+      <string>Sinh mổ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TIỀN CÔNG TY TẠM ỨNG</string>
+    </Key>
+    <Value>
+      <string>Tiền công ty tạm ứng</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

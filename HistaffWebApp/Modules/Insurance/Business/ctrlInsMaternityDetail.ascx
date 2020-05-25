@@ -10,7 +10,8 @@
     </tlk:RadTextBox>
     <asp:HiddenField ID="hdORG_ID" runat="server" />
     <asp:HiddenField ID="hdTITLE_ID" runat="server" />
-</div
+     <%# Translate("ctrlInsMaternityDetail")%>
+</div>
 <div style="margin-left: 10px; margin-right: 10px;">
     <fieldset style="width: auto; height: auto">
         <legend>
