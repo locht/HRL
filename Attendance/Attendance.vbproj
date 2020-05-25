@@ -236,6 +236,8 @@
     <Content Include="Modules\Attendance\List\ctrlDMKieuCong.ascx" />
     <Content Include="Modules\Attendance\List\ctrlDMNghiChung.ascx" />
     <Content Include="Modules\Attendance\List\ctrlRitual.ascx" />
+    <Content Include="Modules\Common\ctrlFindEmployee2GridPopup.ascx" />
+    <Content Include="Modules\Common\ctrlFindEmployee2GridPopupDialog.ascx" />
     <Content Include="Modules\Common\ctrlFindEmployeePopup.ascx" />
     <Content Include="Modules\Common\ctrlMessageBox.ascx" />
     <Content Include="Modules\Common\ctrlOrganization.ascx" />

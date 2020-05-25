@@ -12,7 +12,7 @@ Imports Telerik.Web.UI.Calendar
 
 Public Class ctrlRegisterCONewEdit
     Inherits CommonView
-    Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
+    Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployee2GridPopup
     Protected WithEvents ctrlFindSigner As ctrlFindEmployeePopup
     Public Overrides Property MustAuthorize As Boolean = True
     Public WithEvents AjaxManager As RadAjaxManager
@@ -662,11 +662,11 @@ Public Class ctrlRegisterCONewEdit
             Select Case isLoadPopup
                 Case 1
                     If Not phFindEmp.Controls.Contains(ctrlFindEmployeePopup) Then
-                        ctrlFindEmployeePopup = Me.Register("ctrlFindEmployeePopup", "Common", "ctrlFindEmployeePopup")
+                        ctrlFindEmployeePopup = Me.Register("ctrlFindEmployee2GridPopup", "Common", "ctrlFindEmployee2GridPopup")
                         phFindEmp.Controls.Add(ctrlFindEmployeePopup)
                         ctrlFindEmployeePopup.MultiSelect = False
                         ctrlFindEmployeePopup.LoadAllOrganization = False
-                        ctrlFindEmployeePopup.MustHaveContract = False
+                        'ctrlFindEmployeePopup.MustHaveContract = False
                     End If
             End Select
             _myLog.WriteLog(_myLog._info, _classPath, method,

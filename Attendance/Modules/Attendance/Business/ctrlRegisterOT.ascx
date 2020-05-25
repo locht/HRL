@@ -186,12 +186,13 @@
                 setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                 return;
             }
-            window.open('/Default.aspx?mid=Attendance&fid=ctrlRegisterOTNewEdit&group=Business&FormType=0&periodid=' + periodID, "_self"); /*
-            oWindow.setSize(900, 600);
-            oWindow.center(); */
+            var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlRegisterOTNewEdit&group=Business&FormType=0&periodid=' + periodID, "rwPopup");
+            var pos = $("html").offset();
+            oWindow.moveTo(pos.left, pos.top);
+            oWindow.setSize($(window).width(), $(window).height());
         }
 
-        function OpenEditWindow() {
+        function OpenEditWindow(states) {
             var grid = $find('<%# rgRegisterOT.ClientID %>');
             var gridSelected = grid.get_masterTableView().get_selectedItems();
             var id = 0
@@ -209,11 +210,12 @@
                     setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                     return;
                 }
-                window.open('/Default.aspx?mid=Attendance&fid=ctrlRegisterOTNewEdit&group=Business&VIEW=TRUE&FormType=0&ID=' + id + '&periodid=' + periodID, "_self"); /*
-                oWindow.setSize(900, 600);
-                oWindow.center(); */
+                var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlRegisterOTNewEdit&group=Business&VIEW=TRUE&FormType=0&ID=' + id + '&periodid=' + periodID, "rwPopup");
+                var pos = $("html").offset();
+                oWindow.moveTo(pos.left, pos.top);
+                oWindow.setSize($(window).width(), $(window).height());
             }
-        }
+         }
 
         function onRequestStart(sender, eventArgs) {
             eventArgs.set_enableAjax(enableAjax);

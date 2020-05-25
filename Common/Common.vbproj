@@ -139,6 +139,8 @@
     <Content Include="Modules\Common\ApproveProcess\ctrlApproveSetupOrg.ascx" />
     <Content Include="Modules\Common\ApproveProcess\ctrlApproveTemplate.ascx" />
     <Content Include="Modules\Common\ApproveProcess\ctrlApproveTemplateAddEdit.ascx" />
+    <Content Include="Modules\Common\ctrlFindEmployee2GridPopup.ascx" />
+    <Content Include="Modules\Common\ctrlFindEmployee2GridPopupDialog.ascx" />
     <Content Include="Modules\Common\ctrlFolders.ascx" />
     <Content Include="Modules\Common\ctrlLanguageManagementPortal.ascx" />
     <Content Include="Modules\Common\ctrlCommon_Reject.ascx" />
@@ -415,6 +417,20 @@
     <Compile Include="Modules\Common\CommonRepository.Secure.vb" />
     <Compile Include="Modules\Common\CommonRepository.ApproveProcess.vb" />
     <Compile Include="Modules\Common\CommonWorkflow.vb" />
+    <Compile Include="Modules\Common\ctrlFindEmployee2GridPopup.ascx.designer.vb">
+      <DependentUpon>ctrlFindEmployee2GridPopup.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Common\ctrlFindEmployee2GridPopup.ascx.vb">
+      <DependentUpon>ctrlFindEmployee2GridPopup.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Common\ctrlFindEmployee2GridPopupDialog.ascx.designer.vb">
+      <DependentUpon>ctrlFindEmployee2GridPopupDialog.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Common\ctrlFindEmployee2GridPopupDialog.ascx.vb">
+      <DependentUpon>ctrlFindEmployee2GridPopupDialog.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Modules\Common\ctrlFolders.ascx.designer.vb">
       <DependentUpon>ctrlFolders.ascx</DependentUpon>
     </Compile>

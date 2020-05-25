@@ -132,9 +132,11 @@
                 setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                 return;
             }
+         
             var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlRegisterDSVMNewEdit&group=Business&FormType=0&noscroll=1&periodid=' + periodID, "rwPopup");
-            oWindow.setSize(850, 520);
-            oWindow.center();
+            var pos = $("html").offset();
+            oWindow.moveTo(pos.left, pos.top);
+            oWindow.setSize($(window).width(), $(window).height());
         }
         function OpenEditWindow() {
             var grid = $find('<%# rglateCom.ClientID %>');
@@ -155,8 +157,9 @@
                     return;
                 }
                 var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlRegisterDSVMNewEdit&group=Business&VIEW=TRUE&FormType=0&ID=' + id + '&noscroll=1&periodid=' + periodID, "rwPopup");
-                oWindow.setSize(800, 500);
-                oWindow.center();
+                var pos = $("html").offset();
+                oWindow.moveTo(pos.left, pos.top);
+                oWindow.setSize($(window).width(), $(window).height());
             }
         }
         function onRequestStart(sender, eventArgs) {

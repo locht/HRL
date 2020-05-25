@@ -2,8 +2,6 @@
     Inherits="Attendance.ctrlRegisterDSVM" %>
 <%@ Import Namespace="Common" %>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
-
-<link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
     <tlk:RadPane ID="LeftPane" runat="server" MinWidth="260" Width="260px" Scrolling="None">
         <Common:ctrlOrganization ID="ctrlOrganization" runat="server" />
@@ -30,7 +28,7 @@
                             <%# Translate("Kỳ công")%>
                         </td>
                         <td>
-                            <tlk:RadComboBox ID="cboPeriod" SkinID="dDropdownList" AutoPostBack="true"
+                            <tlk:RadComboBox ID="cboPeriod" SkinID="dDropdownList" Width="150px" AutoPostBack="true"
                                 MaxLength="80" runat="server" ToolTip="">
                             </tlk:RadComboBox>
                         </td>
@@ -56,7 +54,7 @@
                             </tlk:RadDatePicker>
                         </td>
                         <td>
-                            <tlk:RadButton ID="btnSearch" Text="<%$ Translate: Tìm%>" runat="server" ToolTip="" SkinID="ButtonFind">
+                            <tlk:RadButton ID="btnSearch" Text="Tìm kiếm" runat="server" ToolTip="">
                             </tlk:RadButton>
                         </td>
                     </tr>
@@ -66,8 +64,6 @@
                 <tlk:RadGrid PageSize="50" ID="rglateCom" runat="server" Height="100%" AllowMultiRowSelection="true">
                     <ClientSettings EnableRowHoverStyle="true">
                         <Selecting AllowRowSelect="true" />
-                        <ClientEvents OnGridCreated="GridCreated" />
-                        <ClientEvents OnCommand="ValidateFilter" />
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID,ORG_DESC" ClientDataKeyNames="ID">
                         <Columns>
@@ -75,32 +71,32 @@
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
-                                SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="100px"/>
+                                SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên nhân viên %>" DataField="VN_FULLNAME"
-                                SortExpression="VN_FULLNAME" UniqueName="VN_FULLNAME" HeaderStyle-Width="150px" />
+                                SortExpression="VN_FULLNAME" UniqueName="VN_FULLNAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
-                                SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" HeaderStyle-Width="150px"/>
+                                SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
                             <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Cấp nhân sự %>" DataField="STAFF_RANK_NAME"
                                 SortExpression="STAFF_RANK_NAME" UniqueName="STAFF_RANK_NAME" />--%>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị %>" HeaderStyle-Width="200px"
                                 DataField="ORG_NAME" SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày đăng ký %>" DataField="WORKINGDAY"
                                 UniqueName="WORKINGDAY" DataFormatString="{0:dd/MM/yyyy}" SortExpression="WORKINGDAY">
-                                <HeaderStyle HorizontalAlign="Center" Width="100px" />
+                                <HeaderStyle HorizontalAlign="Center" Width="120px" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại đăng ký %>" DataField="TYPE_DMVS_NAME"
-                                SortExpression="TYPE_DMVS_NAME" UniqueName="TYPE_DMVS_NAME" HeaderStyle-Width="100px"/>
+                                SortExpression="TYPE_DMVS_NAME" UniqueName="TYPE_DMVS_NAME" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Từ giờ %>" DataField="FROM_HOUR"
                                 AllowFiltering="false" UniqueName="FROM_HOUR" DataFormatString="{0:HH:mm}" SortExpression="FROM_HOUR">
                             </tlk:GridDateTimeColumn>
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Đến giờ %>" DataField="TO_HOUR"
                                 AllowFiltering="false" UniqueName="TO_HOUR" DataFormatString="{0:HH:mm}" SortExpression="TO_HOUR">
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số phút %>" DataField="MINUTE" ItemStyle-HorizontalAlign="Center"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số phút %>" DataField="MINUTE" ItemStyle-HorizontalAlign="Center"
                                 DataFormatString="{0:n0}" SortExpression="MINUTE" UniqueName="MINUTE">
                             </tlk:GridNumericColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do %>" DataField="REMARK" SortExpression="REMARK"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi Chú %>" DataField="REMARK" SortExpression="REMARK"
                                 UniqueName="REMARK" />
                         </Columns>
                     </MasterTableView>
@@ -121,69 +117,11 @@
 <asp:PlaceHolder ID="phPopup" runat="server"></asp:PlaceHolder>
 <tlk:RadScriptBlock ID="scriptBlock" runat="server">
     <script type="text/javascript">
-
         var enableAjax = true;
-
-        function ValidateFilter(sender, eventArgs) {
-            var params = eventArgs.get_commandArgument() + '';
-            if (params.indexOf("|") > 0) {
-                var s = eventArgs.get_commandArgument().split("|");
-                if (s.length > 1) {
-                    var val = s[1];
-                    if (validateHTMLText(val) || validateSQLText(val)) {
-                        eventArgs.set_cancel(true);
-                    }
-                }
-            }
-        }
-
-        function GridCreated(sender, eventArgs) {
-            registerOnfocusOut('ctl00_MainContent_ctrlRegisterDSVM_RadSplitter3');
-        }
-
+        var oldSize = 0;
         function gridRowDblClick(sender, eventArgs) {
             OpenEditWindow("Normal");
         }
-
-        function OnClientButtonClicking(sender, args) {
-            if (args.get_item().get_commandName() == 'CREATE') {
-                OpenInsertWindow();
-                args.set_cancel(true);
-            } else if (args.get_item().get_commandName() == 'EDIT') {
-                var selectedCount = $find('<%= rglateCom.ClientID %>').get_masterTableView().get_selectedItems().length;
-                if (selectedCount == 0) {
-                    var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
-                    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                    args.set_cancel(true);
-                }
-                else if (selectedCount > 1) {
-                    var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW) %>';
-                    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                    args.set_cancel(true);
-                } else {
-                    OpenEditWindow();
-                    args.set_cancel(true);
-                }
-            } else if (args.get_item().get_commandName() == 'EXPORT') {
-                var rows = $find('<%= rglateCom.ClientID %>').get_masterTableView().get_dataItems().length;
-                if (rows == 0) {
-                    var m = '<%= Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY) %>';
-                    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                    args.set_cancel(true);
-                    return;
-                }
-                enableAjax = false;
-            }
-        }
-
-        function onRequestStart(sender, eventArgs) {
-            eventArgs.set_enableAjax(enableAjax);
-            enableAjax = true;
-        }
-
         function OpenInsertWindow() {
             var m;
             var cbo = $find("<%# cboPeriod.ClientID %>");
@@ -194,11 +132,12 @@
                 setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                 return;
             }
-            window.open('/Default.aspx?mid=Attendance&fid=ctrlRegisterDSVMNewEdit&group=Business&FormType=0&periodid=' + periodID, "_self"); /*
-            oWindow.setSize(850, 520);
-            oWindow.center(); */
-        }
 
+            var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlRegisterDSVMNewEdit&group=Business&FormType=0&noscroll=1&periodid=' + periodID, "rwPopup");
+            var pos = $("html").offset();
+            oWindow.moveTo(pos.left, pos.top);
+            oWindow.setSize($(window).width(), $(window).height());
+        }
         function OpenEditWindow() {
             var grid = $find('<%# rglateCom.ClientID %>');
             var gridSelected = grid.get_masterTableView().get_selectedItems();
@@ -217,9 +156,34 @@
                     setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                     return;
                 }
-                window.open('/Default.aspx?mid=Attendance&fid=ctrlRegisterDSVMNewEdit&group=Business&VIEW=TRUE&FormType=0&ID=' + id + '&periodid=' + periodID, "_self"); /*
-                oWindow.setSize(800, 500);
-                oWindow.center(); */
+                var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlRegisterDSVMNewEdit&group=Business&VIEW=TRUE&FormType=0&ID=' + id + '&noscroll=1&periodid=' + periodID, "rwPopup");
+                var pos = $("html").offset();
+                oWindow.moveTo(pos.left, pos.top);
+                oWindow.setSize($(window).width(), $(window).height());
+            }
+        }
+        function onRequestStart(sender, eventArgs) {
+            eventArgs.set_enableAjax(enableAjax);
+            enableAjax = true;
+        }
+        function OnClientButtonClicking(sender, args) {
+            if (args.get_item().get_commandName() == 'CREATE') {
+                OpenInsertWindow();
+                args.set_cancel(true);
+            } else if (args.get_item().get_commandName() == 'EDIT') {
+                var bCheck = $find('<%= rglateCom.ClientID %>').get_masterTableView().get_selectedItems().length;
+                if (bCheck == 0) {
+                    var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
+                    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
+                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+                    args.set_cancel(true);
+                }
+                else {
+                    OpenEditWindow();
+                    args.set_cancel(true);
+                }
+            } else if (args.get_item().get_commandName() == 'EXPORT') {
+                enableAjax = false;
             }
         }
 

@@ -143,6 +143,7 @@
         </tlk:RadWindow>
     </Windows>
 </tlk:RadWindowManager>
+
 <asp:PlaceHolder ID="phPopup" runat="server"></asp:PlaceHolder>
 <Common:ctrlUpload ID="ctrlUpload" runat="server" />
 <tlk:RadScriptBlock ID="scriptBlock" runat="server">
@@ -206,21 +207,20 @@
             }
         }
 
-        function OpenInsertWindow() {
-            window.open('/Default.aspx?mid=Attendance&fid=ctrlRegisterCONewEdit&group=Business&FormType=0', "_self");
+        function OpenEditWindow(states) {
+            var gUId = $find('<%# rgRegisterLeave.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
+            var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlRegisterCONewEdit&group=Business&ID=' + gUId + '&noscroll=1', "rwPopup");
+            var pos = $("html").offset();
+            oWindow.moveTo(pos.left, pos.top);
+            oWindow.setSize($(window).width(), $(window).height());
+
         }
 
-        function OpenEditWindow() {
-            var grid = $find('<%# rgRegisterLeave.ClientID %>');
-            var gridSelected = grid.get_masterTableView().get_selectedItems();
-            var id = 0
-            var gridSelected = grid.get_masterTableView().get_selectedItems();
-            if (gridSelected != "") {
-                id = grid.get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
-            }
-            if (id > 0) {
-                window.open('/Default.aspx?mid=Attendance&fid=ctrlRegisterCONewEdit&group=Business&VIEW=TRUE&FormType=0&ID=' + id, "_self");
-            }
+        function OpenInsertWindow() {
+            var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlRegisterCONewEdit&group=Business&FormType=0', "rwPopup");
+            var pos = $("html").offset();
+            oWindow.moveTo(pos.left, pos.top);
+            oWindow.setSize($(window).width(), $(window).height());
         }
 
         function onRequestStart(sender, eventArgs) {
