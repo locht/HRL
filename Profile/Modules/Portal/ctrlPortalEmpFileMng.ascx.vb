@@ -115,11 +115,14 @@ Public Class ctrlPortalEmpFileMng
 
         Dim link = Server.MapPath("TemplateDynamic\UserFiles\" & path & "\" & _file.FILE_NAME)
         If e.CommandName = "DeleteFile" Then
-            
+
             If rep.DeleteUserFile(_fileID) Then
-                My.Computer.FileSystem.DeleteFile(link)
-                rgHealth.Rebind()
+                If My.Computer.FileSystem.FileExists(link) Then
+                    My.Computer.FileSystem.DeleteFile(link)
+                End If
             End If
+            rgHealth.Rebind()
+
             'My.Computer.FileSystem.DeleteFile(fileName)
         End If
         If e.CommandName = "DownloadFile" Then
