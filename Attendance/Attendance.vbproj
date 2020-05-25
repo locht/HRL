@@ -170,6 +170,7 @@
     <Content Include="Modules\Attendance\Business\ctrlApproveOT.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlAT_PROJECT_ASSIGNNewEdit.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlAT_PROJECT_ASSIGN.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlAT_MngRegisters.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlTime_Timesheet_NB.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlDeclareEntitlementNBNewEditMultiple.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlActionLog.ascx" />
@@ -517,6 +518,13 @@
     </Compile>
     <Compile Include="Modules\Attendance\Business\ctrlAT_PROJECT_ASSIGN.ascx.vb">
       <DependentUpon>ctrlAT_PROJECT_ASSIGN.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlAT_MngRegisters.ascx.designer.vb">
+      <DependentUpon>ctrlAT_MngRegisters.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlAT_MngRegisters.ascx.vb">
+      <DependentUpon>ctrlAT_MngRegisters.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Attendance\Business\ctrlTime_Timesheet_NB.ascx.designer.vb">
