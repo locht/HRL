@@ -11,7 +11,7 @@
                 <tlk:RadToolBar ID="tbarMain" runat="server" OnClientButtonClicking="clientButtonClicking" />
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane4" runat="server" Height="33px" Scrolling="None">
-                <table  class="table-form">
+                <table class="table-form">
                     <tr>
                         <td class="lb">
                             <%# Translate("Năm tổ chức")%>
@@ -31,7 +31,7 @@
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
                 <tlk:RadGrid ID="rgData" runat="server" Height="100%">
-                  <ClientSettings EnableRowHoverStyle="true">
+                    <ClientSettings EnableRowHoverStyle="true">
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
                     </ClientSettings>
@@ -41,10 +41,16 @@
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Năm %>" DataField="YEAR" HeaderStyle-Width="50px"
-                                SortExpression="YEAR" UniqueName="YEAR" />
-                                <tlk:GridBoundColumn HeaderText="<%$ Translate: Công ty %>" DataField="ORG_NAME" HeaderStyle-Width="200px"
-                                SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Chi nhánh/Khối %>" DataField="ORG_NAME2"
+                                HeaderStyle-Width="200px" SortExpression="ORG_NAME2" UniqueName="ORG_NAME2" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="ORG_NAME3"
+                                HeaderStyle-Width="200px" SortExpression="ORG_NAME3" UniqueName="ORG_NAME3" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
+                                HeaderStyle-Width="200px" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Nhóm chương trình %>" DataField="TR_PROGRAM_GROUP_NAME"
+                                SortExpression="TR_PROGRAM_GROUP_NAME" UniqueName="TR_PROGRAM_GROUP_NAME" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã khóa đào tạo %>" DataField="CODE"
+                                SortExpression="CODE" UniqueName="CODE" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Khóa đào tạo %>" DataField="TR_COURSE_NAME"
                                 SortExpression="TR_COURSE_NAME" UniqueName="TR_COURSE_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên chương trình đào tạo %>" DataField="NAME"
@@ -53,11 +59,43 @@
                             </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Hình thức đào tạo %>" DataField="TR_TRAIN_FORM_NAME"
                                 SortExpression="TR_TRAIN_FORM_NAME" UniqueName="TR_TRAIN_FORM_NAME" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tính chất nhu cầu %>" DataField="PROPERTIES_NEED_NAME"
+                                SortExpression="PROPERTIES_NEED_NAME" UniqueName="PROPERTIES_NEED_NAME" />
+                            <%--     <tlk:GridBoundColumn HeaderText="<%$ Translate: Thời lượng dự kiến tổ chức %>" DataField=""
+                                SortExpression="" UniqueName="" />--%>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Thời lượng %>" DataField="DURATION"
+                                SortExpression="DURATION" UniqueName="DURATION" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị thời lượng %>" DataField="TR_DURATION_UNIT_NAME"
+                                SortExpression="TR_DURATION_UNIT_NAME" UniqueName="TR_DURATION_UNIT_NAME" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do đào tạo%>" DataField="TARGET_TRAIN"
+                                SortExpression="TARGET_TRAIN" UniqueName="TARGET_TRAIN" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Trung tâm đào tạo %>" DataField="Centers_NAME"
+                                SortExpression="Centers_NAME" UniqueName="Centers_NAME">
+                                <HeaderStyle Width="200px" />
+                            </tlk:GridBoundColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tổng chi phí đào tạo (VNĐ) %>" DataField="COST_TOTAL"
+                                SortExpression="COST_TOTAL" DataFormatString="{0:N0}" UniqueName="COST_TOTAL" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Chi phí đào tạo 1 học viên (VNĐ) %>"
+                                DataField="COST_OF_STUDENT" SortExpression="COST_OF_STUDENT" DataFormatString="{0:N0}"
+                                UniqueName="COST_OF_STUDENT" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" SortExpression="REMARK"
+                                UniqueName="REMARK" />
+                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Năm %>" DataField="YEAR" HeaderStyle-Width="50px"
+                                SortExpression="YEAR" UniqueName="YEAR" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Công ty %>" DataField="ORG_NAME"
+                                HeaderStyle-Width="200px" SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
+                       
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên chương trình đào tạo %>" DataField="NAME"
+                                SortExpression="NAME" UniqueName="NAME">
+                                <HeaderStyle Width="200px" />
+                            </tlk:GridBoundColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Hình thức đào tạo %>" DataField="TR_TRAIN_FORM_NAME"
+                                SortExpression="TR_TRAIN_FORM_NAME" UniqueName="TR_TRAIN_FORM_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Nhóm chương trình %>" DataField="TR_PROGRAM_GROUP_NAME"
                                 SortExpression="TR_PROGRAM_GROUP_NAME" UniqueName="TR_PROGRAM_GROUP_NAME" />
-                                  <tlk:GridBoundColumn HeaderText="<%$ Translate: Lĩnh vực đào tạo %>" DataField="TR_TRAIN_FIELD_NAME"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lĩnh vực đào tạo %>" DataField="TR_TRAIN_FIELD_NAME"
                                 SortExpression="TR_TRAIN_FIELD_NAME" UniqueName="TR_TRAIN_FIELD_NAME" />
-                                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Tính chất nhu cầu %>" DataField="PROPERTIES_NEED_NAME"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tính chất nhu cầu %>" DataField="PROPERTIES_NEED_NAME"
                                 SortExpression="PROPERTIES_NEED_NAME" UniqueName="PROPERTIES_NEED_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Số lượng giảng viên %>" DataField="TEACHER_NUMBER"
                                 SortExpression="TEACHER_NUMBER" UniqueName="TEACHER_NUMBER" />
@@ -77,19 +115,19 @@
                                 SortExpression="Centers_NAME" UniqueName="Centers_NAME">
                                 <HeaderStyle Width="200px" />
                             </tlk:GridBoundColumn>
-                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị chủ trì đào tạo %>" DataField="UNIT_NAME"
-                                SortExpression="UNIT_NAME" UniqueName="UNIT_NAME">                              
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị chủ trì đào tạo %>" DataField="UNIT_NAME"
+                                SortExpression="UNIT_NAME" UniqueName="UNIT_NAME">
                             </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Địa điểm %>" DataField="VENUE" SortExpression="VENUE"
-                                UniqueName="VENUE" />                                                   
+                                UniqueName="VENUE" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Tổng chi phí (VNĐ) %>" DataField="COST_TOTAL"
-                                SortExpression="COST_TOTAL"  DataFormatString="{0:N0}" UniqueName="COST_TOTAL" />
+                                SortExpression="COST_TOTAL" DataFormatString="{0:N0}" UniqueName="COST_TOTAL" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Chi phí 1 học viên (VNĐ) %>" DataField="COST_OF_STUDENT"
-                                SortExpression="COST_OF_STUDENT"  DataFormatString="{0:N0}"  UniqueName="COST_OF_STUDENT" />
-                                  <tlk:GridBoundColumn HeaderText="<%$ Translate: Tổng chi phí (USD) %>" DataField="COST_TOTAL_USD"
-                                SortExpression="COST_TOTAL_USD"  DataFormatString="{0:N0}" UniqueName="COST_TOTAL_USD" />
+                                SortExpression="COST_OF_STUDENT" DataFormatString="{0:N0}" UniqueName="COST_OF_STUDENT" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tổng chi phí (USD) %>" DataField="COST_TOTAL_USD"
+                                SortExpression="COST_TOTAL_USD" DataFormatString="{0:N0}" UniqueName="COST_TOTAL_USD" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Chi phí 1 học viên (USD) %>" DataField="COST_OF_STUDENT_USD"
-                                SortExpression="COST_OF_STUDENT_USD" DataFormatString="{0:N0}" UniqueName="COST_OF_STUDENT_USD" />                       
+                                SortExpression="COST_OF_STUDENT_USD" DataFormatString="{0:N0}" UniqueName="COST_OF_STUDENT_USD" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị tham gia %>" DataField="Departments_NAME"
                                 SortExpression="Departments_NAME" UniqueName="Departments_NAME">
                                 <HeaderStyle Width="300px" />
@@ -98,12 +136,12 @@
                                 SortExpression="Titles_NAME" UniqueName="Titles_NAME">
                                 <HeaderStyle Width="200px" />
                             </tlk:GridBoundColumn>
-                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Công việc liên quan %>" DataField="Work_inv_NAME"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Công việc liên quan %>" DataField="Work_inv_NAME"
                                 SortExpression="Work_inv_NAME" UniqueName="Work_inv_NAME">
                                 <HeaderStyle Width="200px" />
                             </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" SortExpression="REMARK"
-                                UniqueName="REMARK" />
+                                UniqueName="REMARK" />--%>
                         </Columns>
                         <HeaderStyle Width="100px" />
                     </MasterTableView>

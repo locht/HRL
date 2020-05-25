@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("116bd2dc-ead3-45d7-a617-0b95a7beb61b")>
+<Assembly: EdmSchemaAttribute("5c0e4441-5833-49fb-a0f7-3b741658d9c9")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("TrainingModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
 <Assembly: EdmRelationshipAttribute("TrainingModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
@@ -920,6 +920,20 @@ Public Partial Class TrainingContext
 
     Private _SE_USER_REPORT As ObjectSet(Of SE_USER_REPORT)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property HU_ORGANIZATION_V() As ObjectSet(Of HU_ORGANIZATION_V)
+        Get
+            If (_HU_ORGANIZATION_V Is Nothing) Then
+                _HU_ORGANIZATION_V = MyBase.CreateObjectSet(Of HU_ORGANIZATION_V)("HU_ORGANIZATION_V")
+            End If
+            Return _HU_ORGANIZATION_V
+        End Get
+    End Property
+
+    Private _HU_ORGANIZATION_V As ObjectSet(Of HU_ORGANIZATION_V)
+
     #End Region
 
     #Region "AddTo Methods"
@@ -1342,6 +1356,13 @@ Public Partial Class TrainingContext
     ''' </summary>
     Public Sub AddToSE_USER_REPORT(ByVal sE_USER_REPORT As SE_USER_REPORT)
         MyBase.AddObject("SE_USER_REPORT", sE_USER_REPORT)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the HU_ORGANIZATION_V EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToHU_ORGANIZATION_V(ByVal hU_ORGANIZATION_V As HU_ORGANIZATION_V)
+        MyBase.AddObject("HU_ORGANIZATION_V", hU_ORGANIZATION_V)
     End Sub
 
     #End Region
@@ -6502,6 +6523,836 @@ Public Partial Class HU_ORGANIZATION
             End If
         End Set
     End Property
+
+    #End Region
+
+End Class
+
+''' <summary>
+''' No Metadata Documentation available.
+''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="TrainingModel", Name:="HU_ORGANIZATION_V")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class HU_ORGANIZATION_V
+    Inherits EntityObject
+    #Region "Factory Method"
+
+    ''' <summary>
+    ''' Create a new HU_ORGANIZATION_V object.
+    ''' </summary>
+    ''' <param name="id">Initial value of the ID property.</param>
+    Public Shared Function CreateHU_ORGANIZATION_V(id As Global.System.Decimal) As HU_ORGANIZATION_V
+        Dim hU_ORGANIZATION_V as HU_ORGANIZATION_V = New HU_ORGANIZATION_V
+        hU_ORGANIZATION_V.ID = id
+        Return hU_ORGANIZATION_V
+    End Function
+
+    #End Region
+
+    #Region "Primitive Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CODE_C1() As Global.System.String
+        Get
+            Return _CODE_C1
+        End Get
+        Set
+            OnCODE_C1Changing(value)
+            ReportPropertyChanging("CODE_C1")
+            _CODE_C1 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CODE_C1")
+            OnCODE_C1Changed()
+        End Set
+    End Property
+
+    Private _CODE_C1 As Global.System.String
+    Private Partial Sub OnCODE_C1Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCODE_C1Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NAME_C1() As Global.System.String
+        Get
+            Return _NAME_C1
+        End Get
+        Set
+            OnNAME_C1Changing(value)
+            ReportPropertyChanging("NAME_C1")
+            _NAME_C1 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("NAME_C1")
+            OnNAME_C1Changed()
+        End Set
+    End Property
+
+    Private _NAME_C1 As Global.System.String
+    Private Partial Sub OnNAME_C1Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnNAME_C1Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CODE_C2() As Global.System.String
+        Get
+            Return _CODE_C2
+        End Get
+        Set
+            OnCODE_C2Changing(value)
+            ReportPropertyChanging("CODE_C2")
+            _CODE_C2 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CODE_C2")
+            OnCODE_C2Changed()
+        End Set
+    End Property
+
+    Private _CODE_C2 As Global.System.String
+    Private Partial Sub OnCODE_C2Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCODE_C2Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NAME_C2() As Global.System.String
+        Get
+            Return _NAME_C2
+        End Get
+        Set
+            OnNAME_C2Changing(value)
+            ReportPropertyChanging("NAME_C2")
+            _NAME_C2 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("NAME_C2")
+            OnNAME_C2Changed()
+        End Set
+    End Property
+
+    Private _NAME_C2 As Global.System.String
+    Private Partial Sub OnNAME_C2Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnNAME_C2Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CODE_C3() As Global.System.String
+        Get
+            Return _CODE_C3
+        End Get
+        Set
+            OnCODE_C3Changing(value)
+            ReportPropertyChanging("CODE_C3")
+            _CODE_C3 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CODE_C3")
+            OnCODE_C3Changed()
+        End Set
+    End Property
+
+    Private _CODE_C3 As Global.System.String
+    Private Partial Sub OnCODE_C3Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCODE_C3Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NAME_C3() As Global.System.String
+        Get
+            Return _NAME_C3
+        End Get
+        Set
+            OnNAME_C3Changing(value)
+            ReportPropertyChanging("NAME_C3")
+            _NAME_C3 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("NAME_C3")
+            OnNAME_C3Changed()
+        End Set
+    End Property
+
+    Private _NAME_C3 As Global.System.String
+    Private Partial Sub OnNAME_C3Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnNAME_C3Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CODE_C4() As Global.System.String
+        Get
+            Return _CODE_C4
+        End Get
+        Set
+            OnCODE_C4Changing(value)
+            ReportPropertyChanging("CODE_C4")
+            _CODE_C4 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CODE_C4")
+            OnCODE_C4Changed()
+        End Set
+    End Property
+
+    Private _CODE_C4 As Global.System.String
+    Private Partial Sub OnCODE_C4Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCODE_C4Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NAME_C4() As Global.System.String
+        Get
+            Return _NAME_C4
+        End Get
+        Set
+            OnNAME_C4Changing(value)
+            ReportPropertyChanging("NAME_C4")
+            _NAME_C4 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("NAME_C4")
+            OnNAME_C4Changed()
+        End Set
+    End Property
+
+    Private _NAME_C4 As Global.System.String
+    Private Partial Sub OnNAME_C4Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnNAME_C4Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CODE_C5() As Global.System.String
+        Get
+            Return _CODE_C5
+        End Get
+        Set
+            OnCODE_C5Changing(value)
+            ReportPropertyChanging("CODE_C5")
+            _CODE_C5 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CODE_C5")
+            OnCODE_C5Changed()
+        End Set
+    End Property
+
+    Private _CODE_C5 As Global.System.String
+    Private Partial Sub OnCODE_C5Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCODE_C5Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NAME_C5() As Global.System.String
+        Get
+            Return _NAME_C5
+        End Get
+        Set
+            OnNAME_C5Changing(value)
+            ReportPropertyChanging("NAME_C5")
+            _NAME_C5 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("NAME_C5")
+            OnNAME_C5Changed()
+        End Set
+    End Property
+
+    Private _NAME_C5 As Global.System.String
+    Private Partial Sub OnNAME_C5Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnNAME_C5Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CODE_C6() As Global.System.String
+        Get
+            Return _CODE_C6
+        End Get
+        Set
+            OnCODE_C6Changing(value)
+            ReportPropertyChanging("CODE_C6")
+            _CODE_C6 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CODE_C6")
+            OnCODE_C6Changed()
+        End Set
+    End Property
+
+    Private _CODE_C6 As Global.System.String
+    Private Partial Sub OnCODE_C6Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCODE_C6Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NAME_C6() As Global.System.String
+        Get
+            Return _NAME_C6
+        End Get
+        Set
+            OnNAME_C6Changing(value)
+            ReportPropertyChanging("NAME_C6")
+            _NAME_C6 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("NAME_C6")
+            OnNAME_C6Changed()
+        End Set
+    End Property
+
+    Private _NAME_C6 As Global.System.String
+    Private Partial Sub OnNAME_C6Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnNAME_C6Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CODE_C7() As Global.System.String
+        Get
+            Return _CODE_C7
+        End Get
+        Set
+            OnCODE_C7Changing(value)
+            ReportPropertyChanging("CODE_C7")
+            _CODE_C7 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CODE_C7")
+            OnCODE_C7Changed()
+        End Set
+    End Property
+
+    Private _CODE_C7 As Global.System.String
+    Private Partial Sub OnCODE_C7Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCODE_C7Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NAME_C7() As Global.System.String
+        Get
+            Return _NAME_C7
+        End Get
+        Set
+            OnNAME_C7Changing(value)
+            ReportPropertyChanging("NAME_C7")
+            _NAME_C7 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("NAME_C7")
+            OnNAME_C7Changed()
+        End Set
+    End Property
+
+    Private _NAME_C7 As Global.System.String
+    Private Partial Sub OnNAME_C7Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnNAME_C7Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CODE_C8() As Global.System.String
+        Get
+            Return _CODE_C8
+        End Get
+        Set
+            OnCODE_C8Changing(value)
+            ReportPropertyChanging("CODE_C8")
+            _CODE_C8 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CODE_C8")
+            OnCODE_C8Changed()
+        End Set
+    End Property
+
+    Private _CODE_C8 As Global.System.String
+    Private Partial Sub OnCODE_C8Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCODE_C8Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NAME_C8() As Global.System.String
+        Get
+            Return _NAME_C8
+        End Get
+        Set
+            OnNAME_C8Changing(value)
+            ReportPropertyChanging("NAME_C8")
+            _NAME_C8 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("NAME_C8")
+            OnNAME_C8Changed()
+        End Set
+    End Property
+
+    Private _NAME_C8 As Global.System.String
+    Private Partial Sub OnNAME_C8Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnNAME_C8Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CODE_C9() As Global.System.String
+        Get
+            Return _CODE_C9
+        End Get
+        Set
+            OnCODE_C9Changing(value)
+            ReportPropertyChanging("CODE_C9")
+            _CODE_C9 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CODE_C9")
+            OnCODE_C9Changed()
+        End Set
+    End Property
+
+    Private _CODE_C9 As Global.System.String
+    Private Partial Sub OnCODE_C9Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCODE_C9Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NAME_C9() As Global.System.String
+        Get
+            Return _NAME_C9
+        End Get
+        Set
+            OnNAME_C9Changing(value)
+            ReportPropertyChanging("NAME_C9")
+            _NAME_C9 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("NAME_C9")
+            OnNAME_C9Changed()
+        End Set
+    End Property
+
+    Private _NAME_C9 As Global.System.String
+    Private Partial Sub OnNAME_C9Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnNAME_C9Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property LEVEL_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _LEVEL_ID
+        End Get
+        Set
+            OnLEVEL_IDChanging(value)
+            ReportPropertyChanging("LEVEL_ID")
+            _LEVEL_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("LEVEL_ID")
+            OnLEVEL_IDChanged()
+        End Set
+    End Property
+
+    Private _LEVEL_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnLEVEL_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnLEVEL_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property DESCRIPTION() As Global.System.String
+        Get
+            Return _DESCRIPTION
+        End Get
+        Set
+            OnDESCRIPTIONChanging(value)
+            ReportPropertyChanging("DESCRIPTION")
+            _DESCRIPTION = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("DESCRIPTION")
+            OnDESCRIPTIONChanged()
+        End Set
+    End Property
+
+    Private _DESCRIPTION As Global.System.String
+    Private Partial Sub OnDESCRIPTIONChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnDESCRIPTIONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property ID() As Global.System.Decimal
+        Get
+            Return _ID
+        End Get
+        Set
+            If (_ID <> Value) Then
+                OnIDChanging(value)
+                ReportPropertyChanging("ID")
+                _ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ID")
+                OnIDChanged()
+            End If
+        End Set
+    End Property
+
+    Private _ID As Global.System.Decimal
+    Private Partial Sub OnIDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnIDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ID1() As Global.System.String
+        Get
+            Return _ID1
+        End Get
+        Set
+            OnID1Changing(value)
+            ReportPropertyChanging("ID1")
+            _ID1 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("ID1")
+            OnID1Changed()
+        End Set
+    End Property
+
+    Private _ID1 As Global.System.String
+    Private Partial Sub OnID1Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnID1Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ID2() As Global.System.String
+        Get
+            Return _ID2
+        End Get
+        Set
+            OnID2Changing(value)
+            ReportPropertyChanging("ID2")
+            _ID2 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("ID2")
+            OnID2Changed()
+        End Set
+    End Property
+
+    Private _ID2 As Global.System.String
+    Private Partial Sub OnID2Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnID2Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ID3() As Global.System.String
+        Get
+            Return _ID3
+        End Get
+        Set
+            OnID3Changing(value)
+            ReportPropertyChanging("ID3")
+            _ID3 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("ID3")
+            OnID3Changed()
+        End Set
+    End Property
+
+    Private _ID3 As Global.System.String
+    Private Partial Sub OnID3Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnID3Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ID4() As Global.System.String
+        Get
+            Return _ID4
+        End Get
+        Set
+            OnID4Changing(value)
+            ReportPropertyChanging("ID4")
+            _ID4 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("ID4")
+            OnID4Changed()
+        End Set
+    End Property
+
+    Private _ID4 As Global.System.String
+    Private Partial Sub OnID4Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnID4Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ID5() As Global.System.String
+        Get
+            Return _ID5
+        End Get
+        Set
+            OnID5Changing(value)
+            ReportPropertyChanging("ID5")
+            _ID5 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("ID5")
+            OnID5Changed()
+        End Set
+    End Property
+
+    Private _ID5 As Global.System.String
+    Private Partial Sub OnID5Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnID5Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ID6() As Global.System.String
+        Get
+            Return _ID6
+        End Get
+        Set
+            OnID6Changing(value)
+            ReportPropertyChanging("ID6")
+            _ID6 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("ID6")
+            OnID6Changed()
+        End Set
+    End Property
+
+    Private _ID6 As Global.System.String
+    Private Partial Sub OnID6Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnID6Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ID7() As Global.System.String
+        Get
+            Return _ID7
+        End Get
+        Set
+            OnID7Changing(value)
+            ReportPropertyChanging("ID7")
+            _ID7 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("ID7")
+            OnID7Changed()
+        End Set
+    End Property
+
+    Private _ID7 As Global.System.String
+    Private Partial Sub OnID7Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnID7Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ID8() As Global.System.String
+        Get
+            Return _ID8
+        End Get
+        Set
+            OnID8Changing(value)
+            ReportPropertyChanging("ID8")
+            _ID8 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("ID8")
+            OnID8Changed()
+        End Set
+    End Property
+
+    Private _ID8 As Global.System.String
+    Private Partial Sub OnID8Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnID8Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ID9() As Global.System.String
+        Get
+            Return _ID9
+        End Get
+        Set
+            OnID9Changing(value)
+            ReportPropertyChanging("ID9")
+            _ID9 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("ID9")
+            OnID9Changed()
+        End Set
+    End Property
+
+    Private _ID9 As Global.System.String
+    Private Partial Sub OnID9Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnID9Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property DESCRIPTION4() As Global.System.String
+        Get
+            Return _DESCRIPTION4
+        End Get
+        Set
+            OnDESCRIPTION4Changing(value)
+            ReportPropertyChanging("DESCRIPTION4")
+            _DESCRIPTION4 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("DESCRIPTION4")
+            OnDESCRIPTION4Changed()
+        End Set
+    End Property
+
+    Private _DESCRIPTION4 As Global.System.String
+    Private Partial Sub OnDESCRIPTION4Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnDESCRIPTION4Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NAME_VN() As Global.System.String
+        Get
+            Return _NAME_VN
+        End Get
+        Set
+            OnNAME_VNChanging(value)
+            ReportPropertyChanging("NAME_VN")
+            _NAME_VN = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("NAME_VN")
+            OnNAME_VNChanged()
+        End Set
+    End Property
+
+    Private _NAME_VN As Global.System.String
+    Private Partial Sub OnNAME_VNChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnNAME_VNChanged()
+    End Sub
 
     #End Region
 
@@ -16469,6 +17320,56 @@ Public Partial Class TR_PLAN
     End Sub
 
     Private Partial Sub OnWORKSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property STATUS_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _STATUS_ID
+        End Get
+        Set
+            OnSTATUS_IDChanging(value)
+            ReportPropertyChanging("STATUS_ID")
+            _STATUS_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("STATUS_ID")
+            OnSTATUS_IDChanged()
+        End Set
+    End Property
+
+    Private _STATUS_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSTATUS_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSTATUS_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CODE() As Global.System.String
+        Get
+            Return _CODE
+        End Get
+        Set
+            OnCODEChanging(value)
+            ReportPropertyChanging("CODE")
+            _CODE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CODE")
+            OnCODEChanged()
+        End Set
+    End Property
+
+    Private _CODE As Global.System.String
+    Private Partial Sub OnCODEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCODEChanged()
     End Sub
 
     #End Region

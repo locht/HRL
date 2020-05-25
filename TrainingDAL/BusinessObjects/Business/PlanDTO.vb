@@ -1,9 +1,12 @@
 ﻿Public Class PlanDTO
     Public ID As Decimal
     Public NAME As String
+    Public CODE As String
     Public YEAR As Decimal?
     Public ORG_ID As Decimal?
     Public ORG_NAME As String
+    Public ORG_NAME2 As String
+    Public ORG_NAME3 As String
     Public TR_COURSE_ID As Decimal?
     Public TR_COURSE_NAME As String
     Public TR_TRAIN_FORM_ID As Decimal?
@@ -65,4 +68,6 @@
     Public TR_TRAIN_FIELD_NAME As String
     Public TR_PROGRAM_GROUP_NAME As String
     Public UNIT_NAME As String
+    Public STATUS_ID As Decimal?
+    Public STATUS_NAME As String
 End Class

@@ -66,6 +66,7 @@
             <EntitySet Name="SE_REPORT" EntityType="TrainingModel.Store.SE_REPORT" store:Type="Tables"  />
             <EntitySet Name="SE_USER" EntityType="TrainingModel.Store.SE_USER" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="TrainingModel.Store.SE_USER_REPORT" store:Type="Tables"  />
+            <EntitySet Name="HU_ORGANIZATION_V" EntityType="TrainingModel.Store.HU_ORGANIZATION_V" store:Type="Tables"  />
             <AssociationSet Name="FK_HU_PRO_HU_DIS" Association="TrainingModel.Store.FK_HU_PRO_HU_DIS">
                 <End Role="HU_PROVINCE" EntitySet="HU_PROVINCE" />
                 <End Role="HU_DISTRICT" EntitySet="HU_DISTRICT" />
@@ -531,6 +532,8 @@
             <Property Name="COST_TOTAL_USD" Type="number" Nullable="true" Precision="38" />
             <Property Name="COST_OF_STUDENT_USD" Type="number" Nullable="true" Precision="38" />
             <Property Name="WORKS" Type="nclob" Nullable="true" />
+            <Property Name="STATUS_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CODE" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="HU_DISTRICT">
             <Key>
@@ -1204,6 +1207,43 @@
             <Property Name="SE_REPORT_ID" Type="number" Nullable="false" Precision="38" />
             <Property Name="SE_USER_ID" Type="number" Nullable="false" Precision="38" />
         </EntityType>
+        <EntityType Name="HU_ORGANIZATION_V">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="CODE_C1" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="NAME_C1" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="CODE_C2" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="NAME_C2" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="CODE_C3" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="NAME_C3" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="CODE_C4" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="NAME_C4" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="CODE_C5" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="NAME_C5" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="CODE_C6" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="NAME_C6" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="CODE_C7" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="NAME_C7" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="CODE_C8" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="NAME_C8" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="CODE_C9" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="NAME_C9" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+            <Property Name="LEVEL_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="DESCRIPTION" Type="nvarchar2" Nullable="true" MaxLength="2000" />
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="ID1" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ID2" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ID3" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ID4" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ID5" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ID6" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ID7" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ID8" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="ID9" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="DESCRIPTION4" Type="nvarchar2" Nullable="true" MaxLength="2000" />
+            <Property Name="NAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+        </EntityType>
     <Association Name="FK_HU_PRO_HU_DIS">
         <End Role="HU_PROVINCE" Type="TrainingModel.Store.HU_PROVINCE" Multiplicity="0..1">
         </End>
@@ -1431,6 +1471,7 @@
           <EntitySet Name="SE_REPORT" EntityType="TrainingModel.SE_REPORT" />
           <EntitySet Name="SE_USER" EntityType="TrainingModel.SE_USER" />
           <EntitySet Name="SE_USER_REPORT" EntityType="TrainingModel.SE_USER_REPORT" />
+          <EntitySet Name="HU_ORGANIZATION_V" EntityType="TrainingModel.HU_ORGANIZATION_V" />
           </EntityContainer>
         <EntityType Name="TR_COST_CENTER">
           <Key>
@@ -1860,6 +1901,8 @@
           <Property Type="Decimal" Name="COST_TOTAL_USD" />
           <Property Type="Decimal" Name="COST_OF_STUDENT_USD" />
           <Property Type="String" Name="WORKS" />
+          <Property Type="Decimal" Name="STATUS_ID" />
+          <Property Type="String" Name="CODE" />
         </EntityType>
         <EntityType Name="HU_DISTRICT">
           <Key>
@@ -2659,6 +2702,43 @@
           <Property Type="Decimal" Name="SE_REPORT_ID" Nullable="false" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="SE_USER_ID" Nullable="false" Precision="38" Scale="0" />
         </EntityType>
+        <EntityType Name="HU_ORGANIZATION_V">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="String" Name="CODE_C1" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NAME_C1" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CODE_C2" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NAME_C2" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CODE_C3" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NAME_C3" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CODE_C4" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NAME_C4" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CODE_C5" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NAME_C5" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CODE_C6" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NAME_C6" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CODE_C7" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NAME_C7" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CODE_C8" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NAME_C8" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CODE_C9" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NAME_C9" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="LEVEL_ID" Precision="38" Scale="0" />
+          <Property Type="String" Name="DESCRIPTION" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="ID1" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ID2" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ID3" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ID4" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ID5" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ID6" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ID7" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ID8" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ID9" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DESCRIPTION4" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NAME_VN" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3115,6 +3195,8 @@
                     <ScalarProperty Name="COST_TOTAL_USD" ColumnName="COST_TOTAL_USD" />
                     <ScalarProperty Name="COST_OF_STUDENT_USD" ColumnName="COST_OF_STUDENT_USD" />
                     <ScalarProperty Name="WORKS" ColumnName="WORKS" />
+                    <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+                    <ScalarProperty Name="CODE" ColumnName="CODE" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -3824,6 +3906,44 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HU_ORGANIZATION_V">
+            <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.HU_ORGANIZATION_V)">
+                <MappingFragment StoreEntitySet="HU_ORGANIZATION_V">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="CODE_C1" ColumnName="CODE_C1" />
+                    <ScalarProperty Name="NAME_C1" ColumnName="NAME_C1" />
+                    <ScalarProperty Name="CODE_C2" ColumnName="CODE_C2" />
+                    <ScalarProperty Name="NAME_C2" ColumnName="NAME_C2" />
+                    <ScalarProperty Name="CODE_C3" ColumnName="CODE_C3" />
+                    <ScalarProperty Name="NAME_C3" ColumnName="NAME_C3" />
+                    <ScalarProperty Name="CODE_C4" ColumnName="CODE_C4" />
+                    <ScalarProperty Name="NAME_C4" ColumnName="NAME_C4" />
+                    <ScalarProperty Name="CODE_C5" ColumnName="CODE_C5" />
+                    <ScalarProperty Name="NAME_C5" ColumnName="NAME_C5" />
+                    <ScalarProperty Name="CODE_C6" ColumnName="CODE_C6" />
+                    <ScalarProperty Name="NAME_C6" ColumnName="NAME_C6" />
+                    <ScalarProperty Name="CODE_C7" ColumnName="CODE_C7" />
+                    <ScalarProperty Name="NAME_C7" ColumnName="NAME_C7" />
+                    <ScalarProperty Name="CODE_C8" ColumnName="CODE_C8" />
+                    <ScalarProperty Name="NAME_C8" ColumnName="NAME_C8" />
+                    <ScalarProperty Name="CODE_C9" ColumnName="CODE_C9" />
+                    <ScalarProperty Name="NAME_C9" ColumnName="NAME_C9" />
+                    <ScalarProperty Name="LEVEL_ID" ColumnName="LEVEL_ID" />
+                    <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                    <ScalarProperty Name="ID1" ColumnName="ID1" />
+                    <ScalarProperty Name="ID2" ColumnName="ID2" />
+                    <ScalarProperty Name="ID3" ColumnName="ID3" />
+                    <ScalarProperty Name="ID4" ColumnName="ID4" />
+                    <ScalarProperty Name="ID5" ColumnName="ID5" />
+                    <ScalarProperty Name="ID6" ColumnName="ID6" />
+                    <ScalarProperty Name="ID7" ColumnName="ID7" />
+                    <ScalarProperty Name="ID8" ColumnName="ID8" />
+                    <ScalarProperty Name="ID9" ColumnName="ID9" />
+                    <ScalarProperty Name="DESCRIPTION4" ColumnName="DESCRIPTION4" />
+                    <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
     </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -3845,7 +3965,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="TrainingContext" ZoomLevel="74" >
+      <Diagram Name="TrainingContext" ZoomLevel="81" >
         <EntityTypeShape EntityType="TrainingModel.TR_COST_CENTER" Width="1.5" PointX="5.75" PointY="0.75" Height="2.9417936197916665" />
         <EntityTypeShape EntityType="TrainingModel.SE_CHOSEN_ORG" Width="1.5" PointX="2.75" PointY="0.75" Height="1.4033821614583246" />
         <EntityTypeShape EntityType="TrainingModel.TR_CENTER" Width="1.5" PointX="8.75" PointY="6.75" Height="5.4417122395833335" />
@@ -3870,7 +3990,7 @@
         <EntityTypeShape EntityType="TrainingModel.OT_OTHER_LIST_GROUP" Width="1.5" PointX="16.75" PointY="10.75" Height="2.7494921875000102" />
         <EntityTypeShape EntityType="TrainingModel.OT_OTHER_LIST_TYPE" Width="1.5" PointX="10.75" PointY="16.75" Height="3.5186979166666674" />
         <EntityTypeShape EntityType="TrainingModel.TR_PLAN_CENTER" Width="1.5" PointX="16.75" PointY="14.75" Height="1.5956835937500102" />
-        <EntityTypeShape EntityType="TrainingModel.TR_PLAN" Width="1.5" PointX="16.75" PointY="17.75" Height="10.249248046875003" />
+        <EntityTypeShape EntityType="TrainingModel.TR_PLAN" Width="1.5" PointX="16.75" PointY="17.75" Height="10.633850911458332" />
         <EntityTypeShape EntityType="TrainingModel.HU_DISTRICT" Width="1.5" PointX="13.25" PointY="1.125" Height="3.903300781249996" />
         <EntityTypeShape EntityType="TrainingModel.HU_NATION" Width="1.5" PointX="8.75" PointY="1.25" Height="3.7109993489583317" />
         <EntityTypeShape EntityType="TrainingModel.HU_PROVINCE" Width="1.5" PointX="11" PointY="1" Height="4.0956022135416674" />
@@ -3952,6 +4072,7 @@
         <EntityTypeShape EntityType="TrainingModel.SE_REPORT" Width="2" PointX="1.25" PointY="16" Height="2.3648893229166674" />
         <EntityTypeShape EntityType="TrainingModel.SE_USER" Width="2" PointX="0.875" PointY="18.75" Height="5.6340136718749818" />
         <EntityTypeShape EntityType="TrainingModel.SE_USER_REPORT" Width="2.125" PointX="0.5" PointY="13.875" Height="1.403382161458353" />
+        <EntityTypeShape EntityType="TrainingModel.HU_ORGANIZATION_V" Width="1.5" PointX="0.76222850976615608" PointY="3.181715579322407" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -430,6 +430,9 @@ Namespace TrainingBusiness
         Private ATTACHFILEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private COST_INCURREDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -505,6 +508,12 @@ Namespace TrainingBusiness
         Private ORG_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_NAME2Field As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_NAME3Field As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private PLAN_T1Field As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -551,6 +560,12 @@ Namespace TrainingBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REMARKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private STATUS_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private STATUS_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private STUDENT_NUMBERField As System.Nullable(Of Decimal)
@@ -643,6 +658,19 @@ Namespace TrainingBusiness
                 If (Object.ReferenceEquals(Me.ATTACHFILEField, value) <> true) Then
                     Me.ATTACHFILEField = value
                     Me.RaisePropertyChanged("ATTACHFILE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CODE() As String
+            Get
+                Return Me.CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CODEField, value) <> true) Then
+                    Me.CODEField = value
+                    Me.RaisePropertyChanged("CODE")
                 End If
             End Set
         End Property
@@ -973,6 +1001,32 @@ Namespace TrainingBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_NAME2() As String
+            Get
+                Return Me.ORG_NAME2Field
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ORG_NAME2Field, value) <> true) Then
+                    Me.ORG_NAME2Field = value
+                    Me.RaisePropertyChanged("ORG_NAME2")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_NAME3() As String
+            Get
+                Return Me.ORG_NAME3Field
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ORG_NAME3Field, value) <> true) Then
+                    Me.ORG_NAME3Field = value
+                    Me.RaisePropertyChanged("ORG_NAME3")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property PLAN_T1() As System.Nullable(Of Boolean)
             Get
                 Return Me.PLAN_T1Field
@@ -1176,6 +1230,32 @@ Namespace TrainingBusiness
                 If (Object.ReferenceEquals(Me.REMARKField, value) <> true) Then
                     Me.REMARKField = value
                     Me.RaisePropertyChanged("REMARK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property STATUS_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.STATUS_IDField
+            End Get
+            Set
+                If (Me.STATUS_IDField.Equals(value) <> true) Then
+                    Me.STATUS_IDField = value
+                    Me.RaisePropertyChanged("STATUS_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property STATUS_NAME() As String
+            Get
+                Return Me.STATUS_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.STATUS_NAMEField, value) <> true) Then
+                    Me.STATUS_NAMEField = value
+                    Me.RaisePropertyChanged("STATUS_NAME")
                 End If
             End Set
         End Property

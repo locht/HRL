@@ -163,19 +163,26 @@ Partial Class TrainingRepository
             Dim query = From p In Context.TR_PLAN
                         From u In Context.TR_UNIT.Where(Function(f) f.ID = p.UNIT_ID).DefaultIfEmpty
                     From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                    From ov In Context.HU_ORGANIZATION_V.Where(Function(f) f.ID = org.ID).DefaultIfEmpty
                     From course In Context.TR_COURSE.Where(Function(f) f.ID = p.TR_COURSE_ID).DefaultIfEmpty
                     From c In Context.TR_COURSE.Where(Function(f) f.ID = p.TR_COURSE_ID)
                     From pg In Context.TR_PROGRAM_GROUP.Where(Function(f) f.ID = c.TR_PROGRAM_GROUP).DefaultIfEmpty
                     From pn In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.PROPERTIES_NEED_ID).DefaultIfEmpty
                     From tf In Context.OT_OTHER_LIST.Where(Function(f) f.ID = c.TR_TRAIN_FIELD).DefaultIfEmpty
                     From form In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TRAIN_FORM_ID).DefaultIfEmpty
+                    From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS_ID).DefaultIfEmpty
                     From duration In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TR_DURATION_UNIT_ID).DefaultIfEmpty
                     From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
                     Where p.YEAR = filter.YEAR
             Select New PlanDTO With {.ID = p.ID,
                                       .YEAR = p.YEAR,
                                       .NAME = p.NAME,
+                                     .CODE = p.CODE,
+                                     .STATUS_ID = p.STATUS_ID,
+                                     .STATUS_NAME = ot.NAME_VN,
                                       .ORG_NAME = org.NAME_VN,
+                                     .ORG_NAME2 = ov.NAME_C2,
+                                     .ORG_NAME3 = ov.NAME_C3,
                                       .TR_COURSE_NAME = course.NAME,
                                       .TR_TRAIN_FORM_ID = p.TRAIN_FORM_ID,
                                       .TR_TRAIN_FORM_NAME = form.NAME_VN,

@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 4/16/2020 11:12:55 PM
--- Generated from EDMX file: D:\ACV\acv_19\TrainingDAL\TrainingContext.edmx
+-- Date Created: 05/25/2020 9:45:01 AM
+-- Generated from EDMX file: D:\MyProject2020\ACV_NEW\acv_19\TrainingDAL\TrainingContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -150,6 +150,8 @@
 -- DROP TABLE "TrainingModelStoreContainer"."SE_USER";
 
 -- DROP TABLE "TrainingModelStoreContainer"."SE_USER_REPORT";
+
+-- DROP TABLE "TrainingModelStoreContainer"."HU_ORGANIZATION_V";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -555,7 +557,9 @@ CREATE TABLE "dbo"."TR_PLAN" (
    "ATTACHFILE" NCLOB NULL,
    "COST_TOTAL_USD" NUMBER(38,0) NULL,
    "COST_OF_STUDENT_USD" NUMBER(38,0) NULL,
-   "WORKS" NCLOB NULL
+   "WORKS" NCLOB NULL,
+   "STATUS_ID" NUMBER(38,0) NULL,
+   "CODE" NCLOB NULL
 );
 
 -- Creating table 'HU_DISTRICT'
@@ -1194,6 +1198,42 @@ CREATE TABLE "dbo"."SE_USER_REPORT" (
    "SE_USER_ID" NUMBER(38,0) NOT NULL
 );
 
+-- Creating table 'HU_ORGANIZATION_V'
+CREATE TABLE "dbo"."HU_ORGANIZATION_V" (
+   "CODE_C1" VARCHAR2(4000) NULL,
+   "NAME_C1" NVARCHAR2(1999) NULL,
+   "CODE_C2" VARCHAR2(4000) NULL,
+   "NAME_C2" NVARCHAR2(1999) NULL,
+   "CODE_C3" VARCHAR2(4000) NULL,
+   "NAME_C3" NVARCHAR2(1999) NULL,
+   "CODE_C4" VARCHAR2(4000) NULL,
+   "NAME_C4" NVARCHAR2(1999) NULL,
+   "CODE_C5" VARCHAR2(4000) NULL,
+   "NAME_C5" NVARCHAR2(1999) NULL,
+   "CODE_C6" VARCHAR2(4000) NULL,
+   "NAME_C6" NVARCHAR2(1999) NULL,
+   "CODE_C7" VARCHAR2(4000) NULL,
+   "NAME_C7" NVARCHAR2(1999) NULL,
+   "CODE_C8" VARCHAR2(4000) NULL,
+   "NAME_C8" NVARCHAR2(1999) NULL,
+   "CODE_C9" VARCHAR2(4000) NULL,
+   "NAME_C9" NVARCHAR2(1999) NULL,
+   "LEVEL_ID" NUMBER(38,0) NULL,
+   "DESCRIPTION" NVARCHAR2(2000) NULL,
+   "ID" NUMBER(38,0) NOT NULL,
+   "ID1" VARCHAR2(4000) NULL,
+   "ID2" VARCHAR2(4000) NULL,
+   "ID3" VARCHAR2(4000) NULL,
+   "ID4" VARCHAR2(4000) NULL,
+   "ID5" VARCHAR2(4000) NULL,
+   "ID6" VARCHAR2(4000) NULL,
+   "ID7" VARCHAR2(4000) NULL,
+   "ID8" VARCHAR2(4000) NULL,
+   "ID9" VARCHAR2(4000) NULL,
+   "DESCRIPTION4" NVARCHAR2(2000) NULL,
+   "NAME_VN" NVARCHAR2(255) NULL
+);
+
 
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
@@ -1675,6 +1715,14 @@ ADD CONSTRAINT "PK_SE_USER"
 ALTER TABLE "dbo"."SE_USER_REPORT"
 ADD CONSTRAINT "PK_SE_USER_REPORT"
    PRIMARY KEY ("SE_REPORT_ID", "SE_USER_ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'HU_ORGANIZATION_V'
+ALTER TABLE "dbo"."HU_ORGANIZATION_V"
+ADD CONSTRAINT "PK_HU_ORGANIZATION_V"
+   PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;
 
