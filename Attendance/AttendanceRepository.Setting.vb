@@ -3,6 +3,74 @@ Imports Framework.UI
 
 Partial Class AttendanceRepository
     Inherits AttendanceRepositoryBase
+#Region "at_formular"
+    Public Function GetAllFomulerGroup(ByVal _filter As ATFormularDTO, ByVal PageIndex As Integer,
+                                       ByVal PageSize As Integer,
+                                       ByRef Total As Integer,
+                                       Optional ByVal Sorts As String = "CFDESC ASC") As List(Of ATFormularDTO)
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.GetAllFomulerGroup(_filter, PageIndex, PageSize, Total, Sorts)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function ActiveFolmulerGroup(ByVal lstID As Decimal, ByVal bActive As Decimal) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.ActiveFolmulerGroup(lstID, Me.Log, bActive)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function GetListInputColumn(ByVal gID As Decimal) As System.Data.DataSet
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.GetListInputColumn(gID)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function GetListCalculation() As List(Of OT_OTHERLIST_DTO)
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.GetListCalculation()
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function PRU_SYNCHFORMULAR(ByVal gID As Decimal) As DataTable
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.PRU_SYNCHFORMULAR(gID, Me.Log)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function CheckFomuler(ByVal sCol As String, ByVal sFormuler As String, ByVal objID As Decimal) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.CheckFomuler(sCol, sFormuler, objID)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function SaveFomuler(ByVal objData As ATFml_DetailDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.SaveFomuler(objData, Me.Log, gID)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+#End Region
     Function GetObjEmpCompe(ByVal _filter As AT_ObjectEmpployeeCompensatoryDTO,
                                             ByVal _param As ParamDTO,
                                               Optional ByRef Total As Integer = 0,

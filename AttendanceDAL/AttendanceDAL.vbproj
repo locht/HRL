@@ -105,6 +105,8 @@
     <Compile Include="AttendanceRepositoryStatic.vb" />
     <Compile Include="BusinessObjects\AnnualLeaveDTO.vb" />
     <Compile Include="BusinessObjects\APPOINTMENT_DTO.vb" />
+    <Compile Include="BusinessObjects\ATFml_DetailDTO.vb" />
+    <Compile Include="BusinessObjects\ATFormularDTO.vb" />
     <Compile Include="BusinessObjects\AT_HOLIDAYDTO.vb" />
     <Compile Include="BusinessObjects\AT_LATE_COMBACKOUTDTO.vb" />
     <Compile Include="BusinessObjects\AT_LISTPARAM_SYSTEAMDTO.vb" />

@@ -7,6 +7,25 @@ Imports System.ServiceModel.Web
 Namespace AttendanceBusiness.ServiceContracts
     <ServiceContract()>
     Public Interface IAttendanceBusiness
+#Region "at_formular"
+        <OperationContract()>
+        Function ActiveFolmulerGroup(ByVal lstID As Decimal, ByVal log As UserLog, ByVal bActive As Decimal) As Boolean
+        <OperationContract()>
+        Function GetAllFomulerGroup(ByVal _filter As ATFormularDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "CFDESC ASC") As List(Of ATFormularDTO)
+        <OperationContract()>
+        Function GetListInputColumn(ByVal gID As Decimal) As DataSet
+        <OperationContract()>
+        Function GetListCalculation() As List(Of OT_OTHERLIST_DTO)
+        <OperationContract()>
+        Function PRU_SYNCHFORMULAR(ByVal gID As Decimal, Optional ByVal log As UserLog = Nothing) As DataTable
+        <OperationContract()>
+        Function CheckFomuler(ByVal sCol As String, ByVal sFormuler As String, ByVal objID As Decimal) As Boolean
+        <OperationContract()>
+        Function SaveFomuler(ByVal objData As ATFml_DetailDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+#End Region
 #Region "AT_Symbols"
         <OperationContract()>
         Function SaveAT_Symnols(ByVal objData As AT_SymbolsDTO, ByVal log As UserLog, ByRef gid As Decimal) As Boolean
@@ -25,7 +44,7 @@ Namespace AttendanceBusiness.ServiceContracts
         <OperationContract()>
         Function GetLeaveSheet_ById(ByVal Leave_SheetID As Decimal, ByVal Struct As Decimal) As DataSet
         <OperationContract()>
-        Function GetLeaveSheet_Detail_ByDate(ByVal employee_id As Decimal, ByVal fromDate As Date, ByVal toDate As Date, manualId As Decimal) As DataTable
+        Function GetLeaveSheet_Detail_ByDate(ByVal employee_id As Decimal, ByVal fromDate As Date, ByVal toDate As Date, ByVal manualId As Decimal) As DataTable
         <OperationContract()>
         Function SaveLeaveSheet(ByVal dsLeaveSheet As DataSet, Optional ByVal log As UserLog = Nothing) As Boolean
         <OperationContract()>

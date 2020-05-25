@@ -203,6 +203,8 @@
     <Content Include="Modules\Attendance\Report\ctrlAT_ReportList.ascx" />
     <Content Include="Modules\Attendance\Setting\crtlSetUpExchange.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlAT_OrgShift.ascx" />
+    <Content Include="Modules\Attendance\Setting\ctrlAT_Formula.ascx" />
+    <Content Include="Modules\Attendance\Setting\ctrlAt_FormulaDetail.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlSetUpCodeAttEmp.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlSwipeMachineStatus.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlSetUpTimeEmp.ascx" />
@@ -240,6 +242,9 @@
     <Content Include="Modules\Common\ctrlToolBar.ascx" />
     <Content Include="Modules\Common\ctrlUpload.ascx" />
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.APPOINTMENT_DTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.ATFormularDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_ACTION_LOGDTO.datasource">
@@ -384,6 +389,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.LEAVE_DETAIL_EMP_DTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.OT_OTHERLIST_DTO1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.SetUpCodeAttDTO.datasource">
@@ -737,6 +745,20 @@
     </Compile>
     <Compile Include="Modules\Attendance\Setting\ctrlAT_OrgShift.ascx.vb">
       <DependentUpon>ctrlAT_OrgShift.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlAT_Formula.ascx.designer.vb">
+      <DependentUpon>ctrlAT_Formula.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlAT_Formula.ascx.vb">
+      <DependentUpon>ctrlAT_Formula.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlAt_FormulaDetail.ascx.designer.vb">
+      <DependentUpon>ctrlAt_FormulaDetail.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlAt_FormulaDetail.ascx.vb">
+      <DependentUpon>ctrlAt_FormulaDetail.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Attendance\Setting\ctrlSetUpCodeAttEmp.ascx.designer.vb">

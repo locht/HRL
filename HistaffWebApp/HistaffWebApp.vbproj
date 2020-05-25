@@ -186,6 +186,8 @@
     <Content Include="Modules\Attendance\List\ctrlAT_PROJECT_WORK.ascx" />
     <Content Include="Modules\Attendance\List\ctrlListParamSystem.ascx" />
     <Content Include="Modules\Attendance\Report\ctrlAT_ReportList.ascx" />
+    <Content Include="Modules\Attendance\Setting\ctrlAT_Formula.ascx" />
+    <Content Include="Modules\Attendance\Setting\ctrlAt_FormulaDetail.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlAT_OBJECT_EMP_CSL.ascx" />
     <Content Include="Modules\Attendance\Setting\crtlSetUpExchange.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlAT_OrgShift.ascx" />

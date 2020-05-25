@@ -240,4 +240,385 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 
+
+#Region "List Salary Fomuler"
+    Public Function GetAllFomulerGroup(ByVal _filter As ATFormularDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "CFDESC ASC") As List(Of ATFormularDTO)
+        Try
+            Dim lst = (From q In Context.AT_FORMULAR
+                       Select New ATFormularDTO With {.ID = q.ID,
+                                               .FML_NAME = q.FML_NAME,
+                                               .CFDESC = q.CFDESC,
+                                               .STATUS = q.STATUS,
+                                               .EFFECT_DATE = q.EFFECT_DATE,
+                                               .EXPIRE_DATE = q.EXPIRE_DATE,
+                                               .CREATED_BY = q.CREATED_BY,
+                                               .CREATED_DATE = q.CREATED_DATE,
+                                               .CREATED_LOG = q.CREATED_LOG,
+                                               .MODIFIED_BY = q.MODIFIED_BY,
+                                               .MODIFIED_DATE = q.MODIFIED_DATE,
+                                               .MODIFIED_LOG = q.MODIFIED_LOG
+                                               })
+            If _filter.FML_NAME <> "" Then
+                lst = lst.Where(Function(p) p.FML_NAME.ToUpper.Contains(_filter.FML_NAME.ToUpper))
+            End If
+            lst = lst.OrderBy(Sorts)
+            Total = lst.Count
+            lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
+
+            Return lst.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+
+    '    Public Function InsertFomulerGroup(ByVal objPeriod As PAFomulerGroup, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+    '        Dim objData As New PA_FORMULER_GROUP
+    '        Try
+    '            objData.ID = Utilities.GetNextSequence(Context, Context.AT_PERIOD.EntitySet.Name)
+    '            objData.TYPE_PAYMENT = objPeriod.TYPE_PAYMENT
+    '            objData.OBJ_SAL_ID = objPeriod.OBJ_SAL_ID
+    '            objData.NAME_VN = objPeriod.NAME_VN
+    '            objData.NAME_EN = objPeriod.NAME_EN
+    '            objData.START_DATE = objPeriod.START_DATE
+    '            objData.END_DATE = objPeriod.END_DATE
+    '            objData.STATUS = objPeriod.STATUS
+    '            objData.SDESC = objPeriod.SDESC
+    '            objData.IDX = objPeriod.IDX
+    '            Context.PA_FORMULER_GROUP.AddObject(objData)
+    '            Context.SaveChanges(log)
+    '            gID = objData.ID
+    '            Return True
+    '        Catch ex As Exception
+    '            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+    '            Throw ex
+    '        End Try
+
+    '    End Function
+    '    Public Function ModifyFomulerGroup(ByVal objPeriod As PAFomulerGroup, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+    '        Dim objData As New PA_FORMULER_GROUP With {.ID = objPeriod.ID}
+    '        Try
+    '            Context.PA_FORMULER_GROUP.Attach(objData)
+    '            objData.OBJ_SAL_ID = objPeriod.OBJ_SAL_ID
+    '            objData.NAME_VN = objPeriod.NAME_VN
+    '            objData.NAME_EN = objPeriod.NAME_EN
+    '            objData.START_DATE = objPeriod.START_DATE
+    '            objData.END_DATE = objPeriod.END_DATE
+    '            objData.STATUS = objPeriod.STATUS
+    '            objData.SDESC = objPeriod.SDESC
+    '            objData.IDX = objPeriod.IDX
+    '            Context.SaveChanges(log)
+    '            gID = objData.ID
+    '            Return True
+    '        Catch ex As Exception
+    '            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+    '            Throw ex
+    '        End Try
+    '    End Function
+
+    '    Public Function DeleteFomulerGroup(ByVal lstDelete As PAFomulerGroup) As Boolean
+    '        Dim objData As List(Of PA_FORMULER_GROUP) = (From p In Context.PA_FORMULER_GROUP Where p.ID = lstDelete.ID).ToList
+    '        Try
+    '            For Each item In objData
+    '                Context.PA_FORMULER_GROUP.DeleteObject(item)
+    '            Next
+    '            Return True
+    '        Catch ex As Exception
+    '            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+    '            Throw ex
+    '        End Try
+    '    End Function
+
+    '    Public Function GetListAllSalary(ByVal gID As Decimal) As List(Of PAFomuler)
+    '        Try
+    '            Dim query = From p In Context.PA_LISTSALARIES
+    '                        From g In Context.PA_FORMULER_GROUP.Where(Function(g) g.OBJ_SAL_ID = p.OBJ_SAL_ID)
+    '                        From f In Context.PA_FORMULER.Where(Function(f) f.GROUP_FML = g.ID And f.COL_NAME = p.COL_NAME).DefaultIfEmpty
+    '                        Where g.ID = gID And p.IS_DELETED = 0 And p.IS_SUMARISING = -1 And p.IS_IMPORT = 0 Order By f.INDEX_FML Ascending, f.COL_NAME Ascending
+    '            Dim obj = query.Select(Function(o) New PAFomuler With
+    '                        {.ID = o.p.ID,
+    '                         .COL_NAME = o.p.COL_NAME,
+    '                         .NAME_VN = o.p.NAME_VN,
+    '                         .NAME_EN = o.p.NAME_EN,
+    '                         .COL_INDEX = o.f.INDEX_FML,
+    '                         .FORMULER = o.f.FORMULER
+    '                        }).ToList
+    '            Return obj
+    '        Catch ex As Exception
+    '            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+    '            Throw ex
+    '        End Try
+    '    End Function
+    '    Public Function GetListInputColumn(ByVal gID As Decimal) As DataTable
+    '        Try
+    '            Dim query = From p In Context.PA_LISTSALARIES
+    '                        From g In Context.PA_FORMULER_GROUP.Where(Function(g) g.OBJ_SAL_ID = p.OBJ_SAL_ID)
+    '                        Where p.STATUS = "A" And g.ID = gID Order By p.NAME_VN Ascending, p.COL_INDEX Ascending
+    '            Dim obj = query.Select(Function(f) New PAListSalariesDTO With
+    '                        {.ID = f.p.ID,
+    '                         .COL_INDEX = f.p.COL_INDEX,
+    '                         .COL_NAME = f.p.COL_NAME,
+    '                         .NAME_VN = f.p.NAME_VN & " - (" & f.p.COL_NAME & ")",
+    '                         .NAME_EN = f.p.NAME_EN
+    '                        }).ToList
+    '            Return obj.ToTable()
+    '        Catch ex As Exception
+    '            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+    '            Throw ex
+    '        End Try
+    '    End Function
+    '    Public Function GetListSalColunm(ByVal gID As Decimal) As DataTable
+    '        Try
+    '            Dim query = From p In Context.PA_LISTSAL
+    '                        Where p.STATUS = "A" And p.GROUP_TYPE = gID Order By p.NAME_VN, p.COL_INDEX Ascending
+    '            Dim obj = query.Select(Function(f) New PAListSalDTO With
+    '                        {.ID = f.ID,
+    '                         .COL_INDEX = f.COL_INDEX,
+    '                         .COL_NAME = f.COL_NAME,
+    '                         .NAME_VN = f.NAME_VN,
+    '                         .NAME_EN = f.NAME_EN
+    '                        }).ToList
+    '            Return obj.ToTable()
+    '        Catch ex As Exception
+    '            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+    '            Throw ex
+    '        End Try
+    '    End Function
+    '    Public Function GetListCalculation() As List(Of OT_OTHERLIST_DTO)
+    '        Try
+    '            Dim query = (From p In Context.OT_OTHER_LIST Join t In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals t.ID
+    '                         Where p.ACTFLG = "A" And t.CODE = "CALCULATION" Order By p.CREATED_DATE Descending
+    '                         Select New OT_OTHERLIST_DTO With {
+    '                             .ID = p.ID,
+    '                             .CODE = p.CODE,
+    '                             .NAME_EN = p.NAME_EN,
+    '                             .NAME_VN = p.NAME_VN,
+    '                .TYPE_ID = p.TYPE_ID
+    '                         }).ToList
+    '            Return query
+    '        Catch ex As Exception
+    '            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+    '            Throw ex
+    '        End Try
+    '    End Function
+    '    Public Function CopyFomuler(ByRef F_ID As Decimal,
+    '                                    ByVal log As UserLog, ByRef T_ID As Decimal) As Boolean
+
+
+    '        Try
+    '            Using cls As New DataAccess.NonQueryData
+    '                cls.ExecuteStore("PKG_PA_SETTING.COPY_FORMULER_SALARY",
+    '                                           New With {.OBJ_SAL_FROM = F_ID,
+    '                                                     .OBJ_SAL_TO = T_ID})
+    '            End Using
+
+    '            Return True
+    '        Catch ex As Exception
+    '            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+    '            Throw ex
+    '        End Try
+
+    '    End Function
+    '    Public Function SaveFomuler(ByVal objData As AT_FORMULAR, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+    '        Dim objInsert As AT_FORMULAR
+    '        Dim iCount As Integer = 0
+    '        Try
+    '            objInsert = (From p In Context.AT_FORMULAR Where p. = objData.COL_NAME And p.GROUP_FML = objData.GROUP_FML).SingleOrDefault
+    '            If objInsert Is Nothing Then
+    '                objInsert = New PA_FORMULER
+    '                objInsert.ID = Utilities.GetNextSequence(Context, Context.PA_FORMULER.EntitySet.Name)
+    '                objInsert.COL_NAME = objData.COL_NAME
+    '                objInsert.INDEX_FML = objData.INDEX_FML
+    '                objInsert.GROUP_FML = objData.GROUP_FML
+    '                objInsert.FORMULER = objData.FORMULER
+    '                objInsert.CREATED_BY = objData.CREATED_BY
+    '                objInsert.CREATED_DATE = objData.CREATED_DATE
+    '                objInsert.CREATED_LOG = objData.CREATED_LOG
+    '                objInsert.MODIFIED_BY = objData.MODIFIED_BY
+    '                objInsert.MODIFIED_DATE = objData.MODIFIED_DATE
+    '                objInsert.MODIFIED_LOG = objData.MODIFIED_LOG
+    '                Context.PA_FORMULER.AddObject(objInsert)
+    '            Else
+    '                objInsert.COL_NAME = objData.COL_NAME
+    '                objInsert.INDEX_FML = objData.INDEX_FML
+    '                objInsert.GROUP_FML = objData.GROUP_FML
+    '                objInsert.FORMULER = objData.FORMULER
+    '                objInsert.MODIFIED_BY = objData.MODIFIED_BY
+    '                objInsert.MODIFIED_DATE = objData.MODIFIED_DATE
+    '                objInsert.MODIFIED_LOG = objData.MODIFIED_LOG
+    '            End If
+    '            Context.SaveChanges(log)
+    '            gID = objInsert.ID
+    '            Return True
+    '        Catch ex As Exception
+    '            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+    '            Throw ex
+    '        End Try
+    '    End Function
+    '    Public Function CheckFomuler(ByVal sCol As String, ByVal sFormuler As String, ByVal objID As Decimal) As Boolean
+    '        Try
+    '            Using cls As New DataAccess.NonQueryData
+    '                Dim sql As String = ""
+    '                Dim sql1 As String = ""
+    '                Dim sql2 As String = ""
+    '                sql = "UPDATE TEMP_CALCULATE T SET T." & sCol & " = NVL(" & sFormuler & ",0)"
+    '                sql1 = "UPDATE TEMP_CALCULATE_SUM T SET T." & sCol & " = NVL(" & sFormuler & ",0)"
+    '                sql2 = "UPDATE PA_INCOME_TAX_SUM T SET T." & sCol & " = NVL(" & sFormuler & ",0)"
+    '                sql &= " WHERE 1=0 "
+    '                sql1 &= " WHERE 1=0 "
+    '                sql2 &= " WHERE 1=0 "
+    '                If objID = 11 Then
+    '                    cls.ExecuteSQL(sql2)
+
+    '                Else
+    '                    cls.ExecuteSQL(sql)
+    '                    cls.ExecuteSQL(sql1)
+    '                End If
+
+    '            End Using
+    '            Return True
+    '        Catch ex As Exception
+    '            Return False
+    '        End Try
+    '    End Function
+
+    Public Function ActiveFolmulerGroup(ByVal lstID As Decimal, ByVal log As UserLog, ByVal bActive As Decimal) As Boolean
+        Dim lstData As AT_FORMULAR
+        Try
+            lstData = (From p In Context.AT_FORMULAR Where p.ID = lstID).SingleOrDefault
+            lstData.STATUS = bActive
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+    Public Function GetListInputColumn(ByVal gID As Decimal) As DataSet
+        Try
+            Using cls As New DataAccess.QueryData
+
+                Dim dtData = cls.ExecuteStore("PKG_ATTENDANCE_LIST.GET_SYMBOLS",
+                                           New With {.P_GRP_ID = gID,
+                                                    .P_CUR = cls.OUT_CURSOR,
+                                                    .P_CUR1 = cls.OUT_CURSOR
+                                                   }, False)
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            'Throw ex
+            'Return New System.Data.DataSet()
+        End Try
+        'Try
+        '    Dim query = From p In Context.AT_SYMBOLS
+        '                From g In Context.OT_OTHER_LIST.Where(Function(g) g.ID = p.WGROUPID)
+        '                Where p.STATUS = -1 Order By p.WINDEX Ascending
+        '    Dim obj = query.Select(Function(f) New AT_SymbolsDTO With
+        '                {.ID = f.p.ID,
+        '                 .WINDEX = f.p.WINDEX,
+        '                 .WNAME = f.p.WNAME,
+        '                 .WGROUP_NAME = f.g.NAME_VN,
+        '                 .WCODE = f.p.WCODE,
+        '                 .WGROUPID = f.p.WGROUPID
+        '                }).ToList
+        '    Return obj.ToTable()
+        'Catch ex As Exception
+        '    WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+        '    Throw ex
+        'End Try
+    End Function
+    Public Function GetListCalculation() As List(Of OT_OTHERLIST_DTO)
+        Try
+            Dim query = (From p In Context.OT_OTHER_LIST Join t In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals t.ID
+                         Where p.ACTFLG = "A" And t.CODE = "CALCULATION" Order By p.CREATED_DATE Descending
+                         Select New OT_OTHERLIST_DTO With {
+                             .ID = p.ID,
+                             .CODE = p.CODE,
+                             .NAME_EN = p.NAME_EN,
+                             .NAME_VN = p.NAME_VN,
+                .TYPE_ID = p.TYPE_ID
+                         }).ToList
+            Return query
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+    Public Function PRU_SYNCHFORMULAR(ByVal gID As Decimal, Optional ByVal log As UserLog = Nothing) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_ATTENDANCE_LIST.PRU_SYNCHFORMULAR",
+                                           New With {.P_ID = gID,
+                                                     .P_USERNAME = log.Username.ToUpper,
+                                                    .P_CUR = cls.OUT_CURSOR})
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            'Throw ex
+            Return New DataTable()
+        End Try
+    End Function
+    Public Function CheckFomuler(ByVal sCol As String, ByVal sFormuler As String, ByVal objID As Decimal) As Boolean
+        Try
+            Using cls As New DataAccess.NonQueryData
+                Dim sql As String = ""
+                Dim sql1 As String = ""
+                Dim sql2 As String = ""
+                sql = "UPDATE AT_DATA_ALL T SET T." & sCol & " = NVL(" & sFormuler & ",0)"
+                'sql1 = "UPDATE TEMP_CALCULATE_SUM T SET T." & sCol & " = NVL(" & sFormuler & ",0)"
+                'sql2 = "UPDATE PA_INCOME_TAX_SUM T SET T." & sCol & " = NVL(" & sFormuler & ",0)"
+                sql &= " WHERE 1=0 "
+                'sql1 &= " WHERE 1=0 "
+                'sql2 &= " WHERE 1=0 "
+                cls.ExecuteSQL(sql)
+            End Using
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+    Public Function SaveFomuler(ByVal objData As ATFml_DetailDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim objInsert As AT_FML_DETAIL
+        Dim iCount As Integer = 0
+        Try
+            objInsert = (From p In Context.AT_FML_DETAIL Where p.WCODE = objData.WCODE And p.GFID = objData.GFID).SingleOrDefault
+            If objInsert Is Nothing Then
+                objInsert = New AT_FML_DETAIL
+                objInsert.ID = Utilities.GetNextSequence(Context, Context.AT_FML_DETAIL.EntitySet.Name)
+                objInsert.WCODE = objData.WCODE
+                objInsert.FINDEX = objData.FINDEX
+                objInsert.GFID = objData.GFID
+                objInsert.FORMULAR = objData.FORMULAR
+                objInsert.CREATED_BY = objData.CREATED_BY
+                objInsert.CREATED_DATE = objData.CREATED_DATE
+                objInsert.CREATED_LOG = objData.CREATED_LOG
+                objInsert.MODIFIED_BY = objData.MODIFIED_BY
+                objInsert.MODIFIED_DATE = objData.MODIFIED_DATE
+                objInsert.MODIFIED_LOG = objData.MODIFIED_LOG
+                Context.AT_FML_DETAIL.AddObject(objInsert)
+            Else
+                objInsert.WCODE = objData.WCODE
+                objInsert.FINDEX = objData.FINDEX
+                objInsert.GFID = objData.GFID
+                objInsert.FORMULAR = objData.FORMULAR
+                objInsert.MODIFIED_BY = objData.MODIFIED_BY
+                objInsert.MODIFIED_DATE = objData.MODIFIED_DATE
+                objInsert.MODIFIED_LOG = objData.MODIFIED_LOG
+            End If
+            Context.SaveChanges(log)
+            gID = objInsert.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+#End Region
+
 End Class
