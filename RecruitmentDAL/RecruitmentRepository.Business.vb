@@ -5587,6 +5587,7 @@ Partial Class RecruitmentRepository
                     'End If
                     Dim f As FileStream = System.IO.File.Create(fileDirectory + "\" + _strEmpCode + "." + objEmpCV.EXTEND_IMAGE)
                     f.Write(objEmpCV.IMAGE_BINARY, 0, objEmpCV.IMAGE_BINARY.Length)
+                    f.Close()
                 End If
             Next
             Context.SaveChanges()
