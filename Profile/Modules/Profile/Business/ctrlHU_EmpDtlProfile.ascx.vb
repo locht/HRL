@@ -1042,7 +1042,7 @@ Public Class ctrlHU_EmpDtlProfile
                 Case CommonMessage.STATE_NEW
                     rtIdTitleConcurrent.Visible = False
                     'RadPane4.Visible = False
-                    EmpCode = r.CreateNewEMPLOYEECode()
+                    'EmpCode = r.CreateNewEMPLOYEECode()
 
                     'txtTimeID.Text = EmpCode.EMPLOYEE_CODE
                     'txtEmpCODE.Text = EmpCode.EMPLOYEE_CODE
