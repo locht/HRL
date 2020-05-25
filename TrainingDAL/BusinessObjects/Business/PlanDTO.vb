@@ -70,4 +70,9 @@
     Public UNIT_NAME As String
     Public STATUS_ID As Decimal?
     Public STATUS_NAME As String
+    Public WORK_RELATION As String
+    Public IS_EVALUATE As Decimal?
+    Public LEVEL_PRIOTY As Decimal?
+    Public GR_PROGRAM_ID As Decimal?
+    Public GR_PROGRAM_NAME As String
 End Class

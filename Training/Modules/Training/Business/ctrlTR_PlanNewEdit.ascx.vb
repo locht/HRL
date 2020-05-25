@@ -12,6 +12,7 @@ Public Class ctrlTR_PlanNewEdit
     Protected WithEvents ctrlFindMEmployeePopup As ctrlFindMEmployeePopup
     Public Overrides Property MustAuthorize As Boolean = False
     Protected repHF As HistaffFrameworkRepository
+    Private tsp As New TrainingStoreProcedure()
     Public Class lstOrgDTO
         Public Property ORG_ID As Decimal
         Public Property ORG_NAME As String
@@ -113,17 +114,10 @@ Public Class ctrlTR_PlanNewEdit
 
     Public Overrides Sub BindData()
         Try
-            Dim rep As New TrainingRepository()
-            GetDataCombo()
-            Dim lstCenters As List(Of CenterDTO) = rep.GetCenters()
-            lstCenter.DataSource = lstCenters
 
-            lstCenter.DataValueField = "ID"
-            If (Common.Common.SystemLanguage.Name = "vi-VN") Then
-                lstCenter.DataTextField = "Name_VN"
-            Else
-                lstCenter.DataTextField = "Name_EN"
-            End If
+            GetDataCombo()
+            AddDataToCboCenter()
+
 
             rntxtYear.Value = Date.Now.Year
         Catch ex As Exception
@@ -156,8 +150,33 @@ Public Class ctrlTR_PlanNewEdit
                     txtOrgName.Text = obj.ORG_NAME
                     hidOrgID.Value = obj.ORG_ID.ToString
                     txtRemark.Text = obj.REMARK
+                    'For Each value In obj.Centers
+                    '    Dim item = lstCenter.FindItemByValue(value.ID.ToString)
+                    '    If item IsNot Nothing Then
+                    '        item.Checked = True
+                    '    End If
+                    'Next
+                    txtWork_Relation.Text = obj.WORK_RELATION
+                    If obj.IS_EVALUATE = -1 Then
+                        chkEvaluate.Checked = True
+                    Else
+                        chkEvaluate.Checked = False
+                    End If
+                    If obj.GR_PROGRAM_ID IsNot Nothing Then
+                        cboGrProgram.SelectedValue = obj.GR_PROGRAM_ID
+                    End If
+                    If obj.STATUS_ID IsNot Nothing Then
+                        cboStatus.SelectedValue = obj.STATUS_ID
+                    End If
+                    If obj.LEVEL_PRIOTY IsNot Nothing Then
+                        rnPrioty.Value = obj.LEVEL_PRIOTY
+                    End If
+
+
+                    Dim Centers_ID As String = ""
                     For Each value In obj.Centers
-                        Dim item = lstCenter.FindItemByValue(value.ID.ToString)
+                        Centers_ID &= value.ID.ToString & ","
+                        Dim item = cboCenter.FindItemByValue(value.ID.ToString)
                         If item IsNot Nothing Then
                             item.Checked = True
                         End If
@@ -225,14 +244,17 @@ Public Class ctrlTR_PlanNewEdit
                     cbDec.Checked = obj.PLAN_T12
                     lstcostDT.Clear()
                     lstcostDT = rep.GetPlan_Cost_Detail(obj.ID)
-                    If obj.TR_COURSE_ID IsNot Nothing Then cboCourse.SelectedValue = obj.TR_COURSE_ID
-                    cboCourse_SelectedIndexChanged(Nothing, Nothing)
+                    If obj.TR_COURSE_ID IsNot Nothing Then
+                        cboCourse.SelectedValue = obj.TR_COURSE_ID
+                        cboCourse.Text = obj.TR_COURSE_NAME
+                    End If
+                    ' cboCourse_SelectedIndexChanged(Nothing, Nothing)
                     If obj.ATTACHFILE IsNot Nothing Then
                         lblFilename.Text = "..." & Right(obj.ATTACHFILE, 10)
                         lblFilename.NavigateUrl = System.IO.Path.Combine(Server.MapPath("~/ReportTemplates/Training/Upload"), obj.ATTACHFILE)
                     End If
 
-                    PopulatingListWI()
+                    'PopulatingListWI()
                     repHF = New HistaffFrameworkRepository
                     Dim dtData1 = repHF.ExecuteToDataSet("PKG_TRAINING.PLAN_CHECK_REQUEST", New List(Of Object)({obj.ID})).Tables(0)
 
@@ -385,12 +407,13 @@ Public Class ctrlTR_PlanNewEdit
                             .TARGET_TRAIN = txtTargetTrain.Text
                             .VENUE = txtVenue.Text
                             .REMARK = txtRemark.Text
-                            .Work_inv = (From item In lstWork.Items Select New PlanTitleDTO With {.ID = item.Value}).ToList()
+                            ' .Work_inv = (From item In lstWork.Items Select New PlanTitleDTO With {.ID = item.Value}).ToList()
                             .Titles = (From item In lstPositions.Items Select New PlanTitleDTO With {.ID = item.Value}).ToList()
                             .Units = (From item In lstPartDepts.Items Select New PlanOrgDTO With {.ID = item.Value}).ToList()
-                            .Centers = (From item In lstCenter.CheckedItems Select New PlanCenterDTO With {.ID = item.Value}).ToList()
-                            If lstCenter.CheckedItems.Count > 0 Then
-                                .Centers_NAME = lstCenter.CheckedItems.Select(Function(x) x.Text).Aggregate(Function(x, y) x & ", " & y)
+                            .Centers = (From item In cboCenter.CheckedItems Select New PlanCenterDTO With {.ID = item.Value}).ToList()
+                            
+                            If cboCenter.CheckedItems.Count > 0 Then
+                                .Centers_NAME = cboCenter.CheckedItems.Select(Function(x) x.Text).Aggregate(Function(x, y) x & ", " & y)
                             End If
                             If lstPartDepts.Items.Count > 0 Then
                                 .Departments_NAME = lstPartDepts.Items.Select(Function(x) x.Text).Aggregate(Function(x, y) x & ", " & y)
@@ -398,11 +421,23 @@ Public Class ctrlTR_PlanNewEdit
                             If lstPositions.Items.Count > 0 Then
                                 .Titles_NAME = lstPositions.Items.Select(Function(x) x.Text).Aggregate(Function(x, y) x & ", " & y)
                             End If
-                            If lstWork.Items.Count > 0 Then
-                                .Work_inv_NAME = lstWork.Items.Select(Function(x) x.Text).Aggregate(Function(x, y) x & ", " & y)
-                            End If
+                            'If lstWork.Items.Count > 0 Then
+                            '    .Work_inv_NAME = lstWork.Items.Select(Function(x) x.Text).Aggregate(Function(x, y) x & ", " & y)
+                            'End If
                             .ATTACHFILE = lblFilename.Text
                             .Plan_Emp = lstEmployee
+                            If cboStatus.SelectedValue <> "" Then
+                                .STATUS_ID = cboStatus.SelectedValue
+                            End If
+                            .IS_EVALUATE = chkEvaluate.Checked
+                            If IsNumeric(rnPrioty.Value) Then
+                                .LEVEL_PRIOTY = rnPrioty.Value
+                            End If
+                            .WORK_RELATION = txtWork_Relation.Text
+                            If cboGrProgram.SelectedValue <> "" Then
+                                .GR_PROGRAM_ID = cboGrProgram.SelectedValue
+                            End If
+
                         End With
 
                         Select Case CurrentState
@@ -497,21 +532,21 @@ Public Class ctrlTR_PlanNewEdit
     '    Next
     'End Sub
 
-    Private Sub cboCourse_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboCourse.SelectedIndexChanged
-        If cboCourse.SelectedValue <> "" Then
-            Using rep As New TrainingRepository
-                Try
-                    Dim course = rep.GetEntryAndFormByCourseID(cboCourse.SelectedValue, Common.Common.SystemLanguage.Name)
-                    'txtHinhThuc.Text = course.TR_TRAIN_FORM_NAME
-                    'txtKhoanMuc.Text = course.TR_TRAIN_ENTRIES_NAME
-                    txtNhomCT.Text = course.TR_PROGRAM_GROUP_NAME
-                    txtLinhvuc.Text = course.TR_TRAIN_FIELD_NAME
-                Catch ex As Exception
-                    DisplayException(Me.ViewName, Me.ID, ex)
-                End Try
-            End Using
-        End If
-    End Sub
+    'Private Sub cboCourse_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboCourse.SelectedIndexChanged
+    '    If cboCourse.SelectedValue <> "" Then
+    '        Using rep As New TrainingRepository
+    '            Try
+    '                Dim course = rep.GetEntryAndFormByCourseID(cboCourse.SelectedValue, Common.Common.SystemLanguage.Name)
+    '                'txtHinhThuc.Text = course.TR_TRAIN_FORM_NAME
+    '                'txtKhoanMuc.Text = course.TR_TRAIN_ENTRIES_NAME
+    '                txtNhomCT.Text = course.TR_PROGRAM_GROUP_NAME
+    '                txtLinhvuc.Text = course.TR_TRAIN_FIELD_NAME
+    '            Catch ex As Exception
+    '                DisplayException(Me.ViewName, Me.ID, ex)
+    '            End Try
+    '        End Using
+    '    End If
+    'End Sub
 
 #End Region
 
@@ -566,13 +601,21 @@ Public Class ctrlTR_PlanNewEdit
         Try
             Dim dtData As DataTable
             Using rep As New TrainingRepository
+
+                dtData = tsp.ProgramGroupGetList()
+                dtData = (From P In dtData Where P("ACTFLG_ID") = -1).CopyToDataTable
+                FillRadCombobox(cboGrProgram, dtData, "Name", "ID")
                 dtData = rep.GetOtherList("TR_DURATION_UNIT", True)
                 FillRadCombobox(cboDurationType, dtData, "NAME", "ID")
+                cboDurationType.SelectedValue = 4005
+                dtData = rep.GetOtherList("TR_REQUEST_STATUS", True)
+                FillRadCombobox(cboStatus, dtData, "NAME", "ID")
+                cboStatus.SelectedValue = 4000
                 dtData = rep.GetOtherList("TR_CURRENCY", True)
                 ' FillRadCombobox(cboCurrency, dtData, "NAME", "ID")
-                Dim lst As List(Of CourseDTO)
-                lst = rep.GetCourseList()
-                FillRadCombobox(cboCourse, lst, "NAME", "ID")
+                'Dim lst As List(Of CourseDTO)
+                'lst = rep.GetCourseList()
+                'FillRadCombobox(cboCourse, lst, "NAME", "ID")
                 repHF = New HistaffFrameworkRepository
                 dtData = repHF.ExecuteToDataSet("PKG_TRAINING.HINH_THUC_DAO_TAO", New List(Of Object)({})).Tables(0)
                 FillRadCombobox(cboHinhThuc, dtData, "NAME", "ID")
@@ -646,10 +689,10 @@ Public Class ctrlTR_PlanNewEdit
     Private Sub PopulatingListWI()
         Dim lsttitle = (From item In lstPositions.Items Select (Decimal.Parse(item.Value))).ToList()
         Using rep As New TrainingBusinessClient
-            lstWork.Items.Clear()
+            '  lstWork.Items.Clear()
             Dim titles = rep.GetWIByTitle(lsttitle, Common.Common.SystemLanguage.Name)
             For Each item In titles
-                lstWork.Items.Add(New RadListBoxItem(item.NAME, item.ID))
+                '    lstWork.Items.Add(New RadListBoxItem(item.NAME, item.ID))
             Next
         End Using
     End Sub
@@ -669,7 +712,7 @@ Public Class ctrlTR_PlanNewEdit
             Dim editItem As GridDataItem = DirectCast(e.Item, GridDataItem)
             Dim combo As RadComboBox = DirectCast(editItem.FindControl("RadMoneyU"), RadComboBox)
             FillRadCombobox(combo, dt2, "NAME", "ID")
-            combo.SelectedValue = 2
+            combo.SelectedValue = 1
         End If
         'Next
         If (TypeOf e.Item Is GridDataItem) Then
@@ -753,7 +796,7 @@ Public Class ctrlTR_PlanNewEdit
             Next
             rntxtStudents.Value = lstEmployee.Count
             'PopulatingListTitle()
-            PopulatingListWI()
+            '   PopulatingListWI()
             'Dim lstIds = e.
             'If lstIds IsNot Nothing AndAlso lstIds.Count > 0 AndAlso e.SelectedTexts.Count = e.SelectedValues.Count Then
             'Me.ParticipcatedDetpIds = e.SelectedValues
@@ -844,6 +887,49 @@ Public Class ctrlTR_PlanNewEdit
             End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+    Private Sub cboGrProgram_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboGrProgram.SelectedIndexChanged
+        Dim dtData As New DataTable
+        Try
+            If cboGrProgram.SelectedValue <> "" Then
+                Using rep As New TrainingRepository
+                    Dim lst As List(Of CourseDTO)
+                    lst = rep.GetCourseList()
+                    lst = (From p In lst Where p.TR_PROGRAM_GROUP_ID = cboGrProgram.SelectedValue
+                           Select New CourseDTO() With {.ID = p.ID,
+                                                       .NAME = p.NAME,
+                                                       .TR_PROGRAM_GROUP_ID = p.TR_PROGRAM_GROUP_ID}).ToList()
+                    FillRadCombobox(cboCourse, lst, "NAME", "ID")
+                End Using
+            Else
+                ClearControlValue(cboCourse)
+            End If
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub AddDataToCboCenter()
+        Dim rep As New TrainingRepository()
+        Try
+            Dim cboCenterList = rep.GetCenters()
+            For Each i In cboCenterList
+                Dim item As New RadComboBoxItem()
+                If (Common.Common.SystemLanguage.Name = "vi-VN") Then
+                    item.Text = i.NAME_VN
+                    item.Value = i.ID
+                    cboCenter.Items.Add(item)
+                Else
+                    item.Text = i.NAME_EN
+                    item.Value = i.ID
+                    cboCenter.Items.Add(item)
+                End If
+            Next
+        Catch ex As Exception
+
         End Try
     End Sub
 End Class

@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("5c0e4441-5833-49fb-a0f7-3b741658d9c9")>
+<Assembly: EdmSchemaAttribute("b7358f5b-5396-4ea1-8cfc-e255f553d12b")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("TrainingModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
 <Assembly: EdmRelationshipAttribute("TrainingModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
@@ -17370,6 +17370,106 @@ Public Partial Class TR_PLAN
     End Sub
 
     Private Partial Sub OnCODEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORK_RELATION() As Global.System.String
+        Get
+            Return _WORK_RELATION
+        End Get
+        Set
+            OnWORK_RELATIONChanging(value)
+            ReportPropertyChanging("WORK_RELATION")
+            _WORK_RELATION = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("WORK_RELATION")
+            OnWORK_RELATIONChanged()
+        End Set
+    End Property
+
+    Private _WORK_RELATION As Global.System.String
+    Private Partial Sub OnWORK_RELATIONChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnWORK_RELATIONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_EVALUATE() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_EVALUATE
+        End Get
+        Set
+            OnIS_EVALUATEChanging(value)
+            ReportPropertyChanging("IS_EVALUATE")
+            _IS_EVALUATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_EVALUATE")
+            OnIS_EVALUATEChanged()
+        End Set
+    End Property
+
+    Private _IS_EVALUATE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_EVALUATEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_EVALUATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property LEVEL_PRIOTY() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _LEVEL_PRIOTY
+        End Get
+        Set
+            OnLEVEL_PRIOTYChanging(value)
+            ReportPropertyChanging("LEVEL_PRIOTY")
+            _LEVEL_PRIOTY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("LEVEL_PRIOTY")
+            OnLEVEL_PRIOTYChanged()
+        End Set
+    End Property
+
+    Private _LEVEL_PRIOTY As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnLEVEL_PRIOTYChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnLEVEL_PRIOTYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property GR_PROGRAM_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _GR_PROGRAM_ID
+        End Get
+        Set
+            OnGR_PROGRAM_IDChanging(value)
+            ReportPropertyChanging("GR_PROGRAM_ID")
+            _GR_PROGRAM_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("GR_PROGRAM_ID")
+            OnGR_PROGRAM_IDChanged()
+        End Set
+    End Property
+
+    Private _GR_PROGRAM_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnGR_PROGRAM_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnGR_PROGRAM_IDChanged()
     End Sub
 
     #End Region

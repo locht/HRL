@@ -484,7 +484,19 @@ Namespace TrainingBusiness
         Private Departments_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GR_PROGRAM_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GR_PROGRAM_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_EVALUATEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LEVEL_PRIOTYField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_BYField As String
@@ -629,6 +641,9 @@ Namespace TrainingBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private VENUEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORK_RELATIONField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private Work_invField As System.Collections.Generic.List(Of TrainingBusiness.PlanTitleDTO)
@@ -897,6 +912,32 @@ Namespace TrainingBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GR_PROGRAM_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.GR_PROGRAM_IDField
+            End Get
+            Set
+                If (Me.GR_PROGRAM_IDField.Equals(value) <> true) Then
+                    Me.GR_PROGRAM_IDField = value
+                    Me.RaisePropertyChanged("GR_PROGRAM_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GR_PROGRAM_NAME() As String
+            Get
+                Return Me.GR_PROGRAM_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.GR_PROGRAM_NAMEField, value) <> true) Then
+                    Me.GR_PROGRAM_NAMEField = value
+                    Me.RaisePropertyChanged("GR_PROGRAM_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property ID() As Decimal
             Get
                 Return Me.IDField
@@ -905,6 +946,32 @@ Namespace TrainingBusiness
                 If (Me.IDField.Equals(value) <> true) Then
                     Me.IDField = value
                     Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_EVALUATE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.IS_EVALUATEField
+            End Get
+            Set
+                If (Me.IS_EVALUATEField.Equals(value) <> true) Then
+                    Me.IS_EVALUATEField = value
+                    Me.RaisePropertyChanged("IS_EVALUATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LEVEL_PRIOTY() As System.Nullable(Of Decimal)
+            Get
+                Return Me.LEVEL_PRIOTYField
+            End Get
+            Set
+                If (Me.LEVEL_PRIOTYField.Equals(value) <> true) Then
+                    Me.LEVEL_PRIOTYField = value
+                    Me.RaisePropertyChanged("LEVEL_PRIOTY")
                 End If
             End Set
         End Property
@@ -1529,6 +1596,19 @@ Namespace TrainingBusiness
                 If (Object.ReferenceEquals(Me.VENUEField, value) <> true) Then
                     Me.VENUEField = value
                     Me.RaisePropertyChanged("VENUE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORK_RELATION() As String
+            Get
+                Return Me.WORK_RELATIONField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.WORK_RELATIONField, value) <> true) Then
+                    Me.WORK_RELATIONField = value
+                    Me.RaisePropertyChanged("WORK_RELATION")
                 End If
             End Set
         End Property

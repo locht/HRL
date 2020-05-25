@@ -534,6 +534,10 @@
             <Property Name="WORKS" Type="nclob" Nullable="true" />
             <Property Name="STATUS_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="CODE" Type="nclob" Nullable="true" />
+            <Property Name="WORK_RELATION" Type="nclob" Nullable="true" />
+            <Property Name="IS_EVALUATE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="LEVEL_PRIOTY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="GR_PROGRAM_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_DISTRICT">
             <Key>
@@ -1903,6 +1907,10 @@
           <Property Type="String" Name="WORKS" />
           <Property Type="Decimal" Name="STATUS_ID" />
           <Property Type="String" Name="CODE" />
+          <Property Type="String" Name="WORK_RELATION" />
+          <Property Type="Decimal" Name="IS_EVALUATE" />
+          <Property Type="Decimal" Name="LEVEL_PRIOTY" />
+          <Property Type="Decimal" Name="GR_PROGRAM_ID" />
         </EntityType>
         <EntityType Name="HU_DISTRICT">
           <Key>
@@ -3197,6 +3205,10 @@
                     <ScalarProperty Name="WORKS" ColumnName="WORKS" />
                     <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
                     <ScalarProperty Name="CODE" ColumnName="CODE" />
+                    <ScalarProperty Name="WORK_RELATION" ColumnName="WORK_RELATION" />
+                    <ScalarProperty Name="IS_EVALUATE" ColumnName="IS_EVALUATE" />
+                    <ScalarProperty Name="LEVEL_PRIOTY" ColumnName="LEVEL_PRIOTY" />
+                    <ScalarProperty Name="GR_PROGRAM_ID" ColumnName="GR_PROGRAM_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -3965,7 +3977,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="TrainingContext" ZoomLevel="81" >
+      <Diagram Name="TrainingContext" ZoomLevel="83" >
         <EntityTypeShape EntityType="TrainingModel.TR_COST_CENTER" Width="1.5" PointX="5.75" PointY="0.75" Height="2.9417936197916665" />
         <EntityTypeShape EntityType="TrainingModel.SE_CHOSEN_ORG" Width="1.5" PointX="2.75" PointY="0.75" Height="1.4033821614583246" />
         <EntityTypeShape EntityType="TrainingModel.TR_CENTER" Width="1.5" PointX="8.75" PointY="6.75" Height="5.4417122395833335" />
@@ -3990,7 +4002,7 @@
         <EntityTypeShape EntityType="TrainingModel.OT_OTHER_LIST_GROUP" Width="1.5" PointX="16.75" PointY="10.75" Height="2.7494921875000102" />
         <EntityTypeShape EntityType="TrainingModel.OT_OTHER_LIST_TYPE" Width="1.5" PointX="10.75" PointY="16.75" Height="3.5186979166666674" />
         <EntityTypeShape EntityType="TrainingModel.TR_PLAN_CENTER" Width="1.5" PointX="16.75" PointY="14.75" Height="1.5956835937500102" />
-        <EntityTypeShape EntityType="TrainingModel.TR_PLAN" Width="1.5" PointX="16.75" PointY="17.75" Height="10.633850911458332" />
+        <EntityTypeShape EntityType="TrainingModel.TR_PLAN" Width="1.5" PointX="16.75" PointY="17.75" Height="11.403056640625003" />
         <EntityTypeShape EntityType="TrainingModel.HU_DISTRICT" Width="1.5" PointX="13.25" PointY="1.125" Height="3.903300781249996" />
         <EntityTypeShape EntityType="TrainingModel.HU_NATION" Width="1.5" PointX="8.75" PointY="1.25" Height="3.7109993489583317" />
         <EntityTypeShape EntityType="TrainingModel.HU_PROVINCE" Width="1.5" PointX="11" PointY="1" Height="4.0956022135416674" />

@@ -19,7 +19,8 @@ Partial Class TrainingRepository
             lst = (From p In Context.TR_COURSE Where p.ACTFLG = -1
                     Select New CourseDTO() With {
                             .ID = p.ID,
-                            .NAME = p.NAME
+                            .NAME = p.NAME,
+                            .TR_PROGRAM_GROUP_ID = p.TR_PROGRAM_GROUP
                     }).ToList()
             Return lst
         Catch ex As Exception
@@ -303,6 +304,7 @@ Partial Class TrainingRepository
         Try
             Dim objPlan As PlanDTO = (From plan In Context.TR_PLAN
                                       From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = plan.ORG_ID)
+                                      From course In Context.TR_COURSE.Where(Function(f) f.ID = plan.TR_COURSE_ID).DefaultIfEmpty
                                       Where plan.ID = Id
                                       Select New PlanDTO With {.ID = plan.ID,
                                                                .YEAR = plan.YEAR,
@@ -335,12 +337,19 @@ Partial Class TrainingRepository
                                                                .TARGET_TRAIN = plan.TARGET_TRAIN,
                                                                .TEACHER_NUMBER = plan.TEACHER_NUMBER,
                                                                .TR_COURSE_ID = plan.TR_COURSE_ID,
+                                                               .TR_COURSE_NAME = course.NAME,
                                                                .TR_CURRENCY_ID = plan.TR_CURRENCY_ID,
                                                                .TR_DURATION_UNIT_ID = plan.TR_DURATION_UNIT_ID,
                                                                .TR_TRAIN_FORM_ID = plan.TRAIN_FORM_ID,
                                                                .PROPERTIES_NEED_ID = plan.PROPERTIES_NEED_ID,
-                                                                    .UNIT_ID = plan.UNIT_ID,
+                                                               .UNIT_ID = plan.UNIT_ID,
                                                                .ATTACHFILE = plan.ATTACHFILE,
+                                                               .WORK_RELATION = plan.WORK_RELATION,
+                                                               .CODE = plan.CODE,
+                                                               .IS_EVALUATE = plan.IS_EVALUATE,
+                                                               .STATUS_ID = plan.STATUS_ID,
+                                                               .LEVEL_PRIOTY = plan.LEVEL_PRIOTY,
+                                                               .GR_PROGRAM_ID = plan.GR_PROGRAM_ID,
                                                                .VENUE = plan.VENUE}).FirstOrDefault
 
             objPlan.Units = (From p In Context.TR_PLAN_UNIT
@@ -420,6 +429,12 @@ Partial Class TrainingRepository
                 .COST_OF_STUDENT_USD = plan.COST_OF_STUDENT_USD
                 .TRAIN_FORM_ID = plan.TR_TRAIN_FORM_ID
                 .WORKS = plan.Work_inv_NAME
+                .STATUS_ID = plan.STATUS_ID
+                .CODE = plan.CODE
+                .IS_EVALUATE = plan.IS_EVALUATE
+                .LEVEL_PRIOTY = plan.LEVEL_PRIOTY
+                .WORK_RELATION = plan.WORK_RELATION
+                .GR_PROGRAM_ID = plan.GR_PROGRAM_ID
             End With
             gID = objPlan.ID
             Context.TR_PLAN.AddObject(objPlan)
@@ -514,6 +529,12 @@ Partial Class TrainingRepository
                 .COST_OF_STUDENT_USD = plan.COST_OF_STUDENT_USD
                 .TRAIN_FORM_ID = plan.TR_TRAIN_FORM_ID
                 .WORKS = plan.Work_inv_NAME
+                .STATUS_ID = plan.STATUS_ID
+                .CODE = plan.CODE
+                .IS_EVALUATE = plan.IS_EVALUATE
+                .LEVEL_PRIOTY = plan.LEVEL_PRIOTY
+                .WORK_RELATION = plan.WORK_RELATION
+                .GR_PROGRAM_ID = plan.GR_PROGRAM_ID
             End With
             Dim oldCostDetail = From i In Context.TR_PLAN_COST_DETAIL Where i.PLAN_ID = plan.ID
             For Each unit In oldCostDetail

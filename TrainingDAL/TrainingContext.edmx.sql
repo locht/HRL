@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 05/25/2020 9:45:01 AM
+-- Date Created: 05/25/2020 5:18:32 PM
 -- Generated from EDMX file: D:\MyProject2020\ACV_NEW\acv_19\TrainingDAL\TrainingContext.edmx
 -- --------------------------------------------------
 
@@ -559,7 +559,11 @@ CREATE TABLE "dbo"."TR_PLAN" (
    "COST_OF_STUDENT_USD" NUMBER(38,0) NULL,
    "WORKS" NCLOB NULL,
    "STATUS_ID" NUMBER(38,0) NULL,
-   "CODE" NCLOB NULL
+   "CODE" NCLOB NULL,
+   "WORK_RELATION" NCLOB NULL,
+   "IS_EVALUATE" NUMBER(38,0) NULL,
+   "LEVEL_PRIOTY" NUMBER(38,0) NULL,
+   "GR_PROGRAM_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_DISTRICT'
