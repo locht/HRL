@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("ae123ff6-d5e7-4b89-b65b-dbd61dced887")>
+<Assembly: EdmSchemaAttribute("f8a9c5f5-ec61-4092-9a8f-bcd68a35b95d")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("CommonModel", "SE_GRP_SE_USR", "SE_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_GROUP), "SE_USER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_USER))>
 <Assembly: EdmRelationshipAttribute("CommonModel", "FK_SM_SF", "SE_MODULE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(SE_MODULE), "SE_FUNCTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_FUNCTION), True)>

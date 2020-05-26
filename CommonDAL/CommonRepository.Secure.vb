@@ -2435,8 +2435,11 @@ Partial Public Class CommonRepository
             'From k In Context.ORG_TEMP_TABLE.Where(Function(f) p.ORG_ID = f.ORG_ID And f.REQUEST_ID = request_id)
 
             If _param.IS_PORTAL_AT_SHIFT IsNot Nothing Or _param.IS_PORTAL_AT_SHIFT <> 0 Then
+                Dim job_pos = (From p In Context.HU_EMPLOYEE Where p.ID = _param.CURRENT_EMP).FirstOrDefault.JOB_POSITION
+                job_pos = If(IsDBNull(job_pos), 0, job_pos)
                 query = From p In Context.HU_EMPLOYEE
                         From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = p.ID).DefaultIfEmpty
+                        From jp In Context.HU_JOB_POSITION.Where(Function(f) f.ID = p.JOB_POSITION).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
                         From gender In Context.OT_OTHER_LIST.Where(Function(f) f.ID = cv.GENDER And f.TYPE_ID = 34).DefaultIfEmpty
