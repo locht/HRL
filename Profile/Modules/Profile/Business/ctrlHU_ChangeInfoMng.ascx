@@ -346,11 +346,11 @@
         var space = 0;
         var oldSize = 72;
 
-        function pageLoad(sender, args) {
-            $(document).ready(function () {
-                ResizeSplitter();
-            });
-        }
+//        function pageLoad(sender, args) {
+//            $(document).ready(function () {
+//                ResizeSplitter();
+//            });
+//        }
 
         // Hàm Resize lại Splitter khi nhấn nút SAVE có validate
         function ResizeSplitter() {
