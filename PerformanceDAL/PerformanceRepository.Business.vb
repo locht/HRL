@@ -898,6 +898,7 @@ Partial Class PerformanceRepository
                         Select New KPI_EVALUATEDTO With {
                              .EMPLOYEE_CODE = p.EMPLOYEE_CODE,
                              .ID = p.ID,
+                             .JOIN_DATE = p.JOIN_DATE,
                              .FULLNAME = p.FULLNAME_VN,
                              .ORG_NAME = org.NAME_VN,
                              .TITLE_NAME = title.NAME_VN,
@@ -927,6 +928,7 @@ Partial Class PerformanceRepository
                         Select New KPI_EVALUATEDTO With {
                              .EMPLOYEE_CODE = p.EMPLOYEE_CODE,
                              .ID = p.ID,
+                             .JOIN_DATE = p.JOIN_DATE,
                              .FULLNAME = p.FULLNAME_VN,
                              .ORG_NAME = org.NAME_VN,
                              .TITLE_NAME = title.NAME_VN,
