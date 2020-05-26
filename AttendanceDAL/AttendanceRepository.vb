@@ -8,6 +8,7 @@ Imports Framework.Data.System.Linq.Dynamic
 Imports Framework.Data.SystemConfig
 Imports System.Configuration
 Imports System.Reflection
+Imports System.Text
 
 Partial Public Class AttendanceRepository
     Implements IDisposable
@@ -658,6 +659,163 @@ Partial Public Class AttendanceRepository
             End Using
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+#End Region
+
+#Region "PORTAL REGISTRATION SHIFT"
+
+    Public Function GetAtRegShift(ByVal _filter As AtPortalRegistrationShiftDTO,
+                                     ByRef Total As Integer,
+                                     ByVal PageIndex As Integer,
+                                     ByVal PageSize As Integer,
+                                     Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                     Optional ByVal log As UserLog = Nothing) As List(Of AtPortalRegistrationShiftDTO)
+        Try
+            Dim query = From p In Context.AT_PORTAL_REG_SHIFT
+                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
+                        From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
+                        From title In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
+                        From shift In Context.AT_SHIFT.Where(Function(f) f.ID = p.SHIFT_ID).DefaultIfEmpty
+                        From cre_by In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.CREATED_BY).DefaultIfEmpty
+                        Where p.CREATED_BY = _filter.CREATED_BY
+
+            If _filter.EMPLOYEE_CODE IsNot Nothing Then
+                query = query.Where(Function(f) f.e.EMPLOYEE_CODE.Contains(_filter.EMPLOYEE_CODE))
+            End If
+            If _filter.EMPLOYEE_NAME IsNot Nothing Then
+                query = query.Where(Function(f) f.e.FULLNAME_VN.ToUpper.Contains(_filter.EMPLOYEE_NAME))
+            End If
+            If _filter.TITLE_NAME IsNot Nothing Then
+                query = query.Where(Function(f) f.title.NAME_VN.ToUpper.Contains(_filter.TITLE_NAME))
+            End If
+            If _filter.ORG_NAME IsNot Nothing Then
+                query = query.Where(Function(f) f.org.NAME_VN.ToUpper.Contains(_filter.ORG_NAME))
+            End If
+            If IsDate(_filter.DATE_FROM) Then
+                query = query.Where(Function(f) f.p.DATE_FROM = _filter.DATE_FROM)
+            End If
+            If IsDate(_filter.DATE_TO) Then
+                query = query.Where(Function(f) f.p.DATE_TO = _filter.DATE_TO)
+            End If
+            If _filter.REASON IsNot Nothing Then
+                query = query.Where(Function(f) f.p.REASON.ToUpper.Contains(_filter.REASON))
+            End If
+            If IsDate(_filter.CREATED_DATE) Then
+                query = query.Where(Function(f) f.p.CREATED_DATE = _filter.CREATED_DATE)
+            End If
+            If IsDate(_filter.DATE_FROM_SEARCH) Then
+                query = query.Where(Function(f) f.p.DATE_TO >= _filter.DATE_FROM_SEARCH)
+            End If
+            If IsDate(_filter.DATE_TO_SEARCH) Then
+                query = query.Where(Function(f) f.p.DATE_TO <= _filter.DATE_TO_SEARCH)
+            End If
+
+            '.SHIFT_CODE = String.Concat(f.shift.CODE, " ", f.shift.HOURS_START.ToString("HH:mm tt") & " - " & f.shift.HOURS_STOP.ToString("HH:mm tt")),
+            Dim regShifts = query.Select(Function(f) New AtPortalRegistrationShiftDTO With {
+                                            .ID = f.p.ID,
+                                            .EMPLOYEE_ID = f.p.EMPLOYEE_ID,
+                                            .EMPLOYEE_CODE = f.e.EMPLOYEE_CODE,
+                                            .EMPLOYEE_NAME = f.e.FULLNAME_VN,
+                                            .TITLE_NAME = f.title.NAME_VN,
+                                            .ORG_NAME = f.org.NAME_VN,
+                                            .SHIFT_CODE = f.shift.CODE,
+                                            .SHIFT_ID = f.p.SHIFT_ID,
+                                            .DATE_FROM = f.p.DATE_FROM,
+                                            .DATE_TO = f.p.DATE_TO,
+                                            .REASON = f.p.REASON,
+                                            .CREATED_BY = f.p.CREATED_BY,
+                                            .CREATED_BY_NAME = f.e.FULLNAME_VN,
+                                            .CREATED_DATE = f.p.CREATED_DATE})
+            If _filter.SHIFT_CODE IsNot Nothing Then
+                regShifts = regShifts.Where(Function(f) f.SHIFT_CODE.ToUpper.Contains(_filter.SHIFT_CODE))
+            End If
+            regShifts = regShifts.OrderBy(Sorts)
+            Total = regShifts.Count
+            regShifts = regShifts.Skip(PageIndex * PageSize).Take(PageSize)
+            Return regShifts.ToList
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function GetRegShiftByID(ByVal _id As Decimal) As AtPortalRegistrationShiftDTO
+        Try
+            Dim query = (From p In Context.AT_PORTAL_REG_SHIFT
+                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
+                        From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
+                        From title In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
+                        From shift In Context.AT_SHIFT.Where(Function(f) f.ID = p.SHIFT_ID).DefaultIfEmpty
+                        From cre_by In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.CREATED_BY).DefaultIfEmpty
+                        Select New AtPortalRegistrationShiftDTO With {
+                                .ID = p.ID,
+                                .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                                .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                                .EMPLOYEE_NAME = e.FULLNAME_VN,
+                                .SHIFT_CODE = shift.CODE,
+                                .SHIFT_ID = p.SHIFT_ID,
+                                .SHIFT_NAME = shift.NAME_VN,
+                                .TITLE_NAME = title.NAME_VN,
+                                .ORG_NAME = org.NAME_VN,
+                                .CREATED_DATE = p.CREATED_DATE,
+                                .CREATED_BY = p.CREATED_BY,
+                                .REASON = p.REASON,
+                                .DATE_FROM = p.DATE_FROM,
+                                .DATE_TO = p.DATE_TO}).FirstOrDefault
+            Dim employees = (From e In Context.HU_EMPLOYEE
+                            From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
+                            From title In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
+                            Where (e.ID = query.EMPLOYEE_ID)
+                            Select New Common.CommonBusiness.EmployeeDTO With {
+                                .ID = e.ID,
+                                .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                                .FULLNAME_VN = e.FULLNAME_VN,
+                                .ORG_NAME = org.NAME_VN,
+                                .ORG_ID = org.ID,
+                                .TITLE_NAME_VN = title.NAME_VN}).ToList()
+            query.EMPLOYEE = employees
+            Return query
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function AddAtShift(ByVal objAtShift As AtPortalRegistrationShiftDTO) As Boolean
+        Try
+            If objAtShift.ID = 0 Then
+                Dim _atShift As New AT_PORTAL_REG_SHIFT
+                _atShift.ID = Utilities.GetNextSequence(Context, Context.AT_PORTAL_REG_SHIFT.EntitySet.Name)
+                _atShift.EMPLOYEE_ID = objAtShift.EMPLOYEE_ID
+                _atShift.SHIFT_ID = objAtShift.SHIFT_ID
+                _atShift.REASON = objAtShift.REASON
+                _atShift.DATE_FROM = objAtShift.DATE_FROM
+                _atShift.DATE_TO = objAtShift.DATE_TO
+                _atShift.CREATED_BY = objAtShift.CREATED_BY
+                _atShift.CREATED_DATE = objAtShift.CREATED_DATE
+                Context.AT_PORTAL_REG_SHIFT.AddObject(_atShift)
+                'Else
+                '    Dim _atShift = (From p In Context.AT_PORTAL_REG_SHIFT Where p.ID = objAtShift.ID).FirstOrDefault
+                '    _atShift.EMPLOYEE_ID = 
+            End If
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function DeleteAtShift(ByVal _lst_id As List(Of Decimal)) As Boolean
+        Try
+            Dim lstDelete As List(Of AT_PORTAL_REG_SHIFT)
+            lstDelete = (From p In Context.AT_PORTAL_REG_SHIFT Where _lst_id.Contains(p.ID))
+            For Each item In lstDelete
+                Context.AT_PORTAL_REG_SHIFT.DeleteObject(item)
+            Next
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
             Throw ex
         End Try
     End Function

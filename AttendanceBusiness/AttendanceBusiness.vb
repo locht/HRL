@@ -8,7 +8,7 @@ Imports LinqKit
 Namespace AttendanceBusiness.ServiceImplementations
     Partial Public Class AttendanceBusiness
         Implements IAttendanceBusiness
-       
+
 #Region "Get data combobox"
 
         Public Function GetOtherList(ByVal sType As String, ByVal sLang As String, ByVal isBlank As Boolean) As DataTable _
@@ -115,5 +115,7 @@ Namespace AttendanceBusiness.ServiceImplementations
             End Using
         End Function
 #End Region
+
+
     End Class
 End Namespace

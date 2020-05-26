@@ -1297,6 +1297,25 @@ Namespace AttendanceBusiness.ServiceContracts
 
         <OperationContract()>
         Function INPORT_NB_PREV(ByVal P_DOCXML As String, ByVal log As UserLog, ByVal P_YEAR As Integer) As Boolean
+
+#Region "PORTAL REGISTRATION SHIFT"
+
+        <OperationContract()>
+        Function GetAtRegShift(ByVal _filter As AtPortalRegistrationShiftDTO,
+                                     ByRef Total As Integer,
+                                     ByVal PageIndex As Integer,
+                                     ByVal PageSize As Integer,
+                                     Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                     Optional ByVal log As UserLog = Nothing) As List(Of AtPortalRegistrationShiftDTO)
+
+        <OperationContract()>
+        Function AddAtShift(ByVal objAtShift As AtPortalRegistrationShiftDTO) As Boolean
+        <OperationContract()>
+        Function DeleteAtShift(ByVal _lst_id As List(Of Decimal)) As Boolean
+
+        <OperationContract()>
+        Function GetRegShiftByID(ByVal _id As Decimal) As AtPortalRegistrationShiftDTO
+#End Region
 #Region "Setting - Object Employee and Compensatory"
         <OperationContract()>
         Function GetObjEmpCompe(ByVal _filter As AT_ObjectEmpployeeCompensatoryDTO,

@@ -43102,4 +43102,36 @@ Xin cám ơn!
       <string>Trạng thái phê duyệt</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLPORTALEMPFILEMNG</string>
+    </Key>
+    <Value>
+      <string>Quản lý file</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLFOLDERSNEWEDIT</string>
+    </Key>
+    <Value>
+      <string>Thông tin Folder</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLUSERFILENEWEDIT</string>
+    </Key>
+    <Value>
+      <string>Thông tin File</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLPORTALATREGISTRATIONSHIFT</string>
+    </Key>
+    <Value>
+      <string>Đăng ký ca làm việc</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

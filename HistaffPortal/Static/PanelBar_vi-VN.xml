@@ -20,6 +20,7 @@
   <Item Text="Đăng ký nghỉ &amp; Phê duyệt nghỉ" Expanded="True" Value="Attendance">
     <Item Value="Attendance;ctrlLeaveRegistration;NoPer;NoEdit" Text="Đăng ký nghỉ" ImageUrl="~/Static/Images/RibbonBar/leave.png"/>
     <Item Value="Attendance;ctrlLeaveRegistrationByManager;NoPer;NoEdit" Text="Phê duyệt nghỉ" ImageUrl="~/Static/Images/RibbonBar/approve.png" />
+    <Item Value="Attendance;ctrlPortalAtRegistrationShift;NoPer;NoEdit" Text="Đăng ký ca làm việc" ImageUrl="~/Static/Images/RibbonBar/approve.png" />
   </Item>
   <Item Text="Đánh giá" Expanded="True" Value="Performance">
     <Item Value="Performance;ctrlPortal_Result_Evaluate;NoPer;NoEdit" Text="Xem kết quả đánh giá" />

@@ -423,6 +423,7 @@
       <LastGenOutput>Reference.vb</LastGenOutput>
     </None>
     <Content Include="Modules\Common\ctrlUploadWithTeamplate.ascx" />
+    <Content Include="Modules\Portal\ctrlAtShiftNewEdit.ascx" />
     <Content Include="Modules\Portal\ctrlOTRegistrationMng.ascx" />
     <Content Include="Modules\Portal\ctrlLeaveRegistrationByManager.ascx" />
     <Content Include="Modules\Portal\ctrlOTRegistrationByHR.ascx" />
@@ -439,6 +440,7 @@
     <Content Include="Modules\Portal\ctrlLeaveRegistrationNewEdit.ascx" />
     <Content Include="Modules\Portal\ctrlOTApprove.ascx" />
     <Content Include="Modules\Portal\ctrlOTRegister.ascx" />
+    <Content Include="Modules\Portal\ctrlPortalAtRegistrationShift.ascx" />
     <Content Include="Modules\Portal\ctrlPortalTimeTimesheetDetails.ascx" />
     <Content Include="Modules\Portal\ctrlRegisterLeave.ascx" />
     <Content Include="Web.config">
@@ -981,6 +983,13 @@
       <DependentUpon>ctrlRitual.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Modules\Portal\ctrlAtShiftNewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlAtShiftNewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlAtShiftNewEdit.ascx.vb">
+      <DependentUpon>ctrlAtShiftNewEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Modules\Portal\ctrlOTRegistrationMng.ascx.designer.vb">
       <DependentUpon>ctrlOTRegistrationMng.ascx</DependentUpon>
     </Compile>
@@ -1091,6 +1100,13 @@
     </Compile>
     <Compile Include="Modules\Portal\ctrlOTRegister.ascx.vb">
       <DependentUpon>ctrlOTRegister.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlPortalAtRegistrationShift.ascx.designer.vb">
+      <DependentUpon>ctrlPortalAtRegistrationShift.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlPortalAtRegistrationShift.ascx.vb">
+      <DependentUpon>ctrlPortalAtRegistrationShift.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Portal\ctrlPortalTimeTimesheetDetails.ascx.designer.vb">

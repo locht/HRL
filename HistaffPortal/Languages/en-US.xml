@@ -2952,4 +2952,36 @@
       <string>Insurance Process</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLPORTALEMPFILEMNG</string>
+    </Key>
+    <Value>
+      <string>File Manager</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLFOLDERSNEWEDIT</string>
+    </Key>
+    <Value>
+      <string>Folder information</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLUSERFILENEWEDIT</string>
+    </Key>
+    <Value>
+      <string>File information</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLPORTALATREGISTRATIONSHIFT</string>
+    </Key>
+    <Value>
+      <string>Shift registration</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

@@ -24,6 +24,7 @@
     <Item Value="Attendance;ctrlLeaveApprove;NoPer;NoEdit" Text="Phê duyệt nghỉ" ImageUrl="~/Static/Images/RibbonBar/approve.png" />
     <Item Value="Attendance;ctrlOTApprove;NoPer;NoEdit" Text="Phê duyệt làm thêm" ImageUrl="~/Static/Images/RibbonBar/approve.png" />
     <Item Value="Attendance;ctrlDMVSApprove;NoPer;NoEdit" Text="Phê duyệt đi muộn về sớm" ImageUrl="~/Static/Images/RibbonBar/approve.png"/>
+    <Item Value="Attendance;ctrlPortalAtRegistrationShift;NoPer;NoEdit" Text="Shift Registration" ImageUrl="~/Static/Images/RibbonBar/approve.png" />
   </Item>
   <Item Text="Thông tin CBNV trực thuộc" Expanded="True" Value="Direct;ctrlPortalDirectManagement;NoPer;NoEdit" />
   <Item Text="Bảng công" Expanded="True" Value="Attendance;ctrlPortalTimeTimesheetDetails;NoPer;NoEdit" />
