@@ -74,5 +74,7 @@ End Class
 Public Class ParamDTO
     Public Property IS_DISSOLVE As Boolean?
     Public Property ORG_ID As Decimal
+    ''tamBt add 26052020
     Public Property IS_PORTAL_AT_SHIFT As Decimal?
+    Public Property CURRENT_EMP As Decimal?
 End Class
