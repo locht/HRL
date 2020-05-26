@@ -249,9 +249,17 @@ Public Class ctrlTR_PlanNewEdit
                         cboCourse.Text = obj.TR_COURSE_NAME
                     End If
                     ' cboCourse_SelectedIndexChanged(Nothing, Nothing)
+                    Dim filePath As String
+                    Dim templatefolder As String
                     If obj.ATTACHFILE IsNot Nothing Then
-                        lblFilename.Text = "..." & Right(obj.ATTACHFILE, 10)
-                        lblFilename.NavigateUrl = System.IO.Path.Combine(Server.MapPath("~/ReportTemplates/Training/Upload"), obj.ATTACHFILE)
+                        lblFilename.Text = obj.ATTACHFILE
+                        'templatefolder = ConfigurationManager.AppSettings("ReportTemplatesFolder")
+                        'filePath = AppDomain.CurrentDomain.BaseDirectory & templatefolder & "\" & ("ReportTemplates\Training\Upload\") + obj.ATTACHFILE
+                        'If Not File.Exists(filePath) Then
+
+                        'End If
+                        lblFilename.NavigateUrl = "http://" & Request.Url.Host & ":" & Request.Url.Port & "/ReportTemplates/Training/Upload/" + obj.ATTACHFILE
+                        '   System.IO.Path.Combine(filePath)
                     End If
 
                     'PopulatingListWI()
@@ -431,7 +439,12 @@ Public Class ctrlTR_PlanNewEdit
                             End If
                             .IS_EVALUATE = chkEvaluate.Checked
                             If IsNumeric(rnPrioty.Value) Then
-                                .LEVEL_PRIOTY = rnPrioty.Value
+                                If rnPrioty.Value = 1 Or rnPrioty.Value = 2 Or rnPrioty.Value = 3 Or rnPrioty.Value = 4 Or rnPrioty.Value = 5 Then
+                                    .LEVEL_PRIOTY = rnPrioty.Value
+                                Else
+                                    ShowMessage(Translate("Xin kiểm tra lại mức độ ưu tiên"), NotifyType.Warning)
+                                    Exit Sub
+                                End If
                             End If
                             .WORK_RELATION = txtWork_Relation.Text
                             If cboGrProgram.SelectedValue <> "" Then
@@ -842,7 +855,7 @@ Public Class ctrlTR_PlanNewEdit
                     fileName = System.IO.Path.Combine(fileName, file.FileName)
                     file.SaveAs(fileName, True)
                     lblFilename.Text = file.FileName
-                    lblFilename.NavigateUrl = fileName
+                    lblFilename.NavigateUrl = "http://" & Request.Url.Host & ":" & Request.Url.Port & "/ReportTemplates/Training/Upload/" + file.FileName
 
                 Else
                     ShowMessage(Translate("Chưa upload được file"), NotifyType.Error)

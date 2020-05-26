@@ -119,7 +119,7 @@
                     <%# Translate("Mức độ ưu tiên")%><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat="server" ID="rnPrioty">
+                    <tlk:RadNumericTextBox runat="server" ID="rnPrioty" MaxLength="1">
                     </tlk:RadNumericTextBox>
                     <%# Translate("(Nhập từ 1 đến 5 theo thứ tự giảm dần)")%>
                     <asp:RequiredFieldValidator ID="rqPrioty" ControlToValidate="rnPrioty" runat="server"
@@ -501,7 +501,7 @@
                     </td>
                     <td>
                         <tlk:RadButton ID="btnUploadFile" runat="server" Text="<%$ Translate: Upload %>"
-                            CausesValidation="false" Style="padding-right: 20px">
+                            CausesValidation="false" >
                         </tlk:RadButton>
                         <asp:HyperLink ID="lblFilename" NavigateUrl="" Text="" Target="_new" runat="server" />
                         <%--  <asp:Label id="lblFilename" runat="server" Text="">

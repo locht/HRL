@@ -5,7 +5,7 @@
 <style type="text/css">
     #ctl00_MainContent_ctrlTR_PlanNewEdit_txtWork_Relation
     {
-        height: 80px !important;
+        height: 80px !important; 
     }
 </style>
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
@@ -120,7 +120,7 @@
                     <%# Translate("Mức độ ưu tiên")%><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat="server" ID="rnPrioty">
+                    <tlk:RadNumericTextBox runat="server" ID="rnPrioty" MaxLength="1">
                     </tlk:RadNumericTextBox>
                     <%# Translate("(Nhập từ 1 đến 5 theo thứ tự giảm dần)")%>
                     <asp:RequiredFieldValidator ID="rqPrioty" ControlToValidate="rnPrioty" runat="server"
