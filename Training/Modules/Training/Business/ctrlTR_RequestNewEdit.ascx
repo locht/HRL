@@ -316,12 +316,12 @@
                         </tlk:GridDateTimeColumn>
                         <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
                             SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
-                        <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="COM_NAME" SortExpression="COM_NAME"
+                        <tlk:GridBoundColumn HeaderText="<%$ Translate: Chi nhánh (khối) %>" DataField="COM_NAME" SortExpression="COM_NAME"
                             UniqueName="COM_NAME" />
-                        <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="ORG_NAME"
+                        <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban (đơn vị) %>" DataField="ORG_NAME"
                             SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
                         <tlk:GridBoundColumn HeaderText="<%$ Translate: Công việc liên quan %>" DataField="WORK_INVOLVE_NAME"
-                            SortExpression="WORK_INVOLVE_NAME" UniqueName="WORK_INVOLVE_NAME" />
+                            SortExpression="WORK_INVOLVE_NAME" UniqueName="WORK_INVOLVE_NAME" Visible="false" />
                     </Columns>
                 </mastertableview>
             </tlk:radgrid>
