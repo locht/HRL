@@ -242,15 +242,15 @@ Class ctrlPortal_Result_Evaluate
                 Sorts = rgEmployeeList.MasterTableView.SortExpressions.GetSortString()
                 If isFull Then
                     If Sorts IsNot Nothing Then
-                        Return rep.GetListEmployeePaging1(_filter, _param, Sorts).ToTable()
+                        Return rep.GetListEmployeePagingPortal(_filter, _param, Sorts).ToTable()
                     Else
-                        Return rep.GetListEmployeePaging1(_filter, _param).ToTable()
+                        Return rep.GetListEmployeePagingPortal(_filter, _param).ToTable()
                     End If
                 Else
                     If Sorts IsNot Nothing Then
-                        EmployeeList = rep.GetListEmployeePaging1(_filter, rgEmployeeList.CurrentPageIndex, rgEmployeeList.PageSize, MaximumRows, _param, Sorts)
+                        EmployeeList = rep.GetListEmployeePagingPortal(_filter, rgEmployeeList.CurrentPageIndex, rgEmployeeList.PageSize, MaximumRows, _param, Sorts)
                     Else
-                        EmployeeList = rep.GetListEmployeePaging1(_filter, rgEmployeeList.CurrentPageIndex, rgEmployeeList.PageSize, MaximumRows, _param)
+                        EmployeeList = rep.GetListEmployeePagingPortal(_filter, rgEmployeeList.CurrentPageIndex, rgEmployeeList.PageSize, MaximumRows, _param)
                     End If
 
                     rgEmployeeList.VirtualItemCount = MaximumRows
@@ -320,6 +320,9 @@ Class ctrlPortal_Result_Evaluate
                 If cboYear.Text <> "" Then
                     Dim dtData As New DataTable
                     dtData = rep.GetLstPeriod1(Decimal.Parse(cboYear.Text))
+                    Dim dtRow As DataRow = dtData.NewRow()
+                    dtRow("NAME") = "Chọn tất cả"
+                    dtData.Rows.Add(dtRow)
                     FillRadCombobox(cboPeriodEvaluate, dtData, "NAME", "ID")
                 Else
                     ClearControlValue(cboPeriodEvaluate, rdFrom, rdTo)

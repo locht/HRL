@@ -868,6 +868,131 @@ Partial Class PerformanceRepository
         End Try
     End Function
 #Region "xem ket qua tong hop"
+    'PORTAL
+    Public Function GetListEmployeePagingPortal(ByVal _filter As KPI_EVALUATEDTO,
+                                          ByVal PageIndex As Integer,
+                                          ByVal PageSize As Integer,
+                                          ByRef Total As Integer, ByVal _param As ParamDTO,
+                                          Optional ByVal Sorts As String = "EMPLOYEE_CODE desc",
+                                          Optional ByVal log As UserLog = Nothing) As List(Of KPI_EVALUATEDTO)
+        Try
+
+            Dim fileDirectory = ""
+            Dim str As String = "Kiêm nhiệm"
+            fileDirectory = AppDomain.CurrentDomain.BaseDirectory & "\EmployeeImage"
+            Dim wstt = 257
+
+            Dim query = From mbo In Context.PE_KPI_EVALUATE
+                        From p In Context.HU_EMPLOYEE.Where(Function(f) f.ID = mbo.EMPLOYEE_ID)
+                        From period In Context.PE_PERIOD.Where(Function(f) f.ID = mbo.KPI_ID).DefaultIfEmpty
+                        From sal_level In Context.PA_SALARY_LEVEL.Where(Function(f) f.ID = mbo.SALARYLEVEL_ID).DefaultIfEmpty
+                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = mbo.CLASSFICATION).DefaultIfEmpty
+                        From org In Context.HU_ORGANIZATION.Where(Function(f) mbo.ORG_ID = f.ID).DefaultIfEmpty
+                        From title In Context.HU_TITLE.Where(Function(f) mbo.TITLE_ID = f.ID).DefaultIfEmpty
+                        Order By p.EMPLOYEE_CODE()
+                        Select New KPI_EVALUATEDTO With {
+                             .EMPLOYEE_CODE = p.EMPLOYEE_CODE,
+                             .ID = p.ID,
+                             .JOIN_DATE = p.JOIN_DATE,
+                             .FULLNAME = p.FULLNAME_VN,
+                             .ORG_NAME = org.NAME_VN,
+                             .TITLE_NAME = title.NAME_VN,
+                             .TER_EFFECT_DATE = p.TER_EFFECT_DATE,
+                             .WORK_STATUS = p.WORK_STATUS,
+                             .SALARY_LEVEL_ID = mbo.SALARYLEVEL_ID,
+                             .SALARY_LEVEL = sal_level.NAME,
+                             .KPI_EVALUATE = mbo.KPI_ID,
+                             .CLASSFICATION_ID = mbo.CLASSFICATION,
+                             .CLASSFICATION = ot.NAME_VN,
+                             .COMMENTS = mbo.COMMENTS,
+                             .REMARK = mbo.REMARK,
+                             .FORM_EVALUATE = period.NAME,
+                             .EMPLOYEE_ID = mbo.EMPLOYEE_ID
+                         }
+
+            Dim query1 = From mbo In Context.PE_EVALUATE_PERIOD
+                        From p In Context.HU_EMPLOYEE.Where(Function(f) f.ID = mbo.EMPLOYEE_ID)
+                        From period In Context.PE_PERIOD.Where(Function(f) f.ID = mbo.PERIOD_ID).DefaultIfEmpty
+                        From sal_level In Context.PA_SALARY_LEVEL.Where(Function(f) f.ID = mbo.SAL_LEVEL_ID).DefaultIfEmpty
+                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = mbo.CLASSIFICATION).DefaultIfEmpty
+                        From org In Context.HU_ORGANIZATION.Where(Function(f) mbo.ORG_ID = f.ID).DefaultIfEmpty
+                        From title In Context.HU_TITLE.Where(Function(f) mbo.TITLE_ID = f.ID).DefaultIfEmpty
+                        Order By p.EMPLOYEE_CODE()
+                        Select New KPI_EVALUATEDTO With {
+                             .EMPLOYEE_CODE = p.EMPLOYEE_CODE,
+                             .ID = p.ID,
+                             .JOIN_DATE = p.JOIN_DATE,
+                             .FULLNAME = p.FULLNAME_VN,
+                             .ORG_NAME = org.NAME_VN,
+                             .TITLE_NAME = title.NAME_VN,
+                             .TER_EFFECT_DATE = p.TER_EFFECT_DATE,
+                             .WORK_STATUS = p.WORK_STATUS,
+                             .SALARY_LEVEL_ID = mbo.SAL_LEVEL_ID,
+                             .SALARY_LEVEL = sal_level.NAME,
+                             .KPI_EVALUATE = mbo.PERIOD_ID,
+                             .CLASSFICATION_ID = mbo.CLASSIFICATION,
+                             .CLASSFICATION = ot.NAME_VN,
+                             .COMMENTS = mbo.COMMENT1,
+                             .REMARK = mbo.NOTE,
+                             .FORM_EVALUATE = period.NAME,
+                             .EMPLOYEE_ID = mbo.EMPLOYEE_ID
+                         }
+
+            Dim lst = query.Union(query1)
+
+            Dim dateNow = Date.Now.Date
+            Dim terID = 257
+            If Not _filter.IS_TER Then
+                lst = lst.Where(Function(p) Not p.WORK_STATUS.HasValue Or _
+                                    (p.WORK_STATUS.HasValue And _
+                                     ((p.WORK_STATUS <> terID) Or (p.WORK_STATUS = terID And p.TER_EFFECT_DATE > dateNow))))
+
+            End If
+            If _filter.EMPLOYEE_CODE <> "" Then
+                lst = lst.Where(Function(p) p.EMPLOYEE_CODE.ToUpper().IndexOf(_filter.EMPLOYEE_CODE.ToUpper) >= 0)
+            End If
+            If _filter.KPI_EVALUATE IsNot Nothing Then
+                lst = lst.Where(Function(p) p.KPI_EVALUATE = _filter.KPI_EVALUATE)
+            End If
+            If _filter.EMPLOYEE_ID IsNot Nothing Then
+                lst = lst.Where(Function(p) p.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
+            End If
+            If _filter.FULLNAME <> "" Then
+                lst = lst.Where(Function(p) p.FULLNAME.ToUpper().IndexOf(_filter.FULLNAME.ToUpper) >= 0)
+            End If
+
+            If _filter.TITLE_NAME <> "" Then
+                lst = lst.Where(Function(p) p.TITLE_NAME.ToUpper().IndexOf(_filter.TITLE_NAME.ToUpper) >= 0)
+            End If
+
+            If _filter.ORG_NAME <> "" Then
+                lst = lst.Where(Function(p) p.ORG_NAME.ToUpper().IndexOf(_filter.ORG_NAME.ToUpper) >= 0)
+            End If
+
+            If _filter.COMMENTS IsNot Nothing Then
+                lst = lst.Where(Function(p) p.COMMENTS.ToUpper.Contains(_filter.COMMENTS.ToUpper))
+            End If
+            If _filter.CLASSFICATION IsNot Nothing Then
+                lst = lst.Where(Function(p) p.CLASSFICATION.ToUpper.Contains(_filter.CLASSFICATION.ToUpper))
+            End If
+            If _filter.REMARK IsNot Nothing Then
+                lst = lst.Where(Function(p) p.REMARK.ToUpper.Contains(_filter.REMARK.ToUpper))
+            End If
+
+            lst = lst.OrderBy(Sorts)
+            Total = lst.Count
+            lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
+
+            Dim lstEmp = lst.ToList
+
+
+            Return lstEmp
+
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
     Public Function GetListEmployeePaging1(ByVal _filter As KPI_EVALUATEDTO,
                                           ByVal PageIndex As Integer,
                                           ByVal PageSize As Integer,
@@ -976,7 +1101,7 @@ Partial Class PerformanceRepository
             If _filter.ORG_NAME <> "" Then
                 lst = lst.Where(Function(p) p.ORG_NAME.ToUpper().IndexOf(_filter.ORG_NAME.ToUpper) >= 0)
             End If
-            
+
             If _filter.COMMENTS IsNot Nothing Then
                 lst = lst.Where(Function(p) p.COMMENTS.ToUpper.Contains(_filter.COMMENTS.ToUpper))
             End If

@@ -377,6 +377,13 @@ Namespace PerformanceBusiness.ServiceContracts
 #End Region
 #Region "danh gia kpis"
         <OperationContract()>
+        Function GetListEmployeePagingPortal(ByVal _filter As KPI_EVALUATEDTO,
+                                         ByVal PageIndex As Integer,
+                                         ByVal PageSize As Integer,
+                                         ByRef Total As Integer, ByVal _param As ParamDTO,
+                                         Optional ByVal Sorts As String = "EMPLOYEE_CODE desc",
+                                         Optional ByVal log As UserLog = Nothing) As List(Of KPI_EVALUATEDTO)
+        <OperationContract()>
         Function CheckEmployee_Exits(ByVal empCode As String) As Integer
         <OperationContract()>
         Function GetListEmployeePaging(ByVal _filter As KPI_EVALUATEDTO,
