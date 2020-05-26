@@ -163,8 +163,6 @@
         </tlk:RadWindow>
     </Windows>
 </tlk:RadWindowManager>
-
-
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
 
@@ -357,7 +355,11 @@
         // Hàm Resize lại Splitter khi nhấn nút SAVE có validate
         function ResizeSplitter() {
             setTimeout(function () {
+
                 var splitter = $find("<%= RadSplitter3.ClientID%>");
+                if (splitter == null) {
+                    return;
+                }
                 var pane = splitter.getPaneById('<%= RadPane1.ClientID %>');
                 var pane2 = splitter.getPaneById('<%= RadPane2.ClientID %>');
                 var pane4 = splitter.getPaneById('<%= RadPane4.ClientID %>');
