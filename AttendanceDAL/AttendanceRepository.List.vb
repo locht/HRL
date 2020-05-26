@@ -2029,6 +2029,7 @@ Partial Public Class AttendanceRepository
             objTitleData.HOURS_STAR_CHECKOUT = objTitle.HOURS_STAR_CHECKOUT
             objTitleData.NOTE = objTitle.NOTE
             objTitleData.IS_NOON = objTitle.IS_NOON
+            objTitleData.STT = objTitle.STT
             'objTitleData.CREATED_BY = objTitle.CREATED_BY
             'objTitleData.CREATED_DATE = objTitle.CREATED_DATE
             'objTitleData.CREATED_LOG = objTitle.CREATED_LOG
