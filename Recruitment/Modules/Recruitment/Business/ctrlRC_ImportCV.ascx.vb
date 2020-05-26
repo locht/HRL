@@ -1704,7 +1704,7 @@ Public Class ctrlRC_ImportCV
             can_edu.ENGLISH_MARK = dr("ENGLISH_MARK").ToString
 
             can_edu.ENGLISH1 = dr("ENGLISH1_ID").ToString
-            can_edu.ENGLISH_LEVEL2 = dr("ENGLISH_LEVEL1_ID").ToString
+            can_edu.ENGLISH_LEVEL1 = dr("ENGLISH_LEVEL1_ID").ToString
             can_edu.ENGLISH_MARK1 = dr("ENGLISH_MARK1").ToString
 
             can_edu.ENGLISH2 = dr("ENGLISH2_ID").ToString

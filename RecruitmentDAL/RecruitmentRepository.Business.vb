@@ -5464,7 +5464,7 @@ Partial Class RecruitmentRepository
                 objCandidate_Cv.CANDIDATE_ID = fileID
                 objCandidate_Cv.IMAGE = _strEmpCode & "." & objEmpCV.EXTEND_IMAGE
                 objCandidate_Cv.BIRTH_DATE = objEmpCV.BIRTH_DATE
-                objCandidate_Cv.BIRTH_PROVINCE = objEmpCV.BIRTH_PROVINCE
+                objCandidate_Cv.NAV_PROVINCE = objEmpCV.BIRTH_PROVINCE
                 objCandidate_Cv.GENDER = objEmpCV.GENDER
                 objCandidate_Cv.NATIVE = objEmpCV.NATIVE
                 objCandidate_Cv.RELIGION = objEmpCV.RELIGION
