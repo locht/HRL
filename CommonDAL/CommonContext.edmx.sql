@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 05/26/2020 11:29:37 AM
+-- Date Created: 05/26/2020 11:36:32 AM
 -- Generated from EDMX file: F:\WORKING\acv_19\CommonDAL\CommonContext.edmx
 -- --------------------------------------------------
 
@@ -772,6 +772,12 @@ CREATE TABLE "dbo"."HU_JOB_POSITION" (
    "JOB_NAME" NVARCHAR2(1000) NULL
 );
 
+-- Creating table 'HU_DIRECT_MANAGER'
+CREATE TABLE "dbo"."HU_DIRECT_MANAGER" (
+   "JOB_POSITION_ID" NUMBER(38,0) NOT NULL,
+   "DIRECT_MANAGER" NUMBER(38,0) NULL
+);
+
 -- Creating table 'SE_GRP_SE_USR'
 CREATE TABLE "dbo"."SE_GRP_SE_USR" (
    "SE_GROUPS_ID" NUMBER(38,0) NOT NULL,
@@ -1127,6 +1133,14 @@ ADD CONSTRAINT "PK_HU_JOB_DESCRIPTION"
 ALTER TABLE "dbo"."HU_JOB_POSITION"
 ADD CONSTRAINT "PK_HU_JOB_POSITION"
    PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "JOB_POSITION_ID"in table 'HU_DIRECT_MANAGER'
+ALTER TABLE "dbo"."HU_DIRECT_MANAGER"
+ADD CONSTRAINT "PK_HU_DIRECT_MANAGER"
+   PRIMARY KEY ("JOB_POSITION_ID" )
    ENABLE
    VALIDATE;
 

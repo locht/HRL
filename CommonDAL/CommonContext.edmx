@@ -48,6 +48,7 @@
             <EntitySet Name="HU_USERFILES" EntityType="CommonModel.Store.HU_USERFILES" store:Type="Tables"  />
             <EntitySet Name="HU_JOB_DESCRIPTION" EntityType="CommonModel.Store.HU_JOB_DESCRIPTION" store:Type="Tables"  />
             <EntitySet Name="HU_JOB_POSITION" EntityType="CommonModel.Store.HU_JOB_POSITION" store:Type="Tables"  />
+            <EntitySet Name="HU_DIRECT_MANAGER" EntityType="CommonModel.Store.HU_DIRECT_MANAGER" store:Type="Tables"  />
             <EntitySet Name="SE_GRP_SE_USR" EntityType="CommonModel.Store.SE_GRP_SE_USR" store:Type="Tables"  />
             <EntitySet Name="SE_GROUP_REPORT" EntityType="CommonModel.Store.SE_GROUP_REPORT" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="CommonModel.Store.SE_USER_REPORT" store:Type="Tables"  />
@@ -915,6 +916,13 @@
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="JOB_NAME" Type="nvarchar2" Nullable="true" MaxLength="1000" />
         </EntityType>
+        <EntityType Name="HU_DIRECT_MANAGER">
+            <Key>
+                <PropertyRef Name="JOB_POSITION_ID" />
+            </Key>
+            <Property Name="JOB_POSITION_ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="DIRECT_MANAGER" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
         <EntityType Name="SE_GRP_SE_USR">
             <Key>
                 <PropertyRef Name="SE_GROUPS_ID" />
@@ -1250,6 +1258,7 @@
           <EntitySet Name="HU_USERFILES" EntityType="CommonModel.HU_USERFILES" />
           <EntitySet Name="HU_JOB_DESCRIPTION" EntityType="CommonModel.HU_JOB_DESCRIPTION" />
           <EntitySet Name="HU_JOB_POSITION" EntityType="CommonModel.HU_JOB_POSITION" />
+          <EntitySet Name="HU_DIRECT_MANAGER" EntityType="CommonModel.HU_DIRECT_MANAGER" />
           </EntityContainer>
         <EntityType Name="SE_GROUP">
           <Key>
@@ -2212,6 +2221,13 @@
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="JOB_NAME" MaxLength="1000" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="HU_DIRECT_MANAGER">
+          <Key>
+            <PropertyRef Name="JOB_POSITION_ID" />
+          </Key>
+          <Property Type="Decimal" Name="JOB_POSITION_ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="DIRECT_MANAGER" Precision="38" Scale="0" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3057,6 +3073,14 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HU_DIRECT_MANAGER">
+            <EntityTypeMapping TypeName="IsTypeOf(CommonModel.HU_DIRECT_MANAGER)">
+                <MappingFragment StoreEntitySet="HU_DIRECT_MANAGER">
+                    <ScalarProperty Name="JOB_POSITION_ID" ColumnName="JOB_POSITION_ID" />
+                    <ScalarProperty Name="DIRECT_MANAGER" ColumnName="DIRECT_MANAGER" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_GRP_SE_USR" TypeName="CommonModel.SE_GRP_SE_USR" StoreEntitySet="SE_GRP_SE_USR">
             <EndProperty Name="SE_GROUP">
                 <ScalarProperty Name="ID" ColumnName="SE_GROUPS_ID" />
@@ -3248,6 +3272,7 @@
         <EntityTypeShape EntityType="CommonModel.HU_USERFILES" Width="1.5" PointX="3.375" PointY="17.75" Height="2.5571907552083246" />
         <EntityTypeShape EntityType="CommonModel.HU_JOB_DESCRIPTION" Width="1.5" PointX="5.375" PointY="17.75" Height="8.1339322916666674" />
         <EntityTypeShape EntityType="CommonModel.HU_JOB_POSITION" Width="1.5" PointX="11.375" PointY="17.75" Height="4.2879036458333246" />
+        <EntityTypeShape EntityType="CommonModel.HU_DIRECT_MANAGER" Width="1.5" PointX="2.8311670025955733" PointY="16.282623969150066" />
         </Diagram>
     </Diagrams>
   </Designer>

@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("f8a9c5f5-ec61-4092-9a8f-bcd68a35b95d")>
+<Assembly: EdmSchemaAttribute("982ae241-a982-4af5-9e18-ee7727a2ab8d")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("CommonModel", "SE_GRP_SE_USR", "SE_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_GROUP), "SE_USER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_USER))>
 <Assembly: EdmRelationshipAttribute("CommonModel", "FK_SM_SF", "SE_MODULE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(SE_MODULE), "SE_FUNCTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_FUNCTION), True)>
@@ -672,6 +672,20 @@ Public Partial Class CommonContext
 
     Private _HU_JOB_POSITION As ObjectSet(Of HU_JOB_POSITION)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property HU_DIRECT_MANAGER() As ObjectSet(Of HU_DIRECT_MANAGER)
+        Get
+            If (_HU_DIRECT_MANAGER Is Nothing) Then
+                _HU_DIRECT_MANAGER = MyBase.CreateObjectSet(Of HU_DIRECT_MANAGER)("HU_DIRECT_MANAGER")
+            End If
+            Return _HU_DIRECT_MANAGER
+        End Get
+    End Property
+
+    Private _HU_DIRECT_MANAGER As ObjectSet(Of HU_DIRECT_MANAGER)
+
     #End Region
 
     #Region "AddTo Methods"
@@ -968,6 +982,13 @@ Public Partial Class CommonContext
     ''' </summary>
     Public Sub AddToHU_JOB_POSITION(ByVal hU_JOB_POSITION As HU_JOB_POSITION)
         MyBase.AddObject("HU_JOB_POSITION", hU_JOB_POSITION)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the HU_DIRECT_MANAGER EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToHU_DIRECT_MANAGER(ByVal hU_DIRECT_MANAGER As HU_DIRECT_MANAGER)
+        MyBase.AddObject("HU_DIRECT_MANAGER", hU_DIRECT_MANAGER)
     End Sub
 
     #End Region
@@ -1402,6 +1423,86 @@ Public Partial Class AT_TIME_MANUAL
     End Sub
 
     Private Partial Sub OnLIMIT_YEARChanged()
+    End Sub
+
+    #End Region
+
+End Class
+
+''' <summary>
+''' No Metadata Documentation available.
+''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="CommonModel", Name:="HU_DIRECT_MANAGER")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class HU_DIRECT_MANAGER
+    Inherits EntityObject
+    #Region "Factory Method"
+
+    ''' <summary>
+    ''' Create a new HU_DIRECT_MANAGER object.
+    ''' </summary>
+    ''' <param name="jOB_POSITION_ID">Initial value of the JOB_POSITION_ID property.</param>
+    Public Shared Function CreateHU_DIRECT_MANAGER(jOB_POSITION_ID As Global.System.Decimal) As HU_DIRECT_MANAGER
+        Dim hU_DIRECT_MANAGER as HU_DIRECT_MANAGER = New HU_DIRECT_MANAGER
+        hU_DIRECT_MANAGER.JOB_POSITION_ID = jOB_POSITION_ID
+        Return hU_DIRECT_MANAGER
+    End Function
+
+    #End Region
+
+    #Region "Primitive Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property JOB_POSITION_ID() As Global.System.Decimal
+        Get
+            Return _JOB_POSITION_ID
+        End Get
+        Set
+            If (_JOB_POSITION_ID <> Value) Then
+                OnJOB_POSITION_IDChanging(value)
+                ReportPropertyChanging("JOB_POSITION_ID")
+                _JOB_POSITION_ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("JOB_POSITION_ID")
+                OnJOB_POSITION_IDChanged()
+            End If
+        End Set
+    End Property
+
+    Private _JOB_POSITION_ID As Global.System.Decimal
+    Private Partial Sub OnJOB_POSITION_IDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnJOB_POSITION_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property DIRECT_MANAGER() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _DIRECT_MANAGER
+        End Get
+        Set
+            OnDIRECT_MANAGERChanging(value)
+            ReportPropertyChanging("DIRECT_MANAGER")
+            _DIRECT_MANAGER = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("DIRECT_MANAGER")
+            OnDIRECT_MANAGERChanged()
+        End Set
+    End Property
+
+    Private _DIRECT_MANAGER As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnDIRECT_MANAGERChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnDIRECT_MANAGERChanged()
     End Sub
 
     #End Region
