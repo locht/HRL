@@ -501,11 +501,13 @@
                     </td>
                     <td>
                         <tlk:RadButton ID="btnUploadFile" runat="server" Text="<%$ Translate: Upload %>"
-                            CausesValidation="false" >
+                            CausesValidation="false">
                         </tlk:RadButton>
-                        <asp:HyperLink ID="lblFilename" NavigateUrl="" Text="" Target="_new" runat="server" />
                         <%--  <asp:Label id="lblFilename" runat="server" Text="">
                     </asp:Label>--%>
+                    </td>
+                    <td>
+                        <asp:HyperLink ID="lblFilename" NavigateUrl="" Text="" Target="_new" runat="server" />
                     </td>
                 </tr>
                 <tr style="height: 20px">

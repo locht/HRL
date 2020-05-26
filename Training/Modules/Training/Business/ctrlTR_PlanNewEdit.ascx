@@ -5,7 +5,7 @@
 <style type="text/css">
     #ctl00_MainContent_ctrlTR_PlanNewEdit_txtWork_Relation
     {
-        height: 80px !important; 
+        height: 80px !important;
     }
 </style>
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
@@ -512,9 +512,11 @@
                         <tlk:RadButton ID="btnUploadFile" runat="server" Text="<%$ Translate: Upload %>"
                             CausesValidation="false" Style="padding-right: 20px">
                         </tlk:RadButton>
-                        <asp:HyperLink ID="lblFilename" NavigateUrl="" Text="" Target="_new" runat="server" />
                         <%--  <asp:Label id="lblFilename" runat="server" Text="">
                     </asp:Label>--%>
+                    </td>
+                    <td>
+                        <asp:HyperLink ID="lblFilename" NavigateUrl="" Text="" Target="_new" runat="server" />
                     </td>
                     <td class="lb">
                         <%# Translate("Ghi chú")%>
