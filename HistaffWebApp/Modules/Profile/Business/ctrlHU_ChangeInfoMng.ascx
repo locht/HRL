@@ -129,8 +129,6 @@
         </tlk:RadSplitter>
     </tlk:RadPane>
 </tlk:RadSplitter>
-
-
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <Common:ctrlUpload ID="ctrlUpload1" runat="server" />
 <asp:PlaceHolder ID="phPopup" runat="server"></asp:PlaceHolder>
@@ -335,6 +333,9 @@
         function ResizeSplitter() {
             setTimeout(function () {
                 var splitter = $find("<%= RadSplitter3.ClientID%>");
+                if (splitter == null) {
+                    return;
+                }
                 var pane = splitter.getPaneById('<%= RadPane1.ClientID %>');
                 var pane2 = splitter.getPaneById('<%= RadPane2.ClientID %>');
                 var pane4 = splitter.getPaneById('<%= RadPane4.ClientID %>');
