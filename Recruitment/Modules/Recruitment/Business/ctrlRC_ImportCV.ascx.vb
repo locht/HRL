@@ -1563,23 +1563,31 @@ Public Class ctrlRC_ImportCV
                     rows("ERROR") = rows("ERROR") + "Ngày sinh không đúng định dạng,"
                     rows("FILE_NAME") = sFile_Name
                 Else
-                    If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULL_NAME_VN"), rows("BIRTH_DATE"), "NO_ID") Then
+                    If Not rep.ValidateInsertCandidate("", "", rows("FULL_NAME_VN"), rows("BIRTH_DATE"), "NO_ID") Then
                         rows("ERROR") = rows("ERROR") + "Ứng viên đang tồn tại trong một chương trình tuyển dụng khác,"
                     End If
-                    If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULL_NAME_VN"), rows("BIRTH_DATE"), "BLACK_LIST") Then
+                    If Not rep.ValidateInsertCandidate("", "", rows("FULL_NAME_VN"), rows("BIRTH_DATE"), "BLACK_LIST") Then
                         rows("ERROR") = rows("ERROR") + "Ứng viên đang thuộc Blacklist,"
                     End If
-                    If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULL_NAME_VN"), rows("BIRTH_DATE"), "WORKING") Then
+                    If Not rep.ValidateInsertCandidate("", "", rows("FULL_NAME_VN"), rows("BIRTH_DATE"), "WORKING") Then
                         rows("ERROR") = rows("ERROR") + "Ứng viên đang làm việc tại ACV,"
                     End If
-                    If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULL_NAME_VN"), rows("BIRTH_DATE"), "TERMINATE") Then
+                    If Not rep.ValidateInsertCandidate("", "", rows("FULL_NAME_VN"), rows("BIRTH_DATE"), "TERMINATE") Then
                         rows("ERROR") = rows("ERROR") + "Ứng viên đã nghỉ việc ACV,"
                     End If
                 End If
-                If rows("ID_DATE").ToString = "" OrElse CheckDate(rows("ID_DATE")) = False Then
-                    rows("ERROR") = rows("ERROR") + "Ngày cấp CMND không đúng định dạng,"
-                    rows("FILE_NAME") = sFile_Name
+
+                If rows("ID_NO").ToString <> 0 Then
+                    If rows("ID_DATE").ToString = "" OrElse CheckDate(rows("ID_DATE")) = False Then
+                        rows("ERROR") = rows("ERROR") + "Ngày cấp CMND không đúng định dạng,"
+                        rows("FILE_NAME") = sFile_Name
+                    End If
+                    If IsDBNull(rows("ID_PLACE_NAME")) Or rows("ID_PLACE_NAME").ToString = "" Then
+                        rows("ERROR") = rows("ERROR") + "Chưa nhập nơi cấp cmnd,"
+                        rows("FILE_NAME") = sFile_Name
+                    End If
                 End If
+
 
                 If IsDBNull(rows("FIRST_NAME_VN")) Or rows("FIRST_NAME_VN").ToString = "" Then
                     rows("ERROR") = rows("ERROR") + "Chưa nhập Họ và tên lót,"
@@ -1602,10 +1610,6 @@ Public Class ctrlRC_ImportCV
                 '    rows("FILE_NAME") = sFile_Name
                 'End If
 
-                If IsDBNull(rows("ID_PLACE_NAME")) Or rows("ID_PLACE_NAME").ToString = "" Then
-                    rows("ERROR") = rows("ERROR") + "Chưa nhập nơi cấp cmnd,"
-                    rows("FILE_NAME") = sFile_Name
-                End If
                 'PER_PROVINCE_ID
                 If IsDBNull(rows("PER_PROVINCE")) Or rows("PER_PROVINCE").ToString = "" Then
                     rows("ERROR") = rows("ERROR") + "Chưa nhập tỉnh thường trú,"
@@ -1655,6 +1659,9 @@ Public Class ctrlRC_ImportCV
             can.LAST_NAME_VN = dr("LAST_NAME_VN").ToString
             can.FULLNAME_VN = dr("FIRST_NAME_VN").ToString & " " & dr("LAST_NAME_VN").ToString
             can.ID_NO = dr("ID_NO").ToString
+            If dr("ID_NO").ToString = "0" Then
+                can.ID_NO = ""
+            End If
             can.FILE_NAME = dr("FILE_NAME").ToString
             can.S_ERROR = dr("ERROR").ToString
 
@@ -1680,6 +1687,9 @@ Public Class ctrlRC_ImportCV
             End If
 
             can_cv.ID_NO = dr("ID_NO").ToString
+            If dr("ID_NO").ToString = "0" Then
+                can_cv.ID_NO = ""
+            End If
             can_cv.ID_DATE = ToDate(dr("ID_DATE").ToString)
             can_cv.ID_PLACE = dr("ID_PLACE").ToString
             can_cv.PER_ADDRESS = dr("PER_ADDRESS").ToString
