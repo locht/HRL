@@ -2434,6 +2434,15 @@ Partial Public Class CommonRepository
             'xemlai...
             'From k In Context.ORG_TEMP_TABLE.Where(Function(f) p.ORG_ID = f.ORG_ID And f.REQUEST_ID = request_id)
 
+            If _param.IS_PORTAL_AT_SHIFT IsNot Nothing Or _param.IS_PORTAL_AT_SHIFT <> 0 Then
+                query = From p In Context.HU_EMPLOYEE
+                        From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = p.ID).DefaultIfEmpty
+                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                        From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
+                        From gender In Context.OT_OTHER_LIST.Where(Function(f) f.ID = cv.GENDER And f.TYPE_ID = 34).DefaultIfEmpty
+                        From work_status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.WORK_STATUS And f.TYPE_ID = 59).DefaultIfEmpty
+            End If
+
             If _filter.EMPLOYEE_CODE <> "" Then
                 query = query.Where(Function(f) f.p.EMPLOYEE_CODE.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper) Or _
                                         f.p.FULLNAME_VN.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper))

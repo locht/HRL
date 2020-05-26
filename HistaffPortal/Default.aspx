@@ -31,6 +31,9 @@
             <asp:PlaceHolder ID="PagePlaceHolder" runat="server"></asp:PlaceHolder>
         </asp:Panel>
     </div>
+    <tlk:RadWindow runat="server" ID="rwMainPopup" VisibleStatusbar="false" Width="800px"
+        Height="500px" EnableShadow="true" Behaviors="Maximize, Close" Modal="true" ShowContentDuringLoad="false">
+    </tlk:RadWindow>
     <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
         <script type="text/javascript">
 

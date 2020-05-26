@@ -74,4 +74,5 @@ End Class
 Public Class ParamDTO
     Public Property IS_DISSOLVE As Boolean?
     Public Property ORG_ID As Decimal
+    Public Property IS_PORTAL_AT_SHIFT As Decimal?
 End Class

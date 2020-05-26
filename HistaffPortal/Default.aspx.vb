@@ -25,6 +25,7 @@ Public Class _Default
         Me.AjaxManager = Me.RadAjaxManager1
         'Me.AjaxManager.EnableAJAX = False
         Me.AjaxLoading = LoadingPanel
+        Me.PopupWindow = rwMainPopup
         If mid IsNot Nothing AndAlso mid.Trim.ToUpper = "SUPPORT" Then
             Response.Redirect("http://support.histaff.vn:8088/")
             Exit Sub

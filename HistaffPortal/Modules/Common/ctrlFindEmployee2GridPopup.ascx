@@ -1,9 +1,11 @@
-﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlFindEmployeePopup.ascx.vb"
-    Inherits="Common.ctrlFindEmployeePopup" %>
+﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlFindEmployee2GridPopup.ascx.vb"
+     Inherits="Common.ctrlFindEmployee2GridPopup" %>
+<%@ Import Namespace="Framework.UI.Utilities" %>
+<%@ Register Src="ctrlOrganization.ascx" TagName="ctrlOrganization" TagPrefix="Common" %>
+    Inherits="Common.ctrlFindEmployee2GridPopup" %>
 <tlk:RadScriptBlock ID="scriptBlock" runat="server">
     <script type="text/javascript">
         function <%=ClientID%>_OnClientClose(oWnd, args) {
-            debugger;
             oWnd = $find('<%=popupId %>');
             oWnd.remove_close(<%=ClientID%>_OnClientClose);
             var arg = args.get_argument();
@@ -16,11 +18,6 @@
                 var ajaxManager = $find("<%= AjaxManagerId %>");
                 ajaxManager.ajaxRequest("<%= ClientID %>_PopupPostback:" + arg.ID);
             }
-        }
-
-        function postBack(arg) {
-            var ajaxManager = $find("<%= AjaxManagerId %>");
-            ajaxManager.ajaxRequest(arg); //Making ajax request with the argument
         }
 
     </script>

@@ -7951,6 +7951,9 @@ Namespace CommonBusiness
         Private IS_DISSOLVEField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_PORTAL_AT_SHIFTField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ORG_IDField As Decimal
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
@@ -7972,6 +7975,19 @@ Namespace CommonBusiness
                 If (Me.IS_DISSOLVEField.Equals(value) <> true) Then
                     Me.IS_DISSOLVEField = value
                     Me.RaisePropertyChanged("IS_DISSOLVE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_PORTAL_AT_SHIFT() As System.Nullable(Of Decimal)
+            Get
+                Return Me.IS_PORTAL_AT_SHIFTField
+            End Get
+            Set
+                If (Me.IS_PORTAL_AT_SHIFTField.Equals(value) <> true) Then
+                    Me.IS_PORTAL_AT_SHIFTField = value
+                    Me.RaisePropertyChanged("IS_PORTAL_AT_SHIFT")
                 End If
             End Set
         End Property

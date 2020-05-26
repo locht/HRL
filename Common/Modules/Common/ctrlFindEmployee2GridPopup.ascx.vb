@@ -125,6 +125,15 @@ Public Class ctrlFindEmployee2GridPopup
             ViewState(Me.ID & "_CommendList_Code") = value
         End Set
     End Property
+
+    Public Property Is_Load_CtrlOrg As Boolean
+        Get
+            Return ViewState(Me.ID & "_Is_Load_CtrlOrg")
+        End Get
+        Set(value As Boolean)
+            ViewState(Me.ID & "_Is_Load_CtrlOrg") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
@@ -211,6 +220,7 @@ Public Class ctrlFindEmployee2GridPopup
             "MultiSelect=" & MultiSelect &
             "&CurrentValue=" & CurrentValue &
             "&is_CheckNode=" & is_CheckNode &
+            "&Is_Load_CtrlOrg=" & Is_Load_CtrlOrg &
             "');"
         script &= "oWnd.show();"
         ScriptManager.RegisterStartupScript(Page, Page.GetType, "UserPopup", script, True)

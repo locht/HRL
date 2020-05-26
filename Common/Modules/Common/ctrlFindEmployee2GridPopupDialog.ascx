@@ -57,8 +57,8 @@
                                             <tlk:GridBoundColumn DataField="ORG_NAME" HeaderText="<%$ Translate: Tên phòng ban %>"
                                                 UniqueName="ORG_NAME" SortExpression="ORG_NAME"/>
 
-                                            <tlk:GridBoundColumn DataField="JOIN_DATE" HeaderText="<%$ Translate: Ngày vào TCT/cty con %>"
-                                                UniqueName="JOIN_DATE" SortExpression="JOIN_DATE"/>
+                                            <tlk:GridDateTimeColumn DataField="JOIN_DATE" HeaderText="<%$ Translate: Ngày vào TCT/cty con %>"
+                                                UniqueName="JOIN_DATE" SortExpression="JOIN_DATE" DataFormatString="{0:dd/MM/yyyy}"/>
 
                                                   <tlk:GridBoundColumn DataField="TITLE_NAME" HeaderText="<%$ Translate: Chức vụ %>"
                                                 UniqueName="TITLE_NAME" SortExpression="TITLE_NAME">

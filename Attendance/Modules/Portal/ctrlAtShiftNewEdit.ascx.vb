@@ -18,7 +18,7 @@ Public Class ctrlAtShiftNewEdit
     ''' ctrl FindEmployeePopup
     ''' </summary>
     ''' <remarks></remarks>
-    Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
+    Protected WithEvents ctrlFindEmployee2GridPopup As ctrlFindEmployee2GridPopup
 
     ''' <summary>
     ''' ctrl FindEmployeePopup
@@ -316,7 +316,7 @@ Public Class ctrlAtShiftNewEdit
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
+    Private Sub ctrlFindEmployee2GridPopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployee2GridPopup.EmployeeSelected
         Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
         'Dim rep As New ProfileBusinessRepository
         'Dim repNew As New ProfileRepository
@@ -324,7 +324,7 @@ Public Class ctrlAtShiftNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
         Try
-            lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
+            lstCommonEmployee = CType(ctrlFindEmployee2GridPopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
             If lstCommonEmployee.Count > 0 Then
                 Dim item = lstCommonEmployee(0)
                 If Employee_list Is Nothing Then
@@ -374,7 +374,7 @@ Public Class ctrlAtShiftNewEdit
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub ctrlFindPopup_CancelClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.CancelClicked
+    Private Sub ctrlFindPopup_CancelClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployee2GridPopup.CancelClicked
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
@@ -415,16 +415,17 @@ Public Class ctrlAtShiftNewEdit
         Try
 
             Select Case e.CommandName
-                
+
                 Case "FindEmployee"
                     isLoadPopup = 1
                     UpdateControlState()
-                    ctrlFindEmployeePopup.Show()
+                    ctrlFindEmployee2GridPopup.MultiSelect = True
+                    ctrlFindEmployee2GridPopup.Show()
 
                 Case "DeleteEmployee"
                     For Each i As GridDataItem In rgEmployee.SelectedItems
                         Dim s = (From q In Employee_list Where
-                                 q.ID = i.GetDataKeyValue("GUID_ID")).FirstOrDefault
+                                 q.ID = i.GetDataKeyValue("ID")).FirstOrDefault
                         Employee_list.Remove(s)
                     Next
                     rgEmployee.Rebind()
@@ -449,17 +450,17 @@ Public Class ctrlAtShiftNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
         Try
-            If FindEmployee.Controls.Contains(ctrlFindEmployeePopup) Then
-                FindEmployee.Controls.Remove(ctrlFindEmployeePopup)
-                'Me.Views.Remove(ctrlFindEmployeePopup.ID.ToUpper)
+            If FindEmployee.Controls.Contains(ctrlFindEmployee2GridPopup) Then
+                FindEmployee.Controls.Remove(ctrlFindEmployee2GridPopup)
+                'Me.Views.Remove(ctrlFindEmployee2GridPopup.ID.ToUpper)
             End If
 
             Select Case isLoadPopup
                 Case 1
-                    ctrlFindEmployeePopup = Me.Register("ctrlFindEmployeePopup", "Common", "ctrlFindEmployeePopup")
-                    ctrlFindEmployeePopup.MustHaveContract = True
-                    ctrlFindEmployeePopup.IsOnlyWorkingWithoutTer = True
-                    FindEmployee.Controls.Add(ctrlFindEmployeePopup)
+                    HttpContext.Current.Session("PortalAtShift") = LogHelper.CurrentUser.EMPLOYEE_ID
+                    ctrlFindEmployee2GridPopup = Me.Register("ctrlFindEmployee2GridPopup", "Common", "ctrlFindEmployee2GridPopup")
+                    ctrlFindEmployee2GridPopup.Is_Load_CtrlOrg = False
+                    FindEmployee.Controls.Add(ctrlFindEmployee2GridPopup)
             End Select
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

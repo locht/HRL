@@ -46,6 +46,8 @@
             <EntitySet Name="HU_PROVINCE" EntityType="CommonModel.Store.HU_PROVINCE" store:Type="Tables"  />
             <EntitySet Name="HU_FOLDERS" EntityType="CommonModel.Store.HU_FOLDERS" store:Type="Tables"  />
             <EntitySet Name="HU_USERFILES" EntityType="CommonModel.Store.HU_USERFILES" store:Type="Tables"  />
+            <EntitySet Name="HU_JOB_DESCRIPTION" EntityType="CommonModel.Store.HU_JOB_DESCRIPTION" store:Type="Tables"  />
+            <EntitySet Name="HU_JOB_POSITION" EntityType="CommonModel.Store.HU_JOB_POSITION" store:Type="Tables"  />
             <EntitySet Name="SE_GRP_SE_USR" EntityType="CommonModel.Store.SE_GRP_SE_USR" store:Type="Tables"  />
             <EntitySet Name="SE_GROUP_REPORT" EntityType="CommonModel.Store.SE_GROUP_REPORT" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="CommonModel.Store.SE_USER_REPORT" store:Type="Tables"  />
@@ -848,6 +850,70 @@
             <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="FOLDER_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
+        <EntityType Name="HU_JOB_DESCRIPTION">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TITLE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TIME_WORKING" Type="number" Nullable="true" Precision="38" />
+            <Property Name="JOB_DESCRIPTION" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="WORK_CONDITION" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="JOB_PARTICULARTIES" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="WORK_ENVIRONMENT" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="JOB_RESPONSIBILITY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="JOB_POWER" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="ATTACH_FILE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="LEARNING_LEVEL" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TRAINING_FORM" Type="number" Nullable="true" Precision="38" />
+            <Property Name="GRADUATE_SCHOOL" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MAJOR_RANK" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TRAINING_FORM_2" Type="number" Nullable="true" Precision="38" />
+            <Property Name="GRADUATE_SCHOOL_2" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MAJOR_RANK_2" Type="number" Nullable="true" Precision="38" />
+            <Property Name="COMPUTER_RANK" Type="number" Nullable="true" Precision="38" />
+            <Property Name="LANGUAGE_1" Type="number" Nullable="true" Precision="38" />
+            <Property Name="LANGUAGE_RANK_1" Type="number" Nullable="true" Precision="38" />
+            <Property Name="LANGUAGE_2" Type="number" Nullable="true" Precision="38" />
+            <Property Name="LANGUAGE_RANK_2" Type="number" Nullable="true" Precision="38" />
+            <Property Name="LANGUAGE_3" Type="number" Nullable="true" Precision="38" />
+            <Property Name="LANGUAGE_RANK_3" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SOFT_SKILL" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CHARACTER" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="NOTE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODDIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="FILENAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="HU_JOB_POSITION">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TITLE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="JOB_NOTE" Type="nvarchar2" Nullable="true" MaxLength="2000" />
+            <Property Name="COST_CODE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="IS_LEADER" Type="number" Nullable="true" Precision="5" />
+            <Property Name="DIRECT_MANAGER" Type="number" Nullable="true" Precision="38" />
+            <Property Name="EFFECT_DATE" Type="date" Nullable="true" />
+            <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="JOB_NAME" Type="nvarchar2" Nullable="true" MaxLength="1000" />
+        </EntityType>
         <EntityType Name="SE_GRP_SE_USR">
             <Key>
                 <PropertyRef Name="SE_GROUPS_ID" />
@@ -1181,6 +1247,8 @@
           <EntitySet Name="HU_PROVINCE" EntityType="CommonModel.HU_PROVINCE" />
           <EntitySet Name="HU_FOLDERS" EntityType="CommonModel.HU_FOLDERS" />
           <EntitySet Name="HU_USERFILES" EntityType="CommonModel.HU_USERFILES" />
+          <EntitySet Name="HU_JOB_DESCRIPTION" EntityType="CommonModel.HU_JOB_DESCRIPTION" />
+          <EntitySet Name="HU_JOB_POSITION" EntityType="CommonModel.HU_JOB_POSITION" />
           </EntityContainer>
         <EntityType Name="SE_GROUP">
           <Key>
@@ -2078,6 +2146,70 @@
           <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="FOLDER_ID" Precision="38" Scale="0" />
         </EntityType>
+        <EntityType Name="HU_JOB_DESCRIPTION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TITLE_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TIME_WORKING" Precision="38" Scale="0" />
+          <Property Type="String" Name="JOB_DESCRIPTION" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="WORK_CONDITION" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="JOB_PARTICULARTIES" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="WORK_ENVIRONMENT" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="JOB_RESPONSIBILITY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="JOB_POWER" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ATTACH_FILE" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="LEARNING_LEVEL" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TRAINING_FORM" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="GRADUATE_SCHOOL" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="MAJOR_RANK" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TRAINING_FORM_2" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="GRADUATE_SCHOOL_2" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="MAJOR_RANK_2" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="COMPUTER_RANK" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="LANGUAGE_1" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="LANGUAGE_RANK_1" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="LANGUAGE_2" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="LANGUAGE_RANK_2" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="LANGUAGE_3" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="LANGUAGE_RANK_3" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="SOFT_SKILL" Precision="38" Scale="0" />
+          <Property Type="String" Name="CHARACTER" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NOTE" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODDIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FILENAME" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="HU_JOB_POSITION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="CODE" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TITLE_ID" Precision="38" Scale="0" />
+          <Property Type="String" Name="JOB_NOTE" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="COST_CODE" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="IS_LEADER" />
+          <Property Type="Decimal" Name="DIRECT_MANAGER" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="EFFECT_DATE" />
+          <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="JOB_NAME" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2856,6 +2988,72 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HU_JOB_DESCRIPTION">
+            <EntityTypeMapping TypeName="IsTypeOf(CommonModel.HU_JOB_DESCRIPTION)">
+                <MappingFragment StoreEntitySet="HU_JOB_DESCRIPTION">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="CODE" ColumnName="CODE" />
+                    <ScalarProperty Name="NAME" ColumnName="NAME" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                    <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+                    <ScalarProperty Name="TIME_WORKING" ColumnName="TIME_WORKING" />
+                    <ScalarProperty Name="JOB_DESCRIPTION" ColumnName="JOB_DESCRIPTION" />
+                    <ScalarProperty Name="WORK_CONDITION" ColumnName="WORK_CONDITION" />
+                    <ScalarProperty Name="JOB_PARTICULARTIES" ColumnName="JOB_PARTICULARTIES" />
+                    <ScalarProperty Name="WORK_ENVIRONMENT" ColumnName="WORK_ENVIRONMENT" />
+                    <ScalarProperty Name="JOB_RESPONSIBILITY" ColumnName="JOB_RESPONSIBILITY" />
+                    <ScalarProperty Name="JOB_POWER" ColumnName="JOB_POWER" />
+                    <ScalarProperty Name="ATTACH_FILE" ColumnName="ATTACH_FILE" />
+                    <ScalarProperty Name="LEARNING_LEVEL" ColumnName="LEARNING_LEVEL" />
+                    <ScalarProperty Name="TRAINING_FORM" ColumnName="TRAINING_FORM" />
+                    <ScalarProperty Name="GRADUATE_SCHOOL" ColumnName="GRADUATE_SCHOOL" />
+                    <ScalarProperty Name="MAJOR_RANK" ColumnName="MAJOR_RANK" />
+                    <ScalarProperty Name="TRAINING_FORM_2" ColumnName="TRAINING_FORM_2" />
+                    <ScalarProperty Name="GRADUATE_SCHOOL_2" ColumnName="GRADUATE_SCHOOL_2" />
+                    <ScalarProperty Name="MAJOR_RANK_2" ColumnName="MAJOR_RANK_2" />
+                    <ScalarProperty Name="COMPUTER_RANK" ColumnName="COMPUTER_RANK" />
+                    <ScalarProperty Name="LANGUAGE_1" ColumnName="LANGUAGE_1" />
+                    <ScalarProperty Name="LANGUAGE_RANK_1" ColumnName="LANGUAGE_RANK_1" />
+                    <ScalarProperty Name="LANGUAGE_2" ColumnName="LANGUAGE_2" />
+                    <ScalarProperty Name="LANGUAGE_RANK_2" ColumnName="LANGUAGE_RANK_2" />
+                    <ScalarProperty Name="LANGUAGE_3" ColumnName="LANGUAGE_3" />
+                    <ScalarProperty Name="LANGUAGE_RANK_3" ColumnName="LANGUAGE_RANK_3" />
+                    <ScalarProperty Name="SOFT_SKILL" ColumnName="SOFT_SKILL" />
+                    <ScalarProperty Name="CHARACTER" ColumnName="CHARACTER" />
+                    <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODDIFIED_DATE" ColumnName="MODDIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
+        <EntitySetMapping Name="HU_JOB_POSITION">
+            <EntityTypeMapping TypeName="IsTypeOf(CommonModel.HU_JOB_POSITION)">
+                <MappingFragment StoreEntitySet="HU_JOB_POSITION">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="CODE" ColumnName="CODE" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                    <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+                    <ScalarProperty Name="JOB_NOTE" ColumnName="JOB_NOTE" />
+                    <ScalarProperty Name="COST_CODE" ColumnName="COST_CODE" />
+                    <ScalarProperty Name="IS_LEADER" ColumnName="IS_LEADER" />
+                    <ScalarProperty Name="DIRECT_MANAGER" ColumnName="DIRECT_MANAGER" />
+                    <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
+                    <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="JOB_NAME" ColumnName="JOB_NAME" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_GRP_SE_USR" TypeName="CommonModel.SE_GRP_SE_USR" StoreEntitySet="SE_GRP_SE_USR">
             <EndProperty Name="SE_GROUP">
                 <ScalarProperty Name="ID" ColumnName="SE_GROUPS_ID" />
@@ -3045,6 +3243,8 @@
         <EntityTypeShape EntityType="CommonModel.HU_PROVINCE" Width="1.5" PointX="9.375" PointY="14.75" Height="3.3263964843750102" />
         <EntityTypeShape EntityType="CommonModel.HU_FOLDERS" Width="1.5" PointX="11.375" PointY="14.75" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="CommonModel.HU_USERFILES" Width="1.5" PointX="3.375" PointY="17.75" Height="2.5571907552083246" />
+        <EntityTypeShape EntityType="CommonModel.HU_JOB_DESCRIPTION" Width="1.5" PointX="5.375" PointY="17.75" Height="8.1339322916666674" />
+        <EntityTypeShape EntityType="CommonModel.HU_JOB_POSITION" Width="1.5" PointX="11.375" PointY="17.75" Height="4.2879036458333246" />
         </Diagram>
     </Diagrams>
   </Designer>

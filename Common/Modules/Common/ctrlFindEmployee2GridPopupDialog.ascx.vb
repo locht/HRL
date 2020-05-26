@@ -31,7 +31,7 @@ Public Class ctrlFindEmployee2GridPopupDialog
     Public AjaxLoading As RadAjaxLoadingPanel
     Public Property AjaxManagerId As String
     Public Property AjaxLoadingId As String
-
+    Public Property Is_Load_CtrlOrg As Boolean
     Public Property MaximumRows As Integer
         Get
             If PageViewState(Me.ID & "_MaximumRows") Is Nothing Then
@@ -164,10 +164,10 @@ Public Class ctrlFindEmployee2GridPopupDialog
             is_CheckNode = If(Request.Params("is_CheckNode") Is Nothing, False, Request.Params("is_CheckNode"))
             IsOnlyWorkingWithoutTer = If(Request.Params("IsOnlyWorkingWithoutTer") Is Nothing, False, Request.Params("IsOnlyWorkingWithoutTer"))
             IS_3B = If(Request.Params("IS_3B") Is Nothing, 0, Request.Params("IS_3B"))
+            Is_Load_CtrlOrg = If(Request.Params("Is_Load_CtrlOrg") Is Nothing, True, Request.Params("Is_Load_CtrlOrg"))
 
             rgvEmployees.AllowMultiRowSelection = MultiSelect
             rgvDataPrepare.DataSource = DataSource
-
             ctrlOrg.AutoPostBack = True
             ctrlOrg.OrganizationType = OrganizationType.OrganizationLocation
             ctrlOrg.CheckChildNodes = True
@@ -176,6 +176,8 @@ Public Class ctrlFindEmployee2GridPopupDialog
             End If
             ctrlOrg.CurrentValue = CurrentValue
             ctrlOrg.LoadAllOrganization = LoadAllOrganization
+            'ctrlOrg.Visible = Is_Load_CtrlOrg
+            LeftPane.Visible = Is_Load_CtrlOrg
         Catch ex As Exception
             Throw ex
         End Try
@@ -345,6 +347,7 @@ NEXT_FOR:
                 orgID = Decimal.Parse(ctrlOrg.CurrentValue)
             End If
             Dim _para = New CommonBusiness.ParamDTO With {.ORG_ID = orgID,
+                                                          .IS_PORTAL_AT_SHIFT = If(IsNumeric(Session("PortalAtShift")), CDec(Session("PortalAtShift")), 0), _
                                                .IS_DISSOLVE = ctrlOrg.IsDissolve}
 
             SetValueObjectByRadGrid(rgvEmployees, _filter)

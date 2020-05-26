@@ -68,6 +68,15 @@ Partial Public Class _Default
     Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
+    '''rwMainPopup control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rwMainPopup As Global.Telerik.Web.UI.RadWindow
+
+    '''<summary>
     '''RadCodeBlock1 control.
     '''</summary>
     '''<remarks>
