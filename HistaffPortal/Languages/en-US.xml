@@ -2984,4 +2984,20 @@
       <string>Shift registration</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLATSHIFTNEWEDIT</string>
+    </Key>
+    <Value>
+      <string>Shift Information</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLFINDEMPLOYEE2GRIDPOPUPDIALOG</string>
+    </Key>
+    <Value>
+      <string>Select Employee</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
