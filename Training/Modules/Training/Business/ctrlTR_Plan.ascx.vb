@@ -185,7 +185,7 @@ Public Class ctrlTR_Plan
                         Exit Sub
                     End If
                     For Each dr As Telerik.Web.UI.GridDataItem In rgData.SelectedItems
-                        If dr.GetDataKeyValue("STATUS") = 4001 Or dr.GetDataKeyValue("STATUS") = 4002 Then
+                        If dr.GetDataKeyValue("STATUS_ID") = 4001 Or dr.GetDataKeyValue("STATUS_ID") = 4002 Then
                             ShowMessage(Translate("Thao tác này chỉ áp dụng ở trạng thái Chờ phê duyệt"), NotifyType.Warning)
                             Exit Sub
                         End If
@@ -202,7 +202,7 @@ Public Class ctrlTR_Plan
                     End If
 
                     For Each dr As Telerik.Web.UI.GridDataItem In rgData.SelectedItems
-                        If dr.GetDataKeyValue("STATUS") = 4001 Or dr.GetDataKeyValue("STATUS") = 4002 Then
+                        If dr.GetDataKeyValue("STATUS_ID") = 4001 Or dr.GetDataKeyValue("STATUS_ID") = 4002 Then
                             ShowMessage(Translate("Thao tác này chỉ áp dụng ở trạng thái Chờ phê duyệt"), NotifyType.Warning)
                             Exit Sub
                         End If
