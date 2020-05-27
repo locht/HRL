@@ -14,6 +14,24 @@ Option Explicit On
 Partial Public Class ctrlAtShiftNewEdit
 
     '''<summary>
+    '''RadSplitter1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadSplitter1 As Global.Telerik.Web.UI.RadSplitter
+
+    '''<summary>
+    '''MainPane control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents MainPane As Global.Telerik.Web.UI.RadPane
+
+    '''<summary>
     '''RadSplitter3 control.
     '''</summary>
     '''<remarks>
@@ -41,13 +59,13 @@ Partial Public Class ctrlAtShiftNewEdit
     Protected WithEvents tbarMain As Global.Telerik.Web.UI.RadToolBar
 
     '''<summary>
-    '''RightPane control.
+    '''RadPane2 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RightPane As Global.Telerik.Web.UI.RadPane
+    Protected WithEvents RadPane2 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
     '''valSum control.

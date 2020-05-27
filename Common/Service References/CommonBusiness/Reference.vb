@@ -302,6 +302,85 @@ Namespace CommonBusiness
         End Sub
     End Class
     
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="AuditLogDtl", [Namespace]:="http://schemas.datacontract.org/2004/07/Framework.Data"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class AuditLogDtl
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COL_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NEW_VALUEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OLD_VALUEField As String
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COL_NAME() As String
+            Get
+                Return Me.COL_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.COL_NAMEField, value) <> true) Then
+                    Me.COL_NAMEField = value
+                    Me.RaisePropertyChanged("COL_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NEW_VALUE() As String
+            Get
+                Return Me.NEW_VALUEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.NEW_VALUEField, value) <> true) Then
+                    Me.NEW_VALUEField = value
+                    Me.RaisePropertyChanged("NEW_VALUE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OLD_VALUE() As String
+            Get
+                Return Me.OLD_VALUEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.OLD_VALUEField, value) <> true) Then
+                    Me.OLD_VALUEField = value
+                    Me.RaisePropertyChanged("OLD_VALUE")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
      System.Runtime.Serialization.DataContractAttribute(Name:="SystemConfig.ModuleID", [Namespace]:="http://schemas.datacontract.org/2004/07/Framework.Data")>  _
     Public Enum SystemConfigModuleID As Integer
@@ -1314,85 +1393,6 @@ Namespace CommonBusiness
                 If (Object.ReferenceEquals(Me.ViewNameField, value) <> true) Then
                     Me.ViewNameField = value
                     Me.RaisePropertyChanged("ViewName")
-                End If
-            End Set
-        End Property
-        
-        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-        
-        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
-            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
-            If (Not (propertyChanged) Is Nothing) Then
-                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
-            End If
-        End Sub
-    End Class
-    
-    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
-     System.Runtime.Serialization.DataContractAttribute(Name:="AuditLogDtl", [Namespace]:="http://schemas.datacontract.org/2004/07/Framework.Data"),  _
-     System.SerializableAttribute()>  _
-    Partial Public Class AuditLogDtl
-        Inherits Object
-        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
-        
-        <System.NonSerializedAttribute()>  _
-        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private COL_NAMEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private NEW_VALUEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private OLD_VALUEField As String
-        
-        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
-        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
-            Get
-                Return Me.extensionDataField
-            End Get
-            Set
-                Me.extensionDataField = value
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property COL_NAME() As String
-            Get
-                Return Me.COL_NAMEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.COL_NAMEField, value) <> true) Then
-                    Me.COL_NAMEField = value
-                    Me.RaisePropertyChanged("COL_NAME")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property NEW_VALUE() As String
-            Get
-                Return Me.NEW_VALUEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.NEW_VALUEField, value) <> true) Then
-                    Me.NEW_VALUEField = value
-                    Me.RaisePropertyChanged("NEW_VALUE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property OLD_VALUE() As String
-            Get
-                Return Me.OLD_VALUEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.OLD_VALUEField, value) <> true) Then
-                    Me.OLD_VALUEField = value
-                    Me.RaisePropertyChanged("OLD_VALUE")
                 End If
             End Set
         End Property
@@ -7948,6 +7948,9 @@ Namespace CommonBusiness
         Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CURRENT_EMPField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_DISSOLVEField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -7963,6 +7966,19 @@ Namespace CommonBusiness
             End Get
             Set
                 Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CURRENT_EMP() As System.Nullable(Of Decimal)
+            Get
+                Return Me.CURRENT_EMPField
+            End Get
+            Set
+                If (Me.CURRENT_EMPField.Equals(value) <> true) Then
+                    Me.CURRENT_EMPField = value
+                    Me.RaisePropertyChanged("CURRENT_EMP")
+                End If
             End Set
         End Property
         
@@ -8977,6 +8993,9 @@ Namespace CommonBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="CommonBusiness.ICommonBusiness")>  _
     Public Interface ICommonBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/CheckValidEmailTemplate", ReplyAction:="http://tempuri.org/ICommonBusiness/CheckValidEmailTemplateResponse")>  _
+        Function CheckValidEmailTemplate(ByVal code As String, ByVal group As String) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetListControl", ReplyAction:="http://tempuri.org/ICommonBusiness/GetListControlResponse")>  _
         Function GetListControl(ByVal KeyView As String) As System.Data.DataTable
         
@@ -8987,6 +9006,12 @@ Namespace CommonBusiness
         Function GetConfigView(ByVal KeyView As String) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetConfigViewAndFillData", ReplyAction:="http://tempuri.org/ICommonBusiness/GetConfigViewAndFillDataResponse"),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Integer, String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.AuditLogDtl))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AuditLogDtl)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.SystemConfigModuleID)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AccessLogFilter)),  _
@@ -8995,12 +9020,6 @@ Namespace CommonBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ActionLogFilter)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.ActionLog))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ActionLog)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.AuditLogDtl))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AuditLogDtl)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Integer, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_control_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_girdColumm_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.FoldersDTO))),  _
@@ -9077,6 +9096,9 @@ Namespace CommonBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetFoldersStructureInfo", ReplyAction:="http://tempuri.org/ICommonBusiness/GetFoldersStructureInfoResponse")>  _
         Function GetFoldersStructureInfo(ByVal _folderId As Decimal) As System.Collections.Generic.List(Of CommonBusiness.FoldersDTO)
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetActionLogByID", ReplyAction:="http://tempuri.org/ICommonBusiness/GetActionLogByIDResponse")>  _
+        Function GetActionLogByID(ByVal gID As Decimal) As System.Collections.Generic.List(Of CommonBusiness.AuditLogDtl)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/DeleteActionLogs", ReplyAction:="http://tempuri.org/ICommonBusiness/DeleteActionLogsResponse")>  _
         Function DeleteActionLogs(ByVal lstDeleteIds As System.Collections.Generic.List(Of Decimal)) As Integer
         
@@ -9114,6 +9136,12 @@ Namespace CommonBusiness
         Function SendMail() As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/InsertMail", ReplyAction:="http://tempuri.org/ICommonBusiness/InsertMailResponse"),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Integer, String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.AuditLogDtl))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AuditLogDtl)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.SystemConfigModuleID)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AccessLogFilter)),  _
@@ -9122,12 +9150,6 @@ Namespace CommonBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ActionLogFilter)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.ActionLog))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ActionLog)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.AuditLogDtl))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AuditLogDtl)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Integer, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_control_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_girdColumm_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.FoldersDTO))),  _
@@ -9411,9 +9433,6 @@ Namespace CommonBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/DeleteMailTemplate", ReplyAction:="http://tempuri.org/ICommonBusiness/DeleteMailTemplateResponse")>  _
         Function DeleteMailTemplate(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/CheckValidEmailTemplate", ReplyAction:="http://tempuri.org/ICommonBusiness/CheckValidEmailTemplateResponse")>  _
-        Function CheckValidEmailTemplate(ByVal code As String, ByVal group As String) As Boolean
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/CheckOtherListExistInDatabase", ReplyAction:="http://tempuri.org/ICommonBusiness/CheckOtherListExistInDatabaseResponse")>  _
         Function CheckOtherListExistInDatabase(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal typeID As Decimal) As Boolean
         
@@ -9427,6 +9446,12 @@ Namespace CommonBusiness
         Function GetGroupOrganizationFunction(ByVal _groupID As Decimal) As System.Collections.Generic.List(Of Decimal)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/DeleteGroupOrganization", ReplyAction:="http://tempuri.org/ICommonBusiness/DeleteGroupOrganizationResponse"),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Integer, String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.AuditLogDtl))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AuditLogDtl)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.SystemConfigModuleID)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AccessLogFilter)),  _
@@ -9435,12 +9460,6 @@ Namespace CommonBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ActionLogFilter)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.ActionLog))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ActionLog)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.AuditLogDtl))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AuditLogDtl)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Integer, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_control_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_girdColumm_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.FoldersDTO))),  _
@@ -9701,6 +9720,12 @@ Namespace CommonBusiness
         Function GetUserOrganization(ByVal UserID As Decimal) As System.Collections.Generic.List(Of Decimal)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/DeleteUserOrganization", ReplyAction:="http://tempuri.org/ICommonBusiness/DeleteUserOrganizationResponse"),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Integer, String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.AuditLogDtl))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AuditLogDtl)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.SystemConfigModuleID)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AccessLogFilter)),  _
@@ -9709,12 +9734,6 @@ Namespace CommonBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ActionLogFilter)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.ActionLog))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ActionLog)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.AuditLogDtl))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AuditLogDtl)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Integer, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_control_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_girdColumm_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.FoldersDTO))),  _
@@ -9803,6 +9822,9 @@ Namespace CommonBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetEmployeeToPopupFind", ReplyAction:="http://tempuri.org/ICommonBusiness/GetEmployeeToPopupFindResponse")>  _
         Function GetEmployeeToPopupFind(ByVal _filter As CommonBusiness.EmployeePopupFindListDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String, ByVal log As CommonBusiness.UserLog, ByVal _param As CommonBusiness.ParamDTO) As System.Collections.Generic.List(Of CommonBusiness.EmployeePopupFindListDTO)
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetEmployeeToPopupFind_Portal", ReplyAction:="http://tempuri.org/ICommonBusiness/GetEmployeeToPopupFind_PortalResponse")>  _
+        Function GetEmployeeToPopupFind_Portal(ByVal _filter As CommonBusiness.EmployeePopupFindListDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String, ByVal log As CommonBusiness.UserLog, ByVal _param As CommonBusiness.ParamDTO) As System.Collections.Generic.List(Of CommonBusiness.EmployeePopupFindListDTO)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetEmployeeToPopupFind2", ReplyAction:="http://tempuri.org/ICommonBusiness/GetEmployeeToPopupFind2Response")>  _
         Function GetEmployeeToPopupFind2(ByVal _filter As CommonBusiness.EmployeePopupFindListDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal request_id As Integer, ByVal Sorts As String, ByVal log As CommonBusiness.UserLog, ByVal _param As CommonBusiness.ParamDTO) As System.Collections.Generic.List(Of CommonBusiness.EmployeePopupFindListDTO)
         
@@ -9829,9 +9851,6 @@ Namespace CommonBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetActionLogByObjectId", ReplyAction:="http://tempuri.org/ICommonBusiness/GetActionLogByObjectIdResponse")>  _
         Function GetActionLogByObjectId(ByVal ObjectId As Decimal) As System.Collections.Generic.List(Of CommonBusiness.ActionLog)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetActionLogByID", ReplyAction:="http://tempuri.org/ICommonBusiness/GetActionLogByIDResponse")>  _
-        Function GetActionLogByID(ByVal gID As Decimal) As System.Collections.Generic.List(Of CommonBusiness.AuditLogDtl)
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -9865,6 +9884,10 @@ Namespace CommonBusiness
             MyBase.New(binding, remoteAddress)
         End Sub
         
+        Public Function CheckValidEmailTemplate(ByVal code As String, ByVal group As String) As Boolean Implements CommonBusiness.ICommonBusiness.CheckValidEmailTemplate
+            Return MyBase.Channel.CheckValidEmailTemplate(code, group)
+        End Function
+        
         Public Function GetListControl(ByVal KeyView As String) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetListControl
             Return MyBase.Channel.GetListControl(KeyView)
         End Function
@@ -9887,6 +9910,10 @@ Namespace CommonBusiness
         
         Public Function GetFoldersStructureInfo(ByVal _folderId As Decimal) As System.Collections.Generic.List(Of CommonBusiness.FoldersDTO) Implements CommonBusiness.ICommonBusiness.GetFoldersStructureInfo
             Return MyBase.Channel.GetFoldersStructureInfo(_folderId)
+        End Function
+        
+        Public Function GetActionLogByID(ByVal gID As Decimal) As System.Collections.Generic.List(Of CommonBusiness.AuditLogDtl) Implements CommonBusiness.ICommonBusiness.GetActionLogByID
+            Return MyBase.Channel.GetActionLogByID(gID)
         End Function
         
         Public Function DeleteActionLogs(ByVal lstDeleteIds As System.Collections.Generic.List(Of Decimal)) As Integer Implements CommonBusiness.ICommonBusiness.DeleteActionLogs
@@ -10225,10 +10252,6 @@ Namespace CommonBusiness
             Return MyBase.Channel.DeleteMailTemplate(lstID)
         End Function
         
-        Public Function CheckValidEmailTemplate(ByVal code As String, ByVal group As String) As Boolean Implements CommonBusiness.ICommonBusiness.CheckValidEmailTemplate
-            Return MyBase.Channel.CheckValidEmailTemplate(code, group)
-        End Function
-        
         Public Function CheckOtherListExistInDatabase(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal typeID As Decimal) As Boolean Implements CommonBusiness.ICommonBusiness.CheckOtherListExistInDatabase
             Return MyBase.Channel.CheckOtherListExistInDatabase(lstID, typeID)
         End Function
@@ -10529,6 +10552,10 @@ Namespace CommonBusiness
             Return MyBase.Channel.GetEmployeeToPopupFind(_filter, PageIndex, PageSize, Total, Sorts, log, _param)
         End Function
         
+        Public Function GetEmployeeToPopupFind_Portal(ByVal _filter As CommonBusiness.EmployeePopupFindListDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String, ByVal log As CommonBusiness.UserLog, ByVal _param As CommonBusiness.ParamDTO) As System.Collections.Generic.List(Of CommonBusiness.EmployeePopupFindListDTO) Implements CommonBusiness.ICommonBusiness.GetEmployeeToPopupFind_Portal
+            Return MyBase.Channel.GetEmployeeToPopupFind_Portal(_filter, PageIndex, PageSize, Total, Sorts, log, _param)
+        End Function
+        
         Public Function GetEmployeeToPopupFind2(ByVal _filter As CommonBusiness.EmployeePopupFindListDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal request_id As Integer, ByVal Sorts As String, ByVal log As CommonBusiness.UserLog, ByVal _param As CommonBusiness.ParamDTO) As System.Collections.Generic.List(Of CommonBusiness.EmployeePopupFindListDTO) Implements CommonBusiness.ICommonBusiness.GetEmployeeToPopupFind2
             Return MyBase.Channel.GetEmployeeToPopupFind2(_filter, PageIndex, PageSize, Total, request_id, Sorts, log, _param)
         End Function
@@ -10563,10 +10590,6 @@ Namespace CommonBusiness
         
         Public Function GetActionLogByObjectId(ByVal ObjectId As Decimal) As System.Collections.Generic.List(Of CommonBusiness.ActionLog) Implements CommonBusiness.ICommonBusiness.GetActionLogByObjectId
             Return MyBase.Channel.GetActionLogByObjectId(ObjectId)
-        End Function
-        
-        Public Function GetActionLogByID(ByVal gID As Decimal) As System.Collections.Generic.List(Of CommonBusiness.AuditLogDtl) Implements CommonBusiness.ICommonBusiness.GetActionLogByID
-            Return MyBase.Channel.GetActionLogByID(gID)
         End Function
     End Class
 End Namespace

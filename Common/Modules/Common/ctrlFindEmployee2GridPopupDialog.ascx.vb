@@ -31,7 +31,7 @@ Public Class ctrlFindEmployee2GridPopupDialog
     Public AjaxLoading As RadAjaxLoadingPanel
     Public Property AjaxManagerId As String
     Public Property AjaxLoadingId As String
-    Public Property Is_Load_CtrlOrg As Boolean
+    Public Property NotIs_Load_CtrlOrg As Boolean
     Public Property MaximumRows As Integer
         Get
             If PageViewState(Me.ID & "_MaximumRows") Is Nothing Then
@@ -164,7 +164,7 @@ Public Class ctrlFindEmployee2GridPopupDialog
             is_CheckNode = If(Request.Params("is_CheckNode") Is Nothing, False, Request.Params("is_CheckNode"))
             IsOnlyWorkingWithoutTer = If(Request.Params("IsOnlyWorkingWithoutTer") Is Nothing, False, Request.Params("IsOnlyWorkingWithoutTer"))
             IS_3B = If(Request.Params("IS_3B") Is Nothing, 0, Request.Params("IS_3B"))
-            Is_Load_CtrlOrg = If(Request.Params("Is_Load_CtrlOrg") Is Nothing, True, Request.Params("Is_Load_CtrlOrg"))
+            NotIs_Load_CtrlOrg = If(Request.Params("NotIs_Load_CtrlOrg") Is Nothing, True, Request.Params("NotIs_Load_CtrlOrg"))
 
             rgvEmployees.AllowMultiRowSelection = MultiSelect
             rgvDataPrepare.DataSource = DataSource
@@ -177,7 +177,7 @@ Public Class ctrlFindEmployee2GridPopupDialog
             ctrlOrg.CurrentValue = CurrentValue
             ctrlOrg.LoadAllOrganization = LoadAllOrganization
             'ctrlOrg.Visible = Is_Load_CtrlOrg
-            LeftPane.Visible = Is_Load_CtrlOrg
+            LeftPane.Visible = Not NotIs_Load_CtrlOrg
         Catch ex As Exception
             Throw ex
         End Try
@@ -345,9 +345,13 @@ NEXT_FOR:
 
             If ctrlOrg.CurrentValue <> "" Then
                 orgID = Decimal.Parse(ctrlOrg.CurrentValue)
+            Else
+                orgID = 1
             End If
+            Dim _is_PT = If(IsNumeric(Session("PortalAtShift")), CDec(Session("PortalAtShift")), 0)
             Dim _para = New CommonBusiness.ParamDTO With {.ORG_ID = orgID,
-                                                          .IS_PORTAL_AT_SHIFT = If(IsNumeric(Session("PortalAtShift")), CDec(Session("PortalAtShift")), 0), _
+                                                          .IS_PORTAL_AT_SHIFT = _is_PT, _
+                                                          .CURRENT_EMP = _is_PT, _
                                                .IS_DISSOLVE = ctrlOrg.IsDissolve}
 
             SetValueObjectByRadGrid(rgvEmployees, _filter)
@@ -371,8 +375,14 @@ NEXT_FOR:
                         Exit Function
                     End If
                 Else
-                    EmployeeList = rep.GetEmployeeToPopupFind(_filter, rgvEmployees.CurrentPageIndex, PageSize,
+                    If _is_PT <> 0 Then
+                        EmployeeList = rep.GetEmployeeToPopupFind_Portal(_filter, rgvEmployees.CurrentPageIndex, PageSize,
                                                           MaximumRows, Sorts, _para)
+                    Else
+                        EmployeeList = rep.GetEmployeeToPopupFind(_filter, rgvEmployees.CurrentPageIndex, PageSize,
+                                                          MaximumRows, Sorts, _para)
+                    End If
+                    
                 End If
             Else
                 If is_CheckNode Then
@@ -392,8 +402,15 @@ NEXT_FOR:
                         Exit Function
                     End If
                 Else
-                    EmployeeList = rep.GetEmployeeToPopupFind(_filter, rgvEmployees.CurrentPageIndex, PageSize,
+
+                    If _is_PT <> 0 Then
+                        EmployeeList = rep.GetEmployeeToPopupFind_Portal(_filter, rgvEmployees.CurrentPageIndex, PageSize,
                                                           MaximumRows, "EMPLOYEE_CODE asc", _para)
+                    Else
+                        EmployeeList = rep.GetEmployeeToPopupFind(_filter, rgvEmployees.CurrentPageIndex, PageSize,
+                                                          MaximumRows, "EMPLOYEE_CODE asc", _para)
+                    End If
+                    
                 End If
             End If
             rep.Dispose()

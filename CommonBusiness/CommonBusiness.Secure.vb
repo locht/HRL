@@ -799,6 +799,25 @@ Namespace CommonBusiness.ServiceImplementations
             End Using
         End Function
 
+        Public Function GetEmployeeToPopupFind_Portal(_filter As EmployeePopupFindListDTO,
+                                            ByVal PageIndex As Integer,
+                                            ByVal PageSize As Integer,
+                                            ByRef Total As Integer,
+                                            Optional ByVal Sorts As String = "EMPLOYEE_CODE asc",
+                                            Optional ByVal log As UserLog = Nothing,
+                                            Optional ByVal _param As ParamDTO = Nothing) As List(Of EmployeePopupFindListDTO) _
+                                        Implements ServiceContracts.ICommonBusiness.GetEmployeeToPopupFind_Portal
+            Using rep As New CommonRepository
+                Try
+
+                    Return rep.GetEmployeeToPopupFind_Portal(_filter, PageIndex, PageSize, Total, Sorts, log, _param)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
         Public Function GetEmployeeToPopupFind2(ByVal _filter As EmployeePopupFindListDTO,
                                     ByVal PageIndex As Integer,
                                     ByVal PageSize As Integer,

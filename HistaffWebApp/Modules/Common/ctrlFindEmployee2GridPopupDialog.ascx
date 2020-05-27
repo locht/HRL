@@ -152,7 +152,6 @@
         function btnYesClick() {
             //create the argument that will be returned to the parent page
             var oArg = new Object();
-
             //get a reference to the current RadWindow
             var oWnd = GetRadWindow();
 
