@@ -8,7 +8,14 @@ Namespace TrainingBusiness.ServiceImplementations
     Partial Class TrainingBusiness
 
 #Region "Otherlist"
+        Public Function GetCodeCourse(ByVal id As Decimal) As String Implements ServiceContracts.ITrainingBusiness.GetCodeCourse
+            Try
+                Dim rep As New TrainingRepository
+                Return rep.GetCodeCourse(id)
+            Catch ex As Exception
 
+            End Try
+        End Function
         Public Function GetCourseList() As List(Of CourseDTO) Implements ServiceContracts.ITrainingBusiness.GetCourseList
             Try
                 Dim rep As New TrainingRepository
