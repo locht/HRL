@@ -70,8 +70,8 @@ Partial Class AttendanceStoreProcedure
         End If
     End Function
 
-    Public Function CHECK_EXIST_SHIFT(ByVal p_EMP_ID As Decimal, ByVal P_DATE_FROM As Date?, ByVal P_DATE_TO As Date?) As Decimal
-        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_AT_ATTENDANCE_PORTAL.CHECK_EXIST_SHIFT", New List(Of Object)(New Object() {p_EMP_ID, P_DATE_FROM, P_DATE_TO}))
+    Public Function CHECK_EXIST_SHIFT(ByVal p_EMP_ID As Decimal, ByVal P_ID As Decimal, ByVal P_DATE_FROM As Date?, ByVal P_DATE_TO As Date?) As Decimal
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_AT_ATTENDANCE_PORTAL.CHECK_EXIST_SHIFT", New List(Of Object)(New Object() {p_EMP_ID, P_ID, P_DATE_FROM, P_DATE_TO}))
         If ds IsNot Nothing Then
             Return ds.Tables(0).Rows(0)(0)
         End If

@@ -98,7 +98,14 @@ Public Class ctrlAtShiftNewEdit
     ''' IDSelect
     ''' </summary>
     ''' <remarks></remarks>
-    Dim IDSelect As Decimal?
+    Property IDSelect As Decimal
+        Get
+            Return ViewState(Me.ID & "_IDSelect")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_IDSelect") = value
+        End Set
+    End Property
 
 
     Public Property Employee_list As List(Of EmployeeDTO)
@@ -195,11 +202,12 @@ Public Class ctrlAtShiftNewEdit
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim rep As AttendanceRepository
+        Dim rep As New AttendanceRepository
         Try
             Select Case Message
                 Case "UpdateView"
-                    Dim AtShift = rep.GetRegShiftByID(IDSelect)
+                    Dim AtShift As New AtPortalRegistrationShiftDTO
+                    AtShift = rep.GetRegShiftByID(IDSelect)
                     CurrentState = CommonMessage.STATE_EDIT
 
                     If IsNumeric(AtShift.SHIFT_ID) Then
@@ -257,17 +265,18 @@ Public Class ctrlAtShiftNewEdit
                                             .PERIOD_ID = Decimal.Parse(rep.GET_PERIOD(rdDateFrom.SelectedDate))}
 
                             If Not rep.IS_PERIODSTATUS(_param) Then
-                                ShowMessage(Translate("Kỳ công của nhân viên" & item.GetDataKeyValue("EMPLOYEE_CODE") & " đã đóng !!"), NotifyType.Warning)
+                                ShowMessage(Translate("Kỳ công của nhân viên " & item.GetDataKeyValue("EMPLOYEE_CODE") & " đã đóng !!"), NotifyType.Warning)
                                 Exit Sub
                             End If
-                            If store.CHECK_EXIST_SHIFT(emp_id, rdDateFrom.SelectedDate, rdDateTo.SelectedDate) > 0 Then
-                                ShowMessage(Translate("Nhân viên" & item.GetDataKeyValue("EMPLOYEE_CODE") & " tồn tại dữ liệu ca làm việc trong khoảng thời gian này !!"), NotifyType.Warning)
+                            If store.CHECK_EXIST_SHIFT(emp_id, IDSelect, rdDateFrom.SelectedDate, rdDateTo.SelectedDate) > 0 Then
+                                ShowMessage(Translate("Nhân viên " & item.GetDataKeyValue("EMPLOYEE_CODE") & " tồn tại dữ liệu ca làm việc trong khoảng thời gian này !!"), NotifyType.Warning)
                                 Exit Sub
                             End If
                         Next
                         objShift.SHIFT_ID = cboShift.SelectedValue
                         objShift.DATE_TO = rdDateTo.SelectedDate
                         objShift.DATE_FROM = rdDateFrom.SelectedDate
+                        objShift.REASON = txtReason.Text
                         objShift.CREATED_BY = LogHelper.CurrentUser.EMPLOYEE_ID
                         objShift.CREATED_DATE = DateTime.Now
                         Select Case CurrentState
@@ -492,10 +501,10 @@ Public Class ctrlAtShiftNewEdit
         Try
             If CurrentState Is Nothing Then
                 If Request.Params("ID") IsNot Nothing Then
-                    IDSelect = Decimal.Parse(Request.Params("ID"))
+                    IDSelect = If(IsNumeric(Request.Params("ID")), CDec(Request.Params("ID")), 0)
                 End If
 
-                If IDSelect IsNot Nothing Then
+                If IDSelect <> 0 Then
                     Refresh("UpdateView")
                 Else
                     Refresh("InsertView")

@@ -69,7 +69,7 @@ Public Class ctrlPortalAtRegistrationShift
                         Dim item As GridDataItem = rgMain.SelectedItems(idx)
                         lstDeletes.Add(item.GetDataKeyValue("ID"))
                     Next
-                    If rep.DeleteOtRegistration(lstDeletes) Then
+                    If rep.DeleteAtShift(lstDeletes) Then
                         Refresh("UpdateView")
                         CurrentState = CommonMessage.STATE_NORMAL
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
@@ -78,36 +78,6 @@ Public Class ctrlPortalAtRegistrationShift
                         CurrentState = CommonMessage.STATE_NORMAL
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
                         UpdateControlState()
-                    End If
-                Case CommonMessage.STATE_APPROVE
-                    Dim lstApp As New List(Of AT_OT_REGISTRATIONDTO)
-                    For idx = 0 To rgMain.SelectedItems.Count - 1
-                        Dim item As GridDataItem = rgMain.SelectedItems(idx)
-                        Dim dto As New AT_OT_REGISTRATIONDTO
-                        dto.ID = item.GetDataKeyValue("ID")
-                        dto.REGIST_DATE = item.GetDataKeyValue("REGIST_DATE")
-                        'Kiem tra ky cong da dong hay chua
-                        Dim periodid = rep.GetperiodID(EmployeeID, dto.REGIST_DATE, dto.REGIST_DATE)
-                        If periodid = 0 Then
-                            ShowMessage(Translate("Kiểm tra lại kì công"), NotifyType.Warning)
-                            Exit Sub
-                        End If
-                        Dim checkKicong = rep.CHECK_PERIOD_CLOSE(periodid)
-                        If checkKicong = 0 Then
-                            ShowMessage(Translate("Kì công đã đóng. Vui lòng kiểm tra lại!"), NotifyType.Warning)
-                            Exit Sub
-                        End If
-
-                        dto.STATUS = PortalStatus.WaitingForApproval
-                        dto.EMPLOYEE_ID = LogHelper.CurrentUser.EMPLOYEE_ID
-                        dto.REASON = ""
-                        lstApp.Add(dto)
-                    Next
-                    If Not rep.SendApproveOtRegistration(lstApp) Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
-                    Else
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                        CurrentState = CommonMessage.STATE_NORMAL
                     End If
             End Select
             rep.Dispose()
@@ -220,13 +190,6 @@ Public Class ctrlPortalAtRegistrationShift
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_DELETE
                     Dim lstDeletes As New List(Of Decimal)
-                    For idx = 0 To rgMain.SelectedItems.Count - 1
-                        Dim item As GridDataItem = rgMain.SelectedItems(idx)
-                        If item.GetDataKeyValue("STATUS") <> PortalStatus.Saved And item.GetDataKeyValue("STATUS") <> PortalStatus.UnApprovedByLM Then
-                            ShowMessage(Translate("Thao tác này chỉ áp dụng đối với trạng thái Chưa gửi duyệt, Không phê duyệt. Vui lòng chọn dòng khác."), NotifyType.Error)
-                            Exit Sub
-                        End If
-                    Next
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
                     ctrlMessageBox.DataBind()
@@ -236,44 +199,9 @@ Public Class ctrlPortalAtRegistrationShift
                         Dim dtDatas As DataTable
                         dtDatas = CreateDataFilter(True)
                         If dtDatas.Rows.Count > 0 Then
-                            rgMain.ExportExcel(Server, Response, dtDatas, "Overtime Record")
+                            rgMain.ExportExcel(Server, Response, dtDatas, "Portal Shift Registration")
                         End If
                     End Using
-                Case CommonMessage.TOOLBARITEM_SUBMIT
-                    If rgMain.SelectedItems.Count = 0 Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
-                        Exit Sub
-                    End If
-
-                    Dim listDataCheck As New List(Of AT_PROCESS_DTO)
-                    Dim datacheck As AT_PROCESS_DTO
-                    'Kiểm tra các điều kiện trước khi xóa
-                    For Each dr As Telerik.Web.UI.GridDataItem In rgMain.SelectedItems
-                        If dr.GetDataKeyValue("STATUS") <> PortalStatus.Saved And dr.GetDataKeyValue("STATUS") <> PortalStatus.UnApprovedByLM Then
-                            ShowMessage(String.Format(Translate("Trạng thái {0} không thể gửi duyệt. Vui lòng chọn dòng khác."), dr.GetDataKeyValue("STATUS_NAME")), NotifyType.Warning)
-                            Exit Sub
-                        End If
-                        datacheck = New AT_PROCESS_DTO With {
-                            .EMPLOYEE_ID = dr.GetDataKeyValue("EMPLOYEE_ID"),
-                            .FROM_DATE = dr.GetDataKeyValue("REGIST_DATE"),
-                            .FULL_NAME = dr.GetDataKeyValue("FULLNAME")
-                        }
-                        listDataCheck.Add(datacheck)
-                    Next
-
-                    Dim itemError As New AT_PROCESS_DTO
-                    Using rep As New AttendanceRepository
-                        Dim checkResult = rep.CheckTimeSheetApproveVerify(listDataCheck, "LEAVE", itemError)
-                        If Not checkResult Then
-                            ShowMessage(String.Format(Translate("Thời gian biểu của {0} trong tháng {1} đã được phê duyệt."), itemError.FULL_NAME, itemError.FROM_DATE.Value.Month & "/" & itemError.FROM_DATE.Value.Year), NotifyType.Warning)
-                            Exit Sub
-                        End If
-                    End Using
-
-                    ctrlMessageBox.MessageText = Translate("Gửi duyệt. Bạn có chắc chắn gửi duyệt?")
-                    ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_SUBMIT
-                    ctrlMessageBox.DataBind()
-                    ctrlMessageBox.Show()
 
             End Select
         Catch ex As Exception
@@ -388,24 +316,24 @@ Public Class ctrlPortalAtRegistrationShift
             'End If
             SetValueObjectByRadGrid(rgMain, _filter)
             Dim Sorts As String = rgMain.MasterTableView.SortExpressions.GetSortString()
-            'If isFull Then
-            '    If Sorts IsNot Nothing Then
-            '        Return rep.GetAtRegShift(_filter, Integer.MaxValue, 0, Integer.MaxValue, Sorts).ToTable()
-            '    Else
-            '        Return rep.GetAtRegShift(_filter, Integer.MaxValue, 0, Integer.MaxValue).ToTable
-            '    End If
-            'Else
-            '    If Sorts IsNot Nothing Then
-            '        Me.RegistrationList = rep.GetAtRegShift(_filter, Me.OtRegistrationTotal, rgMain.CurrentPageIndex, rgMain.PageSize, Sorts)
-            '    Else
-            '        Me.RegistrationList = rep.GetAtRegShift(_filter, Me.OtRegistrationTotal, rgMain.CurrentPageIndex, rgMain.PageSize)
-            '    End If
-            'End If
-            If Sorts IsNot Nothing Then
-                Me.RegistrationList = rep.GetAtRegShift(_filter, Me.OtRegistrationTotal, rgMain.CurrentPageIndex, rgMain.PageSize, Sorts)
+            If isFull Then
+                If Sorts IsNot Nothing Then
+                    Return rep.GetAtRegShift(_filter, Integer.MaxValue, 0, Integer.MaxValue, Sorts).ToTable()
+                Else
+                    Return rep.GetAtRegShift(_filter, Integer.MaxValue, 0, Integer.MaxValue).ToTable
+                End If
             Else
-                Me.RegistrationList = rep.GetAtRegShift(_filter, Me.OtRegistrationTotal, rgMain.CurrentPageIndex, rgMain.PageSize)
+                If Sorts IsNot Nothing Then
+                    Me.RegistrationList = rep.GetAtRegShift(_filter, Me.OtRegistrationTotal, rgMain.CurrentPageIndex, rgMain.PageSize, Sorts)
+                Else
+                    Me.RegistrationList = rep.GetAtRegShift(_filter, Me.OtRegistrationTotal, rgMain.CurrentPageIndex, rgMain.PageSize)
+                End If
             End If
+            'If Sorts IsNot Nothing Then
+            '    Me.RegistrationList = rep.GetAtRegShift(_filter, Me.OtRegistrationTotal, rgMain.CurrentPageIndex, rgMain.PageSize, Sorts)
+            'Else
+            '    Me.RegistrationList = rep.GetAtRegShift(_filter, Me.OtRegistrationTotal, rgMain.CurrentPageIndex, rgMain.PageSize)
+            'End If
             rgMain.VirtualItemCount = Me.OtRegistrationTotal
             rgMain.DataSource = Me.RegistrationList
 

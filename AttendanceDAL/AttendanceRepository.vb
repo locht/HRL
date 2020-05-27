@@ -749,6 +749,7 @@ Partial Public Class AttendanceRepository
                         From title In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
                         From shift In Context.AT_SHIFT.Where(Function(f) f.ID = p.SHIFT_ID).DefaultIfEmpty
                         From cre_by In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.CREATED_BY).DefaultIfEmpty
+                        Where p.ID = _id
                         Select New AtPortalRegistrationShiftDTO With {
                                 .ID = p.ID,
                                 .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
@@ -808,8 +809,8 @@ Partial Public Class AttendanceRepository
 
     Public Function DeleteAtShift(ByVal _lst_id As List(Of Decimal)) As Boolean
         Try
-            Dim lstDelete As List(Of AT_PORTAL_REG_SHIFT)
-            lstDelete = (From p In Context.AT_PORTAL_REG_SHIFT Where _lst_id.Contains(p.ID))
+            Dim lstDelete As New List(Of AT_PORTAL_REG_SHIFT)
+            lstDelete = (From p In Context.AT_PORTAL_REG_SHIFT Where _lst_id.Contains(p.ID)).ToList
             For Each item In lstDelete
                 Context.AT_PORTAL_REG_SHIFT.DeleteObject(item)
             Next

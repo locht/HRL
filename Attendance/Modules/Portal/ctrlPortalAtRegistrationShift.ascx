@@ -146,6 +146,9 @@
                     args.set_cancel(true);
                 }
             }
+            if (args.get_item().get_commandName() == 'EXPORT') {
+                enableAjax = false;
+            }
             else {
                 // Nếu nhấn các nút khác thì resize default
             }
