@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("42845c49-e7e1-47db-8033-2f00693dc79e")>
+<Assembly: EdmSchemaAttribute("058c0d75-4a96-4d09-a55b-5f54474a8ada")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -13682,6 +13682,206 @@ Public Partial Class AT_LEAVESHEET
     End Sub
 
     Private Partial Sub OnREASONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FROM_SESSION() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _FROM_SESSION
+        End Get
+        Set
+            OnFROM_SESSIONChanging(value)
+            ReportPropertyChanging("FROM_SESSION")
+            _FROM_SESSION = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("FROM_SESSION")
+            OnFROM_SESSIONChanged()
+        End Set
+    End Property
+
+    Private _FROM_SESSION As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnFROM_SESSIONChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnFROM_SESSIONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TO_SESSION() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _TO_SESSION
+        End Get
+        Set
+            OnTO_SESSIONChanging(value)
+            ReportPropertyChanging("TO_SESSION")
+            _TO_SESSION = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("TO_SESSION")
+            OnTO_SESSIONChanged()
+        End Set
+    End Property
+
+    Private _TO_SESSION As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnTO_SESSIONChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnTO_SESSIONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CREATED_BY_EMP() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _CREATED_BY_EMP
+        End Get
+        Set
+            OnCREATED_BY_EMPChanging(value)
+            ReportPropertyChanging("CREATED_BY_EMP")
+            _CREATED_BY_EMP = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("CREATED_BY_EMP")
+            OnCREATED_BY_EMPChanged()
+        End Set
+    End Property
+
+    Private _CREATED_BY_EMP As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnCREATED_BY_EMPChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnCREATED_BY_EMPChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MODIFIED_BY_EMP() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _MODIFIED_BY_EMP
+        End Get
+        Set
+            OnMODIFIED_BY_EMPChanging(value)
+            ReportPropertyChanging("MODIFIED_BY_EMP")
+            _MODIFIED_BY_EMP = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MODIFIED_BY_EMP")
+            OnMODIFIED_BY_EMPChanged()
+        End Set
+    End Property
+
+    Private _MODIFIED_BY_EMP As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMODIFIED_BY_EMPChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnMODIFIED_BY_EMPChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property RESTORED_BY() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _RESTORED_BY
+        End Get
+        Set
+            OnRESTORED_BYChanging(value)
+            ReportPropertyChanging("RESTORED_BY")
+            _RESTORED_BY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("RESTORED_BY")
+            OnRESTORED_BYChanged()
+        End Set
+    End Property
+
+    Private _RESTORED_BY As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnRESTORED_BYChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnRESTORED_BYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property RESTORED_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _RESTORED_DATE
+        End Get
+        Set
+            OnRESTORED_DATEChanging(value)
+            ReportPropertyChanging("RESTORED_DATE")
+            _RESTORED_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("RESTORED_DATE")
+            OnRESTORED_DATEChanged()
+        End Set
+    End Property
+
+    Private _RESTORED_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnRESTORED_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnRESTORED_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property RESTORED_REASON() As Global.System.String
+        Get
+            Return _RESTORED_REASON
+        End Get
+        Set
+            OnRESTORED_REASONChanging(value)
+            ReportPropertyChanging("RESTORED_REASON")
+            _RESTORED_REASON = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("RESTORED_REASON")
+            OnRESTORED_REASONChanged()
+        End Set
+    End Property
+
+    Private _RESTORED_REASON As Global.System.String
+    Private Partial Sub OnRESTORED_REASONChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnRESTORED_REASONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property REASON_LEAVE() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _REASON_LEAVE
+        End Get
+        Set
+            OnREASON_LEAVEChanging(value)
+            ReportPropertyChanging("REASON_LEAVE")
+            _REASON_LEAVE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("REASON_LEAVE")
+            OnREASON_LEAVEChanged()
+        End Set
+    End Property
+
+    Private _REASON_LEAVE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnREASON_LEAVEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnREASON_LEAVEChanged()
     End Sub
 
     #End Region

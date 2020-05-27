@@ -18,7 +18,7 @@
     <Item Value="Profile;ctrlPortalTraining;NoPer;NoEdit" Text="Quá trình đào tạo trong công ty" ImageUrl="~/Static/Images/RibbonBar/working_before.png" />
     <Item Value="Profile;ctrlPortalTrainingOutCompany_Edit;NoPer;NoEdit" Text="Quá trình đào tạo ngoài công ty" ImageUrl="~/Static/Images/RibbonBar/discipline.png" />
   </Item>
-  <Item Text="Đăng ký nghỉ &amp; Phê duyệt nghỉ" Expanded="True" Value="Attendance">
+  <Item Text="Chấm công" Expanded="True" Value="Attendance">
     <Item Value="Attendance;ctrlLeaveRegistration;NoPer;NoEdit" Text="Đăng ký nghỉ" ImageUrl="~/Static/Images/RibbonBar/leave.png"/>
     <Item Value="Attendance;ctrlLeaveRegistrationByManager;NoPer;NoEdit" Text="Phê duyệt nghỉ" ImageUrl="~/Static/Images/RibbonBar/approve.png" />
     <Item Value="Attendance;ctrlPortalAtRegistrationShift;NoPer;NoEdit" Text="Đăng ký ca làm việc" ImageUrl="~/Static/Images/RibbonBar/approve.png" />
