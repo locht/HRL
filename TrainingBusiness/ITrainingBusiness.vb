@@ -386,7 +386,8 @@ Namespace TrainingBusiness.ServiceContracts
 
         <OperationContract()>
         Function DeletePlans(ByVal lstId As List(Of Decimal)) As Boolean
-
+        <OperationContract()>
+        Function ApproveListPlan(ByVal listID As List(Of Decimal), ByVal flag As Decimal, ByVal log As UserLog) As Boolean
 #End Region
 
 #Region "Request"

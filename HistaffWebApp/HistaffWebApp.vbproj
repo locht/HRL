@@ -1508,6 +1508,7 @@
     <Content Include="ReportTemplates\Performance\KPI\ACV_DANHGIAKPI_error.xls" />
     <Content Include="ReportTemplates\Performance\KPI\DANHGIAKPI.xls" />
     <Content Include="ReportTemplates\Performance\KPI\export.xls" />
+    <Content Include="ReportTemplates\Profile\Working\Template_quyet dinh.xls" />
     <None Include="ReportTemplates\Recruitment\Import\Candidate_Error.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

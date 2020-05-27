@@ -592,7 +592,25 @@ Partial Class TrainingRepository
         End Try
 
     End Function
+    Public Function ApproveListPlan(ByVal listID As List(Of Decimal), ByVal flag As Decimal, ByVal log As UserLog) As Boolean
+        Try
+            Dim item As Decimal = 0
+            For idx = 0 To listID.Count - 1
+                item = listID(idx)
+                Dim objPlan = (From p In Context.TR_PLAN Where item = p.ID).FirstOrDefault
+                If flag = 1 Then
+                    objPlan.STATUS_ID = 4001
+                End If
+                If flag = 0 Then
+                    objPlan.STATUS_ID = 4002
+                End If
+            Next
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
 
+        End Try
+    End Function
     Public Function DeletePlans(ByVal lstId As List(Of Decimal)) As Boolean
         Try
             Dim deletedPlans = (From record In Context.TR_PLAN Where lstId.Contains(record.ID))

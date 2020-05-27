@@ -20,7 +20,14 @@ Partial Class TrainingRepository
         Return Nothing
     End Function
 
+    Public Function ApproveListPlan(ByVal listID As List(Of Decimal), ByVal flag As Decimal) As Boolean
+        Try
+            Dim rep As New TrainingBusinessClient
+            Return rep.ApproveListPlan(listID, flag, Me.Log)
+        Catch ex As Exception
 
+        End Try
+    End Function
     Public Function GetIDCourseList(ByVal idSelected As String) As List(Of CourseDTO)
         Dim lstCourse As List(Of CourseDTO)
 

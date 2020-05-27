@@ -50,7 +50,7 @@ Public Class ctrlTR_Plan
         Try
             Me.ctrlMessageBox.Listener = Me
             Me.MainToolBar = tbarMain
-            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create, ToolbarItem.Edit, ToolbarItem.Delete)
+            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create, ToolbarItem.Edit, ToolbarItem.Delete, ToolbarItem.Approve, ToolbarItem.Reject)
         Catch ex As Exception
             Throw ex
         End Try
@@ -68,6 +68,35 @@ Public Class ctrlTR_Plan
                     Next
                     CurrentState = CommonMessage.STATE_NORMAL
                     If rep.DeletePlans(lstDeletes) Then
+                        Refresh("UpdateView")
+                        UpdateControlState()
+                    Else
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                        UpdateControlState()
+                    End If
+                Case CommonMessage.STATE_APPROVE
+                    Dim lstId As New List(Of Decimal)
+                    For idx = 0 To rgData.SelectedItems.Count - 1
+                        Dim item As GridDataItem = rgData.SelectedItems(idx)
+                        lstId.Add(item.GetDataKeyValue("ID"))
+                    Next
+                    CurrentState = CommonMessage.STATE_NORMAL
+                    If rep.ApproveListPlan(lstId, 1) Then
+                        Refresh("UpdateView")
+                        UpdateControlState()
+                    Else
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                        UpdateControlState()
+                    End If
+
+                Case CommonMessage.STATE_REJECT
+                    Dim lstId As New List(Of Decimal)
+                    For idx = 0 To rgData.SelectedItems.Count - 1
+                        Dim item As GridDataItem = rgData.SelectedItems(idx)
+                        lstId.Add(item.GetDataKeyValue("ID"))
+                    Next
+                    CurrentState = CommonMessage.STATE_NORMAL
+                    If rep.ApproveListPlan(lstId, 0) Then
                         Refresh("UpdateView")
                         UpdateControlState()
                     Else
@@ -140,10 +169,46 @@ Public Class ctrlTR_Plan
                             End If
                         End If
                     Next
-
+                    Dim item1 As GridDataItem = rgData.SelectedItems(0)
+                    If item1.GetDataKeyValue("STATUS_ID") = 4001 Then
+                        ShowMessage(Translate("Bản ghi đã phê duyệt. Thao tác thực hiện không thành công"), NotifyType.Warning)
+                        Exit Sub
+                    End If
                    
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
+                    ctrlMessageBox.DataBind()
+                    ctrlMessageBox.Show()
+                Case CommonMessage.TOOLBARITEM_APPROVE
+                    If rgData.SelectedItems.Count = 0 Then
+                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    For Each dr As Telerik.Web.UI.GridDataItem In rgData.SelectedItems
+                        If dr.GetDataKeyValue("STATUS") = 4001 Or dr.GetDataKeyValue("STATUS") = 4002 Then
+                            ShowMessage(Translate("Thao tác này chỉ áp dụng ở trạng thái Chờ phê duyệt"), NotifyType.Warning)
+                            Exit Sub
+                        End If
+                    Next
+                    ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_APPROVE)
+                    ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_APPROVE
+                    ctrlMessageBox.DataBind()
+                    ctrlMessageBox.Show()
+
+                Case CommonMessage.TOOLBARITEM_REJECT
+                    If rgData.SelectedItems.Count = 0 Then
+                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
+                        Exit Sub
+                    End If
+
+                    For Each dr As Telerik.Web.UI.GridDataItem In rgData.SelectedItems
+                        If dr.GetDataKeyValue("STATUS") = 4001 Or dr.GetDataKeyValue("STATUS") = 4002 Then
+                            ShowMessage(Translate("Thao tác này chỉ áp dụng ở trạng thái Chờ phê duyệt"), NotifyType.Warning)
+                            Exit Sub
+                        End If
+                    Next
+                    ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_REJECT)
+                    ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_REJECT
                     ctrlMessageBox.DataBind()
                     ctrlMessageBox.Show()
             End Select
@@ -157,6 +222,14 @@ Public Class ctrlTR_Plan
         Try
             If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
                 CurrentState = CommonMessage.STATE_DELETE
+                UpdateControlState()
+            End If
+            If e.ActionName = CommonMessage.TOOLBARITEM_APPROVE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                CurrentState = CommonMessage.STATE_APPROVE
+                UpdateControlState()
+            End If
+            If e.ActionName = CommonMessage.TOOLBARITEM_REJECT And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                CurrentState = CommonMessage.STATE_REJECT
                 UpdateControlState()
             End If
         Catch ex As Exception
