@@ -767,7 +767,7 @@ Partial Class PerformanceRepository
     Public Function INPORT_EVALUATE_ABC(ByVal P_DOCXML As String, ByVal P_PERIOD_ID As Decimal, ByVal P_USER As String) As Boolean
         Try
             Using cls As New DataAccess.QueryData
-                cls.ExecuteStore("PKG_PERFORMANCE_LIST.INPORT_EVALUATE_ABC",
+                cls.ExecuteStore("PKG_PERFORMANCE_LIST.IMPORT_EVALUATE_ABC",
                                  New With {.P_DOCXML = P_DOCXML, .P_PERIOD_ID = P_PERIOD_ID, .P_USER = P_USER})
             End Using
             Return True

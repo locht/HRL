@@ -55,6 +55,10 @@
                 <tlk:RadGrid PageSize="50" ID="rgEmployeeList" runat="server" AllowPaging="True"
                     Height="100%" AllowSorting="True" AllowMultiRowSelection="true">
                     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID">
+                        <ColumnGroups>
+                            <tlk:GridColumnGroup HeaderText="Tiêu chí đánh giá" Name="EVALUATE">
+                            </tlk:GridColumnGroup>
+                        </ColumnGroups>
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderText="CheckBox" HeaderStyle-HorizontalAlign="center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="center">
@@ -68,17 +72,17 @@
                                 ReadOnly="true" HeaderStyle-Width="100px" />
                             <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME" SortExpression="TITLE_NAME" UniqueName="TITLE_NAME"
                                 ReadOnly="true" HeaderStyle-Width="100px" />
+                            <tlk:GridBoundColumn HeaderText="Ngày nhận việc" DataField="JOIN_DATE"
+                                SortExpression="JOIN_DATE" UniqueName="JOIN_DATE" DataFormatString="{0:dd/MM/yyyy}" ReadOnly="true" HeaderStyle-Width="100px">
+                            </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn HeaderText="Ngạch lương" DataField="SALARY_LEVEL" SortExpression="SALARY_LEVEL" UniqueName="SALARY_LEVEL"
                                 ReadOnly="true" HeaderStyle-Width="100px" />
-                            <tlk:GridDateTimeColumn HeaderText="Ngày nhận việc" DataField="JOIN_DATE" ItemStyle-HorizontalAlign="Center"
-                                SortExpression="JOIN_DATE" UniqueName="JOIN_DATE" DataFormatString="{0:dd/MM/yyyy}">
-                            </tlk:GridDateTimeColumn>
                             <tlk:GridBoundColumn HeaderText="Tinh thần trách nhiệm" DataField="RESPONSIBILITY" ReadOnly="true"
-                                SortExpression="RESPONSIBILITY" UniqueName="RESPONSIBILITY" HeaderStyle-Width="100px" />
+                                SortExpression="RESPONSIBILITY" UniqueName="RESPONSIBILITY" HeaderStyle-Width="100px" ColumnGroupName="EVALUATE" />
                             <tlk:GridBoundColumn HeaderText="Tính hợp tác" DataField="COOPERATION" SortExpression="COOPERATION"
-                                UniqueName="COOPERATION" ReadOnly="true" HeaderStyle-Width="100px" />
+                                UniqueName="COOPERATION" ReadOnly="true" HeaderStyle-Width="100px" ColumnGroupName="EVALUATE" />
                             <tlk:GridBoundColumn HeaderText="Tính chuyên cần" DataField="DILIGENCE" SortExpression="DILIGENCE"
-                                UniqueName="DILIGENCE" ReadOnly="true" HeaderStyle-Width="100px" />
+                                UniqueName="DILIGENCE" ReadOnly="true" HeaderStyle-Width="100px" ColumnGroupName="EVALUATE" />
                             <tlk:GridBoundColumn HeaderText="Tổng cộng" DataField="TOTAL" SortExpression="TOTAL"
                                 UniqueName="TOTAL" ReadOnly="true" HeaderStyle-Width="100px" />
                             <tlk:GridBoundColumn HeaderText="Xếp loại" DataField="CLASSIFICATION_NAME" SortExpression="CLASSIFICATION_NAME"

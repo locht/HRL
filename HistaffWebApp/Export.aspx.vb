@@ -1403,6 +1403,8 @@ Public Class Export
     Private Sub HU_ANNUALLEAVE_PLANS_ERROR()
         Try
             Dim dtData = Session("EXPORTREPORT")
+            dtData.TableName = "DATA"
+
             ExportTemplate("Attendance\Import\Template_QLKeHoachNghiPN _error.xls", _
                                       dtData, Nothing, _
                                       "TemplateImport_Error_" & Format(Date.Now, "yyyyMMdd"))
