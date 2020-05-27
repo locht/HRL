@@ -2350,6 +2350,102 @@ Partial Public Class CommonRepository
                         From te In Context.HU_TERMINATE.Where(Function(f) p.ID = f.EMPLOYEE_ID).DefaultIfEmpty
                         From emp_stt In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.EMP_STATUS).DefaultIfEmpty
             'From te_status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = te.STATUS_ID And f.NAME_VN.ToUpper.Trim <> "PHÊ DUYỆT")
+            'If _param.IS_PORTAL_AT_SHIFT IsNot Nothing Or _param.IS_PORTAL_AT_SHIFT <> 0 Then
+            '    Dim job_pos = (From p In Context.HU_EMPLOYEE Where p.ID = _param.CURRENT_EMP).FirstOrDefault.JOB_POSITION
+            '    job_pos = If(IsDBNull(job_pos), 0, job_pos)
+            '    Dim jp_lst = (From dr In Context.HU_DIRECT_MANAGER
+            '                  Where dr.DIRECT_MANAGER = 97
+            '                  Select dr.JOB_POSITION_ID).ToList
+            'End If
+            If _filter.EMPLOYEE_CODE <> "" Then
+                query = query.Where(Function(f) f.p.EMPLOYEE_CODE.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper) Or _
+                                        f.p.FULLNAME_VN.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper))
+            End If
+
+            If _filter.DIRECT_MANAGER IsNot Nothing Then
+                query = query.Where(Function(f) f.p.DIRECT_MANAGER.ToString().Contains(_filter.DIRECT_MANAGER) Or _
+                                        f.p.FULLNAME_VN.ToUpper.Contains(_filter.DIRECT_MANAGER))
+            End If
+            'If _filter.IS_KIEMNHIEM = 0 Then
+            '    query = query.Where(Function(f) f.p.EMP_STATUS <> 0)
+            'End If
+            Dim str As String = "Kiêm nhiệm"
+            If _filter.IS_KIEMNHIEM = 0 Then
+                query = query.Where(Function(f) Not f.p.IS_KIEM_NHIEM IsNot Nothing)
+            End If
+            If _filter.MustHaveContract Then
+                query = query.Where(Function(f) f.p.CONTRACT_ID.HasValue)
+            End If
+            Dim dateNow = Date.Now.Date
+            If Not _filter.IsOnlyWorkingWithoutTer Then
+                If _filter.IS_TER Then
+                    query = query.Where(Function(f) f.p.WORK_STATUS = 257 And f.p.TER_EFFECT_DATE <= dateNow)
+                Else
+                    query = query.Where(Function(f) f.p.WORK_STATUS Is Nothing Or (f.p.WORK_STATUS IsNot Nothing And _
+                                             (f.p.WORK_STATUS <> 257 Or (f.p.WORK_STATUS <> 257 And f.te.LAST_DATE > dateNow))))
+                End If
+            Else
+                query = query.Where(Function(f) f.p.WORK_STATUS IsNot Nothing And f.p.WORK_STATUS = 258)
+            End If
+
+            Select Case _filter.IS_3B
+                Case 1
+                    query = query.Where(Function(f) f.p.IS_3B = True)
+                Case 2
+                    query = query.Where(Function(f) f.p.IS_3B = False)
+
+            End Select
+            Dim lst = query.Select(Function(f) New EmployeePopupFindListDTO With {
+                            .EMPLOYEE_CODE = f.p.EMPLOYEE_CODE,
+                            .ID = f.p.ID,
+                            .EMPLOYEE_ID = f.p.ID,
+                            .FULLNAME_VN = f.p.FULLNAME_VN,
+                            .EMP_STATUS = If(f.p.IS_KIEM_NHIEM IsNot Nothing, str, f.emp_stt.NAME_VN),
+                            .FULLNAME_EN = f.p.FULLNAME_EN,
+                            .JOIN_DATE = f.p.JOIN_DATE,
+                            .ORG_NAME = f.o.NAME_VN,
+                            .ORG_DESC = f.o.DESCRIPTION_PATH,
+                            .GENDER = f.gender.NAME_VN,
+                            .WORK_STATUS = f.work_status.NAME_VN,
+                            .TITLE_NAME = f.t.NAME_VN,
+                            .IMAGE = f.cv.IMAGE,
+                            .DIRECT_MANAGER = f.p.DIRECT_MANAGER}) '.Where(Function(x) x.WORK_STATUS = "Đang làm việc")
+
+            lst = lst.OrderBy(Sorts)
+            Total = lst.Count
+            lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
+            Return lst.ToList
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function GetEmployeeToPopupFind_Portal(_filter As EmployeePopupFindListDTO,
+                                            ByVal PageIndex As Integer,
+                                            ByVal PageSize As Integer,
+                                            ByRef Total As Integer,
+                                            Optional ByVal Sorts As String = "EMPLOYEE_CODE asc",
+                                            Optional ByVal log As UserLog = Nothing,
+                                            Optional ByVal _param As ParamDTO = Nothing) As List(Of EmployeePopupFindListDTO)
+
+        Try
+            Dim job_pos = (From p In Context.HU_EMPLOYEE Where p.ID = _param.CURRENT_EMP).FirstOrDefault.JOB_POSITION
+            job_pos = If(IsDBNull(job_pos) Or IsNothing(job_pos), 0, job_pos)
+            Dim jp_lst As New List(Of Decimal)
+            jp_lst = (From dr In Context.HU_DIRECT_MANAGER
+                        Where (dr.DIRECT_MANAGER = job_pos)
+                          Select dr.JOB_POSITION_ID).ToList
+            Dim query = From p In Context.HU_EMPLOYEE
+                        From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = p.ID).DefaultIfEmpty
+                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                        From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
+                        From gender In Context.OT_OTHER_LIST.Where(Function(f) f.ID = cv.GENDER And f.TYPE_ID = 34).DefaultIfEmpty
+                        From work_status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.WORK_STATUS And f.TYPE_ID = 59).DefaultIfEmpty
+                        From te In Context.HU_TERMINATE.Where(Function(f) p.ID = f.EMPLOYEE_ID).DefaultIfEmpty
+                        From emp_stt In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.EMP_STATUS).DefaultIfEmpty
+                        Where p.ID = _param.CURRENT_EMP Or jp_lst.Contains(p.JOB_POSITION)
+            'From te_status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = te.STATUS_ID And f.NAME_VN.ToUpper.Trim <> "PHÊ DUYỆT")
 
             If _filter.EMPLOYEE_CODE <> "" Then
                 query = query.Where(Function(f) f.p.EMPLOYEE_CODE.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper) Or _
@@ -2437,13 +2533,11 @@ Partial Public Class CommonRepository
             If _param.IS_PORTAL_AT_SHIFT IsNot Nothing Or _param.IS_PORTAL_AT_SHIFT <> 0 Then
                 Dim job_pos = (From p In Context.HU_EMPLOYEE Where p.ID = _param.CURRENT_EMP).FirstOrDefault.JOB_POSITION
                 job_pos = If(IsDBNull(job_pos), 0, job_pos)
-                query = From p In Context.HU_EMPLOYEE
-                        From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = p.ID).DefaultIfEmpty
-                        From jp In Context.HU_JOB_POSITION.Where(Function(f) f.ID = p.JOB_POSITION).DefaultIfEmpty
-                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
-                        From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
-                        From gender In Context.OT_OTHER_LIST.Where(Function(f) f.ID = cv.GENDER And f.TYPE_ID = 34).DefaultIfEmpty
-                        From work_status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.WORK_STATUS And f.TYPE_ID = 59).DefaultIfEmpty
+                Dim jp_lst = (From dr In Context.HU_DIRECT_MANAGER
+                              From jp In Context.HU_JOB_POSITION.Where(Function(f) f.ID = dr.DIRECT_MANAGER).DefaultIfEmpty
+                              Where jp.DIRECT_MANAGER = job_pos
+                              Select jp.ID).ToList
+
             End If
 
             If _filter.EMPLOYEE_CODE <> "" Then

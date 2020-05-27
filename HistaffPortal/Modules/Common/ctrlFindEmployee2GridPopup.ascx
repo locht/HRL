@@ -2,7 +2,6 @@
      Inherits="Common.ctrlFindEmployee2GridPopup" %>
 <%@ Import Namespace="Framework.UI.Utilities" %>
 <%@ Register Src="ctrlOrganization.ascx" TagName="ctrlOrganization" TagPrefix="Common" %>
-    Inherits="Common.ctrlFindEmployee2GridPopup" %>
 <tlk:RadScriptBlock ID="scriptBlock" runat="server">
     <script type="text/javascript">
         function <%=ClientID%>_OnClientClose(oWnd, args) {

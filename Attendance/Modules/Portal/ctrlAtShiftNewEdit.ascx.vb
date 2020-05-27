@@ -19,19 +19,9 @@ Public Class ctrlAtShiftNewEdit
     ''' </summary>
     ''' <remarks></remarks>
     Protected WithEvents ctrlFindEmployee2GridPopup As ctrlFindEmployee2GridPopup
-
-    ''' <summary>
-    ''' ctrl FindEmployeePopup
-    ''' </summary>
-    ''' <remarks></remarks>
-
-    ''' <summary>
-    ''' Must Authorize
-    ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Overrides Property MustAuthorize As Boolean = False
+    Public WithEvents AjaxManager As RadAjaxManager
+    Public Property AjaxManagerId As String
 
     Private Property dtLogs As DataTable
         Get
@@ -358,6 +348,7 @@ Public Class ctrlAtShiftNewEdit
                 rgEmployee.Rebind()
 
             End If
+            Session.Remove("PortalAtShift")
             'rep.Dispose()
             isLoadPopup = 0
 
@@ -380,7 +371,7 @@ Public Class ctrlAtShiftNewEdit
 
         Try
             isLoadPopup = 0
-
+            Session.Remove("PortalAtShift")
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -459,7 +450,7 @@ Public Class ctrlAtShiftNewEdit
                 Case 1
                     HttpContext.Current.Session("PortalAtShift") = LogHelper.CurrentUser.EMPLOYEE_ID
                     ctrlFindEmployee2GridPopup = Me.Register("ctrlFindEmployee2GridPopup", "Common", "ctrlFindEmployee2GridPopup")
-                    ctrlFindEmployee2GridPopup.Is_Load_CtrlOrg = False
+                    ctrlFindEmployee2GridPopup.NotIs_Load_CtrlOrg = True
                     FindEmployee.Controls.Add(ctrlFindEmployee2GridPopup)
             End Select
 

@@ -570,6 +570,16 @@ Namespace CommonBusiness.ServiceContracts
                                             Optional ByVal Sorts As String = "EMPLOYEE_CODE asc",
                                             Optional ByVal log As UserLog = Nothing,
                                             Optional ByVal _param As ParamDTO = Nothing) As List(Of EmployeePopupFindListDTO)
+
+        <OperationContract()>
+        Function GetEmployeeToPopupFind_Portal(_filter As EmployeePopupFindListDTO,
+                                            ByVal PageIndex As Integer,
+                                            ByVal PageSize As Integer,
+                                            ByRef Total As Integer,
+                                            Optional ByVal Sorts As String = "EMPLOYEE_CODE asc",
+                                            Optional ByVal log As UserLog = Nothing,
+                                            Optional ByVal _param As ParamDTO = Nothing) As List(Of EmployeePopupFindListDTO)
+
         <OperationContract()>
         Function GetEmployeeToPopupFind2(ByVal _filter As EmployeePopupFindListDTO,
                                             ByVal PageIndex As Integer,

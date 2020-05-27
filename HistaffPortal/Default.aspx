@@ -12,6 +12,7 @@
             <tlk:AjaxSetting AjaxControlID="Panel1">
                 <UpdatedControls>
                     <tlk:AjaxUpdatedControl ControlID="Panel1" LoadingPanelID="LoadingPanel" />
+                    <tlk:AjaxUpdatedControl ControlID="PagePlaceHolder" LoadingPanelID="LoadingPanel" />
                 </UpdatedControls>
             </tlk:AjaxSetting>
         </AjaxSettings>
@@ -29,6 +30,7 @@
         </div>
         <asp:Panel ID="Panel1" runat="server" Style="padding-bottom: 5px;">
             <asp:PlaceHolder ID="PagePlaceHolder" runat="server"></asp:PlaceHolder>
+            <Common:ctrlSessionWarning ID="SessionWarning" runat="server" />
         </asp:Panel>
     </div>
     <tlk:RadWindow runat="server" ID="rwMainPopup" VisibleStatusbar="false" Width="800px"
@@ -44,6 +46,13 @@
                     var mid = value[0];
                     window.location.replace("default.aspx?fid=" + fid + "&mid=" + mid);
                 }
+            }
+
+            function ResetDountDownSession() {
+                stopTimers();
+                _popupTimer = window.setTimeout(showWarningPopup, (sessionTimeout - sessionTimeoutWarning) * 60 * 1000);
+                updateCountDownTest();
+
             }
 
         </script>

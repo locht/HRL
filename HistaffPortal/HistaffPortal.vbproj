@@ -126,6 +126,7 @@
     <Content Include="Modules\Common\ctrlCommon_Reject.ascx" />
     <Content Include="Modules\Common\ctrlFindEmployee2GridPopup.ascx" />
     <Content Include="Modules\Common\ctrlFindEmployee2GridPopupDialog.ascx" />
+    <Content Include="Modules\Common\ctrlSessionWarning.ascx" />
     <Content Include="Modules\Common\ctrlUpload.ascx" />
     <Content Include="Modules\Performance\ctrlPE_AssessHistory.ascx" />
     <Content Include="Modules\Common\ctrlFolders.ascx" />

@@ -173,6 +173,7 @@
             <tr>
                 <td rowspan="6" class="lb">
                     <%# Translate("Thời gian dự kiến tổ chức")%>
+                    <span class="lbReq">*</span>
                 </td>
                 <td rowspan="6">
                     <table style="border: 1px solid #abc1de">

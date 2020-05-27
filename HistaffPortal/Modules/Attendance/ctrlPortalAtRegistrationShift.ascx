@@ -65,8 +65,8 @@
                                     <tlk:GridBoundColumn DataField="ID" Visible="false" />
                                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
                                          HeaderStyle-Width="80px" ItemStyle-Width="80px" UniqueName="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE" />
-                                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên %>" DataField="FULLNAME" UniqueName="FULLNAME"
-                                         HeaderStyle-Width="170px" ItemStyle-Width="170px" SortExpression="FULLNAME" />
+                                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên %>" DataField="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME"
+                                         HeaderStyle-Width="170px" ItemStyle-Width="170px" SortExpression="EMPLOYEE_NAME" />
                                     
                                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
                                          HeaderStyle-Width="270px" ItemStyle-Width="270px" UniqueName="TITLE_NAME" SortExpression="TITLE_NAME"

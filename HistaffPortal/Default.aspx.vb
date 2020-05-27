@@ -23,7 +23,10 @@ Public Class _Default
         Dim group As String = IIf(Request.Params("group") Is Nothing, "", Request.Params("group"))
         MyBase.OnInit(e)
         Me.AjaxManager = Me.RadAjaxManager1
-        'Me.AjaxManager.EnableAJAX = False
+        Me.AjaxLoading = LoadingPanel
+        If Request.Params("EnableAjax") IsNot Nothing AndAlso Request.Params("EnableAjax") = False Then
+            Me.AjaxManager.EnableAJAX = False
+        End If
         Me.AjaxLoading = LoadingPanel
         Me.PopupWindow = rwMainPopup
         If mid IsNot Nothing AndAlso mid.Trim.ToUpper = "SUPPORT" Then

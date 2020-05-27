@@ -346,20 +346,17 @@
         var space = 0;
         var oldSize = 72;
 
-//        function pageLoad(sender, args) {
-//            $(document).ready(function () {
-//                ResizeSplitter();
-//            });
-//        }
+        function pageLoad(sender, args) {
+            $(document).ready(function () {
+                ResizeSplitter();
+            });
+        }
 
         // Hàm Resize lại Splitter khi nhấn nút SAVE có validate
         function ResizeSplitter() {
             setTimeout(function () {
 
                 var splitter = $find("<%= RadSplitter3.ClientID%>");
-                if (splitter == null) {
-                    return;
-                }
                 var pane = splitter.getPaneById('<%= RadPane1.ClientID %>');
                 var pane2 = splitter.getPaneById('<%= RadPane2.ClientID %>');
                 var pane4 = splitter.getPaneById('<%= RadPane4.ClientID %>');

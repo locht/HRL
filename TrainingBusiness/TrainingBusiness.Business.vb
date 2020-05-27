@@ -76,6 +76,14 @@ Namespace TrainingBusiness.ServiceImplementations
                 Throw ex
             End Try
         End Function
+        Public Function ApproveListPlan(ByVal listID As List(Of Decimal), ByVal flag As Decimal, ByVal log As UserLog) As Boolean Implements ServiceContracts.ITrainingBusiness.ApproveListPlan
+            Try
+                Dim rep As New TrainingRepository
+                Return rep.ApproveListPlan(listID, flag, log)
+            Catch ex As Exception
+
+            End Try
+        End Function
 
         Function InsertPlan(ByVal plan As PlanDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.ITrainingBusiness.InsertPlan
             Try

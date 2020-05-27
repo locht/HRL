@@ -167,6 +167,9 @@ Public Class ctrlTR_PlanNewEdit
                     End If
                     If obj.STATUS_ID IsNot Nothing Then
                         cboStatus.SelectedValue = obj.STATUS_ID
+                        If cboStatus.SelectedValue = 4001 Then
+                            EnableControlAll_Cus(False, RadPane2)
+                        End If
                     End If
                     If obj.LEVEL_PRIOTY IsNot Nothing Then
                         rnPrioty.Value = obj.LEVEL_PRIOTY
@@ -230,6 +233,7 @@ Public Class ctrlTR_PlanNewEdit
                     End If
                     ' CostCalculating()
                     ' year
+
                     cbJan.Checked = obj.PLAN_T1
                     cbFeb.Checked = obj.PLAN_T2
                     cbMar.Checked = obj.PLAN_T3
@@ -249,8 +253,6 @@ Public Class ctrlTR_PlanNewEdit
                         cboCourse.Text = obj.TR_COURSE_NAME
                     End If
                     ' cboCourse_SelectedIndexChanged(Nothing, Nothing)
-                    Dim filePath As String
-                    Dim templatefolder As String
                     If obj.ATTACHFILE IsNot Nothing Then
                         lblFilename.Text = obj.ATTACHFILE
                         'templatefolder = ConfigurationManager.AppSettings("ReportTemplatesFolder")
@@ -265,6 +267,7 @@ Public Class ctrlTR_PlanNewEdit
                     'PopulatingListWI()
                     repHF = New HistaffFrameworkRepository
                     Dim dtData1 = repHF.ExecuteToDataSet("PKG_TRAINING.PLAN_CHECK_REQUEST", New List(Of Object)({obj.ID})).Tables(0)
+
 
                     If dtData1 IsNot Nothing Then
                         If dtData1.Rows.Count >= 1 Then
@@ -308,6 +311,12 @@ Public Class ctrlTR_PlanNewEdit
                             If hidOrgID.Value IsNot Nothing Then .ORG_ID = hidOrgID.Value
                             If cboCourse.SelectedValue <> "" Then
                                 .TR_COURSE_ID = Decimal.Parse(cboCourse.SelectedValue)
+                            End If
+                            If cbJan.Checked = False And cbFeb.Checked = False And cbMar.Checked = False And
+                       cbMar.Checked = False And cbJul.Checked = False And cbAug.Checked = False And
+                       cbSep.Checked = False And cbOct.Checked = False And cbNov.Checked = False And cbDec.Checked = False Then
+                                ShowMessage(Translate("Phải chọn ít nhất 1 trong 12 tháng tổ chức, Xin kiểm tra lại"), NotifyType.Warning)
+                                Exit Sub
                             End If
                             .PLAN_T1 = cbJan.Checked
                             If cbJan.Checked Then
@@ -374,7 +383,16 @@ Public Class ctrlTR_PlanNewEdit
                             '.COST_INCURRED = rntxtInccurredCost.Value
                             '.COST_TRAVEL = rntxtTravleCost.Value
                             '.COST_OTHER = rntxtOtherCost.Value
-                            .COST_TOTAL = rntxtTotal.Value
+                            If IsNumeric(rntxtTotal.Value) Then
+                                If rntxtTotal.Value > 0 Then
+                                    .COST_TOTAL = rntxtTotal.Value
+                                Else
+                                    ShowMessage(Translate("Tổng chi phí đào tạo phải lớn hơn 0, Xin kiểm tra lại"), NotifyType.Warning)
+                                    Exit Sub
+                                End If
+                            End If
+
+
                             .COST_OF_STUDENT = rntxtCostPerEmp.Value
                             .COST_TOTAL_USD = rntxtTotalUS.Value
                             .COST_OF_STUDENT_USD = rntxtCostPerEmpUS.Value
@@ -419,7 +437,7 @@ Public Class ctrlTR_PlanNewEdit
                             .Titles = (From item In lstPositions.Items Select New PlanTitleDTO With {.ID = item.Value}).ToList()
                             .Units = (From item In lstPartDepts.Items Select New PlanOrgDTO With {.ID = item.Value}).ToList()
                             .Centers = (From item In cboCenter.CheckedItems Select New PlanCenterDTO With {.ID = item.Value}).ToList()
-                            
+
                             If cboCenter.CheckedItems.Count > 0 Then
                                 .Centers_NAME = cboCenter.CheckedItems.Select(Function(x) x.Text).Aggregate(Function(x, y) x & ", " & y)
                             End If

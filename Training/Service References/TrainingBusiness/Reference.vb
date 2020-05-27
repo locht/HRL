@@ -14941,6 +14941,9 @@ Namespace TrainingBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeletePlans", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeletePlansResponse")>  _
         Function DeletePlans(ByVal lstId As System.Collections.Generic.List(Of Decimal)) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ApproveListPlan", ReplyAction:="http://tempuri.org/ITrainingBusiness/ApproveListPlanResponse")>  _
+        Function ApproveListPlan(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal flag As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTrainingRequests", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTrainingRequestsResponse")>  _
         Function GetTrainingRequests(ByVal filter As TrainingBusiness.RequestDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As TrainingBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of TrainingBusiness.RequestDTO)
         
@@ -15466,6 +15469,10 @@ Namespace TrainingBusiness
         
         Public Function DeletePlans(ByVal lstId As System.Collections.Generic.List(Of Decimal)) As Boolean Implements TrainingBusiness.ITrainingBusiness.DeletePlans
             Return MyBase.Channel.DeletePlans(lstId)
+        End Function
+        
+        Public Function ApproveListPlan(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal flag As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements TrainingBusiness.ITrainingBusiness.ApproveListPlan
+            Return MyBase.Channel.ApproveListPlan(listID, flag, log)
         End Function
         
         Public Function GetTrainingRequests(ByVal filter As TrainingBusiness.RequestDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As TrainingBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of TrainingBusiness.RequestDTO) Implements TrainingBusiness.ITrainingBusiness.GetTrainingRequests

@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlFindEmployee2GridPopupDialog.ascx.vb"
     Inherits="Common.ctrlFindEmployee2GridPopupDialog" %>
+    <%@ Import Namespace="Framework.UI.Utilities" %>
 <asp:HiddenField runat="server" ID="hidPageId" Value="ctrlFindEmployee2GridPopupDialog" />
 <asp:HiddenField runat="server" ID="hidOrg" />
 <asp:HiddenField ID="hidSelected" runat="server"/>
@@ -57,7 +58,7 @@
                                             <tlk:GridBoundColumn DataField="ORG_NAME" HeaderText="<%$ Translate: Tên phòng ban %>"
                                                 UniqueName="ORG_NAME" SortExpression="ORG_NAME"/>
 
-                                            <tlk:GridDateTimeColumn DataField="JOIN_DATE" HeaderText="<%$ Translate: Ngày vào TCT/cty con %>"
+                                            <tlk:GridBoundColumn DataField="JOIN_DATE" HeaderText="<%$ Translate: Ngày vào TCT/cty con %>"
                                                 UniqueName="JOIN_DATE" SortExpression="JOIN_DATE" DataFormatString="{0:dd/MM/yyyy}"/>
 
                                                   <tlk:GridBoundColumn DataField="TITLE_NAME" HeaderText="<%$ Translate: Chức vụ %>"
