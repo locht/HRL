@@ -12265,7 +12265,7 @@ Xin cám ơn!
       <string>NHÓM TIÊU CHÍ</string>
     </Key>
     <Value>
-      <string>Nhóm tiêu chí</string>
+      <string>Thiết lập tiêu chí cho từng nhóm tiêu chí</string>
     </Value>
   </Item>
   <Item>
@@ -19545,7 +19545,7 @@ Xin cám ơn!
       <string>CTRLTR_SETTINGCRITERIAGROUP</string>
     </Key>
     <Value>
-      <string>Nhóm tiêu chí</string>
+      <string>Thiết lập tiêu chí cho từng nhóm tiêu chí</string>
     </Value>
   </Item>
   <Item>
@@ -19665,7 +19665,7 @@ Xin cám ơn!
       <string>CTRLTR_SETTINGASSESSMENTFORM</string>
     </Key>
     <Value>
-      <string>Biểu mẫu đánh giá</string>
+      <string>Thiết lập nhóm tiêu chí cho từng biểu mẫu đánh giá</string>
     </Value>
   </Item>
   <Item>
@@ -45492,6 +45492,22 @@ Xin cám ơn!
     </Key>
     <Value>
       <string>Tiền công ty tạm ứng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BÁO CÁO</string>
+    </Key>
+    <Value>
+      <string>Báo cáo</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THIẾT LẬP BIỂU MẪU ĐÁNH GIÁ</string>
+    </Key>
+    <Value>
+      <string>Thiết lập biểu mẫu đánh giá</string>
     </Value>
   </Item>
 </SerializableDictionaryOfStringString>
