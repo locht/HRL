@@ -220,7 +220,7 @@ Class ctrlPE_KPI_EvaluateABC
                     Using xls As New ExcelCommon
                         dtData = CreateDataFilter(True)
                         If dtData.Rows.Count > 0 Then
-                            rgEmployeeList.ExportExcel(Server, Response, dtData, "ResultMBO")
+                            rgEmployeeList.ExportExcel(Server, Response, dtData, "DanhGiaABC")
                         Else
                             ShowMessage(Translate(MESSAGE_WARNING_EXPORT_EMPTY), Utilities.NotifyType.Warning)
                         End If

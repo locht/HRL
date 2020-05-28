@@ -559,7 +559,7 @@ Partial Class PerformanceRepository
 
         Using rep As New PerformanceBusinessClient
             Try
-                lstPeriod = rep.GetPeEvaluatePeriod(_filter, _param, Integer.MaxValue, 0, 0, Sorts, Me.Log)
+                lstPeriod = rep.GetPeEvaluatePeriod(_filter, _param, 0, Integer.MaxValue, 0, Sorts, Me.Log)
                 Return lstPeriod
             Catch ex As Exception
                 rep.Abort()
