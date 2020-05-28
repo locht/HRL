@@ -2103,6 +2103,45 @@ Partial Class ProfileRepository
             Throw ex
         End Try
     End Function
+
+    Public Function CheckChooseComboxFomat_HealthMng(ByVal Health_Type As String, ByVal Sick_Group As String, ByVal Flag As Decimal) As Integer
+        Dim ObjName As OT_OTHER_LIST
+        Dim result As Integer
+        Dim result_S As Integer
+        Try
+
+            If Flag = 0 Then
+                ObjName = (From O In Context.OT_OTHER_LIST
+                           Join OT In Context.OT_OTHER_LIST_TYPE On O.TYPE_ID Equals OT.ID
+                           Where O.NAME_VN.ToUpper.Contains(Health_Type.ToUpper) And OT.CODE = "HEALTH_TYPE"
+                           Select O).SingleOrDefault
+                If ObjName Is Nothing Then
+                    result = 0
+                Else
+                    result = 1
+                End If
+                Return result
+            End If
+
+            If Flag = 1 Then
+                ObjName = (From O In Context.OT_OTHER_LIST
+                           From OT In Context.OT_OTHER_LIST_TYPE.Where(Function(f) O.TYPE_ID = f.ID)
+                           Where O.NAME_VN.ToUpper.Contains(Sick_Group.ToUpper) And OT.CODE = "SICK_GROUP" Select O).SingleOrDefault
+
+                If ObjName Is Nothing Then
+                    result_S = 0
+                Else
+                    result_S = 1
+                End If
+                Return result_S
+            End If
+
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
     Public Function CheckEmployee_Terminate(ByVal empCode As String) As Integer
         Dim objEmp As HU_EMPLOYEE
         Dim result As Integer

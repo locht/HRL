@@ -151,6 +151,18 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+
+        Public Function CheckChooseComboxFomat_HealthMng(ByVal Health_Type As String, ByVal Sick_Group As String, ByVal Flag As Decimal) As Integer _
+           Implements ServiceContracts.IProfileBusiness.CheckChooseComboxFomat_HealthMng
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.CheckChooseComboxFomat_HealthMng(Health_Type, Sick_Group, Flag)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
         Public Function CheckEmployee_Contract_Count(ByVal empCode As String) As Integer _
            Implements ServiceContracts.IProfileBusiness.CheckEmployee_Contract_Count
             Using rep As New ProfileRepository

@@ -280,6 +280,17 @@ Partial Public Class ProfileBusinessRepository
 
     End Function
 
+    Public Function CheckChooseComboxFomat_HealthMng(ByVal Health_Type As String, ByVal Sick_Group As String, ByVal Flag As Decimal) As Integer
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CheckChooseComboxFomat_HealthMng(Health_Type, Sick_Group, Flag)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
     Public Function CheckEmployee_Terminate(ByVal empCode As String) As Integer
         Using rep As New ProfileBusinessClient
             Try

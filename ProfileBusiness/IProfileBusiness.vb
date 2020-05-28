@@ -2381,6 +2381,8 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function CheckEmployee_Exits(ByVal empCode As String) As Integer
         <OperationContract()>
+        Function CheckChooseComboxFomat_HealthMng(ByVal Health_Type As String, ByVal Sick_Group As String, ByVal Flag As Decimal) As Integer
+        <OperationContract()>
         Function EffectDate_Check_Same(ByVal emp_code As String, ByVal effect_date As Date) As Boolean
         <OperationContract()>
         Function CheckEmployee_Contract_Count(ByVal empCode As String) As Integer
