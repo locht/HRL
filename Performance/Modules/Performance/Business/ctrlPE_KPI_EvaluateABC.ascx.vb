@@ -616,8 +616,6 @@ Class ctrlPE_KPI_EvaluateABC
             If empId = 0 Then
                 newRow("DISCIPTION") = "Mã nhân viên - Không tồn tại,"
                 _error = False
-            Else
-                rows("EMPLOYEE_ID") = empId
             End If
 
             If IsDBNull(rows("SAL_LEVEL")) OrElse rows("SAL_LEVEL") = "" Then
