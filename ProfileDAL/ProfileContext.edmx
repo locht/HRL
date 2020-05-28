@@ -4155,8 +4155,8 @@
             <Property Name="KQ8" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="KQ9" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="KQ10" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="HEALTH_TYPE" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="NHOM_BENH" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="HEALTH_TYPE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="NHOM_BENH" Type="number" Nullable="true" Precision="38" />
             <Property Name="TEN_BENH" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="KET_LUAB" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="GHI_CHU" Type="nvarchar2" Nullable="true" MaxLength="255" />
@@ -9204,8 +9204,8 @@
           <Property Type="String" Name="KQ8" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="KQ9" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="KQ10" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="HEALTH_TYPE" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="NHOM_BENH" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="HEALTH_TYPE" />
+          <Property Type="Decimal" Name="NHOM_BENH" />
           <Property Type="String" Name="TEN_BENH" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="KET_LUAB" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="GHI_CHU" MaxLength="255" FixedLength="false" Unicode="true" />
