@@ -1149,6 +1149,7 @@ Public Class ctrlHU_ChangeInfoMng
         Dim str2 As String = ""
         Dim flag As Decimal = 0
         Dim flagSum As Decimal = 0
+        Dim empId As Decimal = 0
         For Each rows As DataRow In dtTemp.Rows
             If rows.RowState = DataRowState.Deleted OrElse rows.RowState = DataRowState.Detached Then Continue For
             newRow = dtLogs.NewRow
@@ -1161,7 +1162,7 @@ Public Class ctrlHU_ChangeInfoMng
                 newRow("DISCIPTION") = newRow("DISCIPTION") + "MÃ NV - Phải nhập MÃ NV"
                 _error = False
             Else
-                Dim empId = rep.CheckEmployee_Exits(rows("EMPLOYEE_CODE"))
+                empId = rep.CheckEmployee_Exits(rows("EMPLOYEE_CODE"))
                 If empId = 0 Then
                     newRow("DISCIPTION") = "Mã nhân viên - Không tồn tại,"
                     _error = False
@@ -1174,15 +1175,6 @@ Public Class ctrlHU_ChangeInfoMng
                     _error = False
                 End If
             End If
-
-            If rows("NV_REPLACE").ToString <> "" Then
-                Dim empId = rep.CheckEmployee_Exits(rows("NV_REPLACE"))
-                If empId = 0 Then
-                    newRow("DISCIPTION") = "Mã nhân sự thay thế - Không tồn tại,"
-                    _error = False
-                End If
-            End If
-
             If IsDBNull(rows("JOB_NAME")) Then
                 If rows("IS_REPLACE").ToString = "1" Then
                     If rows("NV_REPLACE").ToString = "" Then
@@ -1197,6 +1189,48 @@ Public Class ctrlHU_ChangeInfoMng
                     _error = False
                 End If
             End If
+            'kiem tra vị trí cv trong ho so va quyet dịnh o day
+            If IsDBNull(rows("EFFECT_DATE")) Then
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày hiệu lực - Phải nhập Ngày hiệu lực"
+                _error = False
+            Else
+                If rows("EFFECT_DATE").ToString <> "" Then
+                    If CheckDate(rows("EFFECT_DATE")) = False Then
+                        newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày hiệu lực - Phải nhập đúng định dạng ngày tháng"
+                        _error = False
+                    Else
+                        Dim checkEffectDate = rep.CheckEffectDayWorking(ToDate(rows("EFFECT_DATE")), empId)
+                        If checkEffectDate > 0 Then
+                            newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày hiệu lực - Đã tồn tại trong quyết định trước đó"
+                            _error = False
+                        End If
+                    End If
+                End If
+            End If
+            If rows("JOB_ID").ToString <> "" Then
+                Dim checkJobIdInProfile = rep.CheckJobIdInProfile(Decimal.Parse(rows("JOB_ID").ToString))
+                If checkJobIdInProfile > 0 Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Vị trí công việc - Đã tồn tại Vị trí công việc trong hồ sơ"
+                    _error = False
+                End If
+                Dim checkJobIdInWorking = rep.CheckJobIdInWorking(Decimal.Parse(rows("JOB_ID").ToString), empId)
+                If checkJobIdInWorking > 0 Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Vị trí công việc - Đã tồn tại Vị trí công việc trong quyết định"
+                    _error = False
+                End If
+
+            End If
+
+
+            If rows("NV_REPLACE").ToString <> "" Then
+                empId = rep.CheckEmployee_Exits(rows("NV_REPLACE"))
+                If empId = 0 Then
+                    newRow("DISCIPTION") = "Mã nhân sự thay thế - Không tồn tại,"
+                    _error = False
+                End If
+            End If
+
+            
             If IsDBNull(rows("DECISION")) Then
                 newRow("DISCIPTION") = newRow("DISCIPTION") + "Loại quyết định - Phải nhập Loại quyết định"
                 _error = False
@@ -1223,17 +1257,7 @@ Public Class ctrlHU_ChangeInfoMng
                 End If
 
             End If
-            If IsDBNull(rows("EFFECT_DATE")) Then
-                newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày hiệu lực - Phải nhập Ngày hiệu lực"
-                _error = False
-            Else
-                If rows("EFFECT_DATE").ToString <> "" Then
-                    If CheckDate(rows("EFFECT_DATE")) = False Then
-                        newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày hiệu lực - Phải nhập đúng định dạng ngày tháng"
-                        _error = False
-                    End If
-                End If
-            End If
+           
             If IsDBNull(rows("EXPIRE_DATE")) Then
             Else
                 If rows("EXPIRE_DATE").ToString <> "" Then

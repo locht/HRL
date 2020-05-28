@@ -57490,6 +57490,15 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetExportChangeInfo", ReplyAction:="http://tempuri.org/IProfileBusiness/GetExportChangeInfoResponse")>  _
         Function GetExportChangeInfo(ByVal org_id As Decimal) As System.Data.DataSet
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckEffectDayWorking", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckEffectDayWorkingResponse")>  _
+        Function CheckEffectDayWorking(ByVal p_date As Date, ByVal empId As Decimal) As Decimal
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckJobIdInProfile", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckJobIdInProfileResponse")>  _
+        Function CheckJobIdInProfile(ByVal jobId As Decimal) As Decimal
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckJobIdInWorking", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckJobIdInWorkingResponse")>  _
+        Function CheckJobIdInWorking(ByVal jobId As Decimal, ByVal empId As Decimal) As Decimal
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetPeriodbyYear", ReplyAction:="http://tempuri.org/IProfileBusiness/GetPeriodbyYearResponse")>  _
         Function GetPeriodbyYear(ByVal year As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO)
         
@@ -60373,6 +60382,18 @@ Namespace ProfileBusiness
         
         Public Function GetExportChangeInfo(ByVal org_id As Decimal) As System.Data.DataSet Implements ProfileBusiness.IProfileBusiness.GetExportChangeInfo
             Return MyBase.Channel.GetExportChangeInfo(org_id)
+        End Function
+        
+        Public Function CheckEffectDayWorking(ByVal p_date As Date, ByVal empId As Decimal) As Decimal Implements ProfileBusiness.IProfileBusiness.CheckEffectDayWorking
+            Return MyBase.Channel.CheckEffectDayWorking(p_date, empId)
+        End Function
+        
+        Public Function CheckJobIdInProfile(ByVal jobId As Decimal) As Decimal Implements ProfileBusiness.IProfileBusiness.CheckJobIdInProfile
+            Return MyBase.Channel.CheckJobIdInProfile(jobId)
+        End Function
+        
+        Public Function CheckJobIdInWorking(ByVal jobId As Decimal, ByVal empId As Decimal) As Decimal Implements ProfileBusiness.IProfileBusiness.CheckJobIdInWorking
+            Return MyBase.Channel.CheckJobIdInWorking(jobId, empId)
         End Function
         
         Public Function GetPeriodbyYear(ByVal year As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO) Implements ProfileBusiness.IProfileBusiness.GetPeriodbyYear

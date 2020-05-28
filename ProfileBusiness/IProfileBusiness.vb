@@ -3067,6 +3067,14 @@ Namespace ProfileBusiness.ServiceContracts
         Function CheckDecision(ByVal decision As String) As Decimal
         <OperationContract()>
         Function GetExportChangeInfo(ByVal org_id As Decimal) As DataSet
+        <OperationContract()>
+        Function CheckEffectDayWorking(ByVal p_date As Date, ByVal empId As Decimal) As Decimal
+        <OperationContract()>
+        Function CheckJobIdInProfile(ByVal jobId As Decimal) As Decimal
+        <OperationContract()>
+        Function CheckJobIdInWorking(ByVal jobId As Decimal, ByVal empId As Decimal) As Decimal
+
+
 #End Region
 
 

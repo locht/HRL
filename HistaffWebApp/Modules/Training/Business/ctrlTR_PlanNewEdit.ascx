@@ -283,7 +283,7 @@
                         margin-left: 20px">
                         <MasterTableView DataKeyNames="CODE" ClientDataKeyNames="CODE,NAME_VN,MONEY">
                             <ColumnGroups>
-                                <tlk:GridColumnGroup Name="GeneralInformation" HeaderText="Chi phí" HeaderStyle-HorizontalAlign="Center" />
+                                <tlk:GridColumnGroup Name="GeneralInformation" HeaderText="Chi phí *" HeaderStyle-HorizontalAlign="Center" />
                             </ColumnGroups>
                             <Columns>
                                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã  %>" DataField="CODE" UniqueName="CODE"

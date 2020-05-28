@@ -445,6 +445,34 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function CheckJobIdInWorking(ByVal jobId As Decimal, ByVal empId As Decimal) As Decimal Implements ServiceContracts.IProfileBusiness.CheckJobIdInWorking
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.CheckJobIdInWorking(jobId, empId)
+                Catch ex As Exception
+
+                End Try
+            End Using
+        End Function
+
+        Public Function CheckJobIdInProfile(ByVal jobId As Decimal) As Decimal Implements ServiceContracts.IProfileBusiness.CheckJobIdInProfile
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.CheckJobIdInProfile(jobId)
+                Catch ex As Exception
+
+                End Try
+            End Using
+        End Function
+        Public Function CheckEffectDayWorking(ByVal p_date As Date, ByVal empId As Decimal) As Decimal Implements ServiceContracts.IProfileBusiness.CheckEffectDayWorking
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.CheckEffectDayWorking(p_date, empId)
+                Catch ex As Exception
+
+                End Try
+            End Using
+        End Function
         Public Function CheckDecision(ByVal decision As String) As Decimal Implements ServiceContracts.IProfileBusiness.CheckDecision
             Using rep As New ProfileRepository
                 Try

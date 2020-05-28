@@ -190,7 +190,7 @@ Public Class ctrlTR_Plan
                             Exit Sub
                         End If
                     Next
-                    ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_APPROVE)
+                    ctrlMessageBox.MessageText = Translate("Bạn có muốn phê duyệt?")
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_APPROVE
                     ctrlMessageBox.DataBind()
                     ctrlMessageBox.Show()

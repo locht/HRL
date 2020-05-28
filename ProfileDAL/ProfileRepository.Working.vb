@@ -3170,6 +3170,35 @@ Partial Class ProfileRepository
 
         End Try
     End Function
+    Public Function CheckEffectDayWorking(ByVal p_date As Date, ByVal empId As Decimal) As Decimal
+        Try
+
+            Dim gtri = (From p In Context.HU_WORKING Where p.EFFECT_DATE = p_date And p.EMPLOYEE_ID = empid).ToList.Count
+
+            Return gtri
+        Catch ex As Exception
+
+        End Try
+    End Function
+    Public Function CheckJobIdInProfile(ByVal jobId As Decimal) As Decimal
+        Try
+            Dim gtri = (From p In Context.HU_EMPLOYEE Where p.JOB_POSITION = jobId).ToList.Count
+
+            Return gtri
+        Catch ex As Exception
+
+        End Try
+    End Function
+    Public Function CheckJobIdInWorking(ByVal jobId As Decimal, ByVal empId As Decimal) As Decimal
+        Try
+
+            Dim gtri = (From p In Context.HU_WORKING Where p.JOB_POSITION = jobId And p.EMPLOYEE_ID <> empId).ToList.Count
+
+            Return gtri
+        Catch ex As Exception
+
+        End Try
+    End Function
     Public Function GetExportChangeInfo(ByVal org_id As Decimal) As DataSet
         Try
             Using cls As New DataAccess.QueryData

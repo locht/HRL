@@ -390,6 +390,9 @@ Public Class ctrlTR_PlanNewEdit
                                     ShowMessage(Translate("Tổng chi phí đào tạo phải lớn hơn 0, Xin kiểm tra lại"), NotifyType.Warning)
                                     Exit Sub
                                 End If
+                            Else
+                                ShowMessage(Translate("Phải có số tiền Tổng chi phí đào tạo, Xin nhập chi phí"), NotifyType.Warning)
+                                Exit Sub
                             End If
 
 

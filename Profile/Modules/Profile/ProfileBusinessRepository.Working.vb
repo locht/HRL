@@ -515,6 +515,35 @@ Partial Public Class ProfileBusinessRepository
             End Try
         End Using
     End Function
+    Public Function CheckEffectDayWorking(ByVal p_date As Date, ByVal empId As Decimal) As Decimal
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CheckEffectDayWorking(p_date, empId)
+            Catch ex As Exception
+
+            End Try
+        End Using
+    End Function
+    Public Function CheckJobIdInWorking(ByVal jobId As Decimal, ByVal empId As Decimal) As Decimal
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CheckJobIdInWorking(jobId, empId)
+            Catch ex As Exception
+
+            End Try
+        End Using
+    End Function
+
+    Public Function CheckJobIdInProfile(ByVal jobId As Decimal) As Decimal
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CheckJobIdInProfile(jobId)
+            Catch ex As Exception
+
+            End Try
+        End Using
+    End Function
+
     Public Function CheckDecision(ByVal decision As String) As Decimal
         Using rep As New ProfileBusinessClient
             Try
