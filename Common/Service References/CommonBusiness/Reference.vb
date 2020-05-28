@@ -4182,6 +4182,18 @@ Namespace CommonBusiness
         Private EMPLOYEE_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMPLOYEE_EBJECTField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMPLOYEE_EBJECT_CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMPLOYEE_EBJECT_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMP_ENTITLEMENTField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FIRST_NAME_ENField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -4453,6 +4465,58 @@ Namespace CommonBusiness
                 If (Object.ReferenceEquals(Me.EMPLOYEE_CODEField, value) <> true) Then
                     Me.EMPLOYEE_CODEField = value
                     Me.RaisePropertyChanged("EMPLOYEE_CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMPLOYEE_EBJECT() As System.Nullable(Of Decimal)
+            Get
+                Return Me.EMPLOYEE_EBJECTField
+            End Get
+            Set
+                If (Me.EMPLOYEE_EBJECTField.Equals(value) <> true) Then
+                    Me.EMPLOYEE_EBJECTField = value
+                    Me.RaisePropertyChanged("EMPLOYEE_EBJECT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMPLOYEE_EBJECT_CODE() As String
+            Get
+                Return Me.EMPLOYEE_EBJECT_CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.EMPLOYEE_EBJECT_CODEField, value) <> true) Then
+                    Me.EMPLOYEE_EBJECT_CODEField = value
+                    Me.RaisePropertyChanged("EMPLOYEE_EBJECT_CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMPLOYEE_EBJECT_NAME() As String
+            Get
+                Return Me.EMPLOYEE_EBJECT_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.EMPLOYEE_EBJECT_NAMEField, value) <> true) Then
+                    Me.EMPLOYEE_EBJECT_NAMEField = value
+                    Me.RaisePropertyChanged("EMPLOYEE_EBJECT_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMP_ENTITLEMENT() As System.Nullable(Of Decimal)
+            Get
+                Return Me.EMP_ENTITLEMENTField
+            End Get
+            Set
+                If (Me.EMP_ENTITLEMENTField.Equals(value) <> true) Then
+                    Me.EMP_ENTITLEMENTField = value
+                    Me.RaisePropertyChanged("EMP_ENTITLEMENT")
                 End If
             End Set
         End Property

@@ -251,7 +251,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                 CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = False
                 CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = False
             End If
-            Select isLoadPopup
+            Select Case isLoadPopup
                 Case 1
                     HttpContext.Current.Session("PortalAtShift") = LogHelper.CurrentUser.EMPLOYEE_ID
                     ctrlFindEmployee2GridPopup = Me.Register("ctrlFindEmployee2GridPopup", "Common", "ctrlFindEmployee2GridPopup")
@@ -538,7 +538,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                     employee.TITLE_ID = emp.TITLE_ID
                     Employee_list.Add(employee)
                 Next
-
+                
                 rgEmployee.Rebind()
 
                 For Each i As GridItem In rgEmployee.Items
@@ -589,6 +589,29 @@ Public Class ctrlLeaveRegistrationNewEdit
 
         Try
             rgEmployee.DataSource = Employee_list
+            cboFromSession.SelectedValue = 1
+            cboToSession.SelectedValue = 2
+            Dim count = 0
+            For Each item In Employee_list
+                If item.EMPLOYEE_EBJECT_CODE <> "HC1" And item.EMPLOYEE_EBJECT_CODE <> "HC2" Then
+                    cboFromSession.Enabled = False
+                    cboToSession.Enabled = False
+                    Exit For
+                Else
+                    count += 1
+                End If
+            Next
+            If cbMANUAL_ID.SelectedValue <> "" Then
+                Dim day_half As Decimal = CDec((From p In dtLeaveType Where p("ID") = cbMANUAL_ID.SelectedValue Select p("IS_DAY_HALF")).FirstOrDefault)
+                If count = Employee_list.Count And day_half = -1 Then
+                    cboFromSession.Enabled = True
+                    cboToSession.Enabled = True
+                Else
+                    cboFromSession.Enabled = False
+                    cboToSession.Enabled = False
+                End If
+            End If
+            
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -602,12 +625,26 @@ Public Class ctrlLeaveRegistrationNewEdit
 
         Try
             txtManual_Note.ClearValue()
+            cboFromSession.SelectedValue = 1
+            cboToSession.SelectedValue = 2
             If cbMANUAL_ID.SelectedValue <> "" Then
                 Dim note As String = (From p In dtLeaveType Where p("ID") = cbMANUAL_ID.SelectedValue Select p("NOTE")).FirstOrDefault.ToString
+                Dim is_day_half As Decimal = CDec((From p In dtLeaveType Where p("ID") = cbMANUAL_ID.SelectedValue Select p("IS_DAY_HALF")).FirstOrDefault)
                 txtManual_Note.Text = note
                 For Each item As GridDataItem In rgEmployee.Items
-                    If item.GetDataKeyValue("EMPLOYEE_OBJECT") Then
+                    If item.GetDataKeyValue("EMPLOYEE_OBJECT_CODE") <> "HC1" And item.GetDataKeyValue("EMPLOYEE_OBJECT_CODE") <> "HC2" Then
+                        cboFromSession.Enabled = False
+                        cboToSession.Enabled = False
+                        Exit Sub
+                    End If
                 Next
+                If is_day_half = -1 Then
+                    cboFromSession.Enabled = True
+                    cboToSession.Enabled = True
+                Else
+                    cboFromSession.Enabled = False
+                    cboToSession.Enabled = False
+                End If
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -617,6 +654,23 @@ Public Class ctrlLeaveRegistrationNewEdit
 #End Region
 
 #Region "Custom"
+
+    'Public Sub UpdateSessionState()
+    '    Try
+    '        For Each item As GridDataItem In rgEmployee.Items
+    '            If item.GetDataKeyValue("EMPLOYEE_OBJECT_CODE") <> "HC1" Or item.GetDataKeyValue("EMPLOYEE_OBJECT_CODE") <> "HC2" Then
+    '                cboFromSession.Enabled = False
+    '                cboToSession.Enabled = False
+    '                Exit Sub
+    '            End If
+    '        Next
+    '        If cbMANUAL_ID.SelectedValue <> "" Then
+
+    '        End If
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
     Protected Function CreateDataFilter(Optional ByVal fromDate As Date? = Nothing, Optional ByVal toDate As Date? = Nothing, Optional ByVal isFull As Boolean = False) As DataTable
         Dim rep As New AttendanceRepository
@@ -822,6 +876,8 @@ Public Class ctrlLeaveRegistrationNewEdit
     Private Sub GetDataCombo()
         Dim rep As New AttendanceRepository
         Dim store As New AttendanceStoreProcedure
+        Dim dtdata As DataTable
+        Dim arr As New ArrayList()
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
@@ -834,7 +890,29 @@ Public Class ctrlLeaveRegistrationNewEdit
             '    FillRadCombobox(cbMANUAL_ID, ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE, "NAME_VN", "ID", True)
             'End If
             dtLeaveType = store.GET_LEAVE_TYPE(True)
-            FillRadCombobox(cbMANUAL_ID, dtLeaveType, "NAME_VN", "ID", True)
+            FillRadCombobox(cbMANUAL_ID, dtLeaveType, "NAME", "ID", True)
+            arr.Add(New DictionaryEntry("", Nothing))
+            arr.Add(New DictionaryEntry("Buổi sáng", 1))
+            arr.Add(New DictionaryEntry("Buổi chiều", 2))
+            With cboFromSession
+                .DataSource = arr
+                .DataValueField = "Value"
+                .DataTextField = "Key"
+                cboFromSession.DataBind()
+                .SelectedIndex = 0
+            End With
+            cboFromSession.SelectedValue = 1
+            With cboToSession
+                .DataSource = arr
+                .DataValueField = "Value"
+                .DataTextField = "Key"
+                cboToSession.DataBind()
+                .SelectedIndex = 0
+            End With
+            cboToSession.SelectedValue = 2
+
+            dtdata = rep.GetOtherList("LEAVE_REASON", True)
+            FillRadCombobox(cboReason, dtdata, "NAME", "ID")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try

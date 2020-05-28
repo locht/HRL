@@ -52,4 +52,5 @@
     Public Property EMPLOYEE_EBJECT As Decimal?
     Public Property EMPLOYEE_EBJECT_NAME As String
     Public Property EMPLOYEE_EBJECT_CODE As String
+    Public Property EMP_ENTITLEMENT As Decimal?
 End Class
