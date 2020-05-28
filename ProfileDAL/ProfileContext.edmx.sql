@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 5/22/2020 3:22:53 PM
--- Generated from EDMX file: E:\Projects\acv_19\ProfileDAL\ProfileContext.edmx
+-- Date Created: 5/28/2020 4:58:19 PM
+-- Generated from EDMX file: D:\acv_19\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -4096,8 +4096,8 @@ CREATE TABLE "dbo"."HU_HEALTH_MNG" (
    "KQ8" NVARCHAR2(255) NULL,
    "KQ9" NVARCHAR2(255) NULL,
    "KQ10" NVARCHAR2(255) NULL,
-   "HEALTH_TYPE" NVARCHAR2(255) NULL,
-   "NHOM_BENH" NVARCHAR2(255) NULL,
+   "HEALTH_TYPE" NUMBER(38,0) NULL,
+   "NHOM_BENH" NUMBER(38,0) NULL,
    "TEN_BENH" NVARCHAR2(255) NULL,
    "KET_LUAB" NVARCHAR2(255) NULL,
    "GHI_CHU" NVARCHAR2(255) NULL,

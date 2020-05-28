@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("c620049c-4375-41b1-aa09-b532b967b63b")>
+<Assembly: EdmSchemaAttribute("2accb2cf-f8ea-43bb-9b39-d787b6d95995")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -43561,21 +43561,21 @@ Public Partial Class HU_HEALTH_MNG
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property HEALTH_TYPE() As Global.System.String
+    Public Property HEALTH_TYPE() As Nullable(Of Global.System.Decimal)
         Get
             Return _HEALTH_TYPE
         End Get
         Set
             OnHEALTH_TYPEChanging(value)
             ReportPropertyChanging("HEALTH_TYPE")
-            _HEALTH_TYPE = StructuralObject.SetValidValue(value, true)
+            _HEALTH_TYPE = StructuralObject.SetValidValue(value)
             ReportPropertyChanged("HEALTH_TYPE")
             OnHEALTH_TYPEChanged()
         End Set
     End Property
 
-    Private _HEALTH_TYPE As Global.System.String
-    Private Partial Sub OnHEALTH_TYPEChanging(value As Global.System.String)
+    Private _HEALTH_TYPE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnHEALTH_TYPEChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnHEALTH_TYPEChanged()
@@ -43586,21 +43586,21 @@ Public Partial Class HU_HEALTH_MNG
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property NHOM_BENH() As Global.System.String
+    Public Property NHOM_BENH() As Nullable(Of Global.System.Decimal)
         Get
             Return _NHOM_BENH
         End Get
         Set
             OnNHOM_BENHChanging(value)
             ReportPropertyChanging("NHOM_BENH")
-            _NHOM_BENH = StructuralObject.SetValidValue(value, true)
+            _NHOM_BENH = StructuralObject.SetValidValue(value)
             ReportPropertyChanged("NHOM_BENH")
             OnNHOM_BENHChanged()
         End Set
     End Property
 
-    Private _NHOM_BENH As Global.System.String
-    Private Partial Sub OnNHOM_BENHChanging(value As Global.System.String)
+    Private _NHOM_BENH As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnNHOM_BENHChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnNHOM_BENHChanged()
