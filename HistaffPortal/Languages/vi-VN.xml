@@ -37340,6 +37340,14 @@ Xin cám ơn!
       <string>Xem khóa học tương ứng với chức danh</string>
     </Value>
   </Item>
+	<Item>
+		<Key>
+			<string>CTRLPORTALTRAINING</string>
+		</Key>
+		<Value>
+			<string>Quá trình đào tạo trong công ty</string>
+		</Value>
+	</Item>
   <Item>
     <Key>
       <string>BẠN PHẢI NHẬP CẤP BẬC</string>

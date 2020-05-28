@@ -2984,4 +2984,12 @@
       <string>Shift registration</string>
     </Value>
   </Item>
+	<Item>
+		<Key>
+			<string>CTRLPORTALTRAINING</string>
+		</Key>
+		<Value>
+			<string>The Training In Company</string>
+		</Value>
+	</Item>
 </SerializableDictionaryOfStringString>
