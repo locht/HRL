@@ -229,6 +229,15 @@ Class ctrlPE_KPI_EvaluateABC
                     '  ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_ImportMBO');", True)
                     Template_ImportMBO()
                 Case CommonMessage.TOOLBARITEM_IMPORT
+                    If cboYear.SelectedValue Is Nothing Or cboYear.SelectedValue = "" Then
+                        ShowMessage(Translate("Năm bắt buộc chọn"), NotifyType.Warning)
+                        Exit Sub
+                    End If
+
+                    If cboPeriodEvaluate.SelectedValue Is Nothing Or cboPeriodEvaluate.SelectedValue = "" Then
+                        ShowMessage(Translate("Kỳ đánh giá bắt buộc chọn"), NotifyType.Warning)
+                        Exit Sub
+                    End If
                     ctrlUpload1.Show()
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     CurrentState = CommonMessage.STATE_NORMAL
@@ -506,18 +515,6 @@ Class ctrlPE_KPI_EvaluateABC
         Dim fileName As String
         Dim rep As New PerformanceRepository
         Try
-
-            If cboYear.SelectedValue Is Nothing Then
-                ShowMessage(Translate("Năm bắt buộc chọn"), NotifyType.Warning)
-                Exit Sub
-            End If
-
-            If cboPeriodEvaluate.SelectedValue Is Nothing Then
-                ShowMessage(Translate("Kỳ đánh giá bắt buộc chọn"), NotifyType.Warning)
-                Exit Sub
-            End If
-
-
             Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
             Dim savepath = Context.Server.MapPath(tempPath)
             Dim countFile As Integer = ctrlUpload1.UploadedFiles.Count
