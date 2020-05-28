@@ -47,4 +47,9 @@
     Public Property MODIFIED_LOG As String
 
     Public Property TER_EFFECT_DATE As Date?
+
+    'tambt add 05282020
+    Public Property EMPLOYEE_EBJECT As Decimal?
+    Public Property EMPLOYEE_EBJECT_NAME As String
+    Public Property EMPLOYEE_EBJECT_CODE As String
 End Class

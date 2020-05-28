@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("982ae241-a982-4af5-9e18-ee7727a2ab8d")>
+<Assembly: EdmSchemaAttribute("0420a77e-667c-4ab0-ad74-e7757d2f3d9a")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("CommonModel", "SE_GRP_SE_USR", "SE_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_GROUP), "SE_USER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_USER))>
 <Assembly: EdmRelationshipAttribute("CommonModel", "FK_SM_SF", "SE_MODULE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(SE_MODULE), "SE_FUNCTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_FUNCTION), True)>
@@ -2355,6 +2355,31 @@ Public Partial Class HU_EMPLOYEE
     End Sub
 
     Private Partial Sub OnJOB_POSITIONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EMPLOYEE_OBJECT() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _EMPLOYEE_OBJECT
+        End Get
+        Set
+            OnEMPLOYEE_OBJECTChanging(value)
+            ReportPropertyChanging("EMPLOYEE_OBJECT")
+            _EMPLOYEE_OBJECT = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("EMPLOYEE_OBJECT")
+            OnEMPLOYEE_OBJECTChanged()
+        End Set
+    End Property
+
+    Private _EMPLOYEE_OBJECT As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnEMPLOYEE_OBJECTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnEMPLOYEE_OBJECTChanged()
     End Sub
 
     #End Region

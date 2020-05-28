@@ -316,12 +316,16 @@ Partial Public Class AttendanceRepository
                         From s In Context.HU_STAFF_RANK.Where(Function(F) F.ID = e.STAFF_RANK_ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
                         From m In Context.AT_TIME_MANUAL.Where(Function(f) f.ID = p.MANUAL_ID).DefaultIfEmpty
+                        From cre In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.CREATED_BY_EMP).DefaultIfEmpty
+                        From modi In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.MODIFIED_BY_EMP).DefaultIfEmpty
+                        From res In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.RESTORED_BY).DefaultIfEmpty
+                        From reason In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.REASON_LEAVE).DefaultIfEmpty
                         From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS).DefaultIfEmpty
                         From nb In Context.AT_COMPENSATORY.Where(Function(F) F.EMPLOYEE_ID = p.EMPLOYEE_ID And F.YEAR = _filter.FROM_DATE.Value.Year).DefaultIfEmpty()
                         From pas In Context.PROCESS_APPROVED_STATUS.Where(Function(f) f.ID_REGGROUP = p.ID And f.APP_STATUS = 0 _
                             And f.APP_LEVEL = (Context.PROCESS_APPROVED_STATUS.Where(Function(h) h.ID_REGGROUP = p.ID And h.APP_STATUS = 0).Min(Function(k) k.APP_LEVEL))).DefaultIfEmpty() _
                         From ee In Context.HU_EMPLOYEE.Where(Function(f) f.ID = pas.EMPLOYEE_APPROVED And p.STATUS <> 2).DefaultIfEmpty()
-
+                        Where p.CREATED_BY_EMP = _filter.CREATED_BY_EMP
             'Dim approveList = From p In query
             '                  From pas In Context.PROCESS_APPROVED_STATUS.Where(Function(f) f.ID_REGGROUP = p.p.ID And f.APP_STATUS = 0 _
             '                And f.APP_LEVEL = (Context.PROCESS_APPROVED_STATUS.Where(Function(h) h.ID_REGGROUP = p.p.ID And h.APP_STATUS = 0).Min(Function(k) k.APP_LEVEL))).DefaultIfEmpty() _
@@ -376,6 +380,8 @@ Partial Public Class AttendanceRepository
             If Not String.IsNullOrEmpty(_filter.REASON) Then
                 query = query.Where(Function(f) f.p.REASON.ToLower().Contains(_filter.REASON.ToLower()))
             End If
+
+            
             Dim lst = query.Select(Function(p) New AT_LEAVESHEETDTO With {
                                                                        .ID = p.p.ID,
                                                                        .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
@@ -405,7 +411,46 @@ Partial Public Class AttendanceRepository
                                                                        .MODIFIED_LOG = p.p.MODIFIED_LOG,
                                                                        .IMPORT = If(p.p.IMPORT = -1, "x", ""),
                                                                        .REASON = p.p.REASON,
+                                                                       .FROM_SESSION = p.p.FROM_SESSION,
+                                                                       .FROM_SESSION_NAME = If(p.p.FROM_SESSION = 1, "Buổi sáng", "Buổi chiều"),
+                                                                       .TO_SESSION = p.p.TO_SESSION,
+                                                                       .TO_SESSION_NAME = If(p.p.FROM_SESSION = 1, "Buổi sáng", "Buổi chiều"),
+                                                                       .CREATED_BY_EMP = p.p.CREATED_BY_EMP,
+                                                                       .CREATED_BY_EMP_NAME = p.cre.FULLNAME_VN,
+                                                                       .MODIFIED_BY_EMP = p.p.MODIFIED_BY_EMP,
+                                                                       .MODIFIED_BY_EMP_NAME = p.modi.FULLNAME_VN,
+                                                                       .RESTORED_BY = p.p.RESTORED_BY,
+                                                                       .RESTORED_BY_NAME = p.res.FULLNAME_VN,
+                                                                       .RESTORED_DATE = p.p.RESTORED_DATE,
+                                                                       .RESTORED_REASON = p.p.RESTORED_REASON,
+                                                                       .REASON_LEAVE = p.p.REASON_LEAVE,
+                                                                       .REASON_LEAVE_NAME = p.reason.NAME_VN,
                                                                        .EMP_APPROVES_NAME = p.ee.FULLNAME_VN})
+
+            If Not String.IsNullOrEmpty(_filter.FROM_SESSION_NAME) Then
+                lst = lst.Where(Function(f) f.FROM_SESSION_NAME.ToLower().Contains(_filter.FROM_SESSION_NAME.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.TO_SESSION_NAME) Then
+                lst = lst.Where(Function(f) f.TO_SESSION_NAME.ToLower().Contains(_filter.TO_SESSION_NAME.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.CREATED_BY_EMP_NAME) Then
+                lst = lst.Where(Function(f) f.CREATED_BY_EMP_NAME.ToLower().Contains(_filter.CREATED_BY_EMP_NAME.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.MODIFIED_BY_EMP_NAME) Then
+                lst = lst.Where(Function(f) f.MODIFIED_BY_EMP_NAME.ToLower().Contains(_filter.MODIFIED_BY_EMP_NAME.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.RESTORED_BY_NAME) Then
+                lst = lst.Where(Function(f) f.RESTORED_BY_NAME.ToLower().Contains(_filter.RESTORED_BY_NAME.ToLower()))
+            End If
+            If IsDate(_filter.RESTORED_DATE) Then
+                lst = lst.Where(Function(f) f.RESTORED_DATE = _filter.RESTORED_DATE)
+            End If
+            If Not String.IsNullOrEmpty(_filter.REASON_LEAVE_NAME) Then
+                lst = lst.Where(Function(f) f.REASON_LEAVE_NAME.ToLower().Contains(_filter.REASON_LEAVE_NAME.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.RESTORED_REASON) Then
+                lst = lst.Where(Function(f) f.RESTORED_REASON.ToLower().Contains(_filter.RESTORED_REASON.ToLower()))
+            End If
 
             lst = lst.OrderBy(Sorts)
             Total = lst.Count

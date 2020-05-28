@@ -180,4 +180,15 @@ Partial Class AttendanceStoreProcedure
         End Try
         Return dt
     End Function
+
+#Region "Leave "
+    Public Function GET_LEAVE_TYPE(Optional ByVal IS_PORTAL As Boolean = False, Optional ByVal IS_BLANK As Boolean = False)
+        Dim dt As New DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_AT_LEAVESHEET.GET_LEAVE_TYPE", New List(Of Object)(New Object() {IS_PORTAL, IS_BLANK}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+#End Region
 End Class

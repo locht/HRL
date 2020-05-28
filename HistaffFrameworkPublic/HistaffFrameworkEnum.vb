@@ -30,6 +30,7 @@
         WaitingForApproval = 0
         ApprovedByLM = 1
         UnApprovedByLM = 2
+        RestoreApproveByLM = 8001
         UnVerifiedByHr = 6864
         ApprovedByGM = 21
         UnApprovedByGM = 22

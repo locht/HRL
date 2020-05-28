@@ -43,5 +43,22 @@
     Public Property IS_APP As Decimal?
     Public Property REASON As String
     Public Property STATUS_SHIFT As Decimal?
+
+    'TAMBT ADD 05272020
+    Public Property FROM_SESSION As Decimal?
+    Public Property FROM_SESSION_NAME As String
+    Public Property TO_SESSION As Decimal?
+    Public Property TO_SESSION_NAME As String
+    Public Property CREATED_BY_EMP As Decimal?
+    Public Property CREATED_BY_EMP_NAME As String
+    Public Property MODIFIED_BY_EMP As Decimal?
+    Public Property MODIFIED_BY_EMP_NAME As String
+    Public Property RESTORED_BY As Decimal?
+    Public Property RESTORED_BY_NAME As String
+    Public Property RESTORED_DATE As Date?
+    Public Property RESTORED_REASON As String
+    Public Property REASON_LEAVE As Decimal?
+    Public Property REASON_LEAVE_NAME As String
+
 End Class
 
