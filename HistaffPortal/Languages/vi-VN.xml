@@ -43158,4 +43158,20 @@ Xin cám ơn!
       <string>Chọn nhân viên</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLATSHIFTNEWEDIT</string>
+    </Key>
+    <Value>
+      <string>Thông tin ca làm việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLFINDEMPLOYEE2GRIDPOPUPDIALOG</string>
+    </Key>
+    <Value>
+      <string>Chọn nhân viên</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

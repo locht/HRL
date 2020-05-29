@@ -9,15 +9,45 @@
             <tlk:RadPane ID="RadPane1" runat="server" Height="33px" Scrolling="None">
                 <tlk:RadToolBar ID="tbarMainToolBar" runat="server" Width="100%" OnClientButtonClicking="clientButtonClicking" />
             </tlk:RadPane>
-            <tlk:RadPane ID="RadPane4" runat="server" Height="40px" Scrolling="None">
+            <tlk:RadPane ID="RadPane4" runat="server" Height="80px" Scrolling="None">
                 <table class="table-form">
                     <tr>
+                        <td class="lb">
+                            <%# Translate("Trạng thái")%>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox runat="server" ID="cboStatus">
+                            </tlk:RadComboBox>
+                        </td>
+                        <td class="lb">
+                            <%# Translate("Loại đăng ký")%>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox runat="server" ID="cboManual">
+                            </tlk:RadComboBox>
+                        </td>
+                        <td class="lb">
+                            <%# Translate("Năm")%>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox runat="server" ID="cboYear" SkinID="dDropdownList" AutoPostBack="true">
+                            </tlk:RadComboBox>
+                        </td>
+                        <td class="lb">
+                            <%# Translate("Kỳ công")%>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox runat="server" ID="cboPeriod" SkinID="dDropdownList" AutoPostBack="true">
+                            </tlk:RadComboBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        
                         <td class="lb">
                             <%# Translate("Từ ngày")%><span class="lbReq">*</span>
                         </td>
                         <td>
-                            <tlk:RadDatePicker ID="rdtungay" MaxLength="12" runat="server"
-                                ToolTip="">
+                            <tlk:RadDatePicker ID="rdtungay" MaxLength="12" runat="server" ToolTip="">
                             </tlk:RadDatePicker>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="rdtungay"
                                 runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Từ ngày %>" ToolTip="<%$ Translate: Bạn phải chọn Từ ngày %>"> </asp:RequiredFieldValidator>
@@ -26,18 +56,10 @@
                             <%# Translate("Đến ngày")%><span class="lbReq">*</span>
                         </td>
                         <td>
-                            <tlk:RadDatePicker ID="rdDenngay" MaxLength="12" runat="server"
-                                ToolTip="" Width="150px">
+                            <tlk:RadDatePicker ID="rdDenngay" MaxLength="12" runat="server" ToolTip="" Width="150px">
                             </tlk:RadDatePicker>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rdDenngay"
                                 runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Đến ngày %>" ToolTip="<%$ Translate: Bạn phải chọn Đến ngày %>"> </asp:RequiredFieldValidator>
-                        </td>
-                        <td class="lb">
-                            <%# Translate("Trạng thái")%>
-                        </td>
-                        <td>
-                            <tlk:RadComboBox runat="server" ID="cboStatus">
-                            </tlk:RadComboBox>
                         </td>
                         <td>
                             <tlk:RadButton ID="btnSearch" runat="server" Text="<%$ Translate: Tìm kiếm %>" SkinID="ButtonFind">
@@ -77,21 +99,28 @@
                                 ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
                             </tlk:GridBoundColumn>
-                           
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại nghỉ %>" DataField="MANUAL_NAME"
                                 UniqueName="MANUAL_NAME" SortExpression="MANUAL_NAME" ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
                             </tlk:GridBoundColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Thời gian bắt đầu nghỉ phép %>"
-                                DataField="LEAVE_FROM" UniqueName="LEAVE_FROM" SortExpression="LEAVE_FROM" DataFormatString="{0:dd/MM/yyyy}"
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Nghỉ từ ngày %>" DataField="LEAVE_FROM"
+                                UniqueName="LEAVE_FROM" SortExpression="LEAVE_FROM" DataFormatString="{0:dd/MM/yyyy}"
                                 ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
                             </tlk:GridDateTimeColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Từ buổi %>" DataField="FROM_SESSION_NAME"
+                                UniqueName="FROM_SESSION_NAME" SortExpression="FROM_SESSION_NAME" ItemStyle-Width="100px">
+                                <HeaderStyle Width="100px" />
+                            </tlk:GridBoundColumn>
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Thời gian kết thúc nghỉ phép %>"
                                 DataField="LEAVE_TO" UniqueName="LEAVE_TO" SortExpression="LEAVE_TO" DataFormatString="{0:dd/MM/yyyy}"
                                 ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
                             </tlk:GridDateTimeColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đến buổi %>" DataField="TO_SESSION_NAME"
+                                UniqueName="TO_SESSION_NAME" SortExpression="TO_SESSION_NAME" ItemStyle-Width="100px">
+                                <HeaderStyle Width="100px" />
+                            </tlk:GridBoundColumn>
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Số ngày %>" DataField="DAY_NUM"
                                 UniqueName="DAY_NUM" SortExpression="DAY_NUM" ItemStyle-HorizontalAlign="Right"
                                 ItemStyle-Width="100px">
@@ -107,32 +136,48 @@
                                 ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
                             </tlk:GridNumericColumn>--%>
-                           
-                           
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lí do nghỉ phép %>" DataField="NOTE"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lí do nghỉ phép %>" DataField="REASON_LEAVE_NAME"
+                                UniqueName="REASON_LEAVE_NAME" SortExpression="REASON_LEAVE_NAME" ItemStyle-Width="100px">
+                                <HeaderStyle Width="100px" />
+                            </tlk:GridBoundColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lí do chi tiết %>" DataField="NOTE"
                                 UniqueName="NOTE" SortExpression="NOTE" ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
                             </tlk:GridBoundColumn>
-                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Người phê duyệt kế tiếp %>" DataField="EMP_APPROVES_NAME"
-                                UniqueName="EMP_APPROVES_NAME" SortExpression="EMP_APPROVES_NAME" ItemStyle-HorizontalAlign="Center"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Người tạo đơn %>" DataField="CREATED_BY_EMP_NAME"
+                                UniqueName="CREATED_BY_EMP_NAME" SortExpression="CREATED_BY_EMP_NAME" ItemStyle-HorizontalAlign="Center"
                                 ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
                             </tlk:GridBoundColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Người cập nhật gần nhất%>" DataField="MODIFIED_BY"
-                                UniqueName="MODIFIED_BY" SortExpression="MODIFIED_BY" ItemStyle-Width="100px">
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày tạo đơn %>" DataField="CREATED_DATE"
+                                UniqueName="CREATED_DATE" SortExpression="CREATED_DATE" ItemStyle-Width="100px"
+                                DataFormatString="{0:dd/MM/yyyy}" ItemStyle-HorizontalAlign="Center">
+                                <HeaderStyle Width="100px" />
+                            </tlk:GridDateTimeColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Người cập nhật cuối cùng %>" DataField="MODIFIED_BY_EMP_NAME"
+                                UniqueName="MODIFIED_BY_EMP_NAME" SortExpression="MODIFIED_BY_EMP_NAME" ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
                             </tlk:GridBoundColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày cập nhật gần nhất %>" DataField="MODIFIED_DATE"
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày cập nhật cuối cùng %>" DataField="MODIFIED_DATE"
                                 UniqueName="MODIFIED_DATE" SortExpression="MODIFIED_DATE" DataFormatString="{0:dd/MM/yyyy}"
                                 ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do không duyệt %>" DataField="REASON"
-                                UniqueName="REASON" SortExpression="REASON" ItemStyle-Width="100px">
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Người hoàn duyệt %>" DataField="RESTORED_BY_NAME"
+                                UniqueName="RESTORED_BY_NAME" SortExpression="RESTORED_BY_NAME" ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
                             </tlk:GridBoundColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tự sinh do import bảng công %>" DataField="IMPORT"
-                                UniqueName="IMPORT" SortExpression="IMPORT" ItemStyle-Width="100px">
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hoàn duyệt %>" DataField="RESTORED_DATE"
+                                UniqueName="RESTORED_DATE" SortExpression="RESTORED_DATE" DataFormatString="{0:dd/MM/yyyy}"
+                                ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100px">
+                                <HeaderStyle Width="100px" />
+                            </tlk:GridDateTimeColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do hoàn duyệt %>" DataField="RESTORED_REASON"
+                                UniqueName="RESTORED_REASON" SortExpression="RESTORED_REASON" ItemStyle-Width="100px">
+                                <HeaderStyle Width="100px" />
+                            </tlk:GridBoundColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do không duyệt %>" DataField="REASON"
+                                UniqueName="REASON" SortExpression="REASON" ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
                             </tlk:GridBoundColumn>
                         </Columns>
@@ -167,7 +212,7 @@
                     args.set_cancel(true);
                 }
                 else {
-                    var id = $find('<%= rgMain.ClientID %>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID')                    
+                    var id = $find('<%= rgMain.ClientID %>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID')
                     OpenInNewTab('Default.aspx?mid=Attendance&fid=ctrlLeaveRegistrationNewEdit&id=' + id + '&view=TRUE&typeUser=User&idCtrl=' + idCtrl);
                     args.set_cancel(true);
                 }

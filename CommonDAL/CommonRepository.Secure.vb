@@ -2600,6 +2600,7 @@ Partial Public Class CommonRepository
                       From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = t.HURT_TYPE_ID).DefaultIfEmpty
                       From ot1 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_LABOR).DefaultIfEmpty
                       From ot2 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECTTIMEKEEPING).DefaultIfEmpty
+                      From emp_obj In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.EMPLOYEE_OBJECT).DefaultIfEmpty
                       Order By p.EMPLOYEE_CODE
                       Where (_empId.Contains(p.ID))
                       Select New EmployeePopupFindDTO With {
@@ -2628,6 +2629,9 @@ Partial Public Class CommonRepository
                           .OBJECTTIMEKEEPING = p.OBJECTTIMEKEEPING,
                           .OBJECT_NAME = ot2.NAME_VN,
                           .LABOUR_NAME = ot1.NAME_VN,
+                          .EMPLOYEE_OBJECT = p.EMPLOYEE_OBJECT,
+                          .EMPLOYEE_OBJECT_CODE = emp_obj.CODE,
+                          .EMPLOYEE_OBJECT_NAME = emp_obj.NAME_VN,
                           .TER_LAST_DATE = p.TER_EFFECT_DATE})
         Return result.ToList
     End Function

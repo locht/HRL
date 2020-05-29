@@ -40,6 +40,11 @@
     Public Property ID_NO As String 'SO CMND
     Public Property CREATE_PLACE As String 'NOI CAP { ID:PROVINCE }
     Public Property ID_CREATE_PLACE As Decimal? '{ ID:PROVINCE }
+    'tambt add 05282020
+    Public Property EMPLOYEE_OBJECT As Decimal?
+    Public Property EMPLOYEE_OBJECT_NAME As String
+    Public Property EMPLOYEE_OBJECT_CODE As String
+    Public Property EMP_ENTITLEMENT As Decimal?
 End Class
 Public Class EmployeePopupFindListDTO
     Public Property ID As Decimal

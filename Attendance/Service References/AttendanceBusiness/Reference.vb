@@ -19623,6 +19623,12 @@ Namespace AttendanceBusiness
         Private CREATED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_BY_EMPField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_BY_EMP_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CREATED_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -19645,6 +19651,12 @@ Namespace AttendanceBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FROM_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FROM_SESSIONField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FROM_SESSION_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IDField As System.Nullable(Of Decimal)
@@ -19678,6 +19690,12 @@ Namespace AttendanceBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_BYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_BY_EMPField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_BY_EMP_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_DATEField As System.Nullable(Of Date)
@@ -19719,6 +19737,24 @@ Namespace AttendanceBusiness
         Private REASONField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private REASON_LEAVEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private REASON_LEAVE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RESTORED_BYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RESTORED_BY_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RESTORED_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RESTORED_REASONField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private STAFF_RANK_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -19735,6 +19771,12 @@ Namespace AttendanceBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TO_SESSIONField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TO_SESSION_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private VN_FULLNAMEField As String
@@ -19800,6 +19842,32 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.CREATED_BYField, value) <> true) Then
                     Me.CREATED_BYField = value
                     Me.RaisePropertyChanged("CREATED_BY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_BY_EMP() As System.Nullable(Of Decimal)
+            Get
+                Return Me.CREATED_BY_EMPField
+            End Get
+            Set
+                If (Me.CREATED_BY_EMPField.Equals(value) <> true) Then
+                    Me.CREATED_BY_EMPField = value
+                    Me.RaisePropertyChanged("CREATED_BY_EMP")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_BY_EMP_NAME() As String
+            Get
+                Return Me.CREATED_BY_EMP_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CREATED_BY_EMP_NAMEField, value) <> true) Then
+                    Me.CREATED_BY_EMP_NAMEField = value
+                    Me.RaisePropertyChanged("CREATED_BY_EMP_NAME")
                 End If
             End Set
         End Property
@@ -19904,6 +19972,32 @@ Namespace AttendanceBusiness
                 If (Me.FROM_DATEField.Equals(value) <> true) Then
                     Me.FROM_DATEField = value
                     Me.RaisePropertyChanged("FROM_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FROM_SESSION() As System.Nullable(Of Decimal)
+            Get
+                Return Me.FROM_SESSIONField
+            End Get
+            Set
+                If (Me.FROM_SESSIONField.Equals(value) <> true) Then
+                    Me.FROM_SESSIONField = value
+                    Me.RaisePropertyChanged("FROM_SESSION")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FROM_SESSION_NAME() As String
+            Get
+                Return Me.FROM_SESSION_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FROM_SESSION_NAMEField, value) <> true) Then
+                    Me.FROM_SESSION_NAMEField = value
+                    Me.RaisePropertyChanged("FROM_SESSION_NAME")
                 End If
             End Set
         End Property
@@ -20047,6 +20141,32 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.MODIFIED_BYField, value) <> true) Then
                     Me.MODIFIED_BYField = value
                     Me.RaisePropertyChanged("MODIFIED_BY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_BY_EMP() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MODIFIED_BY_EMPField
+            End Get
+            Set
+                If (Me.MODIFIED_BY_EMPField.Equals(value) <> true) Then
+                    Me.MODIFIED_BY_EMPField = value
+                    Me.RaisePropertyChanged("MODIFIED_BY_EMP")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_BY_EMP_NAME() As String
+            Get
+                Return Me.MODIFIED_BY_EMP_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MODIFIED_BY_EMP_NAMEField, value) <> true) Then
+                    Me.MODIFIED_BY_EMP_NAMEField = value
+                    Me.RaisePropertyChanged("MODIFIED_BY_EMP_NAME")
                 End If
             End Set
         End Property
@@ -20221,6 +20341,84 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property REASON_LEAVE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.REASON_LEAVEField
+            End Get
+            Set
+                If (Me.REASON_LEAVEField.Equals(value) <> true) Then
+                    Me.REASON_LEAVEField = value
+                    Me.RaisePropertyChanged("REASON_LEAVE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property REASON_LEAVE_NAME() As String
+            Get
+                Return Me.REASON_LEAVE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.REASON_LEAVE_NAMEField, value) <> true) Then
+                    Me.REASON_LEAVE_NAMEField = value
+                    Me.RaisePropertyChanged("REASON_LEAVE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RESTORED_BY() As System.Nullable(Of Decimal)
+            Get
+                Return Me.RESTORED_BYField
+            End Get
+            Set
+                If (Me.RESTORED_BYField.Equals(value) <> true) Then
+                    Me.RESTORED_BYField = value
+                    Me.RaisePropertyChanged("RESTORED_BY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RESTORED_BY_NAME() As String
+            Get
+                Return Me.RESTORED_BY_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.RESTORED_BY_NAMEField, value) <> true) Then
+                    Me.RESTORED_BY_NAMEField = value
+                    Me.RaisePropertyChanged("RESTORED_BY_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RESTORED_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.RESTORED_DATEField
+            End Get
+            Set
+                If (Me.RESTORED_DATEField.Equals(value) <> true) Then
+                    Me.RESTORED_DATEField = value
+                    Me.RaisePropertyChanged("RESTORED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RESTORED_REASON() As String
+            Get
+                Return Me.RESTORED_REASONField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.RESTORED_REASONField, value) <> true) Then
+                    Me.RESTORED_REASONField = value
+                    Me.RaisePropertyChanged("RESTORED_REASON")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property STAFF_RANK_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.STAFF_RANK_IDField
@@ -20294,6 +20492,32 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.TITLE_NAMEField, value) <> true) Then
                     Me.TITLE_NAMEField = value
                     Me.RaisePropertyChanged("TITLE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TO_SESSION() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TO_SESSIONField
+            End Get
+            Set
+                If (Me.TO_SESSIONField.Equals(value) <> true) Then
+                    Me.TO_SESSIONField = value
+                    Me.RaisePropertyChanged("TO_SESSION")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TO_SESSION_NAME() As String
+            Get
+                Return Me.TO_SESSION_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TO_SESSION_NAMEField, value) <> true) Then
+                    Me.TO_SESSION_NAMEField = value
+                    Me.RaisePropertyChanged("TO_SESSION_NAME")
                 End If
             End Set
         End Property

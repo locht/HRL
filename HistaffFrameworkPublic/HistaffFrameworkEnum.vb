@@ -41,7 +41,7 @@
         UnapprovedByNCSP = 28
         ApprovedByTCT = 29
         UnapprovedByTCT = 30
-
+        RestoreApproveByLM = 8001
         unsent = 6860
         waitsend = 6861
         aprrove = 6862

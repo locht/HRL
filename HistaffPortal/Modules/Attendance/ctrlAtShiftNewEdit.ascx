@@ -101,7 +101,7 @@
                             <tlk:GridBoundColumn DataField="ORG_ID" UniqueName="ORG_ID" HeaderStyle-Width="200px"
                                 ReadOnly="true" SortExpression="ORG_ID" Visible="false" ItemStyle-HorizontalAlign="Center" />
                             <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME" UniqueName="ORG_NAME"
-                                HeaderStyle-Width="200px" ReadOnly="true" SortExpression="ORG_NAME"  ItemStyle-HorizontalAlign="Center"/>
+                                HeaderStyle-Width="200px" ReadOnly="true" SortExpression="ORG_NAME" ItemStyle-HorizontalAlign="Center" />
                             <tlk:GridBoundColumn HeaderText="Vị trí công việc" DataField="TITLE_NAME_VN" UniqueName="TITLE_NAME_VN"
                                 HeaderStyle-Width="200px" ReadOnly="true" SortExpression="TITLE_NAME_VN" ItemStyle-HorizontalAlign="Center" />
                         </Columns>

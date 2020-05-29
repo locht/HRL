@@ -2344,6 +2344,14 @@
             <Property Name="STATUS" Type="number" Nullable="true" Precision="38" />
             <Property Name="IMPORT" Type="number" Nullable="true" Precision="38" />
             <Property Name="REASON" Type="nclob" Nullable="true" />
+            <Property Name="FROM_SESSION" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TO_SESSION" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CREATED_BY_EMP" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MODIFIED_BY_EMP" Type="number" Nullable="true" Precision="38" />
+            <Property Name="RESTORED_BY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="RESTORED_DATE" Type="date" Nullable="true" />
+            <Property Name="RESTORED_REASON" Type="number" Nullable="true" Precision="38" />
+            <Property Name="REASON_LEAVE" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="AT_TIMESHEET_MACHINET_IMPORT">
             <Key>
@@ -5279,6 +5287,14 @@
           <Property Type="Decimal" Name="STATUS" />
           <Property Type="Decimal" Name="IMPORT" Nullable="true" />
           <Property Type="String" Name="REASON" Nullable="true" />
+          <Property Type="Decimal" Name="FROM_SESSION" />
+          <Property Type="Decimal" Name="TO_SESSION" />
+          <Property Type="Decimal" Name="CREATED_BY_EMP" />
+          <Property Type="Decimal" Name="MODIFIED_BY_EMP" />
+          <Property Type="Decimal" Name="RESTORED_BY" />
+          <Property Type="DateTime" Name="RESTORED_DATE" />
+          <Property Type="Decimal" Name="RESTORED_REASON" />
+          <Property Type="Decimal" Name="REASON_LEAVE" />
         </EntityType>
         <EntityType Name="AT_TIMESHEET_MACHINET_IMPORT">
           <Key>
@@ -7827,6 +7843,14 @@
                     <ScalarProperty Name="STATUS" ColumnName="STATUS" />
                     <ScalarProperty Name="IMPORT" ColumnName="IMPORT" />
                     <ScalarProperty Name="REASON" ColumnName="REASON" />
+                    <ScalarProperty Name="FROM_SESSION" ColumnName="FROM_SESSION" />
+                    <ScalarProperty Name="TO_SESSION" ColumnName="TO_SESSION" />
+                    <ScalarProperty Name="CREATED_BY_EMP" ColumnName="CREATED_BY_EMP" />
+                    <ScalarProperty Name="MODIFIED_BY_EMP" ColumnName="MODIFIED_BY_EMP" />
+                    <ScalarProperty Name="RESTORED_BY" ColumnName="RESTORED_BY" />
+                    <ScalarProperty Name="RESTORED_DATE" ColumnName="RESTORED_DATE" />
+                    <ScalarProperty Name="RESTORED_REASON" ColumnName="RESTORED_REASON" />
+                    <ScalarProperty Name="REASON_LEAVE" ColumnName="REASON_LEAVE" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -8279,7 +8303,7 @@
         <EntityTypeShape EntityType="AttendanceModel.SE_USER_ORG_ACCESS" Width="1.5" PointX="10.625" PointY="23.125" Height="1.5956835937499818" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SHIFT" Width="1.5" PointX="13.375" PointY="22.75" Height="9.6723437500000031" />
         <EntityTypeShape EntityType="AttendanceModel.AT_LEAVESHEET_DETAIL" Width="1.5" PointX="18.375" PointY="22.75" Height="3.710999348958353" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_LEAVESHEET" Width="1.5" PointX="7.375" PointY="23.75" Height="4.6725065104166674" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_LEAVESHEET" Width="2.5" PointX="6.75" PointY="23.75" Height="6.2109179687500031" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TIMESHEET_MACHINET_IMPORT" Width="1.5" PointX="23.375" PointY="15.75" Height="2.1725878906249818" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TYPE_PROCESS" Width="1.5" PointX="15.375" PointY="23.75" Height="1.5956835937500031" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_MANUAL_RATE" Width="1.5" PointX="24.25" PointY="21.5" Height="1.5956835937500031" />
