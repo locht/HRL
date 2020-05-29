@@ -2196,7 +2196,9 @@ Public Class ProfileRepository
         Try
             Using cls As New DataAccess.QueryData
                 Dim dtData As DataSet = cls.ExecuteStore("PKG_PROFILE_BUSINESS.EXPORT_HEALTH_MNG",
-                                          New With {.P_OUT = cls.OUT_CURSOR}, False)
+                                          New With {.P_OUT = cls.OUT_CURSOR,
+                                          .P_OUT1 = cls.OUT_CURSOR,
+                                          .P_OUT2 = cls.OUT_CURSOR}, False)
 
                 Return dtData
             End Using
