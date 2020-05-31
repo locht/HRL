@@ -5462,7 +5462,9 @@ Partial Class RecruitmentRepository
                 '--------------candide_CV--------------
                 Dim objCandidate_Cv As New RC_CANDIDATE_CV
                 objCandidate_Cv.CANDIDATE_ID = fileID
-                objCandidate_Cv.IMAGE = _strEmpCode & "." & objEmpCV.EXTEND_IMAGE
+                If objEmpCV.EXTEND_IMAGE IsNot Nothing Or objEmpCV.EXTEND_IMAGE <> "" Then
+                    objCandidate_Cv.IMAGE = _strEmpCode & "." & objEmpCV.EXTEND_IMAGE
+                End If
                 objCandidate_Cv.BIRTH_DATE = objEmpCV.BIRTH_DATE
                 objCandidate_Cv.NAV_PROVINCE = objEmpCV.BIRTH_PROVINCE
                 objCandidate_Cv.GENDER = objEmpCV.GENDER
@@ -5529,7 +5531,7 @@ Partial Class RecruitmentRepository
                 objCandidate_health.CAN_NANG = objEmpHealth.CAN_NANG
 
                 '---------------------candidate Training---------------------
-                
+
                 For Each item1 In objEmpTraning
                     Dim objCan_Train As New RC_CANDIDATE_TRAINNING
                     Dim id As Decimal = Utilities.GetNextSequence(Context, Context.RC_CANDIDATE_TRAINNING.EntitySet.Name)

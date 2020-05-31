@@ -1240,18 +1240,20 @@ Public Class ctrlRC_ImportCV
                 workbook = New Aspose.Cells.Workbook(fileName)
                 worksheet0 = workbook.Worksheets("ACV_CV")
                 worksheet4 = worksheet0.Pictures
+                Dim Count_Pic = worksheet0.Pictures.Count
 
-                Dim bi As Byte()
-                Dim a = worksheet4.Item(1)
-
-                Dim avatar = worksheet4.Item(1)
-                If avatar IsNot Nothing Then
-                    binary = avatar.Data 'lay binary cua hinh import
-                    ImageExtend = avatar.ImageFormat.ToString 'lay phan mo rong cua hinh improt
+                If Count_Pic > 1 Then
+                    'Dim bi As Byte()
+                    Dim avatar = worksheet4.Item(1)
+                    If avatar IsNot Nothing Then
+                        Binary = avatar.Data 'lay binary cua hinh import
+                        ImageExtend = avatar.ImageFormat.ToString 'lay phan mo rong cua hinh improt
+                    End If
                 Else
                     Binary = Nothing
                     ImageExtend = Nothing
                 End If
+
 
                 'Lấy ảnh của nhân viên
                 'If a IsNot Nothing Then
