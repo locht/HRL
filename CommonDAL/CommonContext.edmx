@@ -19,7 +19,6 @@
             <EntitySet Name="SE_FUNCTION_GROUP" EntityType="CommonModel.Store.SE_FUNCTION_GROUP" store:Type="Tables"  />
             <EntitySet Name="HU_EMPLOYEE" EntityType="CommonModel.Store.HU_EMPLOYEE" store:Type="Tables"  />
             <EntitySet Name="HU_TERMINATE" EntityType="CommonModel.Store.HU_TERMINATE" store:Type="Tables"  />
-            <EntitySet Name="SE_MAIL" EntityType="CommonModel.Store.SE_MAIL" store:Type="Tables"  />
             <EntitySet Name="SE_REMINDER" EntityType="CommonModel.Store.SE_REMINDER" store:Type="Tables"  />
             <EntitySet Name="HU_TITLE" EntityType="CommonModel.Store.HU_TITLE" store:Type="Tables"  />
             <EntitySet Name="SE_APP_PROCESS" EntityType="CommonModel.Store.SE_APP_PROCESS" store:Type="Tables"  />
@@ -49,6 +48,7 @@
             <EntitySet Name="HU_JOB_DESCRIPTION" EntityType="CommonModel.Store.HU_JOB_DESCRIPTION" store:Type="Tables"  />
             <EntitySet Name="HU_JOB_POSITION" EntityType="CommonModel.Store.HU_JOB_POSITION" store:Type="Tables"  />
             <EntitySet Name="HU_DIRECT_MANAGER" EntityType="CommonModel.Store.HU_DIRECT_MANAGER" store:Type="Tables"  />
+            <EntitySet Name="SE_MAIL" EntityType="CommonModel.Store.SE_MAIL" store:Type="Tables"  />
             <EntitySet Name="SE_GRP_SE_USR" EntityType="CommonModel.Store.SE_GRP_SE_USR" store:Type="Tables"  />
             <EntitySet Name="SE_GROUP_REPORT" EntityType="CommonModel.Store.SE_GROUP_REPORT" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="CommonModel.Store.SE_USER_REPORT" store:Type="Tables"  />
@@ -400,21 +400,6 @@
             <Property Name="SUN_MONEY" Type="number" Nullable="true" Precision="38" />
             <Property Name="INSURANCE_MONEY" Type="number" Nullable="true" Precision="38" />
             <Property Name="IS_3B" Type="number" Nullable="true" Precision="5" />
-        </EntityType>
-        <EntityType Name="SE_MAIL">
-            <Key>
-                <PropertyRef Name="ID" />
-            </Key>
-            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
-            <Property Name="SUBJECT" Type="nvarchar2" Nullable="false" MaxLength="255" />
-            <Property Name="MAIL_FROM" Type="nvarchar2" Nullable="false" MaxLength="255" />
-            <Property Name="MAIL_TO" Type="nvarchar2" Nullable="false" MaxLength="1024" />
-            <Property Name="MAIL_CC" Type="nvarchar2" Nullable="true" MaxLength="1024" />
-            <Property Name="MAIL_BCC" Type="nvarchar2" Nullable="true" MaxLength="1024" />
-            <Property Name="CONTENT" Type="nclob" Nullable="false" />
-            <Property Name="VIEW_NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" DefaultValue="I" MaxLength="1" />
-            <Property Name="ATTACHMENT" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="SE_REMINDER">
             <Key>
@@ -924,6 +909,25 @@
             <Property Name="JOB_POSITION_ID" Type="number" Nullable="false" Precision="38" />
             <Property Name="DIRECT_MANAGER" Type="number" Nullable="true" Precision="38" />
         </EntityType>
+        <EntityType Name="SE_MAIL">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="SUBJECT" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MAIL_FROM" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MAIL_TO" Type="nvarchar2" Nullable="true" MaxLength="1024" />
+            <Property Name="MAIL_CC" Type="nvarchar2" Nullable="true" MaxLength="1024" />
+            <Property Name="MAIL_BCC" Type="nvarchar2" Nullable="true" MaxLength="1024" />
+            <Property Name="CONTENT" Type="nclob" Nullable="true" />
+            <Property Name="VIEW_NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+            <Property Name="ATTACHMENT" Type="nclob" Nullable="true" />
+            <Property Name="LOG" Type="clob" Nullable="true" />
+            <Property Name="CREATE_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATE_DATE" Type="date" Nullable="true" />
+            <Property Name="SEND_DATE" Type="date" Nullable="true" />
+        </EntityType>
         <EntityType Name="SE_GRP_SE_USR">
             <Key>
                 <PropertyRef Name="SE_GROUPS_ID" />
@@ -1222,7 +1226,6 @@
             <End EntitySet="HU_ORGANIZATION" Role="HU_ORGANIZATION" />
             <End EntitySet="HU_EMPLOYEE" Role="HU_EMPLOYEE" />
           </AssociationSet>
-          <EntitySet Name="SE_MAIL" EntityType="CommonModel.SE_MAIL" />
           <EntitySet Name="SE_REMINDER" EntityType="CommonModel.SE_REMINDER" />
           <EntitySet Name="HU_TITLE" EntityType="CommonModel.HU_TITLE" />
           <AssociationSet Name="HU_TITLEHU_EMPLOYEE" Association="CommonModel.HU_TITLEHU_EMPLOYEE">
@@ -1260,6 +1263,7 @@
           <EntitySet Name="HU_JOB_DESCRIPTION" EntityType="CommonModel.HU_JOB_DESCRIPTION" />
           <EntitySet Name="HU_JOB_POSITION" EntityType="CommonModel.HU_JOB_POSITION" />
           <EntitySet Name="HU_DIRECT_MANAGER" EntityType="CommonModel.HU_DIRECT_MANAGER" />
+          <EntitySet Name="SE_MAIL" EntityType="CommonModel.SE_MAIL" />
           </EntityContainer>
         <EntityType Name="SE_GROUP">
           <Key>
@@ -1690,21 +1694,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="SE_MAIL">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Decimal" />
-          <Property Name="SUBJECT" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="MAIL_FROM" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="MAIL_TO" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="MAIL_CC" Nullable="true" MaxLength="1024" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="MAIL_BCC" Nullable="true" MaxLength="1024" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="CONTENT" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="VIEW_NAME" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="ACTFLG" Nullable="true" DefaultValue="I" MaxLength="1" FixedLength="false" Type="String" />
-          <Property Type="String" Name="ATTACHMENT" />
-        </EntityType>
         <EntityType Name="SE_REMINDER">
           <Key>
             <PropertyRef Name="ID" />
@@ -2230,6 +2219,25 @@
           <Property Type="Decimal" Name="JOB_POSITION_ID" Nullable="false" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="DIRECT_MANAGER" Precision="38" Scale="0" />
         </EntityType>
+        <EntityType Name="SE_MAIL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="SUBJECT" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MAIL_FROM" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MAIL_TO" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MAIL_CC" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MAIL_BCC" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CONTENT" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="VIEW_NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ATTACHMENT" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LOG" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CREATE_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATE_DATE" />
+          <Property Type="DateTime" Name="SEND_DATE" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2530,22 +2538,6 @@
                     <ScalarProperty Name="SUN_MONEY" ColumnName="SUN_MONEY" />
                     <ScalarProperty Name="INSURANCE_MONEY" ColumnName="INSURANCE_MONEY" />
                     <ScalarProperty Name="IS_3B" ColumnName="IS_3B" />
-                </MappingFragment>
-            </EntityTypeMapping>
-        </EntitySetMapping>
-        <EntitySetMapping Name="SE_MAIL">
-            <EntityTypeMapping TypeName="IsTypeOf(CommonModel.SE_MAIL)">
-                <MappingFragment StoreEntitySet="SE_MAIL">
-                    <ScalarProperty Name="ID" ColumnName="ID" />
-                    <ScalarProperty Name="SUBJECT" ColumnName="SUBJECT" />
-                    <ScalarProperty Name="MAIL_FROM" ColumnName="MAIL_FROM" />
-                    <ScalarProperty Name="MAIL_TO" ColumnName="MAIL_TO" />
-                    <ScalarProperty Name="MAIL_CC" ColumnName="MAIL_CC" />
-                    <ScalarProperty Name="MAIL_BCC" ColumnName="MAIL_BCC" />
-                    <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
-                    <ScalarProperty Name="VIEW_NAME" ColumnName="VIEW_NAME" />
-                    <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
-                    <ScalarProperty Name="ATTACHMENT" ColumnName="ATTACHMENT" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -3084,6 +3076,26 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="SE_MAIL">
+            <EntityTypeMapping TypeName="IsTypeOf(CommonModel.SE_MAIL)">
+                <MappingFragment StoreEntitySet="SE_MAIL">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="SUBJECT" ColumnName="SUBJECT" />
+                    <ScalarProperty Name="MAIL_FROM" ColumnName="MAIL_FROM" />
+                    <ScalarProperty Name="MAIL_TO" ColumnName="MAIL_TO" />
+                    <ScalarProperty Name="MAIL_CC" ColumnName="MAIL_CC" />
+                    <ScalarProperty Name="MAIL_BCC" ColumnName="MAIL_BCC" />
+                    <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+                    <ScalarProperty Name="VIEW_NAME" ColumnName="VIEW_NAME" />
+                    <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+                    <ScalarProperty Name="ATTACHMENT" ColumnName="ATTACHMENT" />
+                    <ScalarProperty Name="LOG" ColumnName="LOG" />
+                    <ScalarProperty Name="CREATE_BY" ColumnName="CREATE_BY" />
+                    <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                    <ScalarProperty Name="SEND_DATE" ColumnName="SEND_DATE" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_GRP_SE_USR" TypeName="CommonModel.SE_GRP_SE_USR" StoreEntitySet="SE_GRP_SE_USR">
             <EndProperty Name="SE_GROUP">
                 <ScalarProperty Name="ID" ColumnName="SE_GROUPS_ID" />
@@ -3136,17 +3148,17 @@
         <EntityTypeShape EntityType="CommonModel.SE_FUNCTION" Width="2.125" PointX="2.25" PointY="1.625" Height="3.3263964843749996" IsExpanded="true" />
         <EntityTypeShape EntityType="CommonModel.SE_USER" Width="2.125" PointX="18.75" PointY="6.25" Height="6.0186165364583335" IsExpanded="true" />
         <AssociationConnector Association="CommonModel.SE_GRP_SE_USR" >
-          <ConnectorPoint PointX="1.4687505" PointY="4.7749999999999986" />
-          <ConnectorPoint PointX="1.4687505" PointY="5.8999999999999986" />
-          <ConnectorPoint PointX="2.9166666666666665" PointY="5.8999999999999977" />
-          <ConnectorPoint PointX="3.0833333333333335" PointY="5.8999999999999986" />
-          <ConnectorPoint PointX="3.1041691666666664" PointY="5.8999999999999977" />
-          <ConnectorPoint PointX="3.2708358333333334" PointY="5.8999999999999986" />
+          <ConnectorPoint PointX="1.664063875" PointY="4.7749999999999986" />
+          <ConnectorPoint PointX="1.664063875" PointY="5.8999999999999986" />
+          <ConnectorPoint PointX="2.7604166666666665" PointY="5.8999999999999977" />
+          <ConnectorPoint PointX="2.9270833333333335" PointY="5.8999999999999986" />
+          <ConnectorPoint PointX="3.0260441666666664" PointY="5.8999999999999977" />
+          <ConnectorPoint PointX="3.1927108333333334" PointY="5.8999999999999986" />
           <ConnectorPoint PointX="9.5" PointY="5.8999999999999986" />
           <ConnectorPoint PointX="9.5" PointY="5.6004036458333317" />
           <ConnectorPoint PointX="10.375" PointY="5.6004036458333317" />
-          <ConnectorPoint PointX="10.375" PointY="5.5" />
-          <ConnectorPoint PointX="12.5" PointY="5.5" />
+          <ConnectorPoint PointX="10.375" PointY="5.4999999999999982" />
+          <ConnectorPoint PointX="12.5" PointY="5.4999999999999982" />
           <ConnectorPoint PointX="12.5" PointY="5.6499999999999986" />
           <ConnectorPoint PointX="14.875" PointY="5.6499999999999986" />
           <ConnectorPoint PointX="14.875" PointY="3.9999999999999982" />
@@ -3154,13 +3166,13 @@
           <ConnectorPoint PointX="17.125" PointY="5.5475065104166674" />
           <ConnectorPoint PointX="17.166666666666668" PointY="5.5475065104166665" />
           <ConnectorPoint PointX="17.333333333333332" PointY="5.5475065104166674" />
-          <ConnectorPoint PointX="19.8125" PointY="5.5475065104166674" />
-          <ConnectorPoint PointX="19.8125" PointY="6.25" />
+          <ConnectorPoint PointX="20.093750999999997" PointY="5.5475065104166674" />
+          <ConnectorPoint PointX="20.093750999999997" PointY="6.25" />
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.SE_MODULE" Width="1.5" PointX="2.375" PointY="10.875" Height="2.1725878906249996" IsExpanded="true" />
         <AssociationConnector Association="CommonModel.FK_SM_SF" >
-          <ConnectorPoint PointX="3" PointY="10.875" />
-          <ConnectorPoint PointX="3" PointY="4.951396484375" />
+          <ConnectorPoint PointX="2.84375" PointY="10.875" />
+          <ConnectorPoint PointX="2.84375" PointY="4.951396484375" />
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.SE_GROUP_PERMISSION" Width="2.625" PointX="5.125" PointY="2.125" Height="0.40000000000000036" IsExpanded="false" />
         <AssociationConnector Association="CommonModel.FK_SF_SGP" >
@@ -3193,16 +3205,18 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.SE_REPORT" Width="1.5" PointX="4.875" PointY="5.25" Height="0.39999999999999858" IsExpanded="false" />
         <AssociationConnector Association="CommonModel.FK_SM_SR">
-          <ConnectorPoint PointX="3.1875025" PointY="10.875" />
-          <ConnectorPoint PointX="3.1875025" PointY="5.5812524999999908" />
-          <ConnectorPoint PointX="4.875" PointY="5.5812524999999908" />
+          <ConnectorPoint PointX="3.1093775" PointY="10.875" />
+          <ConnectorPoint PointX="3.1093775" PointY="5.5156262499999995" />
+          <ConnectorPoint PointX="4.875" PointY="5.5156262499999995" />
         </AssociationConnector>
         <AssociationConnector Association="CommonModel.SE_GROUP_REPORT">
-          <ConnectorPoint PointX="1.4687505" PointY="4.7749999999999986" />
-          <ConnectorPoint PointX="1.4687505" PointY="5.4499999999999993" />
-          <ConnectorPoint PointX="2.9166666666666665" PointY="5.4499999999999984" />
-          <ConnectorPoint PointX="3.0833333333333335" PointY="5.4499999999999993" />
-          <ConnectorPoint PointX="4.875" PointY="5.4499999999999993" />
+          <ConnectorPoint PointX="1.0781227500000001" PointY="4.7749999999999986" />
+          <ConnectorPoint PointX="1.0781227500000001" PointY="5.3187474999999989" />
+          <ConnectorPoint PointX="1.5807305416666668" PointY="5.318747499999998" />
+          <ConnectorPoint PointX="1.7473972083333333" PointY="5.3187474999999989" />
+          <ConnectorPoint PointX="2.7604166666666665" PointY="5.318747499999998" />
+          <ConnectorPoint PointX="2.9270833333333335" PointY="5.3187474999999989" />
+          <ConnectorPoint PointX="4.875" PointY="5.3187474999999989" />
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.HU_ORGANIZATION" Width="1.5" PointX="4.625" PointY="10.375" Height="5.634013671875" IsExpanded="true" />
         <AssociationConnector Association="CommonModel.FK_HU_ORG_HU_ORG" >
@@ -3223,7 +3237,6 @@
           <ConnectorPoint PointX="11.125" PointY="14.6375" />
           <ConnectorPoint PointX="11.125" PointY="13.499329427083334" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="CommonModel.SE_MAIL" PointX="0.75" PointY="6.125" Width="1.875" Height="0.40000000000000036" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.SE_REMINDER" Width="1.5" PointX="4.75" PointY="1.125" Height="0.39999999999999991" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.HU_TITLE" Width="2.375" PointX="7.75" PointY="1.125" Height="4.2879036458333317" IsExpanded="true" />
         <AssociationConnector Association="CommonModel.HU_TITLEHU_EMPLOYEE">
@@ -3249,8 +3262,8 @@
           <ConnectorPoint PointX="7.5" PointY="5.4499999999999993" />
           <ConnectorPoint PointX="7.5" PointY="5.6785286458333317" />
           <ConnectorPoint PointX="9.75" PointY="5.6785286458333317" />
-          <ConnectorPoint PointX="9.75" PointY="5.46875" />
-          <ConnectorPoint PointX="12.5" PointY="5.46875" />
+          <ConnectorPoint PointX="9.75" PointY="5.4687499999999982" />
+          <ConnectorPoint PointX="12.5" PointY="5.4687499999999982" />
           <ConnectorPoint PointX="12.5" PointY="5.5874999999999986" />
           <ConnectorPoint PointX="14.625" PointY="5.5874999999999986" />
           <ConnectorPoint PointX="14.625" PointY="3.7499999999999982" />
@@ -3276,6 +3289,7 @@
         <EntityTypeShape EntityType="CommonModel.HU_JOB_DESCRIPTION" Width="1.5" PointX="5.375" PointY="17.75" Height="8.1339322916666674" />
         <EntityTypeShape EntityType="CommonModel.HU_JOB_POSITION" Width="1.5" PointX="11.375" PointY="17.75" Height="4.2879036458333246" />
         <EntityTypeShape EntityType="CommonModel.HU_DIRECT_MANAGER" Width="1.5" PointX="2.8311670025955733" PointY="16.282623969150066" />
+        <EntityTypeShape EntityType="CommonModel.SE_MAIL" Width="1.5" PointX="0.75" PointY="18.75" Height="3.7109993489583246" />
         </Diagram>
     </Diagrams>
   </Designer>

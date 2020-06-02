@@ -76,5 +76,19 @@ Namespace AttendanceBusiness.ServiceImplementations
                 Throw ex
             End Try
         End Function
+
+        Function InsertSendLetter(ByVal objSend As AtSendApproveLetterDTO) As Boolean Implements IAttendanceBusiness.InsertSendLetter
+            Try
+                Using rep As New AttendanceRepository
+                    Try
+                        Return rep.InsertSendLetter(objSend)
+                    Catch ex As Exception
+                        Throw ex
+                    End Try
+                End Using
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
     End Class
 End Namespace

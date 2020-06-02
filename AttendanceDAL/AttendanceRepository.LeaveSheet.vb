@@ -131,8 +131,8 @@ Partial Public Class AttendanceRepository
                         Continue For
                     End Try
                 Next pi
-                objPH.CREATED_BY = rPH("EMPLOYEE_NAME").ToString
-                objPH.MODIFIED_BY = rPH("EMPLOYEE_NAME").ToString
+                objPH.CREATED_BY = rPH("CREATED_BY").ToString
+                objPH.MODIFIED_BY = rPH("MODIFIED_BY").ToString
                 objPH.CREATED_DATE = DateTime.Now
                 objPH.MODIFIED_DATE = DateTime.Now
                 objPH.CREATED_LOG = log.Ip + "\" + log.ComputerName
@@ -289,15 +289,17 @@ Partial Public Class AttendanceRepository
                 id = lstID(index).ID
                 lstl = (From p In Context.AT_LEAVESHEET Where id = p.ID).FirstOrDefault
                 If Not lstl Is Nothing Then
-                    Context.AT_LEAVESHEET.DeleteObject(lstl)
+                    Dim prc = (From p In Context.PROCESS_APPROVED_STATUS Where p.ID_REGGROUP = lstl.ID)
+                    For Each it In prc
+                        Context.PROCESS_APPROVED_STATUS.DeleteObject(it)
+                    Next
                     Dim details = (From r In Context.AT_LEAVESHEET_DETAIL Where r.LEAVESHEET_ID = lstl.ID).ToList
                     If Not details Is Nothing Then
                         For index1 = 0 To details.Count - 1
                             Context.AT_LEAVESHEET_DETAIL.DeleteObject(details(index1))
                         Next
                     End If
-                    Dim prc = (From p In Context.PROCESS_APPROVED_STATUS Where p.ID_REGGROUP = lstl.ID).FirstOrDefault
-                    Context.PROCESS_APPROVED_STATUS.DeleteObject(prc)
+                    Context.AT_LEAVESHEET.DeleteObject(lstl)
                 End If
             Next
             Context.SaveChanges()
@@ -329,10 +331,13 @@ Partial Public Class AttendanceRepository
                         From nb In Context.AT_COMPENSATORY.Where(Function(F) F.EMPLOYEE_ID = p.EMPLOYEE_ID And F.YEAR = _filter.FROM_DATE.Value.Year).DefaultIfEmpty()
                         From pas In Context.PROCESS_APPROVED_STATUS.Where(Function(f) f.ID_REGGROUP = p.ID And f.APP_STATUS = 0 _
                             And f.APP_LEVEL = (Context.PROCESS_APPROVED_STATUS.Where(Function(h) h.ID_REGGROUP = p.ID And h.APP_STATUS = 0).Min(Function(k) k.APP_LEVEL))).DefaultIfEmpty() _
-                        From ee In Context.HU_EMPLOYEE.Where(Function(f) f.ID = pas.EMPLOYEE_APPROVED And p.STATUS <> 2).DefaultIfEmpty()
                         From ss1 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.FROM_SESSION).DefaultIfEmpty
                         From ss2 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TO_SESSION).DefaultIfEmpty
                         Where p.CREATED_BY_EMP = _filter.CREATED_BY_EMP
+
+            'From ee In Context.HU_EMPLOYEE.Where(Function(f) f.ID = pas.EMPLOYEE_APPROVED And p.STATUS <> 2).DefaultIfEmpty()
+
+
             'Dim approveList = From p In query
             '                  From pas In Context.PROCESS_APPROVED_STATUS.Where(Function(f) f.ID_REGGROUP = p.p.ID And f.APP_STATUS = 0 _
             '                And f.APP_LEVEL = (Context.PROCESS_APPROVED_STATUS.Where(Function(h) h.ID_REGGROUP = p.p.ID And h.APP_STATUS = 0).Min(Function(k) k.APP_LEVEL))).DefaultIfEmpty() _
@@ -434,8 +439,7 @@ Partial Public Class AttendanceRepository
                                                                        .RESTORED_DATE = p.p.RESTORED_DATE,
                                                                        .RESTORED_REASON = p.p.RESTORED_REASON,
                                                                        .REASON_LEAVE = p.p.REASON_LEAVE,
-                                                                       .REASON_LEAVE_NAME = p.reason.NAME_VN,
-                                                                       .EMP_APPROVES_NAME = p.ee.FULLNAME_VN})
+                                                                       .REASON_LEAVE_NAME = p.reason.NAME_VN})
 
             If Not String.IsNullOrEmpty(_filter.FROM_SESSION_NAME) Then
                 lst = lst.Where(Function(f) f.FROM_SESSION_NAME.ToLower().Contains(_filter.FROM_SESSION_NAME.ToLower()))
@@ -472,4 +476,24 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 
+    Public Function InsertSendLetter(ByVal objSend As AtSendApproveLetterDTO) As Boolean
+        Dim objSendData As New AT_SEND_APPROVE_LETTER
+        Try
+            objSendData.ID = Utilities.GetNextSequence(Context, Context.AT_SEND_APPROVE_LETTER.EntitySet.Name)
+            objSendData.LEAVE_ID = objSend.LEAVE_ID
+            objSendData.ACTION_DATE = objSend.ACTION_DATE
+            objSendData.ACTION_STATUS = objSend.ACTION_STATUS
+            objSendData.ACTION_TYPE = objSend.ACTION_TYPE
+            objSendData.USERNAME = objSend.USERNAME
+            objSendData.RUN_START = objSend.RUN_START
+            objSendData.RUN_END = objSend.RUN_END
+            objSendData.RUN_ROW = objSend.RUN_ROW
+            Context.AT_SEND_APPROVE_LETTER.AddObject(objSendData)
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
+            Utility.WriteExceptionLog(ex, Me.ToString() & ".InsertSendLetter")
+            Throw ex
+        End Try
+    End Function
 End Class

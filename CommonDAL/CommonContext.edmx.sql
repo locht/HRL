@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 05/29/2020 9:24:08 AM
+-- Date Created: 06/02/2020 11:31:10 AM
 -- Generated from EDMX file: F:\WORKING\acv_19\CommonDAL\CommonContext.edmx
 -- --------------------------------------------------
 
@@ -9,133 +9,11 @@
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- ALTER TABLE "CommonModelStoreContainer"."SE_GRP_SE_USR" DROP CONSTRAINT "FK_SE_GRP_SE_USR_SE_GROUP" CASCADE;
-
--- ALTER TABLE "CommonModelStoreContainer"."SE_GRP_SE_USR" DROP CONSTRAINT "FK_SE_GRP_SE_USR_SE_USER" CASCADE;
-
--- ALTER TABLE "CommonModelStoreContainer"."SE_FUNCTION" DROP CONSTRAINT "FK_SM_SF" CASCADE;
-
--- ALTER TABLE "CommonModelStoreContainer"."SE_GROUP_PERMISSION" DROP CONSTRAINT "FK_SF_SGP" CASCADE;
-
--- ALTER TABLE "CommonModelStoreContainer"."SE_GROUP_PERMISSION" DROP CONSTRAINT "FK_SG_SGP" CASCADE;
-
--- ALTER TABLE "CommonModelStoreContainer"."OT_OTHER_LIST_TYPE" DROP CONSTRAINT "FK_OOLG_OOLT" CASCADE;
-
--- ALTER TABLE "CommonModelStoreContainer"."OT_OTHER_LIST" DROP CONSTRAINT "FK_OOLT_OOL" CASCADE;
-
--- ALTER TABLE "CommonModelStoreContainer"."SE_REPORT" DROP CONSTRAINT "FK_SM_SR" CASCADE;
-
--- ALTER TABLE "CommonModelStoreContainer"."SE_GROUP_REPORT" DROP CONSTRAINT "FK_SE_GROUP_REPORT_SE_GROUP" CASCADE;
-
--- ALTER TABLE "CommonModelStoreContainer"."SE_GROUP_REPORT" DROP CONSTRAINT "FK_SE_GROUP_REPORT_SE_REPORT" CASCADE;
-
--- ALTER TABLE "CommonModelStoreContainer"."HU_ORGANIZATION" DROP CONSTRAINT "FK_HU_ORG_HU_ORG" CASCADE;
-
--- ALTER TABLE "CommonModelStoreContainer"."SE_FUNCTION" DROP CONSTRAINT "FK_SFG_SF" CASCADE;
-
--- ALTER TABLE "CommonModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HU_ORG_HU_EMP" CASCADE;
-
--- ALTER TABLE "CommonModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HU_TITLEHU_EMPLOYEE" CASCADE;
-
--- ALTER TABLE "CommonModelStoreContainer"."SE_USER_REPORT" DROP CONSTRAINT "FK_SE_USER_REPORT_SE_REPORT" CASCADE;
-
--- ALTER TABLE "CommonModelStoreContainer"."SE_USER_REPORT" DROP CONSTRAINT "FK_SE_USER_REPORT_SE_USER" CASCADE;
-
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "CommonModelStoreContainer"."SE_GROUP";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_FUNCTION";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_USER";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_MODULE";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_GROUP_PERMISSION";
-
--- DROP TABLE "CommonModelStoreContainer"."OT_OTHER_LIST";
-
--- DROP TABLE "CommonModelStoreContainer"."OT_OTHER_LIST_GROUP";
-
--- DROP TABLE "CommonModelStoreContainer"."OT_OTHER_LIST_TYPE";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_REPORT";
-
--- DROP TABLE "CommonModelStoreContainer"."HU_ORGANIZATION";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_FUNCTION_GROUP";
-
--- DROP TABLE "CommonModelStoreContainer"."HU_EMPLOYEE";
-
--- DROP TABLE "CommonModelStoreContainer"."HU_TERMINATE";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_MAIL";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_REMINDER";
-
--- DROP TABLE "CommonModelStoreContainer"."HU_TITLE";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_APP_PROCESS";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_APP_SETUP";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_APP_SETUPEXT";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_APP_TEMPLATE";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_APP_TEMPLATE_DTL";
-
--- DROP TABLE "CommonModelStoreContainer"."HU_WORKING";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_CHOSEN_ORG";
-
--- DROP TABLE "CommonModelStoreContainer"."HU_EMPLOYEE_CV";
-
--- DROP TABLE "CommonModelStoreContainer"."HU_STAFF_RANK";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_LDAP";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_USER_ORG_ACCESS";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_USER_PERMISSION";
-
--- DROP TABLE "CommonModelStoreContainer"."HUV_SE_GRP_SE_USR";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_VIEW_CONFIG";
-
--- DROP TABLE "CommonModelStoreContainer"."AT_TIME_MANUAL";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_CASE_CONFIG";
-
--- DROP TABLE "CommonModelStoreContainer"."HU_SIGNER";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_MAIL_TEMPLATE";
-
--- DROP TABLE "CommonModelStoreContainer"."HU_NATION";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_GROUP_ORG_ACCESS";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_GROUP_ORG_FUN_ACCESS";
-
--- DROP TABLE "CommonModelStoreContainer"."HU_PROVINCE";
-
--- DROP TABLE "CommonModelStoreContainer"."HU_FOLDERS";
-
--- DROP TABLE "CommonModelStoreContainer"."HU_USERFILES";
-
--- DROP TABLE "CommonModelStoreContainer"."HU_JOB_DESCRIPTION";
-
--- DROP TABLE "CommonModelStoreContainer"."HU_JOB_POSITION";
-
--- DROP TABLE "CommonModelStoreContainer"."HU_DIRECT_MANAGER";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_GRP_SE_USR";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_GROUP_REPORT";
-
--- DROP TABLE "CommonModelStoreContainer"."SE_USER_REPORT";
+-- DROP TABLE "ACV_19_DEV"."SE_MAIL";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -410,20 +288,6 @@ CREATE TABLE "dbo"."HU_TERMINATE" (
    "SUN_MONEY" NUMBER(38,0) NULL,
    "INSURANCE_MONEY" NUMBER(38,0) NULL,
    "IS_3B" NUMBER(5,0) NULL
-);
-
--- Creating table 'SE_MAIL'
-CREATE TABLE "dbo"."SE_MAIL" (
-   "ID" NUMBER(38,0) NOT NULL,
-   "SUBJECT" NVARCHAR2(255) NOT NULL,
-   "MAIL_FROM" NVARCHAR2(255) NOT NULL,
-   "MAIL_TO" NVARCHAR2(1024) NOT NULL,
-   "MAIL_CC" NVARCHAR2(1024) NULL,
-   "MAIL_BCC" NVARCHAR2(1024) NULL,
-   "CONTENT" NCLOB NOT NULL,
-   "VIEW_NAME" NVARCHAR2(255) NULL,
-   "ACTFLG" NVARCHAR2(1) NULL,
-   "ATTACHMENT" NCLOB NULL
 );
 
 -- Creating table 'SE_REMINDER'
@@ -903,6 +767,24 @@ CREATE TABLE "dbo"."HU_DIRECT_MANAGER" (
    "DIRECT_MANAGER" NUMBER(38,0) NULL
 );
 
+-- Creating table 'SE_MAIL'
+CREATE TABLE "dbo"."SE_MAIL" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "SUBJECT" NVARCHAR2(255) NULL,
+   "MAIL_FROM" NVARCHAR2(255) NULL,
+   "MAIL_TO" NVARCHAR2(1024) NULL,
+   "MAIL_CC" NVARCHAR2(1024) NULL,
+   "MAIL_BCC" NVARCHAR2(1024) NULL,
+   "CONTENT" NCLOB NULL,
+   "VIEW_NAME" NVARCHAR2(255) NULL,
+   "ACTFLG" NVARCHAR2(1) NULL,
+   "ATTACHMENT" NCLOB NULL,
+   "LOG" CLOB NULL,
+   "CREATE_BY" NVARCHAR2(255) NULL,
+   "CREATE_DATE" DATE NULL,
+   "SEND_DATE" DATE NULL
+);
+
 -- Creating table 'SE_GRP_SE_USR'
 CREATE TABLE "dbo"."SE_GRP_SE_USR" (
    "SE_GROUPS_ID" NUMBER(38,0) NOT NULL,
@@ -1025,14 +907,6 @@ ADD CONSTRAINT "PK_HU_EMPLOYEE"
 -- Creating primary key on "ID"in table 'HU_TERMINATE'
 ALTER TABLE "dbo"."HU_TERMINATE"
 ADD CONSTRAINT "PK_HU_TERMINATE"
-   PRIMARY KEY ("ID" )
-   ENABLE
-   VALIDATE;
-
-
--- Creating primary key on "ID"in table 'SE_MAIL'
-ALTER TABLE "dbo"."SE_MAIL"
-ADD CONSTRAINT "PK_SE_MAIL"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;
@@ -1266,6 +1140,14 @@ ADD CONSTRAINT "PK_HU_JOB_POSITION"
 ALTER TABLE "dbo"."HU_DIRECT_MANAGER"
 ADD CONSTRAINT "PK_HU_DIRECT_MANAGER"
    PRIMARY KEY ("JOB_POSITION_ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'SE_MAIL'
+ALTER TABLE "dbo"."SE_MAIL"
+ADD CONSTRAINT "PK_SE_MAIL"
+   PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;
 

@@ -822,4 +822,112 @@ Partial Public Class AttendanceRepository
     End Function
 #End Region
 
+#Region " LEAVE SHEET"
+    Public Function CheckAndSendAtLetter() As Boolean
+        Try
+            'Return True 'chay dang bị lỗi nên trả về luôn để services ko lỗi liên tục
+            '1. Kiểm tra có action nào đang chạy hay không?
+            Dim isExist = (From p In Context.AT_SEND_APPROVE_LETTER
+                           Where p.ACTION_STATUS = 1).Any
+
+            If Not isExist Then
+                '2. Nếu chưa có action nào chạy thì tiến hành chạy
+                'Đổi trạng thái đang thực hiện để không bị chạy chồng chéo
+                Dim objAction = (From p In Context.AT_SEND_APPROVE_LETTER
+                                Where p.ACTION_STATUS = 0 Or p.ACTION_STATUS = 3).FirstOrDefault
+                If objAction IsNot Nothing Then
+                    objAction.ACTION_STATUS = 1
+                    Context.SaveChanges()
+                    '3. Tiến hành thực hiện
+                    Try
+                        Dim leaveID As New Decimal
+                        'If objAction.ACTION_TYPE = 1 Then
+                        '    classID = objAction.CLASS_ID
+                        '    'Using cls As New DataAccess.NonQueryData
+                        '    '    cls.ExecuteSQL("DELETE FROM SE_EMPLOYEE_CHOSEN S WHERE S.USING_USER ='" + objAction.USERNAME.ToUpper + "'")
+                        '    '    Dim sql As String = "INSERT INTO SE_EMPLOYEE_CHOSEN" & vbNewLine & _
+                        '    '        "  (EMPLOYEE_ID, USING_USER)" & vbNewLine & _
+                        '    '        "  (SELECT DISTINCT EMPLOYEE_ID, '" + objAction.USERNAME.ToUpper + "'" & vbNewLine & _
+                        '    '        "     FROM PA_SEND_PAYSLIP_EMP" & vbNewLine & _
+                        '    '        "    WHERE PA_SEND_PAYSLIP_ID = " + objAction.ID.ToString + ")"
+
+                        '    '    cls.ExecuteSQL(sql)
+
+                        '    'End Using
+
+                        'End If
+                        leaveID = objAction.LEAVE_ID
+                        Dim rowTotal As Decimal = 0
+                        objAction.RUN_START = Date.Now
+                        If SendLetter(leaveID) Then
+                            objAction.RUN_ROW = rowTotal
+                            objAction.ACTION_STATUS = 2
+                        Else
+                            objAction.ACTION_STATUS = 3
+                        End If
+                        objAction.RUN_END = Date.Now
+
+                    Catch ex As Exception
+                        WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+                        objAction.ACTION_STATUS = 3
+                    End Try
+
+                    Context.SaveChanges()
+                End If
+            End If
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
+            Throw ex
+            Return False
+        End Try
+    End Function
+
+    Public Function SendLetter(ByVal leaveID As Decimal) As Boolean
+        Dim dataMail As DataTable
+        Dim dtValues As DataTable
+        Dim body As String = ""
+        Dim mail As String = ""
+        Dim mailCC As String = ""
+        Dim titleMail As String = ""
+        Dim bodyNew As String = ""
+        Dim lstClass As String = ""
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim config = GetConfig(ModuleID.All)
+                Dim emailFrom = If(config.ContainsKey("MailFrom"), config("MailFrom"), "")
+                dtValues = cls.ExecuteStore("PKG_AT_ATTENDANCE_PORTAL.GET_DIRECT_MANAGER_INFO",
+                                                  New With {.P_LST_CLASS = leaveID,
+                                                            .P_CUR = cls.OUT_CURSOR})
+                ''PKG_TRAINING_BUSINESS.GET_EMPLOYEE_INFO
+                If dtValues.Rows.Count > 0 Then
+                    For Each item As DataRow In dtValues.Rows()
+
+                        dataMail = cls.ExecuteStore("PKG_AT_ATTENDANCE_PORTAL.GET_TEMPLATE_MAIL",
+                                                  New With {.P_CODE = "ATLEAVE_PORTAL",
+                                                            .P_TYPE = "Attendance",
+                                                            .P_CUR = cls.OUT_CURSOR})
+                        body = dataMail.Rows(0)("CONTENT").ToString
+                        titleMail = "Phê duyệt cổng thông tin"
+                        mailCC = If(dataMail.Rows(0)("MAIL_CC").ToString <> "", dataMail.Rows(0)("MAIL_CC").ToString, Nothing)
+                        'mailCC = If(LogHelper.CurrentUser.EMAIL IsNot Nothing, LogHelper.CurrentUser.EMAIL.ToString, Nothing)
+                        mail = item("MAIL")
+                        Dim values(dtValues.Columns.Count) As String
+                        For i As Integer = 0 To dtValues.Columns.Count - 1
+                            values(i) = If(item(i).ToString() <> "", item(i), String.Empty)
+                        Next
+
+                        bodyNew = String.Format(body, values)
+
+                        InsertMail(emailFrom, mail, titleMail, bodyNew)
+                    Next
+                End If
+            End Using
+            Return True
+        Catch ex As Exception
+
+        End Try
+
+    End Function
+
+#End Region
 End Class

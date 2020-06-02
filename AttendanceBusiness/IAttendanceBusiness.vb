@@ -436,6 +436,9 @@ Namespace AttendanceBusiness.ServiceContracts
         <OperationContract()>
         Function checkLeaveImport(ByVal dtData As DataTable) As DataTable
 
+        <OperationContract()>
+        Function InsertSendLetter(ByVal objSend As AtSendApproveLetterDTO) As Boolean
+
 
 #End Region
 

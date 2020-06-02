@@ -430,6 +430,12 @@ Public Class ctrlLeaveRegistrationNewEdit
                             SaveDB()
                             Dim objATL As New AT_LEAVESHEETDTO
                             SetData_Controls(objATL, 0, item.GetDataKeyValue("ID"))
+                            Dim objSend As New AtSendApproveLetterDTO
+                            objSend.LEAVE_ID = gID
+                            objSend.USERNAME = LogHelper.GetUserLog.Username.ToUpper
+                            objSend.ACTION_DATE = DateTime.Now
+                            objSend.ACTION_STATUS = 0
+                            rep.InsertSendLetter(objSend)
                         Next
                         Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")
                         'If valSum.Page.IsValid Then
@@ -1127,7 +1133,7 @@ Public Class ctrlLeaveRegistrationNewEdit
             End Try
 
             If outNumber = 0 Then
-                Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")
+                'Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")
             ElseIf outNumber = 1 Then
                 ShowMessage(Translate("Quy trình phê duyệt chưa được thiết lập"), NotifyType.Success)
             ElseIf outNumber = 2 Then

@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("d1eca048-5dca-4c82-9da0-2cebab7a6f43")>
+<Assembly: EdmSchemaAttribute("793942fe-15e2-4e9e-8b06-9f11c0b2da68")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("CommonModel", "SE_GRP_SE_USR", "SE_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_GROUP), "SE_USER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_USER))>
 <Assembly: EdmRelationshipAttribute("CommonModel", "FK_SM_SF", "SE_MODULE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(SE_MODULE), "SE_FUNCTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_FUNCTION), True)>
@@ -265,20 +265,6 @@ Public Partial Class CommonContext
     End Property
 
     Private _HU_TERMINATE As ObjectSet(Of HU_TERMINATE)
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    Public ReadOnly Property SE_MAIL() As ObjectSet(Of SE_MAIL)
-        Get
-            If (_SE_MAIL Is Nothing) Then
-                _SE_MAIL = MyBase.CreateObjectSet(Of SE_MAIL)("SE_MAIL")
-            End If
-            Return _SE_MAIL
-        End Get
-    End Property
-
-    Private _SE_MAIL As ObjectSet(Of SE_MAIL)
 
     ''' <summary>
     ''' No Metadata Documentation available.
@@ -686,6 +672,20 @@ Public Partial Class CommonContext
 
     Private _HU_DIRECT_MANAGER As ObjectSet(Of HU_DIRECT_MANAGER)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property SE_MAIL() As ObjectSet(Of SE_MAIL)
+        Get
+            If (_SE_MAIL Is Nothing) Then
+                _SE_MAIL = MyBase.CreateObjectSet(Of SE_MAIL)("SE_MAIL")
+            End If
+            Return _SE_MAIL
+        End Get
+    End Property
+
+    Private _SE_MAIL As ObjectSet(Of SE_MAIL)
+
     #End Region
 
     #Region "AddTo Methods"
@@ -779,13 +779,6 @@ Public Partial Class CommonContext
     ''' </summary>
     Public Sub AddToHU_TERMINATE(ByVal hU_TERMINATE As HU_TERMINATE)
         MyBase.AddObject("HU_TERMINATE", hU_TERMINATE)
-    End Sub
-
-    ''' <summary>
-    ''' Deprecated Method for adding a new object to the SE_MAIL EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
-    ''' </summary>
-    Public Sub AddToSE_MAIL(ByVal sE_MAIL As SE_MAIL)
-        MyBase.AddObject("SE_MAIL", sE_MAIL)
     End Sub
 
     ''' <summary>
@@ -989,6 +982,13 @@ Public Partial Class CommonContext
     ''' </summary>
     Public Sub AddToHU_DIRECT_MANAGER(ByVal hU_DIRECT_MANAGER As HU_DIRECT_MANAGER)
         MyBase.AddObject("HU_DIRECT_MANAGER", hU_DIRECT_MANAGER)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the SE_MAIL EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToSE_MAIL(ByVal sE_MAIL As SE_MAIL)
+        MyBase.AddObject("SE_MAIL", sE_MAIL)
     End Sub
 
     #End Region
@@ -15165,17 +15165,9 @@ Public Partial Class SE_MAIL
     ''' Create a new SE_MAIL object.
     ''' </summary>
     ''' <param name="id">Initial value of the ID property.</param>
-    ''' <param name="sUBJECT">Initial value of the SUBJECT property.</param>
-    ''' <param name="mAIL_FROM">Initial value of the MAIL_FROM property.</param>
-    ''' <param name="mAIL_TO">Initial value of the MAIL_TO property.</param>
-    ''' <param name="cONTENT">Initial value of the CONTENT property.</param>
-    Public Shared Function CreateSE_MAIL(id As Global.System.Decimal, sUBJECT As Global.System.String, mAIL_FROM As Global.System.String, mAIL_TO As Global.System.String, cONTENT As Global.System.String) As SE_MAIL
+    Public Shared Function CreateSE_MAIL(id As Global.System.Decimal) As SE_MAIL
         Dim sE_MAIL as SE_MAIL = New SE_MAIL
         sE_MAIL.ID = id
-        sE_MAIL.SUBJECT = sUBJECT
-        sE_MAIL.MAIL_FROM = mAIL_FROM
-        sE_MAIL.MAIL_TO = mAIL_TO
-        sE_MAIL.CONTENT = cONTENT
         Return sE_MAIL
     End Function
 
@@ -15213,7 +15205,7 @@ Public Partial Class SE_MAIL
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property SUBJECT() As Global.System.String
         Get
@@ -15222,7 +15214,7 @@ Public Partial Class SE_MAIL
         Set
             OnSUBJECTChanging(value)
             ReportPropertyChanging("SUBJECT")
-            _SUBJECT = StructuralObject.SetValidValue(value, false)
+            _SUBJECT = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("SUBJECT")
             OnSUBJECTChanged()
         End Set
@@ -15238,7 +15230,7 @@ Public Partial Class SE_MAIL
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property MAIL_FROM() As Global.System.String
         Get
@@ -15247,7 +15239,7 @@ Public Partial Class SE_MAIL
         Set
             OnMAIL_FROMChanging(value)
             ReportPropertyChanging("MAIL_FROM")
-            _MAIL_FROM = StructuralObject.SetValidValue(value, false)
+            _MAIL_FROM = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("MAIL_FROM")
             OnMAIL_FROMChanged()
         End Set
@@ -15263,18 +15255,18 @@ Public Partial Class SE_MAIL
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property MAIL_TO() As Global.System.String
         Get
             Return _MAIL_TO
         End Get
         Set
-            'OnMAIL_TOChanging(value)
-            'ReportPropertyChanging("MAIL_TO")
-            '_MAIL_TO = StructuralObject.SetValidValue(value, false)
-            'ReportPropertyChanged("MAIL_TO")
-            'OnMAIL_TOChanged()
+            OnMAIL_TOChanging(value)
+            ReportPropertyChanging("MAIL_TO")
+            _MAIL_TO = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("MAIL_TO")
+            OnMAIL_TOChanged()
         End Set
     End Property
 
@@ -15338,7 +15330,7 @@ Public Partial Class SE_MAIL
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property CONTENT() As Global.System.String
         Get
@@ -15347,7 +15339,7 @@ Public Partial Class SE_MAIL
         Set
             OnCONTENTChanging(value)
             ReportPropertyChanging("CONTENT")
-            _CONTENT = StructuralObject.SetValidValue(value, false)
+            _CONTENT = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("CONTENT")
             OnCONTENTChanged()
         End Set
@@ -15403,7 +15395,7 @@ Public Partial Class SE_MAIL
         End Set
     End Property
 
-    Private _ACTFLG As Global.System.String = "I"
+    Private _ACTFLG As Global.System.String
     Private Partial Sub OnACTFLGChanging(value As Global.System.String)
     End Sub
 
@@ -15433,6 +15425,106 @@ Public Partial Class SE_MAIL
     End Sub
 
     Private Partial Sub OnATTACHMENTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property LOG() As Global.System.String
+        Get
+            Return _LOG
+        End Get
+        Set
+            OnLOGChanging(value)
+            ReportPropertyChanging("LOG")
+            _LOG = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("LOG")
+            OnLOGChanged()
+        End Set
+    End Property
+
+    Private _LOG As Global.System.String
+    Private Partial Sub OnLOGChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnLOGChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CREATE_BY() As Global.System.String
+        Get
+            Return _CREATE_BY
+        End Get
+        Set
+            OnCREATE_BYChanging(value)
+            ReportPropertyChanging("CREATE_BY")
+            _CREATE_BY = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CREATE_BY")
+            OnCREATE_BYChanged()
+        End Set
+    End Property
+
+    Private _CREATE_BY As Global.System.String
+    Private Partial Sub OnCREATE_BYChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCREATE_BYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CREATE_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _CREATE_DATE
+        End Get
+        Set
+            OnCREATE_DATEChanging(value)
+            ReportPropertyChanging("CREATE_DATE")
+            _CREATE_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("CREATE_DATE")
+            OnCREATE_DATEChanged()
+        End Set
+    End Property
+
+    Private _CREATE_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnCREATE_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnCREATE_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SEND_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _SEND_DATE
+        End Get
+        Set
+            OnSEND_DATEChanging(value)
+            ReportPropertyChanging("SEND_DATE")
+            _SEND_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("SEND_DATE")
+            OnSEND_DATEChanged()
+        End Set
+    End Property
+
+    Private _SEND_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnSEND_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnSEND_DATEChanged()
     End Sub
 
     #End Region

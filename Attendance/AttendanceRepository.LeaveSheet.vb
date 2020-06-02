@@ -43,4 +43,18 @@ Partial Class AttendanceRepository
             End Try
         End Using
     End Function
+
+    Function InsertSendLetter(ByVal objSend As AtSendApproveLetterDTO) As Boolean
+        Try
+            Using rep As New AttendanceBusinessClient
+                Try
+                    Return rep.InsertSendLetter(objSend)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 End Class
