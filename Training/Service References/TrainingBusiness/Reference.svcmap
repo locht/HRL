@@ -20,17 +20,17 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:9999/TrainingBusiness.svc/mex/mex/mex/mex/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:9999/TrainingBusiness.svc/mex/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service4.wsdl" MetadataType="Wsdl" ID="616b910e-ff3a-4eaf-82ce-35b2d7e8a0a4" SourceId="1" SourceUrl="http://localhost:9999/TrainingBusiness.svc/mex/mex/mex/mex/mex" />
-    <MetadataFile FileName="service4.xsd" MetadataType="Schema" ID="c509ea03-4126-4176-85f6-320b922d9cdb" SourceId="1" SourceUrl="http://localhost:9999/TrainingBusiness.svc/mex/mex/mex/mex/mex" />
-    <MetadataFile FileName="service11.xsd" MetadataType="Schema" ID="a2a579c0-5266-4072-86eb-0499fd5a25fa" SourceId="1" SourceUrl="http://localhost:9999/TrainingBusiness.svc/mex/mex/mex/mex/mex" />
-    <MetadataFile FileName="TrainingDAL4.xsd" MetadataType="Schema" ID="3be2cad9-8681-456b-a608-7076b4166818" SourceId="1" SourceUrl="http://localhost:9999/TrainingBusiness.svc/mex/mex/mex/mex/mex" />
-    <MetadataFile FileName="Framework.Data4.xsd" MetadataType="Schema" ID="26a2126d-cc6c-412b-85b7-349cbb159bc9" SourceId="1" SourceUrl="http://localhost:9999/TrainingBusiness.svc/mex/mex/mex/mex/mex" />
-    <MetadataFile FileName="Arrays4.xsd" MetadataType="Schema" ID="1b0295c7-ddc7-4906-adfc-ba934feb3ca0" SourceId="1" SourceUrl="http://localhost:9999/TrainingBusiness.svc/mex/mex/mex/mex/mex" />
-    <MetadataFile FileName="System.Data4.xsd" MetadataType="Schema" ID="46d02350-460b-4e3c-8fbf-5e6314753060" SourceId="1" SourceUrl="http://localhost:9999/TrainingBusiness.svc/mex/mex/mex/mex/mex" />
-    <MetadataFile FileName="service12.xsd" MetadataType="Schema" ID="e3cc91f7-61a4-4948-bc89-c2af91246fb5" SourceId="1" SourceUrl="http://localhost:9999/TrainingBusiness.svc/mex/mex/mex/mex/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="f778cd38-2184-46d7-a3e8-3a50399fe6a9" SourceId="1" SourceUrl="http://localhost:9999/TrainingBusiness.svc/mex/mex" />
+    <MetadataFile FileName="service3.xsd" MetadataType="Schema" ID="49588779-dd4e-4c8c-9fe3-542c7cc8fdb2" SourceId="1" SourceUrl="http://localhost:9999/TrainingBusiness.svc/mex/mex" />
+    <MetadataFile FileName="service31.xsd" MetadataType="Schema" ID="bd8a0572-2903-4822-a1aa-22078bfbd3fe" SourceId="1" SourceUrl="http://localhost:9999/TrainingBusiness.svc/mex/mex" />
+    <MetadataFile FileName="TrainingDAL1.xsd" MetadataType="Schema" ID="8ce663f1-936e-4858-be6a-0f24081efe78" SourceId="1" SourceUrl="http://localhost:9999/TrainingBusiness.svc/mex/mex" />
+    <MetadataFile FileName="Framework.Data1.xsd" MetadataType="Schema" ID="e42ffa8a-e00e-4ae6-9a95-9fe6b5bc009c" SourceId="1" SourceUrl="http://localhost:9999/TrainingBusiness.svc/mex/mex" />
+    <MetadataFile FileName="Arrays1.xsd" MetadataType="Schema" ID="6947e6af-d674-4431-8583-8bcf9bd5bc0a" SourceId="1" SourceUrl="http://localhost:9999/TrainingBusiness.svc/mex/mex" />
+    <MetadataFile FileName="System.Data1.xsd" MetadataType="Schema" ID="13a61568-93f9-466e-9b15-08ef9a8ce3ec" SourceId="1" SourceUrl="http://localhost:9999/TrainingBusiness.svc/mex/mex" />
+    <MetadataFile FileName="service32.xsd" MetadataType="Schema" ID="939c3269-8b33-4d45-a61e-8506bf0d8405" SourceId="1" SourceUrl="http://localhost:9999/TrainingBusiness.svc/mex/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
