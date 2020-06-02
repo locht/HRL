@@ -240,6 +240,7 @@
     <Content Include="Modules\Training\List\ctrlTR_ProgramGroup.ascx" />
     <Content Include="Modules\Training\List\ctrlTR_Unit.ascx" />
     <Content Include="Modules\Training\Report\ctrlTR_ReportList.ascx" />
+    <Content Include="Modules\Training\Setting\ctrlTR_AssessmentCourse.ascx" />
     <Content Include="Modules\Training\Setting\ctrlTR_SettingAssessmentForm.ascx" />
     <Content Include="Modules\Training\Setting\ctrlTR_SettingCriteriaGroup.ascx" />
     <Content Include="Modules\Training\Business\ctrlTR_ProgramCommit.ascx" />
@@ -399,6 +400,13 @@
     </Compile>
     <Compile Include="Modules\Training\Dashboard\ctrlDashboard.ascx.vb">
       <DependentUpon>ctrlDashboard.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Training\Setting\ctrlTR_AssessmentCourse.ascx.designer.vb">
+      <DependentUpon>ctrlTR_AssessmentCourse.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Training\Setting\ctrlTR_AssessmentCourse.ascx.vb">
+      <DependentUpon>ctrlTR_AssessmentCourse.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Training\TrainingRepository.Dashboard.vb" />
