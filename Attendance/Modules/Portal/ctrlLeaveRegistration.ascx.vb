@@ -151,50 +151,59 @@ Public Class ctrlLeaveRegistration
 
     Public Overrides Sub BindData()
         Dim dtData As DataTable
+        Dim store As New AttendanceStoreProcedure
         Dim arr As New ArrayList()
-        Using rep As New AttendanceRepository
-            dtData = rep.GetOtherList("PROCESS_STATUS", True)
-            If dtData IsNot Nothing Then
-                Dim data = dtData.AsEnumerable().Where(Function(f) Not f.Field(Of Decimal?)("ID").HasValue _
-                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.WaitingForApproval).ToString() _
-                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.UnApprovedByLM).ToString() _
-                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.RestoreApproveByLM).ToString() _
-                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.Saved).ToString()).CopyToDataTable()
-                FillRadCombobox(cboStatus, data, "NAME", "ID")
+        Dim dtLeaveType As New DataTable
+        Try
+            dtLeaveType = store.GET_LEAVE_TYPE(True, True)
+            FillRadCombobox(cboManual, dtLeaveType, "NAME", "ID")
+            Using rep As New AttendanceRepository
+                dtData = rep.GetOtherList("PROCESS_STATUS", True)
+                If dtData IsNot Nothing Then
+                    Dim data = dtData.AsEnumerable().Where(Function(f) Not f.Field(Of Decimal?)("ID").HasValue _
+                                                               Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.WaitingForApproval).ToString() _
+                                                               Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.UnApprovedByLM).ToString() _
+                                                               Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.RestoreApproveByLM).ToString() _
+                                                               Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.Saved).ToString()).CopyToDataTable()
+                    FillRadCombobox(cboStatus, data, "NAME", "ID")
 
-                Dim table As New DataTable
-                Dim lsData As List(Of AT_PERIODDTO)
-                table.Columns.Add("YEAR", GetType(Integer))
-                table.Columns.Add("ID", GetType(Integer))
-                Dim row As DataRow
-                For index = 2015 To Date.Now.Year + 1
-                    row = table.NewRow
-                    row("ID") = index
-                    row("YEAR") = index
-                    table.Rows.Add(row)
-                Next
-                FillRadCombobox(cboYear, table, "YEAR", "ID")
-                cboYear.SelectedValue = Year(DateTime.Now)
-                Dim period As New AT_PERIODDTO
-                period.ORG_ID = 1
-                period.YEAR = Date.Now.Year
-                lsData = rep.LOAD_PERIODBylinq(period)
-                Me.PERIOD = lsData
-                FillRadCombobox(cboPeriod, lsData, "PERIOD_NAME", "PERIOD_ID", True)
-                If lsData.Count > 0 Then
-                    Dim periodid = (From d In lsData Where d.START_DATE.Value.ToString("yyyyMM").Equals(Date.Now.ToString("yyyyMM")) Select d).FirstOrDefault
-                    If periodid IsNot Nothing Then
-                        cboPeriod.SelectedValue = periodid.PERIOD_ID.ToString()
-                        rdtungay.SelectedDate = periodid.START_DATE
-                        rdDenngay.SelectedDate = periodid.END_DATE
-                    Else
-                        cboPeriod.SelectedValue = lsData.Item(0).PERIOD_ID.ToString()
-                        rdtungay.SelectedDate = lsData.Item(0).START_DATE
-                        rdDenngay.SelectedDate = lsData.Item(0).END_DATE
+                    Dim table As New DataTable
+                    Dim lsData As List(Of AT_PERIODDTO)
+                    table.Columns.Add("YEAR", GetType(Integer))
+                    table.Columns.Add("ID", GetType(Integer))
+                    Dim row As DataRow
+                    For index = 2015 To Date.Now.Year + 1
+                        row = table.NewRow
+                        row("ID") = index
+                        row("YEAR") = index
+                        table.Rows.Add(row)
+                    Next
+                    FillRadCombobox(cboYear, table, "YEAR", "ID")
+                    cboYear.SelectedValue = Year(DateTime.Now)
+                    Dim period As New AT_PERIODDTO
+                    period.ORG_ID = 1
+                    period.YEAR = Date.Now.Year
+                    lsData = rep.LOAD_PERIODBylinq(period)
+                    Me.PERIOD = lsData
+                    FillRadCombobox(cboPeriod, lsData, "PERIOD_NAME", "PERIOD_ID", True)
+                    If lsData.Count > 0 Then
+                        Dim periodid = (From d In lsData Where d.START_DATE.Value.ToString("yyyyMM").Equals(Date.Now.ToString("yyyyMM")) Select d).FirstOrDefault
+                        If periodid IsNot Nothing Then
+                            cboPeriod.SelectedValue = periodid.PERIOD_ID.ToString()
+                            rdtungay.SelectedDate = periodid.START_DATE
+                            rdDenngay.SelectedDate = periodid.END_DATE
+                        Else
+                            cboPeriod.SelectedValue = lsData.Item(0).PERIOD_ID.ToString()
+                            rdtungay.SelectedDate = lsData.Item(0).START_DATE
+                            rdDenngay.SelectedDate = lsData.Item(0).END_DATE
+                        End If
                     End If
                 End If
-            End If
-        End Using
+            End Using
+        Catch ex As Exception
+
+        End Try
+        
         'txtYear.Value = Date.Now.Year
     End Sub
 
@@ -519,6 +528,9 @@ Public Class ctrlLeaveRegistration
             End If
             If rdtungay.SelectedDate.HasValue Then
                 _filter.FROM_DATE = rdtungay.SelectedDate
+            End If
+            If IsNumeric(cboManual.SelectedValue) Then
+                _filter.MANUAL_ID = cboManual.SelectedValue
             End If
             If rdDenngay.SelectedDate.HasValue Then
                 _filter.END_DATE = rdDenngay.SelectedDate

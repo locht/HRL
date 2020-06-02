@@ -479,15 +479,18 @@ Public Class ctrlAtShiftNewEdit
     Private Sub GetDataCombo()
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
-        Dim rep As New AttendanceRepository
+        Dim store As New AttendanceStoreProcedure
+        Dim dtdata As New DataTable
 
         Try
-            If ListComboData Is Nothing Then
-                ListComboData = New Attendance.AttendanceBusiness.ComboBoxDataDTO
-                ListComboData.GET_LIST_SHIFT = True
-                rep.GetComboboxData(ListComboData)
-            End If
-            FillDropDownList(cboShift, ListComboData.LIST_LIST_SHIFT, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboShift.SelectedValue)
+            dtdata = store.GET_PORTAL_SHIFT()
+            FillRadCombobox(cboShift, dtdata, "NAME_VN", "ID")
+            'If ListComboData Is Nothing Then
+            '    ListComboData = New Attendance.AttendanceBusiness.ComboBoxDataDTO
+            '    ListComboData.GET_LIST_SHIFT = True
+            '    rep.GetComboboxData(ListComboData)
+            'End If
+            'FillDropDownList(cboShift, ListComboData.LIST_LIST_SHIFT, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboShift.SelectedValue)
             'rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

@@ -329,12 +329,12 @@ Partial Public Class AttendanceRepository
                         From reason In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.REASON_LEAVE).DefaultIfEmpty
                         From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS).DefaultIfEmpty
                         From nb In Context.AT_COMPENSATORY.Where(Function(F) F.EMPLOYEE_ID = p.EMPLOYEE_ID And F.YEAR = _filter.FROM_DATE.Value.Year).DefaultIfEmpty()
-                        From pas In Context.PROCESS_APPROVED_STATUS.Where(Function(f) f.ID_REGGROUP = p.ID And f.APP_STATUS = 0 _
-                            And f.APP_LEVEL = (Context.PROCESS_APPROVED_STATUS.Where(Function(h) h.ID_REGGROUP = p.ID And h.APP_STATUS = 0).Min(Function(k) k.APP_LEVEL))).DefaultIfEmpty() _
                         From ss1 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.FROM_SESSION).DefaultIfEmpty
                         From ss2 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TO_SESSION).DefaultIfEmpty
                         Where p.CREATED_BY_EMP = _filter.CREATED_BY_EMP
 
+            '        From pas In Context.PROCESS_APPROVED_STATUS.Where(Function(f) f.ID_REGGROUP = p.ID And f.APP_STATUS = 0 _
+            'And f.APP_LEVEL = (Context.PROCESS_APPROVED_STATUS.Where(Function(h) h.ID_REGGROUP = p.ID And h.APP_STATUS = 0).Min(Function(k) k.APP_LEVEL))).DefaultIfEmpty()() _
             'From ee In Context.HU_EMPLOYEE.Where(Function(f) f.ID = pas.EMPLOYEE_APPROVED And p.STATUS <> 2).DefaultIfEmpty()
 
 
@@ -347,6 +347,12 @@ Partial Public Class AttendanceRepository
             'If _filter.EMPLOYEE_ID.HasValue Then
             '    query = query.Where(Function(f) f.p.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
             'End If
+            If IsNumeric(_filter.STATUS) Then
+                query = query.Where(Function(f) f.p.STATUS = _filter.STATUS)
+            End If
+            If IsNumeric(_filter.MANUAL_ID) Then
+                query = query.Where(Function(f) f.p.MANUAL_ID = _filter.MANUAL_ID)
+            End If
             If _filter.FROM_DATE.HasValue Then
                 query = query.Where(Function(f) f.p.LEAVE_FROM >= _filter.FROM_DATE)
             End If

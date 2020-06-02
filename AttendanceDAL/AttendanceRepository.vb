@@ -726,7 +726,7 @@ Partial Public Class AttendanceRepository
                                             .DATE_TO = f.p.DATE_TO,
                                             .REASON = f.p.REASON,
                                             .CREATED_BY = f.p.CREATED_BY,
-                                            .CREATED_BY_NAME = f.e.FULLNAME_VN,
+                                            .CREATED_BY_NAME = f.cre_by.FULLNAME_VN,
                                             .CREATED_DATE = f.p.CREATED_DATE})
             If _filter.SHIFT_CODE IsNot Nothing Then
                 regShifts = regShifts.Where(Function(f) f.SHIFT_CODE.ToUpper.Contains(_filter.SHIFT_CODE))
