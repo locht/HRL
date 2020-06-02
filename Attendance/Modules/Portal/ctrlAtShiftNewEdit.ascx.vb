@@ -259,6 +259,10 @@ Public Class ctrlAtShiftNewEdit
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
+                        If rgEmployee.Items.Count = 0 Then
+                            ShowMessage(Translate("Chưa chọn nhân viên, kiểm tra lại!!"), NotifyType.Warning)
+                            Exit Sub
+                        End If
                         For Each item As GridDataItem In rgEmployee.Items
                             Dim emp_id As Decimal = CDec(item.GetDataKeyValue("ID"))
                             Dim _param = New Attendance.AttendanceBusiness.ParamDTO With {.ORG_ID = item.GetDataKeyValue("ORG_ID"),

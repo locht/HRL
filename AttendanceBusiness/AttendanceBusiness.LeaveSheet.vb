@@ -45,11 +45,11 @@ Namespace AttendanceBusiness.ServiceImplementations
                 Throw ex
             End Try
         End Function
-        Function SaveLeaveSheet(ByVal dsLeaveSheet As DataSet, Optional ByVal log As UserLog = Nothing) As Boolean Implements IAttendanceBusiness.SaveLeaveSheet
+        Function SaveLeaveSheet(ByVal dsLeaveSheet As DataSet, Optional ByVal log As UserLog = Nothing, Optional ByRef gID As Decimal = 0) As Boolean Implements IAttendanceBusiness.SaveLeaveSheet
             Try
                 Using rep As New AttendanceRepository
                     Try
-                        Return rep.SaveLeaveSheet(dsLeaveSheet, log)
+                        Return rep.SaveLeaveSheet(dsLeaveSheet, log, gID)
                     Catch ex As Exception
                         Throw ex
                     End Try

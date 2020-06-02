@@ -143,6 +143,24 @@ Public Class ctrlLeaveRegistrationNewEdit
         End Set
     End Property
 
+    Public Property dtLeaveSession As DataTable
+        Get
+            Return PageViewState(Me.ID & "_dtLeaveSession")
+        End Get
+        Set(value As DataTable)
+            PageViewState(Me.ID & "_dtLeaveSession") = value
+        End Set
+    End Property
+
+    Property gID As Decimal
+        Get
+            Return ViewState(Me.ID & "_gID")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_gID") = value
+        End Set
+    End Property
+
 #End Region
 
 #Region "Page"
@@ -192,6 +210,7 @@ Public Class ctrlLeaveRegistrationNewEdit
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim rep2 As New CommonRepository
         Dim dsLeaveSheet As New DataSet()
         Try
             'If IsPostBack Then
@@ -200,39 +219,71 @@ Public Class ctrlLeaveRegistrationNewEdit
             '        EmployeeDto = rep.GetEmployeeInfor(EmployeeID, Nothing)
             '    End Using
             'End If
-            Dim startTime As DateTime = DateTime.UtcNow
-            IDCtrl = Request.Params("idCtrl")
-            Message = Request.Params("VIEW")
-            Dim Struct As Decimal = 1
-            Dim ID_PH As Decimal = 0
-            If IsNumeric(Request.Params("ID")) Then
-                Struct = 0
-                ID_PH = Decimal.Parse(Request.Params("ID"))
-                If Decimal.Parse(Request.Params("ID")) = 0 Then
-                    If Employee_list Is Nothing Then
-                        Employee_list = New List(Of CommonBusiness.EmployeeDTO)
+            If Not IsPostBack Then
+
+
+                Dim startTime As DateTime = DateTime.UtcNow
+                IDCtrl = Request.Params("idCtrl")
+                Message = Request.Params("VIEW")
+                Dim Struct As Decimal = 1
+                Dim ID_PH As Decimal = 0
+                If IsNumeric(Request.Params("ID")) Then
+                    Struct = 0
+                    ID_PH = Decimal.Parse(Request.Params("ID"))
+                    If Decimal.Parse(Request.Params("ID")) = 0 Then
+                        If Employee_list Is Nothing Then
+                            Employee_list = New List(Of CommonBusiness.EmployeeDTO)
+                        End If
+                        CurrentState = CommonMessage.STATE_NEW
+                    Else
+                        CurrentState = CommonMessage.STATE_EDIT
                     End If
                 End If
-            End If
-            Using rep As New AttendanceRepository
-                dsLeaveSheet = rep.GetLeaveSheet_ById(ID_PH, Struct)
-            End Using
-            If dsLeaveSheet IsNot Nothing Then
-                If dsLeaveSheet.Tables(0) IsNot Nothing Then
-                    rPH = dsLeaveSheet.Tables(0).NewRow
-                    If dsLeaveSheet.Tables(0).Rows.Count > 0 Then
-                        rPH = dsLeaveSheet.Tables(0).Rows(0)
+                Using rep As New AttendanceRepository
+                    dsLeaveSheet = rep.GetLeaveSheet_ById(ID_PH, Struct)
+                End Using
+                If dsLeaveSheet.Tables(0).Rows.Count > 0 AndAlso IsNumeric(dsLeaveSheet.Tables(0).Rows(0)("EMPLOYEE_ID")) Then
+                    Employee_list = New List(Of CommonBusiness.EmployeeDTO)
+                    Dim lst_emp As New List(Of Decimal)
+                    lst_emp.Add(dsLeaveSheet.Tables(0).Rows(0)("EMPLOYEE_ID"))
+                    Dim emp = rep2.GetEmployeeToPopupFind_EmployeeID(lst_emp)
+                    Dim employee As New CommonBusiness.EmployeeDTO
+                    employee.ID = emp.Item(0).ID
+                    employee.EMPLOYEE_CODE = emp.Item(0).EMPLOYEE_CODE
+                    employee.FULLNAME_VN = emp.Item(0).FULLNAME_VN
+                    employee.ORG_NAME = emp.Item(0).ORG_NAME
+                    employee.TITLE_NAME_VN = emp.Item(0).TITLE_NAME
+                    employee.ORG_ID = emp.Item(0).ORG_ID
+                    employee.TITLE_ID = emp.Item(0).TITLE_ID
+                    employee.EMPLOYEE_OBJECT = emp.Item(0).EMPLOYEE_OBJECT
+                    employee.EMPLOYEE_OBJECT_CODE = emp.Item(0).EMPLOYEE_OBJECT_CODE
+                    employee.EMPLOYEE_OBJECT_NAME = emp.Item(0).EMPLOYEE_OBJECT_NAME
+                    Dim dtData As New DataTable
+                    Using rep As New AttendanceRepository
+                        dtData = rep.GET_INFO_PHEPNAM(emp.Item(0).ID, dsLeaveSheet.Tables(0).Rows(0)("LEAVE_FROM"))
+                        If dtData.Rows.Count > 0 Then
+                            employee.EMP_ENTITLEMENT = If(dtData.Rows(0)("PHEP_CONLAI") Is Nothing, "0", dtData.Rows(0)("PHEP_CONLAI").ToString())
+                        End If
+                    End Using
+                    Employee_list.Add(employee)
+                End If
+                If dsLeaveSheet IsNot Nothing Then
+                    If dsLeaveSheet.Tables(0) IsNot Nothing Then
+                        rPH = dsLeaveSheet.Tables(0).NewRow
+                        If dsLeaveSheet.Tables(0).Rows.Count > 0 Then
+                            rPH = dsLeaveSheet.Tables(0).Rows(0)
+                        End If
+                    End If
+                    If dsLeaveSheet.Tables(1) IsNot Nothing AndAlso dtDetail Is Nothing Then
+                        dtDetail = dsLeaveSheet.Tables(1).Clone()
+                        dtDetail = dsLeaveSheet.Tables(1)
                     End If
                 End If
-                If dsLeaveSheet.Tables(1) IsNot Nothing AndAlso dtDetail Is Nothing Then
-                    dtDetail = dsLeaveSheet.Tables(1).Clone()
-                    dtDetail = dsLeaveSheet.Tables(1)
-                End If
+                Select Case Message
+                    Case "TRUE"
+                        CreateDataBinDing(1)
+                End Select
             End If
-            Select Case Message
-                Case "TRUE"
-                    CreateDataBinDing(1)
-            End Select
         Catch ex As Exception
             Throw ex
         Finally
@@ -242,7 +293,7 @@ Public Class ctrlLeaveRegistrationNewEdit
 
     Public Overrides Sub UpdateControlState()
         Try
-            If Utilities.ObjToString(rPH("S_CODE")) = "R" Or Utilities.ObjToString(rPH("S_CODE")) = "U" Or Utilities.ObjToString(rPH("S_CODE")) = "" Then
+            If Utilities.ObjToString(rPH("S_CODE")) = "R" Or Utilities.ObjToString(rPH("S_CODE")) = "U" Or Utilities.ObjToString(rPH("S_CODE")) = "" Or Utilities.ObjToString(rPH("S_CODE")) = "W" Or Utilities.ObjToString(rPH("S_CODE")) = "RST" Then
                 RadPane1.Enabled = True
                 CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = True
                 CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = True
@@ -304,6 +355,7 @@ Public Class ctrlLeaveRegistrationNewEdit
 
     Protected Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
         Dim rep As New AttendanceRepository
+        Dim store As New AttendanceStoreProcedure
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim objValidate As New AT_LEAVESHEETDTO
@@ -311,30 +363,82 @@ Public Class ctrlLeaveRegistrationNewEdit
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
-                        'check so ngay dang ky nghi
-                        If Not IsNumeric(rnDAY_NUM.Value) OrElse rnDAY_NUM.Value <= 0 Then
-                            ShowMessage(Translate("Số ngày đăng ký nghỉ phải lơn hơn 0"), NotifyType.Warning)
-                            Exit Sub
-                        End If
-
-                        CreateDataBinDing(0)
-                        objValidate.LEAVE_FROM = rdLEAVE_FROM.SelectedDate
-                        objValidate.LEAVE_TO = rdLEAVE_TO.SelectedDate
-                        objValidate.ID = Utilities.ObjToDecima(rPH("ID"))
-                        If (New AttendanceBusinessClient).ValidateLeaveSheetDetail(objValidate) = False Then
-                            ShowMessage(Translate("Ngày đăng ký nghỉ đã bị trùng"), NotifyType.Warning)
-                            Exit Sub
-                        End If
-                        'If valSum.Page.IsValid Then
                         If Utilities.ObjToString(rPH("S_CODE")) = "A" Then 'TRANG THAI approve
                             ShowMessage(Translate("Đơn đã Phê duyệt. Không thể chỉnh sửa !"), NotifyType.Warning)
                             Exit Sub
                         End If
-                        If SaveDB() Then
-                            Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")
-                        Else
-                            ShowMessage(Translate("Xảy ra lỗi"), NotifyType.Error)
+                        If rgEmployee.Items.Count = 0 Then
+                            ShowMessage(Translate("Chưa chọn nhân viên, kiểm tra lại!!"), NotifyType.Warning)
+                            Exit Sub
                         End If
+
+                        If Not IsNumeric(rnDAY_NUM.Value) OrElse rnDAY_NUM.Value <= 0 Then
+                            ShowMessage(Translate("Số ngày đăng ký nghỉ phải lơn hơn 0"), NotifyType.Warning)
+                            Exit Sub
+                        End If
+                        Dim type As String = (From p In dtLeaveType Where p("ID") = cboMANUAL_ID.SelectedValue Select p("CODE")).FirstOrDefault
+
+                        objValidate.LEAVE_FROM = rdLEAVE_FROM.SelectedDate
+                        objValidate.LEAVE_TO = rdLEAVE_TO.SelectedDate
+                        objValidate.ID = Utilities.ObjToDecima(rPH("ID"))
+                        Dim id As Decimal = 0
+                        For Each item As GridDataItem In rgEmployee.Items
+                            Dim emp_id As Decimal = CDec(item.GetDataKeyValue("ID"))
+                            Dim _param = New Attendance.AttendanceBusiness.ParamDTO With {.ORG_ID = item.GetDataKeyValue("ORG_ID"),
+                                            .PERIOD_ID = Decimal.Parse(rep.GET_PERIOD(rdLEAVE_FROM.SelectedDate))}
+
+                            If Not rep.IS_PERIODSTATUS(_param) Then
+                                ShowMessage(Translate("Kỳ công của nhân viên " & item.GetDataKeyValue("EMPLOYEE_CODE") & " đã đóng !!"), NotifyType.Warning)
+                                Exit Sub
+                            End If
+
+                            If type = "F" AndAlso item.GetDataKeyValue("EMP_ENTITLEMENT") < rnDAY_NUM.Value Then
+                                ShowMessage(Translate("Số ngày đăng ký của nhân viên " & item.GetDataKeyValue("EMPLOYEE_CODE") & " lơn hơn số phép năm còn lại !!"), NotifyType.Warning)
+                                Exit Sub
+                            End If
+                            If (New AttendanceBusinessClient).ValidateLeaveSheetDetail(objValidate) = False Then
+                                ShowMessage(Translate("Ngày đăng ký nghỉ của nhân viên " & item.GetDataKeyValue("EMPLOYEE_CODE") & " đã bị trùng"), NotifyType.Warning)
+                                Exit Sub
+                            End If
+                        Next
+                        'check so ngay dang ky nghi
+
+
+                        CreateDataBinDing(0)
+                        rPH("CREATED_BY_EMP") = LogHelper.CurrentUser.EMPLOYEE_ID
+                        rPH("CREATED_BY") = LogHelper.CurrentUser.FULLNAME
+                        rPH("IS_APP") = -1
+                        rPH("STATUS") = 0
+                        If CurrentState = CommonMessage.STATE_EDIT Then
+                            rPH("MODIFIED_BY_EMP") = LogHelper.CurrentUser.EMPLOYEE_ID
+                            rPH("MODIFIED_BY") = LogHelper.CurrentUser.FULLNAME
+                            rPH("MODIFIED_DATE") = DateTime.Now
+                            rPH("MODIFIED_LOG") = LogHelper.GetUserLog.Ip + "\" + LogHelper.GetUserLog.ComputerName
+                        End If
+                        Dim lst_delete As New List(Of AT_LEAVESHEETDTO)
+                        If Not IsDBNull(rPH("ID")) Then
+                            Dim at_leave As New AT_LEAVESHEETDTO
+                            at_leave.ID = rPH("ID")
+                            lst_delete.Add(at_leave)
+                            rep.DeleteLeaveSheet(lst_delete)
+                        End If
+                        For Each item As GridDataItem In rgEmployee.Items
+                            rPH("EMPLOYEE_ID") = item.GetDataKeyValue("ID")
+                            rPH("ID") = 0
+                            Dim emp_id As Decimal = CDec(item.GetDataKeyValue("ID"))
+                            GetLeaveSheet_Detail(emp_id)
+                            SaveDB()
+                            Dim objATL As New AT_LEAVESHEETDTO
+                            SetData_Controls(objATL, 0, item.GetDataKeyValue("ID"))
+                        Next
+                        Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")
+                        'If valSum.Page.IsValid Then
+
+                        'If SaveDB() Then
+                        '    Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")
+                        'Else
+                        '    ShowMessage(Translate("Xảy ra lỗi"), NotifyType.Error)
+                        'End If
                     Else
                         ExcuteScript("Resize", "ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgWorkschedule')")
                     End If
@@ -548,15 +652,15 @@ Public Class ctrlLeaveRegistrationNewEdit
                     End Using
                     Employee_list.Add(employee)
                 Next
+                'rgEmployee.Rebind()
+
+                'For Each i As GridItem In rgEmployee.Items
+                '    i.Edit = True
+                'Next
 
                 rgEmployee.Rebind()
-
-                For Each i As GridItem In rgEmployee.Items
-                    i.Edit = True
-                Next
-
-                rgEmployee.Rebind()
-
+                RefreshCboSession()
+                Cal_DayLeaveSheet()
             End If
             Session.Remove("PortalAtShift")
             'rep.Dispose()
@@ -596,29 +700,26 @@ Public Class ctrlLeaveRegistrationNewEdit
     Private Sub rgEmployee_NeedDataSource(sender As Object, e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgEmployee.NeedDataSource
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-
         Try
             rgEmployee.DataSource = Employee_list
-            cboFromSession.SelectedValue = 1
-            cboToSession.SelectedValue = 2
             Dim count = 0
             For Each item In Employee_list
                 If item.EMPLOYEE_OBJECT_CODE <> "HC1" And item.EMPLOYEE_OBJECT_CODE <> "HC2" Then
-                    cboFromSession.Enabled = False
-                    cboToSession.Enabled = False
+                    cboFROM_SESSION.Enabled = False
+                    cboTO_SESSION.Enabled = False
                     Exit For
                 Else
                     count += 1
                 End If
             Next
-            If cbMANUAL_ID.SelectedValue <> "" Then
-                Dim day_half As Decimal = CDec((From p In dtLeaveType Where p("ID") = cbMANUAL_ID.SelectedValue Select p("IS_DAY_HALF")).FirstOrDefault)
+            If cboMANUAL_ID.SelectedValue <> "" Then
+                Dim day_half As Decimal = CDec((From p In dtLeaveType Where p("ID") = cboMANUAL_ID.SelectedValue Select p("IS_DAY_HALF")).FirstOrDefault)
                 If count = Employee_list.Count And day_half = -1 Then
-                    cboFromSession.Enabled = True
-                    cboToSession.Enabled = True
+                    cboFROM_SESSION.Enabled = True
+                    cboTO_SESSION.Enabled = True
                 Else
-                    cboFromSession.Enabled = False
-                    cboToSession.Enabled = False
+                    cboFROM_SESSION.Enabled = False
+                    cboTO_SESSION.Enabled = False
                 End If
             End If
 
@@ -629,37 +730,54 @@ Public Class ctrlLeaveRegistrationNewEdit
     End Sub
 
 
-    Private Sub cbMANUAL_ID_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cbMANUAL_ID.SelectedIndexChanged
+    Private Sub cboMANUAL_ID_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboMANUAL_ID.SelectedIndexChanged
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
         Try
             txtManual_Note.ClearValue()
-            cboFromSession.SelectedValue = 1
-            cboToSession.SelectedValue = 2
-            If cbMANUAL_ID.SelectedValue <> "" Then
-                Dim note As String = (From p In dtLeaveType Where p("ID") = cbMANUAL_ID.SelectedValue Select p("NOTE")).FirstOrDefault.ToString
-                Dim is_day_half As Decimal = CDec((From p In dtLeaveType Where p("ID") = cbMANUAL_ID.SelectedValue Select p("IS_DAY_HALF")).FirstOrDefault)
+            RefreshCboSession()
+            If cboMANUAL_ID.SelectedValue <> "" Then
+                Dim note As String = (From p In dtLeaveType Where p("ID") = cboMANUAL_ID.SelectedValue Select p("NOTE")).FirstOrDefault.ToString
+                Dim is_day_half As Decimal = CDec((From p In dtLeaveType Where p("ID") = cboMANUAL_ID.SelectedValue Select p("IS_DAY_HALF")).FirstOrDefault)
                 txtManual_Note.Text = note
                 For Each item As GridDataItem In rgEmployee.Items
                     If item.GetDataKeyValue("EMPLOYEE_OBJECT_CODE") <> "HC1" And item.GetDataKeyValue("EMPLOYEE_OBJECT_CODE") <> "HC2" Then
-                        cboFromSession.Enabled = False
-                        cboToSession.Enabled = False
+                        cboFROM_SESSION.Enabled = False
+                        cboTO_SESSION.Enabled = False
                         Exit Sub
                     End If
                 Next
                 If is_day_half = -1 Then
-                    cboFromSession.Enabled = True
-                    cboToSession.Enabled = True
+                    cboFROM_SESSION.Enabled = True
+                    cboTO_SESSION.Enabled = True
                 Else
-                    cboFromSession.Enabled = False
-                    cboToSession.Enabled = False
+                    cboFROM_SESSION.Enabled = False
+                    cboTO_SESSION.Enabled = False
                 End If
             End If
+            'If (Not IsDate(rdLEAVE_FROM.SelectedDate) OrElse Not IsDate(rdLEAVE_TO.SelectedDate) OrElse dtDetail Is Nothing OrElse Not IsNumeric(rtEmployee_id.Text)) Then Exit Sub
+            'GetLeaveSheet_Detail()
+            Cal_DayLeaveSheet()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
+    End Sub
+
+    Private Sub cboFROM_SESSION_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboFROM_SESSION.SelectedIndexChanged
+        Cal_DayLeaveSheet()
+    End Sub
+
+    Private Sub cboTO_SESSION_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboTO_SESSION.SelectedIndexChanged
+        Cal_DayLeaveSheet()
+    End Sub
+    Private Sub rdLEAVE_FROM_SelectedDateChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdLEAVE_FROM.SelectedDateChanged
+        Cal_DayLeaveSheet()
+    End Sub
+
+    Private Sub rdLEAVE_TO_SelectedDateChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdLEAVE_TO.SelectedDateChanged
+        Cal_DayLeaveSheet()
     End Sub
 #End Region
 
@@ -669,12 +787,12 @@ Public Class ctrlLeaveRegistrationNewEdit
     '    Try
     '        For Each item As GridDataItem In rgEmployee.Items
     '            If item.GetDataKeyValue("EMPLOYEE_OBJECT_CODE") <> "HC1" Or item.GetDataKeyValue("EMPLOYEE_OBJECT_CODE") <> "HC2" Then
-    '                cboFromSession.Enabled = False
-    '                cboToSession.Enabled = False
+    '                cboFROM_SESSION.Enabled = False
+    '                cboTO_SESSION.Enabled = False
     '                Exit Sub
     '            End If
     '        Next
-    '        If cbMANUAL_ID.SelectedValue <> "" Then
+    '        If cboMANUAL_ID.SelectedValue <> "" Then
 
     '        End If
     '    Catch ex As Exception
@@ -697,11 +815,27 @@ Public Class ctrlLeaveRegistrationNewEdit
 
     Private Sub Cal_DayLeaveSheet()
         Try
-            Dim sumDay As Decimal = dtDetail.Compute("SUM(DAY_NUM)", "1=1")
+            'Dim sumDay As Decimal = dtDetail.Compute("SUM(DAY_NUM)", "1=1")
+            'rnDAY_NUM.NumberFormat.AllowRounding = False
+            'rnDAY_NUM.NumberFormat.DecimalDigits = 2
+            'rnDAY_NUM.Value = sumDay
+            If Not IsDate(rdLEAVE_FROM.SelectedDate) OrElse Not IsDate(rdLEAVE_TO.SelectedDate) Then
+                Exit Sub
+            End If
+            Dim Date_from As Date = If(IsDate(rdLEAVE_FROM.SelectedDate), rdLEAVE_FROM.SelectedDate, DateTime.Now)
+            Dim Date_to As Date = If(IsDate(rdLEAVE_TO.SelectedDate), rdLEAVE_TO.SelectedDate, DateTime.Now)
+            Dim sumDay As Decimal = DateDiff(DateInterval.Day, Date_from, Date_to) + 1
+            Dim ss1 As String = (From p In dtLeaveSession Where p("ID") = cboFROM_SESSION.SelectedValue Select p("CODE")).FirstOrDefault
+            Dim ss2 As String = (From p In dtLeaveSession Where p("ID") = cboTO_SESSION.SelectedValue Select p("CODE")).FirstOrDefault
+            If ss1 = "AFT" Then
+                sumDay -= New Decimal(0.5)
+            End If
+            If ss2 = "MOR" Then
+                sumDay -= New Decimal(0.5)
+            End If
             rnDAY_NUM.NumberFormat.AllowRounding = False
             rnDAY_NUM.NumberFormat.DecimalDigits = 2
             rnDAY_NUM.Value = sumDay
-
         Catch ex As Exception
             Throw ex
         End Try
@@ -718,7 +852,7 @@ Public Class ctrlLeaveRegistrationNewEdit
 
     '        Try
     '            Using rep As New AttendanceRepository
-    '                Dim manualID As Decimal = Decimal.Parse(cbMANUAL_ID.SelectedValue)
+    '                Dim manualID As Decimal = Decimal.Parse(cboMANUAL_ID.SelectedValue)
     '                dtManual = rep.GET_MANUAL_BY_ID(manualID)
     '            End Using
 
@@ -771,7 +905,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                     Try
                         Select Case ctrs.ID.ToString.ToUpper.Substring(0, 2)
                             Case "cb".ToUpper
-                                CType(ctrs, RadComboBox).SelectedValue = rPH(ctrs.ID.ToString.ToUpper.Substring(2))
+                                CType(ctrs, RadComboBox).SelectedValue = rPH(ctrs.ID.ToString.ToUpper.Substring(3))
                             Case "rt".ToUpper
                                 CType(ctrs, RadTextBox).Text = rPH(ctrs.ID.ToString.ToUpper.Substring(2))
                             Case "rn".ToUpper
@@ -790,7 +924,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                     Try
                         Select Case ctrs.ID.ToString.ToUpper.Substring(0, 2)
                             Case "cb".ToUpper
-                                rPH(ctrs.ID.ToString.ToUpper.Substring(2)) = CType(ctrs, RadComboBox).SelectedValue
+                                rPH(ctrs.ID.ToString.ToUpper.Substring(3)) = CType(ctrs, RadComboBox).SelectedValue
                             Case "rt".ToUpper
                                 rPH(ctrs.ID.ToString.ToUpper.Substring(2)) = CType(ctrs, RadTextBox).Text
                             Case "rn".ToUpper
@@ -873,7 +1007,7 @@ Public Class ctrlLeaveRegistrationNewEdit
         'dsLeaveSheet.Tables.Remove("CT")
         dsLeaveSheet.Tables.Add(CT.Copy())
         Try
-            Return rep.SaveLeaveSheet(dsLeaveSheet)
+            Return rep.SaveLeaveSheet(dsLeaveSheet, gID)
         Catch ex As Exception
             Return False
         Finally
@@ -897,32 +1031,16 @@ Public Class ctrlLeaveRegistrationNewEdit
             '    'Điều chỉnh Loại nghỉ (thêm điều kiện Loại xử lý Kiểu công: Đăng ký)
             '    ListComboData.GET_LIST_TYPE_MANUAL_LEAVE = True
             '    rep.GetComboboxData(ListComboData)
-            '    FillRadCombobox(cbMANUAL_ID, ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE, "NAME_VN", "ID", True)
+            '    FillRadCombobox(cboMANUAL_ID, ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE, "NAME_VN", "ID", True)
             'End If
             dtLeaveType = store.GET_LEAVE_TYPE(True)
-            FillRadCombobox(cbMANUAL_ID, dtLeaveType, "NAME", "ID", True)
-            arr.Add(New DictionaryEntry("", Nothing))
-            arr.Add(New DictionaryEntry("Buổi sáng", 1))
-            arr.Add(New DictionaryEntry("Buổi chiều", 2))
-            With cboFromSession
-                .DataSource = arr
-                .DataValueField = "Value"
-                .DataTextField = "Key"
-                cboFromSession.DataBind()
-                .SelectedIndex = 0
-            End With
-            cboFromSession.SelectedValue = 1
-            With cboToSession
-                .DataSource = arr
-                .DataValueField = "Value"
-                .DataTextField = "Key"
-                cboToSession.DataBind()
-                .SelectedIndex = 0
-            End With
-            cboToSession.SelectedValue = 2
-
+            dtLeaveSession = rep.GetOtherList("LEAVE_SESSION")
+            FillRadCombobox(cboMANUAL_ID, dtLeaveType, "NAME", "ID")
+            FillRadCombobox(cboFROM_SESSION, dtLeaveSession, "NAME", "ID")
+            FillRadCombobox(cboTO_SESSION, dtLeaveSession, "NAME", "ID")
+            RefreshCboSession()
             dtdata = rep.GetOtherList("LEAVE_REASON", True)
-            FillRadCombobox(cboReason, dtdata, "NAME", "ID")
+            FillRadCombobox(cboREASON_LEAVE, dtdata, "NAME", "ID")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -932,10 +1050,30 @@ Public Class ctrlLeaveRegistrationNewEdit
         Dim dtSource As New DataTable()
         Try
             Using rep As New AttendanceRepository
-                Dim manualID As Decimal = Decimal.Parse(cbMANUAL_ID.SelectedValue)
+                Dim manualID As Decimal = Decimal.Parse(cboMANUAL_ID.SelectedValue)
                 dtSource = rep.GetLeaveSheet_Detail_ByDate(_emp_id, rdLEAVE_FROM.SelectedDate, rdLEAVE_TO.SelectedDate, manualID)
             End Using
             dtDetail = dtSource
+            If dtDetail.Rows.Count > 0 Then
+                Dim ss1 As String = (From p In dtLeaveSession Where p("ID") = cboFROM_SESSION.SelectedValue Select p("CODE")).FirstOrDefault
+                Dim ss2 As String = (From p In dtLeaveSession Where p("ID") = cboTO_SESSION.SelectedValue Select p("CODE")).FirstOrDefault
+                If Not String.IsNullOrEmpty(ss1) Then
+                    dtDetail.Rows(0)("DAY_NUM") = "0.5"
+                    If ss1 = "MOR" Then
+                        dtDetail.Rows(0)("STATUS_SHIFT") = 1
+                    ElseIf ss1 = "AFT" Then
+                        dtDetail.Rows(0)("STATUS_SHIFT") = 2
+                    End If
+                End If
+                If Not String.IsNullOrEmpty(ss1) Then
+                    dtDetail.Rows(dtDetail.Rows.Count - 1)("DAY_NUM") = "0.5"
+                    If ss1 = "MOR" Then
+                        dtDetail.Rows(dtDetail.Rows.Count - 1)("STATUS_SHIFT") = 1
+                    ElseIf ss1 = "AFT" Then
+                        dtDetail.Rows(dtDetail.Rows.Count - 1)("STATUS_SHIFT") = 2
+                    End If
+                End If
+            End If
             'rgData.Rebind()
             'For Each item As GridDataItem In rgData.MasterTableView.Items
             '    item.Edit = True
@@ -958,20 +1096,20 @@ Public Class ctrlLeaveRegistrationNewEdit
         Try
 
             'check so ngay dang ky nghi
-            If Not IsNumeric(rnDAY_NUM.Value) OrElse rnDAY_NUM.Value < 1 Then
-                ShowMessage(Translate("Số ngày đăng ký nghỉ phải lơn hơn 0"), NotifyType.Warning)
-                Exit Sub
-            End If
+            'If Not IsNumeric(rnDAY_NUM.Value) OrElse rnDAY_NUM.Value < 1 Then
+            '    ShowMessage(Translate("Số ngày đăng ký nghỉ phải lơn hơn 0"), NotifyType.Warning)
+            '    Exit Sub
+            'End If
             rnSTATUS.Text = id_state.ToString
             CreateDataBinDing(0)
             atLeave.LEAVE_FROM = rdLEAVE_FROM.SelectedDate
             atLeave.LEAVE_TO = rdLEAVE_TO.SelectedDate
-            atLeave.ID = Utilities.ObjToDecima(rPH("ID"))
+            atLeave.ID = gID
             atLeave.EMPLOYEE_ID = _emp_id
-            If (New AttendanceBusinessClient).ValidateLeaveSheetDetail(atLeave) = False Then
-                ShowMessage(Translate("Ngày đăng ký nghỉ đã bị trùng"), NotifyType.Warning)
-                Exit Sub
-            End If
+            'If (New AttendanceBusinessClient).ValidateLeaveSheetDetail(atLeave) = False Then
+            '    ShowMessage(Translate("Ngày đăng ký nghỉ đã bị trùng"), NotifyType.Warning)
+            '    Exit Sub
+            'End If
 
             Dim dtCheckSendApprove As DataTable = psp.CHECK_APPROVAL(atLeave.ID)
             Dim period_id As Integer = Utilities.ObjToDecima(dtCheckSendApprove.Rows(0)("PERIOD_ID"))
@@ -982,7 +1120,8 @@ Public Class ctrlLeaveRegistrationNewEdit
             Dim outNumber As Decimal
             Try
                 Dim IAttendance As IAttendanceBusiness = New AttendanceBusinessClient()
-                outNumber = IAttendance.PRI_PROCESS_APP(EmployeeID, period_id, "LEAVE", 0, sumday, sign_id, id_group)
+                'outNumber = IAttendance.PRI_PROCESS_APP(EmployeeID, period_id, "LEAVE", 0, sumday, sign_id, id_group)
+                outNumber = IAttendance.PRI_PROCESS_APP(_emp_id, period_id, "LEAVE", 0, sumday, sign_id, id_group, LogHelper.CurrentUser.EMPLOYEE_ID)
             Catch ex As Exception
                 ShowMessage(ex.ToString, NotifyType.Error)
             End Try
@@ -1035,6 +1174,20 @@ Public Class ctrlLeaveRegistrationNewEdit
             Throw ex
         End Try
     End Function
+
+    Public Sub RefreshCboSession()
+        Try
+            Dim ss1 As Decimal = (From p In dtLeaveSession Where p("CODE").ToString.ToUpper.Equals("MOR") Select p("ID")).FirstOrDefault
+            Dim ss2 As Decimal = (From p In dtLeaveSession Where p("CODE").ToString.ToUpper.Equals("AFT") Select p("ID")).FirstOrDefault
+            cboFROM_SESSION.SelectedValue = ss1
+            FillRadCombobox(cboTO_SESSION, dtLeaveSession, "NAME", "ID")
+            cboTO_SESSION.SelectedValue = ss2
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 #End Region
+
+
 
 End Class

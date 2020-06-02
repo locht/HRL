@@ -17,7 +17,9 @@ Imports HistaffFrameworkPublic.HistaffFrameworkEnum
 Partial Public Class AttendanceRepository
     Public Function ValidateLeaveSheetDetail(ByVal objValidate As AT_LEAVESHEETDTO) As Boolean
         Try
-            Dim q = (From p In Context.AT_LEAVESHEET_DETAIL Where p.EMPLOYEE_ID = objValidate.EMPLOYEE_ID And p.LEAVE_DAY >= objValidate.LEAVE_FROM And p.LEAVE_DAY <= objValidate.LEAVE_TO And (p.LEAVESHEET_ID <> objValidate.ID Or objValidate.ID = 0) Select p).ToList()
+            Dim q = (From p In Context.AT_LEAVESHEET_DETAIL
+                     From e In Context.AT_LEAVESHEET.Where(Function(f) f.ID = p.LEAVESHEET_ID)
+                     Where p.EMPLOYEE_ID = objValidate.EMPLOYEE_ID And (e.STATUS = 1 Or e.STATUS = 2 Or e.STATUS = 8001) And p.LEAVE_DAY >= objValidate.LEAVE_FROM And p.LEAVE_DAY <= objValidate.LEAVE_TO And (p.LEAVESHEET_ID <> objValidate.ID Or objValidate.ID = 0) Select p).ToList()
             If q.Count > 0 Then
                 Return False
             Else
@@ -61,7 +63,7 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 
-    Public Function SaveLeaveSheet(ByVal dsLeaveSheet As DataSet, ByVal log As UserLog) As Boolean
+    Public Function SaveLeaveSheet(ByVal dsLeaveSheet As DataSet, ByVal log As UserLog, Optional ByRef gID As Decimal = 0) As Boolean
         Dim rPH As DataRow
         Dim CT As DataTable = New DataTable()
         Dim oProps() As PropertyInfo = Nothing
@@ -136,6 +138,7 @@ Partial Public Class AttendanceRepository
                 objPH.CREATED_LOG = log.Ip + "\" + log.ComputerName
                 objPH.MODIFIED_LOG = log.Ip + "\" + log.ComputerName
                 objPH.ID = Utilities.GetNextSequence(Context, Context.AT_LEAVESHEET.EntitySet.Name)
+                gID = objPH.ID
                 Context.AT_LEAVESHEET.AddObject(objPH)
                 For Each row As DataRow In CT.Rows
                     objCT = New AT_LEAVESHEET_DETAIL
@@ -293,6 +296,8 @@ Partial Public Class AttendanceRepository
                             Context.AT_LEAVESHEET_DETAIL.DeleteObject(details(index1))
                         Next
                     End If
+                    Dim prc = (From p In Context.PROCESS_APPROVED_STATUS Where p.ID_REGGROUP = lstl.ID).FirstOrDefault
+                    Context.PROCESS_APPROVED_STATUS.DeleteObject(prc)
                 End If
             Next
             Context.SaveChanges()
@@ -315,7 +320,7 @@ Partial Public Class AttendanceRepository
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
                         From s In Context.HU_STAFF_RANK.Where(Function(F) F.ID = e.STAFF_RANK_ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
-                        From m In Context.AT_TIME_MANUAL.Where(Function(f) f.ID = p.MANUAL_ID).DefaultIfEmpty
+                        From m In Context.AT_SYMBOLS.Where(Function(f) f.ID = p.MANUAL_ID).DefaultIfEmpty
                         From cre In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.CREATED_BY_EMP).DefaultIfEmpty
                         From modi In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.MODIFIED_BY_EMP).DefaultIfEmpty
                         From res In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.RESTORED_BY).DefaultIfEmpty
@@ -325,6 +330,8 @@ Partial Public Class AttendanceRepository
                         From pas In Context.PROCESS_APPROVED_STATUS.Where(Function(f) f.ID_REGGROUP = p.ID And f.APP_STATUS = 0 _
                             And f.APP_LEVEL = (Context.PROCESS_APPROVED_STATUS.Where(Function(h) h.ID_REGGROUP = p.ID And h.APP_STATUS = 0).Min(Function(k) k.APP_LEVEL))).DefaultIfEmpty() _
                         From ee In Context.HU_EMPLOYEE.Where(Function(f) f.ID = pas.EMPLOYEE_APPROVED And p.STATUS <> 2).DefaultIfEmpty()
+                        From ss1 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.FROM_SESSION).DefaultIfEmpty
+                        From ss2 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TO_SESSION).DefaultIfEmpty
                         Where p.CREATED_BY_EMP = _filter.CREATED_BY_EMP
             'Dim approveList = From p In query
             '                  From pas In Context.PROCESS_APPROVED_STATUS.Where(Function(f) f.ID_REGGROUP = p.p.ID And f.APP_STATUS = 0 _
@@ -332,9 +339,9 @@ Partial Public Class AttendanceRepository
             'From ee In Context.HU_EMPLOYEE.Where(Function(f) f.ID = pas.EMPLOYEE_APPROVED).DefaultIfEmpty()
 
             'GET LEAVE_SHEET BY EMPLOYEE ID
-            If _filter.EMPLOYEE_ID.HasValue Then
-                query = query.Where(Function(f) f.p.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
-            End If
+            'If _filter.EMPLOYEE_ID.HasValue Then
+            '    query = query.Where(Function(f) f.p.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
+            'End If
             If _filter.FROM_DATE.HasValue Then
                 query = query.Where(Function(f) f.p.LEAVE_FROM >= _filter.FROM_DATE)
             End If
@@ -369,7 +376,7 @@ Partial Public Class AttendanceRepository
                 query = query.Where(Function(f) f.p.LEAVE_TO = _filter.LEAVE_TO)
             End If
             If Not String.IsNullOrEmpty(_filter.MANUAL_NAME) Then
-                query = query.Where(Function(f) f.m.NAME.ToLower().Contains(_filter.MANUAL_NAME.ToLower()))
+                query = query.Where(Function(f) f.m.WNAME.ToLower().Contains(_filter.MANUAL_NAME.ToLower()))
             End If
             If Not String.IsNullOrEmpty(_filter.NOTE) Then
                 query = query.Where(Function(f) f.p.NOTE.ToLower().Contains(_filter.NOTE.ToLower()))
@@ -380,7 +387,12 @@ Partial Public Class AttendanceRepository
             If Not String.IsNullOrEmpty(_filter.REASON) Then
                 query = query.Where(Function(f) f.p.REASON.ToLower().Contains(_filter.REASON.ToLower()))
             End If
-
+            If Not String.IsNullOrEmpty(_filter.FROM_SESSION_NAME) Then
+                query = query.Where(Function(f) f.ss1.NAME_VN.ToLower().Contains(_filter.FROM_SESSION_NAME.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.TO_SESSION_NAME) Then
+                query = query.Where(Function(f) f.ss2.NAME_VN.ToLower().Contains(_filter.TO_SESSION_NAME.ToLower()))
+            End If
 
             Dim lst = query.Select(Function(p) New AT_LEAVESHEETDTO With {
                                                                        .ID = p.p.ID,
@@ -395,10 +407,8 @@ Partial Public Class AttendanceRepository
                                                                        .ORG_ID = p.e.ORG_ID,
                                                                        .LEAVE_FROM = p.p.LEAVE_FROM,
                                                                        .LEAVE_TO = p.p.LEAVE_TO,
-                                                                       .MANUAL_NAME = p.m.NAME,
+                                                                       .MANUAL_NAME = p.m.WNAME,
                                                                        .MANUAL_ID = p.p.MANUAL_ID,
-                                                                       .MORNING_ID = p.m.MORNING_ID,
-                                                                       .AFTERNOON_ID = p.m.AFTERNOON_ID,
                                                                        .NOTE = p.p.NOTE,
                                                                        .DAY_NUM = p.p.DAY_NUM,
                                                                        .CREATED_BY = p.p.CREATED_BY,
@@ -412,9 +422,9 @@ Partial Public Class AttendanceRepository
                                                                        .IMPORT = If(p.p.IMPORT = -1, "x", ""),
                                                                        .REASON = p.p.REASON,
                                                                        .FROM_SESSION = p.p.FROM_SESSION,
-                                                                       .FROM_SESSION_NAME = If(p.p.FROM_SESSION = 1, "Buổi sáng", "Buổi chiều"),
+                                                                       .FROM_SESSION_NAME = p.ss1.NAME_VN,
                                                                        .TO_SESSION = p.p.TO_SESSION,
-                                                                       .TO_SESSION_NAME = If(p.p.FROM_SESSION = 1, "Buổi sáng", "Buổi chiều"),
+                                                                       .TO_SESSION_NAME = p.ss2.NAME_VN,
                                                                        .CREATED_BY_EMP = p.p.CREATED_BY_EMP,
                                                                        .CREATED_BY_EMP_NAME = p.cre.FULLNAME_VN,
                                                                        .MODIFIED_BY_EMP = p.p.MODIFIED_BY_EMP,

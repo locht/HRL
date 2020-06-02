@@ -104,6 +104,7 @@
             <EntitySet Name="AT_FORMULAR" EntityType="AttendanceModel.Store.AT_FORMULAR" store:Type="Tables"  />
             <EntitySet Name="AT_FML_DETAIL" EntityType="AttendanceModel.Store.AT_FML_DETAIL" store:Type="Tables"  />
             <EntitySet Name="AT_PORTAL_REG_SHIFT" EntityType="AttendanceModel.Store.AT_PORTAL_REG_SHIFT" store:Type="Tables"  />
+            <EntitySet Name="AT_SEND_APPROVE_LETTER" EntityType="AttendanceModel.Store.AT_SEND_APPROVE_LETTER" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="AttendanceModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_OOLT_OOL" Association="AttendanceModel.Store.FK_OOLT_OOL">
                 <End Role="OT_OTHER_LIST_TYPE" EntitySet="OT_OTHER_LIST_TYPE" />
@@ -2623,6 +2624,21 @@
             <Property Name="CREATED_DATE" Type="date" Nullable="true" />
             <Property Name="CREATED_BY" Type="number" Nullable="true" Precision="38" />
         </EntityType>
+        <EntityType Name="AT_SEND_APPROVE_LETTER">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EMP_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="USERNAME" Type="nvarchar2" Nullable="true" MaxLength="1024" />
+            <Property Name="IS_DISSOLVE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ACTION_DATE" Type="date" Nullable="true" />
+            <Property Name="ACTION_TYPE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ACTION_STATUS" Type="number" Nullable="true" Precision="38" />
+            <Property Name="RUN_START" Type="date" Nullable="true" />
+            <Property Name="RUN_END" Type="date" Nullable="true" />
+            <Property Name="RUN_ROW" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -2946,6 +2962,7 @@
           <EntitySet Name="AT_FORMULAR" EntityType="AttendanceModel.AT_FORMULAR" />
           <EntitySet Name="AT_FML_DETAIL" EntityType="AttendanceModel.AT_FML_DETAIL" />
           <EntitySet Name="AT_PORTAL_REG_SHIFT" EntityType="AttendanceModel.AT_PORTAL_REG_SHIFT" />
+          <EntitySet Name="AT_SEND_APPROVE_LETTER" EntityType="AttendanceModel.AT_SEND_APPROVE_LETTER" />
           </EntityContainer>
         <EntityType Name="OT_OTHER_LIST">
           <Key>
@@ -5566,6 +5583,21 @@
           <Property Type="DateTime" Name="CREATED_DATE" />
           <Property Type="Decimal" Name="CREATED_BY" Precision="38" Scale="0" />
         </EntityType>
+        <EntityType Name="AT_SEND_APPROVE_LETTER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EMP_ID" Precision="38" Scale="0" />
+          <Property Type="String" Name="USERNAME" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="IS_DISSOLVE" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="ACTION_DATE" />
+          <Property Type="Decimal" Name="ACTION_TYPE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ACTION_STATUS" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="RUN_START" />
+          <Property Type="DateTime" Name="RUN_END" />
+          <Property Type="Decimal" Name="RUN_ROW" Precision="38" Scale="0" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -8135,6 +8167,22 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="AT_SEND_APPROVE_LETTER">
+            <EntityTypeMapping TypeName="AttendanceModel.AT_SEND_APPROVE_LETTER">
+                <MappingFragment StoreEntitySet="AT_SEND_APPROVE_LETTER">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
+                    <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                    <ScalarProperty Name="IS_DISSOLVE" ColumnName="IS_DISSOLVE" />
+                    <ScalarProperty Name="ACTION_DATE" ColumnName="ACTION_DATE" />
+                    <ScalarProperty Name="ACTION_TYPE" ColumnName="ACTION_TYPE" />
+                    <ScalarProperty Name="ACTION_STATUS" ColumnName="ACTION_STATUS" />
+                    <ScalarProperty Name="RUN_START" ColumnName="RUN_START" />
+                    <ScalarProperty Name="RUN_END" ColumnName="RUN_END" />
+                    <ScalarProperty Name="RUN_ROW" ColumnName="RUN_ROW" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="AttendanceModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -8316,6 +8364,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_FORMULAR" Width="1.5" PointX="27.375" PointY="4.75" Height="3.3263964843749818" />
         <EntityTypeShape EntityType="AttendanceModel.AT_FML_DETAIL" Width="1.5" PointX="17.375" PointY="27.75" Height="3.5186979166666674" />
         <EntityTypeShape EntityType="AttendanceModel.AT_PORTAL_REG_SHIFT" Width="1.5" PointX="27.375" PointY="0.75" Height="2.557190755208353" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_SEND_APPROVE_LETTER" Width="1.5" PointX="10.375" PointY="28.75" Height="2.9417936197916674" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

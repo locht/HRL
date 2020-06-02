@@ -95,13 +95,13 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     Protected WithEvents lblMessage As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''cbMANUAL_ID control.
+    '''cboMANUAL_ID control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cbMANUAL_ID As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents cboMANUAL_ID As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''txtManual_Note control.
@@ -122,13 +122,13 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     Protected WithEvents rdLEAVE_FROM As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
-    '''cboFromSession control.
+    '''cboFROM_SESSION control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboFromSession As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents cboFROM_SESSION As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''rdLEAVE_TO control.
@@ -149,22 +149,22 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     Protected WithEvents CompareValidator2 As Global.System.Web.UI.WebControls.CompareValidator
 
     '''<summary>
-    '''cboToSession control.
+    '''cboTO_SESSION control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboToSession As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents cboTO_SESSION As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''cboReason control.
+    '''cboREASON_LEAVE control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboReason As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents cboREASON_LEAVE As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''rnDAY_NUM control.

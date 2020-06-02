@@ -33987,7 +33987,7 @@ Namespace AttendanceBusiness
         Function GET_LIST_MINUTE() As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/PRI_PROCESS_APP", ReplyAction:="http://tempuri.org/IAttendanceBusiness/PRI_PROCESS_APPResponse")>  _
-        Function PRI_PROCESS_APP(ByVal employee_id As Decimal, ByVal period_id As Integer, ByVal process_type As String, ByVal totalHours As Decimal, ByVal totalDay As Decimal, ByVal sign_id As Integer, ByVal id_reggroup As Integer) As Integer
+        Function PRI_PROCESS_APP(ByVal employee_id As Decimal, ByVal period_id As Integer, ByVal process_type As String, ByVal totalHours As Decimal, ByVal totalDay As Decimal, ByVal sign_id As Integer, ByVal id_reggroup As Integer, ByVal CREATED_BY As Decimal) As Integer
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GET_SEQ_PORTAL_RGT", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GET_SEQ_PORTAL_RGTResponse")>  _
         Function GET_SEQ_PORTAL_RGT() As Decimal
@@ -35147,7 +35147,7 @@ Namespace AttendanceBusiness
         Function GetLeaveSheet_Detail_ByDate(ByVal employee_id As Decimal, ByVal fromDate As Date, ByVal toDate As Date, ByVal manualId As Decimal) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/SaveLeaveSheet", ReplyAction:="http://tempuri.org/IAttendanceBusiness/SaveLeaveSheetResponse")>  _
-        Function SaveLeaveSheet(ByVal dsLeaveSheet As System.Data.DataSet, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        Function SaveLeaveSheet(ByVal dsLeaveSheet As System.Data.DataSet, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetLeaveSheet_Portal", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetLeaveSheet_PortalResponse")>  _
         Function GetLeaveSheet_Portal(ByVal _filter As AttendanceBusiness.AT_LEAVESHEETDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AT_LEAVESHEETDTO)
@@ -35646,8 +35646,8 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.GET_LIST_MINUTE
         End Function
         
-        Public Function PRI_PROCESS_APP(ByVal employee_id As Decimal, ByVal period_id As Integer, ByVal process_type As String, ByVal totalHours As Decimal, ByVal totalDay As Decimal, ByVal sign_id As Integer, ByVal id_reggroup As Integer) As Integer Implements AttendanceBusiness.IAttendanceBusiness.PRI_PROCESS_APP
-            Return MyBase.Channel.PRI_PROCESS_APP(employee_id, period_id, process_type, totalHours, totalDay, sign_id, id_reggroup)
+        Public Function PRI_PROCESS_APP(ByVal employee_id As Decimal, ByVal period_id As Integer, ByVal process_type As String, ByVal totalHours As Decimal, ByVal totalDay As Decimal, ByVal sign_id As Integer, ByVal id_reggroup As Integer, ByVal CREATED_BY As Decimal) As Integer Implements AttendanceBusiness.IAttendanceBusiness.PRI_PROCESS_APP
+            Return MyBase.Channel.PRI_PROCESS_APP(employee_id, period_id, process_type, totalHours, totalDay, sign_id, id_reggroup, CREATED_BY)
         End Function
         
         Public Function GET_SEQ_PORTAL_RGT() As Decimal Implements AttendanceBusiness.IAttendanceBusiness.GET_SEQ_PORTAL_RGT
@@ -36658,8 +36658,8 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.GetLeaveSheet_Detail_ByDate(employee_id, fromDate, toDate, manualId)
         End Function
         
-        Public Function SaveLeaveSheet(ByVal dsLeaveSheet As System.Data.DataSet, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.SaveLeaveSheet
-            Return MyBase.Channel.SaveLeaveSheet(dsLeaveSheet, log)
+        Public Function SaveLeaveSheet(ByVal dsLeaveSheet As System.Data.DataSet, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.SaveLeaveSheet
+            Return MyBase.Channel.SaveLeaveSheet(dsLeaveSheet, log, gID)
         End Function
         
         Public Function GetLeaveSheet_Portal(ByVal _filter As AttendanceBusiness.AT_LEAVESHEETDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AT_LEAVESHEETDTO) Implements AttendanceBusiness.IAttendanceBusiness.GetLeaveSheet_Portal

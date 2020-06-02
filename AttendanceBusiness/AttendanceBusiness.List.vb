@@ -1344,11 +1344,11 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
-        Public Function PRI_PROCESS_APP(ByVal employee_id As Decimal, ByVal period_id As Integer, ByVal process_type As String, ByVal totalHours As Decimal, ByVal totalDay As Decimal, ByVal sign_id As Integer, ByVal id_reggroup As Integer) As Int32 _
+        Public Function PRI_PROCESS_APP(ByVal employee_id As Decimal, ByVal period_id As Integer, ByVal process_type As String, ByVal totalHours As Decimal, ByVal totalDay As Decimal, ByVal sign_id As Integer, ByVal id_reggroup As Integer, Optional ByVal CREATED_BY As Decimal = 0) As Int32 _
                                         Implements IAttendanceBusiness.PRI_PROCESS_APP
             Using rep As New AttendanceRepository
                 Try
-                    Return rep.PRI_PROCESS_APP(employee_id, period_id, process_type, totalHours, totalDay, sign_id, id_reggroup)
+                    Return rep.PRI_PROCESS_APP(employee_id, period_id, process_type, totalHours, totalDay, sign_id, id_reggroup, CREATED_BY)
                 Catch ex As Exception
                     Throw ex
                 End Try

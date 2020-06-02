@@ -28,17 +28,17 @@
                     <%# Translate("Loại nghỉ")%><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadComboBox runat="server" ID="cbMANUAL_ID" Width="250px" DataTextField="NAME_VN"
+                    <tlk:RadComboBox runat="server" ID="cboMANUAL_ID" Width="250px" DataTextField="NAME_VN"
                         DataValueField="ID" AutoPostBack="true" CausesValidation="false">
                     </tlk:RadComboBox>
                 </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Diễn giải")%><span class="lbReq">*</span>
+                    <%# Translate("Diễn giải")%>
                 </td>
                 <td colspan="3">
-                    <tlk:RadTextBox runat="server" ID="txtManual_Note" Width="100%">
+                    <tlk:RadTextBox runat="server" ID="txtManual_Note" Width="100%" Enabled="false">
                     </tlk:RadTextBox>
                 </td>
             </tr>
@@ -47,14 +47,14 @@
                     <%# Translate("Từ ngày")%><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadDatePicker runat="server" ID="rdLEAVE_FROM" CausesValidation="false">
+                    <tlk:RadDatePicker runat="server" AutoPostBack="true" ID="rdLEAVE_FROM" CausesValidation="false">
                     </tlk:RadDatePicker>
                 </td>
                 <td class="lb">
                     <%# Translate("Từ buổi")%><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadComboBox runat="server" ID="cboFromSession" Enabled="false" DataTextField="NAME_VN" DataValueField="ID">
+                    <tlk:RadComboBox runat="server" AutoPostBack="true" CausesValidation="false" ID="cboFROM_SESSION" Enabled="false" DataTextField="NAME_VN" DataValueField="ID">
                     </tlk:RadComboBox>
                 </td>
             </tr>
@@ -63,7 +63,7 @@
                     <%# Translate("Đến ngày")%><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadDatePicker runat="server" ID="rdLEAVE_TO" CausesValidation="false">
+                    <tlk:RadDatePicker runat="server" AutoPostBack="true" ID="rdLEAVE_TO" CausesValidation="false">
                     </tlk:RadDatePicker>
                     <input id="btnDetail" value="<%# Translate("Chi tiết")%>" type="button" style="display: none;"
                         onclick="showDetail('')">
@@ -75,7 +75,7 @@
                     <%# Translate("Đến buổi")%><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadComboBox runat="server" Enabled="false" ID="cboToSession" DataTextField="NAME_VN" DataValueField="ID">
+                    <tlk:RadComboBox runat="server" AutoPostBack="true" CausesValidation="false" Enabled="false" ID="cboTO_SESSION" DataTextField="NAME_VN" DataValueField="ID">
                     </tlk:RadComboBox>
                 </td>
             </tr>
@@ -84,7 +84,7 @@
                     <%# Translate("Lý do nghỉ phép")%>
                 </td>
                 <td>
-                    <tlk:RadComboBox runat="server" ID="cboReason" DataTextField="NAME_VN" DataValueField="ID">
+                    <tlk:RadComboBox runat="server" ID="cboREASON_LEAVE" DataTextField="NAME_VN" DataValueField="ID">
                     </tlk:RadComboBox>
                 </td>
                 <td class="lb">
@@ -147,7 +147,7 @@
                                 <%# DataBinder.Eval(Container.DataItem, "STATUS_SHIFT_NAME")%>
                             </ItemTemplate>
                             <EditItemTemplate>
-                                <tlk:RadComboBox Width="125px" runat="server" ID="cbSTATUS_SHIFT" ReadOnly="true"
+                                <tlk:RadComboBox Width="125px" runat="server" ID="cboSTATUS_SHIFT" ReadOnly="true"
                                     AutoPostBack="true" CausesValidation="false">
                                 </tlk:RadComboBox>
                             </EditItemTemplate>

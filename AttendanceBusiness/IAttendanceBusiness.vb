@@ -46,7 +46,7 @@ Namespace AttendanceBusiness.ServiceContracts
         <OperationContract()>
         Function GetLeaveSheet_Detail_ByDate(ByVal employee_id As Decimal, ByVal fromDate As Date, ByVal toDate As Date, ByVal manualId As Decimal) As DataTable
         <OperationContract()>
-        Function SaveLeaveSheet(ByVal dsLeaveSheet As DataSet, Optional ByVal log As UserLog = Nothing) As Boolean
+        Function SaveLeaveSheet(ByVal dsLeaveSheet As DataSet, Optional ByVal log As UserLog = Nothing, Optional ByRef gID As Decimal = 0) As Boolean
         <OperationContract()>
         Function GetLeaveSheet_Portal(ByVal _filter As AT_LEAVESHEETDTO,
                                       Optional ByRef Total As Integer = 0,
@@ -435,6 +435,7 @@ Namespace AttendanceBusiness.ServiceContracts
         Function DeleteLeaveSheet(ByVal lstID As List(Of AT_LEAVESHEETDTO)) As Boolean
         <OperationContract()>
         Function checkLeaveImport(ByVal dtData As DataTable) As DataTable
+
 
 #End Region
 
@@ -926,7 +927,7 @@ Namespace AttendanceBusiness.ServiceContracts
         <OperationContract()>
         Function GET_LIST_MINUTE() As DataTable
         <OperationContract()>
-        Function PRI_PROCESS_APP(ByVal employee_id As Decimal, ByVal period_id As Integer, ByVal process_type As String, ByVal totalHours As Decimal, ByVal totalDay As Decimal, ByVal sign_id As Integer, ByVal id_reggroup As Integer) As Int32
+        Function PRI_PROCESS_APP(ByVal employee_id As Decimal, ByVal period_id As Integer, ByVal process_type As String, ByVal totalHours As Decimal, ByVal totalDay As Decimal, ByVal sign_id As Integer, ByVal id_reggroup As Integer, Optional ByVal CREATED_BY As Decimal = 0) As Int32
         <OperationContract()>
         Function GET_SEQ_PORTAL_RGT() As Decimal
         <OperationContract()>

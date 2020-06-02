@@ -1507,12 +1507,12 @@ Partial Class AttendanceRepository
             _isAvailable = True
         End Try
     End Function
-    Public Function PRI_PROCESS_APP(ByVal employee_id As Decimal, ByVal period_id As Integer, ByVal process_type As String, ByVal totalHours As Decimal, ByVal totalDay As Decimal, ByVal sign_id As Integer, ByVal id_reggroup As Integer) As Int32
+    Public Function PRI_PROCESS_APP(ByVal employee_id As Decimal, ByVal period_id As Integer, ByVal process_type As String, ByVal totalHours As Decimal, ByVal totalDay As Decimal, ByVal sign_id As Integer, ByVal id_reggroup As Integer, Optional ByVal CREATED_BY As Decimal = 0) As Int32
         Try
             _isAvailable = False
             Using rep As New AttendanceBusinessClient
                 Try
-                    Return rep.PRI_PROCESS_APP(employee_id, period_id, process_type, totalHours, totalDay, sign_id, id_reggroup)
+                    Return rep.PRI_PROCESS_APP(employee_id, period_id, process_type, totalHours, totalDay, sign_id, id_reggroup, CREATED_BY)
                 Catch ex As Exception
                     rep.Abort()
                     Throw ex

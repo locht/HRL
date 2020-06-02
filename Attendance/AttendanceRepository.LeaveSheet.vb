@@ -20,10 +20,10 @@ Partial Class AttendanceRepository
             End Try
         End Using
     End Function
-    Public Function SaveLeaveSheet(ByVal dsLeaveSheet As DataSet) As Boolean
+    Public Function SaveLeaveSheet(ByVal dsLeaveSheet As DataSet, Optional ByRef gID As Decimal = 0) As Boolean
         Using rep As New AttendanceBusinessClient
             Try
-                Return rep.SaveLeaveSheet(dsLeaveSheet, Me.Log)
+                Return rep.SaveLeaveSheet(dsLeaveSheet, Me.Log, gID)
             Catch ex As Exception
                 Throw ex
             End Try

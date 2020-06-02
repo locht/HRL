@@ -406,7 +406,7 @@ Public Class ctrlLeaveRegistration
             Dim outNumber As Decimal
             Try
                 Dim IAttendance As IAttendanceBusiness = New AttendanceBusinessClient()
-                outNumber = IAttendance.PRI_PROCESS_APP(EmployeeID, period_id, "LEAVE", 0, sumday, sign_id, id_group)
+                outNumber = IAttendance.PRI_PROCESS_APP(EmployeeID, period_id, "LEAVE", 0, sumday, sign_id, id_group, LogHelper.CurrentUser.EMPLOYEE_ID)
             Catch ex As Exception
                 ShowMessage(ex.ToString, NotifyType.Error)
             End Try
@@ -512,7 +512,8 @@ Public Class ctrlLeaveRegistration
             SetValueObjectByRadGrid(rgMain, _filter)
             Dim Sorts As String = rgMain.MasterTableView.SortExpressions.GetSortString()
             _filter.EMPLOYEE_ID = EmployeeID
-            _filter.IS_APP = 0
+            _filter.IS_APP = -1
+            _filter.CREATED_BY_EMP = LogHelper.CurrentUser.EMPLOYEE_ID
             If IsNumeric(cboStatus.SelectedValue) Then
                 _filter.STATUS = cboStatus.SelectedValue
             End If
