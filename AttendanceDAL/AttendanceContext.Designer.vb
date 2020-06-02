@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("d968dbf3-3d12-4404-b6fc-b2eca1adc6e2")>
+<Assembly: EdmSchemaAttribute("8dcc9c5a-fe1b-48ce-896c-625ff5d4b951")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -22062,24 +22062,24 @@ Public Partial Class AT_SEND_APPROVE_LETTER
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property EMP_ID() As Nullable(Of Global.System.Decimal)
+    Public Property LEAVE_ID() As Nullable(Of Global.System.Decimal)
         Get
-            Return _EMP_ID
+            Return _LEAVE_ID
         End Get
         Set
-            OnEMP_IDChanging(value)
-            ReportPropertyChanging("EMP_ID")
-            _EMP_ID = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("EMP_ID")
-            OnEMP_IDChanged()
+            OnLEAVE_IDChanging(value)
+            ReportPropertyChanging("LEAVE_ID")
+            _LEAVE_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("LEAVE_ID")
+            OnLEAVE_IDChanged()
         End Set
     End Property
 
-    Private _EMP_ID As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnEMP_IDChanging(value As Nullable(Of Global.System.Decimal))
+    Private _LEAVE_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnLEAVE_IDChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
-    Private Partial Sub OnEMP_IDChanged()
+    Private Partial Sub OnLEAVE_IDChanged()
     End Sub
 
     ''' <summary>

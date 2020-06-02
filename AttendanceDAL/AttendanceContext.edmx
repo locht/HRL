@@ -2629,7 +2629,7 @@
                 <PropertyRef Name="ID" />
             </Key>
             <Property Name="ID" Type="number" Nullable="false" Precision="38" />
-            <Property Name="EMP_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="LEAVE_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="USERNAME" Type="nvarchar2" Nullable="true" MaxLength="1024" />
             <Property Name="IS_DISSOLVE" Type="number" Nullable="true" Precision="38" />
             <Property Name="ACTION_DATE" Type="date" Nullable="true" />
@@ -5588,7 +5588,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="EMP_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="LEAVE_ID" Precision="38" Scale="0" />
           <Property Type="String" Name="USERNAME" MaxLength="1024" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="IS_DISSOLVE" Precision="38" Scale="0" />
           <Property Type="DateTime" Name="ACTION_DATE" />
@@ -8171,7 +8171,7 @@
             <EntityTypeMapping TypeName="AttendanceModel.AT_SEND_APPROVE_LETTER">
                 <MappingFragment StoreEntitySet="AT_SEND_APPROVE_LETTER">
                     <ScalarProperty Name="ID" ColumnName="ID" />
-                    <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
+                    <ScalarProperty Name="LEAVE_ID" ColumnName="LEAVE_ID" />
                     <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
                     <ScalarProperty Name="IS_DISSOLVE" ColumnName="IS_DISSOLVE" />
                     <ScalarProperty Name="ACTION_DATE" ColumnName="ACTION_DATE" />
