@@ -10,7 +10,7 @@ Imports Newtonsoft.Json.Linq
 Imports Aspose.Cells
 Imports HistaffFrameworkPublic
 Imports Microsoft.VisualBasic.Logging
-
+Imports System.Globalization
 
 Public Class ctrlHU_Health_Mng
     Inherits Common.CommonView
@@ -390,9 +390,14 @@ Public Class ctrlHU_Health_Mng
                         ShowMessage(Translate(Common.CommonMessage.MESSAGE_TRANSACTION_FAIL), Framework.UI.Utilities.NotifyType.Warning)
                     End If
                 End If
+            Else
+                Session("EXPORTREPORT") = dtLogs
+                ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('HU_ANNUALLEAVE_PLANS_ERROR')", True)
+                ShowMessage(Translate("Có lỗi trong quá trình import. Lưu file lỗi chi tiết"), Utilities.NotifyType.Error)
+
             End If
         Catch ex As Exception
-
+            ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
         End Try
     End Sub
 
@@ -438,45 +443,45 @@ Public Class ctrlHU_Health_Mng
         dtTemp.Columns(37).ColumnName = "KQ9"
         dtTemp.Columns(38).ColumnName = "KQ10"
         dtTemp.Columns(39).ColumnName = "HEALTH_TYPE"
-        dtTemp.Columns(40).ColumnName = "NHOM_BENH"
-        dtTemp.Columns(41).ColumnName = "TEN_BENH"
-        dtTemp.Columns(42).ColumnName = "KET_LUAB"
-        dtTemp.Columns(43).ColumnName = "GHI_CHU"
-        dtTemp.Columns(44).ColumnName = "DO_THINH_LUC_SB"
-        dtTemp.Columns(45).ColumnName = "DO_THINH_LUC_HC"
-        dtTemp.Columns(46).ColumnName = "DO_CN_HO_HAP"
-        dtTemp.Columns(47).ColumnName = "XN_HAMLUONG_TOLUEN"
-        dtTemp.Columns(48).ColumnName = "BENH_NN1"
-        dtTemp.Columns(49).ColumnName = "BENH_NN2"
-        dtTemp.Columns(50).ColumnName = "BENH_TN_NN"
-        dtTemp.Columns(51).ColumnName = "NGAY_DIEU_TRI"
-        dtTemp.Columns(52).ColumnName = "PP_DIEU_TRI"
-        dtTemp.Columns(53).ColumnName = "KQ_DIEU_TRI"
+        dtTemp.Columns(41).ColumnName = "NHOM_BENH"
+        dtTemp.Columns(43).ColumnName = "TEN_BENH"
+        dtTemp.Columns(44).ColumnName = "KET_LUAB"
+        dtTemp.Columns(45).ColumnName = "GHI_CHU"
+        dtTemp.Columns(46).ColumnName = "DO_THINH_LUC_SB"
+        dtTemp.Columns(47).ColumnName = "DO_THINH_LUC_HC"
+        dtTemp.Columns(48).ColumnName = "DO_CN_HO_HAP"
+        dtTemp.Columns(49).ColumnName = "XN_HAMLUONG_TOLUEN"
+        dtTemp.Columns(50).ColumnName = "BENH_NN1"
+        dtTemp.Columns(51).ColumnName = "BENH_NN2"
+        dtTemp.Columns(52).ColumnName = "BENH_TN_NN"
+        dtTemp.Columns(53).ColumnName = "NGAY_DIEU_TRI"
+        dtTemp.Columns(54).ColumnName = "PP_DIEU_TRI"
+        dtTemp.Columns(55).ColumnName = "KQ_DIEU_TRI"
 
         dtTemp.Rows(0).Delete()
         dtTemp.Rows(1).Delete()
         dtTemp.Rows(2).Delete()
-
 
         ' add Log
         Dim _error As Boolean = True
         Dim count As Integer
         Dim newRow As DataRow
         Dim empId As Integer
+        Dim startDate As Date
         Dim rep As New ProfileBusinessRepository
+        Dim result As Integer
+        Dim Health_Type As String
+        Dim Sick_Group As String
         If dtLogs Is Nothing Then
             dtLogs = New DataTable("data")
-            'dtLogs.Columns.Add("ID", GetType(Integer))
-            'dtLogs.Columns.Add("EMPLOYEE_CODE", GetType(String))
-            'dtLogs.Columns.Add("DISCIPTION", GetType(String))
+            dtLogs.Columns.Add("ID", GetType(Integer))
+            dtLogs.Columns.Add("EMPLOYEE_CODE", GetType(String))
+            dtLogs.Columns.Add("DISCIPTION", GetType(String))
         End If
         dtLogs.Clear()
 
         'XOA NHUNG DONG DU LIEU NULL EMPLOYYE CODE
         Dim rowDel As DataRow
-
-
-
         For i As Integer = 3 To dtTemp.Rows.Count - 1
             If dtTemp.Rows(i).RowState = DataRowState.Deleted OrElse dtTemp.Rows(i).RowState = DataRowState.Detached Then Continue For
             rowDel = dtTemp.Rows(i)
@@ -484,94 +489,72 @@ Public Class ctrlHU_Health_Mng
                 dtTemp.Rows(i).Delete()
             End If
         Next
+
+        For Each rows As DataRow In dtTemp.Rows
+            If rows.RowState = DataRowState.Deleted OrElse rows.RowState = DataRowState.Detached Then Continue For
+            newRow = dtLogs.NewRow
+            'newRow("STT") = count + 1
+            newRow("EMPLOYEE_CODE") = rows("EMPLOYEE_CODE")
+
+            empId = rep.CheckEmployee_Exits(rows("EMPLOYEE_CODE"))
+
+            If empId = 0 Then
+                newRow("DISCIPTION") = "Mã nhân viên - Không tồn tại,"
+                _error = False
+            Else
+                rows("EMPLOYEE_CODE") = empId
+            End If
+
+            If IsDBNull(rows("DATE_KHAMBENH")) OrElse rows("DATE_KHAMBENH") = "" OrElse CheckDate(rows("DATE_KHAMBENH"), startDate) = False Then
+                rows("DATE_KHAMBENH") = "NULL"
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Đợt khám - Không đúng định dạng,"
+                _error = False
+            End If
+
+            If IsDBNull(rows("NGAY_DIEU_TRI")) OrElse rows("NGAY_DIEU_TRI") = "" OrElse CheckDate(rows("NGAY_DIEU_TRI"), startDate) = False Then
+                rows("NGAY_DIEU_TRI") = "NULL"
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày điều trị - Không đúng định dạng,"
+                _error = False
+            End If
+            Health_Type = rows("HEALTH_TYPE")
+            Sick_Group = rows("NHOM_BENH")
+            result = rep.CheckChooseComboxFomat_HealthMng(Health_Type, Sick_Group, 0)
+            If result = 0 Then
+                rows("HEALTH_TYPE") = "NULL"
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Không được nhập Loại sức khỏe, "
+                _error = False
+                result = 1
+            End If
+            result = rep.CheckChooseComboxFomat_HealthMng(Health_Type, Sick_Group, 1)
+            If result = 0 Then
+                rows("HEALTH_TYPE") = "NULL"
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Không được nhập Nhóm bệnh "
+                _error = False
+                result = 1
+            End If
+
+            If _error = False Then
+                dtLogs.Rows.Add(newRow)
+                _error = True
+            End If
+            count += 1
+        Next
+
         dtTemp.AcceptChanges()
     End Sub
 
-    Private Sub TableMapping(ByVal dtdata As DataTable)
-        Dim row As DataRow = dtdata.Rows(0)
-        Dim index As Integer = 0
-        For Each cols As DataColumn In dtdata.Columns
-            Try
-                cols.ColumnName = row(index)
-                index += 1
-                If index > row.ItemArray.Length - 1 Then Exit For
-            Catch ex As Exception
-                Exit For
-            End Try
-        Next
-        dtdata.Rows(0).Delete()
-        dtdata.Rows(0).Delete()
-        dtdata.AcceptChanges()
-    End Sub
+    Private Function CheckDate(ByVal value As String, ByRef result As Date) As Boolean
+        Dim dateCheck As Boolean
+        If value = "" Or value = "&nbsp;" Then
+            value = ""
+            Return True
+        End If
 
-    Function loadToGrid() As Boolean
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim dtError As New DataTable("ERROR")
         Try
-            If dtData.Rows.Count = 0 Then
-                ShowMessage(Translate(CommonMessage.MESSAGE_NOT_ROW), NotifyType.Warning)
-                Return False
-            End If
-            Dim rowError As DataRow
-            Dim isError As Boolean = False
-            Dim sError As String = String.Empty
-            HealthMng = dtData.Clone
-            dtError = dtData.Clone
-            Dim iRow = 1
-            Dim _filter As New WorkingDTO
-            Dim rep As New ProfileBusinessRepository
-            Dim IBusiness As IProfileBusiness = New ProfileBusinessClient()
-            For Each row As DataRow In dtData.Rows
-                rowError = dtError.NewRow
-                isError = False
-                sError = "Chưa nhập mã nhân viên"
-                ImportValidate.EmptyValue("EMPLOYEE_CODE", row, rowError, isError, sError)
-                If isError Then
-                    rowError("EMPLOYEE_CODE") = row("EMPLOYEE_CODE").ToString
-                    If rowError("EMPLOYEE_CODE").ToString = "" Then
-                        rowError("EMPLOYEE_CODE") = row("EMPLOYEE_CODE").ToString
-                    End If
-                    dtError.Rows.Add(rowError)
-                Else
-                    HealthMng.ImportRow(row)
-                End If
-                iRow = iRow + 1
-            Next
-            If dtError.Rows.Count > 0 Then
-                dtError.TableName = "DATA"
-                ' gộp các lỗi vào 1 cột ghi chú 
-                Dim dtErrorGroup As New DataTable
-                Dim RowErrorGroup As DataRow
-                dtErrorGroup.Columns.Add("STT")
-                dtErrorGroup.Columns.Add("NOTE")
-                For j As Integer = 0 To dtError.Rows.Count - 1
-                    Dim strNote As String = String.Empty
-                    RowErrorGroup = dtErrorGroup.NewRow
-                    For k As Integer = 1 To dtError.Columns.Count - 1
-                        If Not dtError.Rows(j)(k) Is DBNull.Value Then
-                            strNote &= dtError.Rows(j)(k) & "\"
-                        End If
-                    Next
-                    RowErrorGroup("STT") = dtError.Rows(j)("EMPLOYEE_CODE")
-                    RowErrorGroup("NOTE") = strNote
-                    dtErrorGroup.Rows.Add(RowErrorGroup)
-                Next
-                dtErrorGroup.TableName = "DATA"
-                Session("EXPORTREPORT") = dtErrorGroup
-                rep.Dispose()
-                ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_importIO_error');", True)
-                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
-            End If
-            If isError OrElse (dtError IsNot Nothing AndAlso dtError.Rows.Count > 0) Then
-                Return False
-            Else
-                Return True
-            End If
-            rep.Dispose()
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+            dateCheck = DateTime.TryParseExact(value, "dd/MM/yyyy", New CultureInfo("en-US"), DateTimeStyles.None, result)
+            Return dateCheck
         Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+            Return False
         End Try
     End Function
 

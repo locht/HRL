@@ -738,6 +738,17 @@ Implements ServiceContracts.IProfileBusiness.GetHU_DataDynamicContractAppendix
                 End Try
             End Using
         End Function
+
+        Public Function CheckChooseComboxFomat_HealthMng(ByVal Health_Type As String, ByVal Sick_Group As String, ByVal Flag As Decimal) As Integer _
+           Implements ServiceContracts.IProfileBusiness.CheckChooseComboxFomat_HealthMng
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.CheckChooseComboxFomat_HealthMng(Health_Type, Sick_Group, Flag)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #End Region
 
 #Region "phu luc hop dong"

@@ -2834,6 +2834,9 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function Delete_Health_Mng(ByVal lstHealthMng() As HealthMngDTO,
                                    ByVal log As UserLog) As Boolean
+
+        <OperationContract()>
+        Function CheckChooseComboxFomat_HealthMng(ByVal Health_Type As String, ByVal Sick_Group As String, ByVal Flag As Decimal) As Integer
 #End Region
 
 

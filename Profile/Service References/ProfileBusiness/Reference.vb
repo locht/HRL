@@ -57325,6 +57325,9 @@ Namespace ProfileBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="ProfileBusiness.IProfileBusiness")>  _
     Public Interface IProfileBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveListChangeCon", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveListChangeConResponse")>  _
+        Function ApproveListChangeCon(ByVal listID As System.Collections.Generic.List(Of Decimal)) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteConcurrentlyByID", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteConcurrentlyByIDResponse")>  _
         Function DeleteConcurrentlyByID(ByVal listID As System.Collections.Generic.List(Of Decimal)) As Boolean
         
@@ -58572,6 +58575,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/Delete_Health_Mng", ReplyAction:="http://tempuri.org/IProfileBusiness/Delete_Health_MngResponse")>  _
         Function Delete_Health_Mng(ByVal lstHealthMng As System.Collections.Generic.List(Of ProfileBusiness.HealthMngDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckChooseComboxFomat_HealthMng", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckChooseComboxFomat_HealthMngResponse")>  _
+        Function CheckChooseComboxFomat_HealthMng(ByVal Health_Type As String, ByVal Sick_Group As String, ByVal Flag As Decimal) As Integer
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_LIST_CONCURRENTLY", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_LIST_CONCURRENTLYResponse")>  _
         Function GET_LIST_CONCURRENTLY(ByVal _filter As ProfileBusiness.Temp_ConcurrentlyDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO)
         
@@ -58598,9 +58604,6 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UPDATE_EMPLOYEE_KN", ReplyAction:="http://tempuri.org/IProfileBusiness/UPDATE_EMPLOYEE_KNResponse")>  _
         Function UPDATE_EMPLOYEE_KN(ByVal P_ID_KN As Decimal, ByVal P_DATE As Date) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveListChangeCon", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveListChangeConResponse")>  _
-        Function ApproveListChangeCon(ByVal listID As System.Collections.Generic.List(Of Decimal)) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeHuFile", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeHuFileResponse")>  _
         Function GetEmployeeHuFile(ByVal _filter As ProfileBusiness.HuFileDTO) As System.Collections.Generic.List(Of ProfileBusiness.HuFileDTO)
@@ -60164,6 +60167,10 @@ Namespace ProfileBusiness
             MyBase.New(binding, remoteAddress)
         End Sub
         
+        Public Function ApproveListChangeCon(ByVal listID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements ProfileBusiness.IProfileBusiness.ApproveListChangeCon
+            Return MyBase.Channel.ApproveListChangeCon(listID)
+        End Function
+        
         Public Function DeleteConcurrentlyByID(ByVal listID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteConcurrentlyByID
             Return MyBase.Channel.DeleteConcurrentlyByID(listID)
         End Function
@@ -60696,6 +60703,10 @@ Namespace ProfileBusiness
             Return MyBase.Channel.Delete_Health_Mng(lstHealthMng, log)
         End Function
         
+        Public Function CheckChooseComboxFomat_HealthMng(ByVal Health_Type As String, ByVal Sick_Group As String, ByVal Flag As Decimal) As Integer Implements ProfileBusiness.IProfileBusiness.CheckChooseComboxFomat_HealthMng
+            Return MyBase.Channel.CheckChooseComboxFomat_HealthMng(Health_Type, Sick_Group, Flag)
+        End Function
+        
         Public Function GET_LIST_CONCURRENTLY(ByVal _filter As ProfileBusiness.Temp_ConcurrentlyDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO) Implements ProfileBusiness.IProfileBusiness.GET_LIST_CONCURRENTLY
             Return MyBase.Channel.GET_LIST_CONCURRENTLY(_filter, PageIndex, PageSize, Total, log, Sorts)
         End Function
@@ -60730,10 +60741,6 @@ Namespace ProfileBusiness
         
         Public Function UPDATE_EMPLOYEE_KN(ByVal P_ID_KN As Decimal, ByVal P_DATE As Date) As Boolean Implements ProfileBusiness.IProfileBusiness.UPDATE_EMPLOYEE_KN
             Return MyBase.Channel.UPDATE_EMPLOYEE_KN(P_ID_KN, P_DATE)
-        End Function
-        
-        Public Function ApproveListChangeCon(ByVal listID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements ProfileBusiness.IProfileBusiness.ApproveListChangeCon
-            Return MyBase.Channel.ApproveListChangeCon(listID)
         End Function
         
         Public Function GetEmployeeHuFile(ByVal _filter As ProfileBusiness.HuFileDTO) As System.Collections.Generic.List(Of ProfileBusiness.HuFileDTO) Implements ProfileBusiness.IProfileBusiness.GetEmployeeHuFile
