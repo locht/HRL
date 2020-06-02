@@ -12,7 +12,8 @@ Namespace TrainingBusiness.ServiceContracts
 #Region "Hoadm - Common"
 
 #Region "OtherList"
-
+        <OperationContract()>
+        Function GetCodeCourse(ByVal id As Decimal) As String
         <OperationContract()>
         Function GetOtherList(ByVal sType As String, ByVal sLang As String, ByVal isBlank As Boolean) As DataTable
 

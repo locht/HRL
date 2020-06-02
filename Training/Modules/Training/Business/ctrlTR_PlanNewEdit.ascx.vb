@@ -375,7 +375,7 @@ Public Class ctrlTR_PlanNewEdit
                             End If
                             .PROPERTIES_NEED_ID = Decimal.Parse(cboTinhchatnhucau.SelectedValue)
                             .TR_TRAIN_FORM_ID = Decimal.Parse(cboHinhThuc.SelectedValue)
-
+                            .CODE = rep.GetCodeCourse(cboCourse.SelectedValue)
                             .TEACHER_NUMBER = rntxtTutors.Value
                             .STUDENT_NUMBER = rntxtStudents.Value
 

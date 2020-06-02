@@ -4,7 +4,14 @@ Imports Framework.UI
 Partial Class TrainingRepository
 
 #Region "Otherlist"
+    Public Function GetCodeCourse(ByVal id As Decimal) As String
+        Try
+            Dim rep As New TrainingBusinessClient
+            Return rep.GetCodeCourse(id)
+        Catch ex As Exception
 
+        End Try
+    End Function
     Public Function GetCourseList() As List(Of CourseDTO)
         Dim lstCourse As List(Of CourseDTO)
 

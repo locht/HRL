@@ -12,7 +12,16 @@ Imports Oracle.DataAccess.Client
 Partial Class TrainingRepository
 
 #Region "Otherlist"
+    Public Function GetCodeCourse(ByVal id As Decimal) As String
+        Try
+            Dim str = (From p In Context.TR_COURSE Where p.ID = id
+                    Select p.CODE).FirstOrDefault
 
+            Return str
+        Catch ex As Exception
+
+        End Try
+    End Function
     Public Function GetCourseList() As List(Of CourseDTO)
         Try
             Dim lst As New List(Of CourseDTO)
@@ -236,6 +245,10 @@ Partial Class TrainingRepository
             End If
             If filter.TR_DURATION_UNIT_NAME <> "" Then
                 lst = lst.Where(Function(p) p.TR_DURATION_UNIT_NAME.ToUpper.Contains(filter.TR_DURATION_UNIT_NAME.ToUpper))
+            End If
+
+            If filter.CODE <> "" Then
+                lst = lst.Where(Function(p) p.CODE.ToUpper.Contains(filter.CODE.ToUpper))
             End If
 
             If filter.DURATION.HasValue Then
