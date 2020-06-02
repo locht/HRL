@@ -45510,4 +45510,20 @@ Xin cám ơn!
       <string>Thiết lập biểu mẫu đánh giá</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLTR_ASSESSMENTCOURSE</string>
+    </Key>
+    <Value>
+      <string>Thiết lập biểu mẫu đánh giá cho khóa học</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>KHÓA ĐẠO TẠO</string>
+    </Key>
+    <Value>
+      <string>Khóa đạo tạo</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

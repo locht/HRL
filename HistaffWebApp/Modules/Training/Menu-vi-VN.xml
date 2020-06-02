@@ -11,9 +11,6 @@
         <Item Value="ctrlTR_TrainningRecord" Text="Hồ sơ đào tạo nhân viên" PostBack="True" NavigateUrl="Default.aspx?mid=Training&amp;fid=ctrlTR_TranningRecord&amp;group=Business" CheckPermission="TRUE"/>
       </Group>
     </Item>
-
-
-
     <Item Text="Thiết lập"  PostBack="False">
       <Group>
         <Item Value="ctrlTR_SettingCriteriaGroup" Text="Thiết lập tiêu chí cho từng nhóm tiêu chí" PostBack="True" NavigateUrl="Default.aspx?mid=Training&amp;fid=ctrlTR_SettingCriteriaGroup&amp;group=Setting" CheckPermission="true"/>
@@ -21,7 +18,6 @@
         <Item Value="ctrlTR_AssessmentCourse" Text="Thiết lập biểu mẫu đánh giá cho khóa học" PostBack="True" NavigateUrl="Default.aspx?mid=Training&amp;fid=ctrlTR_AssessmentCourse&amp;group=Setting" CheckPermission="TRUE"/>
       </Group>
     </Item>
-
     <Item Text="Danh mục"  PostBack="False">
       <Group>
         <Item Value="ctrlTR_Certificate" Text="Chứng chỉ" PostBack="True" NavigateUrl="Default.aspx?mid=Training&amp;fid=ctrlTR_Certificate&amp;group=List" CheckPermission="true"/>
