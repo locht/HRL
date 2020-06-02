@@ -12371,6 +12371,245 @@ Namespace TrainingBusiness
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="AssessmentCourseDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/TrainingDAL"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class AssessmentCourseDTO
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ASSESSMENT_FROM_IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ASSESSMENT_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COURSE_IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COURSE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_BYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_BYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private REMARKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private YEARField As Decimal
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ASSESSMENT_FROM_ID() As Decimal
+            Get
+                Return Me.ASSESSMENT_FROM_IDField
+            End Get
+            Set
+                If (Me.ASSESSMENT_FROM_IDField.Equals(value) <> true) Then
+                    Me.ASSESSMENT_FROM_IDField = value
+                    Me.RaisePropertyChanged("ASSESSMENT_FROM_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ASSESSMENT_NAME() As String
+            Get
+                Return Me.ASSESSMENT_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ASSESSMENT_NAMEField, value) <> true) Then
+                    Me.ASSESSMENT_NAMEField = value
+                    Me.RaisePropertyChanged("ASSESSMENT_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COURSE_ID() As Decimal
+            Get
+                Return Me.COURSE_IDField
+            End Get
+            Set
+                If (Me.COURSE_IDField.Equals(value) <> true) Then
+                    Me.COURSE_IDField = value
+                    Me.RaisePropertyChanged("COURSE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COURSE_NAME() As String
+            Get
+                Return Me.COURSE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.COURSE_NAMEField, value) <> true) Then
+                    Me.COURSE_NAMEField = value
+                    Me.RaisePropertyChanged("COURSE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_BY() As String
+            Get
+                Return Me.CREATED_BYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CREATED_BYField, value) <> true) Then
+                    Me.CREATED_BYField = value
+                    Me.RaisePropertyChanged("CREATED_BY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.CREATED_DATEField
+            End Get
+            Set
+                If (Me.CREATED_DATEField.Equals(value) <> true) Then
+                    Me.CREATED_DATEField = value
+                    Me.RaisePropertyChanged("CREATED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_LOG() As String
+            Get
+                Return Me.CREATED_LOGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CREATED_LOGField, value) <> true) Then
+                    Me.CREATED_LOGField = value
+                    Me.RaisePropertyChanged("CREATED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID() As Decimal
+            Get
+                Return Me.IDField
+            End Get
+            Set
+                If (Me.IDField.Equals(value) <> true) Then
+                    Me.IDField = value
+                    Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_BY() As String
+            Get
+                Return Me.MODIFIED_BYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MODIFIED_BYField, value) <> true) Then
+                    Me.MODIFIED_BYField = value
+                    Me.RaisePropertyChanged("MODIFIED_BY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.MODIFIED_DATEField
+            End Get
+            Set
+                If (Me.MODIFIED_DATEField.Equals(value) <> true) Then
+                    Me.MODIFIED_DATEField = value
+                    Me.RaisePropertyChanged("MODIFIED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_LOG() As String
+            Get
+                Return Me.MODIFIED_LOGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MODIFIED_LOGField, value) <> true) Then
+                    Me.MODIFIED_LOGField = value
+                    Me.RaisePropertyChanged("MODIFIED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property REMARK() As String
+            Get
+                Return Me.REMARKField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.REMARKField, value) <> true) Then
+                    Me.REMARKField = value
+                    Me.RaisePropertyChanged("REMARK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property YEAR() As Decimal
+            Get
+                Return Me.YEARField
+            End Get
+            Set
+                If (Me.YEARField.Equals(value) <> true) Then
+                    Me.YEARField = value
+                    Me.RaisePropertyChanged("YEAR")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
      System.Runtime.Serialization.DataContractAttribute(Name:="CostCenterDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/TrainingDAL"),  _
      System.SerializableAttribute()>  _
     Partial Public Class CostCenterDTO
@@ -15160,609 +15399,651 @@ Namespace TrainingBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetStatisticRank", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetStatisticRankResponse")>  _
         Function GetStatisticRank(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of TrainingBusiness.StatisticDTO)
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/TestService", ReplyAction:="http://tempuri.org/ITrainingBusiness/TestServiceResponse")>  _
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetAssessmentCourse", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetAssessmentCourseResponse")>  _
+        Function GetAssessmentCourse(ByVal _filter As TrainingBusiness.AssessmentCourseDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.AssessmentCourseDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertAssessmentCourse", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertAssessmentCourseResponse")>  _
+        Function InsertAssessmentCourse(ByVal objAssessmentForm As TrainingBusiness.AssessmentCourseDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ModifyAssessmentCourse", ReplyAction:="http://tempuri.org/ITrainingBusiness/ModifyAssessmentCourseResponse")>  _
+        Function ModifyAssessmentCourse(ByVal objAssessmentForm As TrainingBusiness.AssessmentCourseDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteAssessmentCourse", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteAssessmentCourseResponse")>  _
+        Function DeleteAssessmentCourse(ByVal lstAssessmentForm As System.Collections.Generic.List(Of TrainingBusiness.AssessmentCourseDTO)) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GET_TR_COURSE", ReplyAction:="http://tempuri.org/ITrainingBusiness/GET_TR_COURSEResponse")> _
+        Function GET_TR_COURSE() As System.Data.DataTable
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GET_TR_ASSESSMENT_FORM", ReplyAction:="http://tempuri.org/ITrainingBusiness/GET_TR_ASSESSMENT_FORMResponse")> _
+        Function GET_TR_ASSESSMENT_FORM() As System.Data.DataTable
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/TestService", ReplyAction:="http://tempuri.org/ITrainingBusiness/TestServiceResponse")> _
         Function TestService(ByVal str As String) As String
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetOtherList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetOtherListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetOtherList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetOtherListResponse")> _
         Function GetOtherList(ByVal sType As String, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTrCertificateList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTrCertificateListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTrCertificateList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTrCertificateListResponse")> _
         Function GetTrCertificateList(ByVal dGroupID As Decimal, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTrCenterList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTrCenterListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTrCenterList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTrCenterListResponse")> _
         Function GetTrCenterList(ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetFiedlTrainList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetFiedlTrainListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetFiedlTrainList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetFiedlTrainListResponse")> _
         Function GetFiedlTrainList() As System.Collections.Generic.List(Of TrainingBusiness.LectureDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTrPlanByYearOrg", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTrPlanByYearOrgResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTrPlanByYearOrg", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTrPlanByYearOrgResponse")> _
         Function GetTrPlanByYearOrg(ByVal isBlank As Boolean, ByVal dYear As Decimal, ByVal dOrg As Decimal, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTrPlanByYearOrg2", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTrPlanByYearOrg2Response")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTrPlanByYearOrg2", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTrPlanByYearOrg2Response")> _
         Function GetTrPlanByYearOrg2(ByVal isBlank As Boolean, ByVal dYear As Decimal, ByVal dOrg As Decimal, ByVal log As Common.CommonBusiness.UserLog, ByVal isIrregularly As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTrLectureList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTrLectureListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTrLectureList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTrLectureListResponse")> _
         Function GetTrLectureList(ByVal isLocal As Boolean, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetHuProvinceList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetHuProvinceListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetHuProvinceList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetHuProvinceListResponse")> _
         Function GetHuProvinceList(ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetHuDistrictList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetHuDistrictListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetHuDistrictList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetHuDistrictListResponse")> _
         Function GetHuDistrictList(ByVal provinceID As Decimal, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetHuContractTypeList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetHuContractTypeListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetHuContractTypeList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetHuContractTypeListResponse")> _
         Function GetHuContractTypeList(ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTrProgramByYear", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTrProgramByYearResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTrProgramByYear", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTrProgramByYearResponse")> _
         Function GetTrProgramByYear(ByVal isBlank As Boolean, ByVal dYear As Decimal) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTrCriteriaGroupList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTrCriteriaGroupListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTrCriteriaGroupList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTrCriteriaGroupListResponse")> _
         Function GetTrCriteriaGroupList(ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTrAssFormList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTrAssFormListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTrAssFormList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTrAssFormListResponse")> _
         Function GetTrAssFormList(ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTrChooseProgramFormByYear", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTrChooseProgramFormByYearResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTrChooseProgramFormByYear", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTrChooseProgramFormByYearResponse")> _
         Function GetTrChooseProgramFormByYear(ByVal isBlank As Boolean, ByVal dYear As Decimal) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCostCenter", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCostCenterResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCostCenter", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCostCenterResponse")> _
         Function GetCostCenter(ByVal _filter As TrainingBusiness.CostCenterDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.CostCenterDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertCostCenter", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertCostCenterResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertCostCenter", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertCostCenterResponse")> _
         Function InsertCostCenter(ByVal objCostCenter As TrainingBusiness.CostCenterDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ValidateCostCenter", ReplyAction:="http://tempuri.org/ITrainingBusiness/ValidateCostCenterResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ValidateCostCenter", ReplyAction:="http://tempuri.org/ITrainingBusiness/ValidateCostCenterResponse")> _
         Function ValidateCostCenter(ByVal objCostCenter As TrainingBusiness.CostCenterDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ModifyCostCenter", ReplyAction:="http://tempuri.org/ITrainingBusiness/ModifyCostCenterResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ModifyCostCenter", ReplyAction:="http://tempuri.org/ITrainingBusiness/ModifyCostCenterResponse")> _
         Function ModifyCostCenter(ByVal objCostCenter As TrainingBusiness.CostCenterDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ActiveCostCenter", ReplyAction:="http://tempuri.org/ITrainingBusiness/ActiveCostCenterResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ActiveCostCenter", ReplyAction:="http://tempuri.org/ITrainingBusiness/ActiveCostCenterResponse")> _
         Function ActiveCostCenter(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Boolean) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteCostCenter", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteCostCenterResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteCostCenter", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteCostCenterResponse")> _
         Function DeleteCostCenter(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCertificate", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCertificateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCertificate", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCertificateResponse")> _
         Function GetCertificate(ByVal _filter As TrainingBusiness.CertificateDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.CertificateDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertCertificate", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertCertificateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertCertificate", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertCertificateResponse")> _
         Function InsertCertificate(ByVal objCertificate As TrainingBusiness.CertificateDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ValidateCertificate", ReplyAction:="http://tempuri.org/ITrainingBusiness/ValidateCertificateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ValidateCertificate", ReplyAction:="http://tempuri.org/ITrainingBusiness/ValidateCertificateResponse")> _
         Function ValidateCertificate(ByVal objCertificate As TrainingBusiness.CertificateDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ModifyCertificate", ReplyAction:="http://tempuri.org/ITrainingBusiness/ModifyCertificateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ModifyCertificate", ReplyAction:="http://tempuri.org/ITrainingBusiness/ModifyCertificateResponse")> _
         Function ModifyCertificate(ByVal objCertificate As TrainingBusiness.CertificateDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ActiveCertificate", ReplyAction:="http://tempuri.org/ITrainingBusiness/ActiveCertificateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ActiveCertificate", ReplyAction:="http://tempuri.org/ITrainingBusiness/ActiveCertificateResponse")> _
         Function ActiveCertificate(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Boolean) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteCertificate", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteCertificateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteCertificate", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteCertificateResponse")> _
         Function DeleteCertificate(ByVal lstCertificate As System.Collections.Generic.List(Of TrainingBusiness.CertificateDTO)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCourse", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCourseResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCourse", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCourseResponse")> _
         Function GetCourse(ByVal _filter As TrainingBusiness.CourseDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.CourseDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertCourse", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertCourseResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertCourse", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertCourseResponse")> _
         Function InsertCourse(ByVal objCourse As TrainingBusiness.CourseDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ValidateCourse", ReplyAction:="http://tempuri.org/ITrainingBusiness/ValidateCourseResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ValidateCourse", ReplyAction:="http://tempuri.org/ITrainingBusiness/ValidateCourseResponse")> _
         Function ValidateCourse(ByVal objCourse As TrainingBusiness.CourseDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ModifyCourse", ReplyAction:="http://tempuri.org/ITrainingBusiness/ModifyCourseResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ModifyCourse", ReplyAction:="http://tempuri.org/ITrainingBusiness/ModifyCourseResponse")> _
         Function ModifyCourse(ByVal objCourse As TrainingBusiness.CourseDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ActiveCourse", ReplyAction:="http://tempuri.org/ITrainingBusiness/ActiveCourseResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ActiveCourse", ReplyAction:="http://tempuri.org/ITrainingBusiness/ActiveCourseResponse")> _
         Function ActiveCourse(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Boolean) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteCourse", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteCourseResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteCourse", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteCourseResponse")> _
         Function DeleteCourse(ByVal lstCourse As System.Collections.Generic.List(Of TrainingBusiness.CourseDTO)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCenter", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCenterResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCenter", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCenterResponse")> _
         Function GetCenter(ByVal _filter As TrainingBusiness.CenterDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.CenterDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertCenter", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertCenterResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertCenter", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertCenterResponse")> _
         Function InsertCenter(ByVal objCenter As TrainingBusiness.CenterDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ValidateCenter", ReplyAction:="http://tempuri.org/ITrainingBusiness/ValidateCenterResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ValidateCenter", ReplyAction:="http://tempuri.org/ITrainingBusiness/ValidateCenterResponse")> _
         Function ValidateCenter(ByVal objCenter As TrainingBusiness.CenterDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ModifyCenter", ReplyAction:="http://tempuri.org/ITrainingBusiness/ModifyCenterResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ModifyCenter", ReplyAction:="http://tempuri.org/ITrainingBusiness/ModifyCenterResponse")> _
         Function ModifyCenter(ByVal objCenter As TrainingBusiness.CenterDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ActiveCenter", ReplyAction:="http://tempuri.org/ITrainingBusiness/ActiveCenterResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ActiveCenter", ReplyAction:="http://tempuri.org/ITrainingBusiness/ActiveCenterResponse")> _
         Function ActiveCenter(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Boolean) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteCenter", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteCenterResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteCenter", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteCenterResponse")> _
         Function DeleteCenter(ByVal lstCenter As System.Collections.Generic.List(Of TrainingBusiness.CenterDTO)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetLecture", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetLectureResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetLecture", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetLectureResponse")> _
         Function GetLecture(ByVal _filter As TrainingBusiness.LectureDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.LectureDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertLecture", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertLectureResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertLecture", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertLectureResponse")> _
         Function InsertLecture(ByVal objLecture As TrainingBusiness.LectureDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ValidateLecture", ReplyAction:="http://tempuri.org/ITrainingBusiness/ValidateLectureResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ValidateLecture", ReplyAction:="http://tempuri.org/ITrainingBusiness/ValidateLectureResponse")> _
         Function ValidateLecture(ByVal objLecture As TrainingBusiness.LectureDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ModifyLecture", ReplyAction:="http://tempuri.org/ITrainingBusiness/ModifyLectureResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ModifyLecture", ReplyAction:="http://tempuri.org/ITrainingBusiness/ModifyLectureResponse")> _
         Function ModifyLecture(ByVal objLecture As TrainingBusiness.LectureDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ActiveLecture", ReplyAction:="http://tempuri.org/ITrainingBusiness/ActiveLectureResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ActiveLecture", ReplyAction:="http://tempuri.org/ITrainingBusiness/ActiveLectureResponse")> _
         Function ActiveLecture(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Boolean) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteLecture", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteLectureResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteLecture", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteLectureResponse")> _
         Function DeleteLecture(ByVal lstLecture As System.Collections.Generic.List(Of TrainingBusiness.LectureDTO)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCommitAfterTrain", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCommitAfterTrainResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCommitAfterTrain", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCommitAfterTrainResponse")> _
         Function GetCommitAfterTrain(ByVal _filter As TrainingBusiness.CommitAfterTrainDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.CommitAfterTrainDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertCommitAfterTrain", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertCommitAfterTrainResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertCommitAfterTrain", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertCommitAfterTrainResponse")> _
         Function InsertCommitAfterTrain(ByVal objCommitAfterTrain As TrainingBusiness.CommitAfterTrainDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ModifyCommitAfterTrain", ReplyAction:="http://tempuri.org/ITrainingBusiness/ModifyCommitAfterTrainResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ModifyCommitAfterTrain", ReplyAction:="http://tempuri.org/ITrainingBusiness/ModifyCommitAfterTrainResponse")> _
         Function ModifyCommitAfterTrain(ByVal objCommitAfterTrain As TrainingBusiness.CommitAfterTrainDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ActiveCommitAfterTrain", ReplyAction:="http://tempuri.org/ITrainingBusiness/ActiveCommitAfterTrainResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ActiveCommitAfterTrain", ReplyAction:="http://tempuri.org/ITrainingBusiness/ActiveCommitAfterTrainResponse")> _
         Function ActiveCommitAfterTrain(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Boolean) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteCommitAfterTrain", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteCommitAfterTrainResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteCommitAfterTrain", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteCommitAfterTrainResponse")> _
         Function DeleteCommitAfterTrain(ByVal lstCommitAfterTrain As System.Collections.Generic.List(Of TrainingBusiness.CommitAfterTrainDTO)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCriteria", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCriteriaResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCriteria", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCriteriaResponse")> _
         Function GetCriteria(ByVal _filter As TrainingBusiness.CriteriaDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.CriteriaDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertCriteria", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertCriteriaResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertCriteria", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertCriteriaResponse")> _
         Function InsertCriteria(ByVal objCriteria As TrainingBusiness.CriteriaDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ValidateCriteria", ReplyAction:="http://tempuri.org/ITrainingBusiness/ValidateCriteriaResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ValidateCriteria", ReplyAction:="http://tempuri.org/ITrainingBusiness/ValidateCriteriaResponse")> _
         Function ValidateCriteria(ByVal objCriteria As TrainingBusiness.CriteriaDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ModifyCriteria", ReplyAction:="http://tempuri.org/ITrainingBusiness/ModifyCriteriaResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ModifyCriteria", ReplyAction:="http://tempuri.org/ITrainingBusiness/ModifyCriteriaResponse")> _
         Function ModifyCriteria(ByVal objCriteria As TrainingBusiness.CriteriaDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ActiveCriteria", ReplyAction:="http://tempuri.org/ITrainingBusiness/ActiveCriteriaResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ActiveCriteria", ReplyAction:="http://tempuri.org/ITrainingBusiness/ActiveCriteriaResponse")> _
         Function ActiveCriteria(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Boolean) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteCriteria", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteCriteriaResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteCriteria", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteCriteriaResponse")> _
         Function DeleteCriteria(ByVal lstCriteria As System.Collections.Generic.List(Of TrainingBusiness.CriteriaDTO)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCriteriaGroup", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCriteriaGroupResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCriteriaGroup", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCriteriaGroupResponse")> _
         Function GetCriteriaGroup(ByVal _filter As TrainingBusiness.CriteriaGroupDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.CriteriaGroupDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertCriteriaGroup", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertCriteriaGroupResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertCriteriaGroup", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertCriteriaGroupResponse")> _
         Function InsertCriteriaGroup(ByVal objCriteriaGroup As TrainingBusiness.CriteriaGroupDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ValidateCriteriaGroup", ReplyAction:="http://tempuri.org/ITrainingBusiness/ValidateCriteriaGroupResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ValidateCriteriaGroup", ReplyAction:="http://tempuri.org/ITrainingBusiness/ValidateCriteriaGroupResponse")> _
         Function ValidateCriteriaGroup(ByVal objCriteriaGroup As TrainingBusiness.CriteriaGroupDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ModifyCriteriaGroup", ReplyAction:="http://tempuri.org/ITrainingBusiness/ModifyCriteriaGroupResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ModifyCriteriaGroup", ReplyAction:="http://tempuri.org/ITrainingBusiness/ModifyCriteriaGroupResponse")> _
         Function ModifyCriteriaGroup(ByVal objCriteriaGroup As TrainingBusiness.CriteriaGroupDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ActiveCriteriaGroup", ReplyAction:="http://tempuri.org/ITrainingBusiness/ActiveCriteriaGroupResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ActiveCriteriaGroup", ReplyAction:="http://tempuri.org/ITrainingBusiness/ActiveCriteriaGroupResponse")> _
         Function ActiveCriteriaGroup(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Boolean) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteCriteriaGroup", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteCriteriaGroupResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteCriteriaGroup", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteCriteriaGroupResponse")> _
         Function DeleteCriteriaGroup(ByVal lstCriteriaGroup As System.Collections.Generic.List(Of TrainingBusiness.CriteriaGroupDTO)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetAssessmentRate", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetAssessmentRateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetAssessmentRate", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetAssessmentRateResponse")> _
         Function GetAssessmentRate(ByVal _filter As TrainingBusiness.AssessmentRateDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.AssessmentRateDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertAssessmentRate", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertAssessmentRateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertAssessmentRate", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertAssessmentRateResponse")> _
         Function InsertAssessmentRate(ByVal objAssessmentRate As TrainingBusiness.AssessmentRateDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ModifyAssessmentRate", ReplyAction:="http://tempuri.org/ITrainingBusiness/ModifyAssessmentRateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ModifyAssessmentRate", ReplyAction:="http://tempuri.org/ITrainingBusiness/ModifyAssessmentRateResponse")> _
         Function ModifyAssessmentRate(ByVal objAssessmentRate As TrainingBusiness.AssessmentRateDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ActiveAssessmentRate", ReplyAction:="http://tempuri.org/ITrainingBusiness/ActiveAssessmentRateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ActiveAssessmentRate", ReplyAction:="http://tempuri.org/ITrainingBusiness/ActiveAssessmentRateResponse")> _
         Function ActiveAssessmentRate(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Boolean) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteAssessmentRate", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteAssessmentRateResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteAssessmentRate", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteAssessmentRateResponse")> _
         Function DeleteAssessmentRate(ByVal lstAssessmentRate As System.Collections.Generic.List(Of TrainingBusiness.AssessmentRateDTO)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetAssessmentForm", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetAssessmentFormResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetAssessmentForm", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetAssessmentFormResponse")> _
         Function GetAssessmentForm(ByVal _filter As TrainingBusiness.AssessmentFormDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.AssessmentFormDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertAssessmentForm", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertAssessmentFormResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertAssessmentForm", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertAssessmentFormResponse")> _
         Function InsertAssessmentForm(ByVal objAssessmentForm As TrainingBusiness.AssessmentFormDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ModifyAssessmentForm", ReplyAction:="http://tempuri.org/ITrainingBusiness/ModifyAssessmentFormResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ModifyAssessmentForm", ReplyAction:="http://tempuri.org/ITrainingBusiness/ModifyAssessmentFormResponse")> _
         Function ModifyAssessmentForm(ByVal objAssessmentForm As TrainingBusiness.AssessmentFormDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteAssessmentForm", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteAssessmentFormResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteAssessmentForm", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteAssessmentFormResponse")> _
         Function DeleteAssessmentForm(ByVal lstAssessmentForm As System.Collections.Generic.List(Of TrainingBusiness.AssessmentFormDTO)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTrRateCombo", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTrRateComboResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTrRateCombo", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTrRateComboResponse")> _
         Function GetTrRateCombo(ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCriteriaGroupNotByFormID", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCriteriaGroupNotByFormIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCriteriaGroupNotByFormID", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCriteriaGroupNotByFormIDResponse")> _
         Function GetCriteriaGroupNotByFormID(ByVal _filter As TrainingBusiness.SettingAssFormDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.SettingAssFormDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCriteriaGroupByFormID", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCriteriaGroupByFormIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCriteriaGroupByFormID", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCriteriaGroupByFormIDResponse")> _
         Function GetCriteriaGroupByFormID(ByVal _filter As TrainingBusiness.SettingAssFormDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.SettingAssFormDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertSettingAssForm", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertSettingAssFormResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertSettingAssForm", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertSettingAssFormResponse")> _
         Function InsertSettingAssForm(ByVal lst As System.Collections.Generic.List(Of TrainingBusiness.SettingAssFormDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteSettingAssForm", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteSettingAssFormResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteSettingAssForm", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteSettingAssFormResponse")> _
         Function DeleteSettingAssForm(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCriteriaNotByGroupID", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCriteriaNotByGroupIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCriteriaNotByGroupID", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCriteriaNotByGroupIDResponse")> _
         Function GetCriteriaNotByGroupID(ByVal _filter As TrainingBusiness.SettingCriteriaGroupDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.SettingCriteriaGroupDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCriteriaByGroupID", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCriteriaByGroupIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCriteriaByGroupID", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCriteriaByGroupIDResponse")> _
         Function GetCriteriaByGroupID(ByVal _filter As TrainingBusiness.SettingCriteriaGroupDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.SettingCriteriaGroupDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertSettingCriteriaGroup", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertSettingCriteriaGroupResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertSettingCriteriaGroup", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertSettingCriteriaGroupResponse")> _
         Function InsertSettingCriteriaGroup(ByVal lst As System.Collections.Generic.List(Of TrainingBusiness.SettingCriteriaGroupDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteSettingCriteriaGroup", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteSettingCriteriaGroupResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteSettingCriteriaGroup", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteSettingCriteriaGroupResponse")> _
         Function DeleteSettingCriteriaGroup(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCourseList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCourseListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetCourseList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetCourseListResponse")> _
         Function GetCourseList() As System.Collections.Generic.List(Of TrainingBusiness.CourseDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetIDCourseList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetIDCourseListResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetIDCourseList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetIDCourseListResponse")> _
         Function GetIDCourseList(ByVal idSelected As String) As System.Collections.Generic.List(Of TrainingBusiness.CourseDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTitlesByOrgs", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTitlesByOrgsResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTitlesByOrgs", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTitlesByOrgsResponse")> _
         Function GetTitlesByOrgs(ByVal orgIds As System.Collections.Generic.List(Of Decimal), ByVal langCode As String) As System.Collections.Generic.List(Of TrainingBusiness.PlanTitleDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetWIByTitle", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetWIByTitleResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetWIByTitle", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetWIByTitleResponse")> _
         Function GetWIByTitle(ByVal orgIds As System.Collections.Generic.List(Of Decimal), ByVal langCode As String) As System.Collections.Generic.List(Of TrainingBusiness.PlanTitleDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetEntryAndFormByCourseID", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetEntryAndFormByCourseIDResponse")>  _
+
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetEntryAndFormByCourseID", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetEntryAndFormByCourseIDResponse")> _
         Function GetEntryAndFormByCourseID(ByVal CourseId As Decimal, ByVal langCode As String) As TrainingBusiness.CourseDTO
     End Interface
-    
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
+
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")> _
     Public Interface ITrainingBusinessChannel
         Inherits TrainingBusiness.ITrainingBusiness, System.ServiceModel.IClientChannel
     End Interface
-    
-    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
+
+    <System.Diagnostics.DebuggerStepThroughAttribute(), _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")> _
     Partial Public Class TrainingBusinessClient
         Inherits System.ServiceModel.ClientBase(Of TrainingBusiness.ITrainingBusiness)
         Implements TrainingBusiness.ITrainingBusiness
-        
+
         Public Sub New()
-            MyBase.New
+            MyBase.New()
         End Sub
-        
+
         Public Sub New(ByVal endpointConfigurationName As String)
             MyBase.New(endpointConfigurationName)
         End Sub
-        
+
         Public Sub New(ByVal endpointConfigurationName As String, ByVal remoteAddress As String)
             MyBase.New(endpointConfigurationName, remoteAddress)
         End Sub
-        
+
         Public Sub New(ByVal endpointConfigurationName As String, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(endpointConfigurationName, remoteAddress)
         End Sub
-        
+
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
-        
+
         Public Function GetCenters() As System.Collections.Generic.List(Of TrainingBusiness.CenterDTO) Implements TrainingBusiness.ITrainingBusiness.GetCenters
             Return MyBase.Channel.GetCenters
         End Function
-        
+
         Public Function GetPlans(ByVal filter As TrainingBusiness.PlanDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As TrainingBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of TrainingBusiness.PlanDTO) Implements TrainingBusiness.ITrainingBusiness.GetPlans
             Return MyBase.Channel.GetPlans(filter, PageIndex, PageSize, Total, _param, Sorts, log)
         End Function
-        
+
         Public Function GetPlanById(ByVal Id As Decimal) As TrainingBusiness.PlanDTO Implements TrainingBusiness.ITrainingBusiness.GetPlanById
             Return MyBase.Channel.GetPlanById(Id)
         End Function
-        
+
         Public Function InsertPlan(ByVal plan As TrainingBusiness.PlanDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.InsertPlan
             Return MyBase.Channel.InsertPlan(plan, log, gID)
         End Function
-        
+
         Public Function ModifyPlan(ByVal plan As TrainingBusiness.PlanDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.ModifyPlan
             Return MyBase.Channel.ModifyPlan(plan, log, gID)
         End Function
-        
+
         Public Function DeletePlans(ByVal lstId As System.Collections.Generic.List(Of Decimal)) As Boolean Implements TrainingBusiness.ITrainingBusiness.DeletePlans
             Return MyBase.Channel.DeletePlans(lstId)
         End Function
-        
+
         Public Function ApproveListPlan(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal flag As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements TrainingBusiness.ITrainingBusiness.ApproveListPlan
             Return MyBase.Channel.ApproveListPlan(listID, flag, log)
         End Function
-        
+
         Public Function GetTrainingRequests(ByVal filter As TrainingBusiness.RequestDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As TrainingBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of TrainingBusiness.RequestDTO) Implements TrainingBusiness.ITrainingBusiness.GetTrainingRequests
             Return MyBase.Channel.GetTrainingRequests(filter, PageIndex, PageSize, Total, _param, Sorts, log)
         End Function
-        
+
         Public Function GetTrainingRequestsByID(ByVal filter As TrainingBusiness.RequestDTO) As TrainingBusiness.RequestDTO Implements TrainingBusiness.ITrainingBusiness.GetTrainingRequestsByID
             Return MyBase.Channel.GetTrainingRequestsByID(filter)
         End Function
-        
+
         Public Function GetEmployeeByImportRequest(ByRef lstEmpCode As System.Collections.Generic.List(Of TrainingBusiness.RequestEmpDTO)) As String Implements TrainingBusiness.ITrainingBusiness.GetEmployeeByImportRequest
             Return MyBase.Channel.GetEmployeeByImportRequest(lstEmpCode)
         End Function
-        
+
         Public Function GetEmployeeByPlanID(ByVal filter As TrainingBusiness.RequestDTO) As System.Collections.Generic.List(Of TrainingBusiness.RequestEmpDTO) Implements TrainingBusiness.ITrainingBusiness.GetEmployeeByPlanID
             Return MyBase.Channel.GetEmployeeByPlanID(filter)
         End Function
-        
+
         Public Function InsertRequest(ByVal Request As TrainingBusiness.RequestDTO, ByVal lstEmp As System.Collections.Generic.List(Of TrainingBusiness.RequestEmpDTO), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.InsertRequest
             Return MyBase.Channel.InsertRequest(Request, lstEmp, log, gID)
         End Function
-        
+
         Public Function ModifyRequest(ByVal Request As TrainingBusiness.RequestDTO, ByVal lstEmp As System.Collections.Generic.List(Of TrainingBusiness.RequestEmpDTO), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.ModifyRequest
             Return MyBase.Channel.ModifyRequest(Request, lstEmp, log, gID)
         End Function
-        
+
         Public Function UpdateStatusTrainingRequests(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal status As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.UpdateStatusTrainingRequests
             Return MyBase.Channel.UpdateStatusTrainingRequests(lstID, status)
         End Function
-        
+
         Public Function DeleteTrainingRequests(ByVal lstRequestID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements TrainingBusiness.ITrainingBusiness.DeleteTrainingRequests
             Return MyBase.Channel.DeleteTrainingRequests(lstRequestID)
         End Function
-        
+
         Public Function GetPlanRequestByID(ByVal Id As Decimal) As TrainingBusiness.PlanDTO Implements TrainingBusiness.ITrainingBusiness.GetPlanRequestByID
             Return MyBase.Channel.GetPlanRequestByID(Id)
         End Function
-        
+
         Public Function GetRequestsForProgram(ByVal ReqID As Decimal) As TrainingBusiness.RequestDTO Implements TrainingBusiness.ITrainingBusiness.GetRequestsForProgram
             Return MyBase.Channel.GetRequestsForProgram(ReqID)
         End Function
-        
+
         Public Function GetPrograms(ByVal filter As TrainingBusiness.ProgramDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As TrainingBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of TrainingBusiness.ProgramDTO) Implements TrainingBusiness.ITrainingBusiness.GetPrograms
             Return MyBase.Channel.GetPrograms(filter, PageIndex, PageSize, Total, _param, Sorts, log)
         End Function
-        
+
         Public Function GetPlan_Cost_Detail(ByVal Id As Decimal) As System.Collections.Generic.List(Of TrainingBusiness.CostDetailDTO) Implements TrainingBusiness.ITrainingBusiness.GetPlan_Cost_Detail
             Return MyBase.Channel.GetPlan_Cost_Detail(Id)
         End Function
-        
+
         Public Function GetProgramById(ByVal Id As Decimal) As TrainingBusiness.ProgramDTO Implements TrainingBusiness.ITrainingBusiness.GetProgramById
             Return MyBase.Channel.GetProgramById(Id)
         End Function
-        
+
         Public Function GetProgramByChooseFormId(ByVal Id As Decimal) As TrainingBusiness.ProgramDTO Implements TrainingBusiness.ITrainingBusiness.GetProgramByChooseFormId
             Return MyBase.Channel.GetProgramByChooseFormId(Id)
         End Function
-        
+
         Public Function InsertProgram(ByVal Program As TrainingBusiness.ProgramDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.InsertProgram
             Return MyBase.Channel.InsertProgram(Program, log, gID)
         End Function
-        
+
         Public Function ModifyProgram(ByVal Program As TrainingBusiness.ProgramDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.ModifyProgram
             Return MyBase.Channel.ModifyProgram(Program, log, gID)
         End Function
-        
+
         Public Function DeletePrograms(ByVal lstId As System.Collections.Generic.List(Of Decimal)) As Boolean Implements TrainingBusiness.ITrainingBusiness.DeletePrograms
             Return MyBase.Channel.DeletePrograms(lstId)
         End Function
-        
+
         Public Function ValidateClassProgram(ByVal lstId As System.Collections.Generic.List(Of Decimal)) As Boolean Implements TrainingBusiness.ITrainingBusiness.ValidateClassProgram
             Return MyBase.Channel.ValidateClassProgram(lstId)
         End Function
-        
+
         Public Function GetPrepare(ByVal _filter As TrainingBusiness.ProgramPrepareDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.ProgramPrepareDTO) Implements TrainingBusiness.ITrainingBusiness.GetPrepare
             Return MyBase.Channel.GetPrepare(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
-        
+
         Public Function InsertPrepare(ByVal objPrepare As TrainingBusiness.ProgramPrepareDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.InsertPrepare
             Return MyBase.Channel.InsertPrepare(objPrepare, log, gID)
         End Function
-        
+
         Public Function ModifyPrepare(ByVal objPrepare As TrainingBusiness.ProgramPrepareDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.ModifyPrepare
             Return MyBase.Channel.ModifyPrepare(objPrepare, log, gID)
         End Function
-        
+
         Public Function DeletePrepare(ByVal lstPrepare As System.Collections.Generic.List(Of TrainingBusiness.ProgramPrepareDTO)) As Boolean Implements TrainingBusiness.ITrainingBusiness.DeletePrepare
             Return MyBase.Channel.DeletePrepare(lstPrepare)
         End Function
-        
+
         Public Function GetClass(ByVal _filter As TrainingBusiness.ProgramClassDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.ProgramClassDTO) Implements TrainingBusiness.ITrainingBusiness.GetClass
             Return MyBase.Channel.GetClass(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
-        
+
         Public Function GetClassByID(ByVal _filter As TrainingBusiness.ProgramClassDTO) As TrainingBusiness.ProgramClassDTO Implements TrainingBusiness.ITrainingBusiness.GetClassByID
             Return MyBase.Channel.GetClassByID(_filter)
         End Function
-        
+
         Public Function InsertClass(ByVal objClass As TrainingBusiness.ProgramClassDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.InsertClass
             Return MyBase.Channel.InsertClass(objClass, log, gID)
         End Function
-        
+
         Public Function ModifyClass(ByVal objClass As TrainingBusiness.ProgramClassDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.ModifyClass
             Return MyBase.Channel.ModifyClass(objClass, log, gID)
         End Function
-        
+
         Public Function DeleteClass(ByVal lstClass As System.Collections.Generic.List(Of TrainingBusiness.ProgramClassDTO)) As Boolean Implements TrainingBusiness.ITrainingBusiness.DeleteClass
             Return MyBase.Channel.DeleteClass(lstClass)
         End Function
-        
+
         Public Function GetEmployeeNotByClassID(ByVal _filter As TrainingBusiness.ProgramClassStudentDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.ProgramClassStudentDTO) Implements TrainingBusiness.ITrainingBusiness.GetEmployeeNotByClassID
             Return MyBase.Channel.GetEmployeeNotByClassID(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
-        
+
         Public Function GetEmployeeByClassID(ByVal _filter As TrainingBusiness.ProgramClassStudentDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.ProgramClassStudentDTO) Implements TrainingBusiness.ITrainingBusiness.GetEmployeeByClassID
             Return MyBase.Channel.GetEmployeeByClassID(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
-        
+
         Public Function InsertClassStudent(ByVal lst As System.Collections.Generic.List(Of TrainingBusiness.ProgramClassStudentDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements TrainingBusiness.ITrainingBusiness.InsertClassStudent
             Return MyBase.Channel.InsertClassStudent(lst, log)
         End Function
-        
+
         Public Function DeleteClassStudent(ByVal lst As System.Collections.Generic.List(Of TrainingBusiness.ProgramClassStudentDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements TrainingBusiness.ITrainingBusiness.DeleteClassStudent
             Return MyBase.Channel.DeleteClassStudent(lst, log)
         End Function
-        
+
         Public Function GetClassSchedule(ByVal _filter As TrainingBusiness.ProgramClassScheduleDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.ProgramClassScheduleDTO) Implements TrainingBusiness.ITrainingBusiness.GetClassSchedule
             Return MyBase.Channel.GetClassSchedule(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
-        
+
         Public Function GetClassScheduleByID(ByVal _filter As TrainingBusiness.ProgramClassScheduleDTO) As TrainingBusiness.ProgramClassScheduleDTO Implements TrainingBusiness.ITrainingBusiness.GetClassScheduleByID
             Return MyBase.Channel.GetClassScheduleByID(_filter)
         End Function
-        
+
         Public Function InsertClassSchedule(ByVal objClassSchedule As TrainingBusiness.ProgramClassScheduleDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.InsertClassSchedule
             Return MyBase.Channel.InsertClassSchedule(objClassSchedule, log, gID)
         End Function
-        
+
         Public Function ModifyClassSchedule(ByVal objClassSchedule As TrainingBusiness.ProgramClassScheduleDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.ModifyClassSchedule
             Return MyBase.Channel.ModifyClassSchedule(objClassSchedule, log, gID)
         End Function
-        
+
         Public Function DeleteClassSchedule(ByVal lstClassSchedule As System.Collections.Generic.List(Of TrainingBusiness.ProgramClassScheduleDTO)) As Boolean Implements TrainingBusiness.ITrainingBusiness.DeleteClassSchedule
             Return MyBase.Channel.DeleteClassSchedule(lstClassSchedule)
         End Function
-        
+
         Public Function GetProgramResult(ByVal _filter As TrainingBusiness.ProgramResultDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.ProgramResultDTO) Implements TrainingBusiness.ITrainingBusiness.GetProgramResult
             Return MyBase.Channel.GetProgramResult(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
-        
+
         Public Function UpdateProgramResult(ByVal lst As System.Collections.Generic.List(Of TrainingBusiness.ProgramResultDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements TrainingBusiness.ITrainingBusiness.UpdateProgramResult
             Return MyBase.Channel.UpdateProgramResult(lst, log)
         End Function
-        
+
         Public Function GetProgramCommit(ByVal _filter As TrainingBusiness.ProgramCommitDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.ProgramCommitDTO) Implements TrainingBusiness.ITrainingBusiness.GetProgramCommit
             Return MyBase.Channel.GetProgramCommit(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
-        
+
         Public Function UpdateProgramCommit(ByVal lst As System.Collections.Generic.List(Of TrainingBusiness.ProgramCommitDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements TrainingBusiness.ITrainingBusiness.UpdateProgramCommit
             Return MyBase.Channel.UpdateProgramCommit(lst, log)
         End Function
-        
+
         Public Function GetProgramCost(ByVal _filter As TrainingBusiness.ProgramCostDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.ProgramCostDTO) Implements TrainingBusiness.ITrainingBusiness.GetProgramCost
             Return MyBase.Channel.GetProgramCost(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
-        
+
         Public Function InsertProgramCost(ByVal objProgramCost As TrainingBusiness.ProgramCostDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.InsertProgramCost
             Return MyBase.Channel.InsertProgramCost(objProgramCost, log, gID)
         End Function
-        
+
         Public Function ValidateProgramCost(ByVal objProgramCost As TrainingBusiness.ProgramCostDTO) As Boolean Implements TrainingBusiness.ITrainingBusiness.ValidateProgramCost
             Return MyBase.Channel.ValidateProgramCost(objProgramCost)
         End Function
-        
+
         Public Function ModifyProgramCost(ByVal objProgramCost As TrainingBusiness.ProgramCostDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.ModifyProgramCost
             Return MyBase.Channel.ModifyProgramCost(objProgramCost, log, gID)
         End Function
-        
+
         Public Function DeleteProgramCost(ByVal lstProgramCost As System.Collections.Generic.List(Of TrainingBusiness.ProgramCostDTO)) As Boolean Implements TrainingBusiness.ITrainingBusiness.DeleteProgramCost
             Return MyBase.Channel.DeleteProgramCost(lstProgramCost)
         End Function
-        
+
         Public Function GetReimbursement(ByVal _filter As TrainingBusiness.ReimbursementDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.ReimbursementDTO) Implements TrainingBusiness.ITrainingBusiness.GetReimbursement
             Return MyBase.Channel.GetReimbursement(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
-        
+
         Public Function InsertReimbursement(ByVal objReimbursement As TrainingBusiness.ReimbursementDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.InsertReimbursement
             Return MyBase.Channel.InsertReimbursement(objReimbursement, log, gID)
         End Function
-        
+
         Public Function ValidateReimbursement(ByVal objReimbursement As TrainingBusiness.ReimbursementDTO) As Boolean Implements TrainingBusiness.ITrainingBusiness.ValidateReimbursement
             Return MyBase.Channel.ValidateReimbursement(objReimbursement)
         End Function
-        
+
         Public Function ModifyReimbursement(ByVal objReimbursement As TrainingBusiness.ReimbursementDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.ModifyReimbursement
             Return MyBase.Channel.ModifyReimbursement(objReimbursement, log, gID)
         End Function
-        
+
         Public Function GetChooseForm(ByVal _filter As TrainingBusiness.ChooseFormDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.ChooseFormDTO) Implements TrainingBusiness.ITrainingBusiness.GetChooseForm
             Return MyBase.Channel.GetChooseForm(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
-        
+
         Public Function InsertChooseForm(ByVal objChooseForm As TrainingBusiness.ChooseFormDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.InsertChooseForm
             Return MyBase.Channel.InsertChooseForm(objChooseForm, log, gID)
         End Function
-        
+
         Public Function ValidateChooseForm(ByVal objChooseForm As TrainingBusiness.ChooseFormDTO) As Boolean Implements TrainingBusiness.ITrainingBusiness.ValidateChooseForm
             Return MyBase.Channel.ValidateChooseForm(objChooseForm)
         End Function
-        
+
         Public Function ModifyChooseForm(ByVal objChooseForm As TrainingBusiness.ChooseFormDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.ModifyChooseForm
             Return MyBase.Channel.ModifyChooseForm(objChooseForm, log, gID)
         End Function
-        
+
         Public Function DeleteChooseForm(ByVal lst As System.Collections.Generic.List(Of TrainingBusiness.ChooseFormDTO)) As Boolean Implements TrainingBusiness.ITrainingBusiness.DeleteChooseForm
             Return MyBase.Channel.DeleteChooseForm(lst)
         End Function
-        
+
         Public Function GetEmployeeAssessmentResult(ByVal _filter As TrainingBusiness.AssessmentResultDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.AssessmentResultDTO) Implements TrainingBusiness.ITrainingBusiness.GetEmployeeAssessmentResult
             Return MyBase.Channel.GetEmployeeAssessmentResult(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
-        
+
         Public Function GetAssessmentResultByID(ByVal _filter As TrainingBusiness.AssessmentResultDtlDTO) As System.Collections.Generic.List(Of TrainingBusiness.AssessmentResultDtlDTO) Implements TrainingBusiness.ITrainingBusiness.GetAssessmentResultByID
             Return MyBase.Channel.GetAssessmentResultByID(_filter)
         End Function
-        
+
         Public Function UpdateAssessmentResult(ByVal obj As TrainingBusiness.AssessmentResultDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements TrainingBusiness.ITrainingBusiness.UpdateAssessmentResult
             Return MyBase.Channel.UpdateAssessmentResult(obj, log)
         End Function
-        
+
         Public Function GetListEmployeePaging(ByVal _filter As TrainingBusiness.RecordEmployeeDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As TrainingBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of TrainingBusiness.RecordEmployeeDTO) Implements TrainingBusiness.ITrainingBusiness.GetListEmployeePaging
             Return MyBase.Channel.GetListEmployeePaging(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
         End Function
-        
+
         Public Function GetEmployeeRecord(ByVal _filter As TrainingBusiness.RecordEmployeeDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As TrainingBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of TrainingBusiness.RecordEmployeeDTO) Implements TrainingBusiness.ITrainingBusiness.GetEmployeeRecord
             Return MyBase.Channel.GetEmployeeRecord(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
         End Function
-        
+
         Public Function test(ByVal a As TrainingBusiness.CostDetailDTO) As TrainingBusiness.CostDetailDTO Implements TrainingBusiness.ITrainingBusiness.test
             Return MyBase.Channel.test(a)
         End Function
-        
+
         Public Function GetTitleCourse(ByVal _filter As TrainingBusiness.TitleCourseDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.TitleCourseDTO) Implements TrainingBusiness.ITrainingBusiness.GetTitleCourse
             Return MyBase.Channel.GetTitleCourse(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
-        
+
         Public Function UpdateTitleCourse(ByVal objExams As TrainingBusiness.TitleCourseDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements TrainingBusiness.ITrainingBusiness.UpdateTitleCourse
             Return MyBase.Channel.UpdateTitleCourse(objExams, log)
         End Function
-        
+
         Public Function DeleteTitleCourse(ByVal obj As TrainingBusiness.TitleCourseDTO) As Boolean Implements TrainingBusiness.ITrainingBusiness.DeleteTitleCourse
             Return MyBase.Channel.DeleteTitleCourse(obj)
         End Function
-        
+
         Public Function GetTitleByList(ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable Implements TrainingBusiness.ITrainingBusiness.GetTitleByList
             Return MyBase.Channel.GetTitleByList(sLang, isBlank)
         End Function
-        
+
         Public Function GetCourseByList(ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable Implements TrainingBusiness.ITrainingBusiness.GetCourseByList
             Return MyBase.Channel.GetCourseByList(sLang, isBlank)
         End Function
-        
+
         Public Function GetEmployeeTitleCourse(ByVal filter As TrainingBusiness.EmployeeTitleCourseDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As TrainingBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of TrainingBusiness.EmployeeTitleCourseDTO) Implements TrainingBusiness.ITrainingBusiness.GetEmployeeTitleCourse
             Return MyBase.Channel.GetEmployeeTitleCourse(filter, PageIndex, PageSize, Total, _param, Sorts, log)
         End Function
-        
+
         Public Function ExportReport(ByVal sPkgName As String, ByVal sStartDate As System.Nullable(Of Date), ByVal sEndDate As System.Nullable(Of Date), ByVal sOrg As String, ByVal IsDissolve As Integer, ByVal sUserName As String, ByVal sLang As String) As System.Data.DataSet Implements TrainingBusiness.ITrainingBusiness.ExportReport
             Return MyBase.Channel.ExportReport(sPkgName, sStartDate, sEndDate, sOrg, IsDissolve, sUserName, sLang)
         End Function
-        
+
         Public Function GetReportById(ByVal _filter As TrainingBusiness.Se_ReportDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.Se_ReportDTO) Implements TrainingBusiness.ITrainingBusiness.GetReportById
             Return MyBase.Channel.GetReportById(_filter, PageIndex, PageSize, Total, log, Sorts)
         End Function
-        
+
         Public Function GetStatisticCourse(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of TrainingBusiness.StatisticDTO) Implements TrainingBusiness.ITrainingBusiness.GetStatisticCourse
             Return MyBase.Channel.GetStatisticCourse(_year, log)
         End Function
-        
+
         Public Function GetStatisticFormCost(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of TrainingBusiness.StatisticDTO) Implements TrainingBusiness.ITrainingBusiness.GetStatisticFormCost
             Return MyBase.Channel.GetStatisticFormCost(_year, log)
         End Function
-        
+
         Public Function GetStatisticDiligence(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of TrainingBusiness.StatisticDTO) Implements TrainingBusiness.ITrainingBusiness.GetStatisticDiligence
             Return MyBase.Channel.GetStatisticDiligence(_year, log)
         End Function
-        
+
         Public Function GetStatisticRank(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of TrainingBusiness.StatisticDTO) Implements TrainingBusiness.ITrainingBusiness.GetStatisticRank
             Return MyBase.Channel.GetStatisticRank(_year, log)
         End Function
-        
+
+        Public Function GetAssessmentCourse(ByVal _filter As TrainingBusiness.AssessmentCourseDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.AssessmentCourseDTO) Implements TrainingBusiness.ITrainingBusiness.GetAssessmentCourse
+            Return MyBase.Channel.GetAssessmentCourse(_filter, PageIndex, PageSize, Total, Sorts)
+        End Function
+
+        Public Function InsertAssessmentCourse(ByVal objAssessmentForm As TrainingBusiness.AssessmentCourseDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.InsertAssessmentCourse
+            Return MyBase.Channel.InsertAssessmentCourse(objAssessmentForm, log, gID)
+        End Function
+
+        Public Function ModifyAssessmentCourse(ByVal objAssessmentForm As TrainingBusiness.AssessmentCourseDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.ModifyAssessmentCourse
+            Return MyBase.Channel.ModifyAssessmentCourse(objAssessmentForm, log, gID)
+        End Function
+
+        Public Function DeleteAssessmentCourse(ByVal lstAssessmentForm As System.Collections.Generic.List(Of TrainingBusiness.AssessmentCourseDTO)) As Boolean Implements TrainingBusiness.ITrainingBusiness.DeleteAssessmentCourse
+            Return MyBase.Channel.DeleteAssessmentCourse(lstAssessmentForm)
+        End Function
+
+        Public Function GET_TR_COURSE() As System.Data.DataTable Implements TrainingBusiness.ITrainingBusiness.GET_TR_COURSE
+            Return MyBase.Channel.GET_TR_COURSE
+        End Function
+
+        Public Function GET_TR_ASSESSMENT_FORM() As System.Data.DataTable Implements TrainingBusiness.ITrainingBusiness.GET_TR_ASSESSMENT_FORM
+            Return MyBase.Channel.GET_TR_ASSESSMENT_FORM
+        End Function
+
         Public Function TestService(ByVal str As String) As String Implements TrainingBusiness.ITrainingBusiness.TestService
             Return MyBase.Channel.TestService(str)
         End Function

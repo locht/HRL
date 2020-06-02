@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 05/25/2020 5:18:32 PM
--- Generated from EDMX file: D:\MyProject2020\ACV_NEW\acv_19\TrainingDAL\TrainingContext.edmx
+-- Date Created: 5/29/2020 11:03:12 AM
+-- Generated from EDMX file: D:\SOURCE_GIT_NEW\ACV_NEW\TrainingDAL\TrainingContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -152,6 +152,8 @@
 -- DROP TABLE "TrainingModelStoreContainer"."SE_USER_REPORT";
 
 -- DROP TABLE "TrainingModelStoreContainer"."HU_ORGANIZATION_V";
+
+-- DROP TABLE "TrainingModelStoreContainer"."TR_ASSESSMENT_COURSE";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -1238,6 +1240,21 @@ CREATE TABLE "dbo"."HU_ORGANIZATION_V" (
    "NAME_VN" NVARCHAR2(255) NULL
 );
 
+-- Creating table 'TR_ASSESSMENT_COURSE'
+CREATE TABLE "dbo"."TR_ASSESSMENT_COURSE" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "YEAR" NUMBER(38,0) NULL,
+   "COURSE_ID" NUMBER(38,0) NULL,
+   "ASSESSMENT_FROM_ID" NUMBER(38,0) NULL,
+   "REMARK" NVARCHAR2(1023) NULL,
+   "CREATED_BY" NVARCHAR2(50) NULL,
+   "CREATED_DATE" DATE NULL,
+   "CREATED_LOG" NVARCHAR2(1023) NULL,
+   "MODIFIED_BY" NVARCHAR2(50) NULL,
+   "MODIFIED_DATE" DATE NULL,
+   "MODIFIED_LOG" NVARCHAR2(1023) NULL
+);
+
 
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
@@ -1726,6 +1743,14 @@ ADD CONSTRAINT "PK_SE_USER_REPORT"
 -- Creating primary key on "ID"in table 'HU_ORGANIZATION_V'
 ALTER TABLE "dbo"."HU_ORGANIZATION_V"
 ADD CONSTRAINT "PK_HU_ORGANIZATION_V"
+   PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'TR_ASSESSMENT_COURSE'
+ALTER TABLE "dbo"."TR_ASSESSMENT_COURSE"
+ADD CONSTRAINT "PK_TR_ASSESSMENT_COURSE"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;

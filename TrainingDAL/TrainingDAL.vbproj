@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessObjects\Dashboard\StatisticDTO.vb" />
+    <Compile Include="BusinessObjects\Setting\AssessmentCourseDTO.vb" />
     <Compile Include="TrainingRepository.Dashboard.vb" />
     <Compile Include="BusinessObjects\Business\ChooseFormDTO.vb" />
     <Compile Include="BusinessObjects\Business\AssessmentResultDTO.vb" />

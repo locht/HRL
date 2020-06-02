@@ -746,5 +746,27 @@ Namespace TrainingBusiness.ServiceContracts
 
 
 #End Region
+
+        <OperationContract()>
+        Function GetAssessmentCourse(ByVal _filter As AssessmentCourseDTO,
+                                        ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AssessmentCourseDTO)
+
+        <OperationContract()>
+        Function InsertAssessmentCourse(ByVal objAssessmentForm As AssessmentCourseDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+
+        <OperationContract()>
+        Function ModifyAssessmentCourse(ByVal objAssessmentForm As AssessmentCourseDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+
+        <OperationContract()>
+        Function DeleteAssessmentCourse(ByVal lstAssessmentForm() As AssessmentCourseDTO) As Boolean
+
+        <OperationContract()>
+        Function GET_TR_COURSE() As DataTable
+
+        <OperationContract()>
+        Function GET_TR_ASSESSMENT_FORM() As DataTable
     End Interface
 End Namespace

@@ -872,5 +872,104 @@ Partial Class TrainingRepository
     End Function
 
 #End Region
+#Region "AssessmentCourse"
+    Public Function GetAssessmentCourse(ByVal _filter As AssessmentCourseDTO,
+                                        ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AssessmentCourseDTO)
+        Dim lstAssessmentForm As List(Of AssessmentCourseDTO)
+
+        Using rep As New TrainingBusinessClient
+            Try
+                lstAssessmentForm = rep.GetAssessmentCourse(_filter, PageIndex, PageSize, Total, Sorts)
+                Return lstAssessmentForm
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function GetAssessmentCourse(ByVal _filter As AssessmentCourseDTO,
+                                      Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AssessmentCourseDTO)
+        Dim lstAssessmentForm As List(Of AssessmentCourseDTO)
+
+        Using rep As New TrainingBusinessClient
+            Try
+                lstAssessmentForm = rep.GetAssessmentCourse(_filter, 0, Integer.MaxValue, 0, Sorts)
+                Return lstAssessmentForm
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function InsertAssessmentCourse(ByVal objAssessmentForm As AssessmentCourseDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New TrainingBusinessClient
+            Try
+                Return rep.InsertAssessmentCourse(objAssessmentForm, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function ModifyAssessmentCourse(ByVal objAssessmentForm As AssessmentCourseDTO, ByRef gID As Decimal) As Boolean
+            Using rep As New TrainingBusinessClient
+                Try
+                    Return rep.ModifyAssessmentCourse(objAssessmentForm, Me.Log, gID)
+                Catch ex As Exception
+                    rep.Abort()
+                    Throw ex
+                End Try
+            End Using
+
+    End Function
+
+    Public Function DeleteAssessmentCourse(ByVal lstAssessmentForm As List(Of AssessmentCourseDTO)) As Boolean
+        Using rep As New TrainingBusinessClient
+            Try
+                Return rep.DeleteAssessmentCourse(lstAssessmentForm)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function GET_TR_COURSE() As DataTable
+        Using rep As New TrainingBusinessClient
+            Try
+                Return rep.GET_TR_COURSE()
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function GET_TR_ASSESSMENT_FORM() As DataTable
+        Using rep As New TrainingBusinessClient
+            Try
+                Return rep.GET_TR_ASSESSMENT_FORM()
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+#End Region
+
+
 
 End Class

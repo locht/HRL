@@ -18,7 +18,7 @@
       <Group>
         <Item Value="ctrlTR_SettingCriteriaGroup" Text="Thiết lập tiêu chí cho từng nhóm tiêu chí" PostBack="True" NavigateUrl="Default.aspx?mid=Training&amp;fid=ctrlTR_SettingCriteriaGroup&amp;group=Setting" CheckPermission="true"/>
         <Item Value="ctrlTR_SettingAssessmentForm" Text="Thiết lập nhóm tiêu chí cho từng biểu mẫu đánh giá" PostBack="True" NavigateUrl="Default.aspx?mid=Training&amp;fid=ctrlTR_SettingAssessmentForm&amp;group=Setting" CheckPermission="true"/>
-        <Item Value="ctrlTR_ChooseForm" Text="Thiết lập biểu mẫu đánh giá cho khóa học" PostBack="True" NavigateUrl="Default.aspx?mid=Training&amp;fid=ctrlTR_ChooseForm&amp;group=Setting" CheckPermission="TRUE"/>
+        <Item Value="ctrlTR_AssessmentCourse" Text="Thiết lập biểu mẫu đánh giá cho khóa học" PostBack="True" NavigateUrl="Default.aspx?mid=Training&amp;fid=ctrlTR_AssessmentCourse&amp;group=Setting" CheckPermission="TRUE"/>
       </Group>
     </Item>
 

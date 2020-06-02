@@ -539,6 +539,62 @@ Namespace TrainingBusiness.ServiceImplementations
         End Function
 
 #End Region
+#Region "AssessmentCourse"
+        Public Function GetAssessmentCourse(ByVal _filter As AssessmentCourseDTO,
+                                        ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AssessmentCourseDTO) Implements ServiceContracts.ITrainingBusiness.GetAssessmentCourse
+            Try
+                Dim lst = TrainingRepositoryStatic.Instance.GetAssessmentCourse(_filter, PageIndex, PageSize, Total, Sorts)
+                Return lst
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Function
+
+        Public Function InsertAssessmentCourse(ByVal objAssessmentForm As AssessmentCourseDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.ITrainingBusiness.InsertAssessmentCourse
+            Try
+                Return TrainingRepositoryStatic.Instance.InsertAssessmentCourse(objAssessmentForm, log, gID)
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Function
+
+        Public Function ModifyAssessmentCourse(ByVal objAssessmentForm As AssessmentCourseDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.ITrainingBusiness.ModifyAssessmentCourse
+            Try
+                Return TrainingRepositoryStatic.Instance.ModifyAssessmentCourse(objAssessmentForm, log, gID)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+
+        Public Function DeleteAssessmentCourse(ByVal lstAssessmentForm() As AssessmentCourseDTO) As Boolean Implements ServiceContracts.ITrainingBusiness.DeleteAssessmentCourse
+            Try
+                Return TrainingRepositoryStatic.Instance.DeleteAssessmentCourse(lstAssessmentForm)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+
+        Public Function GET_TR_COURSE() As DataTable Implements ServiceContracts.ITrainingBusiness.GET_TR_COURSE
+            Try
+                Return TrainingRepositoryStatic.Instance.GET_TR_COURSE()
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+
+        Public Function GET_TR_ASSESSMENT_FORM() As DataTable Implements ServiceContracts.ITrainingBusiness.GET_TR_ASSESSMENT_FORM
+            Try
+                Return TrainingRepositoryStatic.Instance.GET_TR_ASSESSMENT_FORM()
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+#End Region
 
     End Class
 End Namespace

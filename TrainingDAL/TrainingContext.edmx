@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TrainingModel.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="11.2" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+    <Schema Namespace="TrainingModel.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="12.2" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
         <EntityContainer Name="TrainingModelStoreContainer">
             <EntitySet Name="TR_COST_CENTER" EntityType="TrainingModel.Store.TR_COST_CENTER" store:Type="Tables"  />
             <EntitySet Name="SE_CHOSEN_ORG" EntityType="TrainingModel.Store.SE_CHOSEN_ORG" store:Type="Tables"  />
@@ -67,6 +67,7 @@
             <EntitySet Name="SE_USER" EntityType="TrainingModel.Store.SE_USER" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="TrainingModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <EntitySet Name="HU_ORGANIZATION_V" EntityType="TrainingModel.Store.HU_ORGANIZATION_V" store:Type="Tables"  />
+            <EntitySet Name="TR_ASSESSMENT_COURSE" EntityType="TrainingModel.Store.TR_ASSESSMENT_COURSE" store:Type="Tables"  />
             <AssociationSet Name="FK_HU_PRO_HU_DIS" Association="TrainingModel.Store.FK_HU_PRO_HU_DIS">
                 <End Role="HU_PROVINCE" EntitySet="HU_PROVINCE" />
                 <End Role="HU_DISTRICT" EntitySet="HU_DISTRICT" />
@@ -1248,6 +1249,22 @@
             <Property Name="DESCRIPTION4" Type="nvarchar2" Nullable="true" MaxLength="2000" />
             <Property Name="NAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
         </EntityType>
+        <EntityType Name="TR_ASSESSMENT_COURSE">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="YEAR" Type="number" Nullable="true" Precision="38" />
+            <Property Name="COURSE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ASSESSMENT_FROM_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+        </EntityType>
     <Association Name="FK_HU_PRO_HU_DIS">
         <End Role="HU_PROVINCE" Type="TrainingModel.Store.HU_PROVINCE" Multiplicity="0..1">
         </End>
@@ -1476,6 +1493,7 @@
           <EntitySet Name="SE_USER" EntityType="TrainingModel.SE_USER" />
           <EntitySet Name="SE_USER_REPORT" EntityType="TrainingModel.SE_USER_REPORT" />
           <EntitySet Name="HU_ORGANIZATION_V" EntityType="TrainingModel.HU_ORGANIZATION_V" />
+          <EntitySet Name="TR_ASSESSMENT_COURSE" EntityType="TrainingModel.TR_ASSESSMENT_COURSE" />
           </EntityContainer>
         <EntityType Name="TR_COST_CENTER">
           <Key>
@@ -2747,6 +2765,22 @@
           <Property Type="String" Name="DESCRIPTION4" MaxLength="2000" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="NAME_VN" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="TR_ASSESSMENT_COURSE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="YEAR" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="COURSE_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ASSESSMENT_FROM_ID" Precision="38" Scale="0" />
+          <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="1023" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3956,6 +3990,23 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="TR_ASSESSMENT_COURSE">
+            <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_ASSESSMENT_COURSE)">
+                <MappingFragment StoreEntitySet="TR_ASSESSMENT_COURSE">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+                    <ScalarProperty Name="COURSE_ID" ColumnName="COURSE_ID" />
+                    <ScalarProperty Name="ASSESSMENT_FROM_ID" ColumnName="ASSESSMENT_FROM_ID" />
+                    <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
     </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -4085,6 +4136,7 @@
         <EntityTypeShape EntityType="TrainingModel.SE_USER" Width="2" PointX="0.875" PointY="18.75" Height="5.6340136718749818" />
         <EntityTypeShape EntityType="TrainingModel.SE_USER_REPORT" Width="2.125" PointX="0.5" PointY="13.875" Height="1.403382161458353" />
         <EntityTypeShape EntityType="TrainingModel.HU_ORGANIZATION_V" Width="1.5" PointX="0.76222850976615608" PointY="3.181715579322407" />
+        <EntityTypeShape EntityType="TrainingModel.TR_ASSESSMENT_COURSE" Width="1.5" PointX="25.375" PointY="0.75" Height="3.1340950520833246" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

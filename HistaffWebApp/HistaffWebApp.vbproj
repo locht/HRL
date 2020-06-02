@@ -840,6 +840,7 @@
     <Content Include="Modules\Training\QuickLaunch-en-US.xml" />
     <Content Include="Modules\Training\QuickLaunch-vi-VN.xml" />
     <Content Include="Modules\Training\Report\ctrlTR_ReportList.ascx" />
+    <Content Include="Modules\Training\Setting\ctrlTR_AssessmentCourse.ascx" />
     <Content Include="Modules\Training\Setting\ctrlTR_SettingAssessmentForm.ascx" />
     <Content Include="Modules\Training\Setting\ctrlTR_SettingCriteriaGroup.ascx" />
     <Content Include="Modules\Training\Setting\ctrlTR_TitleCourse.ascx" />

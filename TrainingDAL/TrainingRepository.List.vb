@@ -1388,4 +1388,133 @@ Partial Class TrainingRepository
 
 #End Region
 
+#Region "AssessmentFrom"
+    Public Function GetAssessmentCourse(ByVal _filter As AssessmentCourseDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AssessmentCourseDTO)
+
+        Try
+            Dim query = From p In Context.TR_ASSESSMENT_COURSE
+                        Join l In Context.TR_COURSE On p.COURSE_ID Equals l.ID
+                        Join f In Context.TR_ASSESSMENT_FORM On p.ASSESSMENT_FROM_ID Equals f.ID
+                        Select New AssessmentCourseDTO With {
+                            .ID = p.ID,
+                            .YEAR = p.YEAR,
+                            .COURSE_ID = p.COURSE_ID,
+                            .COURSE_NAME = l.NAME,
+                            .ASSESSMENT_FROM_ID = p.ASSESSMENT_FROM_ID,
+                            .ASSESSMENT_NAME = f.NAME,
+                            .REMARK = p.REMARK,
+                            .CREATED_DATE = p.CREATED_DATE}
+
+            Dim lst = query
+            If _filter.YEAR <> 0 Then
+                lst = lst.Where(Function(p) p.YEAR = _filter.YEAR)
+            End If
+            If _filter.COURSE_NAME <> "" Then
+                lst = lst.Where(Function(p) p.COURSE_NAME.ToUpper.Contains(_filter.COURSE_NAME.ToUpper))
+            End If
+            If _filter.ASSESSMENT_NAME <> "" Then
+                lst = lst.Where(Function(p) p.ASSESSMENT_NAME.ToUpper.Contains(_filter.ASSESSMENT_NAME.ToUpper))
+            End If
+            If _filter.REMARK <> "" Then
+                lst = lst.Where(Function(p) p.REMARK.ToUpper.Contains(_filter.REMARK.ToUpper))
+            End If
+            lst = lst.OrderBy(Sorts)
+            Total = lst.Count
+            lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
+
+            Return lst.ToList
+        Catch ex As Exception
+            Utility.WriteExceptionLog(ex, Me.ToString() & ".GetAssessmentForm")
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function InsertAssessmentCourse(ByVal objAssessmentForm As AssessmentCourseDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim objAssessmentFormData As New TR_ASSESSMENT_COURSE
+        Try
+            objAssessmentFormData.ID = Utilities.GetNextSequence(Context, Context.TR_ASSESSMENT_COURSE.EntitySet.Name)
+            objAssessmentFormData.YEAR = objAssessmentForm.YEAR
+            objAssessmentFormData.REMARK = objAssessmentForm.REMARK
+            objAssessmentFormData.COURSE_ID = objAssessmentForm.COURSE_ID
+            objAssessmentFormData.ASSESSMENT_FROM_ID = objAssessmentForm.ASSESSMENT_FROM_ID
+            Context.TR_ASSESSMENT_COURSE.AddObject(objAssessmentFormData)
+            Context.SaveChanges(log)
+            gID = objAssessmentFormData.ID
+            Return True
+        Catch ex As Exception
+            Utility.WriteExceptionLog(ex, Me.ToString() & ".InsertAssessmentForm")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function ModifyAssessmentCourse(ByVal objAssessmentForm As AssessmentCourseDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim objAssessmentFormData As New TR_ASSESSMENT_COURSE With {.ID = objAssessmentForm.ID}
+        Try
+            Context.TR_ASSESSMENT_COURSE.Attach(objAssessmentFormData)
+            objAssessmentFormData.YEAR = objAssessmentForm.YEAR
+            objAssessmentFormData.REMARK = objAssessmentForm.REMARK
+            objAssessmentFormData.COURSE_ID = objAssessmentForm.COURSE_ID
+            objAssessmentFormData.ASSESSMENT_FROM_ID = objAssessmentForm.ASSESSMENT_FROM_ID
+            Context.SaveChanges(log)
+            gID = objAssessmentFormData.ID
+            Return True
+        Catch ex As Exception
+            Utility.WriteExceptionLog(ex, Me.ToString() & ".ModifyAssessmentForm")
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function DeleteAssessmentCourse(ByVal lstAssessmentForm() As AssessmentCourseDTO) As Boolean
+        Dim lstAssessmentFormData As List(Of TR_ASSESSMENT_COURSE)
+        Dim lstIDAssessmentForm As List(Of Decimal) = (From p In lstAssessmentForm.ToList Select p.ID).ToList
+        Try
+            lstAssessmentFormData = (From p In Context.TR_ASSESSMENT_COURSE Where lstIDAssessmentForm.Contains(p.ID)).ToList
+            For index = 0 To lstAssessmentFormData.Count - 1
+                Context.TR_ASSESSMENT_COURSE.DeleteObject(lstAssessmentFormData(index))
+            Next
+            Context.SaveChanges()
+            Return True
+
+        Catch ex As Exception
+            Utility.WriteExceptionLog(ex, Me.ToString() & ".DeleteAssessmentForm")
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function GET_TR_COURSE() As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_TRAINING_BUSINESS.GET_TR_COURSE",
+                                           New With {.P_CUR = cls.OUT_CURSOR})
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GET_TR_ASSESSMENT_FORM() As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_TRAINING_BUSINESS.GET_TR_ASSESSMENT_FORM",
+                                           New With {.P_CUR = cls.OUT_CURSOR})
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+#End Region
+
 End Class
