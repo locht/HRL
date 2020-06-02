@@ -31,6 +31,7 @@
     ' Bo sung 2/3/2015
     Public Property TITLE_NAME As String
     Public Property FILE_NAME As String
+    Public Property FILE_NAME1 As String
     Public Property FILE_SIZE As Byte()
     Public Property WORK As String
 

@@ -11,8 +11,8 @@
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
         <tlk:RadGrid ID="rgData" runat="server" Height="100%" PageSize="50" AllowPaging="true">
-            <MasterTableView DataKeyNames="FULLNAME_VN,ID_NO,S_ERROR,FILE_NAME,ORG_NAME,TITLE_NAME,IS_CMND,ID"
-                ClientDataKeyNames="FULLNAME_VN,ID_NO,S_ERROR,FILE_NAME,ORG_NAME,TITLE_NAME,IS_CMND,ID">
+            <MasterTableView DataKeyNames="FULLNAME_VN,ID_NO,S_ERROR,FILE_NAME,ORG_NAME,TITLE_NAME,IS_CMND,FILE_NAME1,ID"
+                ClientDataKeyNames="FULLNAME_VN,ID_NO,S_ERROR,FILE_NAME,ORG_NAME,TITLE_NAME,IS_CMND,FILE_NAME1,ID">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -32,6 +32,8 @@
                         UniqueName="S_ERROR" SortExpression="S_ERROR" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên file %>" DataField="FILE_NAME"
                         SortExpression="FILE_NAME" UniqueName="FILE_NAME" />
+                           <tlk:GridBoundColumn HeaderText="<%$ Translate: checkfile %>" DataField="FILE_NAME1"
+                        SortExpression="FILE_NAME1" UniqueName="FILE_NAME1" Visible="false" />
                 </Columns>
                 <HeaderStyle Width="150px" />
             </MasterTableView>
