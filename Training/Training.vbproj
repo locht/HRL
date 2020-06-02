@@ -61,7 +61,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ref\Aspose.Words.dll</HintPath>
     </Reference>
-    <Reference Include="Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -125,9 +124,6 @@
     <None Include="Service References\TrainingBusiness\Arrays3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TrainingBusiness\Arrays4.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\TrainingBusiness\Framework.Data.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -135,9 +131,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\TrainingBusiness\Framework.Data3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TrainingBusiness\Framework.Data4.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\TrainingBusiness\service.wsdl" />
@@ -150,21 +143,11 @@
     <None Include="Service References\TrainingBusiness\service10.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TrainingBusiness\service11.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TrainingBusiness\service12.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\TrainingBusiness\service2.wsdl" />
     <None Include="Service References\TrainingBusiness\service2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\TrainingBusiness\service3.wsdl" />
-    <None Include="Service References\TrainingBusiness\service4.wsdl" />
-    <None Include="Service References\TrainingBusiness\service4.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\TrainingBusiness\service5.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -187,12 +170,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\TrainingBusiness\System.Data3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="Service References\TrainingBusiness\Training.TrainingBusiness.AssessmentCourseDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <None Include="Service References\TrainingBusiness\System.Data4.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\TrainingBusiness\Training.TrainingBusiness.AssessmentFormDTO.datasource">
@@ -263,7 +240,6 @@
     <Content Include="Modules\Training\List\ctrlTR_ProgramGroup.ascx" />
     <Content Include="Modules\Training\List\ctrlTR_Unit.ascx" />
     <Content Include="Modules\Training\Report\ctrlTR_ReportList.ascx" />
-    <Content Include="Modules\Training\Setting\ctrlTR_AssessmentCourse.ascx" />
     <Content Include="Modules\Training\Setting\ctrlTR_SettingAssessmentForm.ascx" />
     <Content Include="Modules\Training\Setting\ctrlTR_SettingCriteriaGroup.ascx" />
     <Content Include="Modules\Training\Business\ctrlTR_ProgramCommit.ascx" />
@@ -380,9 +356,6 @@
     <None Include="Service References\TrainingBusiness\TrainingDAL3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TrainingBusiness\TrainingDAL4.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessObjects\MessageDTO.vb" />
@@ -426,13 +399,6 @@
     </Compile>
     <Compile Include="Modules\Training\Dashboard\ctrlDashboard.ascx.vb">
       <DependentUpon>ctrlDashboard.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Modules\Training\Setting\ctrlTR_AssessmentCourse.ascx.designer.vb">
-      <DependentUpon>ctrlTR_AssessmentCourse.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\Training\Setting\ctrlTR_AssessmentCourse.ascx.vb">
-      <DependentUpon>ctrlTR_AssessmentCourse.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Training\TrainingRepository.Dashboard.vb" />
