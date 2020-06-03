@@ -17,4 +17,5 @@
     Public Property CREATED_BY As Decimal?
     Public Property CREATED_BY_NAME As String
     Public Property EMPLOYEE As List(Of Common.CommonBusiness.EmployeeDTO)
+    Public Property IS_CACULATED As Decimal?
 End Class

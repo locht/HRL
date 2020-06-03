@@ -105,6 +105,7 @@
             <EntitySet Name="AT_FML_DETAIL" EntityType="AttendanceModel.Store.AT_FML_DETAIL" store:Type="Tables"  />
             <EntitySet Name="AT_PORTAL_REG_SHIFT" EntityType="AttendanceModel.Store.AT_PORTAL_REG_SHIFT" store:Type="Tables"  />
             <EntitySet Name="AT_SEND_APPROVE_LETTER" EntityType="AttendanceModel.Store.AT_SEND_APPROVE_LETTER" store:Type="Tables"  />
+            <EntitySet Name="AT_SHIFT_REG_MNG" EntityType="AttendanceModel.Store.AT_SHIFT_REG_MNG" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="AttendanceModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_OOLT_OOL" Association="AttendanceModel.Store.FK_OOLT_OOL">
                 <End Role="OT_OTHER_LIST_TYPE" EntitySet="OT_OTHER_LIST_TYPE" />
@@ -2623,6 +2624,7 @@
             <Property Name="REASON" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="CREATED_DATE" Type="date" Nullable="true" />
             <Property Name="CREATED_BY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_CACULATED" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="AT_SEND_APPROVE_LETTER">
             <Key>
@@ -2638,6 +2640,24 @@
             <Property Name="RUN_START" Type="date" Nullable="true" />
             <Property Name="RUN_END" Type="date" Nullable="true" />
             <Property Name="RUN_ROW" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
+        <EntityType Name="AT_SHIFT_REG_MNG">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="WORING_DAY" Type="date" Nullable="true" />
+            <Property Name="SHIFT_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="WEEKEND" Type="number" Nullable="true" Precision="38" />
+            <Property Name="HOLYDAY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="NOTE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
         </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
@@ -2963,6 +2983,7 @@
           <EntitySet Name="AT_FML_DETAIL" EntityType="AttendanceModel.AT_FML_DETAIL" />
           <EntitySet Name="AT_PORTAL_REG_SHIFT" EntityType="AttendanceModel.AT_PORTAL_REG_SHIFT" />
           <EntitySet Name="AT_SEND_APPROVE_LETTER" EntityType="AttendanceModel.AT_SEND_APPROVE_LETTER" />
+          <EntitySet Name="AT_SHIFT_REG_MNG" EntityType="AttendanceModel.AT_SHIFT_REG_MNG" />
           </EntityContainer>
         <EntityType Name="OT_OTHER_LIST">
           <Key>
@@ -5582,6 +5603,7 @@
           <Property Type="String" Name="REASON" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="CREATED_DATE" />
           <Property Type="Decimal" Name="CREATED_BY" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="IS_CACULATED" />
         </EntityType>
         <EntityType Name="AT_SEND_APPROVE_LETTER">
           <Key>
@@ -5597,6 +5619,24 @@
           <Property Type="DateTime" Name="RUN_START" />
           <Property Type="DateTime" Name="RUN_END" />
           <Property Type="Decimal" Name="RUN_ROW" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="AT_SHIFT_REG_MNG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="WORING_DAY" />
+          <Property Type="Decimal" Name="SHIFT_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="WEEKEND" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="HOLYDAY" Precision="38" Scale="0" />
+          <Property Type="String" Name="NOTE" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -8164,6 +8204,7 @@
                     <ScalarProperty Name="REASON" ColumnName="REASON" />
                     <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
                     <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="IS_CACULATED" ColumnName="IS_CACULATED" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -8180,6 +8221,25 @@
                     <ScalarProperty Name="RUN_START" ColumnName="RUN_START" />
                     <ScalarProperty Name="RUN_END" ColumnName="RUN_END" />
                     <ScalarProperty Name="RUN_ROW" ColumnName="RUN_ROW" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
+        <EntitySetMapping Name="AT_SHIFT_REG_MNG">
+            <EntityTypeMapping TypeName="AttendanceModel.AT_SHIFT_REG_MNG">
+                <MappingFragment StoreEntitySet="AT_SHIFT_REG_MNG">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                    <ScalarProperty Name="WORING_DAY" ColumnName="WORING_DAY" />
+                    <ScalarProperty Name="SHIFT_ID" ColumnName="SHIFT_ID" />
+                    <ScalarProperty Name="WEEKEND" ColumnName="WEEKEND" />
+                    <ScalarProperty Name="HOLYDAY" ColumnName="HOLYDAY" />
+                    <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -8363,8 +8423,9 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_ORG_SHIFT" Width="1.5" PointX="8.5" PointY="13.375" Height="1.5956835937499996" />
         <EntityTypeShape EntityType="AttendanceModel.AT_FORMULAR" Width="1.5" PointX="27.375" PointY="4.75" Height="3.3263964843749818" />
         <EntityTypeShape EntityType="AttendanceModel.AT_FML_DETAIL" Width="1.5" PointX="17.375" PointY="27.75" Height="3.5186979166666674" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_PORTAL_REG_SHIFT" Width="1.5" PointX="27.375" PointY="0.75" Height="2.557190755208353" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_PORTAL_REG_SHIFT" Width="1.5" PointX="27.375" PointY="0.75" Height="2.7494921875" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SEND_APPROVE_LETTER" Width="1.5" PointX="10.375" PointY="28.75" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_SHIFT_REG_MNG" Width="1.5" PointX="29.375" PointY="0.75" Height="3.5186979166666674" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
