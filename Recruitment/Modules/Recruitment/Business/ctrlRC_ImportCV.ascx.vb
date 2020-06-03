@@ -16,7 +16,7 @@ Public Class ctrlRC_ImportCV
     Public Property AjaxManagerId As String
     Public Property lst1 As New List(Of CandidateImportDTO)
     Public Property dtip As New CandidateImportDTO
-    Public Property iFile As New Integer
+    'Public Property iFile As New Integer
 #Region "Property"
     Property ImageFile As Telerik.Web.UI.UploadedFile
         Get
@@ -24,6 +24,14 @@ Public Class ctrlRC_ImportCV
         End Get
         Set(ByVal value As Telerik.Web.UI.UploadedFile)
             PageViewState(Me.ID & "_ImageFile") = value
+        End Set
+    End Property
+    Property iFile As Decimal
+        Get
+            Return PageViewState(Me.ID & "_iFile")
+        End Get
+        Set(ByVal value As Decimal)
+            PageViewState(Me.ID & "_iFile") = value
         End Set
     End Property
     Property Binary As Byte()
@@ -327,9 +335,9 @@ Public Class ctrlRC_ImportCV
                             '    lstSave.Clear()
                             '    Exit Sub
                             'End If
-                            If lstSave.Count > 0 Then
-                                lstSave.Clear()
-                            End If
+                            'If lstSave.Count > 0 Then
+                            '    lstSave.Clear()
+                            'End If
                             lstSave.Add(Decimal.Parse(item.GetDataKeyValue("ID")))
                         Next
                         SAVEIMPORT()
@@ -926,7 +934,7 @@ Public Class ctrlRC_ImportCV
             Dim Is_Er_IDNO As Boolean = False
             Dim sError As String = ""
 
-
+            iFile = 0
             TableMapping(dtData, dtFile)
             If checkOut = 1 Then
                 Exit Sub
@@ -997,7 +1005,9 @@ Public Class ctrlRC_ImportCV
                 End If
             Next
             Dim sError As String = ""
-            Dim iFile As Integer = 1
+
+            iFile = 1
+         
             Dim sFile_Name As String = ""
             Dim sFile_Name1 As String = ""
             For Each rF As DataRow In dtFile.Rows
@@ -1053,87 +1063,70 @@ Public Class ctrlRC_ImportCV
                 '    ShowMessage(Translate("Phải nhập số thứ tự,Xin kiểm tra lại"), NotifyType.Warning)
                 '    Exit Sub
                 'End If
-
+                rows("FILE_NAME") = sFile_Name
                 If rows("BIRTH_DAY").ToString = "" OrElse CheckDate(rows("BIRTH_DAY")) = False Then
                     rows("ERROR") = rows("ERROR") + "Ngày sinh không đúng định dạng,"
-                    rows("FILE_NAME") = sFile_Name
                     rows("FILE_NAME1") = sFile_Name1
                 Else
                     If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULLNAME_VN"), rows("BIRTH_DAY"), "NO_ID") Then
                         rows("ERROR") = rows("ERROR") + "Ứng viên đang tồn tại trong một chương trình tuyển dụng khác,"
-                        rows("FILE_NAME") = sFile_Name
                     End If
                     If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULLNAME_VN"), rows("BIRTH_DAY"), "BLACK_LIST") Then
                         rows("ERROR") = rows("ERROR") + "Ứng viên đang thuộc Blacklist,"
-                        rows("FILE_NAME") = sFile_Name
                     End If
                     If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULLNAME_VN"), rows("BIRTH_DAY"), "WORKING") Then
                         rows("ERROR") = rows("ERROR") + "Ứng viên đang làm việc tại ACV,"
-                        rows("FILE_NAME") = sFile_Name
                     End If
                     If Not rep.ValidateInsertCandidate("", rows("ID_NO"), rows("FULLNAME_VN"), rows("BIRTH_DAY"), "TERMINATE") Then
                         rows("ERROR") = rows("ERROR") + "Ứng viên đã nghỉ việc ACV,"
-                        rows("FILE_NAME") = sFile_Name
                     End If
                 End If
                 If IsDBNull(rows("FIRST_NAME")) Or rows("FIRST_NAME").ToString = "" Then
                     rows("ERROR") = rows("ERROR") + "Chưa nhập Họ và tên lót,"
-                    rows("FILE_NAME") = sFile_Name
                     rows("FILE_NAME1") = sFile_Name1
                 End If
                 If IsDBNull(rows("LAST_NAME")) Or rows("LAST_NAME").ToString = "" Then
                     rows("ERROR") = rows("ERROR") + "Chưa nhập tên,"
-                    rows("FILE_NAME") = sFile_Name
                     rows("FILE_NAME1") = sFile_Name1
                 End If
                 If IsDBNull(rows("FULLNAME_VN")) Or rows("FULLNAME_VN").ToString = "" Then
                     rows("ERROR") = rows("ERROR") + "Chưa nhập tên ứng viên,"
-                    rows("FILE_NAME") = sFile_Name
                     rows("FILE_NAME1") = sFile_Name1
                 End If
                 If IsDBNull(rows("DATE_NC")) OrElse CheckDate(rows("DATE_NC")) = False Then
                     rows("ERROR") = rows("ERROR") + "Ngày cấp CMND không đúng định dạng,"
-                    rows("FILE_NAME") = sFile_Name
                     rows("FILE_NAME1") = sFile_Name1
                 End If
                 If IsDBNull(rows("GENDER")) Or rows("GENDER").ToString = "" Then
                     rows("ERROR") = rows("ERROR") + "Chưa nhập giới tính,"
-                    rows("FILE_NAME") = sFile_Name
                     rows("FILE_NAME1") = sFile_Name1
                 End If
                 If IsDBNull(rows("MAJOR")) Or rows("MAJOR").ToString = "" Then
                     rows("ERROR") = rows("ERROR") + "Chưa nhập chuyên môn,"
-                    rows("FILE_NAME") = sFile_Name
                     rows("FILE_NAME1") = sFile_Name1
                 End If
                 If IsDBNull(rows("SCHOOL")) Or rows("SCHOOL").ToString = "" Then
                     rows("ERROR") = rows("ERROR") + "Chưa nhập trường,"
-                    rows("FILE_NAME") = sFile_Name
                     rows("FILE_NAME1") = sFile_Name1
                 End If
                 If IsDBNull(rows("TDVH")) Or rows("TDVH").ToString = "" Then
                     rows("ERROR") = rows("ERROR") + "Chưa nhập trình độ văn hóa,"
-                    rows("FILE_NAME") = sFile_Name
                     rows("FILE_NAME1") = sFile_Name1
                 End If
                 If IsDBNull(rows("PROVINCE")) Or rows("PROVINCE").ToString = "" Then
                     rows("ERROR") = rows("ERROR") + "Chưa nhập nơi cấp cmnd,"
-                    rows("FILE_NAME") = sFile_Name
                     rows("FILE_NAME1") = sFile_Name1
                 End If
                 If IsDBNull(rows("RELIGION")) Or rows("RELIGION").ToString = "" Then
                     rows("ERROR") = rows("ERROR") + "Chưa nhập tôn giáo,"
-                    rows("FILE_NAME") = sFile_Name
                     rows("FILE_NAME1") = sFile_Name1
                 End If
                 If IsDBNull(rows("NATION")) Or rows("NATION").ToString = "" Then
                     rows("ERROR") = rows("ERROR") + "Chưa nhập quốc tịch,"
-                    rows("FILE_NAME") = sFile_Name
                     rows("FILE_NAME1") = sFile_Name1
                 End If
                 If IsDBNull(rows("DT")) Or rows("DT").ToString = "" Then
                     rows("ERROR") = rows("ERROR") + "Chưa nhập dân tộc,"
-                    rows("FILE_NAME") = sFile_Name
                     rows("FILE_NAME1") = sFile_Name1
                 End If
                 count += 1
@@ -1327,14 +1320,18 @@ Public Class ctrlRC_ImportCV
                 'dsDataPrepare.Tables.Add(worksheet4.Cells.ExportDataTableAsString(0, 0, worksheet4.Cells.MaxRow + 1, worksheet4.Cells.MaxColumn + 1, True))
                 'dsDataPrepare.Tables.Add(worksheet4.Item)
                 If System.IO.File.Exists(fileName) Then System.IO.File.Delete(fileName)
+                If iFile = 0 Then
+                    iFile = 1
+                Else
+                    iFile = iFile + 1
+                End If
                 ImportData1(dsDataPrepare, dtFile)
                 count = count + 1
-
                 dsDataPrepare.Tables.Clear()
                 dtFile.Clear()
                 fileName = ""
-                iFile = iFile + 1
             Next
+            iFile = 0
             If lst1 IsNot Nothing AndAlso lst1.Count > 0 Then
                 rgData.Rebind()
                 Using rep As New RecruitmentRepository
@@ -1567,7 +1564,12 @@ Public Class ctrlRC_ImportCV
             'Next
             Dim sError As String = ""
             'Dim iFile As Integer = 1
-            iFile = 1
+            'If iFile = 0 Then
+            '    iFile = 1
+            'Else
+            '    iFile += 1
+            'End If
+
             Dim sFile_Name As String = ""
             Dim sFile_Name1 As String = ""
             For Each rF As DataRow In dtFile.Rows
@@ -1591,52 +1593,41 @@ Public Class ctrlRC_ImportCV
                 '    ShowMessage(Translate("Phải nhập số thứ tự,Xin kiểm tra lại"), NotifyType.Warning)
                 '    Exit Sub
                 'End If
-
+                rows("FILE_NAME") = sFile_Name
                 If rows("BIRTH_DATE").ToString = "" OrElse CheckDate(rows("BIRTH_DATE")) = False Then
                     rows("ERROR") = rows("ERROR") + "Ngày sinh không đúng định dạng,"
-                    rows("FILE_NAME") = sFile_Name
                     rows("FILE_NAME1") = sFile_Name1
                 Else
                     If Not rep.ValidateInsertCandidate("", "", rows("FULL_NAME_VN"), rows("BIRTH_DATE"), "NO_ID") Then
                         rows("ERROR") = rows("ERROR") + "Ứng viên đang tồn tại trong một chương trình tuyển dụng khác,"
-                        rows("FILE_NAME") = sFile_Name
                     End If
                     If Not rep.ValidateInsertCandidate("", "", rows("FULL_NAME_VN"), rows("BIRTH_DATE"), "BLACK_LIST") Then
                         rows("ERROR") = rows("ERROR") + "Ứng viên đang thuộc Blacklist,"
-                        rows("FILE_NAME") = sFile_Name
                     End If
                     If Not rep.ValidateInsertCandidate("", "", rows("FULL_NAME_VN"), rows("BIRTH_DATE"), "WORKING") Then
                         rows("ERROR") = rows("ERROR") + "Ứng viên đang làm việc tại ACV,"
-                        rows("FILE_NAME") = sFile_Name
                     End If
                     If Not rep.ValidateInsertCandidate("", "", rows("FULL_NAME_VN"), rows("BIRTH_DATE"), "TERMINATE") Then
                         rows("ERROR") = rows("ERROR") + "Ứng viên đã nghỉ việc ACV,"
-                        rows("FILE_NAME") = sFile_Name
                     End If
                 End If
 
                 If rows("ID_NO").ToString <> 0 Then
                     If rows("ID_DATE").ToString = "" OrElse CheckDate(rows("ID_DATE")) = False Then
                         rows("ERROR") = rows("ERROR") + "Ngày cấp CMND không đúng định dạng,"
-                        rows("FILE_NAME") = sFile_Name
                         rows("FILE_NAME1") = sFile_Name1
                     End If
                     If IsDBNull(rows("ID_PLACE_NAME")) Or rows("ID_PLACE_NAME").ToString = "" Then
                         rows("ERROR") = rows("ERROR") + "Chưa nhập nơi cấp cmnd,"
-                        rows("FILE_NAME") = sFile_Name
                         rows("FILE_NAME1") = sFile_Name1
                     End If
                 End If
-
-
                 If IsDBNull(rows("FIRST_NAME_VN")) Or rows("FIRST_NAME_VN").ToString = "" Then
                     rows("ERROR") = rows("ERROR") + "Chưa nhập Họ và tên lót,"
-                    rows("FILE_NAME") = sFile_Name
                     rows("FILE_NAME1") = sFile_Name1
                 End If
                 If IsDBNull(rows("LAST_NAME_VN")) Or rows("LAST_NAME_VN").ToString = "" Then
                     rows("ERROR") = rows("ERROR") + "Chưa nhập tên,"
-                    rows("FILE_NAME") = sFile_Name
                     rows("FILE_NAME1") = sFile_Name1
                 End If
                 'If IsDBNull(rows("FULL_NAME_VN")) Or rows("FULL_NAME_VN").ToString = "" Then
@@ -1645,7 +1636,6 @@ Public Class ctrlRC_ImportCV
                 'End If
                 If IsDBNull(rows("GENDER")) Or rows("GENDER").ToString = "" Then
                     rows("ERROR") = rows("ERROR") + "Chưa nhập giới tính,"
-                    rows("FILE_NAME") = sFile_Name
                     rows("FILE_NAME1") = sFile_Name1
                 End If
                 'If IsDBNull(rows("POSITION_APPLY")) Or rows("POSITION_APPLY").ToString = "" Then
@@ -1656,7 +1646,6 @@ Public Class ctrlRC_ImportCV
                 'PER_PROVINCE_ID
                 If IsDBNull(rows("PER_PROVINCE")) Or rows("PER_PROVINCE").ToString = "" Then
                     rows("ERROR") = rows("ERROR") + "Chưa nhập tỉnh thường trú,"
-                    rows("FILE_NAME") = sFile_Name
                     rows("FILE_NAME1") = sFile_Name1
                 End If
                 count += 1
@@ -1905,7 +1894,7 @@ Public Class ctrlRC_ImportCV
             'Next
             Dim sError As String = ""
             'Dim iFile As Integer = 1
-            iFile = 1
+            'iFile = 1
             Dim sFile_Name As String = ""
             For Each rF As DataRow In dtFile.Rows
                 If rF("ID") = iFile Then
@@ -1976,7 +1965,7 @@ Public Class ctrlRC_ImportCV
             'Next
             Dim sError As String = ""
             'Dim iFile As Integer = 1
-            iFile = 1
+            '  iFile = 1
             Dim sFile_Name As String = ""
             For Each rF As DataRow In dtFile.Rows
                 If rF("ID") = iFile Then
@@ -2035,7 +2024,7 @@ Public Class ctrlRC_ImportCV
             'Next
             Dim sError As String = ""
             'Dim iFile As Integer = 1
-            iFile = 1
+            '   iFile = 1
             Dim sFile_Name As String = ""
             For Each rF As DataRow In dtFile.Rows
                 If rF("ID") = iFile Then
