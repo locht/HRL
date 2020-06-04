@@ -30,13 +30,13 @@
                     </asp:RequiredFieldValidator>                      
                 </td>
                 <td class="lb">
-                    <%# Translate("Mẫu biểu")%><span class="lbReq">*</span>
+                    <%# Translate("Biểu mẫu")%><span class="lbReq">*</span>
                 </td>
                 <td>
                      <tlk:RadComboBox ID="cboAssessment" runat="server" >
                     </tlk:RadComboBox>  
                     <asp:RequiredFieldValidator ID="reqNameVN" ControlToValidate="cboAssessment" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn phải chọn Mẫu biểu %>" ToolTip="<%$ Translate: Bạn phải chọn Mẫu biểu %>"></asp:RequiredFieldValidator>
+                        ErrorMessage="<%$ Translate: Bạn phải chọn Biểu mẫu %>" ToolTip="<%$ Translate: Bạn phải chọn Biểu mẫu %>"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
