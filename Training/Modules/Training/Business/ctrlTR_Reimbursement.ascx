@@ -128,6 +128,7 @@
             AllowMultiRowSelection="true">
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
+                <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="5" />
             </ClientSettings>
             <MasterTableView DataKeyNames="ID,EMPLOYEE_ID,EMPLOYEE_CODE,EMPLOYEE_NAME,TITLE,ORG_NAME,YEAR,TR_PROGRAM_ID,TR_PROGRAM_NAME,FROM_DATE,TO_DATE,COST_OF_STUDENT,COMMIT_WORK,WORK_AFTER,COST_REIMBURSE,START_DATE,IS_RESERVES"
                 ClientDataKeyNames="ID,EMPLOYEE_ID,EMPLOYEE_CODE,EMPLOYEE_NAME,TITLE,ORG_NAME,YEAR,TR_PROGRAM_ID,TR_PROGRAM_NAME,FROM_DATE,TO_DATE,COST_OF_STUDENT,COMMIT_WORK,WORK_AFTER,COST_REIMBURSE,START_DATE,IS_RESERVES">
@@ -154,10 +155,10 @@
                         UniqueName="TO_DATE" SortExpression="TO_DATE" DataFormatString="{0:dd/MM/yyyy}" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Học phí đào tạo %>" DataField="COST_OF_STUDENT"
                         UniqueName="COST_OF_STUDENT" SortExpression="COST_OF_STUDENT" DataFormatString="{0:N0}" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Thời gian cam kết sau đào tạo %>"
+                    <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Thời gian cam kết sau đào tạo %>"
                         DataField="COMMIT_WORK" UniqueName="COMMIT_WORK" SortExpression="COMMIT_WORK" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Thời gian đã làm việc sau đào tạo %>"
-                        DataField="WORK_AFTER" UniqueName="WORK_AFTER" SortExpression="WORK_AFTER" />
+                        DataField="WORK_AFTER" UniqueName="WORK_AFTER" SortExpression="WORK_AFTER" />--%>
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Tổng tiền bồi hoàn %>" DataField="COST_REIMBURSE"
                         UniqueName="COST_REIMBURSE" SortExpression="COST_REIMBURSE" DataFormatString="{0:N0}" />
                     <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày bắt đầu bồi hoàn %>" DataField="START_DATE"
