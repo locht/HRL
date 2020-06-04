@@ -396,8 +396,8 @@ Public Class ctrlHU_DisciplineNewEdit
                     If Discipline.STATUS_ID = ProfileCommon.DISCIPLINE_STATUS.APPROVE_ID Then
 
                         EnableControlAll_Cus(False, RadPane2)
-                        EnableControlAll(True, chkPhatTien, rntxtMoney, rntxtIndemnifyMoney, rnPaidIMoeny, rdAmountPaidCash, rnAmountToPaid)
-                        EnableControlAll(True, chkDeductFromSalary, rnAmountSalaryMonth, nmYear, cboPeriod, chkAmountInMonth, rnAmountInMonth, rnAmountDeductedMonth)
+                        EnableControlAll(False, chkPhatTien, rntxtMoney, rntxtIndemnifyMoney, rnPaidIMoeny, rdAmountPaidCash, rnAmountToPaid)
+                        EnableControlAll(False, chkDeductFromSalary, rnAmountSalaryMonth, nmYear, cboPeriod, chkAmountInMonth, rnAmountInMonth, rnAmountDeductedMonth)
 
                         If cboDisciplineObj.SelectedValue <> 401 Then
                             EnableControlAll(False, chkDeductFromSalary, rnAmountSalaryMonth, nmYear, cboPeriod, chkAmountInMonth, rnAmountInMonth, rnAmountDeductedMonth)
