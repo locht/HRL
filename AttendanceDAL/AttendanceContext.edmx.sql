@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 06/03/2020 4:10:13 PM
+-- Date Created: 06/05/2020 1:43:04 PM
 -- Generated from EDMX file: F:\WORKING\acv_19\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
@@ -2639,7 +2639,8 @@ CREATE TABLE "dbo"."AT_SHIFT_REG_MNG" (
    "CREATED_LOG" NVARCHAR2(255) NULL,
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_BY" NVARCHAR2(255) NULL,
-   "MODIFIED_LOG" NVARCHAR2(255) NULL
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "IS_CHANGE" NUMBER(38,0) NULL
 );
 
 -- Creating table 'SE_USER_REPORT'

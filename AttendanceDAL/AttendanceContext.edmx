@@ -2658,6 +2658,7 @@
             <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
             <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="IS_CHANGE" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
@@ -5637,6 +5638,7 @@
           <Property Type="DateTime" Name="MODIFIED_DATE" />
           <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="IS_CHANGE" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -8240,6 +8242,7 @@
                     <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
                     <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
                     <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="IS_CHANGE" ColumnName="IS_CHANGE" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -8425,7 +8428,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_FML_DETAIL" Width="1.5" PointX="17.375" PointY="27.75" Height="3.5186979166666674" />
         <EntityTypeShape EntityType="AttendanceModel.AT_PORTAL_REG_SHIFT" Width="1.5" PointX="27.375" PointY="0.75" Height="2.7494921875" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SEND_APPROVE_LETTER" Width="1.5" PointX="10.375" PointY="28.75" Height="2.9417936197916674" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_SHIFT_REG_MNG" Width="1.5" PointX="29.375" PointY="0.75" Height="3.5186979166666674" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_SHIFT_REG_MNG" Width="1.5" PointX="29.375" PointY="0.75" Height="3.7109993489583326" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -198,21 +198,21 @@
                     <tlk:GridBoundColumn HeaderText="MSNV" DataField="EMPLOYEE_CODE" HeaderStyle-Width="100px"
                         ReadOnly="true" UniqueName="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE" ItemStyle-HorizontalAlign="Center" />
                     <tlk:GridBoundColumn HeaderText="Họ tên nhân viên" DataField="FULLNAME_VN" UniqueName="FULLNAME_VN"
-                        HeaderStyle-Width="200px" ReadOnly="true" SortExpression="FULLNAME_VN" ItemStyle-HorizontalAlign="Center" />
+                        HeaderStyle-Width="200px" ReadOnly="true" SortExpression="FULLNAME_VN" ItemStyle-HorizontalAlign="Left" />
                     <tlk:GridBoundColumn DataField="ORG_ID" UniqueName="ORG_ID" HeaderStyle-Width="200px"
                         ReadOnly="true" SortExpression="ORG_ID" Visible="false" ItemStyle-HorizontalAlign="Center" />
                     <tlk:GridBoundColumn DataField="EMPLOYEE_OBJECT_CODE" UniqueName="EMPLOYEE_OBJECT_CODE" HeaderStyle-Width="200px"
-                        ReadOnly="true" SortExpression="EMPLOYEE_OBJECT_CODE" Visible="false" ItemStyle-HorizontalAlign="Center" />
+                        ReadOnly="true" SortExpression="EMPLOYEE_OBJECT_CODE" Visible="false" ItemStyle-HorizontalAlign="Left" />
                     <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME" UniqueName="ORG_NAME"
-                        HeaderStyle-Width="200px" ReadOnly="true" SortExpression="ORG_NAME" ItemStyle-HorizontalAlign="Center" />
+                        HeaderStyle-Width="200px" ReadOnly="true" SortExpression="ORG_NAME" ItemStyle-HorizontalAlign="Left" />
                     <tlk:GridBoundColumn HeaderText="Vị trí công việc" DataField="TITLE_NAME_VN" UniqueName="TITLE_NAME_VN"
-                        HeaderStyle-Width="200px" ReadOnly="true" SortExpression="TITLE_NAME_VN" ItemStyle-HorizontalAlign="Center" />
+                        HeaderStyle-Width="200px" ReadOnly="true" SortExpression="TITLE_NAME_VN" ItemStyle-HorizontalAlign="Left" />
                     <tlk:GridBoundColumn HeaderText="Đối tượng nhân viên" DataField="EMPLOYEE_OBJECT_NAME" UniqueName="EMPLOYEE_OBJECT_NAME"
-                        HeaderStyle-Width="200px" ReadOnly="true" SortExpression="EMPLOYEE_OBJECT_NAME" ItemStyle-HorizontalAlign="Center" />
+                        HeaderStyle-Width="200px" ReadOnly="true" SortExpression="EMPLOYEE_OBJECT_NAME" ItemStyle-HorizontalAlign="Left" />
                     <tlk:GridNumericColumn HeaderText="Phép năm còn lại" DataField="EMP_ENTITLEMENT" UniqueName="EMP_ENTITLEMENT"
-                        HeaderStyle-Width="200px" ReadOnly="true" SortExpression="EMP_ENTITLEMENT" ItemStyle-HorizontalAlign="Center" />
+                        HeaderStyle-Width="200px" ReadOnly="true" SortExpression="EMP_ENTITLEMENT" ItemStyle-HorizontalAlign="Right" />
                     <tlk:GridBoundColumn HeaderText="Quỹ nghỉ bù còn lại" DataField="A" UniqueName="A"
-                        HeaderStyle-Width="200px" ReadOnly="true" SortExpression="A" ItemStyle-HorizontalAlign="Center" />
+                        HeaderStyle-Width="200px" ReadOnly="true" SortExpression="A" ItemStyle-HorizontalAlign="Right" />
                 </Columns>
             </MasterTableView>
             <HeaderStyle HorizontalAlign="Center" />

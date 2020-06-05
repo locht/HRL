@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("fb50b41e-f858-40b7-b0b0-5fe1fd0c3d24")>
+<Assembly: EdmSchemaAttribute("3758df44-ad8a-44b3-a53e-a3555252ef35")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -25333,6 +25333,31 @@ Public Partial Class AT_SHIFT_REG_MNG
     End Sub
 
     Private Partial Sub OnMODIFIED_LOGChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_CHANGE() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_CHANGE
+        End Get
+        Set
+            OnIS_CHANGEChanging(value)
+            ReportPropertyChanging("IS_CHANGE")
+            _IS_CHANGE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_CHANGE")
+            OnIS_CHANGEChanged()
+        End Set
+    End Property
+
+    Private _IS_CHANGE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_CHANGEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_CHANGEChanged()
     End Sub
 
     #End Region

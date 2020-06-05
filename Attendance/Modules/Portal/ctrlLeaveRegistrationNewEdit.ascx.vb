@@ -380,6 +380,8 @@ Public Class ctrlLeaveRegistrationNewEdit
 
                         objValidate.LEAVE_FROM = rdLEAVE_FROM.SelectedDate
                         objValidate.LEAVE_TO = rdLEAVE_TO.SelectedDate
+                        objValidate.FROM_SESSION = cboFROM_SESSION.SelectedValue
+                        objValidate.TO_SESSION = cboTO_SESSION.SelectedValue
                         objValidate.ID = Utilities.ObjToDecima(rPH("ID"))
                         Dim id As Decimal = 0
                         For Each item As GridDataItem In rgEmployee.Items

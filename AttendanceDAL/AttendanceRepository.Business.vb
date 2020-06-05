@@ -6780,25 +6780,31 @@ Partial Public Class AttendanceRepository
                 objdata.NOTE = objShift.NOTE
                 objdata.CREATED_BY = objShift.CREATED_BY
                 objdata.CREATED_DATE = objShift.CREATED_DATE
-                objdata.CREATED_DATE = objShift.CREATED_LOG
+                objdata.CREATED_LOG = objShift.CREATED_LOG
                 objdata.MODIFIED_BY = objShift.MODIFIED_BY
                 objdata.MODIFIED_DATE = objShift.MODIFIED_DATE
-                objdata.CREATED_DATE = objShift.MODIFIED_LOG
+                objdata.MODIFIED_LOG = objShift.MODIFIED_LOG
+                objdata.IS_CHANGE = 1
                 Context.AT_SHIFT_REG_MNG.AddObject(objdata)
             Else
                 Dim objData = (From p In Context.AT_SHIFT_REG_MNG Where p.ID = objShift.ID).FirstOrDefault
                 objData.EMPLOYEE_ID = objShift.EMPLOYEE_ID
                 objData.WORKING_DAY = objShift.WORKING_DAY
                 objData.SHIFT_ID = objShift.SHIFT_ID
-                objData.WEEKEND = objShift.WEEKEND
-                objData.HOLYDAY = objShift.HOLYDAY
+                If objShift.WEEKEND Then
+                    objData.WEEKEND = (From p In Context.AT_SHIFT Where p.CODE.ToUpper = "CN" Select p.ID).FirstOrDefault
+                End If
+                If objShift.HOLYDAY Then
+                    objData.HOLYDAY = (From p In Context.AT_SHIFT Where p.CODE.ToUpper = "L" Select p.ID).FirstOrDefault
+                End If
                 objData.NOTE = objShift.NOTE
                 objData.CREATED_BY = objShift.CREATED_BY
                 objData.CREATED_DATE = objShift.CREATED_DATE
-                objData.CREATED_DATE = objShift.CREATED_LOG
+                objData.CREATED_LOG = objShift.CREATED_LOG
                 objData.MODIFIED_BY = objShift.MODIFIED_BY
                 objData.MODIFIED_DATE = objShift.MODIFIED_DATE
-                objData.CREATED_DATE = objShift.MODIFIED_LOG
+                objData.MODIFIED_LOG = objShift.MODIFIED_LOG
+                objData.IS_CHANGE = 1
             End If
             Context.SaveChanges(log)
             Return True
@@ -6857,7 +6863,8 @@ Partial Public Class AttendanceRepository
                                                                        .CREATED_LOG = p.p.CREATED_LOG,
                                                                        .MODIFIED_BY = p.p.MODIFIED_BY,
                                                                        .MODIFIED_DATE = p.p.MODIFIED_DATE,
-                                                                       .MODIFIED_LOG = p.p.MODIFIED_LOG}).FirstOrDefault
+                                                                       .MODIFIED_LOG = p.p.MODIFIED_LOG,
+                                                                       .IS_CHANGE = p.p.IS_CHANGE}).FirstOrDefault
             Dim lstEmp As New List(Of Common.CommonBusiness.EmployeeDTO)
             lstEmp = (From p In Context.HU_EMPLOYEE
                       From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty

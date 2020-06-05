@@ -77,24 +77,6 @@ Partial Public Class ctrlLeaveRegistration
     Protected WithEvents RadPane4 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
-    '''cboStatus control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboStatus As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
-    '''cboManual control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboManual As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
     '''cboYear control.
     '''</summary>
     '''<remarks>
@@ -156,6 +138,24 @@ Partial Public Class ctrlLeaveRegistration
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSearch As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''cboStatus control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboStatus As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cboManual control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboManual As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''RadPane2 control.

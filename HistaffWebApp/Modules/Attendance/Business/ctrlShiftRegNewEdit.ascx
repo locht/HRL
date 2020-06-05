@@ -18,7 +18,7 @@
         <table class="table-form" style="height:100px">
             <tr>
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbEffectDate" Text="Ngày đăng ký"></asp:Label>
+                    <asp:Label runat="server" ID="lbEffectDate" Text="Ngày đăng ký"></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdRegDate" runat="server" TabIndex="3">
@@ -28,7 +28,7 @@
                     </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
-                    <asp:Label runat="server" ID="Label1" Text="Ca đăng ký"></asp:Label>
+                    <asp:Label runat="server" ID="Label1" Text="Ca đăng ký"></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox runat="server" ID="cboShift">

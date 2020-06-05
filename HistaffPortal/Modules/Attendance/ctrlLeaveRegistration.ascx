@@ -42,7 +42,6 @@
                         </td>
                     </tr>
                     <tr>
-                        
                         <td class="lb">
                             <%# Translate("Từ ngày")%><span class="lbReq">*</span>
                         </td>
@@ -92,6 +91,11 @@
                             </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên %>" DataField="VN_FULLNAME"
                                 UniqueName="VN_FULLNAME" SortExpression="VN_FULLNAME" ItemStyle-Width="100px">
+                                <HeaderStyle Width="100px" />
+                            </tlk:GridBoundColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Vị trí công việc %>" DataField="TITLE_NAME"
+                                UniqueName="TITLE_NAME" SortExpression="TITLE_NAME" ItemStyle-HorizontalAlign="Center"
+                                ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
                             </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="ORG_NAME"
