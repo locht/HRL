@@ -45526,4 +45526,20 @@ Xin cám ơn!
       <string>Khóa đạo tạo</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLSHIFTREGMNG</string>
+    </Key>
+    <Value>
+      <string>Khai báo ngày nghỉ hằng tuần, quản lý ca đăng ký</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLSHIFTREGNEWEDIT</string>
+    </Key>
+    <Value>
+      <string>Chỉnh sửa ngày nghỉ hàng tuần</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

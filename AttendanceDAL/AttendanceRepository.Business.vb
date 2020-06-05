@@ -6649,6 +6649,247 @@ Partial Public Class AttendanceRepository
             _isAvailable = True
         End Try
     End Function
+
+    Public Function GetAtShiftRegMng(ByVal _filter As AtShiftRegMngDTO,
+                                     ByVal _param As ParamDTO,
+                                     Optional ByRef Total As Integer = 0,
+                                     Optional ByVal PageIndex As Integer = 0,
+                                     Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                     Optional ByVal Sorts As String = "EMPLOYEE_CODE desc", Optional ByVal log As UserLog = Nothing) As List(Of AtShiftRegMngDTO)
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username.ToUpper,
+                                           .P_ORGID = _param.ORG_ID,
+                                           .P_ISDISSOLVE = _param.IS_DISSOLVE})
+            End Using
+            Dim query = From p In Context.AT_SHIFT_REG_MNG
+                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
+                        From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
+                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
+                        From s In Context.AT_SHIFT.Where(Function(f) f.ID = p.SHIFT_ID).DefaultIfEmpty
+                        From wk In Context.AT_SHIFT.Where(Function(f) f.ID = p.WEEKEND).DefaultIfEmpty
+                        From hl In Context.AT_SHIFT.Where(Function(f) f.ID = p.HOLYDAY).DefaultIfEmpty
+                        From k In Context.SE_CHOSEN_ORG.Where(Function(f) e.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
+            If _filter.FROM_DATE.HasValue Then
+                query = query.Where(Function(f) f.p.WORKING_DAY >= _filter.FROM_DATE)
+            End If
+            If _filter.TO_DATE.HasValue Then
+                query = query.Where(Function(f) f.p.WORKING_DAY <= _filter.TO_DATE)
+            End If
+            If _filter.WORKING_DAY.HasValue Then
+                query = query.Where(Function(f) f.p.WORKING_DAY = _filter.WORKING_DAY)
+            End If
+            If _filter.EMP_SEARCH <> "" Then
+                query = query.Where(Function(f) f.e.EMPLOYEE_CODE.ToUpper.Contains(_filter.EMP_SEARCH.ToUpper) Or f.e.FULLNAME_VN.ToUpper.Contains(_filter.EMP_SEARCH.ToUpper))
+            End If
+            If _filter.EMPLOYEE_CODE <> "" Then
+                query = query.Where(Function(f) f.e.EMPLOYEE_CODE.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper) Or f.e.FULLNAME_VN.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper))
+            End If
+            If _filter.EMPLOYEE_NAME <> "" Then
+                query = query.Where(Function(f) f.e.FULLNAME_VN.ToUpper.Contains(_filter.EMPLOYEE_NAME.ToUpper))
+            End If
+            If _filter.ORG_NAME <> "" Then
+                query = query.Where(Function(f) f.o.NAME_VN.ToUpper.Contains(_filter.ORG_NAME.ToUpper))
+            End If
+            If _filter.TITLE_NAME <> "" Then
+                query = query.Where(Function(f) f.t.NAME_VN.ToUpper.Contains(_filter.TITLE_NAME.ToUpper))
+            End If
+            If _filter.SHIFT_CODE <> "" Then
+                query = query.Where(Function(f) f.s.CODE.ToUpper.Contains(_filter.SHIFT_CODE.ToUpper))
+            End If
+            If _filter.NOTE <> "" Then
+                query = query.Where(Function(f) f.p.NOTE.ToUpper.Contains(_filter.NOTE.ToUpper))
+            End If
+            Dim lst = query.Select(Function(p) New AtShiftRegMngDTO With {
+                                                                       .ID = p.p.ID,
+                                                                       .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
+                                                                       .EMPLOYEE_NAME = p.e.FULLNAME_VN,
+                                                                       .ORG_ID = p.e.ORG_ID,
+                                                                       .ORG_NAME = p.o.NAME_VN,
+                                                                       .TITLE_ID = p.e.TITLE_ID,
+                                                                       .TITLE_NAME = p.t.NAME_VN,
+                                                                       .WORKING_DAY = p.p.WORKING_DAY,
+                                                                       .SHIFT_ID = p.p.SHIFT_ID,
+                                                                       .SHIFT_CODE = p.s.CODE,
+                                                                       .SHIFT_NAME = p.s.NAME_VN,
+                                                                       .WEEKEND = p.p.WEEKEND,
+                                                                       .WEEKEND_CODE = If(String.IsNullOrEmpty(p.p.WEEKEND), "", "1"),
+                                                                       .HOLYDAY = p.p.HOLYDAY,
+                                                                       .HOLYDAY_CODE = If(String.IsNullOrEmpty(p.p.HOLYDAY), "", "1"),
+                                                                       .NOTE = p.p.NOTE,
+                                                                       .CREATED_BY = p.p.CREATED_BY,
+                                                                       .CREATED_DATE = p.p.CREATED_DATE,
+                                                                       .CREATED_LOG = p.p.CREATED_LOG,
+                                                                       .MODIFIED_BY = p.p.MODIFIED_BY,
+                                                                       .MODIFIED_DATE = p.p.MODIFIED_DATE,
+                                                                       .MODIFIED_LOG = p.p.MODIFIED_LOG})
+            If _filter.WEEKEND_CODE <> "" Then
+                lst = lst.Where(Function(f) f.WEEKEND_CODE.ToUpper.Contains(_filter.WEEKEND_CODE))
+            End If
+            lst = lst.OrderBy(Sorts)
+            Total = lst.Count
+            lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
+            Return lst.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function Calculate_Shift_Reg(ByVal _param As ParamDTO,
+                                         ByVal log As UserLog,
+                                         ByVal p_period_id As Decimal?,
+                                         ByVal P_ORG_ID As Decimal,
+                                         ByVal lstEmployee As List(Of Decimal?)) As Boolean
+        Try
+            Dim obj As New AT_ACTION_LOGDTO
+            obj.PERIOD_ID = p_period_id
+            LOG_AT(_param, log, lstEmployee, "TỔNG HỢP CA LÀM VIỆC ĐĂNG KÝ DƯỚI PORTAL", obj, P_ORG_ID)
+            Using cls As New DataAccess.NonQueryData
+                cls.ExecuteStore("PKG_ATTENDANCE_LIST.CAL_SHIFT_REG",
+                                               New With {.P_USERNAME = log.Username.ToUpper,
+                                                         .P_ORG_ID = P_ORG_ID,
+                                                         .P_PERIOD_ID = p_period_id,
+                                                         .P_ISDISSOLVE = _param.IS_DISSOLVE})
+                Return True
+            End Using
+
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+
+        End Try
+    End Function
+
+    Public Function AddShiftReg(ByVal objShift As AtShiftRegMngDTO, Optional ByVal log As UserLog = Nothing)
+        Try
+            If IsNothing(objShift.ID) OrElse objShift.ID = 0 Then
+                Dim objdata As New AT_SHIFT_REG_MNG
+                objdata.ID = Utilities.GetNextSequence(Context, Context.AT_SHIFT_REG_MNG.EntitySet.Name)
+                objdata.EMPLOYEE_ID = objShift.EMPLOYEE_ID
+                objdata.WORKING_DAY = objShift.WORKING_DAY
+                objdata.SHIFT_ID = objShift.SHIFT_ID
+                If objShift.WEEKEND Then
+                    objdata.WEEKEND = (From p In Context.AT_SHIFT Where p.CODE.ToUpper = "CN" Select p.ID).FirstOrDefault
+                End If
+                If objShift.HOLYDAY Then
+                    objdata.HOLYDAY = (From p In Context.AT_SHIFT Where p.CODE.ToUpper = "L" Select p.ID).FirstOrDefault
+                End If
+                objdata.NOTE = objShift.NOTE
+                objdata.CREATED_BY = log.Username.ToUpper
+                objdata.CREATED_DATE = DateTime.Now
+                objdata.MODIFIED_BY = log.Username.ToUpper
+                objdata.MODIFIED_DATE = DateTime.Now
+                Context.AT_SHIFT_REG_MNG.AddObject(objdata)
+            Else
+                Dim objData = (From p In Context.AT_SHIFT_REG_MNG Where p.ID = objShift.ID).FirstOrDefault
+                objData.EMPLOYEE_ID = objShift.EMPLOYEE_ID
+                objData.WORKING_DAY = objShift.WORKING_DAY
+                objData.SHIFT_ID = objShift.SHIFT_ID
+                objData.WEEKEND = objShift.WEEKEND
+                objData.HOLYDAY = objShift.HOLYDAY
+                objData.NOTE = objShift.NOTE
+                objData.CREATED_BY = log.Username.ToUpper
+                objData.CREATED_DATE = DateTime.Now
+                objData.MODIFIED_BY = log.Username.ToUpper
+                objData.MODIFIED_DATE = DateTime.Now
+            End If
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function DeleteShiftReg(ByVal lstID As List(Of Decimal)) As Boolean
+        Try
+            Dim lstShift = (From p In Context.AT_SHIFT_REG_MNG Where lstID.Contains(p.ID))
+
+            If lstShift.Count > 0 Then
+                For Each item In lstShift
+                    Context.AT_SHIFT_REG_MNG.DeleteObject(item)
+                Next
+            End If
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            ' Utility.WriteExceptionLog(ex, Me.ToString() & ".DeleteLeaveOT")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetShiftRegById(ByVal _id As Decimal) As AtShiftRegMngDTO
+        Try
+            Dim query = From p In Context.AT_SHIFT_REG_MNG
+                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
+                        From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
+                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
+                        From s In Context.AT_SHIFT.Where(Function(f) f.ID = p.SHIFT_ID).DefaultIfEmpty
+                        From wk In Context.AT_SHIFT.Where(Function(f) f.ID = p.WEEKEND).DefaultIfEmpty
+                        From hl In Context.AT_SHIFT.Where(Function(f) f.ID = p.HOLYDAY).DefaultIfEmpty
+                        Where p.ID = _id
+            Dim obj = query.Select(Function(p) New AtShiftRegMngDTO With {
+                                                                       .ID = p.p.ID,
+                                                                       .EMPLOYEE_ID = p.p.EMPLOYEE_ID,
+                                                                       .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
+                                                                       .EMPLOYEE_NAME = p.e.FULLNAME_VN,
+                                                                       .ORG_ID = p.e.ORG_ID,
+                                                                       .ORG_NAME = p.o.NAME_VN,
+                                                                       .TITLE_ID = p.e.TITLE_ID,
+                                                                       .TITLE_NAME = p.t.NAME_VN,
+                                                                       .WORKING_DAY = p.p.WORKING_DAY,
+                                                                       .SHIFT_ID = p.p.SHIFT_ID,
+                                                                       .SHIFT_CODE = p.s.CODE,
+                                                                       .SHIFT_NAME = p.s.NAME_VN,
+                                                                       .WEEKEND = p.p.WEEKEND,
+                                                                       .HOLYDAY = p.p.HOLYDAY,
+                                                                       .NOTE = p.p.NOTE,
+                                                                       .CREATED_BY = p.p.CREATED_BY,
+                                                                       .CREATED_DATE = p.p.CREATED_DATE,
+                                                                       .CREATED_LOG = p.p.CREATED_LOG,
+                                                                       .MODIFIED_BY = p.p.MODIFIED_BY,
+                                                                       .MODIFIED_DATE = p.p.MODIFIED_DATE,
+                                                                       .MODIFIED_LOG = p.p.MODIFIED_LOG}).FirstOrDefault
+            Dim lstEmp As New List(Of Common.CommonBusiness.EmployeeDTO)
+            lstEmp = (From p In Context.HU_EMPLOYEE
+                      From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                      From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
+                      Where p.ID = obj.EMPLOYEE_ID
+                      Select New Common.CommonBusiness.EmployeeDTO With {
+                            .ID = p.ID,
+                            .TITLE_ID = p.TITLE_ID,
+                            .TITLE_NAME_VN = t.NAME_VN,
+                            .ORG_ID = p.ORG_ID,
+                            .ORG_NAME = o.NAME_VN,
+                            .JOIN_DATE = p.JOIN_DATE,
+                            .EMPLOYEE_CODE = p.EMPLOYEE_CODE,
+                            .FULLNAME_VN = p.FULLNAME_VN}).ToList
+            obj.EMP_LST = lstEmp
+            
+            Return obj
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function ValidateShiftReg(ByVal obj As AtShiftRegMngDTO) As Boolean
+        Try
+            Dim lst = (From p In Context.AT_SHIFT_REG_MNG Where p.WORKING_DAY = obj.WORKING_DAY And p.ID <> obj.ID And p.EMPLOYEE_ID = obj.EMPLOYEE_ID)
+            If lst.Count > 0 Then
+                Return False
+            End If
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            ' Utility.WriteExceptionLog(ex, Me.ToString() & ".DeleteLeaveOT")
+            Throw ex
+        End Try
+    End Function
 #End Region
 
     Public Function INPORT_AT_OT_REGISTRATION(ByVal P_DOCXML As String, ByVal log As UserLog) As Boolean

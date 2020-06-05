@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("f9100616-8eb6-49e9-9255-eddc0e776e5d")>
+<Assembly: EdmSchemaAttribute("fb50b41e-f858-40b7-b0b0-5fe1fd0c3d24")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -25065,24 +25065,24 @@ Public Partial Class AT_SHIFT_REG_MNG
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property WORING_DAY() As Nullable(Of Global.System.DateTime)
+    Public Property WORKING_DAY() As Nullable(Of Global.System.DateTime)
         Get
-            Return _WORING_DAY
+            Return _WORKING_DAY
         End Get
         Set
-            OnWORING_DAYChanging(value)
-            ReportPropertyChanging("WORING_DAY")
-            _WORING_DAY = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("WORING_DAY")
-            OnWORING_DAYChanged()
+            OnWORKING_DAYChanging(value)
+            ReportPropertyChanging("WORKING_DAY")
+            _WORKING_DAY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("WORKING_DAY")
+            OnWORKING_DAYChanged()
         End Set
     End Property
 
-    Private _WORING_DAY As Nullable(Of Global.System.DateTime)
-    Private Partial Sub OnWORING_DAYChanging(value As Nullable(Of Global.System.DateTime))
+    Private _WORKING_DAY As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnWORKING_DAYChanging(value As Nullable(Of Global.System.DateTime))
     End Sub
 
-    Private Partial Sub OnWORING_DAYChanged()
+    Private Partial Sub OnWORKING_DAYChanged()
     End Sub
 
     ''' <summary>

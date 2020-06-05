@@ -163,6 +163,8 @@
     <Content Include="Modules\Attendance\Business\ctrlDeclare_TimeRice.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlDeclare_TimeRiceNewEdit.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlNewInOut.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlShiftRegMng.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlShiftRegNewEdit.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlSignWorkDelete.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlTimesheetSummary.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlTime_TimeSheet_CCTEdit.ascx" />

@@ -3,6 +3,7 @@
   <Group>
     <Item Text="Nghiệp vụ"  PostBack="False">
       <Group>
+        <Item Value="ctrlShiftRegMng" Text="Khai báo ngày nghỉ hằng tuần, quản lý ca đăng ký" PostBack="True" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlShiftRegMng&amp;group=Business" CheckPermission="true" />
         <Item Value="ctrlAT_MngRegisters" Text="Quản lý đơn đăng ký" PostBack="True" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlAT_MngRegisters&amp;group=Business" CheckPermission="true" />
         <Item Value="ctrlGetSignDefault" Text="Đăng ký ca mặc định" PostBack="True" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlGetSignDefault&amp;group=Setting" CheckPermission="true" />
         <Item Value="ctrlSignWork" Text="Xếp ca làm việc" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlSignWork&amp;group=Business" CheckPermission="true"/>

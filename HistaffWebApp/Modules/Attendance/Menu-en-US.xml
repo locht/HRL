@@ -3,6 +3,7 @@
   <Group>
     <Item Text="Business"  PostBack="False">
       <Group>
+        <Item Value="ctrlShiftRegMng" Text="Register leave week" PostBack="True" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlShiftRegMng&amp;group=Business" CheckPermission="true" />
         <Item Value="ctrlSignWork" Text="Working day" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlSignWork&amp;group=Business" CheckPermission="true"/>
         <Item Value="ctrlRegisterCO" Text="Register for leave" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlRegisterCO&amp;group=Business" CheckPermission="true"/>
         <Item Text="OverTime" PostBack="False">

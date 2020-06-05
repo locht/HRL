@@ -147,6 +147,7 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="My Project\DataSources\Common.CommonBusiness.EmployeePopupFindDTO.datasource" />
     <None Include="My Project\DataSources\Common.CommonBusiness.FunctionDTO.datasource" />
     <None Include="My Project\DataSources\Common.CommonBusiness.GroupDTO.datasource" />
@@ -165,12 +166,14 @@
     <None Include="My Project\DataSources\Common.CommonBusiness.UserDTO.datasource" />
     <None Include="My Project\DataSources\System.Data.DataSet1.datasource" />
     <None Include="My Project\DataSources\System.Data.DataTable.datasource" />
+    <Content Include="Modules\Attendance\Business\ctrlShiftRegNewEdit.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlOffSettingTimeKeepingNewEdit.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlOffSettingTimeKeeping.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlApproveOT.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlAT_PROJECT_ASSIGNNewEdit.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlAT_PROJECT_ASSIGN.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlAT_MngRegisters.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlShiftRegMng.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlTime_Timesheet_NB.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlDeclareEntitlementNBNewEditMultiple.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlActionLog.ascx" />
@@ -248,6 +251,12 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.ATFormularDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AtPortalRegistrationShiftDTO1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AtShiftRegMngDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_ACTION_LOGDTO.datasource">
@@ -394,6 +403,9 @@
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.LEAVE_DETAIL_EMP_DTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.OT_OTHERLIST_DTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.OT_OTHERLIST_DTO1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -414,6 +426,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\AttendanceBusiness\AttendanceBusiness7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AttendanceBusiness\AttendanceBusiness8.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\AttendanceBusiness\configuration91.svcinfo" />
@@ -489,6 +504,13 @@
     <Compile Include="AttendanceRepository.Report.vb" />
     <Compile Include="AttendanceRepository.Dashboard.vb" />
     <Compile Include="AttendanceRepository.Setting.vb" />
+    <Compile Include="Modules\Attendance\Business\ctrlShiftRegNewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlShiftRegNewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlShiftRegNewEdit.ascx.vb">
+      <DependentUpon>ctrlShiftRegNewEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Modules\Attendance\Business\ctrlOffSettingTimeKeepingNewEdit.ascx.designer.vb">
       <DependentUpon>ctrlOffSettingTimeKeepingNewEdit.ascx</DependentUpon>
     </Compile>
@@ -529,6 +551,13 @@
     </Compile>
     <Compile Include="Modules\Attendance\Business\ctrlAT_MngRegisters.ascx.vb">
       <DependentUpon>ctrlAT_MngRegisters.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlShiftRegMng.ascx.designer.vb">
+      <DependentUpon>ctrlShiftRegMng.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlShiftRegMng.ascx.vb">
+      <DependentUpon>ctrlShiftRegMng.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Attendance\Business\ctrlTime_Timesheet_NB.ascx.designer.vb">

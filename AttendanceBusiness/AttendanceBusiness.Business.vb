@@ -1711,6 +1711,88 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+
+        Public Function GetAtShiftRegMng(ByVal _filter As AtShiftRegMngDTO,
+                                     ByVal _param As ParamDTO,
+                                     Optional ByRef Total As Integer = 0,
+                                     Optional ByVal PageIndex As Integer = 0,
+                                     Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                     Optional ByVal Sorts As String = "EMPLOYEE_CODE desc", Optional ByVal log As UserLog = Nothing) As List(Of AtShiftRegMngDTO) Implements IAttendanceBusiness.GetAtShiftRegMng
+
+            Using rep As New AttendanceRepository
+                Try
+                    Dim lst = rep.GetAtShiftRegMng(_filter, _param, Total, PageIndex, PageSize, Sorts, log)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+
+        Public Function Calculate_Shift_Reg(ByVal _param As ParamDTO,
+                                         ByVal log As UserLog,
+                                         ByVal p_period_id As Decimal?,
+                                         ByVal P_ORG_ID As Decimal,
+                                         ByVal lstEmployee As List(Of Decimal?)) As Boolean Implements IAttendanceBusiness.Calculate_Shift_Reg
+
+            Using rep As New AttendanceRepository
+                Try
+                    Dim lst = rep.Calculate_Shift_Reg(_param, log, p_period_id, P_ORG_ID, lstEmployee)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function DeleteShiftReg(ByVal lstID As List(Of Decimal)) As Boolean Implements IAttendanceBusiness.DeleteShiftReg
+
+            Using rep As New AttendanceRepository
+                Try
+                    Dim lst = rep.DeleteShiftReg(lstID)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Function AddShiftReg(ByVal objShift As AtShiftRegMngDTO, Optional ByVal log As UserLog = Nothing) As Boolean Implements IAttendanceBusiness.AddShiftReg
+
+            Using rep As New AttendanceRepository
+                Try
+                    Dim lst = rep.AddShiftReg(objShift, log)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Function GetShiftRegById(ByVal _id As Decimal) As AtShiftRegMngDTO Implements IAttendanceBusiness.GetShiftRegById
+
+            Using rep As New AttendanceRepository
+                Try
+                    Dim obj = rep.GetShiftRegById(_id)
+                    Return obj
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Function ValidateShiftReg(ByVal obj As AtShiftRegMngDTO) As Boolean Implements IAttendanceBusiness.ValidateShiftReg
+
+            Using rep As New AttendanceRepository
+                Try
+                    Dim objdata = rep.ValidateShiftReg(obj)
+                    Return objdata
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #End Region
 
         Public Function INPORT_AT_OT_REGISTRATION(ByVal P_DOCXML As String, ByVal log As UserLog) As Boolean Implements ServiceContracts.IAttendanceBusiness.INPORT_AT_OT_REGISTRATION

@@ -405,16 +405,16 @@ Public Class ctrlLeaveRegistrationNewEdit
 
 
                         CreateDataBinDing(0)
-                        rPH("CREATED_BY_EMP") = LogHelper.CurrentUser.EMPLOYEE_ID
-                        rPH("CREATED_BY") = LogHelper.CurrentUser.FULLNAME
+                        If CurrentState = CommonMessage.STATE_NEW Then
+                            rPH("CREATED_BY_EMP") = LogHelper.CurrentUser.EMPLOYEE_ID
+                            rPH("CREATED_BY") = LogHelper.CurrentUser.FULLNAME
+                        End If
                         rPH("IS_APP") = -1
                         rPH("STATUS") = 0
-                        If CurrentState = CommonMessage.STATE_EDIT Then
-                            rPH("MODIFIED_BY_EMP") = LogHelper.CurrentUser.EMPLOYEE_ID
-                            rPH("MODIFIED_BY") = LogHelper.CurrentUser.FULLNAME
-                            rPH("MODIFIED_DATE") = DateTime.Now
-                            rPH("MODIFIED_LOG") = LogHelper.GetUserLog.Ip + "\" + LogHelper.GetUserLog.ComputerName
-                        End If
+                        rPH("MODIFIED_BY_EMP") = LogHelper.CurrentUser.EMPLOYEE_ID
+                        rPH("MODIFIED_BY") = LogHelper.CurrentUser.FULLNAME
+                        rPH("MODIFIED_DATE") = DateTime.Now
+                        rPH("MODIFIED_LOG") = LogHelper.GetUserLog.Ip + "\" + LogHelper.GetUserLog.ComputerName
                         Dim lst_delete As New List(Of AT_LEAVESHEETDTO)
                         If Not IsDBNull(rPH("ID")) Then
                             Dim at_leave As New AT_LEAVESHEETDTO

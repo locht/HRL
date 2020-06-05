@@ -2647,7 +2647,7 @@
             </Key>
             <Property Name="ID" Type="number" Nullable="false" Precision="38" />
             <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
-            <Property Name="WORING_DAY" Type="date" Nullable="true" />
+            <Property Name="WORKING_DAY" Type="date" Nullable="true" />
             <Property Name="SHIFT_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="WEEKEND" Type="number" Nullable="true" Precision="38" />
             <Property Name="HOLYDAY" Type="number" Nullable="true" Precision="38" />
@@ -5626,7 +5626,7 @@
           </Key>
           <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
-          <Property Type="DateTime" Name="WORING_DAY" />
+          <Property Type="DateTime" Name="WORKING_DAY" />
           <Property Type="Decimal" Name="SHIFT_ID" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="WEEKEND" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="HOLYDAY" Precision="38" Scale="0" />
@@ -8229,7 +8229,7 @@
                 <MappingFragment StoreEntitySet="AT_SHIFT_REG_MNG">
                     <ScalarProperty Name="ID" ColumnName="ID" />
                     <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
-                    <ScalarProperty Name="WORING_DAY" ColumnName="WORING_DAY" />
+                    <ScalarProperty Name="WORKING_DAY" ColumnName="WORKING_DAY" />
                     <ScalarProperty Name="SHIFT_ID" ColumnName="SHIFT_ID" />
                     <ScalarProperty Name="WEEKEND" ColumnName="WEEKEND" />
                     <ScalarProperty Name="HOLYDAY" ColumnName="HOLYDAY" />

@@ -97,7 +97,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Lý do chi tiết")%>
+                    <%# Translate("Lý do chi tiết")%><span class="lbReq">*</span>
                     
                 </td>
                 <td colspan="5">

@@ -1273,6 +1273,33 @@ Namespace AttendanceBusiness.ServiceContracts
                                      Optional ByVal log As UserLog = Nothing) As List(Of AT_SHIFTCYCLEDTO)
         <OperationContract()>
         Function GetEmployeeShifts(ByVal employee_Id As Decimal, ByVal fromDate As Date, ByVal toDate As Date) As List(Of EMPLOYEE_SHIFT_DTO)
+
+        <OperationContract()>
+        Function GetAtShiftRegMng(ByVal _filter As AtShiftRegMngDTO,
+                                     ByVal _param As ParamDTO,
+                                     Optional ByRef Total As Integer = 0,
+                                     Optional ByVal PageIndex As Integer = 0,
+                                     Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                     Optional ByVal Sorts As String = "EMPLOYEE_CODE desc", Optional ByVal log As UserLog = Nothing) As List(Of AtShiftRegMngDTO)
+
+        <OperationContract()>
+        Function Calculate_Shift_Reg(ByVal _param As ParamDTO,
+                                         ByVal log As UserLog,
+                                         ByVal p_period_id As Decimal?,
+                                         ByVal P_ORG_ID As Decimal,
+                                         ByVal lstEmployee As List(Of Decimal?)) As Boolean
+
+        <OperationContract()>
+        Function AddShiftReg(ByVal objShift As AtShiftRegMngDTO, Optional ByVal log As UserLog = Nothing) As Boolean
+
+        <OperationContract()>
+        Function DeleteShiftReg(ByVal lstID As List(Of Decimal)) As Boolean
+
+        <OperationContract()>
+        Function GetShiftRegById(ByVal _id As Decimal) As AtShiftRegMngDTO
+
+        <OperationContract()>
+        Function ValidateShiftReg(ByVal obj As AtShiftRegMngDTO) As Boolean
 #End Region
 
         <OperationContract()>
