@@ -1351,7 +1351,7 @@ Public Class ctrlHU_ContractTemplete
                 rntxtBasicSal.Value = working.SAL_BASIC
                 SalaryInsurance.Value = working.SAL_INS
                 Allowance_Total.Value = working.ALLOWANCE_TOTAL
-                Salary_Total.Value = working.SAL_TOTAL
+                Salary_Total.Value = working.SAL_INS
                 ' Working_ID.Text = working.ID
                 PercentSalary.Value = working.PERCENT_SALARY
                 'rnOtherSalary1.Value = working.OTHERSALARY1

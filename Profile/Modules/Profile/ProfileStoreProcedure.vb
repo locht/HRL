@@ -686,7 +686,7 @@ Public Class ProfileStoreProcedure
         Dim stt As Integer
         Dim dsData As DataSet = hfr.ExecuteToDataSet("PKG_PROFILE_BUSINESS.GET_LAST_APPEND_NUMBER",
                                              New List(Of Object)(New Object() {empID, OUT_CURSOR}))
-        If dsData.Tables.Count > 0 Then
+        If dsData.Tables(0).Rows.Count > 0 Then
             Return CType(dsData.Tables(0).Rows(0)(0), Integer)
         Else
             Return 0
