@@ -6778,10 +6778,12 @@ Partial Public Class AttendanceRepository
                     objdata.HOLYDAY = (From p In Context.AT_SHIFT Where p.CODE.ToUpper = "L" Select p.ID).FirstOrDefault
                 End If
                 objdata.NOTE = objShift.NOTE
-                objdata.CREATED_BY = log.Username.ToUpper
-                objdata.CREATED_DATE = DateTime.Now
-                objdata.MODIFIED_BY = log.Username.ToUpper
-                objdata.MODIFIED_DATE = DateTime.Now
+                objdata.CREATED_BY = objShift.CREATED_BY
+                objdata.CREATED_DATE = objShift.CREATED_DATE
+                objdata.CREATED_DATE = objShift.CREATED_LOG
+                objdata.MODIFIED_BY = objShift.MODIFIED_BY
+                objdata.MODIFIED_DATE = objShift.MODIFIED_DATE
+                objdata.CREATED_DATE = objShift.MODIFIED_LOG
                 Context.AT_SHIFT_REG_MNG.AddObject(objdata)
             Else
                 Dim objData = (From p In Context.AT_SHIFT_REG_MNG Where p.ID = objShift.ID).FirstOrDefault
@@ -6791,12 +6793,14 @@ Partial Public Class AttendanceRepository
                 objData.WEEKEND = objShift.WEEKEND
                 objData.HOLYDAY = objShift.HOLYDAY
                 objData.NOTE = objShift.NOTE
-                objData.CREATED_BY = log.Username.ToUpper
-                objData.CREATED_DATE = DateTime.Now
-                objData.MODIFIED_BY = log.Username.ToUpper
-                objData.MODIFIED_DATE = DateTime.Now
+                objData.CREATED_BY = objShift.CREATED_BY
+                objData.CREATED_DATE = objShift.CREATED_DATE
+                objData.CREATED_DATE = objShift.CREATED_LOG
+                objData.MODIFIED_BY = objShift.MODIFIED_BY
+                objData.MODIFIED_DATE = objShift.MODIFIED_DATE
+                objData.CREATED_DATE = objShift.MODIFIED_LOG
             End If
-            Context.SaveChanges()
+            Context.SaveChanges(log)
             Return True
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")

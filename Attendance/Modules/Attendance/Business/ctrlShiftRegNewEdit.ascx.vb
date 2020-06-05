@@ -292,6 +292,9 @@ Public Class ctrlShiftRegNewEdit
                         objShiftReg.NOTE = txtNote.Text
                         objShiftReg.SHIFT_ID = cboShift.SelectedValue
                         objShiftReg.WEEKEND = ckWeekend.Checked
+                        objShiftReg.CREATED_BY = LogHelper.GetUserLog.Username.ToUpper
+                        objShiftReg.CREATED_DATE = DateTime.Now
+                        objShiftReg.CREATED_LOG = LogHelper.GetUserLog.Ip + "\" + LogHelper.GetUserLog.ComputerName
                         objShiftReg.MODIFIED_BY = LogHelper.GetUserLog.Username.ToUpper
                         objShiftReg.MODIFIED_DATE = DateTime.Now
                         objShiftReg.MODIFIED_LOG = LogHelper.GetUserLog.Ip + "\" + LogHelper.GetUserLog.ComputerName
@@ -310,17 +313,10 @@ Public Class ctrlShiftRegNewEdit
                                 Exit Sub
                             End If
                         Next
-                        Select Case CurrentState
-                            Case CommonMessage.STATE_NEW
-                                objShiftReg.CREATED_BY = LogHelper.GetUserLog.Username.ToUpper
-                                objShiftReg.CREATED_DATE = DateTime.Now
-                                objShiftReg.CREATED_LOG = LogHelper.GetUserLog.Ip + "\" + LogHelper.GetUserLog.ComputerName
-                            Case CommonMessage.STATE_EDIT
-                                Dim lstId As New List(Of Decimal)
-                                lstId.Add(IDSelect)
-                                rep.DeleteShiftReg(lstId)
-                                objShiftReg.ID = 0
-                        End Select
+                        Dim lstId As New List(Of Decimal)
+                        lstId.Add(IDSelect)
+                        rep.DeleteShiftReg(lstId)
+                        objShiftReg.ID = 0
                         For Each item As GridDataItem In rgEmployee.Items
                             Dim emp_id As Decimal = CDec(item.GetDataKeyValue("ID"))
                             objShiftReg.EMPLOYEE_ID = emp_id
@@ -488,7 +484,7 @@ Public Class ctrlShiftRegNewEdit
                 'Me.Views.Remove(ctrlFindEmployeePopup.ID.ToUpper)
             End If
 
-            
+
 
             Select Case isLoadPopup
                 Case 1
