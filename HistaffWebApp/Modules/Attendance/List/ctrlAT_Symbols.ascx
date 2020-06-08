@@ -34,7 +34,7 @@
     }
 </style>
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
-    <tlk:RadPane ID="RadPane1" runat="server" Height="235px" Scrolling="None">
+    <tlk:RadPane ID="RadPane1" runat="server" Height="200px" Scrolling="None">
         <tlk:RadToolBar ID="tbarCostCenters" runat="server" />
         <asp:ValidationSummary ID="valSum" runat="server" />
         <table class="table-form">
@@ -198,7 +198,10 @@
                         <ItemStyle Width="130px" />
                     </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Nhóm ký hiệu %>" DataField="WGROUP_NAME"
-                        UniqueName="WGROUP_NAME" SortExpression="WGROUP_NAME" HeaderStyle-Width="100px" />
+                        UniqueName="WGROUP_NAME" SortExpression="WGROUP_NAME" HeaderStyle-Width="100px" >
+                         <HeaderStyle Width="150px" />
+                        <ItemStyle Width="130px" />
+                    </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Kiểu dữ liệu %>" DataField="WDATATYE_NAME"
                         UniqueName="WDATATYE_NAME" SortExpression="WDATATYE_NAME" HeaderStyle-Width="200px" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại dữ liệu %>" DataField="WDATAMODE_NAME"
