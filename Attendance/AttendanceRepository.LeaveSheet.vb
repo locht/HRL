@@ -57,4 +57,18 @@ Partial Class AttendanceRepository
             Throw ex
         End Try
     End Function
+
+    Public Function GetDayNum(ByVal objLeave As AT_LEAVESHEETDTO) As Decimal
+        Try
+            Using rep As New AttendanceBusinessClient
+                Try
+                    Return rep.GetDayNum(objLeave)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 End Class

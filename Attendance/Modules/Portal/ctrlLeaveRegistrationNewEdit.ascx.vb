@@ -317,42 +317,7 @@ Public Class ctrlLeaveRegistrationNewEdit
 #End Region
 
 #Region "Event"
-    'Protected Sub cbSTATUS_SHIFT_SelectedIndexChanged(ByVal sender As Object, ByVal e As RadComboBoxSelectedIndexChangedEventArgs)
-    '    Try
-    '        Dim edit = CType(sender, RadComboBox)
-    '        If edit.Enabled = False Then
-    '            Exit Sub
-    '        End If
-    '        Dim item = CType(edit.NamingContainer, GridEditableItem)
-    '        ' If Not IsNumeric(edit.SelectedValue) Then Exit Sub
-    '        Dim EMPLOYEE_ID = item.GetDataKeyValue("EMPLOYEE_ID")
-    '        Dim LEAVE_DAY = item.GetDataKeyValue("LEAVE_DAY")
-    '        For Each rows In dtDetail.Rows
-    '            If rows("LEAVE_DAY") = LEAVE_DAY Then
-    '                rows("STATUS_SHIFT") = If(IsNumeric(edit.SelectedValue), edit.SelectedValue, 0)
-    '                If edit.SelectedValue IsNot Nothing AndAlso edit.SelectedValue <> "" Then
-    '                    'rows("DAY_NUM") = 0.5
-    '                    rows("DAY_NUM") = Decimal.Parse(rows("SHIFT_DAY")) / 2
-    '                Else
-    '                    'rows("DAY_NUM") = 1
-    '                    rows("DAY_NUM") = Decimal.Parse(rows("SHIFT_DAY"))
-    '                End If
-    '                Exit For
-    '            End If
-    '        Next
-    '        rgData.Rebind()
-    '        For Each items As GridDataItem In rgData.MasterTableView.Items
-    '            items.Edit = True
-    '        Next
-    '        rgData.MasterTableView.Rebind()
-    '        Cal_DayLeaveSheet()
-
-    '        ScriptManager.RegisterStartupScript(Me.Page, Page.GetType(), "text", "IsBlock()", True)
-    '    Catch ex As Exception
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '    End Try
-    'End Sub
-
+   
     Protected Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
         Dim rep As New AttendanceRepository
         Dim store As New AttendanceStoreProcedure
@@ -372,10 +337,10 @@ Public Class ctrlLeaveRegistrationNewEdit
                             Exit Sub
                         End If
 
-                        If Not IsNumeric(rnDAY_NUM.Value) OrElse rnDAY_NUM.Value <= 0 Then
-                            ShowMessage(Translate("Số ngày đăng ký nghỉ phải lơn hơn 0"), NotifyType.Warning)
-                            Exit Sub
-                        End If
+                        'If Not IsNumeric(rnDAY_NUM.Value) OrElse rnDAY_NUM.Value <= 0 Then
+                        '    ShowMessage(Translate("Số ngày đăng ký nghỉ phải lơn hơn 0"), NotifyType.Warning)
+                        '    Exit Sub
+                        'End If
                         Dim type As String = (From p In dtLeaveType Where p("ID") = cboMANUAL_ID.SelectedValue Select p("CODE")).FirstOrDefault
 
                         objValidate.LEAVE_FROM = rdLEAVE_FROM.SelectedDate
@@ -384,6 +349,10 @@ Public Class ctrlLeaveRegistrationNewEdit
                         objValidate.TO_SESSION = cboTO_SESSION.SelectedValue
                         objValidate.ID = Utilities.ObjToDecima(rPH("ID"))
                         Dim id As Decimal = 0
+                        If cboMANUAL_ID.SelectedValue <> "" Then
+                            objValidate.MANUAL_ID = cboMANUAL_ID.SelectedValue
+                        End If
+
                         For Each item As GridDataItem In rgEmployee.Items
                             Dim emp_id As Decimal = CDec(item.GetDataKeyValue("ID"))
                             Dim _param = New Attendance.AttendanceBusiness.ParamDTO With {.ORG_ID = item.GetDataKeyValue("ORG_ID"),
@@ -398,14 +367,25 @@ Public Class ctrlLeaveRegistrationNewEdit
                                 ShowMessage(Translate("Số ngày đăng ký của nhân viên " & item.GetDataKeyValue("EMPLOYEE_CODE") & " lơn hơn số phép năm còn lại !!"), NotifyType.Warning)
                                 Exit Sub
                             End If
-                            If (New AttendanceBusinessClient).ValidateLeaveSheetDetail(objValidate) = False Then
+                            objValidate.EMPLOYEE_ID = emp_id
+                            Dim check As Decimal = (New AttendanceBusinessClient).ValidateLeaveSheetDetail(objValidate)
+                            If check = 1 Then
                                 ShowMessage(Translate("Ngày đăng ký nghỉ của nhân viên " & item.GetDataKeyValue("EMPLOYEE_CODE") & " đã bị trùng"), NotifyType.Warning)
+                                Exit Sub
+                            ElseIf check = 2 Then
+                                ShowMessage(Translate("Ngày nghỉ hằng tuần của nhân viên " & item.GetDataKeyValue("EMPLOYEE_CODE") & " chưa được tổng hợp, vui lòng báo với nhà quản trị!"), NotifyType.Warning)
+                                Exit Sub
+                            End If
+
+                            objValidate.DAY_NUM = rep.GetDayNum(objValidate)
+                            If Not IsNumeric(objValidate.DAY_NUM) OrElse objValidate.DAY_NUM <= 0 Then
+                                ShowMessage(Translate("Số ngày đăng ký nghỉ của nhân viên " & item.GetDataKeyValue("EMPLOYEE_CODE") & " phải lơn hơn 0"), NotifyType.Warning)
                                 Exit Sub
                             End If
                         Next
                         'check so ngay dang ky nghi
 
-
+                        
                         CreateDataBinDing(0)
                         If CurrentState = CommonMessage.STATE_NEW Then
                             rPH("CREATED_BY_EMP") = LogHelper.CurrentUser.EMPLOYEE_ID
@@ -427,6 +407,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                         For Each item As GridDataItem In rgEmployee.Items
                             rPH("EMPLOYEE_ID") = item.GetDataKeyValue("ID")
                             rPH("ID") = 0
+                            rPH("DAY_NUM") = rep.GetDayNum(objValidate)
                             Dim emp_id As Decimal = CDec(item.GetDataKeyValue("ID"))
                             GetLeaveSheet_Detail(emp_id)
                             SaveDB()
@@ -668,7 +649,7 @@ Public Class ctrlLeaveRegistrationNewEdit
 
                 rgEmployee.Rebind()
                 RefreshCboSession()
-                Cal_DayLeaveSheet()
+                'Cal_DayLeaveSheet()
             End If
             Session.Remove("PortalAtShift")
             'rep.Dispose()
@@ -743,12 +724,12 @@ Public Class ctrlLeaveRegistrationNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
         Try
-            txtManual_Note.ClearValue()
+            rtMANUAL_NOTE.ClearValue()
             RefreshCboSession()
             If cboMANUAL_ID.SelectedValue <> "" Then
                 Dim note As String = (From p In dtLeaveType Where p("ID") = cboMANUAL_ID.SelectedValue Select p("NOTE")).FirstOrDefault.ToString
                 Dim is_day_half As Decimal = CDec((From p In dtLeaveType Where p("ID") = cboMANUAL_ID.SelectedValue Select p("IS_DAY_HALF")).FirstOrDefault)
-                txtManual_Note.Text = note
+                rtMANUAL_NOTE.Text = note
                 For Each item As GridDataItem In rgEmployee.Items
                     If item.GetDataKeyValue("EMPLOYEE_OBJECT_CODE") <> "HC1" And item.GetDataKeyValue("EMPLOYEE_OBJECT_CODE") <> "HC2" Then
                         cboFROM_SESSION.Enabled = False
@@ -766,7 +747,7 @@ Public Class ctrlLeaveRegistrationNewEdit
             End If
             'If (Not IsDate(rdLEAVE_FROM.SelectedDate) OrElse Not IsDate(rdLEAVE_TO.SelectedDate) OrElse dtDetail Is Nothing OrElse Not IsNumeric(rtEmployee_id.Text)) Then Exit Sub
             'GetLeaveSheet_Detail()
-            Cal_DayLeaveSheet()
+            'Cal_DayLeaveSheet()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -815,7 +796,7 @@ Public Class ctrlLeaveRegistrationNewEdit
         Try
             rgData.VirtualItemCount = dtDetail.Rows.Count
             rgData.DataSource = dtDetail
-            Cal_DayLeaveSheet()
+            'Cal_DayLeaveSheet()
         Catch ex As Exception
         End Try
         Return New DataTable()

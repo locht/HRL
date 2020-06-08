@@ -6655,7 +6655,7 @@ Partial Public Class AttendanceRepository
                                      Optional ByRef Total As Integer = 0,
                                      Optional ByVal PageIndex As Integer = 0,
                                      Optional ByVal PageSize As Integer = Integer.MaxValue,
-                                     Optional ByVal Sorts As String = "EMPLOYEE_CODE desc", Optional ByVal log As UserLog = Nothing) As List(Of AtShiftRegMngDTO)
+                                     Optional ByVal Sorts As String = "EMPLOYEE_CODE desc, WORKING_DAY ASC", Optional ByVal log As UserLog = Nothing) As List(Of AtShiftRegMngDTO)
         Try
             Using cls As New DataAccess.QueryData
                 cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
@@ -6668,8 +6668,8 @@ Partial Public Class AttendanceRepository
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
                         From s In Context.AT_SHIFT.Where(Function(f) f.ID = p.SHIFT_ID).DefaultIfEmpty
-                        From wk In Context.AT_SHIFT.Where(Function(f) f.ID = p.WEEKEND).DefaultIfEmpty
-                        From hl In Context.AT_SHIFT.Where(Function(f) f.ID = p.HOLYDAY).DefaultIfEmpty
+                        From wk In Context.AT_SYMBOLS.Where(Function(f) f.ID = p.WEEKEND).DefaultIfEmpty
+                        From hl In Context.AT_SYMBOLS.Where(Function(f) f.ID = p.HOLYDAY).DefaultIfEmpty
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) e.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
             If _filter.FROM_DATE.HasValue Then
                 query = query.Where(Function(f) f.p.WORKING_DAY >= _filter.FROM_DATE)
@@ -6772,10 +6772,10 @@ Partial Public Class AttendanceRepository
                 objdata.WORKING_DAY = objShift.WORKING_DAY
                 objdata.SHIFT_ID = objShift.SHIFT_ID
                 If objShift.WEEKEND Then
-                    objdata.WEEKEND = (From p In Context.AT_SHIFT Where p.CODE.ToUpper = "CN" Select p.ID).FirstOrDefault
+                    objdata.WEEKEND = (From p In Context.AT_SYMBOLS Where p.WCODE.ToUpper = "CN" Select p.ID).FirstOrDefault
                 End If
                 If objShift.HOLYDAY Then
-                    objdata.HOLYDAY = (From p In Context.AT_SHIFT Where p.CODE.ToUpper = "L" Select p.ID).FirstOrDefault
+                    objdata.HOLYDAY = (From p In Context.AT_SYMBOLS Where p.WCODE.ToUpper = "L" Select p.ID).FirstOrDefault
                 End If
                 objdata.NOTE = objShift.NOTE
                 objdata.CREATED_BY = objShift.CREATED_BY
@@ -6792,10 +6792,10 @@ Partial Public Class AttendanceRepository
                 objData.WORKING_DAY = objShift.WORKING_DAY
                 objData.SHIFT_ID = objShift.SHIFT_ID
                 If objShift.WEEKEND Then
-                    objData.WEEKEND = (From p In Context.AT_SHIFT Where p.CODE.ToUpper = "CN" Select p.ID).FirstOrDefault
+                    objData.WEEKEND = (From p In Context.AT_SYMBOLS Where p.WCODE.ToUpper = "CN" Select p.ID).FirstOrDefault
                 End If
                 If objShift.HOLYDAY Then
-                    objData.HOLYDAY = (From p In Context.AT_SHIFT Where p.CODE.ToUpper = "L" Select p.ID).FirstOrDefault
+                    objData.HOLYDAY = (From p In Context.AT_SYMBOLS Where p.WCODE.ToUpper = "L" Select p.ID).FirstOrDefault
                 End If
                 objData.NOTE = objShift.NOTE
                 objData.CREATED_BY = objShift.CREATED_BY
@@ -6839,8 +6839,8 @@ Partial Public Class AttendanceRepository
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
                         From s In Context.AT_SHIFT.Where(Function(f) f.ID = p.SHIFT_ID).DefaultIfEmpty
-                        From wk In Context.AT_SHIFT.Where(Function(f) f.ID = p.WEEKEND).DefaultIfEmpty
-                        From hl In Context.AT_SHIFT.Where(Function(f) f.ID = p.HOLYDAY).DefaultIfEmpty
+                        From wk In Context.AT_SYMBOLS.Where(Function(f) f.ID = p.WEEKEND).DefaultIfEmpty
+                        From hl In Context.AT_SYMBOLS.Where(Function(f) f.ID = p.HOLYDAY).DefaultIfEmpty
                         Where p.ID = _id
             Dim obj = query.Select(Function(p) New AtShiftRegMngDTO With {
                                                                        .ID = p.p.ID,

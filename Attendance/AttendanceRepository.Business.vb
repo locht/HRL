@@ -1686,7 +1686,7 @@ Partial Class AttendanceRepository
                                      Optional ByRef Total As Integer = 0,
                                      Optional ByVal PageIndex As Integer = 0,
                                      Optional ByVal PageSize As Integer = Integer.MaxValue,
-                                     Optional ByVal Sorts As String = "EMPLOYEE_CODE desc") As List(Of AtShiftRegMngDTO)
+                                     Optional ByVal Sorts As String = "EMPLOYEE_CODE desc, WORKING_DAY ASC") As List(Of AtShiftRegMngDTO)
 
         Using rep As New AttendanceBusinessClient
             Try

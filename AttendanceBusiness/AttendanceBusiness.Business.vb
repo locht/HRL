@@ -1717,7 +1717,7 @@ Namespace AttendanceBusiness.ServiceImplementations
                                      Optional ByRef Total As Integer = 0,
                                      Optional ByVal PageIndex As Integer = 0,
                                      Optional ByVal PageSize As Integer = Integer.MaxValue,
-                                     Optional ByVal Sorts As String = "EMPLOYEE_CODE desc", Optional ByVal log As UserLog = Nothing) As List(Of AtShiftRegMngDTO) Implements IAttendanceBusiness.GetAtShiftRegMng
+                                     Optional ByVal Sorts As String = "EMPLOYEE_CODE desc, WORKING_DAY ASC", Optional ByVal log As UserLog = Nothing) As List(Of AtShiftRegMngDTO) Implements IAttendanceBusiness.GetAtShiftRegMng
 
             Using rep As New AttendanceRepository
                 Try

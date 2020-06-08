@@ -40,7 +40,7 @@ Namespace AttendanceBusiness.ServiceContracts
 #End Region
 #Region "LeaveSheet"
         <OperationContract()>
-        Function ValidateLeaveSheetDetail(ByVal objValidate As AT_LEAVESHEETDTO) As Boolean
+        Function ValidateLeaveSheetDetail(ByVal objValidate As AT_LEAVESHEETDTO) As Decimal
         <OperationContract()>
         Function GetLeaveSheet_ById(ByVal Leave_SheetID As Decimal, ByVal Struct As Decimal) As DataSet
         <OperationContract()>
@@ -1280,7 +1280,7 @@ Namespace AttendanceBusiness.ServiceContracts
                                      Optional ByRef Total As Integer = 0,
                                      Optional ByVal PageIndex As Integer = 0,
                                      Optional ByVal PageSize As Integer = Integer.MaxValue,
-                                     Optional ByVal Sorts As String = "EMPLOYEE_CODE desc", Optional ByVal log As UserLog = Nothing) As List(Of AtShiftRegMngDTO)
+                                     Optional ByVal Sorts As String = "EMPLOYEE_CODE desc, WORKING_DAY ASC", Optional ByVal log As UserLog = Nothing) As List(Of AtShiftRegMngDTO)
 
         <OperationContract()>
         Function Calculate_Shift_Reg(ByVal _param As ParamDTO,
@@ -1300,6 +1300,9 @@ Namespace AttendanceBusiness.ServiceContracts
 
         <OperationContract()>
         Function ValidateShiftReg(ByVal obj As AtShiftRegMngDTO) As Boolean
+
+        <OperationContract()>
+        Function GetDayNum(ByVal objLeave As AT_LEAVESHEETDTO) As Decimal
 #End Region
 
         <OperationContract()>

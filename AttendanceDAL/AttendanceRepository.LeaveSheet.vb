@@ -15,15 +15,31 @@ Imports Oracle.DataAccess.Client
 Imports System.Globalization
 Imports HistaffFrameworkPublic.HistaffFrameworkEnum
 Partial Public Class AttendanceRepository
-    Public Function ValidateLeaveSheetDetail(ByVal objValidate As AT_LEAVESHEETDTO) As Boolean
+    Public Function ValidateLeaveSheetDetail(ByVal objValidate As AT_LEAVESHEETDTO) As Decimal
         Try
+
+
+            Dim c = (From p In Context.AT_LEAVESHEET Where p.LEAVE_FROM = objValidate.LEAVE_FROM And p.LEAVE_TO = objValidate.LEAVE_TO _
+                     And p.EMPLOYEE_ID = objValidate.EMPLOYEE_ID And (p.STATUS = 1 Or p.STATUS = 0 Or p.STATUS = 8001) _
+                     And p.FROM_SESSION = objValidate.FROM_SESSION And p.TO_SESSION = objValidate.TO_SESSION And p.ID <> objValidate.ID)
+            If c.Count > 0 Then
+                Return 1
+            End If
             Dim q = (From p In Context.AT_LEAVESHEET_DETAIL
-                     From e In Context.AT_LEAVESHEET.Where(Function(f) f.ID = p.LEAVESHEET_ID)
-                     Where p.EMPLOYEE_ID = objValidate.EMPLOYEE_ID And (e.STATUS = 1 Or e.STATUS = 2 Or e.STATUS = 8001) And p.LEAVE_DAY >= objValidate.LEAVE_FROM And p.LEAVE_DAY <= objValidate.LEAVE_TO And (p.LEAVESHEET_ID <> objValidate.ID Or objValidate.ID = 0) Select p).ToList()
+                 From e In Context.AT_LEAVESHEET.Where(Function(f) f.ID = p.LEAVESHEET_ID)
+                 Where p.EMPLOYEE_ID = objValidate.EMPLOYEE_ID And (e.STATUS = 1 Or e.STATUS = 0 Or e.STATUS = 8001) _
+                 And p.LEAVE_DAY >= objValidate.LEAVE_FROM And p.LEAVE_DAY <= objValidate.LEAVE_TO _
+                 And (p.LEAVESHEET_ID <> objValidate.ID Or objValidate.ID = 0) Select p).ToList()
             If q.Count > 0 Then
-                Return False
+                Return 1
+            End If
+            Dim check_calcu1 = (From p In Context.AT_SHIFT_REG_MNG Where Month(objValidate.LEAVE_FROM) = Month(p.WORKING_DAY) And p.EMPLOYEE_ID = objValidate.EMPLOYEE_ID)
+            Dim check_calcu2 = (From p In Context.AT_SHIFT_REG_MNG Where Month(objValidate.LEAVE_TO) = Month(p.WORKING_DAY) And p.EMPLOYEE_ID = objValidate.EMPLOYEE_ID)
+
+            If check_calcu1.Count > 0 AndAlso check_calcu2.Count > 0 Then
+                Return 0
             Else
-                Return True
+                Return 2
             End If
         Catch ex As Exception
             Return False
@@ -499,6 +515,132 @@ Partial Public Class AttendanceRepository
             Return True
         Catch ex As Exception
             Utility.WriteExceptionLog(ex, Me.ToString() & ".InsertSendLetter")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetDayNum(ByVal objLeave As AT_LEAVESHEETDTO) As Decimal
+        Try
+            Dim dayNum As Decimal = 0
+            Dim Date_from As Date = If(IsDate(objLeave.LEAVE_FROM), objLeave.LEAVE_FROM, DateTime.Now)
+            Dim Date_to As Date = If(IsDate(objLeave.LEAVE_TO), objLeave.LEAVE_TO, DateTime.Now)
+            dayNum = DateDiff(DateInterval.Day, Date_from, Date_to) + 1
+            Dim ss1 As String = (From p In Context.OT_OTHER_LIST Where p.ID = objLeave.FROM_SESSION Select p.CODE).FirstOrDefault
+            Dim ss2 As String = (From p In Context.OT_OTHER_LIST Where p.ID = objLeave.TO_SESSION Select p.CODE).FirstOrDefault
+
+            '' kiem tra co duoc phep dang ky nghi hay dang ky len khong, neu co thi tru di ngay nghi hang tuan voi ngay le
+            Dim count_x = (From p In Context.AT_SYMBOLS Where p.ID = objLeave.MANUAL_ID And (p.IS_LEAVE_WEEKLY = -1 Or p.IS_LEAVE_HOLIDAY = -1))
+            '' neu khong
+            If count_x.Count < 1 Then
+
+                ' kiem tra ngay bat dau nghi co phai la ngay nghi hang tuan hay ngay le khong
+                Dim holyday_1 = (From p In Context.AT_HOLIDAY Where p.WORKINGDAY = Date_from)
+                Dim weekend_1 = (From p In Context.AT_SHIFT_REG_MNG Where p.WORKING_DAY = Date_from And p.EMPLOYEE_ID = objLeave.EMPLOYEE_ID And p.WEEKEND IsNot Nothing)
+                ' neu khong thi tru theo buoi dang ky
+                If weekend_1.Count < 1 AndAlso holyday_1.Count < 1 Then
+                    If ss1 = "AFT" Then
+                        dayNum -= New Decimal(0.5)
+                    End If
+                Else
+                    'neu co thi khong tinh ngay do
+                    dayNum -= 1
+                End If
+                ' kiem tra ngay ket thuc nghi co phai la ngay nghi hang tuan hay ngay le khong
+                Dim holyday_2 = (From p In Context.AT_HOLIDAY Where p.WORKINGDAY = Date_from)
+                Dim weekend_2 = (From p In Context.AT_SHIFT_REG_MNG Where p.WORKING_DAY = Date_to And p.EMPLOYEE_ID = objLeave.EMPLOYEE_ID And p.WEEKEND IsNot Nothing)
+                ' neu khong thi tru theo buoi dang ky
+                If weekend_2.Count < 1 AndAlso holyday_2.Count < 1 Then
+                    If ss2 = "MOR" Then
+                        dayNum -= New Decimal(0.5)
+                    End If
+                Else
+                    'neu co thi khong tinh ngay do
+                    dayNum -= 1
+                End If
+                Date_from = Date_from.AddDays(1)
+                Date_to = Date_to.AddDays(-1)
+                Dim query = (From p In Context.AT_SHIFT_REG_MNG Where p.WORKING_DAY >= Date_from And p.WORKING_DAY <= Date_to And p.EMPLOYEE_ID = objLeave.EMPLOYEE_ID)
+                For Each item In query
+                    Dim holyday_3 = (From p In Context.AT_HOLIDAY Where p.WORKINGDAY = Date_from)
+                    Dim weekend_3 = (From p In Context.AT_SHIFT_REG_MNG Where p.WORKING_DAY = Date_from And p.EMPLOYEE_ID = objLeave.EMPLOYEE_ID And p.WEEKEND IsNot Nothing)
+                    If weekend_3.Count > 0 OrElse holyday_3.Count > 0 Then
+                        dayNum -= 1
+                    End If
+                Next
+            Else
+                Dim check_weekend = (From p In Context.AT_SYMBOLS Where p.ID = objLeave.MANUAL_ID And p.IS_LEAVE_WEEKLY = -1)
+                Dim check_holiday = (From p In Context.AT_SYMBOLS Where p.ID = objLeave.MANUAL_ID And p.IS_LEAVE_HOLIDAY = -1)
+
+                '' neu cho phep dang ky nghiu hang tuan va nghi len
+                If check_holiday.Count > 0 AndAlso check_weekend.Count > 0 Then
+                    If ss1 = "AFT" Then
+                        dayNum -= New Decimal(0.5)
+                    End If
+                    If ss2 = "MOR" Then
+                        dayNum -= New Decimal(0.5)
+                    End If
+                ElseIf check_holiday.Count > 0 AndAlso check_weekend.Count < 1 Then
+                    '' neu chi cho phep dang ky nghi le
+                    Dim weekend_1 = (From p In Context.AT_SHIFT_REG_MNG Where p.WORKING_DAY = Date_from And p.EMPLOYEE_ID = objLeave.EMPLOYEE_ID And p.WEEKEND IsNot Nothing)
+                    If weekend_1.Count < 1 Then
+                        If ss1 = "AFT" Then
+                            dayNum -= New Decimal(0.5)
+                        End If
+                    Else
+                        dayNum -= 1
+                    End If
+                    Dim weekend_2 = (From p In Context.AT_SHIFT_REG_MNG Where p.WORKING_DAY = Date_to And p.EMPLOYEE_ID = objLeave.EMPLOYEE_ID And p.WEEKEND IsNot Nothing)
+                    If weekend_2.Count < 1 Then
+                        If ss2 = "MOR" Then
+                            dayNum -= New Decimal(0.5)
+                        End If
+                    Else
+                        dayNum -= 1
+                    End If
+                    Date_from = Date_from.AddDays(1)
+                    Date_to = Date_to.AddDays(-1)
+                    Dim query = (From p In Context.AT_SHIFT_REG_MNG Where p.WORKING_DAY >= Date_from And p.WORKING_DAY <= Date_to And p.EMPLOYEE_ID = objLeave.EMPLOYEE_ID)
+                    For Each item In query
+                        Dim weekend_3 = (From p In Context.AT_SHIFT_REG_MNG Where p.WORKING_DAY = Date_from And p.EMPLOYEE_ID = objLeave.EMPLOYEE_ID And p.WEEKEND IsNot Nothing)
+                        If weekend_3.Count > 0 Then
+                            dayNum -= 1
+                        End If
+                    Next
+                Else
+                    '' chi cho phep dang ky cuoi tuan
+                    Dim holyday_1 = (From p In Context.AT_HOLIDAY Where p.WORKINGDAY = Date_from)
+                    If holyday_1.Count < 1 Then
+                        If ss1 = "AFT" Then
+                            dayNum -= New Decimal(0.5)
+                        End If
+                    Else
+                        dayNum -= 1
+                    End If
+                    Dim holyday_2 = (From p In Context.AT_HOLIDAY Where p.WORKINGDAY = Date_from)
+                    If holyday_2.Count < 1 Then
+                        If ss2 = "MOR" Then
+                            dayNum -= New Decimal(0.5)
+                        End If
+                    Else
+                        dayNum -= 1
+                    End If
+                    Date_from = Date_from.AddDays(1)
+                    Date_to = Date_to.AddDays(-1)
+                    Dim query = (From p In Context.AT_SHIFT_REG_MNG Where p.WORKING_DAY >= Date_from And p.WORKING_DAY <= Date_to And p.EMPLOYEE_ID = objLeave.EMPLOYEE_ID)
+                    For Each item In query
+                        Dim holyday_3 = (From p In Context.AT_HOLIDAY Where p.WORKINGDAY = Date_from)
+                        If holyday_3.Count > 0 Then
+                            dayNum -= 1
+                        End If
+                    Next
+                End If
+                
+            End If
+
+            Return dayNum
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            ' Utility.WriteExceptionLog(ex, Me.ToString() & ".DeleteLeaveOT")
             Throw ex
         End Try
     End Function

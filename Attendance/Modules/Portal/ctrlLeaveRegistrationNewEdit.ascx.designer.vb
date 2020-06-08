@@ -104,13 +104,13 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     Protected WithEvents cboMANUAL_ID As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''txtManual_Note control.
+    '''rtMANUAL_NOTE control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtManual_Note As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents rtMANUAL_NOTE As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''rdLEAVE_FROM control.

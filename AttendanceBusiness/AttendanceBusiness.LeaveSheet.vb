@@ -6,7 +6,7 @@ Imports System.Collections.Generic
 Namespace AttendanceBusiness.ServiceImplementations
     Partial Public Class AttendanceBusiness
         'Implements IAttendanceBusiness
-        Public Function ValidateLeaveSheetDetail(ByVal objValidate As AT_LEAVESHEETDTO) As Boolean Implements IAttendanceBusiness.ValidateLeaveSheetDetail
+        Public Function ValidateLeaveSheetDetail(ByVal objValidate As AT_LEAVESHEETDTO) As Decimal Implements IAttendanceBusiness.ValidateLeaveSheetDetail
             Try
                 Using rep As New AttendanceRepository
                     Try
@@ -82,6 +82,20 @@ Namespace AttendanceBusiness.ServiceImplementations
                 Using rep As New AttendanceRepository
                     Try
                         Return rep.InsertSendLetter(objSend)
+                    Catch ex As Exception
+                        Throw ex
+                    End Try
+                End Using
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+
+        Function GetDayNum(ByVal objLeave As AT_LEAVESHEETDTO) As Decimal Implements IAttendanceBusiness.GetDayNum
+            Try
+                Using rep As New AttendanceRepository
+                    Try
+                        Return rep.GetDayNum(objLeave)
                     Catch ex As Exception
                         Throw ex
                     End Try
