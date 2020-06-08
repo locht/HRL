@@ -3067,7 +3067,7 @@ Partial Class TrainingRepository
                 Else
                     query = (From p In Context.TR_REIMBURSEMENT
                              Where p.EMPLOYEE_ID = _validate.EMPLOYEE_ID _
-                             And p.TR_PROGRAM_ID <> _validate.TR_PROGRAM_ID).FirstOrDefault
+                             And p.TR_PROGRAM_ID = _validate.TR_PROGRAM_ID).FirstOrDefault
                 End If
 
                 Return (query Is Nothing)
@@ -3103,6 +3103,21 @@ Partial Class TrainingRepository
             Utility.WriteExceptionLog(ex, Me.ToString() & ".ModifyReimbursement")
             Throw ex
         End Try
+    End Function
+
+    Public Function DeleteReimbursement(ByVal lstDecimals As List(Of Decimal), ByVal log As UserLog) As Boolean
+        Dim lst As List(Of TR_REIMBURSEMENT)
+        Try
+            lst = (From p In Context.TR_REIMBURSEMENT Where lstDecimals.Contains(p.ID)).ToList
+            For i As Int16 = 0 To lst.Count - 1
+                Context.TR_REIMBURSEMENT.DeleteObject(lst(i))
+            Next
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+
     End Function
 
 #End Region

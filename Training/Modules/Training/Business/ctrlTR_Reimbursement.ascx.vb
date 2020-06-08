@@ -39,6 +39,15 @@ Public Class ctrlTR_Reimbursement
         End Set
 
     End Property
+
+    Property SelectedItem As List(Of Decimal)
+        Get
+            Return ViewState(Me.ID & "_SelectedItem")
+        End Get
+        Set(ByVal value As List(Of Decimal))
+            ViewState(Me.ID & "_SelectedItem") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
@@ -58,14 +67,16 @@ Public Class ctrlTR_Reimbursement
                                        ToolbarItem.Edit,
                                        ToolbarItem.Seperator,
                                        ToolbarItem.Save,
-                                       ToolbarItem.Cancel)
+                                       ToolbarItem.Cancel,
+                                       ToolbarItem.Export,
+                                       ToolbarItem.Delete)
             CType(MainToolBar.Items(3), RadToolBarButton).CausesValidation = True
             CType(Me.MainToolBar.Items(3), RadToolBarButton).Enabled = False
             CType(Me.MainToolBar.Items(4), RadToolBarButton).Enabled = False
             CType(Me.MainToolBar.Items(0), RadToolBarButton).Text = "Thêm nhân viên bồi hoàn"
             CType(Me.MainToolBar.Items(1), RadToolBarButton).Text = "Cập nhật thông tin bồi hoàn"
-            'Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
-            'CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
+            Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -139,6 +150,14 @@ Public Class ctrlTR_Reimbursement
 
                 Case CommonMessage.STATE_EDIT
                     UpdateCtrlState(True)
+                Case CommonMessage.STATE_DELETE
+                    'If rep.DeleteContract(DeleteContract) Then
+                    '    DeleteContract = Nothing
+                    '    IDSelect = Nothing
+                    '    Refresh("UpdateView")
+                    'Else
+                    '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                    'End If
             End Select
             txtCode.Focus()
             UpdateToolbarState()
@@ -164,7 +183,6 @@ Public Class ctrlTR_Reimbursement
             
             EnabledGridNotPostback(rgMain, Not state)
             'EnabledGrid(rgMain, Not state, False)
-            rgMain.AllowMultiRowSelection = False
         Catch ex As Exception
             Throw ex
         End Try
@@ -269,7 +287,17 @@ Public Class ctrlTR_Reimbursement
                     UpdateControlState()
 
                 Case CommonMessage.TOOLBARITEM_EXPORT
-                    GridExportExcel(rgMain, "Reimbursement")
+                    'GridExportExcel(rgMain, "Reimbursement")
+
+                    Dim dtData As DataTable
+                    Using xls As New ExcelCommon
+                        dtData = CreateDataFilter(True)
+                        If dtData.Rows.Count > 0 Then
+                            rgMain.ExportExcel(Server, Response, dtData, "Reimbursement")
+                        Else
+                            ShowMessage(Translate("Dữ liệu trống nên không thể xuất file"), Utilities.NotifyType.Warning)
+                        End If
+                    End Using
 
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
@@ -324,6 +352,22 @@ Public Class ctrlTR_Reimbursement
                     CurrentState = CommonMessage.STATE_NORMAL
                     Refresh("Cancel")
                     UpdateControlState()
+                Case CommonMessage.TOOLBARITEM_DELETE
+                    If rgMain.SelectedItems.Count = 0 Then
+                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
+                        Exit Sub
+                    End If
+
+                    SelectedItem = New List(Of Decimal)
+                    For Each dr As Telerik.Web.UI.GridDataItem In rgMain.SelectedItems
+                        SelectedItem.Add(dr.GetDataKeyValue("ID"))
+                    Next
+
+                    ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
+                    ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
+                    ctrlMessageBox.DataBind()
+                    ctrlMessageBox.Show()
+
             End Select
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -331,10 +375,25 @@ Public Class ctrlTR_Reimbursement
     End Sub
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
         If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
-            CurrentState = CommonMessage.STATE_DELETE
-            UpdateControlState()
+            If DeleteReimbursement() Then
+                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                rgMain.Rebind()
+            Else
+                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+            End If
         End If
     End Sub
+
+    Private Function DeleteReimbursement() As Boolean
+        Try
+            Dim rep As New TrainingRepository
+            Return rep.DeleteReimbursement(SelectedItem)
+            rep.Dispose()
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
     Protected Sub RadGrid_NeedDataSource(ByVal source As Object, ByVal e As GridNeedDataSourceEventArgs) Handles rgMain.NeedDataSource
         Try
@@ -343,7 +402,7 @@ Public Class ctrlTR_Reimbursement
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
-    Protected Sub CreateDataFilter()
+    Protected Function CreateDataFilter(Optional ByVal isFull As Boolean = False) As DataTable
         Dim rep As New TrainingRepository
         Dim obj As New ReimbursementDTO
         Try
@@ -357,18 +416,28 @@ Public Class ctrlTR_Reimbursement
             obj.EMPLOYEE_CODE = txtSeachEmployee.Text
 
             Dim Sorts As String = rgMain.MasterTableView.SortExpressions.GetSortString()
-            If Sorts IsNot Nothing Then
-                Me.Reimbursements = rep.GetReimbursement(obj, rgMain.CurrentPageIndex, rgMain.PageSize, MaximumRows, Sorts)
+
+            If isFull Then
+                If Sorts IsNot Nothing Then
+                    Return rep.GetReimbursement(obj, Sorts).ToTable()
+                Else
+                    Return rep.GetReimbursement(obj).ToTable()
+                End If
             Else
-                Me.Reimbursements = rep.GetReimbursement(obj, rgMain.CurrentPageIndex, rgMain.PageSize, MaximumRows)
+                If Sorts IsNot Nothing Then
+                    Me.Reimbursements = rep.GetReimbursement(obj, rgMain.CurrentPageIndex, rgMain.PageSize, MaximumRows, Sorts)
+                Else
+                    Me.Reimbursements = rep.GetReimbursement(obj, rgMain.CurrentPageIndex, rgMain.PageSize, MaximumRows)
+                End If
+                rgMain.VirtualItemCount = MaximumRows
+                rgMain.DataSource = Me.Reimbursements
             End If
 
-            rgMain.VirtualItemCount = MaximumRows
-            rgMain.DataSource = Me.Reimbursements
+           
         Catch ex As Exception
             Throw ex
         End Try
-    End Sub
+    End Function
     Protected Sub rgData_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles rgMain.SelectedIndexChanged
         Try
             If rgMain.SelectedItems.Count = 0 Then Exit Sub

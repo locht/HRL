@@ -812,6 +812,23 @@ Partial Class TrainingRepository
         Return Nothing
     End Function
 
+    Public Function GetReimbursement(ByVal _filter As ReimbursementDTO,
+                                       Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of ReimbursementDTO)
+        Dim lstReimbursement As List(Of ReimbursementDTO)
+
+        Using rep As New TrainingBusinessClient
+            Try
+                lstReimbursement = rep.GetReimbursement(_filter, 0, Integer.MaxValue, 0, Sorts)
+                Return lstReimbursement
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
     Public Function InsertReimbursement(ByVal objReimbursement As ReimbursementDTO, ByRef gID As Decimal) As Boolean
         Using rep As New TrainingBusinessClient
             Try
@@ -840,6 +857,18 @@ Partial Class TrainingRepository
         Using rep As New TrainingBusinessClient
             Try
                 Return rep.ModifyReimbursement(objReimbursement, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function DeleteReimbursement(ByVal lstDecimal As List(Of Decimal)) As Boolean
+        Using rep As New TrainingBusinessClient
+            Try
+                Return rep.DeleteReimbursement(lstDecimal, Me.Log)
             Catch ex As Exception
                 rep.Abort()
                 Throw ex

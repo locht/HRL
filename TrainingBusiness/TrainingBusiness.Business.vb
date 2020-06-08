@@ -665,6 +665,15 @@ Namespace TrainingBusiness.ServiceImplementations
             End Try
         End Function
 
+        Public Function DeleteReimbursement(ByVal lstDecimals As List(Of Decimal), ByVal log As UserLog) As Boolean _
+           Implements ServiceContracts.ITrainingBusiness.DeleteReimbursement
+                Try
+                    Return TrainingRepositoryStatic.Instance.DeleteReimbursement(lstDecimals, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+        End Function
+
 
 #End Region
 

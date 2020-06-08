@@ -186,13 +186,7 @@
             var item = args.get_item();
             if (item.get_commandName() == "EXPORT") {
                 enableAjax = false;
-            } else if (item.get_commandName() == "SAVE") {
-                // Nếu nhấn nút SAVE thì resize
-                //ResizeSplitter();
-            } else {
-                // Nếu nhấn các nút khác thì resize default
-                //ResizeSplitterDefault();
-            }
+            } 
         }
 
         function onRequestStart(sender, eventArgs) {

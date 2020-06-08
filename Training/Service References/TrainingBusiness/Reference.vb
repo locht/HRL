@@ -15162,6 +15162,9 @@ Namespace TrainingBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="TrainingBusiness.ITrainingBusiness")>  _
     Public Interface ITrainingBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GET_TR_COURSE", ReplyAction:="http://tempuri.org/ITrainingBusiness/GET_TR_COURSEResponse")>  _
+        Function GET_TR_COURSE() As System.Data.DataTable
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GET_TR_ASSESSMENT_FORM", ReplyAction:="http://tempuri.org/ITrainingBusiness/GET_TR_ASSESSMENT_FORMResponse")>  _
         Function GET_TR_ASSESSMENT_FORM() As System.Data.DataTable
         
@@ -15336,6 +15339,9 @@ Namespace TrainingBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ModifyReimbursement", ReplyAction:="http://tempuri.org/ITrainingBusiness/ModifyReimbursementResponse")>  _
         Function ModifyReimbursement(ByVal objReimbursement As TrainingBusiness.ReimbursementDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteReimbursement", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteReimbursementResponse")>  _
+        Function DeleteReimbursement(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetChooseForm", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetChooseFormResponse")>  _
         Function GetChooseForm(ByVal _filter As TrainingBusiness.ChooseFormDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.ChooseFormDTO)
         
@@ -15416,9 +15422,6 @@ Namespace TrainingBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteAssessmentCourse", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteAssessmentCourseResponse")>  _
         Function DeleteAssessmentCourse(ByVal lstAssessmentForm As System.Collections.Generic.List(Of TrainingBusiness.AssessmentCourseDTO)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GET_TR_COURSE", ReplyAction:="http://tempuri.org/ITrainingBusiness/GET_TR_COURSEResponse")>  _
-        Function GET_TR_COURSE() As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/TestService", ReplyAction:="http://tempuri.org/ITrainingBusiness/TestServiceResponse")>  _
         Function TestService(ByVal str As String) As String
@@ -15707,6 +15710,10 @@ Namespace TrainingBusiness
             MyBase.New(binding, remoteAddress)
         End Sub
         
+        Public Function GET_TR_COURSE() As System.Data.DataTable Implements TrainingBusiness.ITrainingBusiness.GET_TR_COURSE
+            Return MyBase.Channel.GET_TR_COURSE
+        End Function
+        
         Public Function GET_TR_ASSESSMENT_FORM() As System.Data.DataTable Implements TrainingBusiness.ITrainingBusiness.GET_TR_ASSESSMENT_FORM
             Return MyBase.Channel.GET_TR_ASSESSMENT_FORM
         End Function
@@ -15939,6 +15946,10 @@ Namespace TrainingBusiness
             Return MyBase.Channel.ModifyReimbursement(objReimbursement, log, gID)
         End Function
         
+        Public Function DeleteReimbursement(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements TrainingBusiness.ITrainingBusiness.DeleteReimbursement
+            Return MyBase.Channel.DeleteReimbursement(lstDecimals, log)
+        End Function
+        
         Public Function GetChooseForm(ByVal _filter As TrainingBusiness.ChooseFormDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.ChooseFormDTO) Implements TrainingBusiness.ITrainingBusiness.GetChooseForm
             Return MyBase.Channel.GetChooseForm(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
@@ -16045,10 +16056,6 @@ Namespace TrainingBusiness
         
         Public Function DeleteAssessmentCourse(ByVal lstAssessmentForm As System.Collections.Generic.List(Of TrainingBusiness.AssessmentCourseDTO)) As Boolean Implements TrainingBusiness.ITrainingBusiness.DeleteAssessmentCourse
             Return MyBase.Channel.DeleteAssessmentCourse(lstAssessmentForm)
-        End Function
-        
-        Public Function GET_TR_COURSE() As System.Data.DataTable Implements TrainingBusiness.ITrainingBusiness.GET_TR_COURSE
-            Return MyBase.Channel.GET_TR_COURSE
         End Function
         
         Public Function TestService(ByVal str As String) As String Implements TrainingBusiness.ITrainingBusiness.TestService

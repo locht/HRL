@@ -621,6 +621,9 @@ Namespace TrainingBusiness.ServiceContracts
         <OperationContract()>
         Function ModifyReimbursement(ByVal objReimbursement As ReimbursementDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
 
+        <OperationContract()>
+        Function DeleteReimbursement(ByVal lstDecimals As List(Of Decimal), ByVal log As UserLog) As Boolean
+
 #End Region
 
 #Region "ChooseForm"
