@@ -126,12 +126,6 @@
         }
 
         function OpenInsertWindow() {
-            if (periodID.length = 0) {
-                m = '<%# Translate("Bạn phải chọn kỳ công.") %>';
-                var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                return;
-            }
             window.open('/Default.aspx?mid=Attendance&fid=ctrlShiftRegNewEdit&group=Business', "_self");
         }
         function OpenEditWindow() {

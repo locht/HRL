@@ -535,13 +535,14 @@ Public Class ctrlShiftRegNewEdit
                     IDSelect = Decimal.Parse(Request.Params("ID"))
                 End If
 
-                If IsNumeric(IDSelect) Then
+                If IsNumeric(IDSelect) AndAlso IDSelect <> 0 Then
                     Refresh("UpdateView")
                     CurrentState = CommonMessage.STATE_EDIT
                     rdRegDate.Enabled = False
                 Else
                     Refresh("InsertView")
                     CurrentState = CommonMessage.STATE_NEW
+                    Employee_lst = New List(Of CommonBusiness.EmployeeDTO)
                     rdRegDate.Enabled = True
 
                 End If

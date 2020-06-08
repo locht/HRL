@@ -126,13 +126,7 @@
         }
 
         function OpenInsertWindow() {
-            if (periodID.length = 0) {
-                m = '<%# Translate("Bạn phải chọn kỳ công.") %>';
-                var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                return;
-            }
-            window.open('/Default.aspx?mid=Attendance&fid=ctrlShiftRegNewEdit&group=Business&FormType=0', "_self");
+            window.open('/Default.aspx?mid=Attendance&fid=ctrlShiftRegNewEdit&group=Business', "_self");
         }
         function OpenEditWindow() {
             var grid = $find('<%# rgShiftReg.ClientID %>');
@@ -144,7 +138,7 @@
                 id = grid.get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
                 empID = grid.get_masterTableView().get_selectedItems()[0].getDataKeyValue('EMPLOYEE_ID');
             }
-            window.open('/Default.aspx?mid=Attendance&fid=ctrlShiftRegNewEdit&group=Business&FormType=0&ID=' + id, "_self");
+            window.open('/Default.aspx?mid=Attendance&fid=ctrlShiftRegNewEdit&group=Business&ID=' + id, "_self");
         }
         function onRequestStart(sender, eventArgs) {
             eventArgs.set_enableAjax(enableAjax);
