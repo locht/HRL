@@ -43158,4 +43158,28 @@ Xin cám ơn!
       <string>Chọn nhân viên</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLAT_REGISTERSMNG</string>
+    </Key>
+    <Value>
+      <string>Thông tin đăng ký</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLOTREGISTER</string>
+    </Key>
+    <Value>
+      <string>Đăng ký làm thêm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLDMVSREGISTER</string>
+    </Key>
+    <Value>
+      <string>Đăng ký đi muộn về sớm</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

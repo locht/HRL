@@ -82,12 +82,14 @@ Public Class ctrlLeaveRegistration
         Try
             Select Case CurrentState
                 Case CommonMessage.STATE_DELETE
-                    Dim lstDeletes As New List(Of Decimal)
+                    Dim lstDeletes As New List(Of AT_LEAVESHEETDTO)
                     For idx = 0 To rgMain.SelectedItems.Count - 1
                         Dim item As GridDataItem = rgMain.SelectedItems(idx)
-                        lstDeletes.Add(item.GetDataKeyValue("ID"))
+                        Dim obj As New AT_LEAVESHEETDTO
+                        obj.ID = item.GetDataKeyValue("ID")
+                        lstDeletes.Add(obj)
                     Next
-                    If rep.DeletePortalReg(lstDeletes) Then
+                    If rep.DeleteLeaveSheet(lstDeletes) Then
                         Refresh("UpdateView")
                         CurrentState = CommonMessage.STATE_NORMAL
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
@@ -232,8 +234,8 @@ Public Class ctrlLeaveRegistration
                     Dim lstDeletes As New List(Of Decimal)
                     For idx = 0 To rgMain.SelectedItems.Count - 1
                         Dim item As GridDataItem = rgMain.SelectedItems(idx)
-                        If item.GetDataKeyValue("STATUS") <> PortalStatus.Saved Then
-                            ShowMessage(Translate("Chỉ được xóa ở trạng thái chưa gửi duyệt. Vui lòng kiểm tra lại !"), NotifyType.Error)
+                        If item.GetDataKeyValue("STATUS") <> PortalStatus.Saved And item.GetDataKeyValue("STATUS") <> PortalStatus.WaitingForApproval Then
+                            ShowMessage(Translate("Chỉ được xóa ở trạng thái chưa gửi duyệt hoặc đang chờ duyệt. Vui lòng kiểm tra lại !"), NotifyType.Error)
                             Exit Sub
                         End If
                     Next

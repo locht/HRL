@@ -147,7 +147,6 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="My Project\DataSources\Common.CommonBusiness.EmployeePopupFindDTO.datasource" />
     <None Include="My Project\DataSources\Common.CommonBusiness.FunctionDTO.datasource" />
     <None Include="My Project\DataSources\Common.CommonBusiness.GroupDTO.datasource" />
@@ -253,6 +252,7 @@
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.ATFormularDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <Content Include="Modules\Portal\ctrlAT_RegistersMng.ascx" />
     <Content Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AtPortalRegistrationShiftDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -1023,6 +1023,13 @@
     </Compile>
     <Compile Include="Modules\Portal\ctrlAtShiftNewEdit.ascx.vb">
       <DependentUpon>ctrlAtShiftNewEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlAT_RegistersMng.ascx.designer.vb">
+      <DependentUpon>ctrlAT_RegistersMng.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlAT_RegistersMng.ascx.vb">
+      <DependentUpon>ctrlAT_RegistersMng.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Portal\ctrlOTRegistrationMng.ascx.designer.vb">

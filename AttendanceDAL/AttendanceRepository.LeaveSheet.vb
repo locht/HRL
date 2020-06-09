@@ -18,13 +18,36 @@ Partial Public Class AttendanceRepository
     Public Function ValidateLeaveSheetDetail(ByVal objValidate As AT_LEAVESHEETDTO) As Decimal
         Try
 
-
-            Dim c = (From p In Context.AT_LEAVESHEET Where p.LEAVE_FROM = objValidate.LEAVE_FROM And p.LEAVE_TO = objValidate.LEAVE_TO _
+            Dim Date_from As Date = If(IsDate(objValidate.LEAVE_FROM), objValidate.LEAVE_FROM, DateTime.Now)
+            Dim Date_to As Date = If(IsDate(objValidate.LEAVE_TO), objValidate.LEAVE_TO, DateTime.Now)
+            ''check nghi theo buoi trong 1 ngay
+            If DateDiff(DateInterval.Day, Date_from, Date_to) = 0 Then
+                Dim c = (From p In Context.AT_LEAVESHEET Where p.LEAVE_FROM = objValidate.LEAVE_FROM And p.LEAVE_TO = objValidate.LEAVE_TO _
                      And p.EMPLOYEE_ID = objValidate.EMPLOYEE_ID And (p.STATUS = 1 Or p.STATUS = 0 Or p.STATUS = 8001) _
-                     And p.FROM_SESSION = objValidate.FROM_SESSION And p.TO_SESSION = objValidate.TO_SESSION And p.ID <> objValidate.ID)
-            If c.Count > 0 Then
-                Return 1
+                     And (p.FROM_SESSION = objValidate.FROM_SESSION Or p.TO_SESSION = objValidate.TO_SESSION) And p.ID <> objValidate.ID)
+                Dim c2 = (From p In Context.AT_LEAVESHEET Where p.LEAVE_FROM = objValidate.LEAVE_FROM And p.LEAVE_TO = objValidate.LEAVE_TO _
+                         And p.EMPLOYEE_ID = objValidate.EMPLOYEE_ID And (p.STATUS = 1 Or p.STATUS = 0 Or p.STATUS = 8001) _
+                         And p.FROM_SESSION <> objValidate.FROM_SESSION And p.TO_SESSION <> objValidate.TO_SESSION And p.ID <> objValidate.ID)
+                If c.Count > 0 Then
+                    Return 1
+                ElseIf c2.Count > 0 Then
+                    Return 0
+                End If
             End If
+
+            '' kiem tr nghi theo buoi neu ngay bat dau trung voi ngay ket thuc truoc do
+            Dim checkSession = (From p In Context.AT_LEAVESHEET Where p.LEAVE_TO = objValidate.LEAVE_FROM And p.EMPLOYEE_ID = objValidate.EMPLOYEE_ID And p.ID <> objValidate.ID).FirstOrDefault
+            If checkSession IsNot Nothing Then
+                Dim ss1 = (From p In Context.OT_OTHER_LIST Where p.ID = checkSession.TO_SESSION).FirstOrDefault
+                Dim ss2 = (From p In Context.OT_OTHER_LIST Where p.ID = objValidate.FROM_SESSION).FirstOrDefault
+                If ss1.CODE.ToUpper = "MOR" AndAlso ss2.CODE.ToUpper = "AFT" Then
+                    Return 0
+                Else
+                    Return 1
+                End If
+            End If
+
+
             Dim q = (From p In Context.AT_LEAVESHEET_DETAIL
                  From e In Context.AT_LEAVESHEET.Where(Function(f) f.ID = p.LEAVESHEET_ID)
                  Where p.EMPLOYEE_ID = objValidate.EMPLOYEE_ID And (e.STATUS = 1 Or e.STATUS = 0 Or e.STATUS = 8001) _
@@ -561,9 +584,7 @@ Partial Public Class AttendanceRepository
                 Date_to = Date_to.AddDays(-1)
                 Dim query = (From p In Context.AT_SHIFT_REG_MNG Where p.WORKING_DAY >= Date_from And p.WORKING_DAY <= Date_to And p.EMPLOYEE_ID = objLeave.EMPLOYEE_ID)
                 For Each item In query
-                    Dim holyday_3 = (From p In Context.AT_HOLIDAY Where p.WORKINGDAY = Date_from)
-                    Dim weekend_3 = (From p In Context.AT_SHIFT_REG_MNG Where p.WORKING_DAY = Date_from And p.EMPLOYEE_ID = objLeave.EMPLOYEE_ID And p.WEEKEND IsNot Nothing)
-                    If weekend_3.Count > 0 OrElse holyday_3.Count > 0 Then
+                    If Not IsNothing(item.WEEKEND) OrElse Not IsNothing(item.HOLYDAY) Then
                         dayNum -= 1
                     End If
                 Next
@@ -601,8 +622,7 @@ Partial Public Class AttendanceRepository
                     Date_to = Date_to.AddDays(-1)
                     Dim query = (From p In Context.AT_SHIFT_REG_MNG Where p.WORKING_DAY >= Date_from And p.WORKING_DAY <= Date_to And p.EMPLOYEE_ID = objLeave.EMPLOYEE_ID)
                     For Each item In query
-                        Dim weekend_3 = (From p In Context.AT_SHIFT_REG_MNG Where p.WORKING_DAY = Date_from And p.EMPLOYEE_ID = objLeave.EMPLOYEE_ID And p.WEEKEND IsNot Nothing)
-                        If weekend_3.Count > 0 Then
+                        If Not IsNothing(item.WEEKEND) Then
                             dayNum -= 1
                         End If
                     Next
@@ -628,8 +648,7 @@ Partial Public Class AttendanceRepository
                     Date_to = Date_to.AddDays(-1)
                     Dim query = (From p In Context.AT_SHIFT_REG_MNG Where p.WORKING_DAY >= Date_from And p.WORKING_DAY <= Date_to And p.EMPLOYEE_ID = objLeave.EMPLOYEE_ID)
                     For Each item In query
-                        Dim holyday_3 = (From p In Context.AT_HOLIDAY Where p.WORKINGDAY = Date_from)
-                        If holyday_3.Count > 0 Then
+                        If Not IsNothing(item.HOLYDAY) Then
                             dayNum -= 1
                         End If
                     Next

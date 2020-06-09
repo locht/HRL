@@ -165,6 +165,8 @@
                     OpenEditWindow();
                     args.set_cancel(true);
                 }
+            } else if (args.get_item().get_commandName() == 'EXPORT') {
+                enableAjax = false;
             }
         }
     </script>

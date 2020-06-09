@@ -3008,4 +3008,28 @@
       <string>Select Employee</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLAT_REGISTERSMNG</string>
+    </Key>
+    <Value>
+      <string>Register Manager</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLOTREGISTER</string>
+    </Key>
+    <Value>
+      <string>OT Register</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLDMVSREGISTER</string>
+    </Key>
+    <Value>
+      <string>In - Out Register</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
