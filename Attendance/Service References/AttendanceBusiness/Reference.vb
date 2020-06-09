@@ -26645,13 +26645,25 @@ Namespace AttendanceBusiness
         Private IS_DATAFROMEXCELField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_DATAFROMEXCEL_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_DAY_HALFField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_DAY_HALF_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_DISPLAYField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_DISPLAY_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_DISPLAY_PORTALField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_DISPLAY_PORTAL_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_LEAVEField As System.Nullable(Of Boolean)
@@ -26660,7 +26672,16 @@ Namespace AttendanceBusiness
         Private IS_LEAVE_HOLIDAYField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_LEAVE_HOLIDAY_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_LEAVE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_LEAVE_WEEKLYField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_LEAVE_WEEKLY_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_BYField As String
@@ -26806,6 +26827,19 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_DATAFROMEXCEL_NAME() As String
+            Get
+                Return Me.IS_DATAFROMEXCEL_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.IS_DATAFROMEXCEL_NAMEField, value) <> true) Then
+                    Me.IS_DATAFROMEXCEL_NAMEField = value
+                    Me.RaisePropertyChanged("IS_DATAFROMEXCEL_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property IS_DAY_HALF() As System.Nullable(Of Boolean)
             Get
                 Return Me.IS_DAY_HALFField
@@ -26814,6 +26848,19 @@ Namespace AttendanceBusiness
                 If (Me.IS_DAY_HALFField.Equals(value) <> true) Then
                     Me.IS_DAY_HALFField = value
                     Me.RaisePropertyChanged("IS_DAY_HALF")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_DAY_HALF_NAME() As String
+            Get
+                Return Me.IS_DAY_HALF_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.IS_DAY_HALF_NAMEField, value) <> true) Then
+                    Me.IS_DAY_HALF_NAMEField = value
+                    Me.RaisePropertyChanged("IS_DAY_HALF_NAME")
                 End If
             End Set
         End Property
@@ -26832,6 +26879,19 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_DISPLAY_NAME() As String
+            Get
+                Return Me.IS_DISPLAY_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.IS_DISPLAY_NAMEField, value) <> true) Then
+                    Me.IS_DISPLAY_NAMEField = value
+                    Me.RaisePropertyChanged("IS_DISPLAY_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property IS_DISPLAY_PORTAL() As System.Nullable(Of Boolean)
             Get
                 Return Me.IS_DISPLAY_PORTALField
@@ -26840,6 +26900,19 @@ Namespace AttendanceBusiness
                 If (Me.IS_DISPLAY_PORTALField.Equals(value) <> true) Then
                     Me.IS_DISPLAY_PORTALField = value
                     Me.RaisePropertyChanged("IS_DISPLAY_PORTAL")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_DISPLAY_PORTAL_NAME() As String
+            Get
+                Return Me.IS_DISPLAY_PORTAL_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.IS_DISPLAY_PORTAL_NAMEField, value) <> true) Then
+                    Me.IS_DISPLAY_PORTAL_NAMEField = value
+                    Me.RaisePropertyChanged("IS_DISPLAY_PORTAL_NAME")
                 End If
             End Set
         End Property
@@ -26871,6 +26944,32 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_LEAVE_HOLIDAY_NAME() As String
+            Get
+                Return Me.IS_LEAVE_HOLIDAY_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.IS_LEAVE_HOLIDAY_NAMEField, value) <> true) Then
+                    Me.IS_LEAVE_HOLIDAY_NAMEField = value
+                    Me.RaisePropertyChanged("IS_LEAVE_HOLIDAY_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_LEAVE_NAME() As String
+            Get
+                Return Me.IS_LEAVE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.IS_LEAVE_NAMEField, value) <> true) Then
+                    Me.IS_LEAVE_NAMEField = value
+                    Me.RaisePropertyChanged("IS_LEAVE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property IS_LEAVE_WEEKLY() As System.Nullable(Of Boolean)
             Get
                 Return Me.IS_LEAVE_WEEKLYField
@@ -26879,6 +26978,19 @@ Namespace AttendanceBusiness
                 If (Me.IS_LEAVE_WEEKLYField.Equals(value) <> true) Then
                     Me.IS_LEAVE_WEEKLYField = value
                     Me.RaisePropertyChanged("IS_LEAVE_WEEKLY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_LEAVE_WEEKLY_NAME() As String
+            Get
+                Return Me.IS_LEAVE_WEEKLY_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.IS_LEAVE_WEEKLY_NAMEField, value) <> true) Then
+                    Me.IS_LEAVE_WEEKLY_NAMEField = value
+                    Me.RaisePropertyChanged("IS_LEAVE_WEEKLY_NAME")
                 End If
             End Set
         End Property

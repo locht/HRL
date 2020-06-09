@@ -3,34 +3,33 @@
 <%@ Import Namespace="Common" %>
 <link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
-    #ctl00_MainContent_ctrlAT_Symbols_rgDanhMuc_ctl00_ctl02_ctl02_FilterCheckBox_IS_DISPLAY
+     #ctl00_MainContent_ctrlAT_Symbols_rgDanhMuc_ctl00_ctl02_ctl02_FilterCheckBox_IS_DISPLAY_NAME
     {
         display: none;
     }
-    #ctl00_MainContent_ctrlAT_Symbols_rgDanhMuc_ctl00_ctl02_ctl02_FilterCheckBox_IS_DATAFROMEXCEL
+    #ctl00_MainContent_ctrlAT_Symbols_rgDanhMuc_ctl00_ctl02_ctl02_FilterCheckBox_IS_DATAFROMEXCEL_NAME
     {
         display: none;
     }
-     #ctl00_MainContent_ctrlAT_Symbols_rgDanhMuc_ctl00_ctl02_ctl02_FilterCheckBox_IS_DISPLAY_PORTAL
+     #ctl00_MainContent_ctrlAT_Symbols_rgDanhMuc_ctl00_ctl02_ctl02_FilterCheckBox_IS_DISPLAY_PORTAL_NAME
     {
         display: none;
     }
-     #ctl00_MainContent_ctrlAT_Symbols_rgDanhMuc_ctl00_ctl02_ctl02_FilterCheckBox_IS_LEAVE
+     #ctl00_MainContent_ctrlAT_Symbols_rgDanhMuc_ctl00_ctl02_ctl02_FilterCheckBox_IS_LEAVE_NAME
     {
         display: none;
     }
-     #ctl00_MainContent_ctrlAT_Symbols_rgDanhMuc_ctl00_ctl02_ctl02_FilterCheckBox_IS_LEAVE_WEEKLY
+     #ctl00_MainContent_ctrlAT_Symbols_rgDanhMuc_ctl00_ctl02_ctl02_FilterCheckBox_IS_LEAVE_WEEKLY_NAME
     {
         display: none;
     }
-    #ctl00_MainContent_ctrlAT_Symbols_rgDanhMuc_ctl00_ctl02_ctl02_FilterCheckBox_IS_LEAVE_HOLIDAY
+    #ctl00_MainContent_ctrlAT_Symbols_rgDanhMuc_ctl00_ctl02_ctl02_FilterCheckBox_IS_LEAVE_HOLIDAY_NAME
     {
         display: none;
     }
-     #ctl00_MainContent_ctrlAT_Symbols_rgDanhMuc_ctl00_ctl02_ctl02_FilterCheckBox_IS_DAY_HALF
+     #ctl00_MainContent_ctrlAT_Symbols_rgDanhMuc_ctl00_ctl02_ctl02_FilterCheckBox_IS_DAY_HALF_NAME
     {
         display: none;
-    }
     }
 </style>
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
@@ -184,7 +183,8 @@
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID,WCODE,WNAME,WGROUPID, WGROUP_NAME, WDATATYEID, WDATATYE_NAME, WDATAMODEID, WDATAMODE_NAME, EFFECT_DATE, EXPIRE_DATE, WINDEX, NOTE, STATUS, IS_DISPLAY, IS_DATAFROMEXCEL, IS_DISPLAY_PORTAL, IS_LEAVE, IS_LEAVE_WEEKLY, IS_LEAVE_HOLIDAY, IS_DAY_HALF" ClientDataKeyNames="ID,WCODE,WNAME,WGROUPID, WGROUP_NAME, WDATATYEID, WDATATYE_NAME, WDATAMODEID, WDATAMODE_NAME, EFFECT_DATE, EXPIRE_DATE, WINDEX, NOTE, STATUS, IS_DISPLAY, IS_DATAFROMEXCEL, IS_DISPLAY_PORTAL, IS_LEAVE, IS_LEAVE_WEEKLY, IS_LEAVE_HOLIDAY, IS_DAY_HALF">
+            <MasterTableView DataKeyNames="ID,WCODE,WNAME,WGROUPID, WGROUP_NAME, WDATATYEID, WDATATYE_NAME, WDATAMODEID, WDATAMODE_NAME, EFFECT_DATE, EXPIRE_DATE, WINDEX, NOTE, STATUS, IS_DISPLAY,IS_DISPLAY_NAME, IS_DATAFROMEXCEL,IS_DATAFROMEXCEL_NAME, IS_DISPLAY_PORTAL,IS_DISPLAY_PORTAL_NAME, IS_LEAVE,IS_LEAVE_NAME, IS_LEAVE_WEEKLY,IS_LEAVE_WEEKLY_NAME, IS_LEAVE_HOLIDAY,IS_LEAVE_HOLIDAY_NAME, IS_DAY_HALF,IS_DAY_HALF_NAME" 
+                ClientDataKeyNames="ID,WCODE,WNAME,WGROUPID, WGROUP_NAME, WDATATYEID, WDATATYE_NAME, WDATAMODEID, WDATAMODE_NAME, EFFECT_DATE, EXPIRE_DATE, WINDEX, NOTE, STATUS, IS_DISPLAY,IS_DISPLAY_NAME, IS_DATAFROMEXCEL,IS_DATAFROMEXCEL_NAME, IS_DISPLAY_PORTAL,IS_DISPLAY_PORTAL_NAME, IS_LEAVE,IS_LEAVE_NAME, IS_LEAVE_WEEKLY,IS_LEAVE_WEEKLY_NAME, IS_LEAVE_HOLIDAY,IS_LEAVE_HOLIDAY_NAME, IS_DAY_HALF,IS_DAY_HALF_NAME">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -213,27 +213,27 @@
                      <tlk:GridNumericColumn  HeaderText="<%$ Translate: Thứ tự hiển thị %>" DataField="WINDEX"
                         UniqueName="WINDEX" SortExpression="WINDEX" HeaderStyle-Width="50px" />
 
-                     <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Hiển thị %>" DataField="IS_DISPLAY" 
-                                ItemStyle-VerticalAlign="Middle" UniqueName="IS_DISPLAY" SortExpression="IS_DISPLAY" HeaderStyle-Width="40px"
-                                FilterControlWidth="99%" ShowFilterIcon="false"></tlk:GridCheckBoxColumn>
-                  <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Dữ liệu import %>" DataField="IS_DATAFROMEXCEL"
-                                ItemStyle-VerticalAlign="Middle" UniqueName="IS_DATAFROMEXCEL" SortExpression="IS_DATAFROMEXCEL" HeaderStyle-Width="40px"
-                                FilterControlWidth="99%" ShowFilterIcon="false"></tlk:GridCheckBoxColumn>
-                  <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Hiển thị portal %>" DataField="IS_DISPLAY_PORTAL"
-                                ItemStyle-VerticalAlign="Middle" UniqueName="IS_DISPLAY_PORTAL" SortExpression="IS_DISPLAY_PORTAL" HeaderStyle-Width="40px"
-                                FilterControlWidth="99%" ShowFilterIcon="false"></tlk:GridCheckBoxColumn>
-                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Dữ liệu đăng ký nghỉ %>" DataField="IS_LEAVE"
-                                ItemStyle-VerticalAlign="Middle" UniqueName="IS_LEAVE" SortExpression="IS_LEAVE" HeaderStyle-Width="40px"
-                                FilterControlWidth="99%" ShowFilterIcon="false"></tlk:GridCheckBoxColumn>
-                   <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Được đăng ký cho ngày Nghỉ hàng tuần %>" DataField="IS_LEAVE_WEEKLY"
-                                ItemStyle-VerticalAlign="Middle" UniqueName="IS_LEAVE_WEEKLY" SortExpression="IS_LEAVE_WEEKLY" HeaderStyle-Width="40px"
-                                FilterControlWidth="99%" ShowFilterIcon="false"></tlk:GridCheckBoxColumn>
-                   <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Được đăng ký cho Ngày lễ %>" DataField="IS_LEAVE_HOLIDAY"
-                                ItemStyle-VerticalAlign="Middle" UniqueName="IS_LEAVE_HOLIDAY" SortExpression="IS_LEAVE_HOLIDAY" HeaderStyle-Width="40px"
-                                FilterControlWidth="99%" ShowFilterIcon="false"></tlk:GridCheckBoxColumn>
-                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Được đăng ký Nghỉ nửa ngày %>" DataField="IS_DAY_HALF"
-                                ItemStyle-VerticalAlign="Middle" UniqueName="IS_DAY_HALF" SortExpression="IS_DAY_HALF" HeaderStyle-Width="40px"
-                                FilterControlWidth="99%" ShowFilterIcon="false"></tlk:GridCheckBoxColumn>
+                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Hiển thị %>" DataField="IS_DISPLAY_NAME" 
+                                ItemStyle-VerticalAlign="Middle" UniqueName="IS_DISPLAY_NAME" SortExpression="IS_DISPLAY_NAME" HeaderStyle-Width="40px"
+                                FilterControlWidth="99%" />
+                  <tlk:GridBoundColumn HeaderText="<%$ Translate: Dữ liệu import %>" DataField="IS_DATAFROMEXCEL_NAME"
+                                ItemStyle-VerticalAlign="Middle" UniqueName="IS_DATAFROMEXCEL_NAME" SortExpression="IS_DATAFROMEXCEL_NAME" HeaderStyle-Width="40px"
+                                FilterControlWidth="99%" />
+                  <tlk:GridBoundColumn HeaderText="<%$ Translate: Hiển thị portal %>" DataField="IS_DISPLAY_PORTAL_NAME"
+                                ItemStyle-VerticalAlign="Middle" UniqueName="IS_DISPLAY_PORTAL_NAME" SortExpression="IS_DISPLAY_PORTAL_NAME" HeaderStyle-Width="40px"
+                                FilterControlWidth="99%" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Dữ liệu đăng ký nghỉ %>" DataField="IS_LEAVE_NAME"
+                                ItemStyle-VerticalAlign="Middle" UniqueName="IS_LEAVE_NAME" SortExpression="IS_LEAVE_NAME" HeaderStyle-Width="40px"
+                                FilterControlWidth="99%" />
+                   <tlk:GridBoundColumn HeaderText="<%$ Translate: Được đăng ký cho ngày Nghỉ hàng tuần %>" DataField="IS_LEAVE_WEEKLY_NAME"
+                                ItemStyle-VerticalAlign="Middle" UniqueName="IS_LEAVE_WEEKLY_NAME" SortExpression="IS_LEAVE_WEEKLY_NAME" HeaderStyle-Width="40px"
+                                FilterControlWidth="99%" />
+                   <tlk:GridBoundColumn HeaderText="<%$ Translate: Được đăng ký cho Ngày lễ %>" DataField="IS_LEAVE_HOLIDAY_NAME"
+                                ItemStyle-VerticalAlign="Middle" UniqueName="IS_LEAVE_HOLIDAY_NAME" SortExpression="IS_LEAVE_HOLIDAY_NAME" HeaderStyle-Width="40px"
+                                FilterControlWidth="99%" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Được đăng ký Nghỉ nửa ngày %>" DataField="IS_DAY_HALF_NAME"
+                                ItemStyle-VerticalAlign="Middle" UniqueName="IS_DAY_HALF_NAME" SortExpression="IS_DAY_HALF_NAME" HeaderStyle-Width="40px"
+                                FilterControlWidth="99%"/>
 
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mô tả %>" DataField="NOTE" UniqueName="NOTE"
                         SortExpression="NOTE" />

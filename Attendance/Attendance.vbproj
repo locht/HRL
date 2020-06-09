@@ -253,6 +253,9 @@
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.ATFormularDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <Content Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AtPortalRegistrationShiftDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AtPortalRegistrationShiftDTO1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -429,6 +432,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\AttendanceBusiness\AttendanceBusiness8.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AttendanceBusiness\AttendanceBusiness81.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\AttendanceBusiness\configuration91.svcinfo" />
