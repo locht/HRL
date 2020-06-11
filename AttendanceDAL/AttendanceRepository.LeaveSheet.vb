@@ -582,12 +582,20 @@ Partial Public Class AttendanceRepository
                 End If
                 Date_from = Date_from.AddDays(1)
                 Date_to = Date_to.AddDays(-1)
-                Dim query = (From p In Context.AT_SHIFT_REG_MNG Where p.WORKING_DAY >= Date_from And p.WORKING_DAY <= Date_to And p.EMPLOYEE_ID = objLeave.EMPLOYEE_ID)
-                For Each item In query
-                    If Not IsNothing(item.WEEKEND) OrElse Not IsNothing(item.HOLYDAY) Then
+                'Dim query = (From p In Context.AT_SHIFT_REG_MNG Where p.WORKING_DAY >= Date_from And p.WORKING_DAY <= Date_to And p.EMPLOYEE_ID = objLeave.EMPLOYEE_ID)
+                'For Each item In query
+                '    If Not IsNothing(item.WEEKEND) OrElse Not IsNothing(item.HOLYDAY) Then
+                '        dayNum -= 1
+                '    End If
+                'Next
+                While Date_from <= Date_to
+                    Dim check_wk = (From p In Context.AT_SHIFT_REG_MNG Where p.WORKING_DAY = Date_from And p.WEEKEND IsNot Nothing And p.EMPLOYEE_ID = objLeave.EMPLOYEE_ID).Count
+                    Dim check_hld = (From p In Context.AT_HOLIDAY Where p.WORKINGDAY = Date_from And p.ACTFLG.ToUpper = "A").Count
+                    If check_hld > 0 OrElse check_wk > 0 Then
                         dayNum -= 1
                     End If
-                Next
+                    Date_from = DateAdd(DateInterval.Day, 1, Date_from)
+                End While
             Else
                 Dim check_weekend = (From p In Context.AT_SYMBOLS Where p.ID = objLeave.MANUAL_ID And p.IS_LEAVE_WEEKLY = -1)
                 Dim check_holiday = (From p In Context.AT_SYMBOLS Where p.ID = objLeave.MANUAL_ID And p.IS_LEAVE_HOLIDAY = -1)
@@ -620,12 +628,13 @@ Partial Public Class AttendanceRepository
                     End If
                     Date_from = Date_from.AddDays(1)
                     Date_to = Date_to.AddDays(-1)
-                    Dim query = (From p In Context.AT_SHIFT_REG_MNG Where p.WORKING_DAY >= Date_from And p.WORKING_DAY <= Date_to And p.EMPLOYEE_ID = objLeave.EMPLOYEE_ID)
-                    For Each item In query
-                        If Not IsNothing(item.WEEKEND) Then
+                    While Date_from <= Date_to
+                        Dim check_wk = (From p In Context.AT_SHIFT_REG_MNG Where p.WORKING_DAY = Date_from And p.WEEKEND IsNot Nothing And p.EMPLOYEE_ID = objLeave.EMPLOYEE_ID).Count
+                        If check_wk > 0 Then
                             dayNum -= 1
                         End If
-                    Next
+                        Date_from = DateAdd(DateInterval.Day, 1, Date_from)
+                    End While
                 Else
                     '' chi cho phep dang ky cuoi tuan
                     Dim holyday_1 = (From p In Context.AT_HOLIDAY Where p.WORKINGDAY = Date_from)
@@ -646,14 +655,15 @@ Partial Public Class AttendanceRepository
                     End If
                     Date_from = Date_from.AddDays(1)
                     Date_to = Date_to.AddDays(-1)
-                    Dim query = (From p In Context.AT_SHIFT_REG_MNG Where p.WORKING_DAY >= Date_from And p.WORKING_DAY <= Date_to And p.EMPLOYEE_ID = objLeave.EMPLOYEE_ID)
-                    For Each item In query
-                        If Not IsNothing(item.HOLYDAY) Then
+                    While Date_from <= Date_to
+                        Dim check_hld = (From p In Context.AT_HOLIDAY Where p.WORKINGDAY = Date_from And p.ACTFLG.ToUpper = "A").Count
+                        If check_hld > 0 Then
                             dayNum -= 1
                         End If
-                    Next
+                        Date_from = DateAdd(DateInterval.Day, 1, Date_from)
+                    End While
                 End If
-                
+
             End If
 
             Return dayNum
