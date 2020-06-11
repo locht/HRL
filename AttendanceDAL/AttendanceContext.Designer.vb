@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("3758df44-ad8a-44b3-a53e-a3555252ef35")>
+<Assembly: EdmSchemaAttribute("333ca917-f294-4529-84db-669a4d575259")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -1482,6 +1482,20 @@ Public Partial Class AttendanceContext
 
     Private _AT_SHIFT_REG_MNG As ObjectSet(Of AT_SHIFT_REG_MNG)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property HUV_AT_LEAVESHEET_DETAIL() As ObjectSet(Of HUV_AT_LEAVESHEET_DETAIL)
+        Get
+            If (_HUV_AT_LEAVESHEET_DETAIL Is Nothing) Then
+                _HUV_AT_LEAVESHEET_DETAIL = MyBase.CreateObjectSet(Of HUV_AT_LEAVESHEET_DETAIL)("HUV_AT_LEAVESHEET_DETAIL")
+            End If
+            Return _HUV_AT_LEAVESHEET_DETAIL
+        End Get
+    End Property
+
+    Private _HUV_AT_LEAVESHEET_DETAIL As ObjectSet(Of HUV_AT_LEAVESHEET_DETAIL)
+
     #End Region
 
     #Region "AddTo Methods"
@@ -2184,6 +2198,13 @@ Public Partial Class AttendanceContext
     ''' </summary>
     Public Sub AddToAT_SHIFT_REG_MNG(ByVal aT_SHIFT_REG_MNG As AT_SHIFT_REG_MNG)
         MyBase.AddObject("AT_SHIFT_REG_MNG", aT_SHIFT_REG_MNG)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the HUV_AT_LEAVESHEET_DETAIL EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToHUV_AT_LEAVESHEET_DETAIL(ByVal hUV_AT_LEAVESHEET_DETAIL As HUV_AT_LEAVESHEET_DETAIL)
+        MyBase.AddObject("HUV_AT_LEAVESHEET_DETAIL", hUV_AT_LEAVESHEET_DETAIL)
     End Sub
 
     #End Region
@@ -51118,6 +51139,86 @@ Public Partial Class HU_WORKING
     End Sub
 
     Private Partial Sub OnPERCENT_SALARYChanged()
+    End Sub
+
+    #End Region
+
+End Class
+
+''' <summary>
+''' No Metadata Documentation available.
+''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="AttendanceModel", Name:="HUV_AT_LEAVESHEET_DETAIL")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class HUV_AT_LEAVESHEET_DETAIL
+    Inherits EntityObject
+    #Region "Factory Method"
+
+    ''' <summary>
+    ''' Create a new HUV_AT_LEAVESHEET_DETAIL object.
+    ''' </summary>
+    ''' <param name="lEAVESHEET_ID">Initial value of the LEAVESHEET_ID property.</param>
+    Public Shared Function CreateHUV_AT_LEAVESHEET_DETAIL(lEAVESHEET_ID As Global.System.Decimal) As HUV_AT_LEAVESHEET_DETAIL
+        Dim hUV_AT_LEAVESHEET_DETAIL as HUV_AT_LEAVESHEET_DETAIL = New HUV_AT_LEAVESHEET_DETAIL
+        hUV_AT_LEAVESHEET_DETAIL.LEAVESHEET_ID = lEAVESHEET_ID
+        Return hUV_AT_LEAVESHEET_DETAIL
+    End Function
+
+    #End Region
+
+    #Region "Primitive Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property LEAVESHEET_ID() As Global.System.Decimal
+        Get
+            Return _LEAVESHEET_ID
+        End Get
+        Set
+            If (_LEAVESHEET_ID <> Value) Then
+                OnLEAVESHEET_IDChanging(value)
+                ReportPropertyChanging("LEAVESHEET_ID")
+                _LEAVESHEET_ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("LEAVESHEET_ID")
+                OnLEAVESHEET_IDChanged()
+            End If
+        End Set
+    End Property
+
+    Private _LEAVESHEET_ID As Global.System.Decimal
+    Private Partial Sub OnLEAVESHEET_IDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnLEAVESHEET_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property DAY_LIST() As Global.System.String
+        Get
+            Return _DAY_LIST
+        End Get
+        Set
+            OnDAY_LISTChanging(value)
+            ReportPropertyChanging("DAY_LIST")
+            _DAY_LIST = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("DAY_LIST")
+            OnDAY_LISTChanged()
+        End Set
+    End Property
+
+    Private _DAY_LIST As Global.System.String
+    Private Partial Sub OnDAY_LISTChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnDAY_LISTChanged()
     End Sub
 
     #End Region

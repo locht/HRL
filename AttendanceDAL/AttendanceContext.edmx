@@ -106,6 +106,7 @@
             <EntitySet Name="AT_PORTAL_REG_SHIFT" EntityType="AttendanceModel.Store.AT_PORTAL_REG_SHIFT" store:Type="Tables"  />
             <EntitySet Name="AT_SEND_APPROVE_LETTER" EntityType="AttendanceModel.Store.AT_SEND_APPROVE_LETTER" store:Type="Tables"  />
             <EntitySet Name="AT_SHIFT_REG_MNG" EntityType="AttendanceModel.Store.AT_SHIFT_REG_MNG" store:Type="Tables"  />
+            <EntitySet Name="HUV_AT_LEAVESHEET_DETAIL" EntityType="AttendanceModel.Store.HUV_AT_LEAVESHEET_DETAIL" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="AttendanceModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_OOLT_OOL" Association="AttendanceModel.Store.FK_OOLT_OOL">
                 <End Role="OT_OTHER_LIST_TYPE" EntitySet="OT_OTHER_LIST_TYPE" />
@@ -2660,6 +2661,13 @@
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="IS_CHANGE" Type="number" Nullable="true" Precision="38" />
         </EntityType>
+        <EntityType Name="HUV_AT_LEAVESHEET_DETAIL">
+            <Key>
+                <PropertyRef Name="LEAVESHEET_ID" />
+            </Key>
+            <Property Name="LEAVESHEET_ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="DAY_LIST" Type="varchar2" Nullable="true" MaxLength="4000" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -2985,6 +2993,7 @@
           <EntitySet Name="AT_PORTAL_REG_SHIFT" EntityType="AttendanceModel.AT_PORTAL_REG_SHIFT" />
           <EntitySet Name="AT_SEND_APPROVE_LETTER" EntityType="AttendanceModel.AT_SEND_APPROVE_LETTER" />
           <EntitySet Name="AT_SHIFT_REG_MNG" EntityType="AttendanceModel.AT_SHIFT_REG_MNG" />
+          <EntitySet Name="HUV_AT_LEAVESHEET_DETAIL" EntityType="AttendanceModel.HUV_AT_LEAVESHEET_DETAIL" />
           </EntityContainer>
         <EntityType Name="OT_OTHER_LIST">
           <Key>
@@ -5640,6 +5649,13 @@
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="IS_CHANGE" />
         </EntityType>
+        <EntityType Name="HUV_AT_LEAVESHEET_DETAIL">
+          <Key>
+            <PropertyRef Name="LEAVESHEET_ID" />
+          </Key>
+          <Property Type="Decimal" Name="LEAVESHEET_ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="DAY_LIST" MaxLength="4000" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -8246,6 +8262,14 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HUV_AT_LEAVESHEET_DETAIL">
+            <EntityTypeMapping TypeName="AttendanceModel.HUV_AT_LEAVESHEET_DETAIL">
+                <MappingFragment StoreEntitySet="HUV_AT_LEAVESHEET_DETAIL">
+                    <ScalarProperty Name="LEAVESHEET_ID" ColumnName="LEAVESHEET_ID" />
+                    <ScalarProperty Name="DAY_LIST" ColumnName="DAY_LIST" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="AttendanceModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -8429,6 +8453,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_PORTAL_REG_SHIFT" Width="1.5" PointX="27.375" PointY="0.75" Height="2.7494921875" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SEND_APPROVE_LETTER" Width="1.5" PointX="10.375" PointY="28.75" Height="2.9417936197916674" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SHIFT_REG_MNG" Width="1.5" PointX="29.375" PointY="0.75" Height="3.7109993489583326" />
+        <EntityTypeShape EntityType="AttendanceModel.HUV_AT_LEAVESHEET_DETAIL" Width="1.5" PointX="3.375" PointY="24.75" Height="1.403382161458353" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
