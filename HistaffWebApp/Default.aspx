@@ -18,8 +18,7 @@
     <tlk:RadToolTipManager ID="RadToolTipManager1" runat="server" AutoTooltipify="true"
         RelativeTo="Element">
     </tlk:RadToolTipManager>
-    <tlk:RadAjaxLoadingPanel runat="server" ID="LoadingPanel"
-        InitialDelayTime="500">
+    <tlk:RadAjaxLoadingPanel runat="server" ID="LoadingPanel" InitialDelayTime="500">
     </tlk:RadAjaxLoadingPanel>
     <div id="WindowMainRegion">
         <div class="brackcrum">

@@ -483,9 +483,9 @@ Public Class ctrlRegisterOTNewEdit
                         End If
                     End If
 
-                Case CommonMessage.TOOLBARITEM_CANCEL
-                    ''POPUPTOLINK_CANCEL
-                    Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlRegisterOT&group=Business")
+                    'Case CommonMessage.TOOLBARITEM_CANCEL
+                    '    ''POPUPTOLINK_CANCEL
+                    '    Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlRegisterOT&group=Business")
             End Select
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

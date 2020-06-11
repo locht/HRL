@@ -18,13 +18,14 @@
     <Item Value="Profile;ctrlPortalTrainingOutCompany_Edit;NoPer;NoEdit" Text="Training Out Company" ImageUrl="~/Static/Images/RibbonBar/discipline.png" />
   </Item>
   <Item Text="Leave &amp; OT" Expanded="True" Value="Attendance">
-    <Item Value="Attendance;ctrlRegisterLeave;NoPer;NoEdit" Text="Đăng ký nghỉ" ImageUrl="~/Static/Images/RibbonBar/leave.png"/>
-    <Item Value="Attendance;ctrlOTRegister;NoPer;NoEdit" Text="Đăng ký đi làm thêm" ImageUrl="~/Static/Images/RibbonBar/ot.png"/>
-    <Item Value="Attendance;ctrlDMVSRegister;NoPer;NoEdit" Text="Đăng ký đi muôn về sớm" ImageUrl="~/Static/Images/RibbonBar/leave.png"/>
+    <!--<Item Value="Attendance;ctrlRegisterLeave;NoPer;NoEdit" Text="Đăng ký nghỉ" ImageUrl="~/Static/Images/RibbonBar/leave.png"/>-->
+    <!--<Item Value="Attendance;ctrlOTRegister;NoPer;NoEdit" Text="Đăng ký đi làm thêm" ImageUrl="~/Static/Images/RibbonBar/ot.png"/>-->
+    <!--<Item Value="Attendance;ctrlDMVSRegister;NoPer;NoEdit" Text="Đăng ký đi muôn về sớm" ImageUrl="~/Static/Images/RibbonBar/leave.png"/>-->
+    <Item Value="Attendance;ctrlAT_RegistersMng;NoPer;NoEdit" Text="Registration Manager" ImageUrl="~/Static/Images/RibbonBar/approve.png" />
     <Item Value="Attendance;ctrlLeaveApprove;NoPer;NoEdit" Text="Phê duyệt nghỉ" ImageUrl="~/Static/Images/RibbonBar/approve.png" />
     <Item Value="Attendance;ctrlOTApprove;NoPer;NoEdit" Text="Phê duyệt làm thêm" ImageUrl="~/Static/Images/RibbonBar/approve.png" />
     <Item Value="Attendance;ctrlDMVSApprove;NoPer;NoEdit" Text="Phê duyệt đi muộn về sớm" ImageUrl="~/Static/Images/RibbonBar/approve.png"/>
-    <Item Value="Attendance;ctrlPortalAtRegistrationShift;NoPer;NoEdit" Text="Shift Registration" ImageUrl="~/Static/Images/RibbonBar/approve.png" />
+    <!--<Item Value="Attendance;ctrlPortalAtRegistrationShift;NoPer;NoEdit" Text="Shift Registration" ImageUrl="~/Static/Images/RibbonBar/approve.png" />-->
   </Item>
   <Item Text="Thông tin CBNV trực thuộc" Expanded="True" Value="Direct;ctrlPortalDirectManagement;NoPer;NoEdit" />
   <Item Text="Bảng công" Expanded="True" Value="Attendance;ctrlPortalTimeTimesheetDetails;NoPer;NoEdit" />

@@ -2,6 +2,13 @@
     Inherits="Attendance.ctrlLeaveRegistrationNewEdit" %>
 <%@ Import Namespace="Common" %>
 <%@ Import Namespace="Framework.UI.Utilities" %>
+<style>
+    #ctrlLeaveRegistrationNewEdit_rgEmployee
+    {
+        position: fixed;
+        bottom: 0;
+    }
+</style>
 <asp:HiddenField ID="hidID" runat="server" />
 <asp:HiddenField ID="hidValid" runat="server" />
 <asp:HiddenField ID="hidStatus" runat="server" />
@@ -224,7 +231,7 @@
 </tlk:RadSplitter>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <asp:PlaceHolder ID="FindEmployee" runat="server"></asp:PlaceHolder>
-<tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
+<tlk:RadScriptBlock ID="scriptBlock" runat="server">
     <script type="text/javascript">
         var enableAjax = true;
 
@@ -242,10 +249,9 @@
             return null;
         }
         function clientButtonClicking(sender, args) {
-            //if (args.get_item().get_commandName() == "CANCEL") {
-            //    OpenInNewTab('Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration');
-            //    args.set_cancel(true);
-            //}
+            if (args.get_item().get_commandName() == 'CANCEL') {
+                getRadWindow().close(0);
+            }
         }
         function OpenInNewTab(url) {
             window.location.href = url;
@@ -278,4 +284,4 @@
             $("#divLeaveDetail").css("display", "block");
         }
     </script>
-</tlk:RadCodeBlock>
+</tlk:RadScriptBlock>

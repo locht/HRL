@@ -216,8 +216,10 @@
     <Content Include="Scripts\highcharts\highcharts.js" />
     <Content Include="Scripts\highcharts\modules\exporting.js" />
     <Content Include="Scripts\highcharts\modules\exporting.src.js" />
+    <Content Include="Scripts\html2canvas.min.js" />
     <Content Include="Scripts\jMenu.jquery.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.16.custom.min.js" />
     <Content Include="Scripts\jquery.tip.js" />
     <Content Include="Scripts\noty\jquery.noty.js" />
     <Content Include="Scripts\noty\layouts\center.js" />

@@ -2,6 +2,13 @@
     Inherits="Attendance.ctrlAtShiftNewEdit" %>
 <%@ Import Namespace="Common" %>
 <%@ Import Namespace="Framework.UI.Utilities" %>
+<style>
+    #ctrlAtShiftNewEdit_rgEmployee
+    {
+        position: fixed;
+        bottom: 0;
+    }
+</style>
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
     <tlk:RadPane ID="MainPane" runat="server" Scrolling="None">
         <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
@@ -118,11 +125,6 @@
 <asp:PlaceHolder ID="FindEmployee" runat="server"></asp:PlaceHolder>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
-        //        $(document).ready(function () {
-        //            registerOnfocusOut('RAD_SPLITTER_PANE_CONTENT_ctl00_MainContent_ctrlHU_CommendNewEdit_RadPane2');
-        //        });
-
-        //mandatory for the RadWindow dialogs functionality
         function getRadWindow() {
             if (window.radWindow) {
                 return window.radWindow;
@@ -134,10 +136,9 @@
         }
 
         function clientButtonClicking(sender, args) {
-            //            if (args.get_item().get_commandName() == 'CANCEL') {
-            //                getRadWindow().close(null);
-            //                args.set_cancel(true);
-            //            }
+            if (args.get_item().get_commandName() == 'CANCEL') {
+                getRadWindow().close(0);
+            }
         }
         var enableAjax = true;
 

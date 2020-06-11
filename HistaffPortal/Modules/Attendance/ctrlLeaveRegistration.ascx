@@ -2,6 +2,12 @@
     Inherits="Attendance.ctrlLeaveRegistration
     " %>
 <%@ Import Namespace="Common" %>
+<style>
+    #ctl00_MainContent_ctrlAT_RegistersMng_ctrlLeaveRegistration_rgMain_ctl00_Header
+    {
+        width: Auto !important;
+    }
+</style>
 <asp:HiddenField ID="hidValid" runat="server" />
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
     <tlk:RadPane ID="MainPane" runat="server" Scrolling="None">
@@ -12,20 +18,6 @@
             <tlk:RadPane ID="RadPane4" runat="server" Height="80px" Scrolling="None">
                 <table class="table-form">
                     <tr>
-                        <td class="lb">
-                            <%# Translate("Trạng thái")%>
-                        </td>
-                        <td>
-                            <tlk:RadComboBox runat="server" ID="cboStatus">
-                            </tlk:RadComboBox>
-                        </td>
-                        <td class="lb">
-                            <%# Translate("Loại đăng ký")%>
-                        </td>
-                        <td>
-                            <tlk:RadComboBox runat="server" ID="cboManual">
-                            </tlk:RadComboBox>
-                        </td>
                         <td class="lb">
                             <%# Translate("Năm")%>
                         </td>
@@ -40,8 +32,6 @@
                             <tlk:RadComboBox runat="server" ID="cboPeriod" SkinID="dDropdownList" AutoPostBack="true">
                             </tlk:RadComboBox>
                         </td>
-                    </tr>
-                    <tr>
                         <td class="lb">
                             <%# Translate("Từ ngày")%><span class="lbReq">*</span>
                         </td>
@@ -63,6 +53,22 @@
                         <td>
                             <tlk:RadButton ID="btnSearch" runat="server" Text="<%$ Translate: Tìm kiếm %>" SkinID="ButtonFind">
                             </tlk:RadButton>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lb">
+                            <%# Translate("Trạng thái")%>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox runat="server" ID="cboStatus">
+                            </tlk:RadComboBox>
+                        </td>
+                        <td class="lb">
+                            <%# Translate("Loại đăng ký")%>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox runat="server" ID="cboManual">
+                            </tlk:RadComboBox>
                         </td>
                     </tr>
                 </table>
@@ -192,7 +198,16 @@
     </tlk:RadPane>
 </tlk:RadSplitter>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
-<tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
+<tlk:RadWindowManager ID="RadWindowManager1" runat="server">
+    <Windows>
+        <tlk:RadWindow runat="server" ID="rwPopup" VisibleStatusbar="false" Width="500px"
+            OnClientClose="OnClientClose"  EnableShadow="true" Behaviors="Close, Maximize, Move"
+            OnClientBeforeClose="OnClientBeforeClose" Modal="true" ShowContentDuringLoad="false"
+            Title="<%$ Translate: Thông tin đăng ký nghỉ %>">
+        </tlk:RadWindow>
+    </Windows>
+</tlk:RadWindowManager>
+<tlk:RadScriptBlock ID="scriptBlock" runat="server">
     <script type="text/javascript">
         var enableAjax = true;
         var idCtrl = 'ctrlLeaveRegistration';
@@ -200,6 +215,43 @@
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
         }
+
+        function OnClientClose(sender, args) {
+            var m;
+            var arg = args.get_argument();
+            if (arg == '1') {
+                m = '<%# Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS) %>';
+                var n = noty({ text: m, dismissQueue: true, type: 'success' });
+                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+                $find("<%= rgMain.ClientID %>").get_masterTableView().rebind();
+            }
+        }
+
+        function OnClientBeforeClose(sender, eventArgs) {
+            var arg = eventArgs.get_argument();
+            if (!arg) {
+                if (!confirm("Bạn có muốn đóng màn hình không?")) {
+                    //if cancel is clicked prevent the window from closing
+                    eventArgs.set_cancel(true);
+                }
+            }
+        }
+
+        function OpenInsertWindow() {
+            var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlLeaveRegistrationNewEdit&id=0&typeUser=User', "rwPopup");
+            var pos = $("html").offset();
+            oWindow.moveTo(pos.left, pos.top);
+            oWindow.setSize($(window).width(), $(window).height());
+        }
+
+        function OpenEditWindow(states) {
+            var id = $find('<%= rgMain.ClientID %>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
+            var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlLeaveRegistrationNewEdit&id=' + id + '&view=TRUE&typeUser=User&idCtrl=' + idCtrl, "rwPopup");
+            var pos = $("html").offset();
+            oWindow.moveTo(pos.center);
+            oWindow.setSize($(window).width(), $(window).height());
+        }
+
         function clientButtonClicking(sender, args) {
             if (args.get_item().get_commandName() == "EDIT") {
                 var bCheck = $find('<%= rgMain.ClientID %>').get_masterTableView().get_selectedItems().length;
@@ -216,8 +268,7 @@
                     args.set_cancel(true);
                 }
                 else {
-                    var id = $find('<%= rgMain.ClientID %>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID')
-                    OpenInNewTab('Default.aspx?mid=Attendance&fid=ctrlLeaveRegistrationNewEdit&id=' + id + '&view=TRUE&typeUser=User&idCtrl=' + idCtrl);
+                    OpenEditWindow();
                     args.set_cancel(true);
                 }
             }
@@ -232,7 +283,7 @@
                     return;
                 }
 
-                OpenInNewTab('Default.aspx?mid=Attendance&fid=ctrlLeaveRegistrationNewEdit&id=0&typeUser=User');
+                OpenInsertWindow();
                 args.set_cancel(true);
             }
             else if (args.get_item().get_commandName() == "EXPORT") {
@@ -296,13 +347,9 @@
                 setTimeout(function () { $.noty.close(n.options.id); }, 5000);
             }
             else {
-                var id = $find('<%= rgMain.ClientID %>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID')
-                OpenInNewTab('Default.aspx?mid=Attendance&fid=ctrlLeaveRegistrationNewEdit&id=' + id + '&view=TRUE&typeUser=User&idCtrl=' + idCtrl);
+                OpenEditWindow();
+                args.set_cancel(true);
             }
         }
-
-        function OpenInNewTab(url) {
-            window.location.href = url;
-        }
     </script>
-</tlk:RadCodeBlock>
+</tlk:RadScriptBlock>

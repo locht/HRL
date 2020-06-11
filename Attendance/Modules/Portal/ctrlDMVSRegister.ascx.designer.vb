@@ -167,11 +167,11 @@ Partial Public Class ctrlDMVSRegister
     Protected WithEvents ctrlMessageBox As Global.Common.ctrlMessageBox
 
     '''<summary>
-    '''RadCodeBlock1 control.
+    '''scriptBlock control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RadCodeBlock1 As Global.Telerik.Web.UI.RadCodeBlock
+    Protected WithEvents scriptBlock As Global.Telerik.Web.UI.RadScriptBlock
 End Class

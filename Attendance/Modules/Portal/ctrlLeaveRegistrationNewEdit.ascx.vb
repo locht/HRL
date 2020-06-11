@@ -420,7 +420,8 @@ Public Class ctrlLeaveRegistrationNewEdit
                             objSend.ACTION_STATUS = 0
                             rep.InsertSendLetter(objSend)
                         Next
-                        Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")
+                        ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "close", "getRadWindow().close(1);", True)
+                        'Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")
                         'If valSum.Page.IsValid Then
 
                         'If SaveDB() Then
@@ -455,9 +456,9 @@ Public Class ctrlLeaveRegistrationNewEdit
                         ShowMessage(Translate("Chỉ gửi đơn ở trạng thái Chưa gửi duyệt. Vui lòng thử lại !"), NotifyType.Warning)
                         Exit Sub
                     End If
-                Case CommonMessage.TOOLBARITEM_CANCEL
-                    ''POPUPTOLINK_CANCEL
-                    Response.Redirect("/Default.aspx?mid=Attendance&fid=" + IDCtrl)
+                    'Case CommonMessage.TOOLBARITEM_CANCEL
+                    '    ''POPUPTOLINK_CANCEL
+                    '    Response.Redirect("/Default.aspx?mid=Attendance&fid=" + IDCtrl)
             End Select
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)

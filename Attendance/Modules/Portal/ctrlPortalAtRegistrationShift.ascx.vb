@@ -20,6 +20,21 @@ Public Class ctrlPortalAtRegistrationShift
     Public Property EmployeeCode As String
     Public Property unit As String
 
+    ''' <summary>
+    ''' AjaxManager
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public WithEvents AjaxManager As RadAjaxManager
+
+    ''' <summary>
+    ''' AjaxManagerId
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Property AjaxManagerId As String
+
+
     Property RegistrationList As List(Of AtPortalRegistrationShiftDTO)
         Get
             Return ViewState(Me.ID & "_OT_REGISTRATIONDTOS")
@@ -100,6 +115,8 @@ Public Class ctrlPortalAtRegistrationShift
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         'rgMain.SetFilter()
         SetFilter(rgMain)
+        AjaxManager = CType(Me.Page, AjaxPage).AjaxManager
+        AjaxManagerId = AjaxManager.ClientID
         rgMain.AllowCustomPaging = True
         rgMain.PageSize = Common.Common.DefaultPageSize
         CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
@@ -111,6 +128,7 @@ Public Class ctrlPortalAtRegistrationShift
             Me.MainToolBar = tbarMainToolBar
             BuildToolbar(Me.MainToolBar, ToolbarItem.Create, ToolbarItem.Edit, ToolbarItem.Seperator, _
                           ToolbarItem.Export, ToolbarItem.Seperator, ToolbarItem.Delete)
+            Me.MainToolBar.OnClientButtonClicking = "clientButtonClicking"
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -293,6 +311,35 @@ Public Class ctrlPortalAtRegistrationShift
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
 
+    End Sub
+
+    ''' <lastupdate>16/08/2017</lastupdate>
+    ''' <summary>
+    ''' AjaxManager_AjaxRequest
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub AjaxManager_AjaxRequest(ByVal sender As Object, ByVal e As Telerik.Web.UI.AjaxRequestEventArgs) Handles AjaxManager.AjaxRequest
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+
+        Try
+            Dim url = e.Argument
+
+            If (url.Contains("reload=1")) Then
+                rgMain.CurrentPageIndex = 0
+                rgMain.Rebind()
+                If rgMain.Items IsNot Nothing AndAlso rgMain.Items.Count > 0 Then
+                    rgMain.Items(0).Selected = True
+                End If
+            End If
+
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+            'DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
     End Sub
 
 #End Region

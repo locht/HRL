@@ -147,14 +147,11 @@ Public Class ctrlAtShiftNewEdit
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-
         Try
-            Me.MainToolBar = tbarMain
-
-            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Save, ToolbarItem.Seperator,
-                                       ToolbarItem.Cancel)
-
-            CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
+            AjaxManager = CType(Me.Page, AjaxPage).AjaxManager
+            AjaxManagerId = AjaxManager.ClientID
+            InitControl()
+            
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -188,6 +185,12 @@ Public Class ctrlAtShiftNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
         Try
+            Me.MainToolBar = tbarMain
+
+            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Save, ToolbarItem.Seperator,
+                                       ToolbarItem.Cancel)
+
+            CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
@@ -299,8 +302,8 @@ Public Class ctrlAtShiftNewEdit
                                 Next
                         End Select
 
-                        Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlPortalAtRegistrationShift")
-
+                        'Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlPortalAtRegistrationShift")
+                        ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "close", "getRadWindow().close(1);", True)
                     End If
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlPortalAtRegistrationShift")

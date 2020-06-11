@@ -1,5 +1,6 @@
 ﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Site.master.vb" Inherits="HistaffPortal.Site" %>
 
+<%@ Import Namespace="Framework.UI" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head runat="server">
@@ -60,11 +61,20 @@
         <div id="contentSuport" style="position: relative">
             <h3>
                 Thông tin hỗ trợ</h3>
-            <p> Các Anh/Chị khi đăng ký nghỉ các loại vui lòng lưu ý:</p>
-            <p>- Thời gian xin nghỉ từ 1-3 ngày vui lòng đăng ký với Trưởng bộ phận trước ít nhất 3 ngày làm việc.</p>
-            <p>- Thời gian xin nghỉ từ 3-5 ngày làm việc vui lòng đăng ký với Trưởng bộ phận trước ít nhất 1 tuần.</p>
-            <p>- Thời gian nghỉ nhiều hơn 05 ngày làm việc vui lòng đăng ký với Trưởng bộ phận trước ít nhất 2 tuần.</p>
-            <p>- Mọi trường hợp khẩn cấp, lý do bất đắc dĩ vui lòng thông báo với Trưởng bộ phận ngay khi cần xin nghỉ.</p>
+            <p>
+                Các Anh/Chị khi đăng ký nghỉ các loại vui lòng lưu ý:</p>
+            <p>
+                - Thời gian xin nghỉ từ 1-3 ngày vui lòng đăng ký với Trưởng bộ phận trước ít nhất
+                3 ngày làm việc.</p>
+            <p>
+                - Thời gian xin nghỉ từ 3-5 ngày làm việc vui lòng đăng ký với Trưởng bộ phận trước
+                ít nhất 1 tuần.</p>
+            <p>
+                - Thời gian nghỉ nhiều hơn 05 ngày làm việc vui lòng đăng ký với Trưởng bộ phận
+                trước ít nhất 2 tuần.</p>
+            <p>
+                - Mọi trường hợp khẩn cấp, lý do bất đắc dĩ vui lòng thông báo với Trưởng bộ phận
+                ngay khi cần xin nghỉ.</p>
             <p>
                 Mọi thắc mắc vui lòng liên hệ phòng HCNS để được hỗ trợ
             </p>
@@ -88,6 +98,7 @@
             <tlk:RadScriptReference Path="~/Scripts/jquery-1.7.1.min.js" />
             <tlk:RadScriptReference Path="~/Scripts/PreventBackSpace.js" />
             <tlk:RadScriptReference Path="~/Scripts/common.js" />
+            <tlk:RadScriptReference Path="~/Scripts/jquery-ui-1.8.16.custom.min.js" />
             <tlk:RadScriptReference Path="~/Scripts/jquery.tip.js" />
             <tlk:RadScriptReference Path="~/Scripts/noty/jquery.noty.js" />
             <tlk:RadScriptReference Path="~/Scripts/noty/layouts/center.js" />
@@ -95,6 +106,9 @@
             <tlk:RadScriptReference Path="~/Scripts/noty/themes/default.js" />
             <tlk:RadScriptReference Path="~/Scripts/jMenu.jquery.js" />
             <tlk:RadScriptReference Path="~/Scripts/DateTimeFormat.js" />
+            <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.Core.js" />
+            <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQuery.js" />
+            <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQueryInclude.js" />
             <tlk:RadScriptReference Path="~/Scripts/highcharts/highcharts.js" />
             <tlk:RadScriptReference Path="~/Scripts/highcharts/modules/exporting.js" />
             <tlk:RadScriptReference Path="~/Scripts/top.js" />
@@ -163,7 +177,7 @@
                                             </ItemTemplate>
                                         </asp:ListView>
                                     </div>
-                                     <div class='box48' data="3">
+                                    <div class='box48' data="3">
                                         Phê duyệt đánh giá <strong>-</strong>
                                     </div>
                                     <div id="Div1">
@@ -281,47 +295,49 @@
                 Powered by TinhVan</div>
         </div>
     </div>
-    <script type="text/javascript">
-        //Thiết lập notify
-        $.noty.defaults = {
-            layout: 'topCenter',
-            theme: 'defaultTheme',
-            type: 'alert',
-            text: '',
-            dismissQueue: true, // If you want to use queue feature set this true
-            template: '<div class="noty_message"><span class="noty_text"></span><div class="noty_close"></div></div>',
-            animation: {
-                open: { height: 'toggle' },
-                close: { height: 'toggle' },
-                easing: 'swing',
-                speed: 500 // opening & closing animation speed
-            },
-            timeout: false, // delay for closing event. Set false for sticky notifications
-            force: false, // adds notification to the beginning of queue when set to true
-            modal: false,
-            closeWith: ['click'], // ['click', 'button', 'hover']
-            callback: {
-                onShow: function () { },
-                afterShow: function () { },
-                onClose: function () { },
-                afterClose: function () { }
-            },
-            buttons: false // an array of buttons
-        };
+    <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
+        <script type="text/javascript">
+            //Thiết lập notify
+            $.noty.defaults = {
+                layout: 'topCenter',
+                theme: 'defaultTheme',
+                type: 'alert',
+                text: '',
+                dismissQueue: true, // If you want to use queue feature set this true
+                template: '<div class="noty_message"><span class="noty_text"></span><div class="noty_close"></div></div>',
+                animation: {
+                    open: { height: 'toggle' },
+                    close: { height: 'toggle' },
+                    easing: 'swing',
+                    speed: 500 // opening & closing animation speed
+                },
+                timeout: false, // delay for closing event. Set false for sticky notifications
+                force: false, // adds notification to the beginning of queue when set to true
+                modal: false,
+                closeWith: ['click'], // ['click', 'button', 'hover']
+                callback: {
+                    onShow: function () { },
+                    afterShow: function () { },
+                    onClose: function () { },
+                    afterClose: function () { }
+                },
+                buttons: false // an array of buttons
+            };
 
-        function ExportReport(arg) {
-            window.location = "Export.aspx?id=" + arg;
-        }
-        $(document).ready(function () {
-            if ($(".box3 span").text().trim() == "0" || $(".box3 span").text().trim() == "") {
-                $(".box3 span").remove();
+            function ExportReport(arg) {
+                window.location = "Export.aspx?id=" + arg;
             }
-            if ($(".box4 span").text().trim() == "0" || $(".box4 span").text().trim() == "") {
-                $(".box4 span").remove();
-            }
-        });
+            $(document).ready(function () {
+                if ($(".box3 span").text().trim() == "0" || $(".box3 span").text().trim() == "") {
+                    $(".box3 span").remove();
+                }
+                if ($(".box4 span").text().trim() == "0" || $(".box4 span").text().trim() == "") {
+                    $(".box4 span").remove();
+                }
+            });
 
-    </script>
+        </script>
+    </tlk:RadCodeBlock>
     </form>
 </body>
 </html>

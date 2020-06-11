@@ -97,7 +97,7 @@
     </tlk:RadPane>
 </tlk:RadSplitter>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
-<tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
+<tlk:RadScriptBlock ID="scriptBlock" runat="server">
     <script type="text/javascript">
         function OnClientTimeSlotContextMenuItemClicking(sender, args) {
             if (sender.get_selectedSlots().length > 0) {
@@ -113,4 +113,4 @@
             eventArgs.set_cancel(true);
         }
     </script>
-</tlk:RadCodeBlock>
+</tlk:RadScriptBlock>

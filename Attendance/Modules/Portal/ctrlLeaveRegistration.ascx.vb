@@ -11,7 +11,6 @@ Imports WebAppLog
 
 Public Class ctrlLeaveRegistration
     Inherits CommonView
-    Protected WithEvents ViewItem As ViewBase
     Public Overrides Property MustAuthorize As Boolean = False
     Dim _myLog As New MyLog()
     Dim _pathLog As String = _myLog._pathLog
@@ -22,6 +21,20 @@ Public Class ctrlLeaveRegistration
     Public Property EmployeeID As Decimal
     Public Property EmployeeCode As String
     Public Property unit As String
+
+    ''' <summary>
+    ''' AjaxManager
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public WithEvents AjaxManager As RadAjaxManager
+
+    ''' <summary>
+    ''' AjaxManagerId
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Property AjaxManagerId As String
 
     ''' <summary>
     ''' Obj LEAVESHEET
@@ -133,6 +146,8 @@ Public Class ctrlLeaveRegistration
 
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         'rgMain.SetFilter()
+        AjaxManager = CType(Me.Page, AjaxPage).AjaxManager
+        AjaxManagerId = AjaxManager.ClientID
         rgMain.AllowCustomPaging = True
         rgMain.PageSize = Common.Common.DefaultPageSize
         SetFilter(rgMain)
@@ -144,6 +159,7 @@ Public Class ctrlLeaveRegistration
         Try
             Me.MainToolBar = tbarMainToolBar
             BuildToolbar(Me.MainToolBar, ToolbarItem.Create, ToolbarItem.Edit, ToolbarItem.Seperator, ToolbarItem.Export, ToolbarItem.Seperator, ToolbarItem.Delete)
+            Me.MainToolBar.OnClientButtonClicking = "clientButtonClicking"
             'BuildToolbar(Me.MainToolBar, ToolbarItem.Create, ToolbarItem.Edit, ToolbarItem.Seperator, ToolbarItem.Submit, ToolbarItem.Export, ToolbarItem.Print, ToolbarItem.Seperator, ToolbarItem.Delete)
             'CType(MainToolBar.Items(5), RadToolBarButton).Text = "In đơn phép"
         Catch ex As Exception
@@ -205,7 +221,7 @@ Public Class ctrlLeaveRegistration
         Catch ex As Exception
 
         End Try
-        
+
         'txtYear.Value = Date.Now.Year
     End Sub
 

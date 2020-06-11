@@ -149,11 +149,29 @@ Partial Public Class ctrlPortalAtRegistrationShift
     Protected WithEvents ctrlMessageBox As Global.Common.ctrlMessageBox
 
     '''<summary>
-    '''RadCodeBlock1 control.
+    '''RadWindowManager1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RadCodeBlock1 As Global.Telerik.Web.UI.RadCodeBlock
+    Protected WithEvents RadWindowManager1 As Global.Telerik.Web.UI.RadWindowManager
+
+    '''<summary>
+    '''rwPopup control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rwPopup As Global.Telerik.Web.UI.RadWindow
+
+    '''<summary>
+    '''scriptBlock control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents scriptBlock As Global.Telerik.Web.UI.RadScriptBlock
 End Class

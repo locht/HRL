@@ -5,7 +5,8 @@ Imports System.IO
 Imports Common
 
 Public Class ctrlAT_RegistersMng
-    Inherits CommonView
+    Inherits Common.CommonView
+    Public Overrides Property MustAuthorize As Boolean = False
     Protected WithEvents ViewItem As ViewBase
     Protected WithEvents ViewItem1 As ViewBase
     Protected WithEvents ViewItem2 As ViewBase
@@ -17,7 +18,6 @@ Public Class ctrlAT_RegistersMng
 
 
 #Region "Property"
-    Public Overrides Property MustAuthorize As Boolean = False
 
     ''' <summary>
     ''' Obj GroupInfo
