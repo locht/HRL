@@ -223,16 +223,18 @@ Partial Public Class AttendanceRepository
             Dim query = From p In Context.AT_LEAVESHEET
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
-                        From s In Context.HU_STAFF_RANK.Where(Function(F) F.ID = e.STAFF_RANK_ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
-                        From m In Context.AT_TIME_MANUAL.Where(Function(f) f.ID = p.MANUAL_ID).DefaultIfEmpty
+                        From m In Context.AT_SYMBOLS.Where(Function(f) f.ID = p.MANUAL_ID).DefaultIfEmpty
                         From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS).DefaultIfEmpty
-                        From nb In Context.AT_COMPENSATORY.Where(Function(F) F.EMPLOYEE_ID = p.EMPLOYEE_ID And F.YEAR = _filter.FROM_DATE.Value.Year).DefaultIfEmpty
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) e.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
-                        From pas In Context.PROCESS_APPROVED_STATUS.Where(Function(f) f.ID_REGGROUP = p.ID _
-                            And f.APP_LEVEL = (Context.PROCESS_APPROVED_STATUS.Where(Function(h) h.ID_REGGROUP = p.ID And h.APP_STATUS = 0).Min(Function(ki) ki.APP_LEVEL))).DefaultIfEmpty() _
-                        From ee In Context.HU_EMPLOYEE.Where(Function(f) f.ID = pas.EMPLOYEE_APPROVED).DefaultIfEmpty()
-                        Where (lstID.Contains(p.ID))
+                        From ss1 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.FROM_SESSION).DefaultIfEmpty
+                        From ss2 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TO_SESSION).DefaultIfEmpty
+                        From reason In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.REASON_LEAVE).DefaultIfEmpty
+                        From huv In Context.HUV_AT_LEAVESHEET_DETAIL.Where(Function(f) f.LEAVESHEET_ID = p.ID).DefaultIfEmpty
+                        From cre In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.CREATED_BY_EMP).DefaultIfEmpty
+                        From modi In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.MODIFIED_BY_EMP).DefaultIfEmpty
+                        From res In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.RESTORED_BY).DefaultIfEmpty
+                        Where (lstID.Contains(p.ID) And (p.STATUS = 1 Or p.STATUS = 8001))
             If _filter.ISTEMINAL Then
                 query = query.Where(Function(f) f.e.WORK_STATUS = 257)
                 If _filter.WORKINGDAY.HasValue Then
@@ -245,8 +247,17 @@ Partial Public Class AttendanceRepository
             If _filter.END_DATE.HasValue Then
                 query = query.Where(Function(f) f.p.LEAVE_TO <= _filter.END_DATE)
             End If
+
+            If _filter.MANUAL_ID IsNot Nothing Then
+                query = query.Where(Function(f) f.p.MANUAL_ID <= _filter.MANUAL_ID)
+            End If
+
+            If Not String.IsNullOrEmpty(_filter.SEARCH_EMPLOYEE) Then
+                query = query.Where(Function(f) f.e.EMPLOYEE_CODE.ToLower().Contains(_filter.SEARCH_EMPLOYEE.ToLower()) Or f.e.FULLNAME_VN.ToLower().Contains(_filter.SEARCH_EMPLOYEE.ToLower()))
+            End If
+
             If Not String.IsNullOrEmpty(_filter.EMPLOYEE_CODE) Then
-                query = query.Where(Function(f) f.e.EMPLOYEE_CODE.ToLower().Contains(_filter.EMPLOYEE_CODE.ToLower()) Or f.e.FULLNAME_VN.ToLower().Contains(_filter.EMPLOYEE_CODE.ToLower()))
+                query = query.Where(Function(f) f.e.EMPLOYEE_CODE.ToLower().Contains(_filter.EMPLOYEE_CODE.ToLower()))
             End If
             If Not String.IsNullOrEmpty(_filter.VN_FULLNAME) Then
                 query = query.Where(Function(f) f.e.FULLNAME_VN.ToLower().Contains(_filter.VN_FULLNAME.ToLower()))
@@ -257,15 +268,6 @@ Partial Public Class AttendanceRepository
             If Not String.IsNullOrEmpty(_filter.TITLE_NAME) Then
                 query = query.Where(Function(f) f.t.NAME_VN.ToLower().Contains(_filter.TITLE_NAME.ToLower()))
             End If
-            If Not String.IsNullOrEmpty(_filter.STAFF_RANK_NAME) Then
-                query = query.Where(Function(f) f.s.NAME.ToLower().Contains(_filter.STAFF_RANK_NAME.ToLower()))
-            End If
-            If _filter.BALANCE_NOW.HasValue Then
-                query = query.Where(Function(f) f.p.BALANCE_NOW = _filter.BALANCE_NOW)
-            End If
-            If _filter.NGHIBUCONLAI.HasValue Then
-                query = query.Where(Function(f) f.nb.CUR_HAVE = _filter.NGHIBUCONLAI)
-            End If
             If _filter.LEAVE_FROM.HasValue Then
                 query = query.Where(Function(f) f.p.LEAVE_FROM = _filter.LEAVE_FROM)
             End If
@@ -273,34 +275,36 @@ Partial Public Class AttendanceRepository
                 query = query.Where(Function(f) f.p.LEAVE_TO = _filter.LEAVE_TO)
             End If
             If Not String.IsNullOrEmpty(_filter.MANUAL_NAME) Then
-                query = query.Where(Function(f) f.m.NAME.ToLower().Contains(_filter.MANUAL_NAME.ToLower()))
+                query = query.Where(Function(f) f.m.WNAME.ToLower().Contains(_filter.MANUAL_NAME.ToLower()))
             End If
             If Not String.IsNullOrEmpty(_filter.NOTE) Then
                 query = query.Where(Function(f) f.p.NOTE.ToLower().Contains(_filter.NOTE.ToLower()))
             End If
-            If Not String.IsNullOrEmpty(_filter.IMPORT) Then
-                query = query.Where(Function(f) f.p.IMPORT = -1)
+            If Not String.IsNullOrEmpty(_filter.FROM_SESSION_NAME) Then
+                query = query.Where(Function(f) f.ss1.NAME_VN.ToLower().Contains(_filter.FROM_SESSION_NAME.ToLower()))
             End If
+            If Not String.IsNullOrEmpty(_filter.TO_SESSION_NAME) Then
+                query = query.Where(Function(f) f.ss2.NAME_VN.ToLower().Contains(_filter.TO_SESSION_NAME.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.REASON_LEAVE_NAME) Then
+                query = query.Where(Function(f) f.reason.NAME_VN.ToLower().Contains(_filter.REASON_LEAVE_NAME.ToLower()))
+            End If
+
             Dim lst = query.Select(Function(p) New AT_LEAVESHEETDTO With {
                                                                        .ID = p.p.ID,
                                                                        .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
                                                                        .VN_FULLNAME = p.e.FULLNAME_VN,
                                                                        .EMPLOYEE_ID = p.p.EMPLOYEE_ID,
                                                                        .TITLE_NAME = p.t.NAME_VN,
-                                                                       .STAFF_RANK_ID = p.e.STAFF_RANK_ID,
-                                                                       .STAFF_RANK_NAME = p.s.NAME,
                                                                        .ORG_NAME = p.o.NAME_VN,
                                                                        .ORG_DESC = p.o.DESCRIPTION_PATH,
                                                                        .ORG_ID = p.e.ORG_ID,
                                                                        .LEAVE_FROM = p.p.LEAVE_FROM,
                                                                        .LEAVE_TO = p.p.LEAVE_TO,
-                                                                       .MANUAL_NAME = p.m.NAME,
+                                                                       .MANUAL_NAME = p.m.WNAME,
                                                                        .MANUAL_ID = p.p.MANUAL_ID,
-                                                                       .MORNING_ID = p.m.MORNING_ID,
-                                                                       .AFTERNOON_ID = p.m.AFTERNOON_ID,
                                                                        .NOTE = p.p.NOTE,
                                                                        .DAY_NUM = p.p.DAY_NUM,
-                                                                       .EMP_APPROVES_NAME = p.ee.FULLNAME_VN,
                                                                        .CREATED_BY = p.p.CREATED_BY,
                                                                        .CREATED_DATE = p.p.CREATED_DATE,
                                                                        .CREATED_LOG = p.p.CREATED_LOG,
@@ -309,7 +313,20 @@ Partial Public Class AttendanceRepository
                                                                        .STATUS = p.p.STATUS,
                                                                        .STATUS_NAME = p.ot.NAME_VN,
                                                                        .MODIFIED_LOG = p.p.MODIFIED_LOG,
-                                                                       .IMPORT = If(p.p.IMPORT = -1, "x", "")})
+                                                                       .IMPORT = If(p.p.IMPORT = -1, "x", ""),
+                                                                       .FROM_SESSION_NAME = p.ss1.NAME_VN,
+                                                                       .TO_SESSION_NAME = p.ss2.NAME_VN,
+                                                                       .REASON_LEAVE_NAME = p.reason.NAME_VN,
+                                                                       .DAY_LIST = p.huv.DAY_LIST,
+                                                                       .CREATED_BY_EMP = p.p.CREATED_BY_EMP,
+                                                                       .CREATED_BY_EMP_NAME = p.cre.FULLNAME_VN,
+                                                                       .MODIFIED_BY_EMP = p.p.MODIFIED_BY_EMP,
+                                                                       .MODIFIED_BY_EMP_NAME = p.modi.FULLNAME_VN,
+                                                                       .RESTORED_BY = p.p.RESTORED_BY,
+                                                                       .RESTORED_BY_NAME = p.res.FULLNAME_VN,
+                                                                       .RESTORED_DATE = p.p.RESTORED_DATE,
+                                                                       .RESTORED_REASON = p.p.RESTORED_REASON,
+                                                                       .IS_APP = p.p.IS_APP})
 
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
@@ -671,6 +688,23 @@ Partial Public Class AttendanceRepository
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
             ' Utility.WriteExceptionLog(ex, Me.ToString() & ".DeleteLeaveOT")
             Throw ex
+        End Try
+    End Function
+
+    Public Function UPDATE_AT_LEAVESHEET(ByVal P_LSTID As String, ByVal P_RESTORED_REASON As String, ByVal log As UserLog) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_AT_LEAVESHEET.UPDATE_AT_LEAVESHEET",
+                                 New With {.P_LSTID = P_LSTID,
+                                           .P_RESTORED_REASON = P_RESTORED_REASON,
+                                           .P_USERNAME = log.Username,
+                                           .P_OUT = cls.OUT_CURSOR})
+            End Using
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iInsurance")
+            Throw ex
+            Return False
         End Try
     End Function
 End Class

@@ -5524,6 +5524,9 @@ Namespace AttendanceBusiness
         Private CREATED_LOGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DAY_LISTField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private DAY_NUMField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -5642,6 +5645,9 @@ Namespace AttendanceBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private RESTORED_REASONField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SEARCH_EMPLOYEEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private STAFF_RANK_IDField As System.Nullable(Of Decimal)
@@ -5783,6 +5789,19 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.CREATED_LOGField, value) <> true) Then
                     Me.CREATED_LOGField = value
                     Me.RaisePropertyChanged("CREATED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DAY_LIST() As String
+            Get
+                Return Me.DAY_LISTField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.DAY_LISTField, value) <> true) Then
+                    Me.DAY_LISTField = value
+                    Me.RaisePropertyChanged("DAY_LIST")
                 End If
             End Set
         End Property
@@ -6303,6 +6322,19 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.RESTORED_REASONField, value) <> true) Then
                     Me.RESTORED_REASONField = value
                     Me.RaisePropertyChanged("RESTORED_REASON")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SEARCH_EMPLOYEE() As String
+            Get
+                Return Me.SEARCH_EMPLOYEEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SEARCH_EMPLOYEEField, value) <> true) Then
+                    Me.SEARCH_EMPLOYEEField = value
+                    Me.RaisePropertyChanged("SEARCH_EMPLOYEE")
                 End If
             End Set
         End Property
@@ -34587,6 +34619,9 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/INPORT_NB_PREV", ReplyAction:="http://tempuri.org/IAttendanceBusiness/INPORT_NB_PREVResponse")>  _
         Function INPORT_NB_PREV(ByVal P_DOCXML As String, ByVal log As Common.CommonBusiness.UserLog, ByVal P_YEAR As Integer) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/UPDATE_AT_LEAVESHEET", ReplyAction:="http://tempuri.org/IAttendanceBusiness/UPDATE_AT_LEAVESHEETResponse")>  _
+        Function UPDATE_AT_LEAVESHEET(ByVal P_LSTID As String, ByVal P_RESTORED_REASON As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetAtRegShift", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetAtRegShiftResponse")>  _
         Function GetAtRegShift(ByVal _filter As AttendanceBusiness.AtPortalRegistrationShiftDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AtPortalRegistrationShiftDTO)
         
@@ -36398,6 +36433,10 @@ Namespace AttendanceBusiness
         
         Public Function INPORT_NB_PREV(ByVal P_DOCXML As String, ByVal log As Common.CommonBusiness.UserLog, ByVal P_YEAR As Integer) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.INPORT_NB_PREV
             Return MyBase.Channel.INPORT_NB_PREV(P_DOCXML, log, P_YEAR)
+        End Function
+        
+        Public Function UPDATE_AT_LEAVESHEET(ByVal P_LSTID As String, ByVal P_RESTORED_REASON As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.UPDATE_AT_LEAVESHEET
+            Return MyBase.Channel.UPDATE_AT_LEAVESHEET(P_LSTID, P_RESTORED_REASON, log)
         End Function
         
         Public Function GetAtRegShift(ByVal _filter As AttendanceBusiness.AtPortalRegistrationShiftDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AtPortalRegistrationShiftDTO) Implements AttendanceBusiness.IAttendanceBusiness.GetAtRegShift

@@ -71,4 +71,18 @@ Partial Class AttendanceRepository
             Throw ex
         End Try
     End Function
+
+    Public Function UPDATE_AT_LEAVESHEET(ByVal P_LSTID As String, ByVal P_RESTORED_REASON As String) As Boolean
+        Try
+            Using rep As New AttendanceBusinessClient
+                Try
+                    Return rep.UPDATE_AT_LEAVESHEET(P_LSTID, P_RESTORED_REASON, Me.Log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 End Class

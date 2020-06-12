@@ -59,6 +59,8 @@
     Public Property RESTORED_REASON As String
     Public Property REASON_LEAVE As Decimal?
     Public Property REASON_LEAVE_NAME As String
+    Public Property DAY_LIST As String
+    Public Property SEARCH_EMPLOYEE As String
 
 End Class
 

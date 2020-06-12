@@ -104,5 +104,20 @@ Namespace AttendanceBusiness.ServiceImplementations
                 Throw ex
             End Try
         End Function
+
+
+        Function UPDATE_AT_LEAVESHEET(ByVal P_LSTID As String, ByVal P_RESTORED_REASON As String, ByVal log As UserLog) As Boolean Implements IAttendanceBusiness.UPDATE_AT_LEAVESHEET
+            Try
+                Using rep As New AttendanceRepository
+                    Try
+                        Return rep.UPDATE_AT_LEAVESHEET(P_LSTID, P_RESTORED_REASON, log)
+                    Catch ex As Exception
+                        Throw ex
+                    End Try
+                End Using
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
     End Class
 End Namespace

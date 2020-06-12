@@ -15,7 +15,7 @@
             <tlk:RadPane ID="RadPane3" runat="server" Scrolling="None" Height="35px">
                 <tlk:RadToolBar ID="tbarMainToolBar" runat="server" />
             </tlk:RadPane>
-            <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None" Height="80px">
+            <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None" Height="110px">
                 <table class="table-form" onkeydown="return (event.keyCode!=13)">
                     <tr>
                         <td class="lb">
@@ -41,20 +41,34 @@
                         
                     </tr>
                     <tr>
+                        <td class="lb">
+                            <%# Translate("Nhân viên")%>
+                        </td>
+                        <td>
+                            <tlk:RadTextBox ID="txtEmployee" runat="server"></tlk:RadTextBox>
+                        </td>
+                        <td class="lb">
+                            <%# Translate("Loại đăng ký")%>
+                        </td>
+                        <td>
+                             <tlk:RadComboBox runat="server" ID="cboMANUAL_ID">
+                            </tlk:RadComboBox>
+                        </td>
                         <td colspan="2">
                             <asp:CheckBox ID="chkChecknghiViec" runat="server" Text="<%$ Translate: Nhân viên nghỉ việc %>" />
                         </td>
-                        <td class="lb">
-                            <%# Translate("Trạng thái")%>
-                        </td>
-                        <td>
-                            <tlk:RadComboBox  ID="cbStatus" Width="160px"
-                               runat="server" >
-                            </tlk:RadComboBox>
-                        </td>
+                        
                         <td>
                             <tlk:RadButton ID="btnSearch" Text="<%$ Translate: Tìm%>" runat="server" ToolTip="" SkinID="ButtonFind">
                             </tlk:RadButton>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lb">
+                            <%# Translate("Lý do Hoàn duyệt")%>
+                        </td>
+                         <td colspan ="3">
+                            <tlk:RadTextBox ID="txtReason" runat="server" Width="100%"></tlk:RadTextBox>
                         </td>
                     </tr>
                 </table>
@@ -64,69 +78,86 @@
                     <ClientSettings EnableRowHoverStyle="true">
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
-                        <%--<ClientEvents OnGridCreated="GridCreated" />--%>
                         <ClientEvents OnCommand="ValidateFilter" />
                         <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="4" />
                     </ClientSettings>
-                    <MasterTableView DataKeyNames="ID,ORG_DESC" ClientDataKeyNames="ID,EMPLOYEE_CODE">
+                    <MasterTableView DataKeyNames="ID,ORG_DESC" ClientDataKeyNames="ID,EMPLOYEE_CODE,IS_APP,STATUS">
                         <Columns>
-                            <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
                                 SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên nhân viên %>" DataField="VN_FULLNAME"
                                 SortExpression="VN_FULLNAME" UniqueName="VN_FULLNAME" HeaderStyle-Width="120px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" HeaderStyle-Width="120px"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh công việc %>" HeaderStyle-Width="120px"
                                 DataField="TITLE_NAME" SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" HeaderStyle-Width="200px"
                                 SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Cấp nhân sự %>" DataField="STAFF_RANK_NAME"
-                                SortExpression="STAFF_RANK_NAME" UniqueName="STAFF_RANK_NAME" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số phép còn lại %>" DataField="BALANCE_NOW"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="BALANCE_NOW"
-                                UniqueName="BALANCE_NOW">
-                            </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số nghỉ bù còn lại %>" DataField="NGHIBUCONLAI"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="NGHIBUCONLAI"
-                                UniqueName="NGHIBUCONLAI">
-                            </tlk:GridNumericColumn>
+                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại nghỉ %>" DataField="MANUAL_NAME" HeaderStyle-Width="200px"
+                                SortExpression="MANUAL_NAME" UniqueName="MANUAL_NAME" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Nghỉ từ ngày %>" DataField="LEAVE_FROM"
                                 UniqueName="LEAVE_FROM" DataFormatString="{0:dd/MM/yyyy}" SortExpression="LEAVE_FROM">
                                 <HeaderStyle HorizontalAlign="Center" Width="120px" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Từ buổi %>" DataField="FROM_SESSION_NAME" HeaderStyle-Width="100px"
+                                SortExpression="FROM_SESSION_NAME" UniqueName="FROM_SESSION_NAME" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Nghỉ đến ngày %>" DataField="LEAVE_TO"
                                 UniqueName="LEAVE_TO" DataFormatString="{0:dd/MM/yyyy}" SortExpression="LEAVE_TO">
                                 <HeaderStyle HorizontalAlign="Center" Width="120px" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đến buổi %>" DataField="TO_SESSION_NAME" HeaderStyle-Width="100px"
+                                SortExpression="TO_SESSION_NAME" UniqueName="TO_SESSION_NAME" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày %>" DataField="DAY_NUM"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="DAY_NUM"
                                 UniqueName="DAY_NUM">
                             </tlk:GridNumericColumn>
-                            <tlk:GridCheckBoxColumn HeaderText="<%$ Translate:Ngày làm việc %>" DataField="IS_WORKING_DAY" DataType="System.Boolean" FilterControlWidth="20px"   
-                                SortExpression="IS_WORKING_DAY" UniqueName="IS_WORKING_DAY" >
-                                <HeaderStyle HorizontalAlign="Center" Width="50px"/>
-                            </tlk:GridCheckBoxColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày trong kế hoạch %>" DataField="IN_PLAN_DAYS"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="IN_PLAN_DAYS"
-                                UniqueName="IN_PLAN_DAYS">
-                            </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày ngoài kế hoạch %>" DataField="NOT_IN_PLAN_DAYS"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="NOT_IN_PLAN_DAYS"
-                                UniqueName="NOT_IN_PLAN_DAYS">
-                            </tlk:GridNumericColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Kiểu công %>" DataField="MANUAL_NAME"
-                                SortExpression="MANUAL_NAME" UniqueName="MANUAL_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Kiểu công nửa ngày %>" DataField="MORNING_NAME"
-                                SortExpression="MORNING_NAME" UniqueName="MORNING_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Kiểu công nửa ngày %>" DataField="AFTERNOON_NAME"
-                                SortExpression="AFTERNOON_NAME" UniqueName="AFTERNOON_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Người phê duyệt %>" HeaderStyle-Width="200px"
-                                DataField="NOTE" SortExpression="NOTE" UniqueName="NOTE" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi Chú %>" HeaderStyle-Width="200px"
-                                DataField="NOTE_APP" SortExpression="NOTE_APP" UniqueName="NOTE_APP" />--%>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Các ngày nghỉ trong đơn %>" DataField="DAY_LIST" HeaderStyle-Width="200px"
+                                SortExpression="DAY_LIST" UniqueName="DAY_LIST" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do nghỉ %>" DataField="REASON_LEAVE_NAME" HeaderStyle-Width="200px"
+                                SortExpression="REASON_LEAVE_NAME" UniqueName="REASON_LEAVE_NAME" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do nghỉ chi tiết %>" DataField="NOTE" HeaderStyle-Width="200px"
+                                SortExpression="NOTE" UniqueName="NOTE" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME" HeaderStyle-Width="200px"
+                                SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Người tạo đơn %>" DataField="CREATED_BY_EMP_NAME"
+                                UniqueName="CREATED_BY_EMP_NAME" SortExpression="CREATED_BY_EMP_NAME" ItemStyle-HorizontalAlign="Center"
+                                ItemStyle-Width="100px">
+                                <HeaderStyle Width="100px" />
+                            </tlk:GridBoundColumn>
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày tạo đơn %>" DataField="CREATED_DATE"
+                                UniqueName="CREATED_DATE" SortExpression="CREATED_DATE" ItemStyle-Width="100px"
+                                DataFormatString="{0:dd/MM/yyyy}" ItemStyle-HorizontalAlign="Center">
+                                <HeaderStyle Width="100px" />
+                            </tlk:GridDateTimeColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Người cập nhật cuối cùng %>" DataField="MODIFIED_BY_EMP_NAME"
+                                UniqueName="MODIFIED_BY_EMP_NAME" SortExpression="MODIFIED_BY_EMP_NAME" ItemStyle-Width="100px">
+                                <HeaderStyle Width="100px" />
+                            </tlk:GridBoundColumn>
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày cập nhật cuối cùng %>" DataField="MODIFIED_DATE"
+                                UniqueName="MODIFIED_DATE" SortExpression="MODIFIED_DATE" DataFormatString="{0:dd/MM/yyyy}"
+                                ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100px">
+                                <HeaderStyle Width="100px" />
+                            </tlk:GridDateTimeColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Người hoàn duyệt %>" DataField="RESTORED_BY_NAME"
+                                UniqueName="RESTORED_BY_NAME" SortExpression="RESTORED_BY_NAME" ItemStyle-Width="100px">
+                                <HeaderStyle Width="100px" />
+                            </tlk:GridBoundColumn>
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hoàn duyệt %>" DataField="RESTORED_DATE"
+                                UniqueName="RESTORED_DATE" SortExpression="RESTORED_DATE" DataFormatString="{0:dd/MM/yyyy}"
+                                ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100px">
+                                <HeaderStyle Width="100px" />
+                            </tlk:GridDateTimeColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do hoàn duyệt %>" DataField="RESTORED_REASON"
+                                UniqueName="RESTORED_REASON" SortExpression="RESTORED_REASON" ItemStyle-Width="100px">
+                                <HeaderStyle Width="100px" />
+                            </tlk:GridBoundColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Địa chỉ IP máy tính %>" DataField="CREATED_LOG"
+                                UniqueName="CREATED_LOG" SortExpression="CREATED_LOG" ItemStyle-Width="100px">
+                                <HeaderStyle Width="100px" />
+                            </tlk:GridBoundColumn>
                         </Columns>
                         <HeaderStyle Width="100px" />
                     </MasterTableView>
@@ -164,10 +195,6 @@
             }
         }
 
-        //        function GridCreated(sender, eventArgs) {
-        //            registerOnfocusOut('ctl00_MainContent_ctrlRegisterCO_RadSplitter3');
-        //        }
-
         function gridRowDblClick(sender, eventArgs) {
             OpenEditWindow("Normal");
         }
@@ -186,13 +213,13 @@
                 }
                 else if (bCheck > 1) {
                     var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW) %>';
-                    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                    args.set_cancel(true);
-                } else {
-                    OpenEditWindow();
-                    args.set_cancel(true);
-                }
+                        var n = noty({ text: m, dismissQueue: true, type: 'warning' });
+                        setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+                        args.set_cancel(true);
+                    } else {
+                        OpenEditWindow();
+                        args.set_cancel(true);
+                    }
             }
             else if (args.get_item().get_commandName() == 'EXPORT') {
                 var rows = $find('<%= rgRegisterLeave.ClientID %>').get_masterTableView().get_dataItems().length;
@@ -205,34 +232,39 @@
                 }
                 enableAjax = false;
             }
-        }
+}
 
-        function OpenEditWindow(states) {
-            var gUId = $find('<%# rgRegisterLeave.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
-            var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlRegisterCONewEdit&group=Business&ID=' + gUId + '&noscroll=1', "rwPopup");
-            var pos = $("html").offset();
-            oWindow.moveTo(pos.left, pos.top);
-            oWindow.setSize($(window).width(), $(window).height());
+function OpenEditWindow(states) {
+    var grid = $find('<%# rgRegisterLeave.ClientID %>');
+    var gridSelected = grid.get_masterTableView().get_selectedItems();
+    var id = 0
+    var gridSelected = grid.get_masterTableView().get_selectedItems();
+    if (gridSelected != "") {
+        id = grid.get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
+    }
+    if (id > 0) {
+        window.open('/Default.aspx?mid=Attendance&fid=ctrlRegisterCONewEdit&group=Business&VIEW=TRUE&FormType=0&ID=' + id, "_self");
+    }
+}
 
-        }
+function OpenInsertWindow() {
+    //var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlRegisterCONewEdit&group=Business&FormType=0', "rwPopup");
+    //var pos = $("html").offset();
+    //oWindow.moveTo(pos.left, pos.top);
+    //oWindow.setSize($(window).width(), $(window).height());
+    window.open('/Default.aspx?mid=Attendance&fid=ctrlRegisterCONewEdit&group=Business&FormType=0', "_self");
+}
 
-        function OpenInsertWindow() {
-            var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlRegisterCONewEdit&group=Business&FormType=0', "rwPopup");
-            var pos = $("html").offset();
-            oWindow.moveTo(pos.left, pos.top);
-            oWindow.setSize($(window).width(), $(window).height());
-        }
+function onRequestStart(sender, eventArgs) {
+    eventArgs.set_enableAjax(enableAjax);
+    enableAjax = true;
+}
 
-        function onRequestStart(sender, eventArgs) {
-            eventArgs.set_enableAjax(enableAjax);
-            enableAjax = true;
-        }
-
-        function OnClientClose(sender, args) {
-            var m;
-            var arg = args.get_argument();
-            if (arg == '1') {
-                m = '<%# Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS) %>';
+function OnClientClose(sender, args) {
+    var m;
+    var arg = args.get_argument();
+    if (arg == '1') {
+        m = '<%# Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS) %>';
                 var n = noty({ text: m, dismissQueue: true, type: 'success' });
                 setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                 $find("<%= rgRegisterLeave.ClientID %>").get_masterTableView().rebind();

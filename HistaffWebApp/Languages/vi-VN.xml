@@ -45542,4 +45542,140 @@ Xin cám ơn!
       <string>Chỉnh sửa ngày nghỉ hàng tuần</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLAT_MNGREGISTERS</string>
+    </Key>
+    <Value>
+      <string>Quản lý đơn đăng ký</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUẢN LÝ THÔNG TIN ĐĂNG KÝ NGHỈ</string>
+    </Key>
+    <Value>
+      <string>Quản lý thông tin đăng ký nghỉ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUẢN LÝ THÔNG TIN ĐI TRỄ VỀ SỚM</string>
+    </Key>
+    <Value>
+      <string>Quản lý thông tin đi trễ về sớm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUẢN LÝ THÔNG TIN LÀM THÊM</string>
+    </Key>
+    <Value>
+      <string>Quản lý thông tin làm thêm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CHỨC DANH CÔNG VIỆC</string>
+    </Key>
+    <Value>
+      <string>Chức danh công việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỪ BUỔI</string>
+    </Key>
+    <Value>
+      <string>Từ buổi</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐẾN BUỔI</string>
+    </Key>
+    <Value>
+      <string>Đến buổi</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CÁC NGÀY NGHỈ TRONG ĐƠN</string>
+    </Key>
+    <Value>
+      <string>Các ngày nghỉ trong đơn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LÝ DO NGHỈ CHI TIẾT</string>
+    </Key>
+    <Value>
+      <string>Lý do nghỉ chi tiết</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGƯỜI TẠO ĐƠN</string>
+    </Key>
+    <Value>
+      <string>Người tạo đơn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY TẠO ĐƠN</string>
+    </Key>
+    <Value>
+      <string>Ngày tạo đơn</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGƯỜI CẬP NHẬT CUỐI CÙNG</string>
+    </Key>
+    <Value>
+      <string>Người cập nhật cuối cùng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY CẬP NHẬT CUỐI CÙNG</string>
+    </Key>
+    <Value>
+      <string>Ngày cập nhật cuối cùng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGƯỜI HOÀN DUYỆT</string>
+    </Key>
+    <Value>
+      <string>Người hoàn duyệt</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY HOÀN DUYỆT</string>
+    </Key>
+    <Value>
+      <string>Ngày hoàn duyệt</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LÝ DO HOÀN DUYỆT</string>
+    </Key>
+    <Value>
+      <string>Lý do hoàn duyệt</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐỊA CHỈ IP MÁY TÍNH</string>
+    </Key>
+    <Value>
+      <string>Địa chỉ IP máy tính</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

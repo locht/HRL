@@ -170,9 +170,6 @@ Public Class ctrlRegisterCO
             ctrlUpload.isMultiple = AsyncUpload.MultipleFileSelection.Disabled
             ctrlUpload.MaxFileInput = 1
             InitControl()
-            If Not IsPostBack Then '
-                GirdConfig(rgRegisterLeave)
-            End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -197,16 +194,18 @@ Public Class ctrlRegisterCO
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create,
                                        ToolbarItem.Edit,
                                        ToolbarItem.Export,
-                                       ToolbarItem.Delete)
-            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("EXPORT_TEMP",
-                                                                     ToolbarIcons.Export,
-                                                                     ToolbarAuthorize.Export,
-                                                                     Translate("Xuất file mẫu")))
+                                       ToolbarItem.Delete,
+                                       ToolbarItem.Next)
+            CType(MainToolBar.Items(4), RadToolBarButton).Text = "Hoàn duyệt"
+            'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("EXPORT_TEMP",
+            '                                                         ToolbarIcons.Export,
+            '                                                         ToolbarAuthorize.Export,
+            '                                                         Translate("Xuất file mẫu")))
 
-            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("IMPORT_TEMP",
-                                                                     ToolbarIcons.Import,
-                                                                     ToolbarAuthorize.Import,
-                                                                     Translate("Nhập file mẫu")))
+            'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("IMPORT_TEMP",
+            '                                                         ToolbarIcons.Import,
+            '                                                         ToolbarAuthorize.Import,
+            '                                                         Translate("Nhập file mẫu")))
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _myLog.WriteLog(_myLog._info, _classPath, method,
@@ -229,56 +228,13 @@ Public Class ctrlRegisterCO
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
-            'Dim lsData As List(Of AT_PERIODDTO)
-            Dim rep As New AttendanceRepository
-            'Dim table As New DataTable
-            'table.Columns.Add("YEAR", GetType(Integer))
-            'table.Columns.Add("ID", GetType(Integer))
-            'Dim row As DataRow
-            'For index = 2015 To Date.Now.Year + 1
-            '    row = table.NewRow
-            '    row("ID") = index
-            '    row("YEAR") = index
-            '    table.Rows.Add(row)
-            'Next
-            'FillRadCombobox(cboYear, table, "YEAR", "ID")
-            'cboYear.SelectedValue = Date.Now.Year
-            'Dim period As New AT_PERIODDTO
-            'period.ORG_ID = 1
-            'period.YEAR = Date.Now.Year
-            'lsData = rep.LOAD_PERIODBylinq(period)
-            'Me.PERIOD = lsData
-            'FillRadCombobox(cboPeriod, lsData, "PERIOD_NAME", "PERIOD_ID", True)
+            Dim store As New AttendanceStoreProcedure
 
             Dim dtData As New DataTable
-            dtData = rep.GetOtherList("PROCESS_STATUS", True)
-            FillRadCombobox(cbStatus, dtData, "NAME", "ID", True)
-            rdtungay.SelectedDate = New DateTime(DateTime.Now.Year, 1, 1)
-            rdDenngay.SelectedDate = New DateTime(DateTime.Now.Year, 12, 31)
-            'If lsData.Count > 0 Then
-            '    'Dim periodid = (From d In lsData Where d.START_DATE.Value.ToString("yyyyMM").Equals(Date.Now.ToString("yyyyMM")) Select d).FirstOrDefault
-            '    If periodid IsNot Nothing Then
-            '        'cboPeriod.SelectedValue = periodid.PERIOD_ID.ToString()
-            '        rdtungay.SelectedDate = periodid.START_DATE
-            '        rdDenngay.SelectedDate = periodid.END_DATE
-            '    Else
-            '        'cboPeriod.SelectedIndex = 0
-            '        'Dim periodid1 = (From d In lsData Where d.PERIOD_ID.ToString.Contains(cboPeriod.SelectedValue.ToString) Select d).FirstOrDefault
-
-            '        If periodid1 IsNot Nothing Then
-            '            rdtungay.SelectedDate = periodid1.START_DATE
-            '            rdDenngay.SelectedDate = periodid1.END_DATE
-            '        End If
-            '        'If (Common.Common.GetShortDatePattern().Trim.ToUpper.Contains("DD/MM/YYYY")) Then
-            '        '    rdtungay.SelectedDate = CType("01/01/" & cboYear.SelectedValue.Trim.ToString, Date)
-            '        '    rdDenngay.SelectedDate = CType("31/01/" & cboYear.SelectedValue.Trim.ToString, Date)
-            '        'Else
-            '        '    rdtungay.SelectedDate = CType("01/01/" & cboYear.SelectedValue.Trim.ToString, Date)
-            '        '    rdDenngay.SelectedDate = CType("01/31/" & cboYear.SelectedValue.Trim.ToString, Date)
-            '        'End If
-
-            '        End If
-            'End If
+            dtData = store.GET_LEAVE_TYPE(True)
+            FillRadCombobox(cboMANUAL_ID, dtData, "NAME", "ID", True)
+            rdtungay.SelectedDate = New DateTime(DateTime.Now.Year, DateTime.Now.Month, 1)
+            rdDenngay.SelectedDate = rdtungay.SelectedDate.Value.AddMonths(1).AddDays(-1)
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -331,48 +287,6 @@ Public Class ctrlRegisterCO
         End Try
 
     End Sub
-
-    ''' <lastupdate>
-    ''' 15/08/2017 10:00
-    ''' </lastupdate>
-    ''' <summary>
-    ''' Phương thức selectedindexchange của control cboYear
-    ''' </summary>
-    ''' <remarks></remarks>
-    'Private Sub ctrlYear_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboYear.SelectedIndexChanged
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-    '    Try
-    '        Dim startTime As DateTime = DateTime.UtcNow
-    '        Dim dtData As List(Of AT_PERIODDTO)
-    '        Dim rep As New AttendanceRepository
-    '        Dim period As New AT_PERIODDTO
-    '        If String.IsNullOrEmpty(cboYear.SelectedValue) Then
-    '            Exit Sub
-    '        End If
-    '        period.ORG_ID = Decimal.Parse(ctrlOrganization.CurrentValue)
-    '        period.YEAR = Decimal.Parse(cboYear.SelectedValue)
-    '        dtData = rep.LOAD_PERIODBylinq(period)
-    '        cboPeriod.ClearSelection()
-    '        FillRadCombobox(cboPeriod, dtData, "PERIOD_NAME", "PERIOD_ID", True)
-    '        If dtData.Count > 0 Then
-    '            Dim periodid = (From d In dtData Where d.START_DATE.Value.ToString("yyyyMM").Equals(Date.Now.ToString("yyyyMM")) Select d).FirstOrDefault
-    '            If periodid IsNot Nothing Then
-    '                cboPeriod.SelectedValue = periodid.PERIOD_ID.ToString()
-    '                rdtungay.SelectedDate = periodid.START_DATE
-    '                rdDenngay.SelectedDate = periodid.END_DATE
-    '            Else
-    '                cboPeriod.SelectedIndex = 0
-    '                Dim per = (From c In dtData Where c.PERIOD_ID = cboPeriod.SelectedValue).FirstOrDefault
-    '                rdtungay.SelectedDate = per.START_DATE
-    '                rdDenngay.SelectedDate = per.END_DATE
-    '            End If
-    '        End If
-    '        _myLog.WriteLog(_myLog._info, _classPath, method,
-    '                                CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-    '    End Try
-    'End Sub
 
     ''' <lastupdate>
     ''' 15/08/2017 10:00
@@ -509,6 +423,42 @@ Public Class ctrlRegisterCO
                     ctrlUpload.Show()
                     _myLog.WriteLog(_myLog._info, _classPath, method,
                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+                Case TOOLBARITEM_NEXT
+
+                    If txtReason.Text = "" Then
+                        ShowMessage(Translate("Bạn phải nhập lý do hoàn duyệt"), NotifyType.Error)
+                        Exit Sub
+                    End If
+                    ' kiem tra ky cong da dong chua?
+                    If rep.IS_PERIODSTATUS(_param) = False Then
+                        ShowMessage(Translate("Kỳ công đã đóng, bạn không thể thực hiện thao tác này"), NotifyType.Error)
+                        Exit Sub
+                    End If
+                    'Kiểm tra các điều kiện để xóa.
+                    If rgRegisterLeave.SelectedItems.Count = 0 Then
+                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), Utilities.NotifyType.Error)
+                        Exit Sub
+                    End If
+
+                    For idx = 0 To rgRegisterLeave.SelectedItems.Count - 1
+                        Dim item As GridDataItem = rgRegisterLeave.SelectedItems(idx)
+                        If item.GetDataKeyValue("IS_APP") <> 0 Then
+                            ShowMessage(Translate("Tồn tại đơn phép đăng ký ở APP, bạn không thể thực hiện thao tác này"), NotifyType.Error)
+                            Exit Sub
+                        End If
+
+                        If item.GetDataKeyValue("STATUS") = 8001 Then
+                            ShowMessage(Translate("Tồn tại đơn phép đăng ký ở trạng thái hoàn duyệt, bạn không thể thực hiện thao tác này"), NotifyType.Error)
+                            Exit Sub
+                        End If
+                    Next
+
+                    'Hiển thị Confirm delete.
+                    ctrlMessageBox.MessageText = Translate("Bạn có thực sự muốn hoàn duyệt không?")
+                    ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_NEXT
+                    ctrlMessageBox.DataBind()
+                    ctrlMessageBox.Show()
+
             End Select
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -529,12 +479,38 @@ Public Class ctrlRegisterCO
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
+            Dim strID As String = String.Empty
+            Dim id As Integer
             Dim startTime As DateTime = DateTime.UtcNow
             If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
                 CurrentState = CommonMessage.STATE_DELETE
                 UpdateControlState()
                 _myLog.WriteLog(_myLog._info, _classPath, method,
                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+            End If
+
+            If e.ActionName = CommonMessage.TOOLBARITEM_NEXT And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                Dim lstUpdate As New List(Of AT_LEAVESHEETDTO)
+                For idx = 0 To rgRegisterLeave.SelectedItems.Count - 1
+                    Dim lst = New AT_LEAVESHEETDTO
+                    Dim item As GridDataItem = rgRegisterLeave.SelectedItems(idx)
+                    lst.ID = item.GetDataKeyValue("ID")
+                    lstUpdate.Add(lst)
+                Next
+
+                For Each grid As GridDataItem In rgRegisterLeave.SelectedItems
+                    id = Decimal.Parse(grid.GetDataKeyValue("ID").ToString())
+                    strID &= IIf(strID = vbNullString, id, "," & id)
+                Next
+
+                Using rep As New AttendanceRepository
+                    If rep.UPDATE_AT_LEAVESHEET(strID, txtReason.Text) Then
+                        Refresh("UpdateView")
+                    Else
+                        CurrentState = CommonMessage.STATE_NORMAL
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                    End If
+                End Using
             End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -562,8 +538,8 @@ Public Class ctrlRegisterCO
                                            .IS_DISSOLVE = ctrlOrganization.IsDissolve,
                                            .IS_FULL = True}
             Dim Sorts As String = rgRegisterLeave.MasterTableView.SortExpressions.GetSortString()
-            If IsNumeric(cbStatus.SelectedValue) Then
-                obj.STATUS = cbStatus.SelectedValue
+            If IsNumeric(cboMANUAL_ID.SelectedValue) Then
+                obj.MANUAL_ID = cboMANUAL_ID.SelectedValue
             End If
             If rdtungay.SelectedDate.HasValue Then
                 obj.FROM_DATE = rdtungay.SelectedDate
@@ -574,6 +550,11 @@ Public Class ctrlRegisterCO
             If chkChecknghiViec.Checked Then
                 obj.ISTEMINAL = True
             End If
+
+            If txtEmployee.Text <> "" Then
+                obj.SEARCH_EMPLOYEE = txtEmployee.Text
+            End If
+
             obj.IS_APP = -1
             If Not isFull Then
                 If Sorts IsNot Nothing Then

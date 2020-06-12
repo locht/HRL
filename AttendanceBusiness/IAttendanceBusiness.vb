@@ -1331,6 +1331,8 @@ Namespace AttendanceBusiness.ServiceContracts
 
         <OperationContract()>
         Function INPORT_NB_PREV(ByVal P_DOCXML As String, ByVal log As UserLog, ByVal P_YEAR As Integer) As Boolean
+        <OperationContract()>
+        Function UPDATE_AT_LEAVESHEET(ByVal P_LSTID As String, ByVal P_RESTORED_REASON As String, ByVal log As UserLog) As Boolean
 
 #Region "PORTAL REGISTRATION SHIFT"
 
