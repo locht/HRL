@@ -356,12 +356,21 @@ Public Class ctrlHU_Contract
                 Case CommonMessage.TOOLBARITEM_PRINT
                     Dim dtData As DataTable
                     Dim dtDataCon As DataTable
+                    Dim dtDataChk As DataTable
                     Dim sourcePath = Server.MapPath("~/ReportTemplates/Profile/LocationInfo/")
                     Dim folderName As String = "ContractSupport"
                     Dim filePath As String = ""
                     Dim extension As String = ""
                     Dim iError As Integer = 0
                     Dim path As String = ""
+                    Dim limitRecord As Decimal = 0
+                    Dim item = rgContract.SelectedItems
+
+                    limitRecord = 100
+                    If item.Count >= limitRecord Then
+                        ShowMessage("Chỉ được In " + limitRecord.ToString + " dòng", NotifyType.Warning)
+                        Exit Sub
+                    End If
                     If Not Directory.Exists(AppDomain.CurrentDomain.BaseDirectory & "Zip\") Then
                         Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory & "Zip\")
                     End If
@@ -387,8 +396,6 @@ Public Class ctrlHU_Contract
                         Next
                     End If
 
-                    Dim item = rgContract.SelectedItems
-
                     Dim lstIDs As String = ""
                     'For idx = 0 To rgContract.SelectedItems.Count - 1
                     '    If idx <> rgContract.SelectedItems.Count - 1 Then
@@ -399,18 +406,26 @@ Public Class ctrlHU_Contract
                     '        lstIDs = lstIDs & value.GetDataKeyValue("ID")
                     '    End If
                     'Next
-                    If item.Count > 1 Then
-                        ShowMessage(Translate("Vui lòng chọn chỉ một bản ghi"), NotifyType.Warning)
+                    'If item.Count > 1 Then
+                    '    ShowMessage(Translate("Vui lòng chọn chỉ một bản ghi"), NotifyType.Warning)
+                    '    Exit Sub
+                    'End If
+                    Dim lstID As String = ""
+
+                    If item.Count = 0 Then
+                        ShowMessage(Translate("Vui lòng chọn ít nhất một bản ghi để in"), NotifyType.Warning)
                         Exit Sub
                     End If
                     If item.Count > 0 Then
-                        Dim value As GridDataItem = item(0)
-                        lstIDs = lstIDs & value.GetDataKeyValue("ID")
+
+                        For Each i As GridDataItem In item
+                            lstID &= "," & i.GetDataKeyValue("ID").ToString()
+                        Next
                     End If
                     'check loại hợp đồng cùng loại
                     Using rep As New ProfileRepository
-                        dtDataCon = rep.GetCheckContractTypeID(lstIDs)
-                        If dtDataCon.Rows(0)(0) = 2 Then
+                        dtDataCon = rep.GetCheckContractTypeID(lstID.TrimStart(","))
+                        If dtDataCon.Rows(0)(0) >= 2 Then
                             ShowMessage("Các bản ghi không cùng loại hợp đồng !", NotifyType.Warning)
                             Exit Sub
                         End If
@@ -437,11 +452,10 @@ Public Class ctrlHU_Contract
                         End Select
                     End If
 
-                    Dim lstID As String = ""
+                    
                     For Each i As GridDataItem In item
                         lstID &= "|" & i.GetDataKeyValue("ID").ToString() & "|"
                     Next
-
                     Using rep As New ProfileRepository
                         dtData = rep.GetHU_DataDynamicContract(lstID, ProfileCommon.HU_TEMPLATE_TYPE.CONTRACT_ID, folderName)
                         If dtData.Rows.Count = 0 Then
@@ -458,30 +472,39 @@ Public Class ctrlHU_Contract
                         'End If
                     End Using
 
-                    If item.Count = 1 Then
-                        'Export file mẫu
-                        Using word As New WordCommon 'icheck.GetDataKeyValue("CONTRACTTYPE_CODE")
-                            word.ExportMailMerge(filePath,
-                                                 icheck.GetDataKeyValue("EMPLOYEE_CODE") & "HDLD" & _
-                                                 Format(Date.Now, "yyyyMMddHHmmss") & extension,
-                                                 dtData,
-                                                 sourcePath,
-                                                 Response)
-                        End Using
-                    Else
-                        Dim item1 As GridDataItem = rgContract.SelectedItems(0) 'icheck.GetDataKeyValue("CONTRACTTYPE_CODE")
-                        Dim fileName As String = item1.GetDataKeyValue("EMPLOYEE_CODE") & "HDLD" & _
-                                                 Format(Date.Now, "yyyyMMddHHmmss") & 0 & extension
-                        Dim doc As New Document(filePath)
-                        doc.MailMerge.Execute(dtData.Rows(0))
-                        path = AppDomain.CurrentDomain.BaseDirectory & "Files\"
-                        'path = "Files\"
-                        If Not Directory.Exists(path) Then
-                            Directory.CreateDirectory(path)
-                        End If
-                        doc.Save(path & fileName)
-                        ZipFiles(path)
-                    End If
+                    'Export file mẫu
+                    Using word As New WordCommon 'icheck.GetDataKeyValue("CONTRACTTYPE_CODE")
+                        word.ExportMailMerge(filePath,
+                                             "HDLD_" & icheck.GetDataKeyValue("CONTRACTTYPE_CODE") & _
+                                             Format(Date.Now, "yyyyMMddHHmmss") & extension,
+                                             dtData,
+                                             sourcePath,
+                                             Response)
+                    End Using
+                    'If item.Count = 1 Then
+                    '    'Export file mẫu
+                    '    Using word As New WordCommon 'icheck.GetDataKeyValue("CONTRACTTYPE_CODE")
+                    '        word.ExportMailMerge(filePath,
+                    '                             icheck.GetDataKeyValue("EMPLOYEE_CODE") & "HDLD" & _
+                    '                             Format(Date.Now, "yyyyMMddHHmmss") & extension,
+                    '                             dtData,
+                    '                             sourcePath,
+                    '                             Response)
+                    '    End Using
+                    'Else
+                    '    Dim item1 As GridDataItem = rgContract.SelectedItems(0) 'icheck.GetDataKeyValue("CONTRACTTYPE_CODE")
+                    '    Dim fileName As String = item1.GetDataKeyValue("EMPLOYEE_CODE") & "HDLD" & _
+                    '                             Format(Date.Now, "yyyyMMddHHmmss") & 0 & extension
+                    '    Dim doc As New Document(filePath)
+                    '    doc.MailMerge.Execute(dtData.Rows(0))
+                    '    path = AppDomain.CurrentDomain.BaseDirectory & "Files\"
+                    '    'path = "Files\"
+                    '    If Not Directory.Exists(path) Then
+                    '        Directory.CreateDirectory(path)
+                    '    End If
+                    '    doc.Save(path & fileName)
+                    '    ZipFiles(path)
+                    'End If
 
                 Case CommonMessage.TOOLBARITEM_NEXT
                     Dim dtData As DataTable

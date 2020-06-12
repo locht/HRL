@@ -177,14 +177,14 @@
                 args.set_cancel(true);
             }
             if (args.get_item().get_commandName() == "PRINT") {
-                var bCheck = $find('<%= rgContract.ClientID %>').get_masterTableView().get_selectedItems().length;
-                if (bCheck == 0) {
-                    var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
-                    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                    args.set_cancel(true);
-                    return;
-                }
+                //var bCheck = $find('<%= rgContract.ClientID %>').get_masterTableView().get_selectedItems().length;
+                //if (bCheck == 0) {
+                //    var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
+                //    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
+                //    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+                //    args.set_cancel(true);
+                //   return;
+                //}
                 enableAjax = false;
             }
             //if (args.get_item().get_commandName() == "NEXT") {
