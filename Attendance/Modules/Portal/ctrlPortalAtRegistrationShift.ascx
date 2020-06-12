@@ -173,7 +173,7 @@
             var id = $find('<%= rgMain.ClientID %>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
             var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlAtShiftNewEdit&id=' + id, "rwPopup");
             var pos = $("html").offset();
-            oWindow.moveTo(pos.center);
+            oWindow.moveTo(pos.left, pos.top);
             oWindow.setSize($(window).width(), $(window).height());
         }
 

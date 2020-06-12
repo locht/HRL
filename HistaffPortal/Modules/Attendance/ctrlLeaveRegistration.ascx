@@ -248,7 +248,7 @@
             var id = $find('<%= rgMain.ClientID %>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
             var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlLeaveRegistrationNewEdit&id=' + id + '&view=TRUE&typeUser=User&idCtrl=' + idCtrl, "rwPopup");
             var pos = $("html").offset();
-            oWindow.moveTo(pos.center);
+            oWindow.moveTo(pos.left, pos.top);
             oWindow.setSize($(window).width(), $(window).height());
         }
 

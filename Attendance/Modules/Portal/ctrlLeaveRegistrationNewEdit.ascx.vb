@@ -391,7 +391,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                             rPH("CREATED_BY_EMP") = LogHelper.CurrentUser.EMPLOYEE_ID
                             rPH("CREATED_BY") = LogHelper.CurrentUser.FULLNAME
                         End If
-                        rPH("IS_APP") = -1
+                        rPH("IS_APP") = 0
                         rPH("STATUS") = 0
                         rPH("MODIFIED_BY_EMP") = LogHelper.CurrentUser.EMPLOYEE_ID
                         rPH("MODIFIED_BY") = LogHelper.CurrentUser.FULLNAME
@@ -1048,18 +1048,18 @@ Public Class ctrlLeaveRegistrationNewEdit
                 Dim ss1 As String = (From p In dtLeaveSession Where p("ID") = cboFROM_SESSION.SelectedValue Select p("CODE")).FirstOrDefault
                 Dim ss2 As String = (From p In dtLeaveSession Where p("ID") = cboTO_SESSION.SelectedValue Select p("CODE")).FirstOrDefault
                 If Not String.IsNullOrEmpty(ss1) Then
-                    dtDetail.Rows(0)("DAY_NUM") = "0.5"
                     If ss1 = "MOR" Then
                         dtDetail.Rows(0)("STATUS_SHIFT") = 1
                     ElseIf ss1 = "AFT" Then
                         dtDetail.Rows(0)("STATUS_SHIFT") = 2
+                        dtDetail.Rows(0)("DAY_NUM") = New Decimal(0.5)
                     End If
                 End If
-                If Not String.IsNullOrEmpty(ss1) Then
-                    dtDetail.Rows(dtDetail.Rows.Count - 1)("DAY_NUM") = "0.5"
-                    If ss1 = "MOR" Then
+                If Not String.IsNullOrEmpty(ss2) Then
+                    If ss2 = "MOR" Then
                         dtDetail.Rows(dtDetail.Rows.Count - 1)("STATUS_SHIFT") = 1
-                    ElseIf ss1 = "AFT" Then
+                        dtDetail.Rows(dtDetail.Rows.Count - 1)("DAY_NUM") = New Decimal(0.5)
+                    ElseIf ss2 = "AFT" Then
                         dtDetail.Rows(dtDetail.Rows.Count - 1)("STATUS_SHIFT") = 2
                     End If
                 End If
@@ -1169,6 +1169,7 @@ Public Class ctrlLeaveRegistrationNewEdit
         Try
             Dim ss1 As Decimal = (From p In dtLeaveSession Where p("CODE").ToString.ToUpper.Equals("MOR") Select p("ID")).FirstOrDefault
             Dim ss2 As Decimal = (From p In dtLeaveSession Where p("CODE").ToString.ToUpper.Equals("AFT") Select p("ID")).FirstOrDefault
+            FillRadCombobox(cboFROM_SESSION, dtLeaveSession, "NAME", "ID")
             cboFROM_SESSION.SelectedValue = ss1
             FillRadCombobox(cboTO_SESSION, dtLeaveSession, "NAME", "ID")
             cboTO_SESSION.SelectedValue = ss2
