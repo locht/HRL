@@ -1208,7 +1208,7 @@ sucssec:
             If row IsNot Nothing Then
                 'hidID.Value = row.Field(Of Decimal?)("ID") 'orgItem.PARENT_ID.ToString
                 txtParent_Name.Text = row.Field(Of String)("PARENT_NAME") 'orgItem.PARENT_NAME
-                hidParentID.Value = row.Field(Of Decimal?)("PARENT_ID")
+                hidParentID.Value = If(IsNumeric(row.Field(Of Decimal?)("PARENT_ID")), row.Field(Of Decimal?)("PARENT_ID"), 0)
                 txtCode.Text = row.Field(Of String)("CODE") 'orgItem.CODE
                 txtNameVN.Text = row.Field(Of String)("NAME_VN") 'orgItem.NAME_VN
                 txtNameEN.Text = row.Field(Of String)("NAME_EN") 'orgItem.NAME_EN
