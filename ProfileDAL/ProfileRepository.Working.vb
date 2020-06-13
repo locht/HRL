@@ -455,7 +455,8 @@ Partial Class ProfileRepository
                         From objectLabor In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_LABOR And
                                                                         f.TYPE_ID = 6963).DefaultIfEmpty
                         From CurRate In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.EXRATE_ID).DefaultIfEmpty
-            Select New WorkingDTO With {.ID = p.ID,
+                        From job In Context.HU_JOB_POSITION.Where(Function(f) f.ID = p.JOB_POSITION).DefaultIfEmpty
+                        Select New WorkingDTO With {.ID = p.ID,
                                         .DECISION_NO = p.DECISION_NO,
                                         .DECISION_TYPE_ID = p.DECISION_TYPE_ID,
                                         .DECISION_TYPE_NAME = deci_type.NAME_VN,
@@ -523,7 +524,8 @@ Partial Class ProfileRepository
                                         .SAL_BASIC_MIN = p.SAL_BASIC_MIN,
                                         .SAL_BASIC_MAX = p.SAL_BASIC_MAX,
                                         .SAL_RATE = p.SAL_RATE,
-                                        .REASON_EDIT_EFDATE = p.REASON_EDIT_EFDATE
+                                        .REASON_EDIT_EFDATE = p.REASON_EDIT_EFDATE,
+                                        .JOB_POSITION_NAME = job.JOB_NAME
                                         }
             Dim dateNow = Date.Now.Date
             If Not _filter.IS_TER Then
