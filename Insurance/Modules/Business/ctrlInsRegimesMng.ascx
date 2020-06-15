@@ -114,7 +114,7 @@
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
                     </ClientSettings>
                     <PagerStyle AlwaysVisible="true" Mode="NextPrevAndNumeric" />
-                    <MasterTableView CommandItemDisplay="None" DataKeyNames="ID" ClientDataKeyNames="ID,EMPLOYEE_ID,EMPLOYEE_CODE,EMPID,SICK_TYPE,FULL_NAME,DEP_NAME,SOCIAL_NUMBER,HEALTH_NUMBER,BIRTH_DATE,PLACE_OF_BIRTH_NAME,REGIME_NM,REGIME_ID,PAY_FORM,FROM_DATE,TO_DATE,DAY_CALCULATOR,BORN_DATE,NAME_CHILDREN,CHILDREN_NO,ACCUMULATE_DAY,SUBSIDY_SALARY,SUBSIDY_AMOUNT,DECLARE_DATE,PAYROLL_DATE,CONDITION,INS_PAY_AMOUNT,PAY_APPROVE_DATE,APPROV_DAY_NUM,NOTE">
+                    <MasterTableView CommandItemDisplay="None" DataKeyNames="ID" ClientDataKeyNames="ID,EMPLOYEE_ID,EMPLOYEE_CODE,EMPID,BRANCH,DEVI_NAME,SICK_TYPE,FULL_NAME,DEP_NAME,SOCIAL_NUMBER,HEALTH_NUMBER,BIRTH_DATE,PLACE_OF_BIRTH_NAME,REGIME_NM,REGIME_ID,PAY_FORM,FROM_DATE,TO_DATE,DAY_CALCULATOR,BORN_DATE,NAME_CHILDREN,CHILDREN_NO,ACCUMULATE_DAY,SUBSIDY_SALARY,SUBSIDY_AMOUNT,DECLARE_DATE,PAYROLL_DATE,CONDITION,INS_PAY_AMOUNT,PAY_APPROVE_DATE,APPROV_DAY_NUM,NOTE">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
