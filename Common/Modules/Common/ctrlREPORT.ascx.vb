@@ -2240,6 +2240,122 @@ Public Class ctrlREPORT
     ''' <param name="store_Out"></param>
     ''' <param name="isExportXML"></param>
     ''' <remarks></remarks>
+    'Private Sub ViewReport_Excel(ByVal store_Out As String, Optional ByVal isExportXML As Boolean = False)
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Try
+    '        Dim lstParaValue As New List(Of Object)
+    '        Dim rep As New HistaffFrameworkRepository
+    '        Dim _error As Integer = 0
+    '        Dim itmp As Integer = 1
+    '        Dim lstlst As New List(Of List(Of Object))
+    '        Dim dataSet As New DataSet
+    '        Dim dtVariable As New DataTable
+
+    '        lstParaValue = GetListParametersValue() 'get all parameters value in request            
+    '        If hasError = -1 Then
+    '            Exit Sub
+    '        End If
+    '        Dim dsReport As New DataSet
+    '        dsReport = rep.ExecuteToDataSet(store_Out, lstParaValue)
+    '        If (dsReport Is Nothing OrElse dsReport.Tables(0).Rows.Count = 0) Then
+    '            ShowMessage(Translate("Không có dữ liệu để in báo cáo"), Framework.UI.Utilities.NotifyType.Warning)
+    '            Exit Sub
+    '        End If
+    '        If store_Out <> "PKG_IPAY_REPORT.IPAY_REPORT_07_OUT" Then
+    '            Dim sourcePath = Server.MapPath("~/ReportTemplates/Profile/LocationInfo/")
+    '            Dim path As String = sourcePath + dsReport.Tables(0).Rows(0)("ATTACH_FILE_LOGO").ToString + dsReport.Tables(0).Rows(0)("FILE_LOGO").ToString
+    '            If Not File.Exists(path) Then
+    '                dsReport.Tables(0).Rows(0)("FILE_LOGO") = "NoImage.jpg"
+    '            Else
+    '                dsReport.Tables(0).Rows(0)("FILE_LOGO") = sourcePath + dsReport.Tables(0).Rows(0)("ATTACH_FILE_LOGO") + dsReport.Tables(0).Rows(0)("FILE_LOGO")
+    '            End If
+    '        Else
+    '            Dim sourcePath = Server.MapPath("~/ReportTemplates/Profile/LocationInfo/")
+    '            Dim path As String = sourcePath + dsReport.Tables(1).Rows(0)("ATTACH_FILE_LOGO").ToString + dsReport.Tables(1).Rows(0)("FILE_LOGO").ToString
+    '            If Not File.Exists(path) Then
+    '                dsReport.Tables(1).Rows(0)("FILE_LOGO") = "NoImage.jpg"
+    '            Else
+    '                dsReport.Tables(1).Rows(0)("FILE_LOGO") = sourcePath + dsReport.Tables(1).Rows(0)("ATTACH_FILE_LOGO") + dsReport.Tables(1).Rows(0)("FILE_LOGO")
+    '            End If
+    '        End If
+
+    '        If programID <> -1 Then
+    '            'get Template URL
+    '            repProGram.GetTemplateInfo(programID, fileUrl, fileOut_name, mid)
+
+    '            If isPhysical = 1 Then 'Nếu là 1 : lấy đường dẫn theo cấu hình ||    0: lấy đường dẫn theo web server                
+    '                If isExportXML Then
+    '                    ExportFileDataXML(dsReport, requestID, programID, mid, 1) 'theo đường dẫn vật lý
+    '                Else 'Thực hiện export file sau khi xử lý báo cáo
+    '                    If fileUrl.Contains(template) Then
+    '                        If Not File.Exists(System.IO.Path.Combine(PathTemplateInFolder & mid, template)) Then
+    '                            ShowMessage(Translate("Mẫu báo cáo không tồn tại"), Framework.UI.Utilities.NotifyType.Warning)
+    '                            Exit Sub
+    '                        End If
+    '                        Using xls As New AsposeExcelCommon
+    '                            If requestID <> 0 Then
+    '                                Dim bCheck = xls.ExportExcelTemplateReport(
+    '                                System.IO.Path.Combine(PathTemplateInFolder & mid, template), PathTemplateOutFolder & mid, fileOut_name & "_" & requestID, dsReport, Response)
+    '                            Else
+    '                                Dim bCheck = xls.ExportExcelTemplateReport(
+    '                                System.IO.Path.Combine(PathTemplateInFolder & mid, template), PathTemplateOutFolder & mid, fileOut_name & "_" & requestID, dsReport, Response)
+    '                            End If
+
+    '                        End Using
+    '                    Else 'Template báo cáo trong định nghĩa # với template được chọn 
+    '                        ShowMessage(Translate("Mẫu báo cáo không khớp với định nghĩa"), Framework.UI.Utilities.NotifyType.Warning)
+    '                        Exit Sub
+    '                    End If
+    '                End If
+    '            Else '0: server.mappath                
+    '                If isExportXML Then
+    '                    ExportFileDataXML(dsReport, requestID, programID, mid, 0) 'theo đường dẫn tương đối Mappath
+    '                Else
+    '                    If fileUrl.Contains(template) Then
+    '                        If Not File.Exists(Server.MapPath("~/ReportTemplates/" & mid & "/" & template)) Then
+    '                            ShowMessage(Translate("Mẫu báo cáo không tồn tại"), Framework.UI.Utilities.NotifyType.Warning)
+    '                            Exit Sub
+    '                        End If
+
+    '                        If store_Out <> "PKG_IPAY_REPORT.IPAY_REPORT_07_OUT" Then
+    '                            Using xls As New AsposeExcelCommon
+    '                                If requestID <> 0 Then
+    '                                    Dim bCheck = xls.ExportExcelTemplateReport(
+    '                                    Server.MapPath("~/ReportTemplates/" & mid & "/" & template), PathTemplateOutFolder & mid, fileOut_name & "_" & requestID, dsReport, Response)
+    '                                Else
+    '                                    Dim bCheck = xls.ExportExcelTemplateReport(
+    '                                    Server.MapPath("~/ReportTemplates/" & mid & "/" & template), PathTemplateOutFolder & mid, fileOut_name & "_" & requestID, dsReport, Response)
+    '                                End If
+    '                            End Using
+    '                        Else
+    '                            Using xls As New AsposeExcelCommon
+    '                                If requestID <> 0 Then
+    '                                    Dim bCheck = xls.ExportExcelTemplateReportNoLogo(
+    '                                    Server.MapPath("~/ReportTemplates/" & mid & "/" & template), PathTemplateOutFolder & mid, fileOut_name & "_" & requestID, dsReport, Response)
+    '                                Else
+    '                                    Dim bCheck = xls.ExportExcelTemplateReportNoLogo(
+    '                                    Server.MapPath("~/ReportTemplates/" & mid & "/" & template), PathTemplateOutFolder & mid, fileOut_name & "_" & requestID, dsReport, Response)
+    '                                End If
+    '                            End Using
+    '                        End If
+    '                    Else 'Template báo cáo trong định nghĩa # với template được chọn 
+    '                        ShowMessage(Translate("Mẫu báo cáo không khớp với định nghĩa"), Framework.UI.Utilities.NotifyType.Warning)
+    '                        Exit Sub
+    '                    End If
+    '                End If
+    '            End If
+    '        Else
+    '            ShowMessage("Không tìm thấy thông tin mẫu báo cáo trong hệ thống", NotifyType.Warning)
+    '        End If
+    '        _myLog.WriteLog(_myLog._info, _classPath, method,
+    '                                                                   CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
+
     Private Sub ViewReport_Excel(ByVal store_Out As String, Optional ByVal isExportXML As Boolean = False)
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
@@ -2258,28 +2374,11 @@ Public Class ctrlREPORT
             End If
             Dim dsReport As New DataSet
             dsReport = rep.ExecuteToDataSet(store_Out, lstParaValue)
-            If (dsReport Is Nothing OrElse dsReport.Tables(0).Rows.Count = 0) Then
+
+            If (dsReport Is Nothing OrElse dsReport.Tables.Count = 0) Then
                 ShowMessage(Translate("Không có dữ liệu để in báo cáo"), Framework.UI.Utilities.NotifyType.Warning)
                 Exit Sub
             End If
-            If store_Out <> "PKG_IPAY_REPORT.IPAY_REPORT_07_OUT" Then
-                Dim sourcePath = Server.MapPath("~/ReportTemplates/Profile/LocationInfo/")
-                Dim path As String = sourcePath + dsReport.Tables(0).Rows(0)("ATTACH_FILE_LOGO").ToString + dsReport.Tables(0).Rows(0)("FILE_LOGO").ToString
-                If Not File.Exists(path) Then
-                    dsReport.Tables(0).Rows(0)("FILE_LOGO") = "NoImage.jpg"
-                Else
-                    dsReport.Tables(0).Rows(0)("FILE_LOGO") = sourcePath + dsReport.Tables(0).Rows(0)("ATTACH_FILE_LOGO") + dsReport.Tables(0).Rows(0)("FILE_LOGO")
-                End If
-            Else
-                Dim sourcePath = Server.MapPath("~/ReportTemplates/Profile/LocationInfo/")
-                Dim path As String = sourcePath + dsReport.Tables(1).Rows(0)("ATTACH_FILE_LOGO").ToString + dsReport.Tables(1).Rows(0)("FILE_LOGO").ToString
-                If Not File.Exists(path) Then
-                    dsReport.Tables(1).Rows(0)("FILE_LOGO") = "NoImage.jpg"
-                Else
-                    dsReport.Tables(1).Rows(0)("FILE_LOGO") = sourcePath + dsReport.Tables(1).Rows(0)("ATTACH_FILE_LOGO") + dsReport.Tables(1).Rows(0)("FILE_LOGO")
-                End If
-            End If
-
             If programID <> -1 Then
                 'get Template URL
                 repProGram.GetTemplateInfo(programID, fileUrl, fileOut_name, mid)
@@ -2317,28 +2416,15 @@ Public Class ctrlREPORT
                                 ShowMessage(Translate("Mẫu báo cáo không tồn tại"), Framework.UI.Utilities.NotifyType.Warning)
                                 Exit Sub
                             End If
-
-                            If store_Out <> "PKG_IPAY_REPORT.IPAY_REPORT_07_OUT" Then
-                                Using xls As New AsposeExcelCommon
-                                    If requestID <> 0 Then
-                                        Dim bCheck = xls.ExportExcelTemplateReport(
-                                        Server.MapPath("~/ReportTemplates/" & mid & "/" & template), PathTemplateOutFolder & mid, fileOut_name & "_" & requestID, dsReport, Response)
-                                    Else
-                                        Dim bCheck = xls.ExportExcelTemplateReport(
-                                        Server.MapPath("~/ReportTemplates/" & mid & "/" & template), PathTemplateOutFolder & mid, fileOut_name & "_" & requestID, dsReport, Response)
-                                    End If
-                                End Using
-                            Else
-                                Using xls As New AsposeExcelCommon
-                                    If requestID <> 0 Then
-                                        Dim bCheck = xls.ExportExcelTemplateReportNoLogo(
-                                        Server.MapPath("~/ReportTemplates/" & mid & "/" & template), PathTemplateOutFolder & mid, fileOut_name & "_" & requestID, dsReport, Response)
-                                    Else
-                                        Dim bCheck = xls.ExportExcelTemplateReportNoLogo(
-                                        Server.MapPath("~/ReportTemplates/" & mid & "/" & template), PathTemplateOutFolder & mid, fileOut_name & "_" & requestID, dsReport, Response)
-                                    End If
-                                End Using
-                            End If
+                            Using xls As New AsposeExcelCommon
+                                If requestID <> 0 Then
+                                    Dim bCheck = xls.ExportExcelTemplateReport(
+                                    Server.MapPath("~/ReportTemplates/" & mid & "/" & template), PathTemplateOutFolder & mid, fileOut_name & "_" & requestID, dsReport, Response)
+                                Else
+                                    Dim bCheck = xls.ExportExcelTemplateReport(
+                                    Server.MapPath("~/ReportTemplates/" & mid & "/" & template), PathTemplateOutFolder & mid, fileOut_name & "_" & requestID, dsReport, Response)
+                                End If
+                            End Using
                         Else 'Template báo cáo trong định nghĩa # với template được chọn 
                             ShowMessage(Translate("Mẫu báo cáo không khớp với định nghĩa"), Framework.UI.Utilities.NotifyType.Warning)
                             Exit Sub
@@ -2355,6 +2441,8 @@ Public Class ctrlREPORT
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
+
+
     ''' <summary>
     ''' View báo cáo dạng Excel hoặc pdf
     ''' </summary>
