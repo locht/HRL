@@ -1185,6 +1185,11 @@ Public Class ctrlHU_ContractNewEdit
                     MainToolBar.Items(0).Enabled = True
 
                 End If
+
+                If item.IS_HAVE_WORKING = 0 Then
+                    ShowMessage(Translate("Nhân viên chưa có quyết định. Không được phép chỉnh sửa thông tin."), Utilities.NotifyType.Warning)
+                    MainToolBar.Items(0).Enabled = False
+                End If
                
                 If item.CONTRACT_EFFECT_DATE IsNot Nothing Then
                     If item.CONTRACT_EXPIRE_DATE Is Nothing Then

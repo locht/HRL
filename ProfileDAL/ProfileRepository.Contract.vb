@@ -1770,6 +1770,13 @@ Partial Class ProfileRepository
             Dim ctract = (From p In Context.HU_CONTRACT
                           Where p.EMPLOYEE_ID = gID And p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
                           Order By p.START_DATE Descending).FirstOrDefault
+            Dim check_Working = (From p In Context.HU_WORKING Where p.EMPLOYEE_ID = gID And p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID And p.IS_MISSION = -1)
+
+            If check_Working.Count > 0 Then
+                obj.IS_HAVE_WORKING = 1
+            Else
+                obj.IS_HAVE_WORKING = 0
+            End If
             If ctract IsNot Nothing Then
                 obj.CONTRACT_NO = ctract.CONTRACT_NO
                 obj.CONTRACT_EFFECT_DATE = ctract.START_DATE

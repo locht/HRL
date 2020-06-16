@@ -33097,6 +33097,9 @@ Namespace ProfileBusiness
         Private IMAGE_URLField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_HAVE_WORKINGField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_HAZARDOUSField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -33830,6 +33833,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.IMAGE_URLField, value) <> true) Then
                     Me.IMAGE_URLField = value
                     Me.RaisePropertyChanged("IMAGE_URL")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_HAVE_WORKING() As System.Nullable(Of Decimal)
+            Get
+                Return Me.IS_HAVE_WORKINGField
+            End Get
+            Set
+                If (Me.IS_HAVE_WORKINGField.Equals(value) <> true) Then
+                    Me.IS_HAVE_WORKINGField = value
+                    Me.RaisePropertyChanged("IS_HAVE_WORKING")
                 End If
             End Set
         End Property

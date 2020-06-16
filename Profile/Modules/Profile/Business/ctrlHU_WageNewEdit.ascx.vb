@@ -1387,6 +1387,10 @@ Public Class ctrlHU_WageNewEdit
                     ShowMessage(Translate(" Nhân viên chưa có dữ liệu Đối tượng lao động. Vui lòng kiểm tra và bổ sung trước khi tạo hồ sơ lương."), NotifyType.Warning)
                     Exit Sub
                 End If
+                'If IsNothing(obj.DECISION_NO) Then
+                '    ShowMessage(Translate("Nhân viên chưa có quyết định. Không được phép chỉnh sửa thông tin."), Utilities.NotifyType.Warning)
+                '    Exit Sub
+                'End If
                 ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, cboTaxTable, cboSalTYPE, rntxtSalaryInsurance, rntxtAllowance_Total, basicSalary,
                                rnOtherSalary4, rnOtherSalary5) ' rnFactorSalary, rnOtherSalary1, rnOtherSalary2, rnOtherSalary3, Salary_Total,
                 rgAllow.DataSource = New List(Of WorkingAllowanceDTO)

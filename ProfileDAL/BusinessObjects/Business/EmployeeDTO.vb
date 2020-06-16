@@ -129,4 +129,6 @@
     Public Property unit_rank_id As Decimal?
 
     Public Property ORG_PARENT As String
+
+    Public Property IS_HAVE_WORKING As Decimal?
 End Class
