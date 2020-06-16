@@ -1642,7 +1642,27 @@ Public Class ctrlHU_ChangeInfoNewEdit
             Else
                 btnEmpReplace.Enabled = False
                 cboJobPosition.Enabled = True
-                cboTitle.Enabled = False
+                cboTitle.Enabled = True
+                cboJobPosition.ClearValue()
+                cboTitle.Items.Clear()
+                txtEmpReplace.Text = ""
+                hidEmpRe.Value = Nothing
+                cboJobPosition.ClearValue()
+                cboJobPosition.Items.Clear()
+
+                Using rep As New ProfileRepository
+                    If IsNumeric(hidOrg.Value) Then
+                        Dim dtData = rep.GetTitleByOrgID(Decimal.Parse(hidOrg.Value), True)
+                        cboTitle.ClearValue()
+                        cboTitle.Items.Clear()
+                        For Each item As DataRow In dtData.Rows
+                            Dim radItem As RadComboBoxItem = New RadComboBoxItem(item("NAME").ToString(), item("ID").ToString())
+                            radItem.Attributes("GROUP_NAME") = item("GROUP_NAME").ToString()
+                            cboTitle.Items.Add(radItem)
+                        Next
+                    End If
+                End Using
+
             End If
 
         Catch ex As Exception
