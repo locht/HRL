@@ -183,6 +183,8 @@
                 <td>
                     <tlk:RadComboBox ID="cboJobPosition" runat="server">
                     </tlk:RadComboBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="cboJobPosition"
+                        ErrorMessage="<%$ Translate: Bạn phải chọn Vị trí công việc. %>" ToolTip="<%$ Translate: Bạn phải chọn Vị trí công việc. %>"></asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbDecisionType" runat="server" Text="Loại quyết định"></asp:Label><span

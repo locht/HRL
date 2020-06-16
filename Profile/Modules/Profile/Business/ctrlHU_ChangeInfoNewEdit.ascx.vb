@@ -426,7 +426,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                         If chkIsReplace.Checked = False Then
                             If cboJobPosition.SelectedValue <> "" Then
                                 If rep1.CHECK_EXITS_JOB(cboJobPosition.SelectedValue, hidEmp.Value) > 0 Then
-                                    ShowMessage(Translate("Vị trí công việc đã tồn tại, Vui lòng kiểm tra lại."), NotifyType.Warning)
+                                    ShowMessage(Translate("Đã tồn tại 2 nhân viên thuộc vị trí công việc này, vui lòng kiểm tra lại."), NotifyType.Warning)
                                     Exit Sub
                                 End If
                             End If
@@ -764,6 +764,10 @@ Public Class ctrlHU_ChangeInfoNewEdit
             cboJobPosition.DataTextField = "NAME"
             cboJobPosition.DataValueField = "ID"
             cboJobPosition.DataBind()
+
+            cboTitle.Items.Clear()
+            cboTitle.SelectedValue = empRelace.TITLE_ID
+            cboTitle.Text = empRelace.TITLE_NAME
 
             If JobTemp <> 0 Then
                 cboJobPosition.SelectedValue = JobTemp
@@ -1135,6 +1139,17 @@ Public Class ctrlHU_ChangeInfoNewEdit
             If orgItem IsNot Nothing Then
                 hidOrg.Value = e.CurrentValue
                 txtOrgName.Text = orgItem.NAME_VN
+
+                chkIsReplace.Checked = False
+                txtEmpReplace.Text = ""
+                hidEmpRe.Value = Nothing
+
+                cboJobPosition.ClearValue()
+                cboJobPosition.Items.Clear()
+                cboJobPosition.Enabled = True
+                btnEmpReplace.Enabled = False
+                cboTitle.Enabled = True
+
                 'txtOrgName.ToolTip = Utilities.DrawTreeByString(orgItem.DESCRIPTION_PATH)
                 Using rep As New ProfileRepository
                     If IsNumeric(e.CurrentValue) Then
@@ -1623,9 +1638,11 @@ Public Class ctrlHU_ChangeInfoNewEdit
             If chkIsReplace.Checked Then
                 btnEmpReplace.Enabled = True
                 cboJobPosition.Enabled = False
+                cboTitle.Enabled = False
             Else
                 btnEmpReplace.Enabled = False
                 cboJobPosition.Enabled = True
+                cboTitle.Enabled = False
             End If
 
         Catch ex As Exception

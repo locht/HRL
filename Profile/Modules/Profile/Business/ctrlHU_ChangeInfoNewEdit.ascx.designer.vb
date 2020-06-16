@@ -383,6 +383,15 @@ Partial Public Class ctrlHU_ChangeInfoNewEdit
     Protected WithEvents cboJobPosition As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''RequiredFieldValidator2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''lbDecisionType control.
     '''</summary>
     '''<remarks>
