@@ -13,7 +13,7 @@ Imports Telerik.Web.UI.Calendar
 Public Class ctrlRegisterCONewEdit
     Inherits CommonView
     Dim psp As New AttendanceStoreProcedure
-    Protected WithEvents ctrlFindEmployee2GridPopup As ctrlFindEmployee2GridPopup
+    Protected WithEvents ctrlFindEmployee2GridPopup As ctrlFindEmployeePopup
     Dim _mylog As New MyLog()
     Dim _pathLog As String = _myLog._pathLog
     Dim _classPath As String = "Profile\Modules\Profile\Business" + Me.GetType().Name.ToString()
@@ -292,8 +292,9 @@ Public Class ctrlRegisterCONewEdit
             'End If
             Select Case isLoadPopup
                 Case 1
-                    ctrlFindEmployee2GridPopup = Me.Register("ctrlFindEmployee2GridPopup", "Common", "ctrlFindEmployee2GridPopup")
-                    ctrlFindEmployee2GridPopup.NotIs_Load_CtrlOrg = True
+                    ctrlFindEmployee2GridPopup = Me.Register("ctrlFindEmployeePopup", "Common", "ctrlFindEmployeePopup")
+                    ctrlFindEmployee2GridPopup.MustHaveContract = True
+                    ctrlFindEmployee2GridPopup.MultiSelect = True
                     FindEmployee.Controls.Add(ctrlFindEmployee2GridPopup)
             End Select
         Catch ex As Exception
