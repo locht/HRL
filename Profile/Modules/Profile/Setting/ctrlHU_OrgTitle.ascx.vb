@@ -192,6 +192,9 @@ Public Class ctrlHU_OrgTitle
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim rep As New ProfileRepository
         Dim _filter As New OrgTitleDTO
+        Dim _param As New ParamDTO
+        _param.ORG_ID = Decimal.Parse(SelectOrgFunction)
+        _param.IS_DISSOLVE = ctrlOrg.IsDissolve
         Dim OrgTitles As List(Of OrgTitleDTO)
         Dim startTime As DateTime = DateTime.UtcNow
         Try
@@ -204,9 +207,9 @@ Public Class ctrlHU_OrgTitle
             _filter.ORG_ID = Decimal.Parse(SelectOrgFunction)
             Dim Sorts As String = rgOrgTitle.MasterTableView.SortExpressions.GetSortString()
             If Sorts IsNot Nothing Then
-                OrgTitles = rep.GetOrgTitle(_filter, rgOrgTitle.CurrentPageIndex, rgOrgTitle.PageSize, MaximumRows, Sorts)
+                OrgTitles = rep.GetOrgTitle(_filter, _param, rgOrgTitle.CurrentPageIndex, rgOrgTitle.PageSize, MaximumRows, Sorts)
             Else
-                OrgTitles = rep.GetOrgTitle(_filter, rgOrgTitle.CurrentPageIndex, rgOrgTitle.PageSize, MaximumRows)
+                OrgTitles = rep.GetOrgTitle(_filter, _param, rgOrgTitle.CurrentPageIndex, rgOrgTitle.PageSize, MaximumRows)
             End If
             rep.Dispose()
             rgOrgTitle.VirtualItemCount = MaximumRows

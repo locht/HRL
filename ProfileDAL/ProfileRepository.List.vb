@@ -1789,16 +1789,26 @@ Partial Class ProfileRepository
 #Region "OrgTitle"
 
     Public Function GetOrgTitle(ByVal filter As OrgTitleDTO,
+                                        ByVal _param As ParamDTO,
                                         ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
                                         ByRef Total As Integer,
-                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of OrgTitleDTO)
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                        Optional ByVal log As UserLog = Nothing) As List(Of OrgTitleDTO)
         Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username,
+                                           .P_ORGID = filter.ORG_ID,
+                                           .P_ISDISSOLVE = _param.IS_DISSOLVE})
+            End Using
             Dim query = From p In Context.HU_ORG_TITLE
-                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID And f.ID = filter.ORG_ID)
+                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID)
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
                         From t2 In Context.HU_TITLE.Where(Function(f) f.ID = p.PARENT_ID).DefaultIfEmpty
                         From group In Context.OT_OTHER_LIST.Where(Function(f) f.ID = t.TITLE_GROUP_ID).DefaultIfEmpty
+                        From k In Context.SE_CHOSEN_ORG.Where(Function(f) o.ID = f.ORG_ID And
+                                                                  f.USERNAME.ToUpper = log.Username.ToUpper.ToUpper)
                         Order By t.CODE
 
 
@@ -1816,6 +1826,9 @@ Partial Class ProfileRepository
                                                                      .ACTFLG = If(p.p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng")})
             If filter.TITLE_ID <> 0 Then
                 org = org.Where(Function(p) p.TITLE_ID = filter.TITLE_ID)
+            End If
+            If filter.CODE <> "" Then
+                org = org.Where(Function(p) p.CODE.ToUpper.Contains(filter.CODE.ToUpper))
             End If
             If filter.NAME_EN <> "" Then
                 org = org.Where(Function(p) p.NAME_EN.ToUpper.Contains(filter.NAME_EN.ToUpper))
