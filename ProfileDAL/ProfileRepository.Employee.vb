@@ -251,9 +251,12 @@ Partial Class ProfileRepository
             Dim str As String = "Kiêm nhiệm"
             fileDirectory = AppDomain.CurrentDomain.BaseDirectory & "\EmployeeImage"
             Dim wstt = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
+            Dim org_parent = (From p In Context.HU_ORGANIZATION Where p.PARENT_ID Is Nothing).FirstOrDefault
+            If _param.ORG_ID <> 0 Then
+                org_parent = (From p In Context.HU_ORGANIZATION
+                              Where _param.ORG_ID = p.ID).FirstOrDefault
+            End If
 
-            Dim org_parent = (From p In Context.HU_ORGANIZATION
-                             Where _param.ORG_ID = p.ID).FirstOrDefault
             'Select New OrganizationDTO With {
             '   .NAME_VN = p.NAME_VN}
 
@@ -370,7 +373,8 @@ Partial Class ProfileRepository
             End If
 
             If _filter.ID_NO <> "" Then
-                lst = lst.Where(Function(p) p.ID_NO.ToUpper().IndexOf(_filter.ID_NO.ToUpper) >= 0)
+                lst = lst.Where(Function(p) p.ID_NO.ToUpper().Equals(_filter.ID_NO.ToUpper))
+                ' lst = lst.Where(Function(p) p.ID_NO.ToUpper().IndexOf(_filter.ID_NO.ToUpper) >= 0)
             End If
 
             If _filter.DIRECT_MANAGER IsNot Nothing Then
