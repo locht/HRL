@@ -1317,7 +1317,7 @@ Public Class ctrlHU_EmpDtlProfile
             Dim dtData As DataTable
             Dim lstEmpID As String = ""
             Dim r As New ProfileRepository
-            Dim _param = New ParamDTO With {.ORG_ID = 46,
+            Dim _param = New ParamDTO With {
                        .IS_DISSOLVE = False}
             Dim _filter As New EmployeeDTO
 
