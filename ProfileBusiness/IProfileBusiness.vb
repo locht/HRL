@@ -476,10 +476,12 @@ Namespace ProfileBusiness.ServiceContracts
 
         <OperationContract()>
         Function GetOrgTitle(ByVal filter As OrgTitleDTO,
+                                        ByVal _param As ParamDTO,
                                         ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
                                         ByRef Total As Integer,
-                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of OrgTitleDTO)
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                        Optional ByVal log As UserLog = Nothing) As List(Of OrgTitleDTO)
 
         <OperationContract()>
         Function InsertOrgTitle(ByVal objOrgTitle As List(Of OrgTitleDTO), ByVal log As UserLog, ByRef gID As Decimal) As Boolean

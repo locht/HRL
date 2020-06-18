@@ -59771,7 +59771,7 @@ Namespace ProfileBusiness
         Function ActiveOrganization(ByVal objOrganization As System.Collections.Generic.List(Of ProfileBusiness.OrganizationDTO), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrgTitle", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrgTitleResponse")>  _
-        Function GetOrgTitle(ByVal filter As ProfileBusiness.OrgTitleDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.OrgTitleDTO)
+        Function GetOrgTitle(ByVal filter As ProfileBusiness.OrgTitleDTO, ByVal _param As ProfileBusiness.ParamDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.OrgTitleDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertOrgTitle", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertOrgTitleResponse")>  _
         Function InsertOrgTitle(ByVal objOrgTitle As System.Collections.Generic.List(Of ProfileBusiness.OrgTitleDTO), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -62291,8 +62291,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.ActiveOrganization(objOrganization, sActive, log)
         End Function
         
-        Public Function GetOrgTitle(ByVal filter As ProfileBusiness.OrgTitleDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.OrgTitleDTO) Implements ProfileBusiness.IProfileBusiness.GetOrgTitle
-            Return MyBase.Channel.GetOrgTitle(filter, PageIndex, PageSize, Total, Sorts)
+        Public Function GetOrgTitle(ByVal filter As ProfileBusiness.OrgTitleDTO, ByVal _param As ProfileBusiness.ParamDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.OrgTitleDTO) Implements ProfileBusiness.IProfileBusiness.GetOrgTitle
+            Return MyBase.Channel.GetOrgTitle(filter, _param, PageIndex, PageSize, Total, Sorts, log)
         End Function
         
         Public Function InsertOrgTitle(ByVal objOrgTitle As System.Collections.Generic.List(Of ProfileBusiness.OrgTitleDTO), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertOrgTitle

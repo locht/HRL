@@ -749,14 +749,16 @@ Namespace ProfileBusiness.ServiceImplementations
 #Region "OrgTitle"
 
         Public Function GetOrgTitle(ByVal filter As OrgTitleDTO,
+                                        ByVal _param As ParamDTO,
                                         ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
                                         ByRef Total As Integer,
-                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of OrgTitleDTO) Implements ServiceContracts.IProfileBusiness.GetOrgTitle
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                        Optional ByVal log As UserLog = Nothing) As List(Of OrgTitleDTO) Implements ServiceContracts.IProfileBusiness.GetOrgTitle
             Using rep As New ProfileRepository
                 Try
 
-                    Dim lst = rep.GetOrgTitle(filter, PageIndex, PageSize, Total, Sorts)
+                    Dim lst = rep.GetOrgTitle(filter, _param, PageIndex, PageSize, Total, Sorts, log)
                     Return lst
                 Catch ex As Exception
 

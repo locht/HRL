@@ -18,7 +18,7 @@
                     <ClientSettings EnableRowHoverStyle="true">
                         <Selecting AllowRowSelect="true" />
                     </ClientSettings>
-                    <MasterTableView DataKeyNames="ID,TITLE_ID,ACTFLG,NAME_VN,PARENT_NAME">
+                    <MasterTableView DataKeyNames="ID,TITLE_ID,ACTFLG,NAME_VN,PARENT_NAME,CODE">
                         <Columns>
                            <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">

@@ -1,5 +1,5 @@
 ﻿Imports Profile.ProfileBusiness
-
+Imports Framework.Data
 Imports Framework.UI
 Imports System.IO
 
@@ -983,6 +983,7 @@ Partial Public Class ProfileRepository
 #Region "OrgTitle"
 
     Public Function GetOrgTitle(ByVal filter As OrgTitleDTO,
+                                        ByVal _param As ParamDTO,
                                         ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
                                         ByRef Total As Integer,
@@ -991,7 +992,7 @@ Partial Public Class ProfileRepository
 
         Using rep As New ProfileBusinessClient
             Try
-                lstOrgTitle = rep.GetOrgTitle(filter, PageIndex, PageSize, Total, Sorts)
+                lstOrgTitle = rep.GetOrgTitle(filter, _param, PageIndex, PageSize, Total, Sorts, Me.Log)
                 Return lstOrgTitle
             Catch ex As Exception
                 rep.Abort()
