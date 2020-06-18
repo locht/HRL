@@ -271,23 +271,57 @@ Public Class ctrlHU_EmpDtlProfile
                         chkIS_HDLD.Checked = EmployeeInfo.IS_HDLD
                         dtData = rep.GetOrgtree(EmployeeInfo.ORG_ID)
                         If dtData IsNot Nothing Then
-                            Dim row As DataRow = dtData.Rows(0)
-                            txtOrg_C2.Text = row("ORG_NAME2")
-                            If If(Not IsDBNull(row("UNIT_RANK3")), row("UNIT_RANK3"), 0) = 2 Then
-                                txtOrg_C3.Text = row("ORG_NAME3")
-                            ElseIf If(Not IsDBNull(row("UNIT_RANK3")), row("UNIT_RANK3"), 0) = 3 Then
-                                txtOrg_C3_1.Text = row("ORG_NAME3")
+                            Dim org_name
+                            org_name = (From p In dtData Where p("UNIT_RANK") = 1 Select p("NAME_VN")).FirstOrDefault
+                            If org_name IsNot Nothing Then
+                                txtOrg_C2.Text = org_name
                             End If
-                            If If(Not IsDBNull(row("UNIT_RANK4")), row("UNIT_RANK4"), 0) = 4 Then
-                                txtOrg_C4.Text = row("ORG_NAME4")
-                            ElseIf If(Not IsDBNull(row("UNIT_RANK4")), row("UNIT_RANK4"), 0) = 5 Then
-                                txtOrg_C4_1.Text = row("ORG_NAME4")
+
+                            org_name = (From p In dtData Where p("UNIT_RANK") = 2 Select p("NAME_VN")).FirstOrDefault
+                            If org_name IsNot Nothing Then
+                                txtOrg_C3.Text = org_name
                             End If
-                            If If(Not IsDBNull(row("UNIT_RANK5")), row("UNIT_RANK5"), 0) = 6 Then
-                                txtOrg_C5.Text = row("ORG_NAME5")
-                            ElseIf If(Not IsDBNull(row("UNIT_RANK5")), row("UNIT_RANK5"), 0) = 7 Then
-                                txtOrg_C5_1.Text = row("ORG_NAME5")
+
+                            org_name = (From p In dtData Where p("UNIT_RANK") = 3 Select p("NAME_VN")).FirstOrDefault
+                            If org_name IsNot Nothing Then
+                                txtOrg_C3_1.Text = org_name
                             End If
+
+                            org_name = (From p In dtData Where p("UNIT_RANK") = 4 Select p("NAME_VN")).FirstOrDefault
+                            If org_name IsNot Nothing Then
+                                txtOrg_C4.Text = org_name
+                            End If
+
+                            org_name = (From p In dtData Where p("UNIT_RANK") = 5 Select p("NAME_VN")).FirstOrDefault
+                            If org_name IsNot Nothing Then
+                                txtOrg_C4_1.Text = org_name
+                            End If
+
+                            org_name = (From p In dtData Where p("UNIT_RANK") = 6 Select p("NAME_VN")).FirstOrDefault
+                            If org_name IsNot Nothing Then
+                                txtOrg_C5.Text = org_name
+                            End If
+                            org_name = (From p In dtData Where p("UNIT_RANK") = 7 Select p("NAME_VN")).FirstOrDefault
+                            If org_name IsNot Nothing Then
+                                txtOrg_C5_1.Text = org_name
+                            End If
+                            'Dim row As DataRow = dtData.Rows(0)
+                            'txtOrg_C2.Text = row("ORG_NAME2")
+                            'If If(Not IsDBNull(row("UNIT_RANK3")), row("UNIT_RANK3"), 0) = 2 Then
+                            '    txtOrg_C3.Text = row("ORG_NAME3")
+                            'ElseIf If(Not IsDBNull(row("UNIT_RANK3")), row("UNIT_RANK3"), 0) = 3 Then
+                            '    txtOrg_C3_1.Text = row("ORG_NAME3")
+                            'End If
+                            'If If(Not IsDBNull(row("UNIT_RANK4")), row("UNIT_RANK4"), 0) = 4 Then
+                            '    txtOrg_C4.Text = row("ORG_NAME4")
+                            'ElseIf If(Not IsDBNull(row("UNIT_RANK4")), row("UNIT_RANK4"), 0) = 5 Then
+                            '    txtOrg_C4_1.Text = row("ORG_NAME4")
+                            'End If
+                            'If If(Not IsDBNull(row("UNIT_RANK5")), row("UNIT_RANK5"), 0) = 6 Then
+                            '    txtOrg_C5.Text = row("ORG_NAME5")
+                            'ElseIf If(Not IsDBNull(row("UNIT_RANK5")), row("UNIT_RANK5"), 0) = 7 Then
+                            '    txtOrg_C5_1.Text = row("ORG_NAME5")
+                            'End If
                         End If
                         'txtOrg_C2.Text = EmployeeInfo.ORG_NAME2
                         'txtOrg_C3.Text = EmployeeInfo.ORG_NAME3
@@ -347,7 +381,7 @@ Public Class ctrlHU_EmpDtlProfile
                             txtNote.Text = empEdu.MORE_INFORMATION
                             rdDayPitcode.SelectedDate = empCV.PIT_CODE_DATE
                             txtPlacePitcode.Text = empCV.PIT_CODE_PLACE
-                            
+
                             If empEdu.COMPUTER_MARK IsNot Nothing Then
                                 cboCertificate.SelectedValue = empEdu.COMPUTER_MARK
                                 cboCertificate.Text = empEdu.COMPUTER_MARK_NAME
@@ -2047,22 +2081,39 @@ Public Class ctrlHU_EmpDtlProfile
                     'Dim obj = rep.GetOrganizationTreeByID(New OrganizationTreeDTO With {.ID = ID})
                     dtData = rep.GetOrgtree(ID)
                     If dtData IsNot Nothing Then
-                        Dim row As DataRow = dtData.Rows(0)
-                        txtOrg_C2.Text = row("ORG_NAME2")
-                        If If(Not IsDBNull(row("UNIT_RANK3")), row("UNIT_RANK3"), 0) = 2 Then
-                            txtOrg_C3.Text = row("ORG_NAME3")
-                        ElseIf If(Not IsDBNull(row("UNIT_RANK3")), row("UNIT_RANK3"), 0) = 3 Then
-                            txtOrg_C3_1.Text = row("ORG_NAME3")
+                        Dim org_name
+                        org_name = (From p In dtData Where p("UNIT_RANK") = 1 Select p("NAME_VN")).FirstOrDefault
+                        If org_name IsNot Nothing Then
+                            txtOrg_C2.Text = org_name
                         End If
-                        If If(Not IsDBNull(row("UNIT_RANK4")), row("UNIT_RANK4"), 0) = 4 Then
-                            txtOrg_C4.Text = row("ORG_NAME4")
-                        ElseIf If(Not IsDBNull(row("UNIT_RANK4")), row("UNIT_RANK4"), 0) = 5 Then
-                            txtOrg_C4_1.Text = row("ORG_NAME4")
+
+                        org_name = (From p In dtData Where p("UNIT_RANK") = 2 Select p("NAME_VN")).FirstOrDefault
+                        If org_name IsNot Nothing Then
+                            txtOrg_C3.Text = org_name
                         End If
-                        If If(Not IsDBNull(row("UNIT_RANK5")), row("UNIT_RANK5"), 0) = 6 Then
-                            txtOrg_C5.Text = row("ORG_NAME5")
-                        ElseIf If(Not IsDBNull(row("UNIT_RANK5")), row("UNIT_RANK5"), 0) = 7 Then
-                            txtOrg_C5_1.Text = row("ORG_NAME5")
+
+                        org_name = (From p In dtData Where p("UNIT_RANK") = 3 Select p("NAME_VN")).FirstOrDefault
+                        If org_name IsNot Nothing Then
+                            txtOrg_C3_1.Text = org_name
+                        End If
+
+                        org_name = (From p In dtData Where p("UNIT_RANK") = 4 Select p("NAME_VN")).FirstOrDefault
+                        If org_name IsNot Nothing Then
+                            txtOrg_C4.Text = org_name
+                        End If
+
+                        org_name = (From p In dtData Where p("UNIT_RANK") = 5 Select p("NAME_VN")).FirstOrDefault
+                        If org_name IsNot Nothing Then
+                            txtOrg_C4_1.Text = org_name
+                        End If
+
+                        org_name = (From p In dtData Where p("UNIT_RANK") = 6 Select p("NAME_VN")).FirstOrDefault
+                        If org_name IsNot Nothing Then
+                            txtOrg_C5.Text = org_name
+                        End If
+                        org_name = (From p In dtData Where p("UNIT_RANK") = 7 Select p("NAME_VN")).FirstOrDefault
+                        If org_name IsNot Nothing Then
+                            txtOrg_C5_1.Text = org_name
                         End If
                     End If
 
