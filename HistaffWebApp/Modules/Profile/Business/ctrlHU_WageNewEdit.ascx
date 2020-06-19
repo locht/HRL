@@ -130,6 +130,7 @@
                     </tlk:RadButton>
                 </td>--%>
                 <td class="lb">
+                    <asp:CheckBox ID ="IS_PLHD" runat ="server" Text="Có phát sinh phụ lục HĐ" />
                 </td>
                 <td>
                 </td>

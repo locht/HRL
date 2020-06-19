@@ -1017,6 +1017,7 @@ Public Class ctrlHU_ChangeInfoMng
 
                     For Each dr As Telerik.Web.UI.GridDataItem In rgWorking.SelectedItems
                         rep1.UPDATE_END_DATE_QD(dr.GetDataKeyValue("EMPLOYEE_ID"), dr.GetDataKeyValue("EFFECT_DATE"))
+                        rep1.INSERT_PLCONTRACT(dr.GetDataKeyValue("ID"))
                     Next
 
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)

@@ -1088,12 +1088,13 @@ Partial Class ProfileRepository
                              .EFFECT_DH_DATE = p.EFFECT_DH_DATE,
                              .EMP_REPLACE = p.EMP_REPLACE,
                              .EMP_REPLACE_NAME = er.FULLNAME_VN,
-                              .EXRATE_ID = p.EXRATE_ID,
+                             .EXRATE_ID = p.EXRATE_ID,
                              .EX_RATE_NAME = CurRate.NAME_VN,
-                              .SAL_BASIC_MIN = p.SAL_BASIC_MIN,
-                                        .SAL_BASIC_MAX = p.SAL_BASIC_MAX,
-                                        .SAL_RATE = p.SAL_RATE,
-                                        .REASON_EDIT_EFDATE = p.REASON_EDIT_EFDATE
+                             .SAL_BASIC_MIN = p.SAL_BASIC_MIN,
+                             .SAL_BASIC_MAX = p.SAL_BASIC_MAX,
+                             .SAL_RATE = p.SAL_RATE,
+                             .REASON_EDIT_EFDATE = p.REASON_EDIT_EFDATE,
+                             .IS_PLHD = p.IS_PLHD
                          }
 
             Dim working = query.FirstOrDefault
@@ -1410,12 +1411,23 @@ Partial Class ProfileRepository
             objWorkingData.IS_HURTFUL = objWorking.IS_HURTFUL
             objWorkingData.EFFECT_DH_DATE = objWorking.EFFECT_DH_DATE
             objWorkingData.EMP_REPLACE = objWorking.EMP_REPLACE
+            objWorkingData.IS_PLHD = objWorking.IS_PLHD
 
             Context.HU_WORKING.AddObject(objWorkingData)
 
             ' nếu phê duyệt
             If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveWorking1(objWorking)
+
+                Using cls As New DataAccess.QueryData
+                    cls.ExecuteStore("PKG_HU_IPROFILE_WORKING.INSERT_PLCONTRACT",
+                                     New With {.P_ID = objWorkingData.ID,
+                                           .P_EMPLOYEE_ID = objWorkingData.EMPLOYEE_ID,
+                                           .P_EFFECT_DATE = objWorkingData.EFFECT_DATE,
+                                           .P_SIGN_DATE = objWorkingData.SIGN_DATE,
+                                           .P_SIGN_ID = objWorkingData.SIGN_ID})
+                End Using
+
                 If isFistWorking(objWorking) Then
                     'cập nhật ngày bắt đầu làm việt vào hồ sơ nhân viên
                     'LUONG MƠI CUA ACV
@@ -1569,12 +1581,21 @@ Partial Class ProfileRepository
             objWorkingData.SAL_BASIC_MIN = objWorking.SAL_BASIC_MIN
             objWorkingData.SAL_BASIC_MAX = objWorking.SAL_BASIC_MAX
             objWorkingData.SAL_RATE = objWorking.SAL_RATE
+            objWorkingData.IS_PLHD = objWorking.IS_PLHD
             objWorkingData.REASON_EDIT_EFDATE = objWorking.REASON_EDIT_EFDATE
             Context.HU_WORKING.AddObject(objWorkingData)
 
             ' nếu phê duyệt
             If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveWorking(objWorking)
+                Using cls As New DataAccess.QueryData
+                    cls.ExecuteStore("PKG_HU_IPROFILE_WORKING.INSERT_PLCONTRACT",
+                                     New With {.P_ID = objWorkingData.ID,
+                                           .P_EMPLOYEE_ID = objWorkingData.EMPLOYEE_ID,
+                                           .P_EFFECT_DATE = objWorkingData.EFFECT_DATE,
+                                           .P_SIGN_DATE = objWorkingData.SIGN_DATE,
+                                           .P_SIGN_ID = objWorkingData.SIGN_ID})
+                End Using
             End If
 
             If objWorking.lstAllowance IsNot Nothing Then
@@ -1719,9 +1740,20 @@ Partial Class ProfileRepository
             objWorkingData.IS_HURTFUL = objWorking.IS_HURTFUL
             objWorkingData.EFFECT_DH_DATE = objWorking.EFFECT_DH_DATE
             objWorkingData.EMP_REPLACE = objWorking.EMP_REPLACE
+            objWorkingData.IS_PLHD = objWorking.IS_PLHD
 
             If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveWorking1(objWorking)
+
+                Using cls As New DataAccess.QueryData
+                    cls.ExecuteStore("PKG_HU_IPROFILE_WORKING.INSERT_PLCONTRACT",
+                                      New With {.P_ID = objWorkingData.ID,
+                                           .P_EMPLOYEE_ID = objWorkingData.EMPLOYEE_ID,
+                                           .P_EFFECT_DATE = objWorkingData.EFFECT_DATE,
+                                           .P_SIGN_DATE = objWorkingData.SIGN_DATE,
+                                           .P_SIGN_ID = objWorkingData.SIGN_ID})
+                End Using
+
                 If isFistWorking(objWorking) Then
                     'cập nhật ngày bắt đầu làm việt vào hồ sơ nhân viên
                     'LUONG MƠI CUA ACV
@@ -1870,8 +1902,17 @@ Partial Class ProfileRepository
             objWorkingData.SAL_BASIC_MAX = objWorking.SAL_BASIC_MAX
             objWorkingData.SAL_RATE = objWorking.SAL_RATE
             objWorkingData.REASON_EDIT_EFDATE = objWorking.REASON_EDIT_EFDATE
+            objWorkingData.IS_PLHD = objWorking.IS_PLHD
             If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveWorking(objWorking)
+                Using cls As New DataAccess.QueryData
+                    cls.ExecuteStore("PKG_HU_IPROFILE_WORKING.INSERT_PLCONTRACT",
+                                     New With {.P_ID = objWorkingData.ID,
+                                               .P_EMPLOYEE_ID = objWorkingData.EMPLOYEE_ID,
+                                               .P_EFFECT_DATE = objWorkingData.EFFECT_DATE,
+                                               .P_SIGN_DATE = objWorkingData.SIGN_DATE,
+                                               .P_SIGN_ID = objWorkingData.SIGN_ID})
+                End Using
             End If
 
             If objWorking.lstAllowance IsNot Nothing Then

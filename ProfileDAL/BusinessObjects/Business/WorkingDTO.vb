@@ -162,5 +162,6 @@
     Public Property IS_HDLD As Decimal?
 
     Public Property REASON_EDIT_EFDATE As String
+    Public Property IS_PLHD As Decimal?
 
 End Class

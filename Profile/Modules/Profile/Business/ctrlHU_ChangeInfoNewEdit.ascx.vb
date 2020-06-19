@@ -308,7 +308,6 @@ Public Class ctrlHU_ChangeInfoNewEdit
                         cboTitle.Text = Working.TITLE_NAME
                     End If
 
-
                     txtDecision.Text = Working.DECISION_NO
                     If Working.STATUS_ID IsNot Nothing Then
                         cboStatus.SelectedValue = Working.STATUS_ID
@@ -342,6 +341,13 @@ Public Class ctrlHU_ChangeInfoNewEdit
 
                     ' them moi
                     chkIsReplace.Checked = Working.IS_REPLACE
+
+                    If Working.IS_PLHD IsNot Nothing Then
+                        IS_PLHD.Checked = True
+                    Else
+                        IS_PLHD.Checked = False
+                    End If
+
                     Dim DSdata As DataSet
                     Using rep1 As New ProfileRepository
                         DSdata = rep1.GET_JP_TO_TITLE(hidOrg.Value, cboTitle.SelectedValue, chkIsReplace.Checked, Working.JOB_POSITION)
@@ -467,6 +473,12 @@ Public Class ctrlHU_ChangeInfoNewEdit
 
                             If cboStatus.SelectedValue <> "" Then
                                 .STATUS_ID = cboStatus.SelectedValue
+                            End If
+
+                            If IS_PLHD.Checked Then
+                                .IS_PLHD = 1
+                            Else
+                                .IS_PLHD = 0
                             End If
 
                             .EFFECT_DATE = rdEffectDate.SelectedDate

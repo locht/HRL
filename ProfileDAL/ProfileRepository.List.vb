@@ -6334,6 +6334,27 @@ Partial Class ProfileRepository
         End Try
     End Function
 
+
+    Public Function INSERT_PLCONTRACT(ByVal P_ID As Decimal) As Boolean
+        Try
+
+            Dim objWorkingData = (From p In Context.HU_WORKING Where P_ID = p.ID).First()
+
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_HU_IPROFILE_WORKING.INSERT_PLCONTRACT",
+                                 New With {.P_ID = objWorkingData.ID,
+                                           .P_EMPLOYEE_ID = objWorkingData.EMPLOYEE_ID,
+                                           .P_EFFECT_DATE = objWorkingData.EFFECT_DATE,
+                                           .P_SIGN_DATE = objWorkingData.SIGN_DATE,
+                                           .P_SIGN_ID = objWorkingData.SIGN_ID})
+            End Using
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
 #End Region
 
 End Class

@@ -255,6 +255,12 @@ Public Class ctrlHU_WageNewEdit
                         cboSaleCommision.Text = Working.SALE_COMMISION_NAME
                     End If
 
+                    If Working.IS_PLHD IsNot Nothing Then
+                        IS_PLHD.Checked = True
+                    Else
+                        IS_PLHD.Checked = False
+                    End If
+
                     rdEffectDate.SelectedDate = Working.EFFECT_DATE
                     rdExpireDate.SelectedDate = Working.EXPIRE_DATE
                     txtDecisionNo.Text = Working.DECISION_NO
@@ -634,6 +640,13 @@ Public Class ctrlHU_WageNewEdit
                             If IsNumeric(rnPercentSalary.Value) Then
                                 .PERCENTSALARY = rnPercentSalary.Value
                             End If
+
+                            If IS_PLHD.Checked Then
+                                .IS_PLHD = 1
+                            Else
+                                .IS_PLHD = 0
+                            End If
+
                             'If rnFactorSalary.Text.Contains(".") Then
                             '    factorSal = rnFactorSalary.Text.Replace(".", ",").ToString
                             '    .FACTORSALARY = If(IsNumeric(factorSal), Decimal.Parse(factorSal), Nothing)

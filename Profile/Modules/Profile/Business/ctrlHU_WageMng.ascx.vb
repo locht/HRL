@@ -902,6 +902,7 @@ VALIDATE:
     Public Overrides Sub UpdateControlState()
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
+        Dim rep1 As New ProfileRepository
         Try
             tbarWorkings.Enabled = True
             rgWorking.Enabled = True
@@ -947,11 +948,17 @@ VALIDATE:
                         '    Exit Sub
                         'End If
                         If rep.ApproveWorkings(workingIds).Status = 1 Then
+
+                            For Each dr As Telerik.Web.UI.GridDataItem In rgWorking.SelectedItems
+                                rep1.INSERT_PLCONTRACT(dr.GetDataKeyValue("ID"))
+                            Next
+
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                             CurrentState = CommonMessage.STATE_NORMAL
                             rgWorking.CurrentPageIndex = 0
                             rgWorking.MasterTableView.SortExpressions.Clear()
                             rgWorking.Rebind()
+                            rep1.Dispose()
                         End If
                     End Using
             End Select
