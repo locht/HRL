@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 5/28/2020 4:58:19 PM
--- Generated from EDMX file: D:\acv_19\ProfileDAL\ProfileContext.edmx
+-- Date Created: 6/19/2020 8:52:05 AM
+-- Generated from EDMX file: D:\SOURCE_GIT_NEW\ACV_NEW\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -2898,7 +2898,8 @@ CREATE TABLE "dbo"."HU_WORKING" (
    "EXRATE_ID" NUMBER(38,0) NULL,
    "SAL_BASIC_MIN" NUMBER(38,0) NULL,
    "SAL_BASIC_MAX" NUMBER(38,0) NULL,
-   "SAL_RATE" NUMBER(38,0) NULL
+   "SAL_RATE" NUMBER(38,0) NULL,
+   "IS_PLHD" NUMBER(38,0) NULL
 );
 
 -- Creating table 'PA_SALARY_TYPE'
