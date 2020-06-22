@@ -12,6 +12,9 @@
       <Group>
         <Item  Value="ctrlPE_DirectViewKPIEmp"  Text="CBNS xem KPI của nhân viên" PostBack="True" NavigateUrl="Default.aspx?mid=Performance&amp;fid=ctrlPE_DirectViewKPIEmp&amp;group=Business" CheckPermission="true"/>
         <Item  Value="ctrlPE_CBNSViewRating"  Text="CBNS xem biểu đồ xếp hạng nhân viên" PostBack="True" NavigateUrl="Default.aspx?mid=Performance&amp;fid=ctrlPE_CBNSViewRating&amp;group=Business" CheckPermission="true"/>
+        <Item Value="PERFORMANCE_REPORT_01" Text="Báo cáo đánh giá ABC" PostBack="True" NavigateUrl="Default.aspx?mid=Common&amp;fid=ctrlREPORT&amp;ProgramID=PERFORMANCE_REPORT_01&amp;moduleID=2" CheckPermission="true"/>
+        <Item Value="PERFORMANCE_REPORT_02" Text="Báo cáo đánh giá KPI" PostBack="True" NavigateUrl="Default.aspx?mid=Common&amp;fid=ctrlREPORT&amp;ProgramID=PERFORMANCE_REPORT_02&amp;moduleID=2" CheckPermission="true"/>
+        <Item Value="PERFORMANCE_REPORT_03" Text="Báo cáo đánh giá tổng hợp" PostBack="True" NavigateUrl="Default.aspx?mid=Common&amp;fid=ctrlREPORT&amp;ProgramID=PERFORMANCE_REPORT_03&amp;moduleID=2" CheckPermission="true"/>
       </Group>
     </Item>
 
