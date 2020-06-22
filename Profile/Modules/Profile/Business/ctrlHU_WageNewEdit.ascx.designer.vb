@@ -581,33 +581,6 @@ Partial Public Class ctrlHU_WageNewEdit
     Protected WithEvents reqPercentSalary As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Label3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''rnmtxtSalRate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rnmtxtSalRate As Global.Telerik.Web.UI.RadNumericTextBox
-
-    '''<summary>
-    '''reqSalRate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqSalRate As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
     '''lbrntxtSalaryInsurance control.
     '''</summary>
     '''<remarks>
