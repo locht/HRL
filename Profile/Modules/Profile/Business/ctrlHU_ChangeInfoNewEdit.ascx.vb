@@ -432,6 +432,13 @@ Public Class ctrlHU_ChangeInfoNewEdit
                         If chkIsReplace.Checked = False Then
                             If cboJobPosition.SelectedValue <> "" Then
                                 If rep1.CHECK_EXITS_JOB(cboJobPosition.SelectedValue, hidEmp.Value) > 0 Then
+                                    ShowMessage(Translate("Vị trí công việc đã tồn tại, Vui lòng kiểm tra lại."), NotifyType.Warning)
+                                    Exit Sub
+                                End If
+                            End If
+                        Else
+                            If cboJobPosition.SelectedValue <> "" Then
+                                If rep1.CHECK_EXITS_JOB(cboJobPosition.SelectedValue, hidEmp.Value) > 1 Then
                                     ShowMessage(Translate("Đã tồn tại 2 nhân viên thuộc vị trí công việc này, vui lòng kiểm tra lại."), NotifyType.Warning)
                                     Exit Sub
                                 End If
