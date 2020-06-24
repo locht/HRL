@@ -328,6 +328,17 @@
                     <tlk:RadDatePicker ID="rdEffectHdDate" runat="server">
                     </tlk:RadDatePicker>
                 </td>
+            <tr>
+                <td class="lb">
+                </td>
+                <td></td>
+                <td class="lb">
+                </td>
+                <td class="borderRight"></td>
+                <td colspan="2">
+                    <asp:CheckBox ID ="IS_PLHD" runat ="server" Text="<%$ Translate: Có phát sinh phụ lục HĐ %>" />
+                </td>
+            </tr>
                 <tr>
                     <td class="item-head" colspan="8">
                         <%# Translate("Thông tin phê duyệt")%>

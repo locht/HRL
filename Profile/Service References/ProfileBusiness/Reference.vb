@@ -9514,6 +9514,9 @@ Namespace ProfileBusiness
         Private IS_MISSION_SHORTField As System.Nullable(Of Short)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_PLHDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_PROCESSField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -10427,6 +10430,19 @@ Namespace ProfileBusiness
                 If (Me.IS_MISSION_SHORTField.Equals(value) <> true) Then
                     Me.IS_MISSION_SHORTField = value
                     Me.RaisePropertyChanged("IS_MISSION_SHORT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_PLHD() As System.Nullable(Of Decimal)
+            Get
+                Return Me.IS_PLHDField
+            End Get
+            Set
+                If (Me.IS_PLHDField.Equals(value) <> true) Then
+                    Me.IS_PLHDField = value
+                    Me.RaisePropertyChanged("IS_PLHD")
                 End If
             End Set
         End Property
@@ -57518,6 +57534,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckJobIdInWorking", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckJobIdInWorkingResponse")>  _
         Function CheckJobIdInWorking(ByVal jobId As Decimal, ByVal empId As Decimal) As Decimal
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_PLCONTRACT", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_PLCONTRACTResponse")>  _
+        Function INSERT_PLCONTRACT(ByVal P_ID As Decimal) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetPeriodbyYear", ReplyAction:="http://tempuri.org/IProfileBusiness/GetPeriodbyYearResponse")>  _
         Function GetPeriodbyYear(ByVal year As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO)
         
@@ -60417,6 +60436,10 @@ Namespace ProfileBusiness
         
         Public Function CheckJobIdInWorking(ByVal jobId As Decimal, ByVal empId As Decimal) As Decimal Implements ProfileBusiness.IProfileBusiness.CheckJobIdInWorking
             Return MyBase.Channel.CheckJobIdInWorking(jobId, empId)
+        End Function
+        
+        Public Function INSERT_PLCONTRACT(ByVal P_ID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.INSERT_PLCONTRACT
+            Return MyBase.Channel.INSERT_PLCONTRACT(P_ID)
         End Function
         
         Public Function GetPeriodbyYear(ByVal year As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO) Implements ProfileBusiness.IProfileBusiness.GetPeriodbyYear

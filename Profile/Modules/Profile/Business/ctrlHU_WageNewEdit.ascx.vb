@@ -185,9 +185,6 @@ Public Class ctrlHU_WageNewEdit
                 dtData = rep.GetOtherList(OtherTypes.ExchangeRate)
                 FillRadCombobox(cboExRate, dtData, "NAME", "ID", True)
                 cboExRate.SelectedValue = 7682
-                If cboExRate.SelectedValue = 7682 Then
-                    rnmtxtSalRate.Value = 1
-                End If
             End Using
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -253,6 +250,12 @@ Public Class ctrlHU_WageNewEdit
                     If Working.SALE_COMMISION_ID IsNot Nothing Then
                         cboSaleCommision.SelectedValue = Working.SALE_COMMISION_ID
                         cboSaleCommision.Text = Working.SALE_COMMISION_NAME
+                    End If
+
+                    If Working.IS_PLHD IsNot Nothing Then
+                        IS_PLHD.Checked = True
+                    Else
+                        IS_PLHD.Checked = False
                     End If
 
                     rdEffectDate.SelectedDate = Working.EFFECT_DATE
@@ -354,9 +357,6 @@ Public Class ctrlHU_WageNewEdit
                     End If
                     If IsNumeric(Working.SAL_BASIC_MAX) Then
                         rnmtxtSalBas_Max.Value = Working.SAL_BASIC_MAX
-                    End If
-                    If IsNumeric(Working.SAL_RATE) Then
-                        rnmtxtSalRate.Value = Working.SAL_RATE
                     End If
                     If IsNumeric(Working.EXRATE_ID) Then
                         cboExRate.SelectedValue = Working.EXRATE_ID
@@ -583,7 +583,7 @@ Public Class ctrlHU_WageNewEdit
                         'End If
                         If cboSalTYPE.Text = "Chính thức" Then
                             If rnPercentSalary.Value < 100 Then
-                                ShowMessage(Translate("nhập % hưởng lương 'chính thức' > 100%"), NotifyType.Warning)
+                                ShowMessage(Translate("Nhập % hưởng lương 'chính thức' > 100%"), NotifyType.Warning)
                                 'rnPercentSalary.Value = 100
                                 rnPercentSalary.Focus()
                                 Exit Sub
@@ -591,7 +591,7 @@ Public Class ctrlHU_WageNewEdit
                         End If
                         If cboSalTYPE.Text = "Thử việc" Then
                             If rnPercentSalary.Value < 85 Then
-                                ShowMessage(Translate("nhập % hưởng lương 'thử việc' > 85%"), NotifyType.Warning)
+                                ShowMessage(Translate("Nhập % hưởng lương 'thử việc' > 85%"), NotifyType.Warning)
                                 'rnPercentSalary.Value = 85
                                 rnPercentSalary.Focus()
                                 Exit Sub
@@ -634,6 +634,13 @@ Public Class ctrlHU_WageNewEdit
                             If IsNumeric(rnPercentSalary.Value) Then
                                 .PERCENTSALARY = rnPercentSalary.Value
                             End If
+
+                            If IS_PLHD.Checked Then
+                                .IS_PLHD = 1
+                            Else
+                                .IS_PLHD = 0
+                            End If
+
                             'If rnFactorSalary.Text.Contains(".") Then
                             '    factorSal = rnFactorSalary.Text.Replace(".", ",").ToString
                             '    .FACTORSALARY = If(IsNumeric(factorSal), Decimal.Parse(factorSal), Nothing)
@@ -679,11 +686,6 @@ Public Class ctrlHU_WageNewEdit
                                 allow.ALLOWANCE_LIST_ID = item.GetDataKeyValue("ALLOWANCE_LIST_ID")
                                 allow.ALLOWANCE_LIST_NAME = item.GetDataKeyValue("ALLOWANCE_LIST_NAME")
                                 allow.AMOUNT = item.GetDataKeyValue("AMOUNT")
-                                If IsNumeric(rnmtxtSalRate.Text) Then
-                                    allow.AMOUNT_EX = item.GetDataKeyValue("AMOUNT") * CType(rnmtxtSalRate.Value, Decimal)
-                                Else
-                                    allow.AMOUNT_EX = item.GetDataKeyValue("AMOUNT")
-                                End If
                                 allow.IS_INSURRANCE = item.GetDataKeyValue("IS_INSURRANCE")
                                 allow.EFFECT_DATE = rdEffectDate.SelectedDate
                                 allow.EXPIRE_DATE = item.GetDataKeyValue("EXPIRE_DATE")
@@ -712,9 +714,6 @@ Public Class ctrlHU_WageNewEdit
                             End If
                             If IsNumeric(rnmtxtSalBas_Max.Value) Then
                                 .SAL_BASIC_MAX = rnmtxtSalBas_Max.Value
-                            End If
-                            If IsNumeric(rnmtxtSalRate.Value) Then
-                                .SAL_RATE = rnmtxtSalRate.Value
                             End If
                             .REASON_EDIT_EFDATE = txtREASON_EDIT_EFDATE.Text
                             .ALLOWANCE_TOTAL = rntxtAllowance_Total.Value
@@ -1022,11 +1021,6 @@ Public Class ctrlHU_WageNewEdit
                     allow1.ALLOWANCE_LIST_ID = cboAllowance.SelectedValue
                     allow1.ALLOWANCE_LIST_NAME = cboAllowance.Text
                     allow1.AMOUNT = rntxtAmount.Value
-                    If IsNumeric(rnmtxtSalRate.Text) Then
-                        allow1.AMOUNT_EX = rntxtAmount.Value * rnmtxtSalRate.Value
-                    Else
-                        allow1.AMOUNT_EX = rntxtAmount.Value
-                    End If
                     'allow1.IS_INSURRANCE = chkIsInsurrance.Checked
                     If rdAllowEffectDate.SelectedDate.HasValue Then
                         allow1.EFFECT_DATE = rdAllowEffectDate.SelectedDate.Value
@@ -1034,7 +1028,7 @@ Public Class ctrlHU_WageNewEdit
                         allow1.EFFECT_DATE = rdEffectDate.SelectedDate
                     End If
                     'allow1.EXPIRE_DATE = rdAllowExpireDate.SelectedDate
-                    rntxtAllowance_Total.Value += allow1.AMOUNT_EX
+                    rntxtAllowance_Total.Value += allow1.AMOUNT
                     lstAllow.Add(allow1)
                     Cal_SalaryInsurrance()
                     ClearControlValue(cboAllowance, rntxtAmount) ', chkIsInsurrance, rdAllowExpireDate
@@ -1046,7 +1040,7 @@ Public Class ctrlHU_WageNewEdit
                         For Each selected As GridDataItem In rgAllow.SelectedItems
                             If item.GetDataKeyValue("ALLOWANCE_LIST_ID") = selected.GetDataKeyValue("ALLOWANCE_LIST_ID") Then
                                 isExist = True
-                                rntxtAllowance_Total.Value = rntxtAllowance_Total.Value - selected.GetDataKeyValue("AMOUNT_EX")
+                                rntxtAllowance_Total.Value = rntxtAllowance_Total.Value - selected.GetDataKeyValue("AMOUNT")
                                 Exit For
                             End If
                         Next
@@ -1055,7 +1049,6 @@ Public Class ctrlHU_WageNewEdit
                             allow.ALLOWANCE_LIST_ID = item.GetDataKeyValue("ALLOWANCE_LIST_ID")
                             allow.ALLOWANCE_LIST_NAME = item.GetDataKeyValue("ALLOWANCE_LIST_NAME")
                             allow.AMOUNT = item.GetDataKeyValue("AMOUNT")
-                            allow.AMOUNT_EX = item.GetDataKeyValue("AMOUNT_EX")
                             allow.IS_INSURRANCE = item.GetDataKeyValue("IS_INSURRANCE")
                             allow.EFFECT_DATE = item.GetDataKeyValue("EFFECT_DATE")
                             allow.EXPIRE_DATE = item.GetDataKeyValue("EXPIRE_DATE")
@@ -1820,17 +1813,6 @@ Public Class ctrlHU_WageNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-
-    Private Sub rnmtxtSalRate_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rnmtxtSalRate.TextChanged
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Cal_rgAllow()
-            Cal_SalaryInsurrance()
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
     Private Sub Cal_rgAllow()
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
@@ -1839,11 +1821,6 @@ Public Class ctrlHU_WageNewEdit
                 allow.ALLOWANCE_LIST_ID = item.GetDataKeyValue("ALLOWANCE_LIST_ID")
                 allow.ALLOWANCE_LIST_NAME = item.GetDataKeyValue("ALLOWANCE_LIST_NAME")
                 allow.AMOUNT = item.GetDataKeyValue("AMOUNT")
-                If IsNumeric(rnmtxtSalRate.Value) Then
-                    allow.AMOUNT_EX = item.GetDataKeyValue("AMOUNT") * CType(rnmtxtSalRate.Value, Double?)
-                Else
-                    allow.AMOUNT_EX = item.GetDataKeyValue("AMOUNT")
-                End If
                 allow.IS_INSURRANCE = item.GetDataKeyValue("IS_INSURRANCE")
                 allow.EFFECT_DATE = item.GetDataKeyValue("EFFECT_DATE")
                 allow.EXPIRE_DATE = item.GetDataKeyValue("EXPIRE_DATE")
@@ -1858,7 +1835,7 @@ Public Class ctrlHU_WageNewEdit
     Private Sub Cal_SalaryInsurrance()
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            rntxtAllowance_Total.Value = (From p In lstAllow Select p.AMOUNT_EX).Sum
+            rntxtAllowance_Total.Value = (From p In lstAllow Select p.AMOUNT).Sum
             If Not IsNumeric(basicSalary.Value) Then
                 ShowMessage(Translate("Mời nhập lương cơ bản"), NotifyType.Warning)
                 Exit Sub
@@ -1867,15 +1844,11 @@ Public Class ctrlHU_WageNewEdit
                 ShowMessage(Translate("Mời nhập % hưởng lương"), NotifyType.Warning)
                 Exit Sub
             End If
-            If Not IsNumeric(rnmtxtSalRate.Value) Then
-                ShowMessage(Translate("Mời chọn tỷ giá bảo hiẻm"), NotifyType.Warning)
-                Exit Sub
-            End If
             If Not IsNumeric(rntxtAllowance_Total.Value) Then
                 ShowMessage(Translate("Mời nhập thông tin phụ cấp"), NotifyType.Warning)
                 Exit Sub
             End If
-            rntxtSalaryInsurance.Value = (CType(basicSalary.Value, Double) * CType(rnPercentSalary.Value, Double) / 100 * CType(rnmtxtSalRate.Value, Double)) + CType(rntxtAllowance_Total.Value, Double)
+            rntxtSalaryInsurance.Value = (CType(basicSalary.Value, Double) * CType(rnPercentSalary.Value, Double) / 100) + CType(rntxtAllowance_Total.Value, Double)
 
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)

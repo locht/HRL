@@ -1088,12 +1088,13 @@ Partial Class ProfileRepository
                              .EFFECT_DH_DATE = p.EFFECT_DH_DATE,
                              .EMP_REPLACE = p.EMP_REPLACE,
                              .EMP_REPLACE_NAME = er.FULLNAME_VN,
-                              .EXRATE_ID = p.EXRATE_ID,
+                             .EXRATE_ID = p.EXRATE_ID,
                              .EX_RATE_NAME = CurRate.NAME_VN,
-                              .SAL_BASIC_MIN = p.SAL_BASIC_MIN,
-                                        .SAL_BASIC_MAX = p.SAL_BASIC_MAX,
-                                        .SAL_RATE = p.SAL_RATE,
-                                        .REASON_EDIT_EFDATE = p.REASON_EDIT_EFDATE
+                             .SAL_BASIC_MIN = p.SAL_BASIC_MIN,
+                             .SAL_BASIC_MAX = p.SAL_BASIC_MAX,
+                             .SAL_RATE = p.SAL_RATE,
+                             .REASON_EDIT_EFDATE = p.REASON_EDIT_EFDATE,
+                             .IS_PLHD = p.IS_PLHD
                          }
 
             Dim working = query.FirstOrDefault
@@ -1106,12 +1107,11 @@ Partial Class ProfileRepository
                                     Select New WorkingAllowanceDTO With {.ALLOWANCE_LIST_ID = p.ALLOWANCE_LIST_ID,
                                                                          .ALLOWANCE_LIST_NAME = allow.NAME,
                                                                          .AMOUNT = p.AMOUNT,
-                                                                         .AMOUNT_EX = p.AMOUNT_EX,
                                                                          .EFFECT_DATE = p.EFFECT_DATE,
                                                                          .EXPIRE_DATE = p.EXPIRE_DATE,
                                                                          .IS_INSURRANCE = p.IS_INSURRANCE}).ToList
             If working.lstAllowance IsNot Nothing AndAlso working.lstAllowance.Count > 0 Then
-                working.ALLOWANCE_TOTAL = working.lstAllowance.Sum(Function(f) f.AMOUNT_EX)
+                working.ALLOWANCE_TOTAL = working.lstAllowance.Sum(Function(f) f.AMOUNT)
             End If
             Dim query_old = (From p In Context.HU_WORKING
                              Where p.EFFECT_DATE < working.EFFECT_DATE _
@@ -1410,12 +1410,23 @@ Partial Class ProfileRepository
             objWorkingData.IS_HURTFUL = objWorking.IS_HURTFUL
             objWorkingData.EFFECT_DH_DATE = objWorking.EFFECT_DH_DATE
             objWorkingData.EMP_REPLACE = objWorking.EMP_REPLACE
+            objWorkingData.IS_PLHD = objWorking.IS_PLHD
 
             Context.HU_WORKING.AddObject(objWorkingData)
 
             ' nếu phê duyệt
             If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveWorking1(objWorking)
+
+                Using cls As New DataAccess.QueryData
+                    cls.ExecuteStore("PKG_HU_IPROFILE_WORKING.INSERT_PLCONTRACT",
+                                     New With {.P_ID = objWorkingData.ID,
+                                           .P_EMPLOYEE_ID = objWorkingData.EMPLOYEE_ID,
+                                           .P_EFFECT_DATE = objWorkingData.EFFECT_DATE,
+                                           .P_SIGN_DATE = objWorkingData.SIGN_DATE,
+                                           .P_SIGN_ID = objWorkingData.SIGN_ID})
+                End Using
+
                 If isFistWorking(objWorking) Then
                     'cập nhật ngày bắt đầu làm việt vào hồ sơ nhân viên
                     'LUONG MƠI CUA ACV
@@ -1569,16 +1580,25 @@ Partial Class ProfileRepository
             objWorkingData.SAL_BASIC_MIN = objWorking.SAL_BASIC_MIN
             objWorkingData.SAL_BASIC_MAX = objWorking.SAL_BASIC_MAX
             objWorkingData.SAL_RATE = objWorking.SAL_RATE
+            objWorkingData.IS_PLHD = objWorking.IS_PLHD
             objWorkingData.REASON_EDIT_EFDATE = objWorking.REASON_EDIT_EFDATE
             Context.HU_WORKING.AddObject(objWorkingData)
 
             ' nếu phê duyệt
             If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveWorking(objWorking)
+                Using cls As New DataAccess.QueryData
+                    cls.ExecuteStore("PKG_HU_IPROFILE_WORKING.INSERT_PLCONTRACT",
+                                     New With {.P_ID = objWorkingData.ID,
+                                           .P_EMPLOYEE_ID = objWorkingData.EMPLOYEE_ID,
+                                           .P_EFFECT_DATE = objWorkingData.EFFECT_DATE,
+                                           .P_SIGN_DATE = objWorkingData.SIGN_DATE,
+                                           .P_SIGN_ID = objWorkingData.SIGN_ID})
+                End Using
             End If
 
             If objWorking.lstAllowance IsNot Nothing Then
-                objWorkingData.ALLOWANCE_TOTAL = objWorking.lstAllowance.Sum(Function(f) f.AMOUNT_EX)
+                objWorkingData.ALLOWANCE_TOTAL = objWorking.lstAllowance.Sum(Function(f) f.AMOUNT)
                 For Each item In objWorking.lstAllowance
                     If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                         Dim objALlow = (From p In Context.HU_WORKING_ALLOW
@@ -1601,13 +1621,12 @@ Partial Class ProfileRepository
                     allow.IS_INSURRANCE = item.IS_INSURRANCE
                     allow.EFFECT_DATE = item.EFFECT_DATE
                     allow.EXPIRE_DATE = item.EXPIRE_DATE
-                    allow.AMOUNT_EX = item.AMOUNT_EX
                     Context.HU_WORKING_ALLOW.AddObject(allow)
                 Next
             End If
 
 
-            'Dim insurranceAllow = Context.HU_WORKING_ALLOW.Where(Function(f) f.HU_WORKING_ID = objWorking.ID And f.IS_INSURRANCE = True).Sum(Function(f) f.AMOUNT_EX)
+            'Dim insurranceAllow = Context.HU_WORKING_ALLOW.Where(Function(f) f.HU_WORKING_ID = objWorking.ID And f.IS_INSURRANCE = True).Sum(Function(f) f.AMOUNT)
             'If insurranceAllow.HasValue = False Then
             '    insurranceAllow = 0
             'End If
@@ -1719,9 +1738,20 @@ Partial Class ProfileRepository
             objWorkingData.IS_HURTFUL = objWorking.IS_HURTFUL
             objWorkingData.EFFECT_DH_DATE = objWorking.EFFECT_DH_DATE
             objWorkingData.EMP_REPLACE = objWorking.EMP_REPLACE
+            objWorkingData.IS_PLHD = objWorking.IS_PLHD
 
             If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveWorking1(objWorking)
+
+                Using cls As New DataAccess.QueryData
+                    cls.ExecuteStore("PKG_HU_IPROFILE_WORKING.INSERT_PLCONTRACT",
+                                      New With {.P_ID = objWorkingData.ID,
+                                           .P_EMPLOYEE_ID = objWorkingData.EMPLOYEE_ID,
+                                           .P_EFFECT_DATE = objWorkingData.EFFECT_DATE,
+                                           .P_SIGN_DATE = objWorkingData.SIGN_DATE,
+                                           .P_SIGN_ID = objWorkingData.SIGN_ID})
+                End Using
+
                 If isFistWorking(objWorking) Then
                     'cập nhật ngày bắt đầu làm việt vào hồ sơ nhân viên
                     'LUONG MƠI CUA ACV
@@ -1870,12 +1900,21 @@ Partial Class ProfileRepository
             objWorkingData.SAL_BASIC_MAX = objWorking.SAL_BASIC_MAX
             objWorkingData.SAL_RATE = objWorking.SAL_RATE
             objWorkingData.REASON_EDIT_EFDATE = objWorking.REASON_EDIT_EFDATE
+            objWorkingData.IS_PLHD = objWorking.IS_PLHD
             If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveWorking(objWorking)
+                Using cls As New DataAccess.QueryData
+                    cls.ExecuteStore("PKG_HU_IPROFILE_WORKING.INSERT_PLCONTRACT",
+                                     New With {.P_ID = objWorkingData.ID,
+                                               .P_EMPLOYEE_ID = objWorkingData.EMPLOYEE_ID,
+                                               .P_EFFECT_DATE = objWorkingData.EFFECT_DATE,
+                                               .P_SIGN_DATE = objWorkingData.SIGN_DATE,
+                                               .P_SIGN_ID = objWorkingData.SIGN_ID})
+                End Using
             End If
 
             If objWorking.lstAllowance IsNot Nothing Then
-                objWorkingData.ALLOWANCE_TOTAL = objWorking.lstAllowance.Sum(Function(f) f.AMOUNT_EX)
+                objWorkingData.ALLOWANCE_TOTAL = objWorking.lstAllowance.Sum(Function(f) f.AMOUNT)
                 Dim lstAll = (From p In Context.HU_WORKING_ALLOW Where p.HU_WORKING_ID = objWorking.ID).ToList
                 For Each item In lstAll
                     Context.HU_WORKING_ALLOW.DeleteObject(item)
@@ -1903,20 +1942,19 @@ Partial Class ProfileRepository
                     allow.IS_INSURRANCE = item.IS_INSURRANCE
                     allow.EFFECT_DATE = item.EFFECT_DATE
                     allow.EXPIRE_DATE = item.EXPIRE_DATE
-                    allow.AMOUNT_EX = item.AMOUNT_EX
                     Context.HU_WORKING_ALLOW.AddObject(allow)
                 Next
             End If
 
             Context.SaveChanges(log)
-            objWorkingData.ALLOWANCE_TOTAL = Context.HU_WORKING_ALLOW.Where(Function(f) f.HU_WORKING_ID = objWorking.ID).Sum(Function(f) f.AMOUNT_EX)
+            objWorkingData.ALLOWANCE_TOTAL = Context.HU_WORKING_ALLOW.Where(Function(f) f.HU_WORKING_ID = objWorking.ID).Sum(Function(f) f.AMOUNT)
             Dim allowanceTotal As Double = 0
             If objWorkingData.ALLOWANCE_TOTAL.HasValue Then
                 allowanceTotal = objWorkingData.ALLOWANCE_TOTAL.Value
             End If
             objWorkingData.SAL_TOTAL = objWorking.SAL_TOTAL + allowanceTotal
 
-            Dim insurranceAllow = Context.HU_WORKING_ALLOW.Where(Function(f) f.HU_WORKING_ID = objWorking.ID And f.IS_INSURRANCE = True).Sum(Function(f) f.AMOUNT_EX)
+            Dim insurranceAllow = Context.HU_WORKING_ALLOW.Where(Function(f) f.HU_WORKING_ID = objWorking.ID And f.IS_INSURRANCE = True).Sum(Function(f) f.AMOUNT)
             If insurranceAllow.HasValue = False Then
                 insurranceAllow = 0
             End If
@@ -2182,7 +2220,6 @@ Partial Class ProfileRepository
                        Select New WorkingAllowanceDTO With {.ALLOWANCE_LIST_ID = p.ALLOWANCE_LIST_ID,
                                                             .ALLOWANCE_LIST_NAME = allow.NAME,
                                                             .AMOUNT = p.AMOUNT,
-                                                           .AMOUNT_EX = p.AMOUNT_EX,
                                                             .EFFECT_DATE = p.EFFECT_DATE,
                                                             .EXPIRE_DATE = p.EXPIRE_DATE,
                                                             .IS_INSURRANCE = p.IS_INSURRANCE,

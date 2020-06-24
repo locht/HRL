@@ -2804,6 +2804,16 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
+        Function INSERT_PLCONTRACT(ByVal P_ID As Decimal) As Boolean Implements ServiceContracts.IProfileBusiness.INSERT_PLCONTRACT
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.INSERT_PLCONTRACT(P_ID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
 #End Region
 
 

@@ -3082,6 +3082,8 @@ Namespace ProfileBusiness.ServiceContracts
 
 #End Region
 
+        <OperationContract()>
+        Function INSERT_PLCONTRACT(ByVal P_ID As Decimal) As Boolean
 
     End Interface
 

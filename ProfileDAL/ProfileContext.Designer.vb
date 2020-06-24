@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("2accb2cf-f8ea-43bb-9b39-d787b6d95995")>
+<Assembly: EdmSchemaAttribute("25411d5b-17ee-4fbf-9431-40896abf55bc")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -70183,6 +70183,31 @@ Public Partial Class HU_WORKING
     End Sub
 
     Private Partial Sub OnSAL_RATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_PLHD() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_PLHD
+        End Get
+        Set
+            OnIS_PLHDChanging(value)
+            ReportPropertyChanging("IS_PLHD")
+            _IS_PLHD = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_PLHD")
+            OnIS_PLHDChanged()
+        End Set
+    End Property
+
+    Private _IS_PLHD As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_PLHDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_PLHDChanged()
     End Sub
 
     #End Region

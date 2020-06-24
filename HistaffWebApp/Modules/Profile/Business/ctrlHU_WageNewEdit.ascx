@@ -130,6 +130,7 @@
                     </tlk:RadButton>
                 </td>--%>
                 <td class="lb">
+                    <asp:CheckBox ID ="IS_PLHD" runat ="server" Text="Có phát sinh phụ lục HĐ" />
                 </td>
                 <td>
                 </td>
@@ -267,19 +268,6 @@
                     </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
-                    <asp:Label ID="Label3" runat="server" Text="Tỷ giá bảo hiểm"></asp:Label>
-                    <span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadNumericTextBox ID="rnmtxtSalRate" MinValue="0" runat="server" SkinID="Money"
-                        AutoPostBack="true" CausesValidation="false">
-                        <ClientEvents OnValueChanged="OnValueChanged" />
-                    </tlk:RadNumericTextBox>
-                    <asp:RequiredFieldValidator ID="reqSalRate" runat="server" ControlToValidate="rnmtxtSalRate"
-                        ErrorMessage="Bạn phải nhập Tỷ giá bảo hiểm" ToolTip="Bạn phải nhập Tỷ giá bảo hiểm"> 
-                    </asp:RequiredFieldValidator>
-                </td>
-                <td class="lb">
                     <asp:Label ID="lbrntxtSalaryInsurance" runat="server" Text="Mức lương chính"></asp:Label>
                     <span class="lbReq">*</span>
                 </td>
@@ -400,8 +388,8 @@
                 <td colspan="6">
                     <tlk:RadGrid ID="rgAllow" runat="server" Height="200px" PageSize="50" SkinID="GridNotPaging"
                         Width="100%">
-                        <MasterTableView ClientDataKeyNames="ID,ALLOWANCE_LIST_ID,AMOUNT,IS_INSURRANCE,ALLOWANCE_LIST_NAME,EFFECT_DATE,EXPIRE_DATE,AMOUNT_EX"
-                            CommandItemDisplay="Top" DataKeyNames="ID,ALLOWANCE_LIST_ID,AMOUNT,IS_INSURRANCE,ALLOWANCE_LIST_NAME,EFFECT_DATE,EXPIRE_DATE,AMOUNT_EX">
+                        <MasterTableView ClientDataKeyNames="ID,ALLOWANCE_LIST_ID,AMOUNT,IS_INSURRANCE,ALLOWANCE_LIST_NAME,EFFECT_DATE,EXPIRE_DATE"
+                            CommandItemDisplay="Top" DataKeyNames="ID,ALLOWANCE_LIST_ID,AMOUNT,IS_INSURRANCE,ALLOWANCE_LIST_NAME,EFFECT_DATE,EXPIRE_DATE">
                             <CommandItemStyle Height="28px" />
                             <CommandItemTemplate>
                                 <div style="padding: 2px 0 0 0">
@@ -431,11 +419,6 @@
                                     SortExpression="AMOUNT" UniqueName="AMOUNT" DataFormatString="{0:n0}">
                                     <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
                                 </tlk:GridNumericColumn>
-                                <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền đã quy đổi (VNĐ) %>" DataField="AMOUNT_EX"
-                                    SortExpression="AMOUNT_EX" UniqueName="AMOUNT_EX" DataFormatString="{0:n0}">
-                                    <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
-                                </tlk:GridNumericColumn>
-                               
                                 <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECT_DATE"
                                     ItemStyle-HorizontalAlign="Center" SortExpression="EFFECT_DATE" UniqueName="EFFECT_DATE"
                                     DataFormatString="{0:dd/MM/yyyy}" />
@@ -450,7 +433,7 @@
                     <span class="lbReq">*</span>
                 </td>
                 <td colspan="4">
-                    <tlk:RadComboBox ID="cboExRate" runat="server" CausesValidation="false" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
+                    <tlk:RadComboBox ID="cboExRate" runat="server" CausesValidation="false">
                     </tlk:RadComboBox>
                     <%# Translate("(Lưu ý: loại tiền tệ sử dụng cho cả thông tin lương và thông tin phụ cấp)")%>
                     <asp:RequiredFieldValidator ID="reExRate" runat="server" ControlToValidate="cboExRate"
@@ -649,16 +632,6 @@
                         cbo.set_value(item.get_attributes().getAttribute("SALARY_BASIC"));
                     }
                     break;
-            case '<%= cboExRate.ClientID %>':
-                    cbo = $find('<%= cboExRate.ClientID %>');
-                    var SalRate = $find('<%= rnmtxtSalRate.ClientID %>');
-                    if (cbo._value=="7682") {
-                    SalRate.set_value(1);
-                    }
-                    else{
-                    SalRate.set_value('');
-                    }                    
-                    break;
                 default:
                     break;
             }
@@ -737,12 +710,10 @@
 
             var valueSalBasic = 0;
             var valuePercentSalary = 0;
-            var valueSalRate = 0;
             var valueAllowance_Total = 0;
 
             var objSalBasic = $find('<%= basicSalary.ClientID %>');
             var objPercentSalary = $find('<%= rnPercentSalary.ClientID %>');
-            var objSalRate=$find('<%= rnmtxtSalRate.ClientID %>');
             var objAllowance_Total = $find('<%= rntxtAllowance_Total.ClientID %>');
 
             if (objSalBasic.get_value()) {
@@ -750,15 +721,12 @@
             }
              if (objPercentSalary.get_value()) {
                 valuePercentSalary = objPercentSalary.get_value();                 
-            } 
-            if (objSalRate.get_value()) {
-                valueSalRate = objSalRate.get_value();
             }
             if (objAllowance_Total.get_value()) {
                 valueAllowance_Total = objAllowance_Total.get_value();                  
             }
             objSalaryInsurance.clear();       
-           objSalaryInsurance.set_value((valueSalBasic*valuePercentSalary/100*valueSalRate)+valueAllowance_Total);
+           objSalaryInsurance.set_value((valueSalBasic*valuePercentSalary/100)+valueAllowance_Total);
         }      
     </script>
 </tlk:RadCodeBlock>

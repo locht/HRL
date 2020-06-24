@@ -44,9 +44,7 @@ Public Class ctrlHU_WageMng
                 'dt.Columns.Add("FACTORSALARY", GetType(String))
                 dt.Columns.Add("PERCENTSALARY", GetType(String))
                 dt.Columns.Add("EXRATE_NAME", GetType(String))
-                dt.Columns.Add("SAL_RATE", GetType(String))
                 dt.Columns.Add("AMOUNT", GetType(String))
-                dt.Columns.Add("AMOUNT_EX", GetType(String))
                 dt.Columns.Add("ALLOWANCE_TOTAL", GetType(String))
                 dt.Columns.Add("SAL_INS", GetType(String))
                 dt.Columns.Add("REASON_EDIT_EFDATE", GetType(String))
@@ -553,7 +551,6 @@ Public Class ctrlHU_WageMng
                 newRow("SAL_BASIC") = If(rows("SAL_BASIC"), Decimal.Parse(rows("SAL_BASIC")), rows("SAL_BASIC"))
                 newRow("PERCENTSALARY") = If(IsNumeric(rows("PERCENTSALARY")), Decimal.Parse(rows("PERCENTSALARY")), rows("PERCENTSALARY"))
                 newRow("EXRATE_NAME") = rows("EXRATE_NAME")
-                newRow("SAL_RATE") = If(IsNumeric(rows("SAL_RATE")), Decimal.Parse(rows("SAL_RATE")), rows("SAL_RATE"))
 
                 For Each item As DataRow In dtDataAll.Rows
                     If If(IsNumeric(rows("AMOUNT_" + item("ID").ToString)), Decimal.Parse(rows("AMOUNT_" + item("ID").ToString)), "NOTHING").ToString = "NOTHING" Then
@@ -561,17 +558,9 @@ Public Class ctrlHU_WageMng
                     Else
                         newRow("AMOUNT") += If(IsNumeric(rows("AMOUNT_" + item("ID").ToString)), Decimal.Parse(rows("AMOUNT_" + item("ID").ToString)), "NOTHING").ToString + (",")
                     End If
-                    If If(IsNumeric(rows("AMOUNT_EX_" + item("ID").ToString)), Decimal.Parse(rows("AMOUNT_EX_" + item("ID").ToString)), "NOTHING").ToString = "NOTHING" Then
-                        Exit For
-                    Else
-                        newRow("AMOUNT_EX") += If(IsNumeric(rows("AMOUNT_EX_" + item("ID").ToString)), Decimal.Parse(rows("AMOUNT_EX_" + item("ID").ToString)), "NOTHING").ToString + (",")
-                    End If
-
                     newRow("ALLOWANCE_LIST_ID") += If(IsNumeric(item("ID").ToString), Decimal.Parse(item("ID").ToString), 0).ToString + (",")
                 Next
-
                 newRow("AMOUNT") = newRow("AMOUNT").ToString.TrimEnd(",")
-                newRow("AMOUNT_EX") = newRow("AMOUNT_EX").ToString.TrimEnd(",")
                 newRow("ALLOWANCE_LIST_ID") = newRow("ALLOWANCE_LIST_ID").ToString.TrimEnd(",")
                 newRow("ALLOWANCE_TOTAL") = If(IsNumeric(rows("ALLOWANCE_TOTAL")), Decimal.Parse(rows("ALLOWANCE_TOTAL")), 0)
                 newRow("SAL_INS") = If(rows("SAL_INS") <> "", Decimal.Parse(rows("SAL_INS")), rows("SAL_INS"))
@@ -632,7 +621,6 @@ Public Class ctrlHU_WageMng
             dsData.Tables(5).TableName = "Table5"
             dsData.Tables(6).TableName = "Table6"
             dsData.Tables(7).TableName = "Table7"
-            dsData.Tables(8).TableName = "Table8"
             dsData.Tables(9).TableName = "Table9"
             rep.Dispose()
             If File.Exists(configPath + "Payroll\Business\TEMP_IMPORT_HOSOLUONG.xls") Then
@@ -793,10 +781,6 @@ VALIDATE:
                     sError = "Chưa chọn loại tiền tệ"
                     ImportValidate.IsValidTime("EXRATE_ID", row, rowError, isError, sError)
                 End If
-                If Not IsNumeric(row("SAL_RATE")) Then
-                    sError = "Chưa nhập tỷ giá bảo hiểm"
-                    ImportValidate.IsValidTime("SAL_RATE", row, rowError, isError, sError)
-                End If
                 If Not IsNumeric(row("SAL_INS")) Then
                     sError = "Chưa nhập Mức lương chính - Chỉ được nhập số"
                     ImportValidate.IsValidTime("SAL_INS", row, rowError, isError, sError)
@@ -902,6 +886,7 @@ VALIDATE:
     Public Overrides Sub UpdateControlState()
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
+        Dim rep1 As New ProfileRepository
         Try
             tbarWorkings.Enabled = True
             rgWorking.Enabled = True
@@ -947,11 +932,17 @@ VALIDATE:
                         '    Exit Sub
                         'End If
                         If rep.ApproveWorkings(workingIds).Status = 1 Then
+
+                            For Each dr As Telerik.Web.UI.GridDataItem In rgWorking.SelectedItems
+                                rep1.INSERT_PLCONTRACT(dr.GetDataKeyValue("ID"))
+                            Next
+
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                             CurrentState = CommonMessage.STATE_NORMAL
                             rgWorking.CurrentPageIndex = 0
                             rgWorking.MasterTableView.SortExpressions.Clear()
                             rgWorking.Rebind()
+                            rep1.Dispose()
                         End If
                     End Using
             End Select
