@@ -972,7 +972,7 @@ Public Class ctrlHU_EmpDtlProfile
                 cboObject.SelectedIndex = 3
                 dtData = rep.GetOtherList("MOTO_DRIVER_TYPE", True)
                 FillRadCombobox(cboMotoDrivingLicense, dtData, "NAME", "ID", True)
-                dtData = rep.GetOtherList("MARK_EDU", True)
+                dtData = rep.GetOtherList("COMPUTER_LEVEL", True)
                 FillRadCombobox(cboComputerRank, dtData, "NAME", "ID", True)
                 '''''''''''''''''''''''''''''''''
                 'dtData = rep.GetOtherList("EMPLOYEE_OBJECT")
