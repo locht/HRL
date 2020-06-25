@@ -252,7 +252,7 @@ Public Class ctrlHU_WageNewEdit
                         cboSaleCommision.Text = Working.SALE_COMMISION_NAME
                     End If
 
-                    If Working.IS_PLHD IsNot Nothing Then
+                    If Working.IS_PLHD IsNot Nothing AndAlso Working.IS_PLHD <> 0 Then
                         IS_PLHD.Checked = True
                     Else
                         IS_PLHD.Checked = False
