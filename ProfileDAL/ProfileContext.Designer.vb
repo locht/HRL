@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("25411d5b-17ee-4fbf-9431-40896abf55bc")>
+<Assembly: EdmSchemaAttribute("d7166eef-0bd9-4bd7-a126-2fc23eea26f9")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -51663,6 +51663,31 @@ Public Partial Class HU_ORGANIZATION
     End Sub
 
     Private Partial Sub OnUNDER_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property BV_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _BV_ID
+        End Get
+        Set
+            OnBV_IDChanging(value)
+            ReportPropertyChanging("BV_ID")
+            _BV_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("BV_ID")
+            OnBV_IDChanged()
+        End Set
+    End Property
+
+    Private _BV_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnBV_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnBV_IDChanged()
     End Sub
 
     #End Region

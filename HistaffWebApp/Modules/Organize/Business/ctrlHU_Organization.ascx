@@ -335,8 +335,17 @@
                     </tlk:RadButton>
                     <asp:HiddenField ID="hidHR_ID" runat="server" />
                 </td>
-               <td></td>
-                <td></td>
+                <td class="lb">
+                    <asp:Label ID="lblBV" runat="server" Text="Bảo vệ"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="txtBV" Width="128px" runat="server" ReadOnly="true">
+                    </tlk:RadTextBox>
+                    <tlk:RadButton ID="btn_BV" runat="server" SkinID="ButtonView"
+                        CausesValidation="false" TabIndex="5">
+                    </tlk:RadButton>
+                    <asp:HiddenField ID="hidBV_ID" runat="server" />
+                </td>              
             </tr>
 
             <tr>
@@ -508,6 +517,9 @@
 </asp:PlaceHolder>
 <asp:PlaceHolder runat="server">
     <Common:ctrlFindEmployeePopup ID="CtrlHR_ID" runat="server" IsHideTerminate="false" MultiSelect="false" LoadAllOrganization="false" />
+</asp:PlaceHolder>
+<asp:PlaceHolder runat="server">
+    <Common:ctrlFindEmployeePopup ID="CtrlBV" runat="server" IsHideTerminate="false" MultiSelect="false" LoadAllOrganization="false" />
 </asp:PlaceHolder>
 
 <tlk:radscriptblock id="rscriptblock" runat="server">

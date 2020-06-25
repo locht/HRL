@@ -61,4 +61,5 @@
 
     Public Property UNDER_ID As Decimal?
     Public Property UNDER_NAME As String
+    Public Property BV_ID As Decimal?
 End Class

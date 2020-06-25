@@ -512,6 +512,12 @@ Public Class ctrlHU_Organization
                         Else
                             row.HR_ID = hidHR_ID.Value
                         End If
+
+                        If hidBV_ID.Value = "" Then
+                            row.BV_ID = Nothing
+                        Else
+                            row.BV_ID = hidBV_ID.Value
+                        End If
                         '--------------
                         row.SHORT_NAME = txtSHORT_NAME.Text
                         row.IS_SIGN_CONTRACT = chkIsSignContract.Checked
@@ -699,7 +705,21 @@ Public Class ctrlHU_Organization
             If treeOrgFunction.SelectedNode Is Nothing Then
                 Exit Sub
             End If
-            'GetUpLevelByNode(treeOrgFunction.SelectedNode)
+
+            'Check chi nhanh cap 2
+            Dim data As New OrganizationPathDTO
+            data = GetUpLevelByNode(treeOrgFunction.SelectedNode)
+            Dim orgLevel = data.HIERARCHICAL_PATH.Count(Function(t) t = ";") + 1
+            If orgLevel <> 2 Then
+                txtBV.Display = False
+                btn_BV.Visible = False
+                lblBV.Visible = False
+            Else
+                txtBV.Display = True
+                btn_BV.Visible = True
+                lblBV.Visible = True
+            End If
+
             hidID.Value = treeOrgFunction.SelectedNode.Value
             SelectOrgFunction = treeOrgFunction.SelectedNode.Value
             treeOrgFunction.SelectedNode.ExpandParentNodes()
@@ -726,6 +746,27 @@ Public Class ctrlHU_Organization
                 Dim item = lstCommonEmployee(0)
                 hidREPRESENTATIVE_ID.Value = item.ID
                 txtREPRESENTATIVE_ID.Text = item.FULLNAME_VN
+            End If
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+    Private Sub btn_BV_Click(sender As Object, e As System.EventArgs) Handles btn_BV.Click
+        Try
+            CtrlBV.Show()
+        Catch ex As Exception
+            ShowMessage(ex.ToString, NotifyType.Error)
+        End Try
+    End Sub
+
+    Private Sub ctrlBV_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles CtrlBV.EmployeeSelected
+        Try
+            Dim lstCommonEmployee = CtrlBV.SelectedEmployee
+            If lstCommonEmployee.Count <> 0 Then
+                Dim item = lstCommonEmployee(0)
+                hidBV_ID.Value = item.ID
+                txtBV.Text = item.FULLNAME_VN
             End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -849,7 +890,33 @@ Public Class ctrlHU_Organization
             'End Select
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
+                    'Check chi nhanh cap 2
+                    Dim data As New OrganizationPathDTO
+                    data = GetUpLevelByNode(treeOrgFunction.SelectedNode)
+                    Dim orgLevel = data.HIERARCHICAL_PATH.Count(Function(t) t = ";") + 1
+                    If orgLevel <> 1 Then
+                        txtBV.Display = False
+                        btn_BV.Visible = False
+                        lblBV.Visible = False
+                    Else
+                        txtBV.Display = True
+                        btn_BV.Visible = True
+                        lblBV.Visible = True
+                    End If
                 Case CommonMessage.STATE_NORMAL
+                    'Check chi nhanh cap 2
+                    Dim data As New OrganizationPathDTO
+                    data = GetUpLevelByNode(treeOrgFunction.SelectedNode)
+                    Dim orgLevel = data.HIERARCHICAL_PATH.Count(Function(t) t = ";") + 1
+                    If orgLevel <> 2 Then
+                        txtBV.Display = False
+                        btn_BV.Visible = False
+                        lblBV.Visible = False
+                    Else
+                        txtBV.Display = True
+                        btn_BV.Visible = True
+                        lblBV.Visible = True
+                    End If
                     UpdateToolbarState(CurrentState)
                 Case CommonMessage.STATE_EDIT
 
@@ -928,8 +995,10 @@ Public Class ctrlHU_Organization
         hidREPRESENTATIVE_ID.Value = Nothing
         txtACCOUNTING_ID.Text = ""
         txtHR_ID.Text = ""
+        txtBV.Text = ""
         hidACCOUNTING_ID.Value = Nothing
         hidHR_ID.Value = Nothing
+        hidBV_ID.Value = Nothing
 
         cboUNIT_RANK_ID.SelectedValue = Nothing
         cboUNIT_RANK_ID.Text = ""
@@ -1017,6 +1086,7 @@ Public Class ctrlHU_Organization
         btnREPRESENTATIVE_ID.Enabled = IsEnable
         btnACCOUNTING_ID.Enabled = IsEnable
         btnHR_ID.Enabled = IsEnable
+        btn_BV.Enabled = IsEnable
         txtAUTHOR_LETTER.ReadOnly = Not IsEnable
         cboPROVINCE_CONTRACT_ID.Enabled = IsEnable
         cboDISTRICT_CONTRACT_ID.Enabled = IsEnable
@@ -1329,6 +1399,11 @@ sucssec:
                 txtHR_ID.Text = row.Field(Of String)("HR_NAME")
                 If row.Field(Of Decimal?)("HR_ID") IsNot Nothing Then
                     hidHR_ID.Value = row.Field(Of Decimal?)("HR_ID")
+                End If
+
+                txtBV.Text = row.Field(Of String)("BV_NAME")
+                If row.Field(Of Decimal?)("BV_ID") IsNot Nothing Then
+                    hidBV_ID.Value = row.Field(Of Decimal?)("BV_ID")
                 End If
 
             End If

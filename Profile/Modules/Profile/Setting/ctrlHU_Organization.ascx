@@ -335,8 +335,17 @@
                     </tlk:RadButton>
                     <asp:HiddenField ID="hidHR_ID" runat="server" />
                 </td>
-               <td></td>
-                <td></td>
+                <td class="lb">
+                    <asp:Label ID="lblBV" runat="server" Text="Bảo vệ"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="txtBV" Width="128px" runat="server" ReadOnly="true">
+                    </tlk:RadTextBox>
+                    <tlk:RadButton ID="btn_BV" runat="server" SkinID="ButtonView"
+                        CausesValidation="false" TabIndex="5">
+                    </tlk:RadButton>
+                    <asp:HiddenField ID="hidBV_ID" runat="server" />
+                </td>              
             </tr>
 
             <tr>
@@ -499,15 +508,18 @@
 </tlk:radsplitter>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 
-<asp:PlaceHolder ID="PlaceHolder1" runat="server">
+<asp:PlaceHolder runat="server">
     <Common:ctrlFindEmployeePopup ID="ctrlREPRESENTATIVE_ID" runat="server" IsHideTerminate="false" MultiSelect="false" LoadAllOrganization="false" />
 </asp:PlaceHolder>
 
-<asp:PlaceHolder ID="PlaceHolder2" runat="server">
+<asp:PlaceHolder runat="server">
     <Common:ctrlFindEmployeePopup ID="CtrlhidACCOUNTING_ID" runat="server" IsHideTerminate="false" MultiSelect="false" LoadAllOrganization="false" />
 </asp:PlaceHolder>
-<asp:PlaceHolder ID="PlaceHolder3" runat="server">
+<asp:PlaceHolder runat="server">
     <Common:ctrlFindEmployeePopup ID="CtrlHR_ID" runat="server" IsHideTerminate="false" MultiSelect="false" LoadAllOrganization="false" />
+</asp:PlaceHolder>
+<asp:PlaceHolder runat="server">
+    <Common:ctrlFindEmployeePopup ID="CtrlBV" runat="server" IsHideTerminate="false" MultiSelect="false" LoadAllOrganization="false" />
 </asp:PlaceHolder>
 
 <tlk:radscriptblock id="rscriptblock" runat="server">
@@ -528,7 +540,7 @@
 
         function loadcombobox(id_pro, id_cbo, list_id) {
             var combo = $find(id_cbo);
-
+            
             if (id_pro > 0) {
                 var n = document.getElementById(list_id)
                 var n1 = JSON.parse(n.value)

@@ -545,6 +545,7 @@ Public Class ProfileStoreProcedure
                                                    r.BUSS_REG_NAME,
                                                    r.MAN_UNI_NAME,
                                                    r.UNDER_ID,
+                                                   r.BV_ID,
                                                    Me.Log.Username,
                                                    OUT_NUMBER
                                                    })
@@ -589,6 +590,7 @@ Public Class ProfileStoreProcedure
                                         r.BUSS_REG_NAME,
                                         r.MAN_UNI_NAME,
                                         r.UNDER_ID,
+                                        r.BV_ID,
                                         Me.Log.Username,
                                         OUT_NUMBER
                                         })
