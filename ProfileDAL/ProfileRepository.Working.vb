@@ -1850,8 +1850,11 @@ Partial Class ProfileRepository
         Try
             ' nếu phê duyệt thì trừ đi 1 ngày vào ngày hết hiệu lực với HSL cũ gần nhất trước đó
             If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
-                Dim HSL_old = (From p In Context.HU_WORKING Where p.EMPLOYEE_ID = objWorking.EMPLOYEE_ID And p.ID < objWorking.ID Order By p.ID Descending).FirstOrDefault
-                HSL_old.EXPIRE_DATE = objWorking.EFFECT_DATE.Value.AddDays(-1)
+                Dim HSL_old = (From p In Context.HU_WORKING Where p.EMPLOYEE_ID = objWorking.EMPLOYEE_ID AndAlso p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID _
+                               AndAlso p.IS_WAGE = -1 AndAlso p.EFFECT_DATE <= objWorking.EFFECT_DATE Order By p.ID Descending).FirstOrDefault
+                If HSL_old IsNot Nothing Then
+                    HSL_old.EXPIRE_DATE = objWorking.EFFECT_DATE.Value.AddDays(-1)
+                End If
             End If
             Dim objWorkingData = (From p In Context.HU_WORKING Where objWorking.ID = p.ID).First()
             objWorkingData.EMPLOYEE_ID = objWorking.EMPLOYEE_ID

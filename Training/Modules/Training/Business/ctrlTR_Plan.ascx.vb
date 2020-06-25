@@ -165,7 +165,7 @@ Public Class ctrlTR_Plan
                     CurrentState = CommonMessage.STATE_EDIT
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_DELETE
-                    
+
                     Dim repHF = New HistaffFrameworkRepository
                     Dim dtData1 As New DataTable
                     For idx = 0 To rgData.SelectedItems.Count - 1
@@ -183,7 +183,7 @@ Public Class ctrlTR_Plan
                         ShowMessage(Translate("Bản ghi đã phê duyệt. Thao tác thực hiện không thành công"), NotifyType.Warning)
                         Exit Sub
                     End If
-                   
+
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
                     ctrlMessageBox.DataBind()

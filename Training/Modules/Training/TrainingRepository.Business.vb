@@ -72,7 +72,16 @@ Partial Class TrainingRepository
             End Try
         End Using
     End Function
-
+    Public Function GetObjectGroup() As List(Of CenterDTO)
+        Using rep As New TrainingBusinessClient
+            Try
+                Return rep.GetObjectGroup()
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
     Public Function GetCenters() As List(Of CenterDTO)
         Using rep As New TrainingBusinessClient
             Try
@@ -185,7 +194,16 @@ Partial Class TrainingRepository
             End Try
         End Using
     End Function
-
+    Public Function GetInfoPlan_Request(ByVal org_id As Decimal, ByVal course_id As Decimal) As PlanDTO
+        Using rep As New TrainingBusinessClient
+            Try
+                Return rep.GetInfoPlan_Request(org_id, course_id)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
     Public Function GetEmployeeByPlanID(ByVal filter As RequestDTO) As List(Of RequestEmpDTO)
         Using rep As New TrainingBusinessClient
             Try

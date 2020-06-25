@@ -146,7 +146,15 @@ Namespace TrainingBusiness.ServiceImplementations
                 Throw ex
             End Try
         End Function
-
+        Public Function GetInfoPlan_Request(ByVal org_id As Decimal, ByVal course_id As Decimal) As PlanDTO _
+                                     Implements ServiceContracts.ITrainingBusiness.GetInfoPlan_Request
+            Try
+                Dim rep As New TrainingRepository
+                Return rep.GetInfoPlan_Request(org_id, course_id)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
         Public Function GetEmployeeByPlanID(ByVal filter As RequestDTO) As List(Of RequestEmpDTO) _
                                      Implements ServiceContracts.ITrainingBusiness.GetEmployeeByPlanID
             Try
