@@ -69,6 +69,7 @@
             <EntitySet Name="HU_ORGANIZATION_V" EntityType="TrainingModel.Store.HU_ORGANIZATION_V" store:Type="Tables"  />
             <EntitySet Name="TR_ASSESSMENT_COURSE" EntityType="TrainingModel.Store.TR_ASSESSMENT_COURSE" store:Type="Tables"  />
             <EntitySet Name="TRV_PLAN_EXPECTED_TIME" EntityType="TrainingModel.Store.TRV_PLAN_EXPECTED_TIME" store:Type="Tables"  />
+            <EntitySet Name="TR_CONFIRM_PROGRAM" EntityType="TrainingModel.Store.TR_CONFIRM_PROGRAM" store:Type="Tables"  />
             <AssociationSet Name="FK_HU_PRO_HU_DIS" Association="TrainingModel.Store.FK_HU_PRO_HU_DIS">
                 <End Role="HU_PROVINCE" EntitySet="HU_PROVINCE" />
                 <End Role="HU_DISTRICT" EntitySet="HU_DISTRICT" />
@@ -419,6 +420,7 @@
             <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
             <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="NOTIFICATION_STATUS" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="OT_OTHER_LIST">
             <Key>
@@ -1274,6 +1276,21 @@
             <Property Name="ID" Type="number" Nullable="false" Precision="38" />
             <Property Name="EXPECTED_TIME" Type="nvarchar2" Nullable="true" MaxLength="2000" />
         </EntityType>
+        <EntityType Name="TR_CONFIRM_PROGRAM">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TR_CLASS_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CONFIRM_STATUS" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="false" MaxLength="1023" />
+        </EntityType>
     <Association Name="FK_HU_PRO_HU_DIS">
         <End Role="HU_PROVINCE" Type="TrainingModel.Store.HU_PROVINCE" Multiplicity="0..1">
         </End>
@@ -1504,6 +1521,7 @@
           <EntitySet Name="HU_ORGANIZATION_V" EntityType="TrainingModel.HU_ORGANIZATION_V" />
           <EntitySet Name="TR_ASSESSMENT_COURSE" EntityType="TrainingModel.TR_ASSESSMENT_COURSE" />
           <EntitySet Name="TRV_PLAN_EXPECTED_TIME" EntityType="TrainingModel.TRV_PLAN_EXPECTED_TIME" />
+          <EntitySet Name="TR_CONFIRM_PROGRAM" EntityType="TrainingModel.TR_CONFIRM_PROGRAM" />
           </EntityContainer>
         <EntityType Name="TR_COST_CENTER">
           <Key>
@@ -1818,6 +1836,7 @@
           <Property Type="String" Name="MODIFIED_BY" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="MODIFIED_DATE" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="NOTIFICATION_STATUS" />
         </EntityType>
         <EntityType Name="OT_OTHER_LIST">
           <Key>
@@ -2799,6 +2818,21 @@
           <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
           <Property Type="String" Name="EXPECTED_TIME" MaxLength="2000" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="TR_CONFIRM_PROGRAM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TR_CLASS_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CONFIRM_STATUS" Precision="38" Scale="0" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="1023" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3135,6 +3169,7 @@
                     <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
                     <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
                     <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="NOTIFICATION_STATUS" ColumnName="NOTIFICATION_STATUS" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -4034,6 +4069,22 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="TR_CONFIRM_PROGRAM">
+            <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_CONFIRM_PROGRAM)">
+                <MappingFragment StoreEntitySet="TR_CONFIRM_PROGRAM">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                    <ScalarProperty Name="TR_CLASS_ID" ColumnName="TR_CLASS_ID" />
+                    <ScalarProperty Name="CONFIRM_STATUS" ColumnName="CONFIRM_STATUS" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
     </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -4075,7 +4126,7 @@
         <EntityTypeShape EntityType="TrainingModel.TR_PROGRAM_UNIT" Width="2.125" PointX="15.75" PointY="3.75" Height="1.5956835937500102" />
         <EntityTypeShape EntityType="TrainingModel.TR_REQUEST" Width="1.5" PointX="6.75" PointY="15.75" Height="6.5955208333333353" />
         <EntityTypeShape EntityType="TrainingModel.TR_REQUEST_EMPLOYEE" Width="1.5" PointX="14.75" PointY="15.75" Height="1.5956835937500102" />
-        <EntityTypeShape EntityType="TrainingModel.TR_CLASS_STUDENT" Width="1.5" PointX="16.75" PointY="6.75" Height="2.7494921875000031" />
+        <EntityTypeShape EntityType="TrainingModel.TR_CLASS_STUDENT" Width="1.75" PointX="16.75" PointY="6.75" Height="2.9417936197916656" />
         <EntityTypeShape EntityType="TrainingModel.OT_OTHER_LIST" Width="1.5" PointX="8.75" PointY="16.75" Height="4.48020507812501" />
         <EntityTypeShape EntityType="TrainingModel.OT_OTHER_LIST_GROUP" Width="1.5" PointX="16.75" PointY="10.75" Height="2.7494921875000102" />
         <EntityTypeShape EntityType="TrainingModel.OT_OTHER_LIST_TYPE" Width="1.5" PointX="10.75" PointY="16.75" Height="3.5186979166666674" />
@@ -4165,6 +4216,7 @@
         <EntityTypeShape EntityType="TrainingModel.HU_ORGANIZATION_V" Width="1.5" PointX="0.76222850976615608" PointY="3.181715579322407" />
         <EntityTypeShape EntityType="TrainingModel.TR_ASSESSMENT_COURSE" Width="1.5" PointX="25.375" PointY="0.75" Height="3.1340950520833246" />
         <EntityTypeShape EntityType="TrainingModel.TRV_PLAN_EXPECTED_TIME" Width="1.5" PointX="0.75" PointY="25.75" Height="1.4033821614583246" />
+        <EntityTypeShape EntityType="TrainingModel.TR_CONFIRM_PROGRAM" Width="1.5" PointX="25.375" PointY="4.75" Height="2.9417936197916674" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

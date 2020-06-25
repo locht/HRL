@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 06/25/2020 11:28:45 AM
+-- Date Created: 06/25/2020 4:21:02 PM
 -- Generated from EDMX file: F:\WORKING\acv_19\TrainingDAL\TrainingContext.edmx
 -- --------------------------------------------------
 
@@ -13,7 +13,7 @@
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "TrainingModelStoreContainer"."TRV_PLAN_EXPECTED_TIME";
+-- DROP TABLE "ACV_19_DEV"."TR_CONFIRM_PROGRAM";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -309,7 +309,8 @@ CREATE TABLE "dbo"."TR_CLASS_STUDENT" (
    "CREATED_LOG" NVARCHAR2(1023) NULL,
    "MODIFIED_BY" NVARCHAR2(50) NULL,
    "MODIFIED_DATE" DATE NULL,
-   "MODIFIED_LOG" NVARCHAR2(1023) NULL
+   "MODIFIED_LOG" NVARCHAR2(1023) NULL,
+   "NOTIFICATION_STATUS" NUMBER(38,0) NULL
 );
 
 -- Creating table 'OT_OTHER_LIST'
@@ -1122,6 +1123,20 @@ CREATE TABLE "dbo"."TRV_PLAN_EXPECTED_TIME" (
    "EXPECTED_TIME" NVARCHAR2(2000) NULL
 );
 
+-- Creating table 'TR_CONFIRM_PROGRAM'
+CREATE TABLE "dbo"."TR_CONFIRM_PROGRAM" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "EMPLOYEE_ID" NUMBER(38,0) NULL,
+   "TR_CLASS_ID" NUMBER(38,0) NULL,
+   "CONFIRM_STATUS" NUMBER(38,0) NULL,
+   "CREATED_BY" NVARCHAR2(50) NULL,
+   "CREATED_DATE" DATE NULL,
+   "CREATED_LOG" NVARCHAR2(1023) NULL,
+   "MODIFIED_BY" NVARCHAR2(50) NULL,
+   "MODIFIED_DATE" DATE NULL,
+   "MODIFIED_LOG" NVARCHAR2(1023) NOT NULL
+);
+
 
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
@@ -1626,6 +1641,14 @@ ADD CONSTRAINT "PK_TR_ASSESSMENT_COURSE"
 -- Creating primary key on "ID"in table 'TRV_PLAN_EXPECTED_TIME'
 ALTER TABLE "dbo"."TRV_PLAN_EXPECTED_TIME"
 ADD CONSTRAINT "PK_TRV_PLAN_EXPECTED_TIME"
+   PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'TR_CONFIRM_PROGRAM'
+ALTER TABLE "dbo"."TR_CONFIRM_PROGRAM"
+ADD CONSTRAINT "PK_TR_CONFIRM_PROGRAM"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;

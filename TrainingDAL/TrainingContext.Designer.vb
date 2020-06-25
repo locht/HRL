@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("f95b9543-8e93-4cc1-9c57-f5099adfa04d")>
+<Assembly: EdmSchemaAttribute("0553d0c2-15c3-4435-8345-8ab05ff28c00")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("TrainingModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
 <Assembly: EdmRelationshipAttribute("TrainingModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
@@ -962,6 +962,20 @@ Public Partial Class TrainingContext
 
     Private _TRV_PLAN_EXPECTED_TIME As ObjectSet(Of TRV_PLAN_EXPECTED_TIME)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property TR_CONFIRM_PROGRAM() As ObjectSet(Of TR_CONFIRM_PROGRAM)
+        Get
+            If (_TR_CONFIRM_PROGRAM Is Nothing) Then
+                _TR_CONFIRM_PROGRAM = MyBase.CreateObjectSet(Of TR_CONFIRM_PROGRAM)("TR_CONFIRM_PROGRAM")
+            End If
+            Return _TR_CONFIRM_PROGRAM
+        End Get
+    End Property
+
+    Private _TR_CONFIRM_PROGRAM As ObjectSet(Of TR_CONFIRM_PROGRAM)
+
     #End Region
 
     #Region "AddTo Methods"
@@ -1405,6 +1419,13 @@ Public Partial Class TrainingContext
     ''' </summary>
     Public Sub AddToTRV_PLAN_EXPECTED_TIME(ByVal tRV_PLAN_EXPECTED_TIME As TRV_PLAN_EXPECTED_TIME)
         MyBase.AddObject("TRV_PLAN_EXPECTED_TIME", tRV_PLAN_EXPECTED_TIME)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the TR_CONFIRM_PROGRAM EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToTR_CONFIRM_PROGRAM(ByVal tR_CONFIRM_PROGRAM As TR_CONFIRM_PROGRAM)
+        MyBase.AddObject("TR_CONFIRM_PROGRAM", tR_CONFIRM_PROGRAM)
     End Sub
 
     #End Region
@@ -14226,6 +14247,31 @@ Public Partial Class TR_CLASS_STUDENT
     Private Partial Sub OnMODIFIED_LOGChanged()
     End Sub
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NOTIFICATION_STATUS() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _NOTIFICATION_STATUS
+        End Get
+        Set
+            OnNOTIFICATION_STATUSChanging(value)
+            ReportPropertyChanging("NOTIFICATION_STATUS")
+            _NOTIFICATION_STATUS = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("NOTIFICATION_STATUS")
+            OnNOTIFICATION_STATUSChanged()
+        End Set
+    End Property
+
+    Private _NOTIFICATION_STATUS As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnNOTIFICATION_STATUSChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnNOTIFICATION_STATUSChanged()
+    End Sub
+
     #End Region
 
 End Class
@@ -14554,6 +14600,288 @@ Public Partial Class TR_COMMIT_AFTER_TRAIN
     End Sub
 
     Private Partial Sub OnCOST_TRAIN_TOChanged()
+    End Sub
+
+    #End Region
+
+End Class
+
+''' <summary>
+''' No Metadata Documentation available.
+''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="TrainingModel", Name:="TR_CONFIRM_PROGRAM")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class TR_CONFIRM_PROGRAM
+    Inherits EntityObject
+    #Region "Factory Method"
+
+    ''' <summary>
+    ''' Create a new TR_CONFIRM_PROGRAM object.
+    ''' </summary>
+    ''' <param name="id">Initial value of the ID property.</param>
+    ''' <param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+    Public Shared Function CreateTR_CONFIRM_PROGRAM(id As Global.System.Decimal, mODIFIED_LOG As Global.System.String) As TR_CONFIRM_PROGRAM
+        Dim tR_CONFIRM_PROGRAM as TR_CONFIRM_PROGRAM = New TR_CONFIRM_PROGRAM
+        tR_CONFIRM_PROGRAM.ID = id
+        tR_CONFIRM_PROGRAM.MODIFIED_LOG = mODIFIED_LOG
+        Return tR_CONFIRM_PROGRAM
+    End Function
+
+    #End Region
+
+    #Region "Primitive Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property ID() As Global.System.Decimal
+        Get
+            Return _ID
+        End Get
+        Set
+            If (_ID <> Value) Then
+                OnIDChanging(value)
+                ReportPropertyChanging("ID")
+                _ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ID")
+                OnIDChanged()
+            End If
+        End Set
+    End Property
+
+    Private _ID As Global.System.Decimal
+    Private Partial Sub OnIDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnIDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EMPLOYEE_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _EMPLOYEE_ID
+        End Get
+        Set
+            OnEMPLOYEE_IDChanging(value)
+            ReportPropertyChanging("EMPLOYEE_ID")
+            _EMPLOYEE_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("EMPLOYEE_ID")
+            OnEMPLOYEE_IDChanged()
+        End Set
+    End Property
+
+    Private _EMPLOYEE_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnEMPLOYEE_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnEMPLOYEE_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TR_CLASS_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _TR_CLASS_ID
+        End Get
+        Set
+            OnTR_CLASS_IDChanging(value)
+            ReportPropertyChanging("TR_CLASS_ID")
+            _TR_CLASS_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("TR_CLASS_ID")
+            OnTR_CLASS_IDChanged()
+        End Set
+    End Property
+
+    Private _TR_CLASS_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnTR_CLASS_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnTR_CLASS_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CONFIRM_STATUS() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _CONFIRM_STATUS
+        End Get
+        Set
+            OnCONFIRM_STATUSChanging(value)
+            ReportPropertyChanging("CONFIRM_STATUS")
+            _CONFIRM_STATUS = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("CONFIRM_STATUS")
+            OnCONFIRM_STATUSChanged()
+        End Set
+    End Property
+
+    Private _CONFIRM_STATUS As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnCONFIRM_STATUSChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnCONFIRM_STATUSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CREATED_BY() As Global.System.String
+        Get
+            Return _CREATED_BY
+        End Get
+        Set
+            OnCREATED_BYChanging(value)
+            ReportPropertyChanging("CREATED_BY")
+            _CREATED_BY = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CREATED_BY")
+            OnCREATED_BYChanged()
+        End Set
+    End Property
+
+    Private _CREATED_BY As Global.System.String
+    Private Partial Sub OnCREATED_BYChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCREATED_BYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CREATED_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _CREATED_DATE
+        End Get
+        Set
+            OnCREATED_DATEChanging(value)
+            ReportPropertyChanging("CREATED_DATE")
+            _CREATED_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("CREATED_DATE")
+            OnCREATED_DATEChanged()
+        End Set
+    End Property
+
+    Private _CREATED_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnCREATED_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnCREATED_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CREATED_LOG() As Global.System.String
+        Get
+            Return _CREATED_LOG
+        End Get
+        Set
+            OnCREATED_LOGChanging(value)
+            ReportPropertyChanging("CREATED_LOG")
+            _CREATED_LOG = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CREATED_LOG")
+            OnCREATED_LOGChanged()
+        End Set
+    End Property
+
+    Private _CREATED_LOG As Global.System.String
+    Private Partial Sub OnCREATED_LOGChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCREATED_LOGChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MODIFIED_BY() As Global.System.String
+        Get
+            Return _MODIFIED_BY
+        End Get
+        Set
+            OnMODIFIED_BYChanging(value)
+            ReportPropertyChanging("MODIFIED_BY")
+            _MODIFIED_BY = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("MODIFIED_BY")
+            OnMODIFIED_BYChanged()
+        End Set
+    End Property
+
+    Private _MODIFIED_BY As Global.System.String
+    Private Partial Sub OnMODIFIED_BYChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnMODIFIED_BYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MODIFIED_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _MODIFIED_DATE
+        End Get
+        Set
+            OnMODIFIED_DATEChanging(value)
+            ReportPropertyChanging("MODIFIED_DATE")
+            _MODIFIED_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MODIFIED_DATE")
+            OnMODIFIED_DATEChanged()
+        End Set
+    End Property
+
+    Private _MODIFIED_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnMODIFIED_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnMODIFIED_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property MODIFIED_LOG() As Global.System.String
+        Get
+            Return _MODIFIED_LOG
+        End Get
+        Set
+            OnMODIFIED_LOGChanging(value)
+            ReportPropertyChanging("MODIFIED_LOG")
+            _MODIFIED_LOG = StructuralObject.SetValidValue(value, false)
+            ReportPropertyChanged("MODIFIED_LOG")
+            OnMODIFIED_LOGChanged()
+        End Set
+    End Property
+
+    Private _MODIFIED_LOG As Global.System.String
+    Private Partial Sub OnMODIFIED_LOGChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnMODIFIED_LOGChanged()
     End Sub
 
     #End Region
