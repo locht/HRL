@@ -915,6 +915,9 @@ Namespace TrainingBusiness
         Private Departments_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EXPECTED_TIMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GR_PROGRAM_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -1338,6 +1341,19 @@ Namespace TrainingBusiness
                 If (Object.ReferenceEquals(Me.Departments_NAMEField, value) <> true) Then
                     Me.Departments_NAMEField = value
                     Me.RaisePropertyChanged("Departments_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EXPECTED_TIME() As String
+            Get
+                Return Me.EXPECTED_TIMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.EXPECTED_TIMEField, value) <> true) Then
+                    Me.EXPECTED_TIMEField = value
+                    Me.RaisePropertyChanged("EXPECTED_TIME")
                 End If
             End Set
         End Property

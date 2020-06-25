@@ -183,6 +183,7 @@ Partial Class TrainingRepository
                     From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS_ID).DefaultIfEmpty
                     From duration In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TR_DURATION_UNIT_ID).DefaultIfEmpty
                     From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
+                    From et In Context.TRV_PLAN_EXPECTED_TIME.Where(Function(f) f.ID = p.ID).DefaultIfEmpty
                     Where p.YEAR = filter.YEAR
             Select New PlanDTO With {.ID = p.ID,
                                       .YEAR = p.YEAR,
@@ -225,9 +226,8 @@ Partial Class TrainingRepository
                                       .UNIT_NAME = u.NAME,
                                       .Work_inv_NAME = p.WORKS,
                                       .ATTACHFILE = p.ATTACHFILE,
-                                      .CREATED_DATE = p.CREATED_DATE}
-
-
+                                      .CREATED_DATE = p.CREATED_DATE,
+                                     .EXPECTED_TIME = et.EXPECTED_TIME}
 
             Dim lst = query
 
@@ -241,6 +241,9 @@ Partial Class TrainingRepository
 
             If filter.GR_PROGRAM_ID.HasValue Then
                 lst = lst.Where(Function(p) p.GR_PROGRAM_ID = filter.GR_PROGRAM_ID)
+            End If
+            If filter.EXPECTED_TIME <> "" Then
+                lst = lst.Where(Function(p) p.EXPECTED_TIME.ToUpper.Contains(filter.EXPECTED_TIME.ToUpper))
             End If
 
             If filter.NAME <> "" Then
