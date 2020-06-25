@@ -364,8 +364,9 @@ Namespace TrainingBusiness.ServiceContracts
         Function GetEntryAndFormByCourseID(ByVal CourseId As Decimal, ByVal langCode As String) As CourseDTO
 
         <OperationContract()>
+        Function GetObjectGroup() As List(Of CenterDTO)
+        <OperationContract()>
         Function GetCenters() As List(Of CenterDTO)
-
 #End Region
 
 #Region "Plan"
@@ -409,7 +410,8 @@ Namespace TrainingBusiness.ServiceContracts
 
         <OperationContract()>
         Function GetEmployeeByPlanID(ByVal filter As RequestDTO) As List(Of RequestEmpDTO)
-
+        <OperationContract()>
+        Function GetInfoPlan_Request(ByVal org_id As Decimal, ByVal course_id As Decimal) As PlanDTO
 
         <OperationContract()>
         Function InsertRequest(ByVal Request As RequestDTO,

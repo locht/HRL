@@ -133,7 +133,21 @@ Partial Class TrainingRepository
             Throw ex
         End Try
     End Function
-
+    Public Function GetObjectGroup() As List(Of CenterDTO)
+        Try
+            Dim ListCenter As List(Of CenterDTO) = (From record In Context.OT_OTHER_LIST
+                                                    Where record.ACTFLG = -1 And record.TYPE_ID = 7102
+                                                    Select New CenterDTO _
+                                                        With {
+                                                            .ID = record.ID,
+                                                            .NAME_VN = record.NAME_VN,
+                                                            .NAME_EN = record.NAME_EN}).ToList
+            Return ListCenter
+        Catch ex As Exception
+            Utility.WriteExceptionLog(ex, Me.ToString() & ".GetCenters")
+            Throw ex
+        End Try
+    End Function
     Public Function GetCenters() As List(Of CenterDTO)
         Try
             Dim ListCenter As List(Of CenterDTO) = (From record In Context.TR_CENTER
@@ -1187,7 +1201,7 @@ Partial Class TrainingRepository
                         objProgram.TR_CURRENCY_ID = item.TR_CURRENCY_ID
                         objProgram.VENUE = item.VENUE
                     End If
-                    
+
 
                     With objProgram
                         .IS_REIMBURSE = 0
@@ -1253,6 +1267,31 @@ Partial Class TrainingRepository
             Return True
         Catch ex As Exception
             Utility.WriteExceptionLog(ex, Me.ToString() & ".DeleteTrainingRequests")
+            Throw ex
+        End Try
+    End Function
+    Public Function GetInfoPlan_Request(ByVal org_id As Decimal, ByVal course_id As Decimal) As PlanDTO
+        Try
+            Dim dt = (From p In Context.TR_PLAN
+                      From o In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TRAIN_FORM_ID).DefaultIfEmpty
+                      From o1 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.PROPERTIES_NEED_ID).DefaultIfEmpty
+                      From o2 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TR_DURATION_UNIT_ID).DefaultIfEmpty
+            Where (p.ORG_ID = org_id And p.TR_COURSE_ID = course_id)
+                      Select New PlanDTO With {
+                          .TR_TRAIN_FORM_ID = p.TRAIN_FORM_ID,
+                          .TR_TRAIN_FORM_NAME = o.NAME_VN,
+                          .PROPERTIES_NEED_ID = p.PROPERTIES_NEED_ID,
+                          .PROPERTIES_NEED_NAME = o1.NAME_VN,
+                          .DURATION = p.DURATION,
+                          .TR_DURATION_UNIT_ID = p.TR_DURATION_UNIT_ID,
+                          .TR_DURATION_UNIT_NAME = o2.NAME_VN,
+                          .TARGET_TRAIN = p.TARGET_TRAIN,
+                          .Centers_NAME = p.CENTERS,
+                          .COST_TOTAL = p.COST_TOTAL,
+                          .COST_OF_STUDENT = p.COST_OF_STUDENT
+                          }).FirstOrDefault
+            Return dt
+        Catch ex As Exception
             Throw ex
         End Try
     End Function

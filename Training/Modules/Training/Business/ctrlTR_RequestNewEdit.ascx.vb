@@ -128,7 +128,7 @@ Public Class ctrlTR_RequestNewEdit
                     If obj.TR_PLAN_ID IsNot Nothing Then
                         cboPlan.SelectedValue = obj.TR_PLAN_ID
                     End If
-                    txtProgramGroup.Text = obj.PROGRAM_GROUP
+                    'txtProgramGroup.Text = obj.PROGRAM_GROUP
                     txtTrainField.Text = obj.TRAIN_FIELD
                     If obj.TRAIN_FORM_ID IsNot Nothing Then
                         cboTrainForm.SelectedValue = obj.TRAIN_FORM_ID
@@ -254,7 +254,7 @@ Public Class ctrlTR_RequestNewEdit
             Dim tsp As New TrainingStoreProcedure
             Using rep As New TrainingRepository
                 'Nhóm chương trình
-                dtData = tsp.UnitGetList()
+                dtData = tsp.GetProgramGroup()
                 FillRadCombobox(cbGroupProgram, dtData, "NAME", "ID")
 
                 'Hình thức đào tạo
@@ -283,6 +283,10 @@ Public Class ctrlTR_RequestNewEdit
                 'Trạng thái
                 dtData = rep.GetOtherList("DECISION_STATUS", True)
                 FillRadCombobox(cboStatus, dtData, "NAME", "ID", True)
+
+                'don vi thoi luong
+                dtData = rep.GetOtherList("TR_DURATION_UNIT", True)
+                FillRadCombobox(cboDurationType, dtData, "NAME", "ID")
             End Using
 
             rdRequestDate.SelectedDate = Date.Now
@@ -676,9 +680,9 @@ Public Class ctrlTR_RequestNewEdit
                     ClearControl()
                 Else
                     '1
-                    If dtPlan.Table.Columns.Contains("PROGRAM_GROUP") Then
-                        txtProgramGroup.Text = dtPlan("PROGRAM_GROUP").ToString
-                    End If
+                    'If dtPlan.Table.Columns.Contains("PROGRAM_GROUP") Then
+                    '    txtProgramGroup.Text = dtPlan("PROGRAM_GROUP").ToString
+                    'End If
 
                     '2
                     If dtPlan.Table.Columns.Contains("TRAIN_FIELD") Then
@@ -780,7 +784,7 @@ Public Class ctrlTR_RequestNewEdit
             ClearControl()
             If hidOrgID.Value <> "" And rntxtYear.Value IsNot Nothing Then
                 Using rep As New TrainingRepository
-                    dtCourse = rep.GetTrPlanByYearOrg2(CDec(Val(cbGroupProgram.SelectedValue)), True, rntxtYear.Value, Decimal.Parse(hidOrgID.Value), cbIrregularly.Checked)
+                    dtCourse = rep.GetTrPlanByYearOrg2(CDec(cbGroupProgram.SelectedValue), True, CDec(rntxtYear.Value), CDec(Val(hidOrgID.Value)), cbIrregularly.Checked)
                     If cbIrregularly.Checked Then
                         FillRadCombobox(cboPlan, dtCourse, "NAME", "ID")
                     Else
@@ -822,7 +826,7 @@ Public Class ctrlTR_RequestNewEdit
 
     Protected Sub ClearControl()
         '1
-        txtProgramGroup.Text = ""
+        'txtProgramGroup.Text = ""
         '2
         txtTrainField.Text = ""
         '3
@@ -851,7 +855,7 @@ Public Class ctrlTR_RequestNewEdit
         rntxtYear.ReadOnly = Not state
         cbIrregularly.Enabled = state
         cboPlan.Enabled = state
-        txtProgramGroup.Enabled = state
+        'txtProgramGroup.Enabled = state
         txtTrainField.Enabled = state
         cboTrainForm.Enabled = state
         cboPropertiesNeed.Enabled = state
@@ -959,6 +963,44 @@ Public Class ctrlTR_RequestNewEdit
 #End Region
 
     Private Sub cbGroupProgram_SelectedIndexChanged(sender As Object, e As RadComboBoxSelectedIndexChangedEventArgs) Handles cbGroupProgram.SelectedIndexChanged
-        GetPlanInYearOrg()
+        Dim dtData As New DataTable
+        Try
+            If cbGroupProgram.SelectedValue <> "" Then
+                Using rep As New TrainingRepository
+                    Dim lst As List(Of CourseDTO)
+                    lst = rep.GetCourseList()
+                    lst = (From p In lst Where p.TR_PROGRAM_GROUP_ID = cbGroupProgram.SelectedValue
+                           Select New CourseDTO() With {.ID = p.ID,
+                                                       .NAME = p.NAME,
+                                                       .TR_PROGRAM_GROUP_ID = p.TR_PROGRAM_GROUP_ID}).ToList()
+                    FillRadCombobox(cboPlan, lst, "NAME", "ID")
+                End Using
+            Else
+                ClearControlValue(cboPlan)
+            End If
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub AddDataToCboCenter()
+        Dim rep As New TrainingRepository()
+        Try
+            Dim cboCenterList = rep.GetObjectGroup()
+            For Each i In cboCenterList
+                Dim item As New RadComboBoxItem()
+                If (Common.Common.SystemLanguage.Name = "vi-VN") Then
+                    item.Text = i.NAME_VN
+                    item.Value = i.ID
+                    cboObjGr.Items.Add(item)
+                Else
+                    item.Text = i.NAME_EN
+                    item.Value = i.ID
+                    cboObjGr.Items.Add(item)
+                End If
+            Next
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

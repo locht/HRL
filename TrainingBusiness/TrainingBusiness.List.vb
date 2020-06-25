@@ -248,7 +248,13 @@ Namespace TrainingBusiness.ServiceImplementations
                 Throw ex
             End Try
         End Function
-
+        Public Function GetObjectGroup() As List(Of CenterDTO) Implements ServiceContracts.ITrainingBusiness.GetObjectGroup
+            Try
+                Return TrainingRepositoryStatic.Instance.GetObjectGroup()
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
         Public Function GetCenters() As List(Of CenterDTO) Implements ServiceContracts.ITrainingBusiness.GetCenters
             Try
                 Return TrainingRepositoryStatic.Instance.GetCenters()
