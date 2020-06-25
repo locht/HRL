@@ -21,6 +21,29 @@
                                 NumberFormat-GroupSeparator="" ShowSpinButtons="true">
                             </tlk:RadNumericTextBox>
                         </td>
+                        <td class="lb">
+                            <%# Translate("Nhóm chương trình")%>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox ID="cboGroup" runat="server" AutoPostBack="true" CausesValidation="false">
+                            </tlk:RadComboBox>
+                        </td>
+
+                        <td class="lb">
+                            <%# Translate("Khóa đào tạo")%>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox ID="cboCourse" runat="server" >
+                            </tlk:RadComboBox>
+                        </td>
+
+                        <td class="lb">
+                            <%# Translate("Trạng thái")%>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox ID="cboStatus" runat="server" >
+                            </tlk:RadComboBox>
+                        </td>
                         <td>
                             <tlk:RadButton ID="btnSearch" runat="server" SkinID="ButtonFind" CausesValidation="false"
                                 Text="<%$ Translate: Tìm %>">

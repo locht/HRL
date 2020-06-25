@@ -193,6 +193,7 @@ Partial Class TrainingRepository
                                       .ORG_NAME = org.NAME_VN,
                                      .ORG_NAME2 = ov.NAME_C2,
                                      .ORG_NAME3 = ov.NAME_C3,
+                                     .TR_COURSE_ID = p.TR_COURSE_ID,
                                       .TR_COURSE_NAME = course.NAME,
                                       .TR_TRAIN_FORM_ID = p.TRAIN_FORM_ID,
                                       .TR_TRAIN_FORM_NAME = form.NAME_VN,
@@ -216,6 +217,7 @@ Partial Class TrainingRepository
                                       .DURATION = p.DURATION,
                                       .TR_DURATION_UNIT_NAME = duration.NAME_VN,
                                       .TR_TRAIN_FIELD_NAME = tf.NAME_VN,
+                                     .GR_PROGRAM_ID = p.GR_PROGRAM_ID,
                                       .TR_PROGRAM_GROUP_NAME = pg.NAME,
                                       .PROPERTIES_NEED_ID = p.PROPERTIES_NEED_ID,
                                       .PROPERTIES_NEED_NAME = pn.NAME_VN,
@@ -228,6 +230,19 @@ Partial Class TrainingRepository
 
 
             Dim lst = query
+
+            If filter.STATUS_ID.HasValue Then
+                lst = lst.Where(Function(p) p.STATUS_ID = filter.STATUS_ID)
+            End If
+
+            If filter.TR_COURSE_ID.HasValue Then
+                lst = lst.Where(Function(p) p.TR_COURSE_ID = filter.TR_COURSE_ID)
+            End If
+
+            If filter.GR_PROGRAM_ID.HasValue Then
+                lst = lst.Where(Function(p) p.GR_PROGRAM_ID = filter.GR_PROGRAM_ID)
+            End If
+
             If filter.NAME <> "" Then
                 lst = lst.Where(Function(p) p.NAME.ToUpper.Contains(filter.NAME.ToUpper))
             End If

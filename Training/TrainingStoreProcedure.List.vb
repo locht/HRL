@@ -240,4 +240,40 @@ Partial Class TrainingStoreProcedure
         Return ds
     End Function
 #End Region
+
+#Region "plan"
+
+    Public Function GET_PROGRAM_GROUP(Optional ByVal _IS_BLANK As Boolean = False) As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_TRAINING_BUSINESS.GET_PROGRAM_GROUP", _
+                                                     New List(Of Object)(New Object() {_IS_BLANK}))
+            If ds IsNot Nothing Then
+                If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+                    dt = ds.Tables(0)
+                End If
+            End If
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function GET_COURSE_BY_PROGRAM_GROUP(Optional ByVal _IS_BLANK As Boolean = False, Optional ByVal _PROGRAM_GROUP As Decimal = 0) As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_TRAINING_BUSINESS.GET_COURSE_BY_PROGRAM_GROUP", _
+                                                     New List(Of Object)(New Object() {_IS_BLANK, _PROGRAM_GROUP}))
+            If ds IsNot Nothing Then
+                If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+                    dt = ds.Tables(0)
+                End If
+            End If
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+#End Region
 End Class

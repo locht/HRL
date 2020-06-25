@@ -95,6 +95,33 @@ Partial Public Class ctrlTR_Plan
     Protected WithEvents rntYear As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
+    '''cboGroup control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboGroup As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cboCourse control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboCourse As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cboStatus control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboStatus As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
     '''btnSearch control.
     '''</summary>
     '''<remarks>
