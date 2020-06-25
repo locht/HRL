@@ -266,10 +266,10 @@ Public Class ctrlTR_Reimbursement
                             ShowMessage(Translate("Chương trình của nhân viên này không có ngày kết thúc.<br />Bạn vui lòng kiểm tra lại."), Utilities.NotifyType.Warning)
                             Exit Sub
                         End If
-                        If item.GetDataKeyValue("COMMIT_WORK") Is Nothing Then
-                            ShowMessage(Translate("Nhân viên này chưa được cam kết đào tạo.<br />Bạn vui lòng kiểm tra lại."), Utilities.NotifyType.Warning)
-                            Exit Sub
-                        End If
+                        'If item.GetDataKeyValue("COMMIT_WORK") Is Nothing Then
+                        '    ShowMessage(Translate("Nhân viên này chưa được cam kết đào tạo.<br />Bạn vui lòng kiểm tra lại."), Utilities.NotifyType.Warning)
+                        '    Exit Sub
+                        'End If
                     Next
 
                     CurrentState = CommonMessage.STATE_EDIT
