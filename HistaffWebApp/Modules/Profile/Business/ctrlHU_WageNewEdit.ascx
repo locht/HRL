@@ -358,13 +358,13 @@
                     <tlk:RadNumericTextBox ID="rntxtAmount" runat="server" SkinID="Money" ValidationGroup="Allowance">
                     </tlk:RadNumericTextBox>
                 </td>
-                <td class="lb">
+                <%--<td class="lb">
                     <asp:Label ID="lbAllowEffectDate" runat="server" Text="Ngày hiệu lực"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdAllowEffectDate" runat="server">
                     </tlk:RadDatePicker>
-                </td>
+                </td>--%>
             </tr>
             <tr style="display: none">
                 <%--<td class="lb">
@@ -388,8 +388,8 @@
                 <td colspan="6">
                     <tlk:RadGrid ID="rgAllow" runat="server" Height="200px" PageSize="50" SkinID="GridNotPaging"
                         Width="100%">
-                        <MasterTableView ClientDataKeyNames="ID,ALLOWANCE_LIST_ID,AMOUNT,IS_INSURRANCE,ALLOWANCE_LIST_NAME,EFFECT_DATE,EXPIRE_DATE"
-                            CommandItemDisplay="Top" DataKeyNames="ID,ALLOWANCE_LIST_ID,AMOUNT,IS_INSURRANCE,ALLOWANCE_LIST_NAME,EFFECT_DATE,EXPIRE_DATE">
+                        <MasterTableView ClientDataKeyNames="ID,ALLOWANCE_LIST_ID,AMOUNT,IS_INSURRANCE,ALLOWANCE_LIST_NAME,EXPIRE_DATE"
+                            CommandItemDisplay="Top" DataKeyNames="ID,ALLOWANCE_LIST_ID,AMOUNT,IS_INSURRANCE,ALLOWANCE_LIST_NAME,EXPIRE_DATE">
                             <CommandItemStyle Height="28px" />
                             <CommandItemTemplate>
                                 <div style="padding: 2px 0 0 0">
@@ -415,13 +415,10 @@
                                     SortExpression="ALLOWANCE_LIST_NAME" UniqueName="ALLOWANCE_LIST_NAME">
                                     <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
                                 </tlk:GridNumericColumn>
-                                 <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền chưa quy đổi %>" DataField="AMOUNT"
+                                 <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền%>" DataField="AMOUNT"
                                     SortExpression="AMOUNT" UniqueName="AMOUNT" DataFormatString="{0:n0}">
                                     <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
                                 </tlk:GridNumericColumn>
-                                <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECT_DATE"
-                                    ItemStyle-HorizontalAlign="Center" SortExpression="EFFECT_DATE" UniqueName="EFFECT_DATE"
-                                    DataFormatString="{0:dd/MM/yyyy}" />
                             </Columns>
                         </MasterTableView>
                     </tlk:RadGrid>

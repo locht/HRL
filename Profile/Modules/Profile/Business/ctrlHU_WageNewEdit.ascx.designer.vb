@@ -698,24 +698,6 @@ Partial Public Class ctrlHU_WageNewEdit
     Protected WithEvents rntxtAmount As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
-    '''lbAllowEffectDate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbAllowEffectDate As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''rdAllowEffectDate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rdAllowEffectDate As Global.Telerik.Web.UI.RadDatePicker
-
-    '''<summary>
     '''rgAllow control.
     '''</summary>
     '''<remarks>

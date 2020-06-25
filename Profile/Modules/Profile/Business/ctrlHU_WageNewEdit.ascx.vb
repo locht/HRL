@@ -1022,11 +1022,11 @@ Public Class ctrlHU_WageNewEdit
                     allow1.ALLOWANCE_LIST_NAME = cboAllowance.Text
                     allow1.AMOUNT = rntxtAmount.Value
                     'allow1.IS_INSURRANCE = chkIsInsurrance.Checked
-                    If rdAllowEffectDate.SelectedDate.HasValue Then
-                        allow1.EFFECT_DATE = rdAllowEffectDate.SelectedDate.Value
-                    Else
-                        allow1.EFFECT_DATE = rdEffectDate.SelectedDate
-                    End If
+                    'If rdAllowEffectDate.SelectedDate.HasValue Then
+                    '    allow1.EFFECT_DATE = rdAllowEffectDate.SelectedDate.Value
+                    'Else
+                    '    allow1.EFFECT_DATE = rdEffectDate.SelectedDate
+                    'End If
                     'allow1.EXPIRE_DATE = rdAllowExpireDate.SelectedDate
                     rntxtAllowance_Total.Value += allow1.AMOUNT
                     lstAllow.Add(allow1)
