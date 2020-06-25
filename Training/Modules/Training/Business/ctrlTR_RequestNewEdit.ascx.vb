@@ -253,6 +253,10 @@ Public Class ctrlTR_RequestNewEdit
             Dim dtData As DataTable
             Dim tsp As New TrainingStoreProcedure
             Using rep As New TrainingRepository
+                'Nhóm chương trình
+                dtData = tsp.UnitGetList()
+                FillRadCombobox(cbGroupProgram, dtData, "NAME", "ID")
+
                 'Hình thức đào tạo
                 dtData = rep.GetOtherList("TR_TRAIN_FORM", True)
                 FillRadCombobox(cboTrainForm, dtData, "NAME", "ID")
@@ -382,6 +386,7 @@ Public Class ctrlTR_RequestNewEdit
 
                             .lstCenters = (From item In lstCenter.CheckedItems Select New PlanCenterDTO With {.ID = item.Value}).ToList()
                             .lstTeachers = (From item In lstTeacher.CheckedItems Select New LectureDTO With {.ID = item.Value}).ToList()
+                            .GROUP_PROGRAM_ID = CDec(cbGroupProgram.SelectedValue)
                         End With
 
                         Select Case CurrentState
@@ -775,7 +780,7 @@ Public Class ctrlTR_RequestNewEdit
             ClearControl()
             If hidOrgID.Value <> "" And rntxtYear.Value IsNot Nothing Then
                 Using rep As New TrainingRepository
-                    dtCourse = rep.GetTrPlanByYearOrg2(True, rntxtYear.Value, Decimal.Parse(hidOrgID.Value), cbIrregularly.Checked)
+                    dtCourse = rep.GetTrPlanByYearOrg2(CDec(Val(cbGroupProgram.SelectedValue)), True, rntxtYear.Value, Decimal.Parse(hidOrgID.Value), cbIrregularly.Checked)
                     If cbIrregularly.Checked Then
                         FillRadCombobox(cboPlan, dtCourse, "NAME", "ID")
                     Else
@@ -952,4 +957,8 @@ Public Class ctrlTR_RequestNewEdit
     End Sub
 
 #End Region
+
+    Private Sub cbGroupProgram_SelectedIndexChanged(sender As Object, e As RadComboBoxSelectedIndexChangedEventArgs) Handles cbGroupProgram.SelectedIndexChanged
+        GetPlanInYearOrg()
+    End Sub
 End Class

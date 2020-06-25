@@ -21,6 +21,29 @@
                                 NumberFormat-GroupSeparator="" ShowSpinButtons="true">
                             </tlk:RadNumericTextBox>
                         </td>
+                        <td class="lb">
+                            <%# Translate("Nhóm chương trình")%>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox ID="cboGroup" runat="server" AutoPostBack="true" CausesValidation="false">
+                            </tlk:RadComboBox>
+                        </td>
+
+                        <td class="lb">
+                            <%# Translate("Khóa đào tạo")%>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox ID="cboCourse" runat="server" >
+                            </tlk:RadComboBox>
+                        </td>
+
+                        <td class="lb">
+                            <%# Translate("Trạng thái")%>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox ID="cboStatus" runat="server" >
+                            </tlk:RadComboBox>
+                        </td>
                         <td>
                             <tlk:RadButton ID="btnSearch" runat="server" SkinID="ButtonFind" CausesValidation="false"
                                 Text="<%$ Translate: Tìm kiếm %>">
@@ -41,10 +64,14 @@
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Năm %>"  DataField="YEAR"
+                                HeaderStyle-Width="60px" SortExpression="YEAR" UniqueName="YEAR" AllowFiltering="false" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Chi nhánh/Khối %>" DataField="ORG_NAME2"
                                 HeaderStyle-Width="200px" SortExpression="ORG_NAME2" UniqueName="ORG_NAME2" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="ORG_NAME3"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban/ Đơn vị %>" DataField="ORG_NAME3"
                                 HeaderStyle-Width="200px" SortExpression="ORG_NAME3" UniqueName="ORG_NAME3" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban đơn vị cuối %>" DataField="ORG_NAME"
+                                HeaderStyle-Width="200px" SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
                                 HeaderStyle-Width="200px" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Nhóm chương trình %>" DataField="TR_PROGRAM_GROUP_NAME"
@@ -67,6 +94,8 @@
                                 SortExpression="DURATION" UniqueName="DURATION" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị thời lượng %>" DataField="TR_DURATION_UNIT_NAME"
                                 SortExpression="TR_DURATION_UNIT_NAME" UniqueName="TR_DURATION_UNIT_NAME" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Thời gian dự kiến tổ chức %>" DataField="EXPECTED_TIME"
+                                HeaderStyle-Width="200px" SortExpression="EXPECTED_TIME" UniqueName="EXPECTED_TIME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do đào tạo%>" DataField="TARGET_TRAIN"
                                 SortExpression="TARGET_TRAIN" UniqueName="TARGET_TRAIN" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Trung tâm đào tạo %>" DataField="Centers_NAME"

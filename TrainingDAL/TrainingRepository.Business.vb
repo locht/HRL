@@ -183,6 +183,7 @@ Partial Class TrainingRepository
                     From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS_ID).DefaultIfEmpty
                     From duration In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TR_DURATION_UNIT_ID).DefaultIfEmpty
                     From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
+                    From et In Context.TRV_PLAN_EXPECTED_TIME.Where(Function(f) f.ID = p.ID).DefaultIfEmpty
                     Where p.YEAR = filter.YEAR
             Select New PlanDTO With {.ID = p.ID,
                                       .YEAR = p.YEAR,
@@ -193,6 +194,7 @@ Partial Class TrainingRepository
                                       .ORG_NAME = org.NAME_VN,
                                      .ORG_NAME2 = ov.NAME_C2,
                                      .ORG_NAME3 = ov.NAME_C3,
+                                     .TR_COURSE_ID = p.TR_COURSE_ID,
                                       .TR_COURSE_NAME = course.NAME,
                                       .TR_TRAIN_FORM_ID = p.TRAIN_FORM_ID,
                                       .TR_TRAIN_FORM_NAME = form.NAME_VN,
@@ -216,6 +218,7 @@ Partial Class TrainingRepository
                                       .DURATION = p.DURATION,
                                       .TR_DURATION_UNIT_NAME = duration.NAME_VN,
                                       .TR_TRAIN_FIELD_NAME = tf.NAME_VN,
+                                     .GR_PROGRAM_ID = p.GR_PROGRAM_ID,
                                       .TR_PROGRAM_GROUP_NAME = pg.NAME,
                                       .PROPERTIES_NEED_ID = p.PROPERTIES_NEED_ID,
                                       .PROPERTIES_NEED_NAME = pn.NAME_VN,
@@ -223,11 +226,26 @@ Partial Class TrainingRepository
                                       .UNIT_NAME = u.NAME,
                                       .Work_inv_NAME = p.WORKS,
                                       .ATTACHFILE = p.ATTACHFILE,
-                                      .CREATED_DATE = p.CREATED_DATE}
-
-
+                                      .CREATED_DATE = p.CREATED_DATE,
+                                     .EXPECTED_TIME = et.EXPECTED_TIME}
 
             Dim lst = query
+
+            If filter.STATUS_ID.HasValue Then
+                lst = lst.Where(Function(p) p.STATUS_ID = filter.STATUS_ID)
+            End If
+
+            If filter.TR_COURSE_ID.HasValue Then
+                lst = lst.Where(Function(p) p.TR_COURSE_ID = filter.TR_COURSE_ID)
+            End If
+
+            If filter.GR_PROGRAM_ID.HasValue Then
+                lst = lst.Where(Function(p) p.GR_PROGRAM_ID = filter.GR_PROGRAM_ID)
+            End If
+            If filter.EXPECTED_TIME <> "" Then
+                lst = lst.Where(Function(p) p.EXPECTED_TIME.ToUpper.Contains(filter.EXPECTED_TIME.ToUpper))
+            End If
+
             If filter.NAME <> "" Then
                 lst = lst.Where(Function(p) p.NAME.ToUpper.Contains(filter.NAME.ToUpper))
             End If
@@ -1000,6 +1018,8 @@ Partial Class TrainingRepository
                 .REQUEST_DATE = Request.REQUEST_DATE
                 .ATTACH_FILE = Request.ATTACH_FILE
                 .REMARK = Request.REMARK
+                .GROUP_PROGRAM_ID = Request.GROUP_PROGRAM_ID
+
             End With
             Context.TR_REQUEST.AddObject(objRequest)
 
@@ -1069,6 +1089,8 @@ Partial Class TrainingRepository
                 .REQUEST_DATE = Request.REQUEST_DATE
                 .ATTACH_FILE = Request.ATTACH_FILE
                 .REMARK = Request.REMARK
+                .GROUP_PROGRAM_ID = Request.GROUP_PROGRAM_ID
+
             End With
 
             Dim lstRegEmp = (From p In Context.TR_REQUEST_EMPLOYEE Where p.TR_REQUEST_ID = Request.ID).ToList

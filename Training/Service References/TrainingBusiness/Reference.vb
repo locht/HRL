@@ -915,6 +915,9 @@ Namespace TrainingBusiness
         Private Departments_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EXPECTED_TIMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GR_PROGRAM_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -1338,6 +1341,19 @@ Namespace TrainingBusiness
                 If (Object.ReferenceEquals(Me.Departments_NAMEField, value) <> true) Then
                     Me.Departments_NAMEField = value
                     Me.RaisePropertyChanged("Departments_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EXPECTED_TIME() As String
+            Get
+                Return Me.EXPECTED_TIMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.EXPECTED_TIMEField, value) <> true) Then
+                    Me.EXPECTED_TIMEField = value
+                    Me.RaisePropertyChanged("EXPECTED_TIME")
                 End If
             End Set
         End Property
@@ -3082,6 +3098,9 @@ Namespace TrainingBusiness
         Private EXPECTED_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GROUP_PROGRAM_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -3391,6 +3410,19 @@ Namespace TrainingBusiness
                 If (Me.EXPECTED_DATEField.Equals(value) <> true) Then
                     Me.EXPECTED_DATEField = value
                     Me.RaisePropertyChanged("EXPECTED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GROUP_PROGRAM_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.GROUP_PROGRAM_IDField
+            End Get
+            Set
+                If (Me.GROUP_PROGRAM_IDField.Equals(value) <> true) Then
+                    Me.GROUP_PROGRAM_IDField = value
+                    Me.RaisePropertyChanged("GROUP_PROGRAM_ID")
                 End If
             End Set
         End Property
@@ -15445,7 +15477,7 @@ Namespace TrainingBusiness
         Function GetTrPlanByYearOrg(ByVal isBlank As Boolean, ByVal dYear As Decimal, ByVal dOrg As Decimal, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTrPlanByYearOrg2", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTrPlanByYearOrg2Response")>  _
-        Function GetTrPlanByYearOrg2(ByVal isBlank As Boolean, ByVal dYear As Decimal, ByVal dOrg As Decimal, ByVal log As Common.CommonBusiness.UserLog, ByVal isIrregularly As Boolean) As System.Data.DataTable
+        Function GetTrPlanByYearOrg2(ByVal GrProID As Decimal, ByVal isBlank As Boolean, ByVal dYear As Decimal, ByVal dOrg As Decimal, ByVal log As Common.CommonBusiness.UserLog, ByVal isIrregularly As Boolean) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetTrLectureList", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetTrLectureListResponse")>  _
         Function GetTrLectureList(ByVal isLocal As Boolean, ByVal isBlank As Boolean) As System.Data.DataTable
@@ -16086,8 +16118,8 @@ Namespace TrainingBusiness
             Return MyBase.Channel.GetTrPlanByYearOrg(isBlank, dYear, dOrg, log)
         End Function
         
-        Public Function GetTrPlanByYearOrg2(ByVal isBlank As Boolean, ByVal dYear As Decimal, ByVal dOrg As Decimal, ByVal log As Common.CommonBusiness.UserLog, ByVal isIrregularly As Boolean) As System.Data.DataTable Implements TrainingBusiness.ITrainingBusiness.GetTrPlanByYearOrg2
-            Return MyBase.Channel.GetTrPlanByYearOrg2(isBlank, dYear, dOrg, log, isIrregularly)
+        Public Function GetTrPlanByYearOrg2(ByVal GrProID As Decimal, ByVal isBlank As Boolean, ByVal dYear As Decimal, ByVal dOrg As Decimal, ByVal log As Common.CommonBusiness.UserLog, ByVal isIrregularly As Boolean) As System.Data.DataTable Implements TrainingBusiness.ITrainingBusiness.GetTrPlanByYearOrg2
+            Return MyBase.Channel.GetTrPlanByYearOrg2(GrProID, isBlank, dYear, dOrg, log, isIrregularly)
         End Function
         
         Public Function GetTrLectureList(ByVal isLocal As Boolean, ByVal isBlank As Boolean) As System.Data.DataTable Implements TrainingBusiness.ITrainingBusiness.GetTrLectureList

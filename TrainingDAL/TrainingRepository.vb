@@ -108,11 +108,12 @@ Partial Public Class TrainingRepository
         End Try
     End Function
 
-    Public Function GetTrPlanByYearOrg2(ByVal isBlank As Boolean, ByVal dYear As Decimal, ByVal dOrg As Decimal, ByVal log As UserLog, Optional ByVal isIrregularly As Boolean = False) As DataTable
+    Public Function GetTrPlanByYearOrg2(ByVal GrProID As Decimal, ByVal isBlank As Boolean, ByVal dYear As Decimal, ByVal dOrg As Decimal, ByVal log As UserLog, Optional ByVal isIrregularly As Boolean = False) As DataTable
         Try
             Using cls As New DataAccess.QueryData
                 Dim dtData As DataTable = cls.ExecuteStore("PKG_TRAINING.GET_TR_PLAN_BY_YEARORG2",
-                                           New With {.P_ISBLANK = isBlank,
+                                           New With {.P_GRPROID = GrProID,
+                                                     .P_ISBLANK = isBlank,
                                                      .P_YEAR = dYear,
                                                      .P_ORGID = dOrg,
                                                      .P_USERNAME = log.Username,

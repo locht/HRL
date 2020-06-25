@@ -75,4 +75,6 @@
     Public LEVEL_PRIOTY As Decimal?
     Public GR_PROGRAM_ID As Decimal?
     Public GR_PROGRAM_NAME As String
+
+    Public Property EXPECTED_TIME As String
 End Class

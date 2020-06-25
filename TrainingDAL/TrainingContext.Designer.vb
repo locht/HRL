@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("ffb6d231-6418-4b01-8b15-cec1d262e177")>
+<Assembly: EdmSchemaAttribute("f95b9543-8e93-4cc1-9c57-f5099adfa04d")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("TrainingModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
 <Assembly: EdmRelationshipAttribute("TrainingModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
@@ -948,6 +948,20 @@ Public Partial Class TrainingContext
 
     Private _TR_ASSESSMENT_COURSE As ObjectSet(Of TR_ASSESSMENT_COURSE)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property TRV_PLAN_EXPECTED_TIME() As ObjectSet(Of TRV_PLAN_EXPECTED_TIME)
+        Get
+            If (_TRV_PLAN_EXPECTED_TIME Is Nothing) Then
+                _TRV_PLAN_EXPECTED_TIME = MyBase.CreateObjectSet(Of TRV_PLAN_EXPECTED_TIME)("TRV_PLAN_EXPECTED_TIME")
+            End If
+            Return _TRV_PLAN_EXPECTED_TIME
+        End Get
+    End Property
+
+    Private _TRV_PLAN_EXPECTED_TIME As ObjectSet(Of TRV_PLAN_EXPECTED_TIME)
+
     #End Region
 
     #Region "AddTo Methods"
@@ -1384,6 +1398,13 @@ Public Partial Class TrainingContext
     ''' </summary>
     Public Sub AddToTR_ASSESSMENT_COURSE(ByVal tR_ASSESSMENT_COURSE As TR_ASSESSMENT_COURSE)
         MyBase.AddObject("TR_ASSESSMENT_COURSE", tR_ASSESSMENT_COURSE)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the TRV_PLAN_EXPECTED_TIME EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToTRV_PLAN_EXPECTED_TIME(ByVal tRV_PLAN_EXPECTED_TIME As TRV_PLAN_EXPECTED_TIME)
+        MyBase.AddObject("TRV_PLAN_EXPECTED_TIME", tRV_PLAN_EXPECTED_TIME)
     End Sub
 
     #End Region
@@ -23318,6 +23339,31 @@ Public Partial Class TR_REQUEST
     Private Partial Sub OnREJECT_REASONChanged()
     End Sub
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property GROUP_PROGRAM_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _GROUP_PROGRAM_ID
+        End Get
+        Set
+            OnGROUP_PROGRAM_IDChanging(value)
+            ReportPropertyChanging("GROUP_PROGRAM_ID")
+            _GROUP_PROGRAM_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("GROUP_PROGRAM_ID")
+            OnGROUP_PROGRAM_IDChanged()
+        End Set
+    End Property
+
+    Private _GROUP_PROGRAM_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnGROUP_PROGRAM_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnGROUP_PROGRAM_IDChanged()
+    End Sub
+
     #End Region
 
 End Class
@@ -24996,6 +25042,86 @@ Public Partial Class TR_UNIT
     End Sub
 
     Private Partial Sub OnMODIFIED_LOGChanged()
+    End Sub
+
+    #End Region
+
+End Class
+
+''' <summary>
+''' No Metadata Documentation available.
+''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="TrainingModel", Name:="TRV_PLAN_EXPECTED_TIME")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class TRV_PLAN_EXPECTED_TIME
+    Inherits EntityObject
+    #Region "Factory Method"
+
+    ''' <summary>
+    ''' Create a new TRV_PLAN_EXPECTED_TIME object.
+    ''' </summary>
+    ''' <param name="id">Initial value of the ID property.</param>
+    Public Shared Function CreateTRV_PLAN_EXPECTED_TIME(id As Global.System.Decimal) As TRV_PLAN_EXPECTED_TIME
+        Dim tRV_PLAN_EXPECTED_TIME as TRV_PLAN_EXPECTED_TIME = New TRV_PLAN_EXPECTED_TIME
+        tRV_PLAN_EXPECTED_TIME.ID = id
+        Return tRV_PLAN_EXPECTED_TIME
+    End Function
+
+    #End Region
+
+    #Region "Primitive Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property ID() As Global.System.Decimal
+        Get
+            Return _ID
+        End Get
+        Set
+            If (_ID <> Value) Then
+                OnIDChanging(value)
+                ReportPropertyChanging("ID")
+                _ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ID")
+                OnIDChanged()
+            End If
+        End Set
+    End Property
+
+    Private _ID As Global.System.Decimal
+    Private Partial Sub OnIDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnIDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EXPECTED_TIME() As Global.System.String
+        Get
+            Return _EXPECTED_TIME
+        End Get
+        Set
+            OnEXPECTED_TIMEChanging(value)
+            ReportPropertyChanging("EXPECTED_TIME")
+            _EXPECTED_TIME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("EXPECTED_TIME")
+            OnEXPECTED_TIMEChanged()
+        End Set
+    End Property
+
+    Private _EXPECTED_TIME As Global.System.String
+    Private Partial Sub OnEXPECTED_TIMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnEXPECTED_TIMEChanged()
     End Sub
 
     #End Region

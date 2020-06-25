@@ -132,6 +132,15 @@ Public Class ctrlTR_Plan
         End Try
     End Sub
 
+    Public Overrides Sub BindData()
+        Try
+
+            GetDataCombo()
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
 #End Region
 
 #Region "Event"
@@ -262,6 +271,21 @@ Public Class ctrlTR_Plan
         rgData.Rebind()
     End Sub
 
+    Private Sub cboGroup_SelectedIndexChanged(sender As Object, e As RadComboBoxSelectedIndexChangedEventArgs) Handles cboGroup.SelectedIndexChanged
+        Try
+            Dim store As New TrainingStoreProcedure
+            Dim dtData As New DataTable
+            cboCourse.ClearSelection()
+            If cboGroup.SelectedValue = "" Then
+                dtData = store.GET_COURSE_BY_PROGRAM_GROUP(True)
+            Else
+                dtData = store.GET_COURSE_BY_PROGRAM_GROUP(True, cboGroup.SelectedValue)
+            End If
+            FillRadCombobox(cboCourse, dtData, "NAME", "ID")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 #End Region
 
 #Region "Custom"
@@ -279,6 +303,19 @@ Public Class ctrlTR_Plan
                 rgData.DataSource = New List(Of PlanDTO)
                 Exit Sub
             End If
+
+            If cboGroup.SelectedValue <> "" Then
+                _filter.GR_PROGRAM_ID = cboGroup.SelectedValue
+            End If
+
+            If cboCourse.SelectedValue <> "" Then
+                _filter.TR_COURSE_ID = cboCourse.SelectedValue
+            End If
+
+            If cboStatus.SelectedValue <> "" Then
+                _filter.STATUS_ID = cboStatus.SelectedValue
+            End If
+
             Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue), _
                                                .IS_DISSOLVE = ctrlOrg.IsDissolve}
             _filter.YEAR = rntYear.Value
@@ -297,6 +334,22 @@ Public Class ctrlTR_Plan
         End Try
     End Sub
 
+    Private Sub GetDataCombo()
+        Dim store As New TrainingStoreProcedure
+        Dim rep As New TrainingRepository
+        Dim dtData As DataTable
+        Try
+            dtData = store.GET_PROGRAM_GROUP(True)
+            FillRadCombobox(cboGroup, dtData, "NAME", "ID")
+            dtData = store.GET_COURSE_BY_PROGRAM_GROUP(True)
+            FillRadCombobox(cboCourse, dtData, "NAME", "ID")
+            dtData = rep.GetOtherList("TR_REQUEST_STATUS", True)
+            FillRadCombobox(cboStatus, dtData, "NAME", "ID", True)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 #End Region
+
 
 End Class
