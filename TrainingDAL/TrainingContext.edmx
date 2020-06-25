@@ -68,6 +68,7 @@
             <EntitySet Name="SE_USER_REPORT" EntityType="TrainingModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <EntitySet Name="HU_ORGANIZATION_V" EntityType="TrainingModel.Store.HU_ORGANIZATION_V" store:Type="Tables"  />
             <EntitySet Name="TR_ASSESSMENT_COURSE" EntityType="TrainingModel.Store.TR_ASSESSMENT_COURSE" store:Type="Tables"  />
+            <EntitySet Name="TRV_PLAN_EXPECTED_TIME" EntityType="TrainingModel.Store.TRV_PLAN_EXPECTED_TIME" store:Type="Tables"  />
             <AssociationSet Name="FK_HU_PRO_HU_DIS" Association="TrainingModel.Store.FK_HU_PRO_HU_DIS">
                 <End Role="HU_PROVINCE" EntitySet="HU_PROVINCE" />
                 <End Role="HU_DISTRICT" EntitySet="HU_DISTRICT" />
@@ -1266,6 +1267,13 @@
             <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
         </EntityType>
+        <EntityType Name="TRV_PLAN_EXPECTED_TIME">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EXPECTED_TIME" Type="nvarchar2" Nullable="true" MaxLength="2000" />
+        </EntityType>
     <Association Name="FK_HU_PRO_HU_DIS">
         <End Role="HU_PROVINCE" Type="TrainingModel.Store.HU_PROVINCE" Multiplicity="0..1">
         </End>
@@ -1495,6 +1503,7 @@
           <EntitySet Name="SE_USER_REPORT" EntityType="TrainingModel.SE_USER_REPORT" />
           <EntitySet Name="HU_ORGANIZATION_V" EntityType="TrainingModel.HU_ORGANIZATION_V" />
           <EntitySet Name="TR_ASSESSMENT_COURSE" EntityType="TrainingModel.TR_ASSESSMENT_COURSE" />
+          <EntitySet Name="TRV_PLAN_EXPECTED_TIME" EntityType="TrainingModel.TRV_PLAN_EXPECTED_TIME" />
           </EntityContainer>
         <EntityType Name="TR_COST_CENTER">
           <Key>
@@ -2783,6 +2792,13 @@
           <Property Type="DateTime" Name="MODIFIED_DATE" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="1023" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="TRV_PLAN_EXPECTED_TIME">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="EXPECTED_TIME" MaxLength="2000" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4010,6 +4026,14 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="TRV_PLAN_EXPECTED_TIME">
+            <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TRV_PLAN_EXPECTED_TIME)">
+                <MappingFragment StoreEntitySet="TRV_PLAN_EXPECTED_TIME">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="EXPECTED_TIME" ColumnName="EXPECTED_TIME" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
     </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -4140,6 +4164,7 @@
         <EntityTypeShape EntityType="TrainingModel.SE_USER_REPORT" Width="2.125" PointX="0.5" PointY="13.875" Height="1.403382161458353" />
         <EntityTypeShape EntityType="TrainingModel.HU_ORGANIZATION_V" Width="1.5" PointX="0.76222850976615608" PointY="3.181715579322407" />
         <EntityTypeShape EntityType="TrainingModel.TR_ASSESSMENT_COURSE" Width="1.5" PointX="25.375" PointY="0.75" Height="3.1340950520833246" />
+        <EntityTypeShape EntityType="TrainingModel.TRV_PLAN_EXPECTED_TIME" Width="1.5" PointX="0.75" PointY="25.75" Height="1.4033821614583246" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
