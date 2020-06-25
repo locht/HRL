@@ -395,6 +395,7 @@
             <Property Name="VENUE" Type="nvarchar2" Nullable="true" MaxLength="1023" />
             <Property Name="ATTACH_FILE" Type="nvarchar2" Nullable="true" MaxLength="200" />
             <Property Name="REJECT_REASON" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="GROUP_PROGRAM_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="TR_REQUEST_EMPLOYEE">
             <Key>
@@ -1785,6 +1786,7 @@
           <Property Type="String" Name="VENUE" MaxLength="1023" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="ATTACH_FILE" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="REJECT_REASON" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="GROUP_PROGRAM_ID" />
         </EntityType>
         <EntityType Name="TR_REQUEST_EMPLOYEE">
           <Key>
@@ -3092,6 +3094,7 @@
                     <ScalarProperty Name="VENUE" ColumnName="VENUE" />
                     <ScalarProperty Name="ATTACH_FILE" ColumnName="ATTACH_FILE" />
                     <ScalarProperty Name="REJECT_REASON" ColumnName="REJECT_REASON" />
+                    <ScalarProperty Name="GROUP_PROGRAM_ID" ColumnName="GROUP_PROGRAM_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -4046,7 +4049,7 @@
         <EntityTypeShape EntityType="TrainingModel.TR_PROGRAM_LECTURE" Width="1.5" PointX="14.75" PointY="12.75" Height="1.5956835937500102" />
         <EntityTypeShape EntityType="TrainingModel.TR_PROGRAM_TITLE" Width="1.5" PointX="15.75" PointY="0.75" Height="1.5956835937500102" />
         <EntityTypeShape EntityType="TrainingModel.TR_PROGRAM_UNIT" Width="2.125" PointX="15.75" PointY="3.75" Height="1.5956835937500102" />
-        <EntityTypeShape EntityType="TrainingModel.TR_REQUEST" Width="1.5" PointX="6.75" PointY="15.75" Height="4.48020507812501" />
+        <EntityTypeShape EntityType="TrainingModel.TR_REQUEST" Width="1.5" PointX="6.75" PointY="15.75" Height="6.5955208333333353" />
         <EntityTypeShape EntityType="TrainingModel.TR_REQUEST_EMPLOYEE" Width="1.5" PointX="14.75" PointY="15.75" Height="1.5956835937500102" />
         <EntityTypeShape EntityType="TrainingModel.TR_CLASS_STUDENT" Width="1.5" PointX="16.75" PointY="6.75" Height="2.7494921875000031" />
         <EntityTypeShape EntityType="TrainingModel.OT_OTHER_LIST" Width="1.5" PointX="8.75" PointY="16.75" Height="4.48020507812501" />

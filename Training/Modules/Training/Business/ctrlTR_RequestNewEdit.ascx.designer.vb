@@ -122,6 +122,24 @@ Partial Public Class ctrlTR_RequestNewEdit
     Protected WithEvents cbIrregularly As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
+    '''cbGroupProgram control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbGroupProgram As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''RequiredFieldValidator3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''cboPlan control.
     '''</summary>
     '''<remarks>

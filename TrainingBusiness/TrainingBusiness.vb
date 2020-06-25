@@ -72,11 +72,11 @@ Namespace TrainingBusiness.ServiceImplementations
             End Try
         End Function
 
-        Public Function GetTrPlanByYearOrg2(ByVal isBlank As Boolean, ByVal dYear As Decimal, ByVal dOrg As Decimal, ByVal log As UserLog, Optional ByVal isIrregularly As Boolean = False) As DataTable _
+        Public Function GetTrPlanByYearOrg2(ByVal GrProID As Decimal, ByVal isBlank As Boolean, ByVal dYear As Decimal, ByVal dOrg As Decimal, ByVal log As UserLog, Optional ByVal isIrregularly As Boolean = False) As DataTable _
             Implements ServiceContracts.ITrainingBusiness.GetTrPlanByYearOrg2
             Try
                 Dim rep As New TrainingRepository
-                Dim lst = rep.GetTrPlanByYearOrg2(isBlank, dYear, dOrg, log, isIrregularly)
+                Dim lst = rep.GetTrPlanByYearOrg2(GrProID, isBlank, dYear, dOrg, log, isIrregularly)
                 Return lst
             Catch ex As Exception
                 Throw ex

@@ -120,6 +120,15 @@ Partial Class TrainingStoreProcedure
         Return Int32.Parse(obj(0).ToString())
     End Function
 
+    Public Function GetProgramGroup() As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_TRAINING.GET_PROGRAM_GROUP")
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+
     Public Function UnitGetList() As DataTable
         Dim dt As New DataTable
         Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_TRAINING.READ_UNIT_LIST")

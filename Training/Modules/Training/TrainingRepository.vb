@@ -110,12 +110,12 @@ Public Class TrainingRepository
         Return Nothing
     End Function
 
-    Public Function GetTrPlanByYearOrg2(ByVal isBlank As Boolean, ByVal dYear As Decimal, ByVal dOrg As Decimal, Optional ByVal isIrregularly As Boolean = False) As DataTable
+    Public Function GetTrPlanByYearOrg2(ByVal GrProID As Decimal, ByVal isBlank As Boolean, ByVal dYear As Decimal, ByVal dOrg As Decimal, Optional ByVal isIrregularly As Boolean = False) As DataTable
         Dim dtData As DataTable
 
         Using rep As New TrainingBusinessClient
             Try
-                dtData = rep.GetTrPlanByYearOrg2(isBlank, dYear, dOrg, Me.Log, isIrregularly)
+                dtData = rep.GetTrPlanByYearOrg2(GrProID, isBlank, dYear, dOrg, Me.Log, isIrregularly)
                 Return dtData
             Catch ex As Exception
                 rep.Abort()

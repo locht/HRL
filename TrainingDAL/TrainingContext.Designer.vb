@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("ffb6d231-6418-4b01-8b15-cec1d262e177")>
+<Assembly: EdmSchemaAttribute("576c1cd0-e5d7-4cd7-b91b-5a2405ab13bd")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("TrainingModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
 <Assembly: EdmRelationshipAttribute("TrainingModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
@@ -23316,6 +23316,31 @@ Public Partial Class TR_REQUEST
     End Sub
 
     Private Partial Sub OnREJECT_REASONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property GROUP_PROGRAM_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _GROUP_PROGRAM_ID
+        End Get
+        Set
+            OnGROUP_PROGRAM_IDChanging(value)
+            ReportPropertyChanging("GROUP_PROGRAM_ID")
+            _GROUP_PROGRAM_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("GROUP_PROGRAM_ID")
+            OnGROUP_PROGRAM_IDChanged()
+        End Set
+    End Property
+
+    Private _GROUP_PROGRAM_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnGROUP_PROGRAM_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnGROUP_PROGRAM_IDChanged()
     End Sub
 
     #End Region

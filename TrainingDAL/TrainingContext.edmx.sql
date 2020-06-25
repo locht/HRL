@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 5/29/2020 11:03:12 AM
--- Generated from EDMX file: D:\SOURCE_GIT_NEW\ACV_NEW\TrainingDAL\TrainingContext.edmx
+-- Date Created: 25/06/2020 09:36:48
+-- Generated from EDMX file: D:\ACV\acv_19\TrainingDAL\TrainingContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -428,7 +428,8 @@ CREATE TABLE "dbo"."TR_REQUEST" (
    "TARGET_TRAIN" NVARCHAR2(1023) NULL,
    "VENUE" NVARCHAR2(1023) NULL,
    "ATTACH_FILE" NVARCHAR2(200) NULL,
-   "REJECT_REASON" NVARCHAR2(1023) NULL
+   "REJECT_REASON" NVARCHAR2(1023) NULL,
+   "GROUP_PROGRAM_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'TR_REQUEST_EMPLOYEE'

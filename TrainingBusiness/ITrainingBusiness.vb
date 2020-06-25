@@ -30,7 +30,7 @@ Namespace TrainingBusiness.ServiceContracts
         Function GetTrPlanByYearOrg(ByVal isBlank As Boolean, ByVal dYear As Decimal, ByVal dOrg As Decimal, ByVal log As UserLog) As DataTable
 
         <OperationContract()>
-        Function GetTrPlanByYearOrg2(ByVal isBlank As Boolean, ByVal dYear As Decimal, ByVal dOrg As Decimal, ByVal log As UserLog, Optional ByVal isIrregularly As Boolean = False) As DataTable
+        Function GetTrPlanByYearOrg2(ByVal GrProID As Decimal, ByVal isBlank As Boolean, ByVal dYear As Decimal, ByVal dOrg As Decimal, ByVal log As UserLog, Optional ByVal isIrregularly As Boolean = False) As DataTable
 
         <OperationContract()>
         Function GetTrLectureList(ByVal isLocal As Boolean, ByVal isBlank As Boolean) As DataTable
