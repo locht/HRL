@@ -1000,6 +1000,8 @@ Partial Class TrainingRepository
                 .REQUEST_DATE = Request.REQUEST_DATE
                 .ATTACH_FILE = Request.ATTACH_FILE
                 .REMARK = Request.REMARK
+                .GROUP_PROGRAM_ID = Request.GROUP_PROGRAM_ID
+
             End With
             Context.TR_REQUEST.AddObject(objRequest)
 
@@ -1069,6 +1071,8 @@ Partial Class TrainingRepository
                 .REQUEST_DATE = Request.REQUEST_DATE
                 .ATTACH_FILE = Request.ATTACH_FILE
                 .REMARK = Request.REMARK
+                .GROUP_PROGRAM_ID = Request.GROUP_PROGRAM_ID
+
             End With
 
             Dim lstRegEmp = (From p In Context.TR_REQUEST_EMPLOYEE Where p.TR_REQUEST_ID = Request.ID).ToList

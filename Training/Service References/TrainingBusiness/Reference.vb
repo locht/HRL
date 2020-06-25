@@ -3082,6 +3082,9 @@ Namespace TrainingBusiness
         Private EXPECTED_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GROUP_PROGRAM_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -3391,6 +3394,19 @@ Namespace TrainingBusiness
                 If (Me.EXPECTED_DATEField.Equals(value) <> true) Then
                     Me.EXPECTED_DATEField = value
                     Me.RaisePropertyChanged("EXPECTED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GROUP_PROGRAM_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.GROUP_PROGRAM_IDField
+            End Get
+            Set
+                If (Me.GROUP_PROGRAM_IDField.Equals(value) <> true) Then
+                    Me.GROUP_PROGRAM_IDField = value
+                    Me.RaisePropertyChanged("GROUP_PROGRAM_ID")
                 End If
             End Set
         End Property

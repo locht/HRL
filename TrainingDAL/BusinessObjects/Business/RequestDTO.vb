@@ -58,4 +58,6 @@
     Property lstOrgs As List(Of PlanOrgDTO)
     Property lstTits As List(Of PlanTitleDTO)
     Property lstWIs As List(Of PlanTitleDTO)
+
+    Property GROUP_PROGRAM_ID As Decimal?
 End Class

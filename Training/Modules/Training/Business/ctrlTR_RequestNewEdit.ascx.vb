@@ -386,6 +386,7 @@ Public Class ctrlTR_RequestNewEdit
 
                             .lstCenters = (From item In lstCenter.CheckedItems Select New PlanCenterDTO With {.ID = item.Value}).ToList()
                             .lstTeachers = (From item In lstTeacher.CheckedItems Select New LectureDTO With {.ID = item.Value}).ToList()
+                            .GROUP_PROGRAM_ID = CDec(cbGroupProgram.SelectedValue)
                         End With
 
                         Select Case CurrentState
