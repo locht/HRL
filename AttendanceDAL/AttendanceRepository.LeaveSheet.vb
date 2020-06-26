@@ -107,6 +107,12 @@ Partial Public Class AttendanceRepository
         Dim CT As DataTable = New DataTable()
         Dim oProps() As PropertyInfo = Nothing
         Dim objCT As AT_LEAVESHEET_DETAIL
+
+        Dim strHostName As String
+        Dim strIPAddress As String
+        strHostName = System.Net.Dns.GetHostName()
+        strIPAddress = System.Net.Dns.GetHostByName(strHostName).AddressList(0).ToString()
+
         Try
             If dsLeaveSheet.Tables(0) IsNot Nothing AndAlso dsLeaveSheet.Tables(0).Rows.Count = 1 Then
                 rPH = dsLeaveSheet.Tables(0).Rows(0)
@@ -125,7 +131,8 @@ Partial Public Class AttendanceRepository
                 Dim objPH = (From p In Context.AT_LEAVESHEET Where p.ID = ID_LEAVE Select p).SingleOrDefault
                 objPH.MODIFIED_BY = rPH("EMPLOYEE_NAME").ToString
                 objPH.MODIFIED_DATE = DateTime.Now
-                objPH.MODIFIED_LOG = log.Ip + "\" + log.ComputerName
+                'objPH.MODIFIED_LOG = log.Ip + "\" + log.ComputerName
+                objPH.MODIFIED_LOG = strIPAddress
                 oProps = objPH.GetType().GetProperties()
                 For Each pi As PropertyInfo In oProps
                     Try
@@ -174,8 +181,10 @@ Partial Public Class AttendanceRepository
                 objPH.MODIFIED_BY = rPH("MODIFIED_BY").ToString
                 objPH.CREATED_DATE = DateTime.Now
                 objPH.MODIFIED_DATE = DateTime.Now
-                objPH.CREATED_LOG = log.Ip + "\" + log.ComputerName
-                objPH.MODIFIED_LOG = log.Ip + "\" + log.ComputerName
+                'objPH.CREATED_LOG = log.Ip + "\" + log.ComputerName
+                'objPH.MODIFIED_LOG = log.Ip + "\" + log.ComputerName
+                objPH.MODIFIED_LOG = strIPAddress
+                objPH.CREATED_LOG = strIPAddress
                 objPH.ID = Utilities.GetNextSequence(Context, Context.AT_LEAVESHEET.EntitySet.Name)
                 gID = objPH.ID
                 Context.AT_LEAVESHEET.AddObject(objPH)
