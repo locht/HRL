@@ -130,8 +130,7 @@ Partial Public Class AttendanceRepository
                 Dim objPH = (From p In Context.AT_LEAVESHEET Where p.ID = ID_LEAVE Select p).SingleOrDefault
                 objPH.MODIFIED_BY = rPH("EMPLOYEE_NAME").ToString
                 objPH.MODIFIED_DATE = DateTime.Now
-                'objPH.MODIFIED_LOG = log.Ip + "\" + log.ComputerName
-                objPH.MODIFIED_LOG = strIPAddress
+                objPH.MODIFIED_LOG = log.Username
                 oProps = objPH.GetType().GetProperties()
                 For Each pi As PropertyInfo In oProps
                     Try
@@ -180,10 +179,8 @@ Partial Public Class AttendanceRepository
                 objPH.MODIFIED_BY = rPH("MODIFIED_BY").ToString
                 objPH.CREATED_DATE = DateTime.Now
                 objPH.MODIFIED_DATE = DateTime.Now
-                'objPH.CREATED_LOG = log.Ip + "\" + log.ComputerName
-                'objPH.MODIFIED_LOG = log.Ip + "\" + log.ComputerName
-                objPH.MODIFIED_LOG = strIPAddress
-                objPH.CREATED_LOG = strIPAddress
+                objPH.CREATED_LOG = log.Username
+                objPH.MODIFIED_LOG = log.Username
                 objPH.ID = Utilities.GetNextSequence(Context, Context.AT_LEAVESHEET.EntitySet.Name)
                 gID = objPH.ID
                 Context.AT_LEAVESHEET.AddObject(objPH)
