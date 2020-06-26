@@ -128,6 +128,7 @@ Partial Class TrainingStoreProcedure
         End If
         Return dt
     End Function
+    
 
     Public Function UnitGetList() As DataTable
         Dim dt As New DataTable
@@ -212,6 +213,16 @@ Partial Class TrainingStoreProcedure
     Public Function GetLecture(ByVal sCenters As String) As DataTable
         Dim dt As New DataTable
         Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_TRAINING.GET_TR_LECTURE_BY_CENTERS", New List(Of Object)({sCenters}))
+        If ds IsNot Nothing Then
+            If ds.Tables(0) IsNot Nothing Then
+                dt = ds.Tables(0)
+            End If
+        End If
+        Return dt
+    End Function
+    Public Function GetLaguageTeach() As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_TRAINING.GET_LAGUAGE_TEACH", New List(Of Object)({}))
         If ds IsNot Nothing Then
             If ds.Tables(0) IsNot Nothing Then
                 dt = ds.Tables(0)

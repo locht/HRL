@@ -509,15 +509,6 @@ Partial Public Class ctrlTR_PlanNewEdit
     Protected WithEvents txtVenue As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''lstPartDepts control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lstPartDepts As Global.Telerik.Web.UI.RadListBox
-
-    '''<summary>
     '''lstPositions control.
     '''</summary>
     '''<remarks>
@@ -527,6 +518,15 @@ Partial Public Class ctrlTR_PlanNewEdit
     Protected WithEvents lstPositions As Global.Telerik.Web.UI.RadListBox
 
     '''<summary>
+    '''lstPartDepts control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lstPartDepts As Global.Telerik.Web.UI.RadListBox
+
+    '''<summary>
     '''txtWork_Relation control.
     '''</summary>
     '''<remarks>
@@ -534,6 +534,15 @@ Partial Public Class ctrlTR_PlanNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtWork_Relation As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''txtRemark control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtRemark As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''btnUploadFile control.
@@ -552,15 +561,6 @@ Partial Public Class ctrlTR_PlanNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblFilename As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
-    '''txtRemark control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtRemark As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''phFindOrg control.
