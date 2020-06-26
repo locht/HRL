@@ -50,10 +50,14 @@
                 </td>
                 <td class="lb">
                     <%# Translate("Trạng thái")%>
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox runat="server" ID="cboStatus">
                     </tlk:RadComboBox>
+                    <asp:RequiredFieldValidator ID="reqYear" ControlToValidate="cboStatus" runat="server"
+                        ErrorMessage="<%$ Translate: Bạn phải chọn trạng thái %>" ToolTip="<%$ Translate: Bạn phải chọn trạng thái %>">
+                    </asp:RequiredFieldValidator>
                 </td>
 
             </tr>
@@ -91,18 +95,22 @@
 
             </tr>
             <tr>
-                <td>
-                    <%# Translate("Nhóm đối tượng")%>
+                <td class="lb">
+                    <%# Translate("Nhóm đối tượng")%><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox rendermode="Lightweight" ID="cboObjGr" AutoPostBack="true" CausesValidation="false"
                         runat="server" CheckBoxes="true" Filter="StartsWith" MarkFirstMatch="True" EnableCheckAllItemsCheckBox="true"
-                        Width="100%" Label="">
+                         Label="">
                         <Items>
                         </Items>
-                        <Localization CheckAllString="Chọn tât cả" AllItemsCheckedString="Tất cả Trung tâm"
-                            ItemsCheckedString="Trung tâm đã chọn" />
+                        <Localization CheckAllString="Chọn tât cả" AllItemsCheckedString="Tất cả đối tượng"
+                            ItemsCheckedString="Đối tượng đã chọn" />
                     </tlk:RadComboBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="cboObjGr"
+                        runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Nhóm đối tượng %>"
+                        ToolTip="<%$ Translate: Bạn phải chọn Nhóm đối tượng %>">
+                    </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
                     <%# Translate("Hình thức đào tạo")%>
@@ -118,10 +126,10 @@
                     <tlk:RadComboBox runat="server" ID="cboPropertiesNeed" CausesValidation="false">
                     </tlk:RadComboBox>
                 </td>
-               
+
             </tr>
-            <tr>
-                 <td class="lb">
+            <%--<tr>
+                <td class="lb">
                     <%# Translate("Thời lượng")%><span class="lbReq">*</span>
                 </td>
                 <td>
@@ -135,7 +143,33 @@
                         ErrorMessage="<%$ Translate: Bạn phải chọn Thời lượng %>" ToolTip="<%$ Translate: Bạn phải chọn Thời lượng %>">
                     </asp:RequiredFieldValidator>
                 </td>
+            </tr>--%>
+            <tr>
+                <td class="lb"><%# Translate("Đánh giá khóa học: ")%></td>
+                <td >
+                    <tlk:RadButton ID="RadButton1" runat="server" ToggleType="CheckBox" ButtonType="ToggleButton"
+                        Text="<%$ Translate: Khảo sát sau khóa học%>" CausesValidation="false" AutoPostBack="true">
+                    </tlk:RadButton>
+                </td>
+                <td></td>
+                <td >
+                    <tlk:RadButton ID="RadButton2" runat="server" ToggleType="CheckBox" ButtonType="ToggleButton"
+                        Text="<%$ Translate: Kiểm tra cuối khóa%>" CausesValidation="false" AutoPostBack="true">
+                    </tlk:RadButton>
+                </td>
+                <td class="lb">
+                    <%# Translate("Thời gian đánh giá")%>
+                </td>
+
+                <td>
+                    <tlk:RadNumericTextBox runat="server" ID="RadNumericTextBox1" NumberFormat-DecimalDigits="0"
+                        NumberFormat-GroupSeparator="" MinValue="0" MaxLength="100" CausesValidation="false"
+                        AutoPostBack="true">
+                    </tlk:RadNumericTextBox>
+                    <%# Translate("(Tháng)")%>
+                </td>
             </tr>
+            
             <tr>
                 <td class="lb" style="display: none">
                     <%# Translate("Lĩnh vực đào tạo")%>
@@ -180,42 +214,142 @@
             </tr>
 
 
+
+
+            <%--<tr>
+                <td class="lb">
+                    <%# Translate("Số lượng học viên dự kiến")%><span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="rntxtStudents" runat="server">
+                    </tlk:RadNumericTextBox>
+                </td>
+            </tr>--%>
             <tr>
+                <td></td>                
             </tr>
+            <tr>
+                <td class="lb">
+                    <%# Translate("Số lượng học viên dự kiến")%><span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="rntxtStudents" runat="server">
+                    </tlk:RadNumericTextBox>
+                </td>
+                
+                <td rowspan="6" colspan="4">
+                    <tlk:RadGrid ID="rgISP" runat="server" Height="205px" Width="550px" Style="overflow: auto;
+                        margin-left: 20px">
+                        <MasterTableView DataKeyNames="CODE" ClientDataKeyNames="CODE,NAME_VN,MONEY" AllowCustomPaging="false" AllowPaging="false">
+                            <ColumnGroups>
+                                <tlk:GridColumnGroup Name="GeneralInformation" HeaderText="Chi phí *" HeaderStyle-HorizontalAlign="Center" />
+                            </ColumnGroups>
+                            <Columns>
+                                <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã  %>" DataField="CODE" UniqueName="CODE"
+                                    SortExpression="CODE" Visible="false" ColumnGroupName="GeneralInformation" />
+                                <tlk:GridBoundColumn HeaderText="<%$ Translate: Chi phí %>" DataField="NAME_VN" UniqueName="NAME_VN"
+                                    SortExpression="NAME_VN" ColumnGroupName="GeneralInformation" />
+                                <tlk:GridTemplateColumn HeaderText="<%$ Translate: Số tiền %>" SortExpression="MONEY_TEMP"
+                                    UniqueName="MONEY_TEMP" ColumnGroupName="GeneralInformation">
+                                    <ItemTemplate>
+                                        <tlk:RadNumericTextBox ID="MONEY" class="MoneyValue" SkinID="Money" runat="server"
+                                            CausesValidation="false" Width="100%" onchange="txtMoney_textChange()" NumberFormat-GroupSeparator=",">
+                                            <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" />
+                                            <ClientEvents OnValueChanged="setDisplayValue" OnLoad="setDisplayValue" />
+                                        </tlk:RadNumericTextBox>
+                                    </ItemTemplate>
+                                </tlk:GridTemplateColumn>
+                                <tlk:GridTemplateColumn HeaderText="<%$ Translate: Tiền tệ %>" SortExpression="MONEY_U_TEMP"
+                                    UniqueName="MONEY_U_TEMP" ColumnGroupName="GeneralInformation">
+                                    <HeaderStyle Width="80px" />
+                                    <ItemTemplate>
+                                        <tlk:RadComboBox runat="server" ID="RadMoneyU" AutoPostBack="true" CausesValidation="false"
+                                            ChangeTextOnKeyBoardNavigation="false" AllowCustomText="False" Width="110%">
+                                        </tlk:RadComboBox>
+                                    </ItemTemplate>
+                                </tlk:GridTemplateColumn>
+                            </Columns>
+                        </MasterTableView>
+                    </tlk:RadGrid>
+                </td>
+                <td>
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="lb">
+                    <%# Translate("Tổng chi phí (VNĐ)")%>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox runat="server" ID="rntxtTotal" SkinID="Money" ReadOnly="true"
+                        NumberFormat-AllowRounding="False" NumberFormat-GroupSeparator=",">
+                        <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" />
+                        <ClientEvents OnValueChanged="setDisplayValue" OnLoad="setDisplayValue" />
+                    </tlk:RadNumericTextBox>
+                </td>
+            </tr>
+            <tr>
+                <td class="lb">
+                    <%# Translate("Chi phí 1 HV (VNĐ)")%>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox runat="server" ID="rntxtCostPerEmp" SkinID="Money" ReadOnly="true"
+                        NumberFormat-GroupSeparator=",">
+                        <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" />
+                        <ClientEvents OnValueChanged="setDisplayValue" OnLoad="setDisplayValue" />
+                    </tlk:RadNumericTextBox>
+                </td>
+            </tr>
+            <%--k xoa khuc nay nhé--%>
+            <tr>
+                <td></td>                
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>                
+            </tr>
+            <%--k xoa khuc nay nhé--%>
 
             <tr>
-                <td class="lb" rowspan="4">
-                    <%# Translate("Trung tâm đào tạo")%><%--<span class="lbReq">*</span>--%>
+                <td class="lb">
+                    <%# Translate("Trung tâm đào tạo")%>
                 </td>
-                <td rowspan="4">
-                    <tlk:RadListBox runat="server" ID="lstCenter" Width="100%" Height="100px" CheckBoxes="true"
-                        AutoPostBack="true">
-                    </tlk:RadListBox>
-                    <%--<asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Khóa đào tạo %>"
-                        ToolTip="<%$ Translate: Bạn phải chọn Khóa đào tạo %>" ClientValidationFunction="cusPlan">
-                    </asp:CustomValidator>--%>
-                </td>
-                <td class="lb" rowspan="4">
-                    <%# Translate("Giảng viên")%><%--<span class="lbReq">*</span>--%>
-                </td>
-                <td rowspan="4">
-                    <tlk:RadListBox runat="server" ID="lstTeacher" Width="100%" Height="100px" CheckBoxes="true">
-                    </tlk:RadListBox>
-                    <%--<asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Khóa đào tạo %>"
-                        ToolTip="<%$ Translate: Bạn phải chọn Khóa đào tạo %>" ClientValidationFunction="cusPlan">
-                    </asp:CustomValidator>--%>
-                </td>
-                <td class="lb" style="display: none">
-                    <%# Translate("Đơn vị chủ trì đào tạo")%><%--<span class="lbReq">*</span>--%>
-                </td>
-                <td style="display: none">
-                    <tlk:RadComboBox runat="server" ID="cboUnits" CausesValidation="false">
+                <td>
+                    <tlk:RadComboBox rendermode="Lightweight" ID="cboCenter" AutoPostBack="true" CausesValidation="false"
+                        runat="server" CheckBoxes="true" Filter="StartsWith" MarkFirstMatch="True" EnableCheckAllItemsCheckBox="true"
+                        Width="100%" Label="">
+                        <Items>
+                        </Items>
+                        <Localization CheckAllString="Chọn tất cả" AllItemsCheckedString="Tất cả Trung tâm"
+                            ItemsCheckedString="Trung tâm đã chọn" />
                     </tlk:RadComboBox>
-                    <%--<asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Khóa đào tạo %>"
-                        ToolTip="<%$ Translate: Bạn phải chọn Khóa đào tạo %>" ClientValidationFunction="cusPlan">
-                    </asp:CustomValidator>--%>
+                </td>
+                <td class="lb">
+                    <%# Translate("Giảng viên")%>
+                </td>
+                <td>
+                    <tlk:RadComboBox rendermode="Lightweight" ID="cboTeacher" AutoPostBack="true" CausesValidation="false"
+                        runat="server" CheckBoxes="true" Filter="StartsWith" MarkFirstMatch="True" EnableCheckAllItemsCheckBox="true" Label="">
+                        <Items>
+                        </Items>
+                        <Localization CheckAllString="Chọn tât cả" AllItemsCheckedString="Tất cả giảng viên"
+                            ItemsCheckedString="Giảng viên đã chọn" />
+                    </tlk:RadComboBox>
+                </td>
+                <td>
+                    <%# Translate("Ngôn ngữ giảng dạy")%>
+                </td>
+                <td>
+                    <tlk:RadComboBox runat="server" ID="cboLanguage">
+                    </tlk:RadComboBox>
                 </td>
             </tr>
+
             <tr>
                 <td class="lb" style="display: none">
                     <%# Translate("Chi phí dự kiến")%>
@@ -234,7 +368,7 @@
                     </tlk:RadComboBox>
                 </td>
             </tr>
-            <tr>
+            <%--<tr>
                 <td class="lb">
                     <%# Translate("Nội dung đào tạo")%><span class="lbReq">*</span>
                 </td>
@@ -245,6 +379,15 @@
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Nội dung đào tạo %>"
                         ToolTip="<%$ Translate: Bạn phải nhập Nội dung đào tạo %>">
                     </asp:RequiredFieldValidator>
+                </td>
+            </tr>--%>
+            <tr>
+                <td class="lb">
+                    <%# Translate("Nội dung đào tạo")%>
+                </td>
+                <td colspan="5">
+                    <tlk:RadTextBox runat="server" ID="txtContent" SkinID="Textbox1023" Width="100%">
+                    </tlk:RadTextBox>
                 </td>
             </tr>
             <tr>
@@ -310,7 +453,7 @@
                 </td>
                 <td colspan="3">
                     <tlk:RadButton ID="btnUploadFile" runat="server" Text="<%$ Translate: Upload %>"
-                        CausesValidation="false" Style="padding-right: 20px">
+                        CausesValidation="false">
                     </tlk:RadButton>
                     <asp:Label ID="lblFilename" runat="server" Text=""></asp:Label>
                 </td>
@@ -341,16 +484,16 @@
                 <td colspan="2"></td>
                 <td colspan="4">
                     <tlk:RadButton ID="btnAdd" runat="server" Text="<%$ Translate: Thêm học viên %>"
-                        CausesValidation="false" Style="padding-right: 20px">
+                        CausesValidation="false">
                     </tlk:RadButton>
                     <tlk:RadButton ID="btnRemove" runat="server" Text="<%$ Translate: Xóa học viên %>"
-                        CausesValidation="false" Style="padding-right: 20px">
+                        CausesValidation="false">
                     </tlk:RadButton>
                     <tlk:RadButton ID="btnExport" runat="server" Text="<%$ Translate: Xuất file mẫu %>"
-                        CausesValidation="false" OnClientClicking="btnExportClicking" Style="padding-right: 20px">
+                        CausesValidation="false" OnClientClicking="btnExportClicking">
                     </tlk:RadButton>
                     <tlk:RadButton ID="btnImport" runat="server" Text="<%$ Translate: Nhập file mẫu %>"
-                        CausesValidation="false" Style="padding-right: 20px">
+                        CausesValidation="false">
                     </tlk:RadButton>
                 </td>
             </tr>
@@ -429,6 +572,48 @@
             //                args.set_cancel(true);
             //                window.open('/Default.aspx?mid=Training&fid=ctrlTR_Request&group=Business', "_self");
             //            }
+        }
+        function setDisplayValue(sender, args) {
+            sender.set_displayValue(sender.get_value());
+        }
+        function txtMoney_textChange() {
+            var grid = $find("<%= rgISP.ClientID%>");
+            var tonghv = 0;
+            var tableView = grid.get_masterTableView();
+            var items = tableView.get_dataItems();
+            var iTotal = 0.00;
+            var iTotalUSD = 0.00;
+            for (var i = 0; i < items.length; i++) {
+                var row = items[i];
+                var itemValues = row.findElement("MONEY").value;
+                var itemValues2 = row.findElement("RadMoneyU").value;
+                if (parseFloat(itemValues)) {
+                    if (itemValues2 == "USD") {
+                        iTotalUSD += parseFloat(itemValues);
+                    }
+                    else {
+                        iTotal += parseFloat(itemValues);
+                    }
+                }
+            }
+
+            var sohocvien = $find("<%= rntxtStudents.ClientID %>");
+            if (sohocvien.get_value()) {
+                tonghv = sohocvien.get_value();
+            }
+
+            //Find and set value to txtMoneyTotal
+            var radTotalMomey = $find("<%= rntxtTotal.ClientID %>");
+            var radTotalMomeyPer = $find("<%= rntxtCostPerEmp.ClientID %>");
+
+            radTotalMomey.set_value(iTotal);
+            radTotalMomeyUSD.set_value(iTotalUSD);
+
+            if (tonghv != 0) {
+                radTotalMomeyPer.set_value(iTotal / tonghv);
+                radTotalMomeyPerUSD.set_value(iTotalUSD / tonghv);
+            }
+
         }
 
     </script>

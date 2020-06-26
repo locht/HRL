@@ -136,7 +136,7 @@ Partial Class TrainingRepository
     Public Function GetObjectGroup() As List(Of CenterDTO)
         Try
             Dim ListCenter As List(Of CenterDTO) = (From record In Context.OT_OTHER_LIST
-                                                    Where record.ACTFLG = -1 And record.TYPE_ID = 7102
+                                                    Where record.ACTFLG = "A" And record.TYPE_ID = 7102
                                                     Select New CenterDTO _
                                                         With {
                                                             .ID = record.ID,

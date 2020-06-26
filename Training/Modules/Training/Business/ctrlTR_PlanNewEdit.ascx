@@ -16,9 +16,8 @@
         <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />
         <table class="table-form">
             <tr>
-                <td colspan="6">
-                    <b>
-                        <%# Translate("Thông tin chung")%></b>
+                <td class="item-head" colspan="6">
+                    <%# Translate("Thông tin chung")%>
                     <hr />
                 </td>
             </tr>
@@ -49,7 +48,7 @@
                     <%# Translate("Phòng ban")%><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadTextBox runat="server" ID="txtOrgName" ReadOnly="true">
+                    <tlk:RadTextBox runat="server" ID="txtOrgName" ReadOnly="true" Width="130px">
                     </tlk:RadTextBox>
                     <tlk:RadButton EnableEmbeddedSkins="false" ID="btnFindOrg" runat="server" SkinID="ButtonView"
                         CausesValidation="false">
@@ -157,7 +156,7 @@
                         NumberFormat-DecimalSeparator="," NumberFormat-DecimalDigits="1" MinValue="0"
                         Width="100px">
                     </tlk:RadNumericTextBox>
-                    <tlk:RadComboBox runat="server" ID="cboDurationType">
+                    <tlk:RadComboBox runat="server" ID="cboDurationType" Width="185px">
                     </tlk:RadComboBox>
                     <asp:RequiredFieldValidator ID="reqDuration" ControlToValidate="rntxtDuration" runat="server"
                         ErrorMessage="<%$ Translate: Bạn phải chọn Thời lượng %>" ToolTip="<%$ Translate: Bạn phải chọn Thời lượng %>">
@@ -258,7 +257,8 @@
                     <%# Translate("Số lượng học viên dự kiến")%><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rntxtStudents" runat="server" ReadOnly="true" NumberFormat-GroupSeparator="">
+                    <tlk:RadNumericTextBox ID="rntxtStudents" runat="server" ReadOnly="true" NumberFormat-GroupSeparator=""
+                        Width="130px">
                     </tlk:RadNumericTextBox>
                     <tlk:RadButton EnableEmbeddedSkins="false" ID="btnFindMEmp" runat="server" SkinID="ButtonView"
                         CausesValidation="false">
@@ -276,8 +276,11 @@
                         NumberFormat-DecimalDigits="0" MinValue="0">
                     </tlk:RadNumericTextBox>
                 </td>
+                <%--     <td>
+                </td>--%>
                 <td rowspan="6" colspan="2">
-                    <tlk:RadGrid ID="rgISP" runat="server" Height="180px" Width="355px" Style="overflow: auto">
+                    <tlk:RadGrid ID="rgISP" runat="server" Height="205px" Width="375px" Style="overflow: auto;
+                        margin-left: 20px">
                         <MasterTableView DataKeyNames="CODE" ClientDataKeyNames="CODE,NAME_VN,MONEY">
                             <ColumnGroups>
                                 <tlk:GridColumnGroup Name="GeneralInformation" HeaderText="Chi phí *" HeaderStyle-HorizontalAlign="Center" />
@@ -309,6 +312,8 @@
                             </Columns>
                         </MasterTableView>
                     </tlk:RadGrid>
+                </td>
+                <td>
                 </td>
             </tr>
             <%--<tr>
@@ -400,9 +405,8 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="6">
-                    <b>
-                        <%# Translate("Nhà cung cấp và đối tượng tham gia")%></b>
+                <td class="item-head" colspan="6">
+                    <%# Translate("Nhà cung cấp và đối tượng tham gia")%>
                     <hr />
                 </td>
             </tr>
@@ -410,8 +414,9 @@
                 <td class="lb" style="display: none">
                     <%# Translate("Đơn vị chủ trì đào tạo")%>
                 </td>
-                <td style="display: none">
-                    <tlk:RadComboBox ID="cboUnit" runat="server" AutoPostBack="true" CausesValidation="false">
+                <td colspan="2" style="display: none">
+                    <tlk:RadComboBox ID="cboUnit" runat="server" AutoPostBack="true" CausesValidation="false"
+                        Width="316px">
                     </tlk:RadComboBox>
                 </td>
                 <%-- <tr>
@@ -424,25 +429,11 @@
                 </td>
             </tr>--%>
                 <tr>
-                    <td>
-                    </td>
-                    <td>
+                    <td class="lb">
                         <%# Translate("Trung tâm đào tạo")%>
                     </td>
-                    <td>
-                    </td>
-                    <%--<td>
-                    <%# Translate("Đơn vị chủ trì đào tạo")%>
-                </td>--%>
-                    <td>
-                        <%# Translate("Lý do đào tạo")%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    </td>
                     <td colspan="2">
-                        <%--  <tlk:RadListBox ID="lstCenter" runat="server" CheckBoxes="true" Height="100px" OnClientSelectedIndexChanging="OnClientItemSelectedIndexChanging"
+                        <%--<tlk:RadListBox ID="lstCenter" runat="server" CheckBoxes="true" Height="100px" OnClientSelectedIndexChanging="OnClientItemSelectedIndexChanging"
                             Width="100%" />--%>
                         <tlk:RadComboBox rendermode="Lightweight" ID="cboCenter" AutoPostBack="true" CausesValidation="false"
                             runat="server" CheckBoxes="true" Filter="StartsWith" MarkFirstMatch="True" EnableCheckAllItemsCheckBox="true"
@@ -452,6 +443,9 @@
                             <Localization CheckAllString="Chọn tât cả" AllItemsCheckedString="Tất cả Trung tâm"
                                 ItemsCheckedString="Trung tâm đã chọn" />
                         </tlk:RadComboBox>
+                    </td>
+                    <td class="lb">
+                        <%# Translate("Lý do đào tạo")%>
                     </td>
                     <td colspan="3">
                         <tlk:RadTextBox ID="txtTargetTrain" runat="server" Height="100px" SkinID="Textbox1023"
@@ -463,42 +457,32 @@
                     <td class="lb">
                         <%# Translate("Địa điểm tổ chức")%>
                     </td>
-                    <td colspan="5">
-                        <tlk:RadTextBox ID="txtVenue" runat="server" SkinID="Textbox1023" Width="100%">
+                    <td colspan="2">
+                        <tlk:RadTextBox ID="txtVenue" runat="server" SkinID="Textbox1023" Width="100%" Height="80px">
                         </tlk:RadTextBox>
                     </td>
-                </tr>
-                <tr>
-                    <td>
-                    </td>
-                    <td>
-                        <%# Translate("Đơn vị tham gia")%>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
+                    <td class="lb">
                         <%# Translate("Chức danh")%>
                     </td>
-                    <td>
-                    </td>
-                    <td>
-                        <%# Translate("Công việc liên quan")%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    </td>
-                    <td colspan="2">
-                        <tlk:RadListBox ID="lstPartDepts" runat="server" Height="100px" Width="100%">
-                        </tlk:RadListBox>
-                    </td>
-                    <td colspan="2">
-                        <tlk:RadListBox ID="lstPositions" runat="server" Height="100px" OnClientSelectedIndexChanging="OnClientItemSelectedIndexChanging"
+                    <td colspan="3">
+                        <tlk:RadListBox ID="lstPositions" runat="server" Height="80px" OnClientSelectedIndexChanging="OnClientItemSelectedIndexChanging"
                             Width="100%">
                         </tlk:RadListBox>
                     </td>
-                    <td>
-                        <%-- <tlk:RadListBox ID="lstWork" runat="server" Height="100px" OnClientSelectedIndexChanging="OnClientItemSelectedIndexChanging"
+                </tr>
+                <tr>
+                    <td class="lb">
+                        <%# Translate("Đơn vị tham gia")%>
+                    </td>
+                    <td colspan="2">
+                        <tlk:RadListBox ID="lstPartDepts" runat="server" Height="80px" Width="100%">
+                        </tlk:RadListBox>
+                    </td>
+                    <td class="lb">
+                        <%# Translate("Công việc liên quan")%>
+                    </td>
+                    <td colspan="3">
+                        <%--  <tlk:RadListBox ID="lstWork" runat="server" Height="80px" OnClientSelectedIndexChanging="OnClientItemSelectedIndexChanging"
                             Width="100%">
                         </tlk:RadListBox>--%>
                         <tlk:RadTextBox ID="txtWork_Relation" runat="server" Height="100px" Width="100%">
@@ -507,11 +491,18 @@
                 </tr>
                 <tr>
                     <td class="lb">
+                        <%# Translate("Ghi chú")%>
+                    </td>
+                    <td colspan="2">
+                        <tlk:RadTextBox ID="txtRemark" runat="server" SkinID="Textbox1023" Width="100%">
+                        </tlk:RadTextBox>
+                    </td>
+                    <td class="lb">
                         <%# Translate("File đính kèm")%>
                     </td>
                     <td>
                         <tlk:RadButton ID="btnUploadFile" runat="server" Text="<%$ Translate: Upload %>"
-                            CausesValidation="false" Style="padding-right: 20px">
+                            CausesValidation="false">
                         </tlk:RadButton>
                         <%--  <asp:Label id="lblFilename" runat="server" Text="">
                     </asp:Label>--%>
@@ -519,13 +510,8 @@
                     <td>
                         <asp:HyperLink ID="lblFilename" NavigateUrl="" Text="" Target="_new" runat="server" />
                     </td>
-                    <td class="lb">
-                        <%# Translate("Ghi chú")%>
-                    </td>
-                    <td colspan="3">
-                        <tlk:RadTextBox ID="txtRemark" runat="server" SkinID="Textbox1023" Width="100%">
-                        </tlk:RadTextBox>
-                    </td>
+                </tr>
+                <tr style="height: 20px">
                 </tr>
             </tr>
         </table>

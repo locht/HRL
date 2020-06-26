@@ -122,6 +122,15 @@ Partial Public Class ctrlTR_RequestNewEdit
     Protected WithEvents cboStatus As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''reqYear control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqYear As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''cbIrregularly control.
     '''</summary>
     '''<remarks>
@@ -176,6 +185,15 @@ Partial Public Class ctrlTR_RequestNewEdit
     Protected WithEvents cboObjGr As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''RequiredFieldValidator2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''cboTrainForm control.
     '''</summary>
     '''<remarks>
@@ -194,31 +212,31 @@ Partial Public Class ctrlTR_RequestNewEdit
     Protected WithEvents cboPropertiesNeed As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''rntxtDuration control.
+    '''RadButton1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rntxtDuration As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents RadButton1 As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
-    '''cboDurationType control.
+    '''RadButton2 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboDurationType As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents RadButton2 As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
-    '''reqDuration control.
+    '''RadNumericTextBox1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents reqDuration As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents RadNumericTextBox1 As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''txtTrainField control.
@@ -266,31 +284,67 @@ Partial Public Class ctrlTR_RequestNewEdit
     Protected WithEvents rdStartDate As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
-    '''lstCenter control.
+    '''rntxtStudents control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lstCenter As Global.Telerik.Web.UI.RadListBox
+    Protected WithEvents rntxtStudents As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
-    '''lstTeacher control.
+    '''rgISP control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lstTeacher As Global.Telerik.Web.UI.RadListBox
+    Protected WithEvents rgISP As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
-    '''cboUnits control.
+    '''rntxtTotal control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboUnits As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents rntxtTotal As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''rntxtCostPerEmp control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rntxtCostPerEmp As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''cboCenter control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboCenter As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cboTeacher control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboTeacher As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cboLanguage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboLanguage As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''rntxtExpectedCost control.
@@ -318,15 +372,6 @@ Partial Public Class ctrlTR_RequestNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtContent As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
-    '''RequiredFieldValidator2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''txtKivong control.
