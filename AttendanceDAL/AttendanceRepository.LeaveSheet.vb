@@ -110,8 +110,7 @@ Partial Public Class AttendanceRepository
 
         Dim strHostName As String
         Dim strIPAddress As String
-        strHostName = System.Net.Dns.GetHostName()
-        strIPAddress = System.Net.Dns.GetHostByName(strHostName).AddressList(0).ToString()
+        strIPAddress = System.Net.Dns.GetHostByName(My.Computer.Name).AddressList(0).ToString()
 
         Try
             If dsLeaveSheet.Tables(0) IsNot Nothing AndAlso dsLeaveSheet.Tables(0).Rows.Count = 1 Then
