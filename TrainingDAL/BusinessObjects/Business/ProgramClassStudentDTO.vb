@@ -18,4 +18,7 @@
     Public Property lstTitle As List(Of Decimal)
     Public Property lstContractType As List(Of Decimal)
 
+    Public Property NOTIFICATION_STATUS As Decimal?
+    Public Property NOTIFICATION_STATUS_NAME As String
+
 End Class

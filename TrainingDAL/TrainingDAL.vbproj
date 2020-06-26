@@ -79,6 +79,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessObjects\Business\TrConfirmProgramDTO.vb" />
     <Compile Include="BusinessObjects\Dashboard\StatisticDTO.vb" />
     <Compile Include="BusinessObjects\Setting\AssessmentCourseDTO.vb" />
     <Compile Include="TrainingRepository.Dashboard.vb" />

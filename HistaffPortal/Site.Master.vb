@@ -5,6 +5,7 @@ Imports Profile.ProfileBusiness
 Imports Profile
 Imports System.Xml
 Imports Attendance
+Imports Training
 Imports System.IO
 
 Public Class Site
@@ -99,6 +100,7 @@ Public Class Site
     End Sub
     Public Sub Load_Noty()
         Dim db As New AttendanceRepository
+        Dim rep As New TrainingRepository
         Dim filter As New AttendanceBusiness.ATRegSearchDTO With {
             .EmployeeIdName = String.Empty,
             .FromDate = Date.Now.FirstDateOfMonth(),
@@ -124,7 +126,11 @@ Public Class Site
         ltrASSESS.DataSource = listAssess
         ltrASSESS.DataBind()
 
-        ltrNumberRocord.Text = listApprove.Count + listApproveDMVS.Count + listAssess.Rows.Count
+        Dim listConfirm_pr = rep.GetListWaitingConfirm(LogHelper.CurrentUser.EMPLOYEE_ID)
+        ltrConfirm_Pr.DataSource = listConfirm_pr
+        ltrConfirm_Pr.DataBind()
+
+        ltrNumberRocord.Text = listApprove.Count + listApproveDMVS.Count + listAssess.Rows.Count + listConfirm_pr.Count
     End Sub
     Private Sub btnNotiTimer_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnNotiTimer.Click
         Load_Noty()

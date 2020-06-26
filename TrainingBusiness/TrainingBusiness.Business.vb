@@ -463,6 +463,24 @@ Namespace TrainingBusiness.ServiceImplementations
             End Try
         End Function
 
+        Public Function SendNotification(ByVal lst As List(Of Decimal), ByVal _class_id As Decimal, Optional ByVal log As UserLog = Nothing) As Boolean _
+            Implements ServiceContracts.ITrainingBusiness.SendNotification
+            Try
+                Return TrainingRepositoryStatic.Instance.SendNotification(lst, _class_id, log)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+
+        Public Function GetListWaitingConfirm(ByVal _emp_id As Decimal) As List(Of TrConfirmProgramDTO) _
+            Implements ServiceContracts.ITrainingBusiness.GetListWaitingConfirm
+            Try
+                Return TrainingRepositoryStatic.Instance.GetListWaitingConfirm(_emp_id)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+
 #End Region
 
 #Region "ClassSchedule"

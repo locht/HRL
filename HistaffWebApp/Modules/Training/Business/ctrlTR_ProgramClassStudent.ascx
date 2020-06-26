@@ -156,7 +156,7 @@
                     </tr>
                 </table>
                 <tlk:RadGrid ID="rgCanSchedule" runat="server" Height="93%" AllowSorting="false" PageSize="50">
-                    <MasterTableView DataKeyNames="EMPLOYEE_ID">
+                    <MasterTableView DataKeyNames="EMPLOYEE_ID,NOTIFICATION_STATUS,EMPLOYEE_CODE">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -179,6 +179,8 @@
                                 SortExpression="ID_NO" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày cấp %>" DataField="ID_DATE"
                                 UniqueName="ID_DATE" SortExpression="ID_DATE" DataFormatString="{0:dd/mm/yyyy}" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="NOTIFICATION_STATUS_NAME"
+                                UniqueName="NOTIFICATION_STATUS_NAME" SortExpression="NOTIFICATION_STATUS_NAME"/>
                         </Columns>
                     </MasterTableView>
                     <HeaderStyle HorizontalAlign="Center" Width="100px" />

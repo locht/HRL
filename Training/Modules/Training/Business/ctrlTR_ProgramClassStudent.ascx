@@ -142,7 +142,7 @@
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane3" runat="server" Scrolling="None">
                 <tlk:RadGrid ID="rgCanSchedule" runat="server" Height="100%" AllowSorting="false">
-                    <MasterTableView DataKeyNames="EMPLOYEE_ID" Caption="<%$ Translate: Danh sách nhân viên đã đăng ký khóa đào tạo %>">
+                    <MasterTableView DataKeyNames="EMPLOYEE_ID,NOTIFICATION_STATUS,EMPLOYEE_CODE" Caption="<%$ Translate: Danh sách nhân viên đã đăng ký khóa đào tạo %>">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -165,6 +165,8 @@
                                 UniqueName="ID_NO" SortExpression="ID_NO" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày cấp %>" DataField="ID_DATE"
                                 UniqueName="ID_DATE" SortExpression="ID_DATE" DataFormatString="{0:dd/mm/yyyy}" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="NOTIFICATION_STATUS_NAME"
+                                UniqueName="NOTIFICATION_STATUS_NAME" SortExpression="NOTIFICATION_STATUS_NAME"/>
                         </Columns>
                     </MasterTableView>
                     <HeaderStyle HorizontalAlign="Center" Width="150px" />

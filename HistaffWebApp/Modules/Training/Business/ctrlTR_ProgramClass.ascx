@@ -127,7 +127,7 @@
                         OnClientClicking="btnStudentClick" AutoPostBack="false">
                     </tlk:RadButton>
                 </td>
-                <td>
+                <td style="display:none;">
                     <tlk:RadButton ID="btnSchedule" runat="server" Text="<%$ Translate: 2. Lên lịch học %>"
                         OnClientClicking="btnScheduleClick" AutoPostBack="false">
                     </tlk:RadButton>

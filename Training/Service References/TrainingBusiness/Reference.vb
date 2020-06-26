@@ -7081,6 +7081,12 @@ Namespace TrainingBusiness
         Private IS_PLANField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NOTIFICATION_STATUSField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NOTIFICATION_STATUS_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ORG_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -7255,6 +7261,32 @@ Namespace TrainingBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NOTIFICATION_STATUS() As System.Nullable(Of Decimal)
+            Get
+                Return Me.NOTIFICATION_STATUSField
+            End Get
+            Set
+                If (Me.NOTIFICATION_STATUSField.Equals(value) <> true) Then
+                    Me.NOTIFICATION_STATUSField = value
+                    Me.RaisePropertyChanged("NOTIFICATION_STATUS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NOTIFICATION_STATUS_NAME() As String
+            Get
+                Return Me.NOTIFICATION_STATUS_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.NOTIFICATION_STATUS_NAMEField, value) <> true) Then
+                    Me.NOTIFICATION_STATUS_NAMEField = value
+                    Me.RaisePropertyChanged("NOTIFICATION_STATUS_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property ORG_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.ORG_IDField
@@ -7341,6 +7373,325 @@ Namespace TrainingBusiness
                 If (Object.ReferenceEquals(Me.lstTitleField, value) <> true) Then
                     Me.lstTitleField = value
                     Me.RaisePropertyChanged("lstTitle")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="TrConfirmProgramDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/TrainingDAL"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class TrConfirmProgramDTO
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CONFIRM_STATUSField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CONFIRM_STATUS_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_BYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMPLOYEE_CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMPLOYEE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMPLOYEE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_BYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TR_CLASS_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TR_CLASS_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TR_COURSE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TR_COURSE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TR_PROGRAM_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TR_PROGRAM_NAMEField As String
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CONFIRM_STATUS() As System.Nullable(Of Decimal)
+            Get
+                Return Me.CONFIRM_STATUSField
+            End Get
+            Set
+                If (Me.CONFIRM_STATUSField.Equals(value) <> true) Then
+                    Me.CONFIRM_STATUSField = value
+                    Me.RaisePropertyChanged("CONFIRM_STATUS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CONFIRM_STATUS_NAME() As String
+            Get
+                Return Me.CONFIRM_STATUS_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CONFIRM_STATUS_NAMEField, value) <> true) Then
+                    Me.CONFIRM_STATUS_NAMEField = value
+                    Me.RaisePropertyChanged("CONFIRM_STATUS_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_BY() As String
+            Get
+                Return Me.CREATED_BYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CREATED_BYField, value) <> true) Then
+                    Me.CREATED_BYField = value
+                    Me.RaisePropertyChanged("CREATED_BY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.CREATED_DATEField
+            End Get
+            Set
+                If (Me.CREATED_DATEField.Equals(value) <> true) Then
+                    Me.CREATED_DATEField = value
+                    Me.RaisePropertyChanged("CREATED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_LOG() As String
+            Get
+                Return Me.CREATED_LOGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CREATED_LOGField, value) <> true) Then
+                    Me.CREATED_LOGField = value
+                    Me.RaisePropertyChanged("CREATED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMPLOYEE_CODE() As String
+            Get
+                Return Me.EMPLOYEE_CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.EMPLOYEE_CODEField, value) <> true) Then
+                    Me.EMPLOYEE_CODEField = value
+                    Me.RaisePropertyChanged("EMPLOYEE_CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMPLOYEE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.EMPLOYEE_IDField
+            End Get
+            Set
+                If (Me.EMPLOYEE_IDField.Equals(value) <> true) Then
+                    Me.EMPLOYEE_IDField = value
+                    Me.RaisePropertyChanged("EMPLOYEE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMPLOYEE_NAME() As String
+            Get
+                Return Me.EMPLOYEE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.EMPLOYEE_NAMEField, value) <> true) Then
+                    Me.EMPLOYEE_NAMEField = value
+                    Me.RaisePropertyChanged("EMPLOYEE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID() As Decimal
+            Get
+                Return Me.IDField
+            End Get
+            Set
+                If (Me.IDField.Equals(value) <> true) Then
+                    Me.IDField = value
+                    Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_BY() As String
+            Get
+                Return Me.MODIFIED_BYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MODIFIED_BYField, value) <> true) Then
+                    Me.MODIFIED_BYField = value
+                    Me.RaisePropertyChanged("MODIFIED_BY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.MODIFIED_DATEField
+            End Get
+            Set
+                If (Me.MODIFIED_DATEField.Equals(value) <> true) Then
+                    Me.MODIFIED_DATEField = value
+                    Me.RaisePropertyChanged("MODIFIED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_LOG() As String
+            Get
+                Return Me.MODIFIED_LOGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MODIFIED_LOGField, value) <> true) Then
+                    Me.MODIFIED_LOGField = value
+                    Me.RaisePropertyChanged("MODIFIED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TR_CLASS_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TR_CLASS_IDField
+            End Get
+            Set
+                If (Me.TR_CLASS_IDField.Equals(value) <> true) Then
+                    Me.TR_CLASS_IDField = value
+                    Me.RaisePropertyChanged("TR_CLASS_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TR_CLASS_NAME() As String
+            Get
+                Return Me.TR_CLASS_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TR_CLASS_NAMEField, value) <> true) Then
+                    Me.TR_CLASS_NAMEField = value
+                    Me.RaisePropertyChanged("TR_CLASS_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TR_COURSE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TR_COURSE_IDField
+            End Get
+            Set
+                If (Me.TR_COURSE_IDField.Equals(value) <> true) Then
+                    Me.TR_COURSE_IDField = value
+                    Me.RaisePropertyChanged("TR_COURSE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TR_COURSE_NAME() As String
+            Get
+                Return Me.TR_COURSE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TR_COURSE_NAMEField, value) <> true) Then
+                    Me.TR_COURSE_NAMEField = value
+                    Me.RaisePropertyChanged("TR_COURSE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TR_PROGRAM_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TR_PROGRAM_IDField
+            End Get
+            Set
+                If (Me.TR_PROGRAM_IDField.Equals(value) <> true) Then
+                    Me.TR_PROGRAM_IDField = value
+                    Me.RaisePropertyChanged("TR_PROGRAM_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TR_PROGRAM_NAME() As String
+            Get
+                Return Me.TR_PROGRAM_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TR_PROGRAM_NAMEField, value) <> true) Then
+                    Me.TR_PROGRAM_NAMEField = value
+                    Me.RaisePropertyChanged("TR_PROGRAM_NAME")
                 End If
             End Set
         End Property
@@ -15194,6 +15545,12 @@ Namespace TrainingBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="TrainingBusiness.ITrainingBusiness")>  _
     Public Interface ITrainingBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetAssessmentCourse", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetAssessmentCourseResponse")>  _
+        Function GetAssessmentCourse(ByVal _filter As TrainingBusiness.AssessmentCourseDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.AssessmentCourseDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertAssessmentCourse", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertAssessmentCourseResponse")>  _
+        Function InsertAssessmentCourse(ByVal objAssessmentForm As TrainingBusiness.AssessmentCourseDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/ModifyAssessmentCourse", ReplyAction:="http://tempuri.org/ITrainingBusiness/ModifyAssessmentCourseResponse")>  _
         Function ModifyAssessmentCourse(ByVal objAssessmentForm As TrainingBusiness.AssessmentCourseDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
@@ -15329,6 +15686,12 @@ Namespace TrainingBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/DeleteClassStudent", ReplyAction:="http://tempuri.org/ITrainingBusiness/DeleteClassStudentResponse")>  _
         Function DeleteClassStudent(ByVal lst As System.Collections.Generic.List(Of TrainingBusiness.ProgramClassStudentDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/SendNotification", ReplyAction:="http://tempuri.org/ITrainingBusiness/SendNotificationResponse")>  _
+        Function SendNotification(ByVal lst As System.Collections.Generic.List(Of Decimal), ByVal _class_id As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetListWaitingConfirm", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetListWaitingConfirmResponse")>  _
+        Function GetListWaitingConfirm(ByVal _emp_id As Decimal) As System.Collections.Generic.List(Of TrainingBusiness.TrConfirmProgramDTO)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetClassSchedule", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetClassScheduleResponse")>  _
         Function GetClassSchedule(ByVal _filter As TrainingBusiness.ProgramClassScheduleDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.ProgramClassScheduleDTO)
         
@@ -15454,12 +15817,6 @@ Namespace TrainingBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetStatisticRank", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetStatisticRankResponse")>  _
         Function GetStatisticRank(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of TrainingBusiness.StatisticDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/GetAssessmentCourse", ReplyAction:="http://tempuri.org/ITrainingBusiness/GetAssessmentCourseResponse")>  _
-        Function GetAssessmentCourse(ByVal _filter As TrainingBusiness.AssessmentCourseDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.AssessmentCourseDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/InsertAssessmentCourse", ReplyAction:="http://tempuri.org/ITrainingBusiness/InsertAssessmentCourseResponse")>  _
-        Function InsertAssessmentCourse(ByVal objAssessmentForm As TrainingBusiness.AssessmentCourseDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ITrainingBusiness/TestService", ReplyAction:="http://tempuri.org/ITrainingBusiness/TestServiceResponse")>  _
         Function TestService(ByVal str As String) As String
@@ -15748,6 +16105,14 @@ Namespace TrainingBusiness
             MyBase.New(binding, remoteAddress)
         End Sub
         
+        Public Function GetAssessmentCourse(ByVal _filter As TrainingBusiness.AssessmentCourseDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.AssessmentCourseDTO) Implements TrainingBusiness.ITrainingBusiness.GetAssessmentCourse
+            Return MyBase.Channel.GetAssessmentCourse(_filter, PageIndex, PageSize, Total, Sorts)
+        End Function
+        
+        Public Function InsertAssessmentCourse(ByVal objAssessmentForm As TrainingBusiness.AssessmentCourseDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.InsertAssessmentCourse
+            Return MyBase.Channel.InsertAssessmentCourse(objAssessmentForm, log, gID)
+        End Function
+        
         Public Function ModifyAssessmentCourse(ByVal objAssessmentForm As TrainingBusiness.AssessmentCourseDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.ModifyAssessmentCourse
             Return MyBase.Channel.ModifyAssessmentCourse(objAssessmentForm, log, gID)
         End Function
@@ -15928,6 +16293,14 @@ Namespace TrainingBusiness
             Return MyBase.Channel.DeleteClassStudent(lst, log)
         End Function
         
+        Public Function SendNotification(ByVal lst As System.Collections.Generic.List(Of Decimal), ByVal _class_id As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements TrainingBusiness.ITrainingBusiness.SendNotification
+            Return MyBase.Channel.SendNotification(lst, _class_id, log)
+        End Function
+        
+        Public Function GetListWaitingConfirm(ByVal _emp_id As Decimal) As System.Collections.Generic.List(Of TrainingBusiness.TrConfirmProgramDTO) Implements TrainingBusiness.ITrainingBusiness.GetListWaitingConfirm
+            Return MyBase.Channel.GetListWaitingConfirm(_emp_id)
+        End Function
+        
         Public Function GetClassSchedule(ByVal _filter As TrainingBusiness.ProgramClassScheduleDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.ProgramClassScheduleDTO) Implements TrainingBusiness.ITrainingBusiness.GetClassSchedule
             Return MyBase.Channel.GetClassSchedule(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
@@ -16094,14 +16467,6 @@ Namespace TrainingBusiness
         
         Public Function GetStatisticRank(ByVal _year As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of TrainingBusiness.StatisticDTO) Implements TrainingBusiness.ITrainingBusiness.GetStatisticRank
             Return MyBase.Channel.GetStatisticRank(_year, log)
-        End Function
-        
-        Public Function GetAssessmentCourse(ByVal _filter As TrainingBusiness.AssessmentCourseDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of TrainingBusiness.AssessmentCourseDTO) Implements TrainingBusiness.ITrainingBusiness.GetAssessmentCourse
-            Return MyBase.Channel.GetAssessmentCourse(_filter, PageIndex, PageSize, Total, Sorts)
-        End Function
-        
-        Public Function InsertAssessmentCourse(ByVal objAssessmentForm As TrainingBusiness.AssessmentCourseDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements TrainingBusiness.ITrainingBusiness.InsertAssessmentCourse
-            Return MyBase.Channel.InsertAssessmentCourse(objAssessmentForm, log, gID)
         End Function
         
         Public Function TestService(ByVal str As String) As String Implements TrainingBusiness.ITrainingBusiness.TestService

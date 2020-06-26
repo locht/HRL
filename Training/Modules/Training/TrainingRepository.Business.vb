@@ -581,6 +581,30 @@ Partial Class TrainingRepository
 
     End Function
 
+    Public Function SendNotification(ByVal lst As List(Of Decimal), ByVal _class_id As Decimal) As Boolean
+        Using rep As New TrainingBusinessClient
+            Try
+                Return rep.SendNotification(lst, _class_id, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function GetListWaitingConfirm(ByVal _emp_id As Decimal) As List(Of TrConfirmProgramDTO)
+        Using rep As New TrainingBusinessClient
+            Try
+                Return rep.GetListWaitingConfirm(_emp_id)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
 #End Region
 
 #Region "ClassSchedule"

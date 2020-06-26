@@ -2467,7 +2467,9 @@ Partial Class TrainingRepository
                             .TITLE_NAME = title.NAME_VN,
                             .ORG_NAME = org.NAME_VN,
                             .CONTRACT_TYPE_NAME = ctr_type.NAME,
-                            .GENDER_NAME = gender.NAME_VN}
+                            .GENDER_NAME = gender.NAME_VN,
+                            .NOTIFICATION_STATUS = student.NOTIFICATION_STATUS,
+                            .NOTIFICATION_STATUS_NAME = If(student.NOTIFICATION_STATUS = 1, "Đã gửi", "Chưa gửi")}
 
             Dim lst = query
 
@@ -2498,6 +2500,7 @@ Partial Class TrainingRepository
                     objData.ID = Utilities.GetNextSequence(Context, Context.TR_CLASS_STUDENT.EntitySet.Name)
                     objData.TR_CLASS_ID = obj.TR_CLASS_ID
                     objData.EMPLOYEE_ID = obj.EMPLOYEE_ID
+                    objData.NOTIFICATION_STATUS = 0
                     Context.TR_CLASS_STUDENT.AddObject(objData)
                 End If
             Next
@@ -2518,6 +2521,10 @@ Partial Class TrainingRepository
                                And p.TR_CLASS_ID = obj.TR_CLASS_ID).ToList
                 For Each Student In Students
                     Context.TR_CLASS_STUDENT.DeleteObject(Student)
+                    Dim emp_cls = (From p In Context.TR_CONFIRM_PROGRAM
+                                    Where p.EMPLOYEE_ID = obj.EMPLOYEE_ID _
+                                    And p.TR_CLASS_ID = obj.TR_CLASS_ID).FirstOrDefault
+                    Context.TR_CONFIRM_PROGRAM.DeleteObject(emp_cls)
                 Next
             Next
             Context.SaveChanges(log)
@@ -2527,6 +2534,61 @@ Partial Class TrainingRepository
         End Try
     End Function
 
+    Public Function SendNotification(ByVal lst As List(Of Decimal), ByVal _class_id As Decimal, Optional ByVal log As UserLog = Nothing) As Boolean
+        Try
+            For Each item In lst
+                Dim obj As New TR_CONFIRM_PROGRAM
+                obj.ID = Utilities.GetNextSequence(Context, Context.TR_CONFIRM_PROGRAM.EntitySet.Name)
+                obj.EMPLOYEE_ID = item
+                obj.TR_CLASS_ID = _class_id
+                obj.CONFIRM_STATUS = 1
+                Context.TR_CONFIRM_PROGRAM.AddObject(obj)
+
+                Dim objCls = (From p In Context.TR_CLASS_STUDENT Where p.EMPLOYEE_ID = item And p.TR_CLASS_ID = _class_id).FirstOrDefault
+                objCls.NOTIFICATION_STATUS = 1
+            Next
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            Utility.WriteExceptionLog(ex, Me.ToString() & ".SendNotification")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetListWaitingConfirm(ByVal _emp_id As Decimal) As List(Of TrConfirmProgramDTO)
+        Try
+            Dim query = (From cp In Context.TR_CONFIRM_PROGRAM
+                        From emp In Context.HU_EMPLOYEE.Where(Function(f) f.ID = cp.EMPLOYEE_ID)
+                        From cls In Context.TR_CLASS.Where(Function(f) f.ID = cp.TR_CLASS_ID)
+                        From pr In Context.TR_PROGRAM.Where(Function(f) f.ID = cls.TR_PROGRAM_ID).DefaultIfEmpty
+                        From cr In Context.TR_COURSE.Where(Function(f) f.ID = pr.TR_COURSE_ID).DefaultIfEmpty
+                        Where cp.EMPLOYEE_ID = _emp_id AndAlso cp.CONFIRM_STATUS = 1
+                        Select New TrConfirmProgramDTO With {
+                            .ID = cp.ID,
+                            .CONFIRM_STATUS = cp.CONFIRM_STATUS,
+                            .CONFIRM_STATUS_NAME = If(cp.CONFIRM_STATUS = 3, "Đã xác nhận", "Chờ xác nhận"),
+                            .CREATED_BY = cp.CREATED_BY,
+                            .CREATED_DATE = cp.CREATED_DATE,
+                            .CREATED_LOG = cp.CREATED_LOG,
+                            .EMPLOYEE_CODE = emp.EMPLOYEE_CODE,
+                            .EMPLOYEE_ID = cp.EMPLOYEE_ID,
+                            .EMPLOYEE_NAME = emp.FULLNAME_VN,
+                            .MODIFIED_BY = cp.MODIFIED_BY,
+                            .MODIFIED_DATE = cp.MODIFIED_DATE,
+                            .MODIFIED_LOG = cp.MODIFIED_LOG,
+                            .TR_CLASS_ID = cp.TR_CLASS_ID,
+                            .TR_CLASS_NAME = cls.NAME,
+                            .TR_COURSE_ID = pr.TR_COURSE_ID,
+                            .TR_COURSE_NAME = cr.NAME,
+                            .TR_PROGRAM_ID = cls.TR_PROGRAM_ID,
+                            .TR_PROGRAM_NAME = pr.NAME
+                            })
+            Return query.ToList
+        Catch ex As Exception
+            Utility.WriteExceptionLog(ex, Me.ToString() & ".SendNotification")
+            Throw ex
+        End Try
+    End Function
 #End Region
 
 #Region "ClassSchedule"

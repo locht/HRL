@@ -529,7 +529,11 @@ Namespace TrainingBusiness.ServiceContracts
         <OperationContract()>
         Function DeleteClassStudent(ByVal lst As List(Of ProgramClassStudentDTO), ByVal log As UserLog) As Boolean
 
+        <OperationContract()>
+        Function SendNotification(ByVal lst As List(Of Decimal), ByVal _class_id As Decimal, Optional ByVal log As UserLog = Nothing) As Boolean
 
+        <OperationContract()>
+        Function GetListWaitingConfirm(ByVal _emp_id As Decimal) As List(Of TrConfirmProgramDTO)
 #End Region
 
 #Region "ClassSchedule"

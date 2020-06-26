@@ -104,6 +104,15 @@ Partial Public Class Site
     Protected WithEvents ltrASSESS As Global.System.Web.UI.WebControls.ListView
 
     '''<summary>
+    '''ltrConfirm_Pr control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ltrConfirm_Pr As Global.System.Web.UI.WebControls.ListView
+
+    '''<summary>
     '''HeadLoginName control.
     '''</summary>
     '''<remarks>

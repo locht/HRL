@@ -9,7 +9,6 @@ $(document).mouseup(function (e) {
 $(document).ready(function () {
     $(".box48").click(function () {
         var data = $(this).attr("data");
-
         if ($("#collapse-" + data + "").is(":visible")) {
             $("#collapse-" + data + "").slideUp();
             $(this).children("strong").text("+")

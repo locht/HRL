@@ -111,7 +111,7 @@
             <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQueryInclude.js" />
             <tlk:RadScriptReference Path="~/Scripts/highcharts/highcharts.js" />
             <tlk:RadScriptReference Path="~/Scripts/highcharts/modules/exporting.js" />
-            <tlk:RadScriptReference Path="~/Scripts/top.js" />
+            <%--<tlk:RadScriptReference Path="~/Scripts/top.js" />--%>
         </Scripts>
     </tlk:RadScriptManager>
     <div id="header">
@@ -188,6 +188,23 @@
                                                     <i style="font-size: 15px;" class='fa fa-exclamation-circle'></i><a href='/Default.aspx?mid=Performance&fid=ctrlPortalAssessmentDirect'
                                                         target="_blank">
                                                         <%# Eval("TB_ASSESS")%></a>
+                                                </div>
+                                            </ItemTemplate>
+                                        </asp:ListView>
+                                    </div>
+
+                                    <%-- Xác nhận khóa học --%>
+                                    <div runat="server" class='box48' data="5">
+                                        Xác nhận tham gia khóa học <strong>-</strong>
+                                    </div>
+                                    <div id="collapse-5">
+                                        <%--list view Phê duyệt đánh giá--%>
+                                        <asp:ListView ID="ltrConfirm_Pr" runat="server">
+                                            <ItemTemplate>
+                                                <div class='box25'>
+                                                    <i style="font-size: 15px;" class='fa fa-exclamation-circle'></i><a href='/Default.aspx?mid=Performance&fid=ctrlPortalAssessmentDirect'
+                                                        target="_blank">
+                                                        <%# "Khóa " + Eval("TR_COURSE_NAME").ToString() + "_ " + Eval("TR_PROGRAM_NAME").ToString() + "_" + Eval("TR_CLASS_NAME").ToString()%></a>
                                                 </div>
                                             </ItemTemplate>
                                         </asp:ListView>

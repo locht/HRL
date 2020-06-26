@@ -107,7 +107,8 @@ Public Class ctrlTR_ProgramClassStudent
     Protected Sub InitControl()
         Try
             Me.MainToolBar = tbarMain
-            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Cancel)
+            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Cancel, ToolbarItem.SendMail)
+            CType(MainToolBar.Items(1), RadToolBarButton).Text = Translate("Gửi thông báo xác nhận khóa học")
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
         Catch ex As Exception
             Throw ex
@@ -196,8 +197,22 @@ Public Class ctrlTR_ProgramClassStudent
         Dim rep As New TrainingRepository
         Dim _error As Integer = 0
         Dim sType As Object = Nothing
+        Dim lst As New List(Of Decimal)
         Try
-
+            Select Case CType(e.Item, RadToolBarButton).CommandName
+                Case CommonMessage.TOOLBARITEM_SENDMAIL
+                    For Each item As GridDataItem In rgCanSchedule.SelectedItems
+                        If item.GetDataKeyValue("NOTITFICATION_STATUS") = 0 Then
+                            lst.Add(item.GetDataKeyValue("EMPLOYEE_ID"))
+                        End If
+                    Next
+                    If rep.SendNotification(lst, hidClassID.Value) Then
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                        rgCanSchedule.Rebind()
+                    Else
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                    End If
+            End Select
         Catch ex As Exception
             ShowMessage(ex.Message, Framework.UI.Utilities.NotifyType.Error)
         End Try
@@ -256,7 +271,7 @@ Public Class ctrlTR_ProgramClassStudent
     End Sub
 
     Private Sub btnDelete_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDelete.Click
-        GetCanScheduleSelected()
+        'GetCanScheduleSelected()
         ctrlMessageBox.MessageText = "Bạn có chắc chắn xóa " & SelectedItemCanSchedule.Count & " học viên?"
         ctrlMessageBox.ActionName = "DELETE"
         ctrlMessageBox.DataBind()
@@ -281,6 +296,13 @@ Public Class ctrlTR_ProgramClassStudent
                 UpdateControlState()
             End If
             If e.ActionName = "DELETE" And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                For Each item As GridDataItem In rgCanSchedule.SelectedItems
+                    If item.GetDataKeyValue("NOTIFICATION_STATUS") = 1 Then
+                        ShowMessage(Translate("Nhân viên " & item.GetDataKeyValue("EMPLOYEE_CODE") & " đã gửi thông báo xác nhận khóa học, không thể xóa!!!"), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                Next
+                GetCanScheduleSelected()
                 CurrentState = CommonMessage.STATE_DELETE
                 UpdateControlState()
             End If
