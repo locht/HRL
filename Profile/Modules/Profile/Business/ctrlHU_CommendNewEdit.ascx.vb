@@ -748,6 +748,7 @@ Public Class ctrlHU_CommendNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
     Private Function IsTienMatCommendPay(ByVal commend_pay_id) As Boolean
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
@@ -765,6 +766,7 @@ Public Class ctrlHU_CommendNewEdit
         End Try
         Return False
     End Function
+
     ''' <lastupdate>11/07/2017</lastupdate>
     ''' <summary>Bật popup FindSigner</summary>
     ''' <param name="sender"></param>
@@ -953,7 +955,18 @@ Public Class ctrlHU_CommendNewEdit
                 bResult = rep.ValidateOtherList(validate)
             End If
 
+            'danh hieu khen thuong
+            Dim titleCommend As DataTable
+            titleCommend = psp.Get_Commend_Title(True, cboCommendObj.SelectedValue)
+            FillRadCombobox(cboCommend_Title, titleCommend, "NAME", "ID", False)
+
+            'hinh thức khen thưởng
+            Dim listCommend As DataTable
+            listCommend = psp.Get_Commend_Formality(True, cboCommendObj.SelectedValue)
+            FillRadCombobox(cboCommendType, listCommend, "NAME", "ID", False)
             If cboCommendObj.SelectedValue = 389 Then
+
+
                 chkTyLe.Enabled = True
                 rgEmployee.Enabled = True
                 ctrlFindEmpImportPopup.MultiSelect = True
@@ -2427,22 +2440,17 @@ Public Class ctrlHU_CommendNewEdit
             dtData = rep.GetOtherList(OtherTypes.DecisionStatus, True)
             FillRadCombobox(cboStatus, dtData, "NAME", "ID", True)
             FillDropDownList(cboCommendObj, ListComboData.LIST_COMMEND_OBJ, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
-            FillDropDownList(cboCommendType, ListComboData.LIST_COMMEND_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
+            'FillDropDownList(cboCommendType, ListComboData.LIST_COMMEND_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
             List_Cm_Obj = ListComboData.LIST_COMMEND_OBJ
             cboStatus.SelectedIndex = 0
-            cboCommendObj.SelectedIndex = 0
+            'cboCommendObj.SelectedIndex = 0
             ' txtDecisionNo.ReadOnly = True
-            cboCommendType.SelectedIndex = 0
+            'cboCommendType.SelectedIndex = 0
 
             Dim payData As DataTable
             payData = rep.GetOtherList("COMMEND_PAY", True)
 
             FillRadCombobox(cboCommendPay, payData, "NAME", "ID", False)
-
-            'danh hieu khen thuong
-            Dim titleCommend As DataTable
-            titleCommend = psp.Get_Commend_Title(True, cboCommendObj.SelectedValue)
-            FillRadCombobox(cboCommend_Title, titleCommend, "NAME", "ID", False)
 
             'get loai khen thuong
             dtData = rep.GetOtherList("COMMEND_CATEGORY", True)
@@ -2452,12 +2460,6 @@ Public Class ctrlHU_CommendNewEdit
             '  powerpayData = psp.Get_Commend_PowerPay(True)
             dtData = rep.GetOtherList("RC_POWER_PAY", True)
             FillRadCombobox(cboPowerPay, dtData, "NAME", "ID", False)
-
-            'hinh thức khen thưởng
-            Dim listCommend As DataTable
-            listCommend = psp.Get_Commend_Formality(True, cboCommendObj.SelectedValue)
-            FillRadCombobox(cboCommendType, listCommend, "NAME", "ID", False)
-
 
             'cap khen thưởng
             Dim levelCommend As DataTable
@@ -3071,7 +3073,5 @@ Public Class ctrlHU_CommendNewEdit
         End Try
     End Sub
 #End Region
-
-
 
 End Class
