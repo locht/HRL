@@ -16,11 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
+from tutorial import views
 
 # urlpatterns = [
 #     path('admin/', admin.site.urls),
 # ]
 urlpatterns = [
+    url(r'^$', views.login_redirect, name='login_redirect'),
     url('admin/', admin.site.urls),
     url(r'^account/', include ('account.urls')),
 ]
