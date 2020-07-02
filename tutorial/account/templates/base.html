@@ -1,5 +1,6 @@
 <html>
     <head>
+        <base href="/"> <!--Fix lỗi hiển thị html sau đường dẫn tiếp theo "/"-->
         <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
         <link href="../static/account/css/bootstrap.min.css" rel="stylesheet">
         <link href="../static/account/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -28,10 +29,23 @@
                         </button>
                         <a class="navbar-brand" href="/">Social Network</a>
                     </div>
-                    <div id="navbar" class="navbar-collapse collapse">                       
+                    <div id="navbar" class="navbar-collapse collapse">
+                        {% if user.is_authenticated %}
+                        <ul class="nav navbar-nav">
+                            <li><a href="/account">Home</a></li>
+                            <li><a href="/account/logout">Logout</a></li>
+                            <li><a href="/account/profile">Profile</a></li>
+                            <li><a href="/account/profile/edit">Edit Profile</a></li>
+                            <li><a href="/account/change-password">Change Password</a></li>
+                            <li><a href="/account/reset-password">Reset Password</a></li>
+                            <li><a href="/account/reset-password/done">Password Done</a></li>
+                        </ul>  
+                        {% else %}
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="account/Register">Register</a></li>
+                            <li><a href="/account/login">Login</a></li>
+                            <li><a href="account/register">Register</a></li>
                         </ul>
+                        {% endif %}
                     </div><!--/.nav-collapse -->
                 </div><!--/.container-fluid -->
             </nav>
