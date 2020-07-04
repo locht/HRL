@@ -48,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'tutorial.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'tutorial.urls'
@@ -123,3 +124,18 @@ STATIC_URL = '/static/'
 STATIC_ROOT = "E:/HRLAPP/HRL/tutorial/account/static/"
 
 LOGIN_REDIRECT_URL = '/account/'
+
+LOGIN_URL = '/account/login/'
+
+LOGIN_EXEMPT_URLS = (
+    r'^account/logout/$'
+    r'^account/register/$'
+)
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587 #465
+# EMAIL_HOST_USER = 'admin@gmail.com'
+# EMAIL_HOST_PASSWORD = 'password'
