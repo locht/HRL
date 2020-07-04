@@ -120,4 +120,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = "E:/HRLAPP/HRL/onlineShop/shopping/static/"
 # STATIC_URL = os.path.join(BASE_DIR, '/static/')
