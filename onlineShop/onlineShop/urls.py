@@ -22,10 +22,29 @@ Including another URLconf
 # ]
 
 from django.conf.urls import include, url
-from django.contrib import admin 
+from django.contrib import admin
+from shopping import views
+from django.contrib.auth.views import LoginView, LogoutView, PasswordResetDoneView, PasswordResetView, PasswordResetConfirmView, PasswordResetDoneView, PasswordResetCompleteView
 
- 
+
+
 urlpatterns = [
-    url(r'^shopping/', include('shopping.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^shopping/', include('shopping.urls')),
+    url(r'^$', views.index, name='index'),
+    # url(r'^login/', views.login, name='login'),
+    url(r'^checkout/', views.checkout, name='checkout'),
+    url(r'^cart/', views.cart, name='cart'),
+    url(r'^shop/', views.shop, name='shop'),
+    url(r'^product-details/', views.product_details, name='product-details'),
+    url(r'^blog/', views.blog, name='blog'),
+    url(r'^blog-single/', views.blog_single, name='blog-single'),
+    url(r'^Error/', views.Error, name='404'),
+    url(r'^contact-us/', views.contact_us, name='contact-us'),
+    url(r'^register/', views.register, name='register'),
+    url(r'^login-done/', views.login_done, name='login-done'),
+    url(r'^register-done/', views.register_done, name='register-done'),
+    url(r'^login/$', LoginView.as_view(template_name='shopping/login.html'), name='login'),
+    url(r'^profile/$', views.view_profile, name='profile'),
+
 ]

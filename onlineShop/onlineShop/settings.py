@@ -122,3 +122,7 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = "E:/HRLAPP/HRL/onlineShop/shopping/static/"
 # STATIC_URL = os.path.join(BASE_DIR, '/static/')
+
+LOGIN_REDIRECT_URL = '/shopping/'
+
+LOGIN_URL = '/shopping/login/'

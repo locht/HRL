@@ -1,7 +1,7 @@
 from django.contrib import admin
- 
+from shopping.models import UserProfile
+
 # Register your models here.
-from .models import Question, Choice
- 
-admin.site.register(Question)
-admin.site.register(Choice)
+# from .models import register
+
+admin.site.register(UserProfile)
