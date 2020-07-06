@@ -6,11 +6,15 @@ from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView, PasswordResetDoneView, PasswordResetView, PasswordResetConfirmView, PasswordResetDoneView, PasswordResetCompleteView
+from shopping.models import *
 
 # Create your views here.
 
 def index(request):
-    return render(request, 'shopping/index.html')
+    cateParents = Category.objects.filter(cate_parent_id__isnull=True)
+    context = {'parent':cateParents}
+    return render(request, "shopping/index.html", context)
+    # return render(request, 'shopping/index.html')
 
 def login(request):
 #     if request.method == 'POST':
@@ -72,3 +76,4 @@ def register_done(request):
 def view_profile(request):
     args = {'user':request.user}
     return render(request, 'shopping/profile.html', args)
+
