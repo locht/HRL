@@ -126,3 +126,10 @@ STATIC_ROOT = "E:/HRLAPP/HRL/onlineShop/shopping/static/"
 LOGIN_REDIRECT_URL = '/shopping/'
 
 LOGIN_URL = '/shopping/login/'
+
+# HAYSTACK_CONNECTIONS = {
+#     'default': {
+#         'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+#     },
+# }
+

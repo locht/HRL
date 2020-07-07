@@ -11,10 +11,10 @@ from shopping.models import *
 # Create your views here.
 
 def index(request):
-    cateParents = Category.objects.filter(cate_parent_id__isnull=True)
-    context = {'parent':cateParents}
-    return render(request, "shopping/index.html", context)
-    # return render(request, 'shopping/index.html')
+    # cateParents = Category.objects.filter(cate_parent_id__isnull=True)
+    # context = {'parent':cateParents}
+    # return render(request, "shopping/index.html", context)
+    return render(request, 'shopping/index.html')
 
 def login(request):
 #     if request.method == 'POST':
