@@ -2,18 +2,34 @@
 # You'll have to do the following manually to clean this up:
 #   * Rearrange models' order
 #   * Make sure each model has one field with primary_key=True
-#   * Make sure each ForeignKey has `on_delete` set to the desired behavior.
+#   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+
+# Create your models here.
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    description = models.CharField(max_length=100, blank=True, default='')
+    city = models.CharField(max_length=100, blank=True, default='')
+    website = models.URLField(blank=True, default='')
+    phone = models.IntegerField(default=0, blank=True)
+
+def create_profile(sender,**kwargs ):
+    if kwargs['created']:
+        user_profile=UserProfile(user=kwargs['instance'])
+        user_profile.save()
+
+post_save.connect(create_profile, sender=User)
 
 class Category(models.Model):
-    cate_id = models.AutoField(unique=True, blank=True, null=True)
-    cate_parent_id = models.IntegerField()
-    cate_name = models.TextField()
-    cate_description = models.TextField()
-    cate_status = models.TextField()
+    cate_parent_id = models.IntegerField(blank=True, null=True)
+    name = models.TextField()
+    description = models.TextField()
+    status = models.BooleanField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -21,59 +37,48 @@ class Category(models.Model):
 
 
 class Order(models.Model):
-    order_id = models.AutoField(unique=True, blank=True, null=True)
     ship_name = models.TextField()
     ship_address = models.TextField()
     ship_phone = models.TextField()
+    ordered_date = models.DateTimeField()
     total_amount = models.TextField()
-    order_status = models.IntegerField()
+    status = models.IntegerField()
 
     class Meta:
         managed = False
         db_table = 'Order'
 
 
-class OrderDetail(models.Model):
-    order_detail_id = models.AutoField(unique=True, blank=True, null=True)
+class Orderdetail(models.Model):
     order_id = models.IntegerField()
     product_id = models.IntegerField()
-    product_price = models.TextField()  # This field type is a guess.
-    product_quantity = models.IntegerField()
+    product_price = models.TextField()
+    order_quantity = models.IntegerField()
     amount = models.TextField()
 
     class Meta:
         managed = False
-        db_table = 'Order_Detail'
+        db_table = 'OrderDetail'
 
 
 class Product(models.Model):
-    product_id = models.AutoField(unique=True, blank=True, null=True)
     cate_id = models.IntegerField()
-    product_name = models.IntegerField()
-    product_price = models.TextField()  # This field type is a guess.
-    product_quantity = models.IntegerField()
-    product_image = models.TextField()
-    product_details = models.TextField()
-    product_status = models.BinaryField()
+    name = models.TextField()
+    price = models.TextField()
+    quantity = models.IntegerField()
+    image = models.TextField()
+    detail = models.TextField()
+    status = models.BooleanField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'Product'
 
 
-class ProductImages(models.Model):
-    image_id = models.AutoField(unique=True, blank=True, null=True)
-    product_id = models.IntegerField()
-    image_path = models.TextField()
-
-    class Meta:
-        managed = False
-        db_table = 'Product_Images'
-
-
 class Promotion(models.Model):
-    promotion_id = models.AutoField(unique=True, blank=True, null=True)
     product_id = models.IntegerField()
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
     discount = models.TextField()
 
     class Meta:
@@ -193,7 +198,7 @@ class DjangoSession(models.Model):
 
 class ShoppingUserprofile(models.Model):
     description = models.CharField(max_length=100)
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING, unique=True)
+    user = models.OneToOneField(AuthUser, models.DO_NOTHING)
     city = models.CharField(max_length=100)
     phone = models.IntegerField()
     website = models.CharField(max_length=200)

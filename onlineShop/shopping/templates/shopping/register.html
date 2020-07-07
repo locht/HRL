@@ -8,12 +8,15 @@
                 <div class="login-form">
                     <!--sign up form-->
                     <h2>New User Signup!</h2>
-                    <form action="#" method="post">
-                        {% csrf_token %} {{ form.as_p }}
-                        <!-- <input type="text" placeholder="Name" />
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <anything_else>
+                            {{ form.as_p }}
+                            <!-- <input type="text" placeholder="Name" />
                         <input type="email" placeholder="Email Address" />
                         <input type="password" placeholder="Password" /> -->
-                        <button type="submit" class="btn btn-default">Signup</button>
+                            <button type="submit" class="btn btn-default">Signup</button>
+                        </anything_else>
                     </form>
                 </div>
                 <!--/sign up form-->
