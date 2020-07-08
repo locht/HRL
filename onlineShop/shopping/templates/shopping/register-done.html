@@ -1,12 +1,12 @@
-{% extends "home.html" %} {% load static %} {% block placeholder %}
-
+{% extends "home.html" %} {% load static %} {% block placeholder %} {% csrf_token %}
 <div id="contact-page" class="container">
     <div class="bg">
         <div class="row">
             <div class="col-sm-12">
                 <h2 class="title text-center">REGISTER <strong>SUCCES</strong></h2>
                 <div id="gmap" class="contact-map">
-
+                    Would you like to log in now? : <a href="{% url 'login' %}">Login</a>
+                    <br> Return to home page : <a href="{% url 'index' %}">Home</a>
                 </div>
             </div>
         </div>

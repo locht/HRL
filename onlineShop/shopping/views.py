@@ -11,23 +11,25 @@ from shopping.models import *
 # Create your views here.
 
 def index(request):
-    cateParents = Category.objects.filter(cate_parent_id__isnull=True)
-    context = {'parent':cateParents}
+    cateParents = Category.objects.filter(cate_parent_id=0)
+    context = {
+        'parents':cateParents
+    }
     return render(request, "shopping/index.html", context)
     # return render(request, 'shopping/index.html')
 
-def login(request):
-#     if request.method == 'POST':
-#         form = LoginView(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('/shopping/')
-#     else:
-#         form = LoginView()
+# def login(request):
+# #     if request.method == 'POST':
+# #         form = LoginView(request.POST)
+# #         if form.is_valid():
+# #             form.save()
+# #             return redirect('/shopping/')
+# #     else:
+# #         form = LoginView()
 
-#         args = {'form':form}
-#         return render(request, 'shopping/login.html', args)
-    return render(request, 'shopping/login.html')
+# #         args = {'form':form}
+# #         return render(request, 'shopping/login.html', args)
+#     return render(request, 'shopping/login.html')
     
 
 def Error(request):
@@ -59,13 +61,15 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/shopping/')
+            return redirect("/register-done/")
+            # response = HttpResponse('shopping/register-done')
+            # return response
     else:
         form = RegistrationForm()
 
-        args = {'form':form}
-        return render(request, 'shopping/register.html', args)
+    return render(request, 'shopping/register.html', {'form': form})
     # return render(request, 'shopping/register.html')
+
 
 def login_done(request):
     return render(request, 'shopping/login-done.html')
