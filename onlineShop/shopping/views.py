@@ -12,8 +12,16 @@ from shopping.models import *
 
 def index(request):
     cateParents = Category.objects.filter(cate_parent_id=0)
+    featureItems = Product.objects.filter(status=1)[:6]
+    categoryTab = Product.objects.filter(status=True) [6:10]
+    recommendedItems1 = Product.objects.filter(status=True) [10:13]
+    recommendedItems2 = Product.objects.filter(status=True) [13:16]
     context = {
-        'parents':cateParents
+        'parents' : cateParents,
+        'featureItems' : featureItems,
+        'categoryTab' : categoryTab,
+        'recommendedItems1' : recommendedItems1,
+        'recommendedItems2' : recommendedItems2
     }
     return render(request, "shopping/index.html", context)
     # return render(request, 'shopping/index.html')
