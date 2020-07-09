@@ -69,7 +69,7 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("/register-done/")
+            return redirect("/register-done/") #thêm return ở đây thì k cần thêm href {% url %} cho action bên template (ngược lại - có url thì k cần dòng return)
             # response = HttpResponse('shopping/register-done')
             # return response
     else:

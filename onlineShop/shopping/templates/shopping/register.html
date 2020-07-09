@@ -18,6 +18,17 @@
                             <button type="submit" class="btn btn-default">Signup</button>
                         </anything_else>
                     </form>
+                    <!-- <form action="{% url 'register' %}" method="POST">
+                        {% csrf_token %} {% for field in form %}
+                        <div class="form-group">
+                            {{ field.label }}
+                            <div class="form-control">
+                                {{ field }} {% if field.error %} {% for err in field.errors %} {{ err }} {% endfor %} {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-default">Signup</button>
+                    </form> -->
                 </div>
                 <!--/sign up form-->
             </div>

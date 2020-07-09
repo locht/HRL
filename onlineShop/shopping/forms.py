@@ -50,22 +50,37 @@ class RegistrationForm(UserCreationForm):
         )
 
     def clean_password2(self):
-        if 'password1' in self.cleaned_data:
+        if 'password1' in self.cleaned_data: 
             password1 = self.cleaned_data['password1']
             password2 = self.cleaned_data['password2']
             if password1 == password2 and password1:
                 return password2
         raise forms.ValidationError("Invalid password")
+    # def clean_confirm_password(self): #dãy lệnh này vẫn chạy được
+    #     password = self.cleaned_data['password']
+    #     confirm_password = self.cleaned_data['confirm_password']
+    #     if password != confirm_password:
+    #         raise forms.ValidationError(f"Password not match")
+    #     return confirm_password
 
     def clean_username(self):
         username = self.cleaned_data['username']
-        if not re.search(r'^\w+$', username):
+        # if not re.search(r'^\w+$', username): 
+        if not re.search(r'^[a-zA-Z0-9_.-]{4,}$', username):
             raise forms.ValidationError("The account name has special characters")
         try:
             User.objects.get(username=username)
         except User.DoesNotExist:
             return username
         raise forms.ValidationError("Account already exists")
+
+    # def clean_email(self): #dòng này cũng chạy được
+    #     email = self.cleaned_data['email']
+    #     try:
+    #         User.objects.get(email=email)
+    #     except User.DoesNotExist:
+    #         return email
+    #     raise forms.ValidationError(f"mail'{email}' đã tồn tại")
 
     def save(self, commit=True):
         print(self.cleaned_data)
