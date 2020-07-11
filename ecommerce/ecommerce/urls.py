@@ -17,9 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import include, url
 from store import views
-from django.contrib.auth.views import LoginView, LogoutView, PasswordResetDoneView, PasswordResetView, PasswordResetConfirmView, PasswordResetDoneView, PasswordResetCompleteView
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', include('store.urls')),
+
+    url(r'^cart/', views.cart, name='cart'),
+    url(r'^checkout/$', views.checkout, name='checkout'),
 ]

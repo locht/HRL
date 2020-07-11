@@ -120,4 +120,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = "E:/HRLAPP/HRL/ecommerce/store/static/"
+STATIC_ROOT = "E:/HRLAPP/HRL/ecommerce/static/"
