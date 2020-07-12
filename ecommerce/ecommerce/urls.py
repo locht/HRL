@@ -18,11 +18,15 @@ from django.contrib import admin
 from django.conf.urls import include, url
 from store import views
 
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', include('store.urls')),
+    url(r'', include('store.urls')),
 
-    url(r'^cart/', views.cart, name='cart'),
-    url(r'^checkout/$', views.checkout, name='checkout'),
+    # url(r'^cart/', views.cart, name='cart'),
+    # url(r'^checkout/$', views.checkout, name='checkout'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

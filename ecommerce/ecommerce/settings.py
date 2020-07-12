@@ -121,3 +121,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATIC_ROOT = "E:/HRLAPP/HRL/ecommerce/static/"
+
+MEDIA_URL = '/images/'
+
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'static/store/images')
+MEDIA_ROOT = "E:/HRLAPP/HRL/ecommerce/static/store/images"
