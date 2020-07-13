@@ -120,9 +120,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = "E:/HRLAPP/HRL/ecommerce/static/"
+# STATIC_ROOT = "E:/HRLAPP/HRL/ecommerce/static/" #Máy nhà
+
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/store')
+
+STATIC_ROOT = "D:/APPHRL/ecommerce/static/" #Máy công ty
 
 MEDIA_URL = '/images/'
 
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'static/store/images')
-MEDIA_ROOT = "E:/HRLAPP/HRL/ecommerce/static/store/images"
+# MEDIA_ROOT = "E:/HRLAPP/HRL/ecommerce/static/store/images" #Máy nhà
+
+MEDIA_ROOT = "D:/APPHRL/ecommerce/static/store/images" #Máy công ty
