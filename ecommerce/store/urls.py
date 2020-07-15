@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^checkout/$', views.checkout, name='checkout'),
     
     url(r'^update_item/', views.updateItem, name='update_item'),
+    url(r'^process_order/', views.processOrder, name='process_order'),
 ]
